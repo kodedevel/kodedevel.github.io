@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/9.0">
+  <sitemap>
+    <loc>https://kodedevel.github.io/map_java.xml</loc>
+    <lastmod>2025-09-12</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://kodedevel.github.io/map_kotlin.xml</loc>
+    <lastmod>2025-09-12</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://kodedevel.github.io/map_android.xml</loc>
+    <lastmod>2025-09-12</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://kodedevel.github.io/map_linux.xml</loc>
+    <lastmod>2025-09-12</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://kodedevel.github.io/map_web.xml</loc>
+    <lastmod>2025-09-12</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://kodedevel.github.io/map_blog.xml</loc>
+    <lastmod>2025-09-12</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://kodedevel.github.io/map_home.xml</loc>
+    <lastmod>2025-09-12</lastmod>
+  </sitemap>
+</sitemapindex>
