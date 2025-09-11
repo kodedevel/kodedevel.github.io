@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+
+<html lang="fa">
+
+<head>
+
+    <meta content="IE=7" http-equiv="X-UA-Compatible">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+
+    <meta content="با دستور ls  در لینوکس قادر خواهیم بود محتوای یک پوشه مشاهده کنیم این دستور یکی از دستورات پر کاربرد در لینوکس است در این مطلب به بررسی این دستور می پردازیم."
+          name="description">
+
+    <meta content="text/html;charset=UTF-8" http-equiv="Content-Type">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>دستور ls در لینوکس</title>
+
+    <meta content="دستور ls در لینوکس" name="og:title">
+    <meta content="با دستور ls  در لینوکس قادر خواهیم بود محتوای یک پوشه مشاهده کنیم این دستور یکی از دستورات پر کاربرد در لینوکس است در این مطلب به بررسی این دستور می پردازیم."
+          name="og:description">
+
+    <meta content="https://kodedevel.github.io/resources/favicon.png" property="og:image">
+    <meta content="https://kodedevel.github.io/article/linux/list-directory-contents.html" property="og:url">
+
+    <meta content="article" property="og:type">
+
+    <link href="/resources/favicon.png" rel="shortcut icon" type="image/x-icon">
+
+    <link href="/resources/css/main.css" rel="stylesheet">
+    <script src="/resources/js/main.js" type="module"></script>
+
+</head>
+
+<body>
+<header></header>
+<main>
+    <div class="page-wrap">
+
+        <div class="article-head">
+            <h1>
+                دستور ls در لینوکس
+            </h1>
+
+            <address>
+                <a class="author text-muted text-decoration-none" rel="author">یونس سلیمانی</a>
+            </address>
+
+            <figure class="figure figure-wrapper">
+                <img alt="دستور ls در لینوکس" class="rounded figure-img" src="/resources/image/linux/cover_list_directory_contents.png"/>
+            </figure>
+
+
+            <div class="toc">
+                <p class="p-2 mx-2 h5">دسترسی سریع</p>
+                <div class="list-group">
+
+                    <a class="list-group-item list-group-item-action" href="#sub0">بررسی دستور ls</a>
+
+                </div>
+            </div>
+        </div>
+
+        <article>
+
+            <div class="subsection" id="sub0">
+                <h2>بررسی دستور ls</h2>
+
+                <p>دستور ls در ترمینال لینوکس برای مشاهده ی فایل ها و پوشه های یک مسیر است و اسمش لیست محتوای دایرکتوری (list directory contents) است.</p>
+                <p>این برنامه ی ترمینالی یک برنامه ی بسیار مهم و کاربردی برای ترمینال به حساب میاد وقتی بخوایم محتوای یک پوشه رو در ترمینال ببینیم از دستور ls در لینوکس استفاده می کنیم.</p>
+                <p>هنگام استفاده از دستوراتی مثل cd ،ln و ... استفاده از ls اهمیت داره.</p>
+
+                <h3>فرم کلی:</h3>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Shell">
+ls parameters /Path_To_Target_Directory
+                        </div>
+                    </div>
+                </div>
+
+                <p>در بالا parameters پارامتر هاییه که هنگام اجرای دستور استفاده می کنیم و d0 تا dn پوشه های مسیر هستند.</p>
+
+                <p>در صورت تعیین نکردن مسیر ls به صورت پیشفرض محتوای پوشه ای که در حال حاضر با ترمینال داخلش هستیم رو برای نمایش مد نظر قرار میده.</p>
+
+                <p>هنگام تعیین مسیر اگه پرونده ای دارای فاصله باشه باید اسم پرونده رو داخل "" بنویسیم.</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Shell">
+ls parameters /home/username/"directory with space"/Movies
+                        </div>
+                    </div>
+                </div>
+
+                <p>میتونیم از یک یا چند پارامتر به صورت ترکیبی هنگام اجرای دستور ls در ترمینال استفاده کنیم.</p>
+
+                <p class="h4">پارامتر های پر کاربرد:</p>
+
+                <h3>پارامتر l</h3>
+                <p>پارامتر l باعث میشه فایل ها رو با جزئیات مشاهده کنیم</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Shell">
+ls -l /home/username
+                        </div>
+                    </div>
+                </div>
+
+
+                <h3>پارامتر a</h3>
+                <p>پارامتر a تمام فایل ها و پوشه های موجود (حتی پنهانی ها) رو نمایش میده</p>
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Shell">
+ls -a /home/username/Documents
+                        </div>
+                    </div>
+                </div>
+
+
+                <h3>پارامتر R</h3>
+                <p>پارامتر R تمام فایل ها پوشه ها ی تو در تو داخل پوشه ی یک مسیر رو به صورت تفکیک شده و بازگشتی نمایش میده.</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Shell">
+ls -R /home/username/Movies
+                        </div>
+                    </div>
+                </div>
+
+                <h3>پارامتر h</h3>
+                <p>ترکیب پارامتر h با l علاوه بر جزئیات سایز پوشه ها رو نمایش میده.</p>
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Shell">
+ls -lh /home/username/Pictures
+                        </div>
+                    </div>
+                </div>
+
+                <h3>پارامتر t</h3>
+                <p>پارامتر t پوشه ها و فایل ها رو بر اساس زمان نمایش می ده و جدید ترین فایل اول نمایش داده میشه.</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Shell">
+ls -t /home/username/Music
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </article>
+
+        <div class="article-foot">
+
+            <div class="navigator-container">
+
+                <a class="md-bt md-bt-light" href="/article/linux/change-directory.html">
+            <span class="material-icons">
+              navigate_next
+            </span>
+                    <span class="hint">
+              بعدی
+            </span>
+                </a>
+
+                <a class="md-bt md-bt-light" href="/article/linux/introduction.html">
+            <span class="hint">
+              قبلی
+            </span>
+                    <span class="material-icons">
+              navigate_before
+            </span>
+
+                </a>
+            </div>
+
+            <div class="relative-articles-container">
+                <p>مطالب مرتبط</p>
+                <div>
+                    <div>
+                        <a href="/article/linux/introduction.html">معرفی لینوکس</a>
+                        <a href="/article/linux/change-directory.html">دستور cd در لینوکس</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+<div class="scroll-top-container">
+    <a class="text-decoration-none link-dark material-icons" href="#">
+        arrow_drop_up
+    </a>
+</div>
+
+<footer></footer>
+
+<div class="dialog hide"></div>
+
+<div class="copy-message">
+    <span class="copy-message-text">کپی شد!</span>
+</div>
+
+</body>

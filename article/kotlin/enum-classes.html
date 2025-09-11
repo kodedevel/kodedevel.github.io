@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+
+<html lang="fa">
+
+<head>
+
+    <meta content="IE=7" http-equiv="X-UA-Compatible">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+
+    <meta content="در این مقاله به کلاس enum و کاربردهای آن در کاتلین میپردازیم و همینطور ویژگی های کلاس enum و آبجکت های ثابتی که براش تعریف میکنیم رو بررسی میکنیم." name="description">
+
+    <meta content="text/html;charset=UTF-8" http-equiv="Content-Type">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>کلاس های enum در کاتلین</title>
+
+    <meta content="کلاس های enum در کاتلین" name="og:title">
+    <meta content="در این مقاله به کلاس enum و کاربردهای آن در کاتلین میپردازیم و همینطور ویژگی های کلاس enum و آبجکت های ثابتی که براش تعریف میکنیم رو بررسی میکنیم." name="og:description">
+
+    <meta content="https://kodedevel.github.io/resources/favicon.png" property="og:image">
+    <meta content="https://kodedevel.github.io/article/kotlin/enum-classes.html" property="og:url">
+
+    <meta content="article" property="og:type">
+
+    <link href="/resources/favicon.png" rel="shortcut icon" type="image/x-icon">
+
+    <link href="/resources/css/main.css" rel="stylesheet">
+    <script src="/resources/js/main.js" type="module"></script>
+
+</head>
+
+<body>
+<header></header>
+<main>
+    <div class="page-wrap">
+
+        <div class="article-head">
+            <h1>
+                کلاس های enum در کاتلین
+            </h1>
+
+            <address>
+                <a class="author text-muted text-decoration-none" rel="author">یونس سلیمانی</a>
+            </address>
+
+            <figure class="figure figure-wrapper">
+                <img alt="کلاس های enum در کاتلین" class="rounded figure-img" src="/resources/image/kotlin/cover_enum_classes.png"/>
+            </figure>
+
+            <div class="toc">
+                <p class="p-2 mx-2 h5">دسترسی سریع</p>
+                <div class="list-group">
+
+                    <a class="list-group-item list-group-item-action" href="#sub0">توضیحات</a>
+
+                    <a class="list-group-item list-group-item-action" href="#sub1">بررسی و ویژگی کلاس های enum</a>
+
+                    <a class="list-group-item list-group-item-action" href="#sub2">خلاصه</a>
+                </div>
+            </div>
+        </div>
+
+        <article>
+
+            <div class="subsection" id="sub0">
+                <h2>توضیحات</h2>
+
+
+                <p>از کلاس های enum برای نگهداری تعداد متناهی از آبجکت های ثابت استفاده می کنیم.</p>
+                <p>معمولا enum رو زمانی تعریف میکنیم که تو برنامه چندتا وضعیت مشخص داریم.</p>
+                <p>هرکدوم از آبجکت هایی که داخل این کلاس ها ایجاد می کنیم گویای وضعیت بخصوصی در برنامه یا قسمتی از برنامه هستند و تمام وضعیت های موجود مورد نظر رو داخل کلاس enum به صورت آبجکت های ثابت بیان می کنیم.</p>
+
+                <p>فرم کلی این کلاس ها به صورت زیر است</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Kotlin">
+enum class Status{
+    Object0, Object1, Object2, ... , ObjectN;
+}
+                        </div>
+                    </div>
+                </div>
+
+                <p>در بالا Object0 تا ObjectN داخل Status نمونه ای از کلاس Status هستند.</p>
+
+            </div>
+
+            <div class="subsection" id="sub1">
+                <h2>بررسی و ویژگی کلاس های enum</h2>
+
+                <p>همینطور که گفتیم بعد از تعریف کلاس enum میتونیم یک یا چند آبجکت ثابت داخلش تعریف کنیم و هرکدوم گویای وضعیت خاصی از برنامه میتونن باشن.</p>
+                <p>مقادیر آبجکت ها ثابت و غیرقابل تغییر هستند برای همین بهشون آبجکت های ثابت کلاس enum میگیم.</p>
+
+                <p>در زیر یک کلاس enum ایجاد کردیم و سه آبجکت داخلش تعریف کردیم برای داشتن سه وضعیت خاموش، روشن و استندبای</p>
+
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Kotlin">
+fun main(){
+    println(PowerStatus.STANDBY)
+    println(PowerStatus.ON)
+    println(PowerStatus.OFF)
+}
+
+enum class PowerStatus{
+    ON, OFF, STANDBY
+}
+                        </div>
+                    </div>
+                </div>
+
+                <p> کلاس enum به طور پیشفرض دارای پراپرتی entries است این پراپرتی از نوع EnumEntries است و مانند <a class="text-decoration-none" href="arrays.html">آرایه</a> یا لیست تمام آبجکت های تعریف شده برای enum رو نگهداری میکنه:</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Kotlin">
+fun main(){
+    val entries = PowerStatus.entries
+    for(status in entries) println(status)
+}
+enum class PowerStatus{
+    ON, OFF, STANDBY
+}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="note">
+                    <p class="note-head">توجه</p>
+                    <p>در کلاس های enum یک تابع پیشفرض نیز وجود داره به اسم values، این تابع کاربرد مشابه پراپرتی entries داره اما استفاده ازش توصیه نمیشه چون با هر بار صدا زدن تابع یک نمونه ی جدید از کلاس arrays ایجاد میشه و این کار کیفیت برنامه رو پایین میاره.</p>
+                </div>
+
+                <p>با تابع valueOf(String) کلاس enum میتونیم آبجکت مورد نظر رو بر اساس اسمش پیدا کنیم:</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Kotlin">
+fun main(){
+    println(PowerStatus.valueOf("ON")
+}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="note">
+                    <p class="note-head">توجه</p>
+                    <p>در صورت نبود آبجکت هم نام با استرینگ تابع valueOf برنامه دچار illegalArgumentException میشه.</p>
+                </div>
+
+                <p>آبجکت های enum به طور پیشفرض دارای دو پراپرتی name و ordinary هستند</p>
+                <p>پراپرتی name اسم آبجکت رو به صورت String بر میگردونه و پراپرتی ordinary شماره جایگاه آبجکت در کلاس رو به صورت integer</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Kotlin">
+fun main(){
+    var currentStatus = PowerStatus.STANDBY
+    println(currentStatus.name)
+    println(currentStatus.ordinary)
+}
+
+enum class PowerStatus{
+    ON, OFF, STANDBY
+}
+                        </div>
+                    </div>
+                </div>
+
+
+                <p>در کانستراکتور کلاس های enum میتونیم مثل بقیه ی کلاس ها پراپرتی تعریف کنیم، این پراپرتی ها باید هنگام تعریف آبجکت های ثابت مقداردهی بشن</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Kotlin">
+fun main(){
+    var currentStatus = PowerStatus.ON
+
+    when(currentStatus.statusCode){
+        0 -> println("The device is off")
+        1 -> println("The device is in standby mode")
+        2 -> println("The device is on")
+    }
+}
+
+enum class PowerStatus(val statusCode: Int){
+    ON(2), OFF(0), STANDBY(1)
+}
+                        </div>
+                    </div>
+                </div>
+
+
+                <p>داخل کلاس های enum میتونیم تابع و پراپرتی های ابسترکت نیز تعریف کنیم:</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Kotlin">
+fun main() {
+
+    var currentDevicePowerStatus = PowerStatus.OFF
+
+    println("The current power status is: ${currentDevicePowerStatus.name}")
+
+    val input = Scanner(System.`in`)
+    val result: String
+
+    if (currentDevicePowerStatus.statusCode == PowerStatus.OFF.statusCode) {
+
+        println("Do u wanna turn the device on? (yes/no)")
+        result = input.next()
+
+        if (result == "yes") {
+        println("Turning device on")
+        currentDevicePowerStatus = currentDevicePowerStatus.updateStatus(PowerStatus.ON.statusCode)
+        }
+    }
+
+    println("The current power status is: ${currentDevicePowerStatus.name}")
+
+}
+
+enum class PowerStatus(val statusCode: Int){
+
+    ON(2){
+        override fun updateStatus(statusCode: Int): PowerStatus {
+            return when(statusCode) {
+                0 -> OFF
+                1 -> STANDBY
+                else -> ON
+            }
+        }
+    }, OFF(0){
+        override fun updateStatus(statusCode: Int): PowerStatus {
+            return when(statusCode){
+                2 -> ON
+                else -> OFF
+            }
+        }
+    }, STANDBY(1){
+        override fun updateStatus(statusCode: Int): PowerStatus {
+            return when(statusCode){
+                2 -> ON
+                else -> STANDBY
+            }
+        }
+    };
+
+    abstract fun updateStatus(statusCode: Int): PowerStatus
+}
+                        </div>
+                    </div>
+                </div>
+
+                <p> میتونیم <a class="text-decoration-none" href="interfaces.html">اینترفیس ها</a> رو داخل کلاس enum پیاده‌سازی کنیم و کلاس های enum به طور پیشفرض اینترفیس Comparable&lt;T&gt; رو پیاده‌سازی کردن.</p>
+
+                <div class="note">
+                    <p class="note-head">نکته</p>
+                    <p>نمیتونیم از کلاس های دیگه توسط کلاس enum ارث ببریم.</p>
+                </div>
+            </div>
+
+            <div class="subsection" id="sub2">
+                <h2>خلاصه</h2>
+                <p>- کلاس های enum مجموعه ی متناهی از آبجکت های ثابت هستند.</p>
+                <p>از این کلاس ها برای تعیین کردن وضعیت به خصوصی در برنامه استفاده میکنیم.</p>
+                <p>برای هر وضعیت یک آبجکت تعریف میکنیم.</p>
+                <p>میتونیم اینترفیس ها رو در کلاس enum پیاده‌سازی کنیم</p>
+                <p>نمیتونیم از کلاس های دیگه توسط کلاس enum ارث ببریم.</p>
+            </div>
+        </article>
+
+        <div class="article-foot">
+
+            <div class="navigator-container">
+
+                <a class="md-bt md-bt-light" href="/article/kotlin/sealed-classes.html">
+            <span class="material-icons">
+              navigate_next
+            </span>
+                    <span class="hint">
+              بعدی
+            </span>
+                </a>
+
+                <a class="md-bt md-bt-light" href="/article/kotlin/nested-classes.html">
+            <span class="hint">
+              قبلی
+            </span>
+                    <span class="material-icons">
+              navigate_before
+            </span>
+                </a>
+
+            </div>
+
+            <div class="relative-articles-container">
+                <p>مطالب مرتبط</p>
+                <div>
+                    <div>
+                        <a href="/article/kotlin/objects-and-classes.html">آبجکت و کلاس ها در کاتلین</a>
+                    </div>
+                    <div>
+                        <a href="/article/kotlin/inheritance.html">وراثت در کاتلین</a>
+                    </div>
+                    <div>
+                        <a href="/article/kotlin/interfaces.html">اینترفیس ها در کاتلین</a>
+                    </div>
+                    <div>
+                        <a href="/article/kotlin/functions.html">مطالعه در وبسایت رسمی</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+<div class="scroll-top-container">
+    <a class="text-decoration-none link-dark material-icons" href="#">
+        arrow_drop_up
+    </a>
+</div>
+
+<footer></footer>
+
+<div class="dialog hide"></div>
+
+<div class="copy-message">
+    <span class="copy-message-text">کپی شد!</span>
+</div>
+
+</body>

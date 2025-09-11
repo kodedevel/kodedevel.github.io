@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+
+<html lang="fa">
+
+<head>
+
+    <meta content="IE=7" http-equiv="X-UA-Compatible">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+
+    <meta content="کلاس های ابستراکت (abstract) کلاس هایی هستند که میتونیم داخلشون متد های ابستراکت (بدون بدنه و کوتاه) تعریف کنیم از این کلاس ها نمیتونیم نمونه بسازیم اما میتونیم ازشون ارث بری کنیم؛ در این مطلب به بررسی کلاس های ابستراکت در جاوا میپردازیم."
+          name="description">
+
+    <meta content="text/html;charset=UTF-8" http-equiv="Content-Type">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>کلاس های ابستراکت (abstract) در جاوا</title>
+
+    <meta content="کلاس های ابستراکت (abstract) در جاوا" name="og:title">
+    <meta content="کلاس های ابستراکت (abstract) کلاس هایی هستند که میتونیم داخلشون متد های ابستراکت (بدون بدنه و کوتاه) تعریف کنیم از این کلاس ها نمیتونیم نمونه بسازیم اما میتونیم ازشون ارث بری کنیم؛ در این مطلب به بررسی کلاس های ابستراکت در جاوا میپردازیم."
+          name="og:description">
+
+    <meta content="https://kodedevel.github.io/resources/favicon.png" property="og:image">
+    <meta content="https://kodedevel.github.io/article/java/abstract-classes.html" property="og:url">
+
+    <meta content="article" property="og:type">
+
+    <link href="/resources/favicon.png" rel="shortcut icon" type="image/x-icon">
+
+    <link href="/resources/css/main.css" rel="stylesheet">
+    <script src="/resources/js/main.js" type="module"></script>
+
+</head>
+
+<body>
+<header></header>
+<main>
+    <div class="page-wrap">
+
+        <div class="article-head">
+            <h1>کلاس های ابستراکت (abstract) در جاوا</h1>
+
+            <address>
+                <a class="author text-muted text-decoration-none" rel="author">یونس سلیمانی</a>
+            </address>
+
+            <figure class="figure figure-wrapper">
+                <img alt="کلاس های ابستراکت در جاوا" class="rounded figure-img"
+                     src="/resources/image/java/cover_abstract_classes.png"/>
+            </figure>
+
+            <div class="toc">
+                <p class="p-2 mx-2 h5">دسترسی سریع</p>
+                <div class="list-group">
+
+                    <a class="list-group-item list-group-item-action" href="#sub0">بررسی کلاس های ابستراکت</a>
+
+                    <a class="list-group-item list-group-item-action" href="#sub1">ویژگی کلاس های ابستراکت</a>
+
+                    <a class="list-group-item list-group-item-action" href="#sub2">خلاصه</a>
+
+                </div>
+            </div>
+        </div>
+
+        <article>
+
+            <div class="subsection" id="sub0">
+
+                <h2>بررسی کلاس های ابستراکت</h2>
+
+                <p>کلاس هایی که به طور معمول و تا اینجا باهاشون سر و کار داشتیم معروف هستند به کلاس های
+                    <strong>concrete</strong>.</p>
+                <p>کلاس های <strong>ابستراکت (abstract)</strong> کلاس هایی هستند که میتونیم داخلشون متد های ابستراکت
+                    <strong>(بدون بدنه و کوتاه)</strong> تعریف کنیم.</p>
+
+                <p>کلاس های ابسترکت رو در جاوا با کلیدواژه ی <strong>abstract</strong> قبل از کلیدواژه ی
+                    <strong>class</strong> تعریف میکنیم.</p>
+
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+public abstract class MyAbstractClass{
+...
+}
+                        </div>
+                    </div>
+                </div>
+
+
+                <h3>متد های ابستراکت (abstract)</h3>
+
+                <p>متد ابسترکت (abstract) در جاوا به متد هایی گفته میشه که بدنه ندارن؛ این متد ها رو در کلاس های
+                    ابستراکت یا اینترفیس ها تعریف میکنیم تا بعدا با ارث بری بتونیم تو کلاس concrete کامل پیاده سازیشون
+                    کنیم.</p>
+
+                <div class="note">
+                    <p class="note-head">توجه</p>
+                    <p>متد های ابسترکت در کلاس های ابستراکت جاوا نمیتونن <a class="text-decoration-none"
+                                                                            href="access-modifiers.html">سطح دسترسی</a>
+                        private داشته باشن.</p>
+                </div>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+public abstract class MyAbstractClass{
+
+...
+
+public abstract myAbstractMethod();
+
+...
+
+}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="subsection" id="sub1">
+                <h2>ویژگی کلاس های ابسترکت</h2>
+
+
+                <p>در کلاس های ابستراکت در جاوا میتونیم کانستراکتور تعریف کنیم اما نمیتونیم یک آبجکت از این کلاس ها
+                    ایجاد کنیم.</p>
+
+
+                <p>کلاس concrete یا کلاس ابستراکت میتونه از یک کلاس ابستراکت ارث بری کنه.</p>
+
+                <p>کلاس های ابستراکت میتونن از یک کلاس concrete ارث بری کنن.</p>
+
+                <p>کلاسی که دارای متد های ابستراکت است باید خودش ابستراکت باشه؛ اگه یک کلاس concrete بخواد از کلاس
+                    ابسترکت ارث بری کنه باید تمام متد های ابسترکت، داخل کلاس concrete به طور کامل پیاده‌سازی بشن.</p>
+
+                <p>میتونیم یک کلاس ابستراکت رو بدون متد ابستراکت تعریف کنیم. معمولا این کارو زمانی که بخوایم در پروژه
+                    کلاس Base تعریف کنیم انجام میدیم.</p>
+
+                <p>معمولا ویژگی ها و متد های رایج در ساب کلاس ها رو در کلاس ابسترکت تعریف میکنیم.</p>
+
+
+                <p>مثال</p>
+                <p>میتونیم در <a class="text-decoration-none" href="inheritance.html">مورد مطالعه ی مطلب ارث بری</a>
+                    کلاس GeometricShape رو به صورت ابستراکت تعریف کنیم و متد های getArea و getPerimeter رو به صورت
+                    ابستراکت داخل GeometricShape تعریف کرده و در کلاس های Circle و Rectangle به طور کامل پیاده سازیشون
+                    کنیم.</p>
+
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+public abstract class GeometricShape {
+
+    private final Date dateCreated = new Date();
+    private String color;
+    private boolean filled;
+
+
+    public GeometricShape(String color, boolean filled){
+        this.color = color;
+        this.filled = filled;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public Date getDateCreated() {
+        return dateCreated;
+    }
+
+
+    public boolean isFilled() {
+        return filled;
+    }
+
+    public void setFilled(boolean filled) {
+        this.filled = filled;
+    }
+
+    //تعریف متد های مساحت و محیط به صورت ابستراکت
+    public abstract double getArea();
+    public abstract double getPerimeter();
+
+
+    @Override
+    public String toString() {
+        if(this instanceof Circle)
+            return "Circle: created on " + getDateCreated().toString() + "\n" + " area: " + getArea() +
+            " perimeter " + getPerimeter();
+        else
+            return "Rectangle: created on " + getDateCreated().toString() + "\n" + " area: " + getArea()
+            + " perimeter: " + getPerimeter();
+    }
+
+    }
+
+class Circle extends GeometricShape{
+    private double radius;
+
+    public Circle(double radius, String color, boolean filled){
+        super(color, filled);
+        this.radius = radius;
+    }
+
+    public Circle(double radius){
+        this(radius, "white", false);
+    }
+
+    public double getRadius() {
+        return radius;
+    }
+
+    public void setRadius(double radius) {
+        this.radius = radius;
+    }
+
+    //پیاده سازی کامل متد های مساحت و محیط
+
+    @Override
+    public double getArea(){
+        return Math.PI * radius * radius;
+    }
+
+    @Override
+    public double getPerimeter(){
+        return 2 * Math.PI * radius;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Circle)
+            return ((Circle) obj).radius == this.radius;
+
+        return false;
+    }
+
+}
+
+class Rectangle extends GeometricShape{
+    private double width;
+    private double height;
+
+    public Rectangle(double width , double height, String color, boolean filled){
+        super(color, filled);
+        this.width = width;
+        this.height = height;
+    }
+
+    public Rectangle(){
+        this(1.0, 1.0, "White", true);
+    }
+
+    public double getWidth() {
+        return width;
+    }
+
+    public void setWidth(double width) {
+        this.width = width;
+    }
+
+    public double getHeight() {
+        return height;
+    }
+
+    public void setHeight(double height) {
+        this.height = height;
+    }
+
+    //پیاده سازی کامل متد های مساحت و محیط
+    @Override
+    public double getArea(){
+        return width * height;
+    }
+
+    @Override
+    public double getPerimeter(){
+        return (width + height) * 2;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Rectangle: created on " + getDateCreated().toString() + "\n" +
+        "width: " + getWidth() + " height: " + getHeight() + " area: " + getArea() + " perimeter: "
+        + getPerimeter();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Rectangle){
+            Rectangle r = (Rectangle) obj;
+            return r.width == this.width && r.height == this.height;
+        }
+
+        return false;
+    }
+}
+                        </div>
+                    </div>
+                </div>
+
+
+                <p>با اینکه نمیتونیم از کلاس ابستراکت ابجکت ایجاد کنیم اما میتونیم از کلاس ابستراکت به عنوان نوع متغیر
+                    استفاده کنیم.</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+public static void main(String[] args){
+
+    GeometricShape circle = new Circle();
+    System.out.println(circle.toString());
+
+    GeometricShape rectangle = new Rectangle();
+    System.out.println(rectangle.toString());
+
+}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="subsection" id="sub2">
+                <h2>خلاصه</h2>
+                <p>- به کلاس هایی که میتونیم متد ابستراکت داخلشون تعریف کنیم کلاس های ابستراکت میگیم.</p>
+                <p>- برای تعریف کلاس ابستراکت از کلیدواژه ی abstract قبل از کلیدواژه ی class استفاده میکنیم.</p>
+                <p>- متد های ابستراکت داخل کلاس های ابستراکت رو هم با کلیدواژه ی abstract تعریف میکنیم.</p>
+                <p>- هنگامی که بخوایم یک سری متدها و ویژگی های مشترک برای ساب کلاس ها تعریف کنیم از کلاس های ابستراکت
+                    استفاده میکنیم.</p>
+                <p>- نمیتونیم از کلاس های ابستراکت نمونه ایجاد کنیم و فقط میتونیم ازشون ارث بری کنیم.</p>
+                <p>- اگه کلاس concrete بخواد از یک کلاس abstract ارث بری کنه باید تمام متد های ابستراکت کلاس رو
+                    پیاده‌سازی کنیم.</p>
+            </div>
+
+
+        </article>
+
+        <div class="article-foot">
+
+            <div class="navigator-container">
+
+                <a class="md-bt md-bt-light" href="interfaces.html">
+            <span class="material-icons">
+              navigate_next
+            </span>
+                    <span class="hint">بعدی</span>
+                </a>
+
+                <a class="md-bt md-bt-light" href="polymorphism.html">
+                    <span class="hint">قبلی</span>
+                    <span class="material-icons">
+              navigate_before
+            </span>
+
+                </a>
+            </div>
+
+            <div class="relative-articles-container">
+                <p>مطالب مرتبط</p>
+                <div>
+                    <div>
+                        <a href="polymorphism.html">چند ریختی و کست کردن در جاوا</a>
+                    </div>
+
+                    <div>
+                        <a href="inheritance.html">وراثت در جاوا</a>
+                    </div>
+
+                    <div>
+                        <a href="objects-and-classes.html">آبجکت و کلاس ها در جاوا</a>
+                    </div>
+
+                    <div>
+                        <a href="methods.html">متد در جاوا</a>
+                    </div>
+
+                    <div>
+                        <a href="https://docs.oracle.com/javase/tutorial/java/IandI/abstract.html">مطالعه در اوراکل</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+<div class="scroll-top-container">
+    <a class="text-decoration-none link-dark material-icons" href="#">
+        arrow_drop_up
+    </a>
+</div>
+
+<footer></footer>
+
+<div class="dialog hide"></div>
+
+<div class="copy-message">
+    <span class="copy-message-text">کپی شد!</span>
+</div>
+
+</body>

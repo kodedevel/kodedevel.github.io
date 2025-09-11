@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+
+<html lang="fa">
+
+<head>
+
+    <meta content="IE=7" http-equiv="X-UA-Compatible">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+
+    <meta content="جاوا یک زبان کاملا شی گراست، به شی آبجکت نیز میگیم، معمولا آبجکت یک ماهیت از دنیای واقعی رو شبیه سازی میکنه مثلا یک دانش آموز، یک تلویزیون، یک دایره ، یک مستطیل و هر شی تو دنیای واقعی میتونه با یک آبجکت (object) شبیه سازی بشه؛ در این مطلب به بررسی شی گرایی در جاوا خواهیم پرداخت."
+          name="description">
+
+    <meta content="text/html;charset=UTF-8" http-equiv="Content-Type">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>کلاس و آبجکت (اشیا) در جاوا</title>
+
+    <meta content="کلاس و آبجکت (اشیا) در جاوا" name="og:title">
+    <meta content="جاوا یک زبان کاملا شی گراست، به شی آبجکت نیز میگیم، معمولا آبجکت یک ماهیت از دنیای واقعی رو شبیه سازی میکنه مثلا یک دانش آموز، یک تلویزیون، یک دایره ، یک مستطیل و هر شی تو دنیای واقعی میتونه با یک آبجکت (object) شبیه سازی بشه؛ در این مطلب به بررسی شی گرایی در جاوا خواهیم پرداخت."
+          name="og:description">
+
+    <meta content="https://kodedevel.github.io/resources/favicon.png" property="og:image">
+    <meta content="https://kodedevel.github.io/article/java/objects-and-classes.html" property="og:url">
+
+    <meta content="article" property="og:type">
+
+    <link href="/resources/favicon.png" rel="shortcut icon" type="image/x-icon">
+
+    <link href="/resources/css/main.css" rel="stylesheet">
+    <script src="/resources/js/main.js" type="module"></script>
+
+</head>
+
+<body>
+<header></header>
+<main>
+    <div class="page-wrap">
+
+        <div class="article-head">
+            <h1>
+                کلاس و آبجکت (اشیا) در جاوا
+            </h1>
+
+            <address>
+                <a class="author text-muted text-decoration-none" rel="author">یونس سلیمانی</a>
+            </address>
+
+            <figure class="figure figure-wrapper">
+                <img alt="آبجکت و کلاس ها در جاوا" class="rounded figure-img" src="/resources/image/java/cover_objects_and_classes.png"/>
+            </figure>
+
+            <div class="toc">
+                <p class="p-2 mx-2 h5">دسترسی سریع</p>
+                <div class="list-group">
+
+                    <a class="list-group-item list-group-item-action" href="#sub0">معرفی شی گرایی در جاوا</a>
+
+                    <a class="list-group-item list-group-item-action" href="#sub1">ساختار کلاس</a>
+
+                    <a class="list-group-item list-group-item-action" href="#sub2">دیتا فیلد (data field) ها</a>
+
+                    <a class="list-group-item list-group-item-action" href="#sub3">کانستراکتور (سازنده)</a>
+
+                    <a class="list-group-item list-group-item-action" href="#sub4">متدها</a>
+
+                    <a class="list-group-item list-group-item-action" href="#sub5">مقادیر null</a>
+
+                    <a class="list-group-item list-group-item-action" href="#sub6">مورد مطالعه (مثال ها)</a>
+
+                    <a class="list-group-item list-group-item-action" href="#sub7">خلاصه</a>
+                </div>
+            </div>
+        </div>
+
+        <article>
+
+            <div class="subsection" id="sub0">
+                <h2>معرفی شی گرایی در جاوا</h2>
+
+                <blockquote>با استفاده از ویژگی شی گرایی در برنامه نویسی راحت تر میتونید به توسعه ی اپ های بزرگ و رابط گرافیکی کاربری بپردازید.</blockquote>
+
+
+                <p>جاوا یک زبان کاملا شی گراست و کد های جاوا به سبب ویژگی شی گرایی این زبان توسعه داده میشن.</p>
+
+
+                <p>معمولا آبجکت یک ماهیت از دنیای واقعی رو شبیه سازی میکنه مثلا یک دانش آموز، یک تلویزیون، یک دایره ، یک مستطیل و هر شی تو دنیای واقعی میتونه با یک آبجکت (object) شبیه سازی بشه.</p>
+
+                <p>به نمونه هایی که از یک کلاس ایجاد میکنیم؛ <strong>آبجکت</strong> میگیم.</p>
+
+                <p>به آبجکت ها، اشیا نیز گفته میشه اما کلمه ی آبجکت شناخته شده تر است.</p>
+
+                <p>هر آبجکت از کلاس اطلاعات مختص به خودشو داره.</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+StringBuilder sb0 = new StringBuilder("This is information of the first Object");
+StringBuilder sb1 = new StringBuilder("This is information of the second Object");
+
+System.out.println(sb0);
+System.out.println(sb1);
+                        </div>
+                    </div>
+                </div>
+
+
+                <p>آبجکت ها مستقیم در حافظه ایجاد میشن و متغیر های آبجکتی، به‌جای آبجکت، آدرس آبجکت رو در خودشون ذخیره میکنن و توسط آدرس به آبجکت ایجاد شده در حافظه اشاره میکنن.</p>
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+StringBuilder sb = new StringBuilder("Hello StringBuilder!");
+                        </div>
+                    </div>
+                </div>
+
+                <p>در بالا متغیر sb اشاره به آبجکت ایجاد شده ی <strong>StringBuilder</strong> در حافظه داره.</p>
+            </div>
+
+
+            <div class="subsection" id="sub1">
+                <h2>ساختار کلاس در جاوا</h2>
+
+                <blockquote>آبجکت از روی کلاس ایجاد میشه.</blockquote>
+
+                <p>یک کلاس رو در جاوا با کلیدواژه ی سطح دسترسی، کلیدواژه ی class، اسم کلاس و بدنه ی کلاس تعریف میکنیم.</p>
+
+                <p>فرم کلی:</p>
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+public class Name{
+    ...
+}
+                        </div>
+                    </div>
+                </div>
+
+                <p>به طور کلی داخل یک کلاس در جاوا سه بخش مهم داریم که تصویر زیر نمایانگر این سه بخش است.</p>
+
+                <figure>
+                    <img alt="ساختار یک کلاس در جاوا" src="/resources/image/java/class_structure.png" class="rounded figure-img img-fluid"/>
+                    <figcaption class="figure-caption text-end p-2">ساختار یک کلاس در جاوا</figcaption>
+                </figure>
+
+                <h3>1- دیتا فیلد</h3>
+                <p>به متغیر های داخل کلاس در جاوا دیتا فیلد (data field) میگیم. داده های آبجکت در دیتافیلد ها ذخیره میشن. به داده های کلاس ویژگی (attribute) های کلاس هم میگیم.</p>
+
+                <h3>2- کانستراکتور (constructor)</h3>
+                <p>با کانستراکتور در جاوا یک آبجکت (نمونه) از کلاس ایجاد میکنیم. میتونیم برای یک کلاس در جاوا یک یا چند کانستراکتور تعریف کنیم.</p>
+                <p>در تصویر <strong>&#x200e;t0, t1, ..., tn</strong> پارامتر های کانستراکتور هستند.</p>
+                <h3>3- متد (method) ها</h3>
+                <p>متد های کلاس نیز مانند متغیر های کلاس (دیتا فیلد) میتونن وابسته به آبجکت یا <a class="text-decoration-none" href="static-keyword.html">استاتیک</a> باشن. میتونیم یک یا چند <a class="text-decoration-none" href="methods.html">متد</a> داخل یک کلاس جاوا تعریف کنیم.</p>
+
+            </div>
+
+
+            <div class="subsection" id="sub2">
+                <h2>دیتا فیلد (data field) ها</h2>
+                <blockquote>اطلاعات آبجکت در دیتافیلد ها ذخیره میشه. به دیتافیلد ها، پراپرتی (property) هم میگیم.</blockquote>
+
+
+                <p> به متغیر هایی که داخل کلاس تعریف میکنیم دیتافیلد (data field) یا به اختصار فیلد میگیم.</p>
+
+                <p>به طور کلی دو نوع فیلد <a class="text-decoration-none" href="static-keyword.html">استاتیک</a> و غیر استاتیک (member) میتونیم داخل یک کلاس تعریف کنیم.</p>
+                <p> فیلد های <strong>غیر استاتیک</strong> اطلاعات آبجکت رو در خودشون ذخیره میکنن.</p>
+                <p>به فیلد های غیر استاتیک، فیلد های عضو (member) هم میگن.</p>
+                <p>داخل کلاس میتونیم یک یا چند فیلد تعریف کنیم.</p>
+
+                <h3>تعریف فیلد در کلاس</h3>
+
+                <p>به صورت زیر فیلد ها رو داخل کلاس تعریف میکنیم:</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+public class MyClass{
+    String myField = "This is a field";
+}
+                        </div>
+                    </div>
+                </div>
+
+                <p>اگه به فیلد مقدار اولیه ندیم؛ مقدار پیشفرض در صورتی که نوع فیلد boolean باشه false، عددی باشه 0 و آبجکت باشه null است.</p>
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+public class Rectangle{
+    //width = null
+    double width;
+    //height = null
+    double height;
+}
+                        </div>
+                    </div>
+                </div>
+
+                <p>میتونیم با گذاشتن نقطه بعد از اسم متغیر آبجکتی، فیلد موردنظر رو صدا بزنیم.</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+public static void main(String[] args){
+    Rectangle rect = new Rectangle();
+    rect.width = 2.0;
+    rect.height = 3.0;
+
+    System.out.println("New rectangle created!");
+    System.out.println("width: " + rect.width);
+    System.out.println("height: " + rect.height);
+    System.out.println("area :" + (rect.width * rect.height));
+
+}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="note">
+                    <p class="note-head">توجه</p>
+                    <p>سطح دسترسی یک فیلد میتونه <strong>&#x200e;private, public, protected یا default</strong> باشه.</p>
+                </div>
+
+                <h3>استفاده از کلیدواژه ی this برای فیلد ها</h3>
+
+                <p>اگه یک فیلد رو بخوایم داخل کلاس خودش صدا بزنیم و اسم فیلد با اسم پارامتر یا متغیر های داخل متد یکی باشه، با this مشخص میکنیم متغیری که داریم صدا میزنیم مربوط به فیلد است.</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+public class Rectangle{
+    double width;
+    private double height;
+
+    public void setWidth(double width){
+        this.width = width;
+    }
+
+    public void setHeight(double height){
+        this.height = height;
+    }
+}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="subsection" id="sub3">
+                <h2>کانستراکتور (سازنده)</h2>
+
+                <blockquote>کانستراکتور در جاوا، نوع خاصی از متد است که هیچ مقداری رو برنمیگردونه و با صدا زدن کانستراکتور یک نمونه از کلاس ایجاد میکنیم.</blockquote>
+
+                <p>با استفاده از کانستراکتور (constructor) در جاوا میتونیم یک آبجکت از کلاس ایجاد کنیم.</p>
+                <p>داده های هر آبجکت مختص به خودشه و در فیلد ها ذخیره میشن.</p>
+
+                <p>تمام کلاس های جاوا یک کانستراکتور پیشفرض پنهانی دارند یعنی اگه برای کلاس کانستراکتور تعریف نکنیم، کانستراکتور زیر به صورت پیشفرض وجود داره:</p>
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+public class MyClass{
+    public MyClass(){
+
+    }
+}
+                        </div>
+                    </div>
+                </div>
+
+
+                <p>سطح دسترسی کانستراکتور های یک کلاس میتونه <strong>&#x200e;public, private, protected یا default</strong> باشه.</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+public class MyClass{
+    private MyClass(){
+        ...
+    }
+}
+                        </div>
+                    </div>
+                </div>
+
+                <p>میتونیم یک یا چند کانستراکتور برای کلاس تعریف کنیم. همچنین از طریق پارامتر های کانستراکتور میتونیم فیلد های کلاس رو مقداردهی کنیم.</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+public class Rectangle{
+    Date dateCreated = new Date();
+    double width;
+    double height;
+    String color = "White";
+
+    public Rectangle(double width, double height, String color){
+        this.width = width;
+        this.height = height;
+        this.color = color;
+    }
+
+}
+                        </div>
+                    </div>
+                </div>
+
+
+                <p>اگه یک کانستراکتور به صورت آشکار تعریف کرده باشیم دیگه کانستراکتور پیشفرض وجود نداره و در صورت نیاز باید کانستراکتور پیشفرض رو به طور آشکار تعریف کنیم.</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+public class Rectangle{
+    Date dateCreated = new Date();
+    double width;
+    double height;
+    String color;
+
+    public Rectangle(double width, double height, String color){
+        this.width = width;
+        this.height = height;
+        this.color = color;
+    }
+
+    public Rectangle(){
+
+    }
+
+}
+                        </div>
+                    </div>
+                </div>
+
+                <h3>استفاده از کلیدواژه ی this برای کانستراکتور.</h3>
+
+                <p>میتونیم با کلیدواژه ی this در کلاس یک کانستراکتور رو داخل کانستراکتور دیگه صدا بزنیم.</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+public class Rectangle{
+    Date dateCreated = new Date();
+    double width;
+    double height;
+    String color;
+
+    public Rectangle(double width, double height, String color){
+        this.width = width;
+        this.height = height;
+        this.color = color;
+    }
+
+    public Rectangle(){
+        this(1.0, 1.0, "White");
+    }
+
+}
+                        </div>
+                    </div>
+                </div>
+
+
+                <h3>ایجاد نمونه از کلاس</h3>
+                <p>با استفاده از کلیدواژه ی new و صدا زدن یکی از کانستراکتور های کلاس میتونیم یک نمونه (آبجکت) از کلاس ایجاد کنیم.</p>
+
+                <p>مثال</p>
+                <p>در زیر دو نمونه (آبجکت) از کلاس Rectangle ایجاد کردیم. نمونه ی اولی با کانستراکتور بدون پارامتر ایجاد شده و نمونه ی دوم با کانستراکتور پارامتر دار.</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div  class="snippet Java">
+public static void main(String[] args){
+    // width = 1.0, height = 1.0
+    Rectangle rect0 = new Rectangle();
+
+    // width = 4.0 , height = 4.0
+    Rectangle rect1 = new Rectangle(4, 3);
+
+}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="subsection" id="sub4">
+                <h2>متدها</h2>
+
+                <p> در بخش <a class="text-decoration-none" href="methods.html">متد ها در جاوا</a> به طور مفصل به این موضوع پرداختیم برای مطالعه درباره ی متد ها میتونید به این بخش مراجعه کنید. </p>
+
+
+
+                <h3>مفهوم کپسوله سازی</h3>
+
+                <p>برای جلوگیری از دسترسی به فیلد توسط کلاس های دیگه در خارج از کلاس میتونیم با private تعریفش کنیم. به این کار کپسوله سازی دیتا فیلد میگیم.</p>
+                <p>اگه بخوایم به دیتافیلد کپسوله شده در خارج از کلاس دسترسی داشته باشیم، برای دسترسی به فیلد باید متد getter و برای تغییر در مقدار فیلد باید متد setter رو تعریف کنیم.</p>
+                <p>متد های getter و setter، متد های قراردادی هستند که توسط برنامه نویس ها شناخته شده اند. متناسب با اسم فیلد به صورت <strong>getMyField</strong> و <strong>setMyField</strong> تعریفشون میکنیم.</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+public class Rectangle {
+    private Date dateCreated =new Date();
+    private double width;
+    private double height;
+    private String color;
+
+    public Rectangle(double width , double height){
+        setWidth(width);
+        setHeight(height);
+    }
+
+    public Rectangle(){
+        this(1d, 1d, "White");
+    }
+
+    public double getHeight() {
+        return height;
+    }
+
+    public void setHeight(double height) {
+        this.height = height;
+    }
+
+    public void setWidth(double width) {
+        this.width = width;
+    }
+
+    public double getWidth() {
+        return width;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+    public String getColor() {
+        return color;
+    }
+
+    public Date getDateCreated() {
+        return dateCreated;
+    }
+}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="subsection" id="sub5">
+                <h2>مقدار null در جاوا</h2>
+
+
+                <blockquote>فیلد های کلاس اگه مقداردهی نشن به طور پیشفرض به null اشاره میکنن.</blockquote>
+
+
+                <p>کلمه ی null یعنی تهی؛ اگه از متغیر هایی که به null اشاره میکنن استفاده کنیم، زمان اجرای برنامه دچار <a class="text-decoration-none" href="exceptions.html">NullPointerException</a> میشه.</p>
+                <p>از کلیدواژه ی null زمانی استفاده میکنیم که در ابتدا قصد استفاده از متغیر رو نداشته باشیم و بعدا در برنامه بخوایم با متغیر به یک آبجکت اشاره کرده و ازش استفاده کنیم.</p>
+                <p>، اگه یک متغیر آبجکتی نه به null اشاره کنه و نه مقداردهی شده باشه در پروژه دچار خطای کامپایل میشیم.</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+public R myMethod(...){
+    Scanner input;
+    //خطای کامپایل
+    String name = input.next();
+}
+                        </div>
+                    </div>
+                </div>
+
+                <p>اگه با متغیر به null اشاره کرده باشیم زمان اجرای برنامه دچار NullPointerException میشیم.</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+public R myMethod(...){
+    Scanner input = null;
+    //خطای زمان اجرا
+    String name = input.next();
+}
+                        </div>
+                    </div>
+                </div>
+
+
+                <p>یکی از دلایل مطرح شدن مقدار null در جاوا قابلیت استفاده از متغیر بدون نیاز به مقداردهی در بررسی شرط ها است.</p>
+                <p>متغیری که مقداردهی نشده باشه رو نمیتونیم در شرط بررسی کنیم ولی متغیر هایی که به null اشاره میکنن در شرط ها قابل بررسی هستند.</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+public R myMethod(...){
+    MyObject myObject = null;
+
+    while(myObject == null){
+        //Do some stuffs
+        ...
+    }
+}
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+            <div class="subsection" id="sub6">
+                <h2>مورد مطالعه (مثال ها)</h2>
+
+                <p>وقتشه کلاس مستطیل (Rectangle) رو کامل کنیم.</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+public class Rectangle {
+    private Date dateCreated = new Date();
+    private double width;
+    private double height;
+    private String color;
+
+    public Rectangle(double width , double height, String color){
+        setWidth(width);
+        setHeight(height);
+        setColor(color);
+    }
+
+    public Rectangle(){
+        this(1d, 1d, "White");
+    }
+
+    public double getHeight() {
+        return height;
+    }
+
+    public void setHeight(double height) {
+        this.height = height;
+    }
+
+    public void setWidth(double width) {
+        this.width = width;
+    }
+
+    public double getWidth() {
+        return width;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+    public String getColor() {
+        return color;
+    }
+
+    public Date getDateCreated() {
+        return dateCreated;
+    }
+
+    public double getArea(){
+        return width * height;
+    }
+
+    public double getPerimeter(){
+        return 2 * (width + height);
+    }
+}
+                        </div>
+                    </div>
+                </div>
+
+                <p>استفاده از کلاس Rectangle در متد main.</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+public class Main{
+    public static void main(String[] args){
+
+        Rectangle rect0 = new Rectangle();
+        System.out.println("New rectangle created on " + rect0.getDateCreated());
+        System.out.println("Width: " + rect0.getWidth() + "Height: " + rect0.getHeight());
+        System.out.println("Area: " + rect0.getArea());
+        System.out.println("Perimeter: " + rect0.getPerimeter());
+
+        System.out.println();
+
+        Rectangle rect1 = new Rectangle();
+        System.out.println("New rectangle created on " + rect1.getDateCreated());
+        System.out.println("Width: " + rect1.getWidth() + "Height: " + rect1.getHeight());
+        System.out.println("Area: " + rect1.getArea());
+        System.out.println("Perimeter: " + rect1.getPerimeter());
+
+    }
+}
+                        </div>
+                    </div>
+                </div>
+
+                <p>مثال</p>
+                <p>تعریف کلاس Circle.</p>
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+public class Circle {
+    private Date dateCreated = new Date();
+    private double radius;
+    private String color;
+
+    public Circle(double radius, String color){
+        this.radius = radius;
+        this.color = color;
+    }
+
+    public Circle(){
+        this(1.0, "White");
+    }
+
+    public void setRadius(double radius) {
+        this.radius = radius;
+    }
+
+    public double getRadius() {
+        return radius;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public Date getDateCreated() {
+        return dateCreated;
+    }
+
+    public double getArea(){
+        return Math.PI * radius * radius;
+    }
+
+    public double getPerimeter(){
+        return 2 * Math.PI * radius;
+    }
+}
+                        </div>
+                    </div>
+                </div>
+
+                <p>استفاده از کلاس Circle.</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+public class Main{
+    public static void main(String[] args){
+        Circle c0 = new Circle();
+        System.out.println("Circle created on " + c0.getDateCreated());
+        System.out.println("Radius is " + c0.getRadius());
+        System.out.println("Area " + c0.getArea());
+        System.out.println("Perimeter " + c0.getPerimeter());
+
+        Circle c1 = new Circle();
+        System.out.println("Circle created on " + c1.getDateCreated());
+        System.out.println("Radius is " + c1.getRadius());
+        System.out.println("Area " + c1.getArea());
+        System.out.println("Perimeter " + c1.getPerimeter());
+    }
+}
+                        </div>
+                    </div>
+                </div>
+
+                <p>مثال</p>
+                <p>تعریف کلاس TV.</p>
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+public class TV {
+    private String panel;
+    private int channel = 1;
+    private int volume = 1;
+    private boolean on;
+
+    public TV(String panel){
+        this.panel = panel;
+    }
+
+    public TV(){
+        this("FLATIRON");
+    }
+
+    public void turnOn(){
+        on = true;
+    }
+
+    public void turnOff(){
+        on = false;
+    }
+
+    public void setChannel(int channel) {
+        if (on && channel >= 1 && channel <= 120)
+            this.channel = channel;
+    }
+
+    public void setVolume(int volume) {
+        if (on && volume >= 0 && volume <= 10)
+            this.volume = volume;
+    }
+
+    public String getPanel(){
+        return panel;
+    }
+
+    public int getChannel() {
+        return channel;
+    }
+
+    public int getVolume() {
+        return volume;
+    }
+
+    public void channelUp(){
+        if (on && channel < 120) channel++;
+    }
+
+    public void channelDown(){
+        if (on && channel > 1 ) channel --;
+    }
+
+    public void volumeUp(){
+        if (on && volume < 10)
+            volume++;
+    }
+
+    public void volumeDown(){
+        if (on && volume > 1)
+            volume --;
+    }
+
+    public boolean isOn() {
+        return on;
+    }
+
+    public boolean isMuted(){
+        return volume == 0;
+    }
+}
+                        </div>
+                    </div>
+                </div>
+
+                <p>ساخت نمونه و استفاده از TV.</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+public static void main(String[] args){
+
+    TV tv1 = new TV();
+    tv1.turnOn();
+    tv1.setChannel(30);
+    tv1.setVolume(3);
+    TV tv2 = new TV();
+    tv2.turnOn();
+    tv2.channelUp();
+    tv2.channelUp();
+    tv2.volumeUp();
+
+    System.out.println("tv1 has been built by " + tv1.getPanel() + " panel");
+    System.out.println("tv1's channel is " + tv1.getChannel() + " and volume level is " + tv1.getVolume());
+
+    System.out.println("tv2 has been built by " + tv2.getPanel() + " panel");
+    System.out.println("tv2's channel is " + tv2.getChannel() + " and volume level is " + tv2.getVolume());
+
+}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="subsection" id="sub7">
+                <h2>خلاصه</h2>
+                <p>- جاوا یک زبان کاملا شی گراست.</p>
+                <p>- در جاوا میتونیم کلاس تعریف کنیم و از کلاسمون یک یا چند آبجکت ایجاد کنیم.</p>
+                <p>- هر آبجکت مستقل از آبجکت های دیگس.</p>
+                <p>- یک کلاس در جاوا سه بخش اصلی داره: ۱- دیتافیلد ها ۲- کانستراکتور ها ۳- متد ها</p>
+                <p>- دیتافیلد های کلاس همان متغیر هایی هستند که داخل کلاس تعریف میکنیم و میتونیم داده های کلاس رو داخلشون ذخیره کنیم.</p>
+                <p>- کانستراکتور ها در جاوا متد های خاصی هستند که هیچ مقداری رو بر نمیگردونند.</p>
+                <p>- برای ایجاد آبجکت در جاوا نیاز داریم یکی از کانستراکتور های کلاس رو صدا بزنیم.</p>
+                <p>- یک کلاس میتونه یک یا چند متد داشته باشه.</p>
+                <p>- اگه یک دیتافیلد رو private تعریف کنیم اصطلاحا میگیم دیتافیلد رو کپسوله سازی کردیم و برای دسترسی بهش باید دو متد getter و setter براش تعریف کنیم.</p>
+            </div>
+
+        </article>
+
+        <div class="article-foot">
+
+            <div class="navigator-container">
+
+                <a class="md-bt md-bt-light" href="access-modifiers.html">
+            <span class="material-icons">
+              navigate_next
+            </span>
+
+                    <span class="hint">بعدی</span>
+                </a>
+
+                <a class="md-bt md-bt-light" href="methods.html">
+            <span class="hint">
+              قبلی
+            </span>
+                    <span class="material-icons">
+              navigate_before
+            </span>
+
+                </a>
+            </div>
+
+            <div class="relative-articles-container">
+                <p>مطالب مرتبط</p>
+                <div>
+                    <div>
+                        <a href="methods.html">متد ها در جاوا</a>
+                    </div>
+                    <div>
+                        <a href="arrays.html">آرایه ها در جاوا</a>
+                    </div>
+                    <div>
+                        <a href="static-keyword.html">کلیدواژه ی استاتیک در جاوا</a>
+                    </div>
+                    <div>
+                        <a href="loops.html">حلقه ها در جاوا</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+<div class="scroll-top-container">
+    <a class="text-decoration-none link-dark material-icons" href="#">
+        arrow_drop_up
+    </a>
+</div>
+
+<footer></footer>
+
+<div class="dialog hide"></div>
+
+<div class="copy-message">
+    <span class="copy-message-text">کپی شد!</span>
+</div>
+
+</body>

@@ -1,0 +1,66 @@
+button, a, p, h1, h2,h3 ,h4, h5, h6, blockquote, strong {
+    font-family: Samim;
+    direction: rtl;
+    padding: 4px 0 4px 0;
+}
+
+ h2, h3, h4, h5, h6{
+    width: 100%;
+    height: auto;
+    font-weight: bold !important;
+    padding: 16px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    direction: rtl;
+}
+
+h1{
+    font-size: 1.8em !important;
+    font-weight: bold !important;
+}
+
+h2{
+    font-size: 1.4em !important;
+}
+
+h3{
+   font-size: 1.1em !important;
+}
+
+blockquote {
+    font-style: italic;
+}
+
+ p{
+ font-weight: normal;
+ margin: 8px;
+ text-align: justify;
+}
+
+.keyword{
+    color: #0033b3;
+}
+
+.string{
+    color: #067d17;
+}
+
+.class-name{
+    color: #ad1457;
+}
+
+.digit{
+    color: #1750eb;
+}
+
+.annotation{
+    color: #9e880d;
+}
+
+.comment{
+    color: #8c8c8c;
+}
+
+.shell-commands{
+    color: #7C4DFF;
+}

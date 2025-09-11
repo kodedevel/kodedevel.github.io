@@ -1,0 +1,108 @@
+.md-bt{
+    border:none;
+    cursor: pointer;
+    display: flex;
+    text-align: center;
+    text-decoration: none;
+    padding: 4px;
+    border-radius: 4px;
+}
+
+.md-bt .hint{
+  visibility: hidden;
+  width: auto;
+  height: auto;
+  background-color: #212121;
+  color: #fafafa;
+  text-align: center;
+  padding: 4px 0;
+  border-radius: 4px;
+  position: absolute;
+  z-index: 1;
+}
+
+.md-bt.md-bt-dark{
+     color: #fafafa;
+     background-color: #212121;
+}
+
+.md-bt.md-bt-dark-blue{
+    color: #fafafa;
+    background-color: #01579B;
+}
+
+.md-bt-dark-blue:hover{
+    background-color: #0277BD;
+}
+
+.md-bt.md-bt-light{
+    color: #212121;
+    background-color: #fafafa;
+
+}
+
+.md-bt-light:hover{
+    background-color: #eeeeee;
+}
+
+.md-bt-dark:hover{
+    background-color: #424242;
+}
+
+.md-bt-expandable{
+    display: flex;
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    text-align: start;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #212121;
+    padding: 8px;
+    margin-bottom: 4px;
+}
+
+.md-bt-expandable:focus{
+     background-color: #0277BD;
+     color: #fafafa;
+}
+
+.md-bt.md-bt-navbar-toggle{
+    background-color: transparent;
+    color: #eeeeee;
+}
+
+.md-bt.md-bt-navbar-toggle:hover{
+    background-color: #424242;
+    color: #eeeeee;
+}
+
+
+.snippet-toggler{
+    position: relative;
+    padding: 8px;
+    background: #546e7a;
+    display: flex;
+    justify-content: flex-start;
+}
+
+input[type=radio].snippet-toggle-button{
+    display: none;
+}
+
+input[type=radio].snippet-toggle-button + label{
+    display: block;
+    position: relative;
+    width: 15%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding: 4px;
+    margin: 4px;
+    border-radius: 4px;
+    text-align: center;
+    background-color: #eceff1;
+}
+
+input[type=radio]:checked + label {
+    background-color: #cfd8ec;
+}

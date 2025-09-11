@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+
+<html lang="fa">
+
+<head>
+
+  <meta content="IE=7" http-equiv="X-UA-Compatible">
+  <meta content="ie=edge" http-equiv="X-UA-Compatible">
+
+  <meta content="یکی از ویژگی هایی که کاتلین رو محبوب کرده پشتیبانی نیتیو از الگوهای برنامه نویسی محبوبه یکی از این الگو ها دلیگیشن (Delegation) است که توسط کاتلین به صورت نیتیو پشتیبانی میشه"
+        name="description">
+
+  <meta content="text/html;charset=UTF-8" http-equiv="Content-Type">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>الگوی دلیگیشن (Delegation) در کاتلین</title>
+
+  <meta content="الگوی delegation در کاتلین" name="og:title">
+  <meta content="یکی از ویژگی هایی که کاتلین رو محبوب کرده پشتیبانی نیتیو از الگوهای برنامه نویسی محبوبه یکی از این الگو ها دلیگیشن (Delegation) است که توسط کاتلین به صورت نیتیو پشتیبانی میشه."
+        name="og:description">
+
+  <meta content="https://kodedevel.github.io/resources/favicon.png" property="og:image">
+  <meta content="https://kodedevel.github.io/article/kotlin/delegation.html" property="og:url">
+
+  <meta content="article" property="og:type">
+
+  <link href="/resources/favicon.png" rel="shortcut icon" type="image/x-icon">
+
+  <link href="/resources/css/main.css" rel="stylesheet">
+  <script src="/resources/js/main.js" type="module"></script>
+
+</head>
+
+<body>
+<header></header>
+<main>
+  <div class="page-wrap">
+
+    <div class="article-head">
+      <h1>
+        الگوی دلیگیشن (Delegation) در کاتلین
+      </h1>
+
+      <address>
+        <a class="author text-muted text-decoration-none" rel="author">یونس سلیمانی</a>
+      </address>
+
+      <figure class="figure figure-wrapper">
+        <img alt="الگوی Delegation در کاتلین" class="rounded figure-img" src="/resources/image/kotlin/cover_delegation.png"/>
+      </figure>
+
+      <div class="toc">
+        <p class="p-2 mx-2 h5">دسترسی سریع</p>
+        <div class="list-group">
+
+          <a class="list-group-item list-group-item-action" href="#sub0">بررسی الگوی Delegation</a>
+          <a class="list-group-item list-group-item-action" href="#sub1">خلاصه</a>
+        </div>
+      </div>
+    </div>
+
+    <article>
+
+      <div class="subsection" id="sub0">
+                <h2>بررسی الگوی Delegation</h2>
+        <blockquote>معنی delegation به فارسی یعنی وکالت دادن.</blockquote>
+
+        <p>یکی از ویژگی هایی که کاتلین رو محبوب کرده پشتیبانی نیتیو از الگوهای برنامه نویسی پرکاربرده؛ یکی از این الگو ها دلیگیشن (Delegation) است که توسط کاتلین به صورت نیتیو پشتیبانی میشه.</p>
+
+        <p>هنگامی که یک اینترفیس رو توسط یک کلاس پیاده‌سازی میکنیم گاهی نیاز به همون پیاده‌سازی در کلاس دیگه داریم برای جلوگیری از دوباره نویسی از الگوی delegation استفاده میکنیم </p>
+        <p>با این روش به کلاس جدید وکالت استفاده از توابع و پراپرتی های public پیاده‌سازی شده در یک کلاس دیگه رو می دیم.</p>
+
+        <div class="sample">
+          <div class="snippet-container">
+            <div class="snippet Kotlin">
+fun main(){
+  val audioP = AudioPlayer()
+  val videoP = VideoPlayer(audioP)
+
+  audioP.stop()
+  videoP.play()
+}
+
+interface BasePlayer{
+  fun play()
+  fun stop()
+  fun next()
+}
+
+class AudioPlayer(): BasePlayer{
+
+  override fun play() {
+    println("Playing...")
+  }
+
+  override fun stop() {
+    println("Stopping...")
+  }
+
+  override fun next() {
+    println("Next")
+  }
+}
+
+class VideoPlayer(b: BasePlayer): BasePlayer by b{
+  var isFullScreen: Boolean = false
+}
+            </div>
+          </div>
+        </div>
+
+
+        <p>میتونیم توابع یا پراپرتی هایی رو که به وکالت گرفتیم بازنویسی کنیم</p>
+        <p>در مثال زیر برای خلاصه کردن از نوشتن قسمت هایی از کد بالا خودداری کردیم.</p>
+
+        <div class="sample">
+          <div class="snippet-container">
+            <div class="snippet Kotlin">
+          ...
+
+interface BasePlayer{
+  val codecType: String
+          ...
+}
+
+class AudioPlayer: BasePlayer{
+  override val codecType: String = "MPEG-2"
+          ...
+}
+
+class VideoPlayer(b: BasePlayer): BasePlayer by b {
+  override val codecType: String = "H265"
+          ...
+}
+            </div>
+          </div>
+        </div>
+
+        <div class="note">
+                    <p class="note-head">توجه</p>
+          <p>الگوی delegation در کاتلین فقط برای اینترفیس ها قابل استفاده است</p>
+        </div>
+
+      </div>
+
+      <div class="subsection" id="sub1">
+                <h2>خلاصه</h2>
+        <p>دلیگیشن (Delegation) به معنی وکالت دادن است</p>
+        <p>الگوی دلیگیشن (Delegation) یکی از الگو های پر کاربرد در طراحی الگو است که توسط کاتلین به صورت نیتیو پشتیبانی میشه.</p>
+        <p>فقط توابع و پراپرتی های public اینترفیس ها قابل وکالت دادن به کلاس هستند.</p>
+      </div>
+
+    </article>
+
+    <div class="article-foot">
+
+      <div class="navigator-container">
+
+        <a class="md-bt md-bt-light" href="#">
+            <span class="material-icons">
+              navigate_next
+            </span>
+          <span class="hint">
+              بعدی
+            </span>
+        </a>
+
+        <a class="md-bt md-bt-light" href="/article/kotlin/data-classes.html">
+            <span class="hint">
+              قبلی
+            </span>
+          <span class="material-icons">
+              navigate_before
+            </span>
+
+        </a>
+      </div>
+
+      <div class="relative-articles-container">
+        <p>مطالب مرتبط</p>
+        <div>
+          <div>
+            <a href="/article/kotlin/interfaces.html">اینترفیس ها در کاتلین</a>
+          </div>
+          <div>
+            <a href="/article/kotlin/inheritance.html">وراثت در کاتلین</a>
+          </div>
+          <div>
+            <a href="/article/kotlin/objects-and-classes.html">آبجکت و کلاس ها در کاتلین</a>
+          </div>
+          <div>
+            <a href="https://kotlinlang.org/docs/delegation.html">مطالعه در وبسایت رسمی</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<div class="scroll-top-container">
+  <a class="text-decoration-none link-dark material-icons" href="#">
+    arrow_drop_up
+  </a>
+</div>
+
+<footer></footer>
+
+<div class="dialog hide"></div>
+
+<div class="copy-message">
+  <span class="copy-message-text">کپی شد!</span>
+</div>
+
+</body>

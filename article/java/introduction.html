@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+
+<html lang="fa">
+
+<head>
+
+    <meta content="IE=7" http-equiv="X-UA-Compatible">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+
+    <meta content="جاوا یک زبون سطح بالا و تماما شی گراست اگرچه بعضی از ویژگی های تابعی مثل lambda و streaming برای این زبان طراحی شده اما کاربردی ترین ویژگی زبان قابلیت شی گرایی آن است."
+          name="description">
+
+    <meta content="text/html;charset=UTF-8" http-equiv="Content-Type">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>معرفی جاوا</title>
+
+    <meta content="معرفی جاوا" name="og:title">
+    <meta content="جاوا یک زبون سطح بالا و تماما شی گراست اگرچه بعضی از ویژگی های تابعی مثل lambda و streaming برای این زبان طراحی شده اما کاربردی ترین ویژگی زبان قابلیت شی گرایی آن است."
+          name="og:description">
+
+    <meta content="https://kodedevel.github.io/resources/favicon.png" property="og:image">
+    <meta content="https://kodedevel.github.io/article/java/introduction.html" property="og:url">
+
+    <meta content="article" property="og:type">
+
+    <link href="/resources/favicon.png" rel="shortcut icon" type="image/x-icon">
+
+    <link href="/resources/css/main.css" rel="stylesheet">
+    <script src="/resources/js/main.js" type="module"></script>
+
+</head>
+
+<body>
+<header></header>
+<main>
+    <div class="page-wrap">
+
+        <div class="article-head">
+            <h1>
+                معرفی زبان جاوا
+            </h1>
+
+            <address>
+                <a class="author text-muted text-decoration-none" rel="author">یونس سلیمانی</a>
+            </address>
+
+            <figure class="figure figure-wrapper">
+                <img alt="معرفی زبان جاوا" class="rounded figure-img" src="/resources/image/java/cover_introduction.png"/>
+            </figure>
+
+            <div class="toc">
+                <p class="p-2 mx-2 h5">دسترسی سریع</p>
+                <div class="list-group">
+
+                    <a class="list-group-item list-group-item-action" href="#sub0">درباره ی جاوا</a>
+
+                    <a class="list-group-item list-group-item-action" href="#sub1">کتابخونه و فریمورک های جاوا</a>
+
+                    <a class="list-group-item list-group-item-action" href="#sub2">خلاصه</a>
+                </div>
+            </div>
+        </div>
+
+        <article>
+
+            <div class="subsection" id="sub0">
+                <h2>درباره ی جاوا</h2>
+
+                <blockquote>اگه یک زبان برنامه نویسی به ماشین نزدیک تر باشه بهش زبان سطح پایین (low-level language)، و اگه به زبان انسان نزدیک تر باشه بهش زبان سطح بالا (high-level language) میگیم.</blockquote>
+
+                <p>جاوا یک زبون سطح بالا و تماما شی گراست اگرچه بعضی از ویژگی های تابعی مثل lambda و streaming برای این زبان طراحی شده، اما کاربردی ترین ویژگی زبان قابلیت شی گرایی آن است. در این زبان ماشین مجازی جاوا (Java Virtual Machine) با به اختصار JVM وظیفه ی اجرای کد های کامپایل شده رو به عهده داره.</p>
+                <p>کد های جاوا ابتدا توسط کامپایلر جاوا به bytecode تبدیل شده و سپس bytecode ها توسط JVM اجرا میشن.</p>
+                <p>کد های جاوا بعد از یک بار کامپایل، در هر پلتفرمی که JVM نصبه قابل اجرا هستند؛ اگرچه JVM زحمت ها رو کم میکنه اما ممکنه یکی از دلایلی که زبون جاوا سطح بالا ساخته شده وجود JVM به عنوان واسط بین برنامه و سخت‌افزار باشه.</p>
+
+                <figure>
+                    <img src="/resources/image/java/java_codes_execution_process.png" alt="روند اجرای کد های جاوا" class="rounded figure-img img-fluid">
+                    <figcaption class="figure-caption text-end p-2">روند اجرای کد های جاوا</figcaption>
+                </figure>
+
+                <p>مدیریت حافظه در جاوا به طور خودکار توسط JVM انجام میشه و در هنگام کد نویسی نیاز نیست متغیر های بی استفاده رو برای افزایش حافظه به طور دستی از بین ببریم؛ در حالی که در زبان هایی مثل C مدیریت حافظه به عهده ی برنامه نویس است.</p>
+                <p>سینتکس زبان جاوا شبیه سینتکس زبان C و C++ است؛ یک برنامه یا کتابخونه ی جاوا شامل یک یا چند پکیج است که داخل هر پکیج، کلاس، اینترفیس یا پکیج های دیگه میتونه وجود داشته باشه.</p>
+            </div>
+
+            <div class="subsection" id="sub1">
+                <h2>کتابخونه و فریمورک های جاوا</h2>
+                <p>کتابخونه های متعددی برای زبان جاوا نوشته شده اما بعضی از این کتابخونه ها معروف و پرکاربرد هستند.</p>
+
+                <h3>کتابخونه های هسته ی جاوا</h3>
+                <p>کتابخونه های هسته ی جاوا شامل IO, Networking, Reflection, Concurrency, Reflection, Generics, Collections, Security و... است.</p>
+
+                <p>برای کار با دیتابیس، جاوا کتابخونه JDBC رو طراحی کرده است.</p>
+
+                <h3>کتابخونه های طراحی اپلیکیشن دسکتاپ در جاوا</h3>
+                <p>این کتابخونه ها شامل AWT، Swing و Java FX هستند.</p>
+
+                <h3>کتابخونه های طراحی وبسایت در جاوا</h3>
+                <p>برای توسعه در وب با جاوا دو کتابخونه ی معروف JavaEE و Spring رو داریم.</p>
+
+                <h3>کتابخونه های طراحی اپلیکیشن موبایل</h3>
+                <p>برای اپلیکیشن موبایل کتابخونه Android و gluon (بر پایه ی Java FX) وجود دارند؛ البته اندروید بیشترین استفاده رو بین توسعه دهندگان موبایل با جاوا داره.</p>
+                <p>در مورد اپلیکیشن اندروید گوگل اومده ماشین مجازی اختصاصی خودشو به اسم (Dalvik و بعدا ART) طراحی کرده؛ کد های کامپایل شده ی جاوا توسط این ماشین ها اجرا میشن و هدف گوگل از این کار بهبود کارایی JVM هنگام اجرای برنامه ها در دستگاه های ضعیف اندرویدی بود.</p>
+
+
+                <p>همانطور که گفتیم کتابخونه های متعددی برای جاوا وجود داره اما کتابخونه و فریمورک هایی که بهش اشاره کردیم عموما معروف ترین و پرکاربرد ترینشون بودن. اینکه بخواید یادگیری کدوم کتابخونه رو شروع کنید بستگی به نوع پلتفرم، علاقه و راحتی شما داره.</p>
+
+            </div>
+
+
+            <div class="subsection" id="sub2">
+                <h2>خلاصه</h2>
+                <p>به زبانی که نزدیک به زبان ماشین باشه low-level language و به زبانی که نزدیک به زبان انسان باشه high-level language میگیم.</p>
+                <p>-جاوا یک زبان high-level و کاملا شی گراست.</p>
+                <p>- کد های جاوا ابتدا تبدیل به بایت کد میشه و سپس بایت کد ها توسط JVM اجرا میشن.</p>
+                <p>- در زبان جاوا کافیه یک بار کد ها رو کامپایل کنیم و سپس در هر پلتفرمی که از JVM پشتیبانی میکنه میتونیم کد ها رو اجرا کنیم.</p>
+                <p>- در جاوا JVM به صورت خودکار حافظه رو مدیریت میکنه و دیگه برای مدیریت حافظه نیاز نداریم متغیر های بی استفاده رو در کد از بین ببریم.</p>
+                <p>- در جاوا کتابخونه های متعدد برای پلتفرم های مختلف نوشته شده.</p>
+            </div>
+
+        </article>
+
+        <div class="article-foot">
+
+            <div class="navigator-container">
+
+                <a class="md-bt md-bt-light" href="type-variables.html">
+            <span class="material-icons">
+              navigate_next
+            </span>
+                    <span class="hint">
+              بعدی
+            </span>
+                </a>
+
+                <a class="md-bt md-bt-light" href="#">
+            <span class="hint">
+              قبلی
+            </span>
+                    <span class="material-icons">
+              navigate_before
+            </span>
+
+                </a>
+            </div>
+
+            <div class="relative-articles-container">
+                <p>مطالب مرتبط</p>
+                <div>
+                    <div>
+                        <a href="/article/java/type-variables.html">انواع متغیر ها در جاوا</a>
+                    </div>
+                    <div>
+                        <a href="/article/java/selectors.html">دستورات شرطی در جاوا</a>
+                    </div>
+                    <div>
+                        <a href="/article/java/loops.html">حلقه ها در جاوا</a>
+                    </div>
+
+                    <div>
+                        <a href="https://en.wikipedia.org/wiki/Java_(programming_language)">مطالعه در ویکی پدیا</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+<div class="scroll-top-container">
+    <a class="text-decoration-none link-dark material-icons" href="#">
+        arrow_drop_up
+    </a>
+</div>
+
+<footer></footer>
+
+<div class="dialog hide"></div>
+
+<div class="copy-message">
+    <span class="copy-message-text">کپی شد!</span>
+</div>
+
+</body>

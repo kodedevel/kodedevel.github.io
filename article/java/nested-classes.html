@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+
+<html lang="fa" xmlns="http://www.w3.org/1999/html">
+
+<head>
+
+    <meta content="IE=7" http-equiv="X-UA-Compatible">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+
+    <meta content="هنگامی که یک کلاس داخل کلاس دیگه تعریف کنیم بهش کلاس تو در تو میگیم در جاوا میتونیم کلاس های تو در تو استاتیک و کلاس تو در تو غیر استاتیک تعریف کنیم که هر کلاس کاربرد های خاص خودشو داره در این مطلب به کلاس های تو در تو در جاوا و انواعش با مثال پرداختیم."
+          name="description">
+
+    <meta content="text/html;charset=UTF-8" http-equiv="Content-Type">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>کلاس های تو در تو در جاوا</title>
+
+    <meta content="کلاس های تو در تو در جاوا" name="og:title">
+    <meta content="هنگامی که یک کلاس داخل کلاس دیگه تعریف کنیم بهش کلاس تو در تو میگیم در جاوا میتونیم کلاس های تو در تو استاتیک و کلاس تو در تو غیر استاتیک تعریف کنیم که هر کلاس کاربرد های خاص خودشو داره در این مطلب به کلاس های تو در تو در جاوا و انواعش با مثال پرداختیم."
+          name="og:description">
+
+    <meta content="https://kodedevel.github.io/resources/favicon.png" property="og:image">
+    <meta content="https://kodedevel.github.io/article/java/nested-classes.html" property="og:url">
+
+    <meta content="article" property="og:type">
+
+    <link href="/resources/favicon.png" rel="shortcut icon" type="image/x-icon">
+
+    <link href="/resources/css/main.css" rel="stylesheet">
+    <script src="/resources/js/main.js" type="module"></script>
+
+</head>
+
+<body>
+<header></header>
+<main>
+    <div class="page-wrap">
+
+        <div class="article-head">
+            <h1>
+                کلاس های تو در تو در جاوا
+            </h1>
+
+            <address>
+                <a class="author text-muted text-decoration-none" rel="author">یونس سلیمانی</a>
+            </address>
+
+            <figure class="figure figure-wrapper">
+                <img alt="کلاس های تو در تو در جاوا" class="rounded figure-img" src="/resources/image/java/cover_nested_classes.png"/>
+            </figure>
+
+            <div class="toc">
+                <p class="p-2 mx-2 h5">دسترسی سریع</p>
+                <div class="list-group">
+
+                    <a class="list-group-item list-group-item-action" href="#sub0">تعریف کلاس های تو در تو (nested class)</a>
+
+                    <a class="list-group-item list-group-item-action" href="#sub1">کلاس داخلی غیر استاتیک</a>
+
+                    <a class="list-group-item list-group-item-action" href="#sub2">کلاس داخلی استاتیک</a>
+
+                    <a class="list-group-item list-group-item-action" href="#sub3">خلاصه</a>
+
+                </div>
+            </div>
+        </div>
+
+        <article>
+
+            <div class="subsection" id="sub0">
+                <h2>تعریف کلاس های تو در تو (nested class)</h2>
+
+                <p>اگه یک کلاس رو داخل کلاس دیگه تعریف کنیم بهش کلاس داخلی (inner class) یا کلاس تو در تو (nested class) میگیم.</p>
+
+                <p>میتونیم یک کلاس رو به صورت عضو (member) یا static داخل یک کلاس دیگه تعریف کنیم.</p>
+
+
+                <p>در جاوا <a class="text-decoration-none" href="access-modifiers.html">سطح دسترسی</a> کلاس های داخلی میتونه <strong>&#x200e;private, default, protected, public</strong> باشه.</p>
+
+                <p>کلاس های داخلی کاربرد های متعددی دارند مثلا در MVC میتونن نقش یک کنترلر رو بازی کنن، یا میتونیم یک Iterator باهاشون پیاده‌سازی کنیم و یا در طراحی الگو هایی مثل builder نقش Factory رو بازی کنن.</p>
+
+                <p>کلاس های داخلی به صورت Outer$Inner.class کامپایل میشن (در اینجا Outer اسم کلاس بیرونی و Inner اسم کلاس داخلی است).</p>
+                
+            </div>
+
+
+            <div class="subsection" id="sub1">
+                <h2>کلاس داخلی غیر استاتیک</h2>
+                <p>به کلاس های غیر استاتیک که داخل یک کلاس تعریف میکنیم کلاس داخلی عضو (member) میگیم.</p>
+                <p>این کلاس ها به تمام اعضای کلاس بیرونی دسترسی دارند. بنابراین نیاز نداریم برای دسترسی به اعضای کلاس بیرونی یک نمونه از کلاس بیرونی داخل کلاس داخلی ایجاد کنیم.</p>
+
+                <p>فرم کلی:</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+public class MyOuterClass{
+    
+    ...
+                            
+    public class MyInnerClass{
+        ...
+    }
+
+}
+                        </div>
+                    </div>
+                </div>
+
+                <p>قبل از ایجاد یک نمونه از <strong>کلاس داخلی عضو</strong> نیاز به یک نمونه از کلاس بیرونی داریم.</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+public static void main(String[] args){
+    MyOuterClass outer = new MyOuterClass();
+    //A new instance of inner class by an object of outer class.
+    MyInnerClass inner = outer.new MyInnerClass();
+}
+                        </div>
+                    </div>
+                </div>
+
+                <p>میتونیم اعضای کلاس بیرونی رو در کلاس داخلی صدا بزنیم.</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+public class MyOuterClass{
+
+    private String outerField = "This is an outer data field";
+    
+    public class MyInnerClass{
+        public void displayOuterDataField(){
+            System.out.println(outerField);
+        }
+    }
+}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+public static void main(String[] args){
+    MyOuterClass outer = new MyOuterClass();
+    MyInnerClass inner = outer.new MyInnerClass();
+    inner.displayOuterDataField();
+}
+                        </div>
+                    </div>
+                </div>
+
+
+                <p>مثال</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+public class StringArray {
+    private String[] elements;
+    
+    public StringArray(String[] elements){
+        this.elements = elements;
+    }
+    
+    public int size(){
+        return elements.length;
+    }
+    
+    public Iterator getIterator(){
+        return new Iterator();
+    }
+    
+    public class Iterator{
+        private int currentIndex;
+        
+        public boolean hasNext(){
+            return currentIndex < elements.length;
+        }
+            
+        public String next(){
+            return elements[currentIndex++];
+        }
+        
+        public void reset(){
+            currentIndex = 0;
+        }
+    }
+}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+public static void main(String[] args){
+    String[] names  = {"Billie", "Jessy", "Jill", "Lura"};
+    StringArray arr = new StringArray(names);
+
+    System.out.println("There are " + arr.size() + " elements that array holds");
+
+    System.out.println("Here are contents of the array: ");
+    StringArray.Iterator iterator = arr.getIterator();
+
+    while (iterator.hasNext())
+        System.out.print(iterator.next() + " ");
+
+}
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="subsection" id="sub2">
+                <h2>کلاس داخلی استاتیک</h2>
+
+                <p>این کلاس ها رو با کلیدواژه ی استاتیک داخل یک کلاس دیگه تعریف میکنیم.</p>
+
+
+                <p>فرم کلی:</p>
+
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+public class MyOuterClass{
+
+    ...
+    
+    public static class MyInnerClass{
+        ...
+    }   
+
+}
+                        </div>
+                    </div>
+                </div>
+
+                <p>این کلاس ها فقط به اعضای استاتیک کلاس بیرونی دسترسی دارن.</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+public class MyOuterClass{
+
+    private static void printMessage(){
+        System.out.println("A message from static method of outer class");
+    }
+    
+    public static class MyInnerClass{
+        public MyInnerClass(){
+            System.out.println("An object created from Inner class.");
+            printMessage();
+        }
+    }
+}
+                        </div>
+                    </div>
+                </div>
+
+                <p>برای ایجاد یک نمونه از کلاس استاتیک داخلی نیاز به نام کلاس بیرونی داریم:</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+MyOuterClass.MyInnerClass myInnerObject = new MyOuterClass.MyInnerClass();
+                        </div>
+                    </div>
+                </div>
+
+                <p>در زیر الگوی builder رو با کلاس استاتیک Factory برای کلاس TV پیاده‌سازی کردیم.</p>
+
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+public class TV {
+    public static final int MAXIMUM_VOLUME_LEVEL = 10;
+    public static final int MINIMUM_VOLUME_LEVEL = 0;
+
+    public static final int MAXIMUM_CHANNEL_NUMBER = 120;
+    public static final int MINIMUM_CHANNEL_NUMBER = 1;
+
+    private String panel;
+    private int channel = 1;
+    private int volume = 1;
+    private boolean on;
+    
+    private TV(Factory factory){
+        this.panel = factory.panel;
+    }
+    
+    public void turnOn(){
+        on = true;
+    }
+    
+    public void turnOff(){
+        on = false;
+    }
+    
+    public void setChannel(int channel) {
+        if (channel >= MINIMUM_CHANNEL_NUMBER && channel <= MAXIMUM_CHANNEL_NUMBER)
+            this.channel = channel;
+    }
+    
+    public void setVolume(int volume) {
+    if (on && volume >= MINIMUM_VOLUME_LEVEL && volume <= MAXIMUM_VOLUME_LEVEL)
+        this.volume = volume;
+    }
+    
+    public String getPanel() {
+        return panel;
+    }
+    
+    public int getChannel() {
+        return channel;
+    }
+    
+    public int getVolume() {
+        return volume;
+    }
+    
+    public void channelUp(){
+        if (on && channel < MAXIMUM_CHANNEL_NUMBER) channel++;
+    }
+    
+    public void channelDown(){
+        if (on && channel > MINIMUM_CHANNEL_NUMBER ) channel --;
+    }
+    
+    public void volumeUp(){
+        if (on && volume < MAXIMUM_VOLUME_LEVEL)
+            volume++;
+    }
+    
+    public void volumeDown(){
+        if (on && volume > MINIMUM_VOLUME_LEVEL)
+            volume --;
+    }
+    
+    public boolean isOn() {
+        return on;
+    }
+
+    public boolean isMuted(){
+        return volume == MINIMUM_VOLUME_LEVEL;
+    }
+    
+    public static class Factory{
+    
+        private String panel = "FLATIRON";
+        
+        public Factory panel(String panel){
+            this.panel = panel;
+            return this;
+        }
+        
+        public TV build(){
+            return new TV(this);
+        }
+    }
+}
+                        </div>
+                    </div>
+                </div>
+
+                <p>ساخت نمونه و استفاده از TV.</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+public static void main(String[] args) {
+    TV tv1 = TV.Factory().panel("TFT").build();
+    tv1.turnOn();
+    tv1.setChannel(42);
+    tv1.setVolume(6);
+    
+    TV tv2 = TV.Factory().panel("IPS").build();
+    tv2.turnOn();
+    tv2.channelUp();
+    tv2.channelUp();
+    tv2.volumeUp();
+    System.out.println("tv1 has been built by " + tv1.getPanel() + " panel");
+    System.out.println("tv1's channel is " + tv1.channel + " and volume level is " + tv1.volumeLevel);
+    
+    System.out.println("tv2 has been built by " + tv2.getPanel() + " panel");
+    System.out.println("tv2's channel is " + tv2.channel + " and volume level is " + tv2.volumeLevel);
+}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="subsection" id="sub3">
+                <h2>خلاصه</h2>
+                <p>- در جاوا میتونیم یک کلاس رو داخل کلاس دیگه تعریف کنیم که بهش کلاس تو در تو میگیم.</p>
+                <p>- در جاوا میتونیم کلاس های تو در تو رو به صورت استاتیک یا غیر استاتیک تعریف کنیم.</p>
+                <p>- کلاس های داخلی غیر استاتیک (ممبر) به تمام اعضای کلاس بیرونی دسترسی دارند.</p>
+                <p>برای ایجاد یک نمونه از کلاس های داخلی غیر استاتیک باید ابتدا یک نمونه از کلاس بیرونی ایجاد کنیم.</p>
+                <p>کلاس های تو در تو استاتیک تنها به اعضای استاتیک کلاس بیرونی دسترسی دارند.</p>
+                <p>برای ایجاد یک نمونه از این کلاس ها تنها به اسم کلاس بیرونی نیاز داریم.</p>
+                <p></p>
+            </div>
+        </article>
+
+        <div class="article-foot">
+
+            <div class="navigator-container">
+
+                <a class="md-bt md-bt-light" href="#">
+            <span class="material-icons">
+              navigate_next
+            </span>
+                    <span class="hint">
+              بعدی
+            </span>
+                </a>
+
+                <a class="md-bt md-bt-light" href="/article/java/arrays.html">
+            <span class="hint">
+              قبلی
+            </span>
+                    <span class="material-icons">
+              navigate_before
+            </span>
+
+                </a>
+            </div>
+
+            <div class="relative-articles-container">
+                <p>مطالب مرتبط</p>
+                <div>
+                    <div>
+                        <a href="objects-and-classes.html">آبجکت و کلاس ها در جاوا</a>
+                    </div>
+                    <div>
+                        <a href="arrays.html">آرایه ها در جاوا</a>
+                    </div>
+                    <div>
+                        <a href="static-keyword.html">کلیدواژه ی استاتیک در جاوا</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+<div class="scroll-top-container">
+    <a class="text-decoration-none link-dark material-icons" href="#">
+        arrow_drop_up
+    </a>
+</div>
+
+<footer></footer>
+
+<div class="dialog hide"></div>
+
+<div class="copy-message">
+    <span class="copy-message-text">کپی شد!</span>
+</div>
+
+</body>

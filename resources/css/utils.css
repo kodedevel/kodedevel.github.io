@@ -1,0 +1,24 @@
+.rtl{
+    direction: rtl;
+}
+
+.ltr{
+    direction: ltr;
+}
+
+.icon-brand{
+    width: 36px;
+    height: auto;
+}
+
+.md-text-gray300{
+    color: #e0e0e0;
+}
+
+.md-text-gray200{
+    color: #eeeeee;
+}
+
+.md-bg-gray200{
+    background-color: #eeeeee;
+}

@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+
+<html lang="fa">
+
+<head>
+
+    <meta content="IE=7" http-equiv="X-UA-Compatible">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+
+    <meta content="به طور کلی متد (تابع) یه سری کد ها رو به عنوان پارامتر از ورودی میگیره و نتیجه رو به عنوان خروجی بر میگردونه. متد ها کد های برنامه رو خواناتر قابل درک تر و ساده‌تر میکنن و از دوباره نویسی کد های تکراری جلوگیری میکنن؛ در این مطلب به بررسی متد (تابع) در جاوا می پردازیم."
+          name="description">
+
+    <meta content="text/html;charset=UTF-8" http-equiv="Content-Type">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>متد (تابع) در جاوا</title>
+
+    <meta content="متد (تابع) در جاوا" name="og:title">
+    <meta content="به طور کلی متد (تابع) یه سری کد ها رو به عنوان پارامتر از ورودی میگیره و نتیجه رو به عنوان خروجی بر میگردونه. متد ها کد های برنامه رو خواناتر قابل درک تر و ساده‌تر میکنن و از دوباره نویسی کد های تکراری جلوگیری میکنن؛ در این مطلب به بررسی متد (تابع) در جاوا می پردازیم."
+          name="og:description">
+
+    <meta content="https://kodedevel.github.io/resources/favicon.png" property="og:image">
+    <meta content="https://kodedevel.github.iol/article/java/methods.html" property="og:url">
+
+    <meta content="article" property="og:type">
+
+    <link href="/resources/favicon.png" rel="shortcut icon" type="image/x-icon">
+
+    <link href="/resources/css/main.css" rel="stylesheet">
+    <script src="/resources/js/main.js" type="module"></script>
+
+</head>
+
+<body>
+<header></header>
+<main>
+    <div class="page-wrap">
+
+        <div class="article-head">
+            <h1>
+                متد (تابع) در جاوا
+            </h1>
+
+            <address>
+                <a class="author text-muted text-decoration-none" rel="author">یونس سلیمانی</a>
+            </address>
+
+            <figure class="figure figure-wrapper">
+                <img alt="متد (تابع) در جاوا" class="rounded figure-img" src="/resources/image/java/cover_method.png"/>
+            </figure>
+
+            <div class="toc">
+                <p class="p-2 mx-2 h5">دسترسی سریع</p>
+                <div class="list-group">
+
+                    <a class="list-group-item list-group-item-action" href="#sub0">تعریف متد</a>
+
+                    <a class="list-group-item list-group-item-action" href="#sub1">ساختار متد</a>
+
+                    <a class="list-group-item list-group-item-action" href="#sub2">متد void</a>
+
+                    <a class="list-group-item list-group-item-action" href="#sub3">بررسی پارامتر های متد</a>
+
+                    <a class="list-group-item list-group-item-action" href="#sub4">مفهوم overloading</a>
+
+                    <a class="list-group-item list-group-item-action" href="#sub5">مورد مطالعه (مثال ها)</a>
+
+                    <a class="list-group-item list-group-item-action" href="#sub6">خلاصه</a>
+                </div>
+            </div>
+        </div>
+
+        <article>
+
+            <div class="subsection" id="sub0">
+                <h2>تعریف متد</h2>
+                <blockquote>یک متد شامل اسم، نوعی که بر میگردونه، پارامتر و بدنه است.</blockquote>
+
+                <p>به مجموعه ی دستورات داخل <strong>یک بدنه ی دارای نام</strong> که برای انجام یک عملیات، هنگام صدا زدن بدنه اجرا میشن، متد میگیم.</p>
+
+
+                <p>به طور کلی متد (تابع) یه سری کد ها رو به عنوان پارامتر از ورودی میگیره و نتیجه رو به عنوان خروجی بر میگردونه. متد ها کد های برنامه رو خواناتر قابل درک تر و ساده‌تر میکنن و از دوباره نویسی کد های تکراری جلوگیری میکنن.</p>
+
+                <p>در بعضی از زبونا به متد تابع گفته میشه اگه با این اسم مواجه شدید همون متده.</p>
+
+            </div>
+
+                <div class="subsection" id="sub1">
+                <h2>ساختار متد</h2>
+
+
+                    <p>فرم کلی:</p>
+                    <p>تصویر زیر نمایانگر فرم کلی ساختار یک متد در جاواست.</p>
+
+                    <figure>
+                        <img src="/resources/image/java/method_structure.png" alt="ساختار متد در جاوا" class="rounded figure-img img-fluid">
+                        <figcaption class="figure-caption text-end p-2">ساختار متد در جاوا</figcaption>
+                    </figure>
+
+
+                <h3>1- کلیدواژه ی سطح دسترسی:</h3>
+                    <p>بیان کننده ی سطح دسترسی به متد در پروژه است؛ سطح دسترسی میتونه public, private, protected یا default باشه.</p>
+
+                <h3>2- کلیدواژه ی استاتیک:</h3>
+                    <p>با <a class="text-decoration-none" href="static-keyword.html">کلیدواژه ی استاتیک</a> متد استاتیک تعریف میکنیم.</p>
+
+                <h3>3- نوعی که توسط متد برگردونده میشه:</h3>
+                    <p>میتونه از نوع Primitive یا Object باشه.</p>
+
+                <h3>4- نام متد:</h3>
+                    <p>نام دلخواهیه که برای متد درنظر میگیریم.</p>
+
+                <h3>5- پارامتر های متد:</h3>
+                    <p>هنگام صدا زدن متد با کمک پارامتر میتونیم مقادیری رو داخلش پاس بدیم. بعد از تعریف هر پارامتر با یک ویرگول میتونیم پارامتر بعدی رو برای متد تعریف کنیم؛ در تصویر t0، t1 ... tn پارامتر های متد هستند، میتونیم یک یا چند پارامتر برای متد تعریف کنیم.</p>
+
+                <h3>6- مقداری که متد بر میگردونه:</h3>
+                    <p>با کلیدواژه ی return میتونیم مقداری از جنس R رو برگردونیم.</p>
+
+                    <div class="note">
+                    <p class="note-head">توجه</p>
+                        <p>متد باید مقداری از نوع R برگردونه و اگه مقدار از نوع R نباشه دچار خطای کامپایل میشیم. R میتونه Primitive یا Object باشه.</p>
+                    </div>
+
+
+                    <div class="note">
+                    <p class="note-head">توجه</p>
+                        <p>اگه R تهی (void) بود متد چیزی رو بر نمیگردونه.</p>
+                    </div>
+
+                    <div class="note">
+
+                    <p class="note-head">توجه:</p>
+                        <p>
+                            میتونیم از return هرجای متد که خواستیم استفاده کنیم، در اینصورت بعد از اجرای return متد متوقف شده و کد های بعد از return اجرا نمیشه.
+                        </p>
+
+                    </div>
+
+                <h3>صدا زدن متد:</h3>
+
+                    <p>دو حالت میتونیم متد رو صدا کنیم.</p>
+                <h3>۱- صدا زدن متد داخل کلاسی که تعریفش کردیم:</h3>
+                    <p>اگه متد رو بخوایم داخل کلاسی که تعریفش کردیم صدا کنیم کافیه اسم متد رو مانند زیر نوشته و پارامتر های لازم رو بهش پاس بدیم.</p>
+                    <div class="sample">
+                        <div class="snippet-container">
+                            <div class="snippet Java">
+Type0 t0 = ...;
+Type1 t1 = ...;
+...
+TypeN tn = ...;
+
+R returnedValue = myMethod(t0, t1, ..., tn);
+                            </div>
+                        </div>
+                    </div>
+
+                <h3>۲- صدا زدن متد در خارج از کلاس</h3>
+
+                    <p>اگه متد رو بخوایم در خارج از کلاس صدا بزنیم باید اسم متغیر آبجکت رو بنویسیم، نقطه بزاریم و متد مورد نظر داخل کلاس رو صدا کنیم.</p>
+
+                    <div class="sample">
+                        <div class="snippet-container">
+                            <div class="snippet Java">
+Type0 t0 = ...;
+Type1 t1 = ...;
+...
+TypeN tn = ...;
+
+MyObject obj = new MyObject(...);
+
+//صدا زدن متد و پاس دادن پارامتر ها
+R returnedValue = obj.myMethod(t0, t1, ..., tn);
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="note">
+                    <p class="note-head">راهنمایی</p>
+                        <p>میتونیم <a class="text-decoration-none" href="static-keyword.html">متد های استاتیک</a> رو در خارج از کلاس به‌جای نوشتن اسم متغیر آبجکتی و نقطه، با اسم کلاس و نقطه صدا بزنیم؛ این کار به لحاظ تفکیک متد های آبجکتی از استاتیک در ظاهر کد ها توصیه میشه.</p>
+                    </div>
+
+                    <div class="sample">
+                        <div class="snippet-container">
+                            <div class="snippet Java">
+Type0 t0 = ...;
+Type1 t1 = ...;
+...
+TypeN Tn = ...;
+
+//صدا زدن متد و پاس دادن پارامتر ها
+R returnedValue = MyClass.myStaticMethod(t0, t1, ..., tn);
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <p>مثال:</p>
+
+                    <p>میخوایم یک متد تعریف کنیم تا maximum بین دو عدد رو برگردونه.</p>
+
+                    <div class="sample">
+                        <div class="snippet-container">
+                            <div class="snippet Java">
+public static void main(String[] args) {
+    int i = 5;
+    int j = 2;
+    int k = max(i, j);
+    System.out.println("The maximum of " + i +
+    " and " + j + " is " + k);
+}
+public static int max(int num1, int num2) {
+    int result;
+    if (num1 > num2)
+        result = num1;
+    else
+        result = num2;
+
+    return result;
+}
+                            </div>
+                        </div>
+                    </div>
+
+                    <p>میتونیم از <strong>return</strong> داخل شرط هم استفاده کنیم در این صورت با اجرا شدن return مقدار برگردونده میشه و از اجرای بقیه ی کد در داخل متد جلوگیری میشه.</p>
+
+                    <p>مثال</p>
+                    <p>در زیر یک متد <a class="text-decoration-none" href="static-keyword.html">استاتیک</a> با سطح دسترسی public تعریف کردیم؛ داخل متد بررسی میکنه اگه عدد زوج باشه مربع اون عدد رو برگردونه در غیر اینصورت 1- رو بر میگردونه.</p>
+
+                    <div class="sample">
+                        <div class="snippet-container">
+                            <div class="snippet Java">
+public  static void main(String[] args){
+    int square1  = squareEven(14);
+    int square2 = squareEven(43);
+
+    System.out.println("is 14 even? " + (square1 != -1) + " the square of 14 is " + square1);
+    System.out.println("is 43 even? " + (square2 != -1) + " the square of 43 is " + square2);
+
+}
+public static int squareEven(int number){
+    if(number % 2 != 0) return -1;
+
+    return number * number;
+}
+                            </div>
+                        </div>
+                    </div>
+
+                    <p>اگه از return داخل دستور شرطی استفاده کنیم که else داشته باشه return در else به عنوان آخرین قسمت کد در متد توسط کامپایلر شناخته میشه و دیگه نیاز نیست return در پایین متد بنویسیم.</p>
+
+                    <div class="sample">
+                        <div class="snippet-container">
+                            <div class="snippet Java">
+public R myMethod(...){
+    ...
+    if(condition0){
+        ...
+        return r0;
+    }else if(condition1){
+        ...
+        return r1;
+    }else if(condition2){
+        ...
+        return r2;
+    }else {
+        ...
+        return r3;
+    }
+
+}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sample">
+                        <div class="snippet-container">
+                            <div class="snippet Java">
+public static int max(int num1, int num2){
+    if(num1 > num2) {
+        return num1;
+    }
+    else{
+        return num2;
+    }
+}
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            <div class="subsection" id="sub2">
+                <h2>متد تهی (void)</h2>
+                <blockquote>به متدی که هیچ مقداری رو بر نگردونه متد void میگیم.</blockquote>
+
+                <p>کلمه ی void یعنی پوچ و تهی؛ چون این متد ها مقداری رو بر نمیگردونن برای همین بهشون متد void میگیم.</p>
+                <p>برای تعریف متد void، به‌جای نوشتن نوعی که میخوایم برگردونیم از کلیدواژه ی void در جاوا استفاده میکنیم.</p>
+
+                <p>مثال</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+public static void main(String[] args){
+    printMessage("You can call me anytime u wish");
+}
+private static void printMessage(String message){
+    System.out.println("Message: " + message);
+}
+                        </div>
+                    </div>
+                </div>
+
+                <p>
+                    در متد void میتونیم از کلیدواژه ی return برای جلوگیری از اجرای بقیه ی کد های داخل متد استفاده کنیم.
+                </p>
+                <p>مثال</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+public static void main(String[] args){
+    printSquareEven(13);
+    printSquareEven(24);
+}
+
+private static void printSquareEven(int n){
+    if(n % 2 != 0) {
+        System.out.println("Not square even");
+        return;
+    }
+
+    int square = n * n;
+    System.out.println("Square of " + n + " is " + square);
+
+}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="subsection" id="sub3">
+                <h2>بررسی پارامتر های متد</h2>
+                <p>پارامتر های متد، <a class="text-decoration-none" href="type-variables.html">متغیر</a> هستند و مقداری که به عنوان پارامتر به متد پاس میدیم در واقع یک کپی از مقدار اصلی است که توسط <strong>JVM</strong> کپی میشه.</p>
+
+                <p>در مثال زیر ابتدا مقدار x رو قبل از صدا زدن متد increment نمایش میدیم و سپس مقدار x رو داخل متد بعد اضافه کردن یک واحد بهش نمایش میدیم و در نهایت مقدار x رو بعد از صدا زدن increment نمایش میدیم.</p>
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+public static void main(String[] args) {
+    int x = 1;
+    System.out.println("Before the call, x is " + x);
+    increment(x);
+    System.out.println("After the call, x is " + x);
+}
+public static void increment(int x) {
+    x++;
+    System.out.println("Inside the method x is " + x);
+}
+                        </div>
+                    </div>
+                </div>
+
+
+                <p>وقتی یک متغیر آبجکتی رو به عنوان پارامتر داخل متد پاس میدیم JVM یک کپی از ادرس متغیر رو به عنوان مقدار پارامتر قرار میده و از اونجایی که ادرس آبجکت در حافظه تغییری نکرده تغییرات روی آبجکت داخل متد باعث تغییر در متغیر خارج از متد میشه.</p>
+
+                <p>مثال</p>
+                <p>ابتدا میخوایم بدون اختصاص آبجکت جدید به innerText در داخل متد، "Test" رو به innerText اضافه کنیم.</p>
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+public static void main(String[] args){
+    StringBuilder outerText = new StringBuilder("Hello ");
+
+    System.out.println("before calling method: " + outerText);
+    test(outerText);
+    System.out.println("after calling method: " + outerText);
+}
+
+private static void test(StringBuilder innerText){
+    innerText.append("Test");
+    System.out.println("on calling method: " + innerText);
+}
+                        </div>
+                    </div>
+                </div>
+
+                <p>در بالا با افزودن مقدار Test به innerText متن outerText هم تغییر میکنه چون هردو به یک آبجکت در حافظه دارن اشاره میکنن.</p>
+
+                <p>حالا اگه innerText در داخل متد به یک آبجکت جدید در حافظه اشاره کنه، با تغییرات در آبجکت توسط innerText، محتوای آبجکت در outerText تغییری نمیکنه.</p>
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+public static void main(String[] args){
+    StringBuilder outerText = new StringBuilder("Hello ");
+
+    System.out.println("before calling method: " + outerText);
+    test(outerText);
+    System.out.println("after calling method: " + outerText);
+}
+
+private static void test(StringBuilder innerText){
+    innerText = new StringBuilder("Test");
+    System.out.println("on calling method: " + innerText);
+}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+            <div class="subsection" id="sub4">
+                <h2>مفهوم overloading</h2>
+                <p>در یک کلاس میتونیم یک متد رو با همون اسم با پارامتر های مختلف تعریف کنیم که بهش overloading در جاوا میگیم.</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+public static void main(String[] args){
+
+    System.out.println("The maximum of 3 and 4 is " + max(3, 4));
+
+    System.out.println("The maximum of 3.0 and 5.4 is " + max(3.0, 5.4));
+
+    System.out.println("The maximum of 3.0, 5.4, and 10.14 is " + max(3.0, 5.4, 10.14));
+
+}
+
+private static int max(int n1, int n2){
+    return n1 > n2 ? n1 : n2;
+}
+
+private static double max(double n1, double n2){
+    return n1 > n2 ? n1 : n2;
+}
+
+private static double max(double n1, double n2, double n3){
+    return max(max(n1, n2), n3);
+}
+                        </div>
+                    </div>
+                </div>
+
+                <p>در مثال بالا شاید عجیب به نظر بیاد، هنگامی که متد های max رو تعریف و صدا زدیم از کجا بدونیم کدوم متد صدا زده میشه؟ جواب این سؤال با کامپایلر است؛ هنگامی که مقداریو به عنوان پارامتر به متد پاس میدیم کامپایلر به طور خودکار مناسب ترین متد رو انتخاب میکنه.</p>
+            </div>
+
+            <div class="subsection" id="sub5">
+                <h2>مورد مطالعه (مثال ها)</h2>
+
+
+                <p>در مثال زیر متد getGrade با دریافت امتیاز رتبه ی افراد رو برمیگردونه.</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+public static void main(String[] args) {
+    System.out.print("The grade is " + getGrade(78.5));
+    System.out.print("\nThe grade is " + getGrade(59.5));
+}
+public static char getGrade(double score) {
+    if (score >= 90.0)
+        return 'A';
+    else if (score >= 80.0)
+        return 'B';
+    else if (score >= 70.0)
+        return 'C';
+    else if (score >= 60.0)
+        return 'D';
+    else
+        return 'F';
+}
+                        </div>
+                    </div>
+                </div>
+
+                <p>در مثال زیر متد gcd بزرگترین مخرج مشترک (ب.م.م) بین دو عدد رو بر میگردونه.</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+public static void main(String[] args) {
+    Scanner input = new Scanner(System.in);
+
+    System.out.println("Enter first number: ");
+    int number0 = input.nextInt();
+
+    System.out.println("Enter second number: ");
+    int number1 = input.nextInt();
+
+    System.out.println("the greatest common divisor for " + number0 + " and " + number1 + " is " + gcd(number0, number1));
+}
+
+private static int gcd(int n0, int n1){
+    int gcd = 1;
+
+    for (int i= 2 ; i <= n0 && i<= n1; i++ ){
+        if (n0 % i == 0 && n1 % i== 0)
+        gcd = i;
+    }
+
+    return gcd;
+}
+                        </div>
+                    </div>
+                </div>
+
+
+                <p>در مثال زیر میخوایم صد تا عدد اول رو پیدا کنیم:</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+public static void main(String[] args) {
+    System.out.println("The first 100 Prime numbers are: ");
+    printPrimeNumbers(100);
+}
+
+public static void printPrimeNumbers(int numberOfPrimes){
+    final int NUMBER_OF_PRIMES_PER_LINE = 10;
+    int count = 0;
+    int number = 2;
+
+    while (count < numberOfPrimes){
+
+        //بررسی میکنه عدد اول است یا خیر
+        if (isPrime(number)){
+            count++;
+
+            if (count % NUMBER_OF_PRIMES_PER_LINE == 0) System.out.printf("%-5d\n", number);
+            else System.out.printf("%-5d", number);
+    }
+
+        //با هر بار تکرار میریم سراغ عدد بعدی و تا زمانی که count کوچیکتر از numberOfPrimes باشه حلقه تکرار میشه
+        number++;
+    }
+}
+
+private static boolean isPrime(int number){
+    for (int divisor = 2; divisor <= number/2; divisor++){
+        if (number % divisor == 0) return false;
+    }
+
+    return true;
+}
+                        </div>
+                    </div>
+                </div>
+
+
+                <p>در مثال زیر برنامه یک عدد hexadecimal رو از ورودی میگیره و مقدار decimal عدد رو بر میگردونه.</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+public static void main(String[] args) {
+    Scanner input = new Scanner(System.in);
+
+    System.out.println("Enter a hex number: ");
+    String hex = input.next();
+    System.out.println("Decimal number of " + hex + " is " + hexToDecimal(hex));
+}
+
+
+public static int hexToDecimal(String hex){
+    hex = hex.toUpperCase();
+    int decimal = 0;
+
+    for (int i=0; i< hex.length(); i++){
+        char hexChar = hex.charAt(i);
+        decimal = decimal * 16 + hexCharToDecimal(hexChar);
+    }
+
+    return decimal;
+}
+
+
+private static int hexCharToDecimal(char ch){
+    if (ch >= 'A' && ch <= 'F') return 10 + ch - 'A';
+    else return ch - '0';
+}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="subsection" id="sub6">
+                <h2>خلاصه</h2>
+                <p>- یک متد شامل نام، نوعی که برمیگردونه، پارامتر و بدنه است.</p>
+                <p>- از متد برای مرتب شدن کد ها، جلوگیری از دوباره نویسی و قابل درک تر کردن کد های برنامه استفاده میکنیم.</p>
+                <p>-پارامتر های متد، متغیر های جدید هستند و مقدار متغیری که در بیرون از متد، به متد پاس میدیم، توسط JVM براشون کپی میشه.</p>
+                <p>- به متدی که هیچ مقداری رو بر نمیگردونه متد void در جاوا میگیم.</p>
+                <p>- وقتی چند متد با یک نام و پارامتر های متفاوت داشته باشیم بهش overloading میگیم.</p>
+            </div>
+
+        </article>
+
+        <div class="article-foot">
+
+            <div class="navigator-container">
+
+                <a class="md-bt md-bt-light" href="objects-and-classes.html">
+            <span class="material-icons">
+              navigate_next
+            </span>
+                    <span class="hint">
+              بعدی
+            </span>
+                </a>
+
+                <a class="md-bt md-bt-light" href="loops.html">
+            <span class="hint">
+              قبلی
+            </span>
+                    <span class="material-icons">
+              navigate_before
+            </span>
+
+                </a>
+            </div>
+
+            <div class="relative-articles-container">
+                <p>مطالب مرتبط</p>
+                <div>
+                    <div>
+                        <a href="/article/java/objects-and-classes.html">آبجکت و کلاس ها در جاوا</a>
+                    </div>
+
+                    <div>
+                        <a href="/article/java/static-keyword.html">کلیدواژه ی استاتیک در جاوا</a>
+                    </div>
+
+                    <div>
+                        <a href="/article/java/loops.html">حلقه ها در جاوا</a>
+                    </div>
+                    <div>
+                        <a href="/article/java/selectors.html">دستورات شرطی در جاوا</a>
+                    </div>
+
+                    <div>
+                        <a href="/article/kotlin/functions.html">توابع در کاتلین</a>
+                    </div>
+
+                    <div>
+                        <a href="https://docs.oracle.com/javase/tutorial/java/javaOO/methods.html">مطالعه در اوراکل</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+<div class="scroll-top-container">
+    <a class="text-decoration-none link-dark material-icons" href="#">
+        arrow_drop_up
+    </a>
+</div>
+
+<footer></footer>
+
+<div class="dialog hide"></div>
+
+<div class="copy-message">
+    <span class="copy-message-text">کپی شد!</span>
+</div>
+
+</body>

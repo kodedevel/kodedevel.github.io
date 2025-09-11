@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta content="ie=edge" http-equiv="x-ua-compatible"/>
+
+    <meta content="در این مطلب به بررسی دستورات شرطی  if-else ، switch ، عملگر های منطقی و عبارت شرطی در جاوا به همراه مثال می پردازیم."
+          name="description"/>
+    <meta charset="UTF-8"/>
+    <meta content="width:device-width, initial-scale=1" name="viewport"/>
+    <title>دستورات شرطی (selector ها) در جاوا</title>
+
+    <meta content="دستورات شرطی (selector ها) در جاوا" property="og:title"/>
+    <meta content="در این مطلب به بررسی دستورات شرطی  if-else ، switch ، عملگر های منطقی و عبارت شرطی در جاوا به همراه مثال می پردازیم."
+          property="og:description"/>
+    <meta content="https://kodedevel.github.io/resources/favicon.png" property="og:image"/>
+    <meta content="https://kodedevel.github.io/article/java/selectors.html" property="og:url"/>
+    <meta content="article" property="og:type">
+
+    <link href="/resources/css/main.css" rel="stylesheet">
+    <link href="/resources/favicon.png" rel="icon" type="image/x-icon">
+    <script src="/resources/js/main.js" type="module"></script>
+
+</head>
+
+<body>
+
+<header></header>
+
+<main>
+    <div class="page-wrap">
+        <div class="article-head">
+            <h1>دستورات شرطی (selector ها) در جاوا</h1>
+            <address>
+                <a class="author text-muted text-decoration-none" rel="author">یونس سلیمانی</a>
+            </address>
+
+            <figure class="figure figure-wrapper">
+                <img alt="دستورات شرطی در جاوا"
+                     class="rounded figure-img" src="/resources/image/java/cover_selectors.png"/>
+            </figure>
+
+            <div class="toc">
+                <p class="p-2 mx-2 h5">دسترسی سریع</p>
+                <div class="list-group">
+                    <a class="list-group-item list-group-item-action" href="#sub0">پیشنیاز</a>
+                    <a class="list-group-item list-group-item-action" href="#sub1">دستور شرطی if–else در جاوا</a>
+                    <a class="list-group-item list-group-item-action" href="#sub2">عملگر های منطقی در جاوا</a>
+                    <a class="list-group-item list-group-item-action" href="#sub3">دستور switch در جاوا</a>
+                    <a class="list-group-item list-group-item-action" href="#sub4">عبارت شرطی</a>
+                </div>
+
+             </div>
+        </div>
+
+        <article>
+
+          <p> دستورات شرطی (selector ها) در جاوا برای بررسی true یا false بودن یک عبارت مورد استفاده قرار میگیرند شرط یکی از مفاهیم مهم و ضروری در برنامه نویسی است.</p>
+
+            <div class="subsection" id="sub0">
+                <h2>پیشنیاز</h2>
+
+                <h3>متغیر های بولین (boolean) در جاوا : </h3>
+                <p>متغیر boolean در جاوا دارای دو مقدار true یا false است و به صورت زیر تعریف میشه:</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+boolean v0 = true;
+boolean v1 = false;
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="subsection" id="sub1">
+
+                <h2>۱- دستور شرطی if–else در جاوا</h2>
+                <blockquote>
+                    تعریف: با دستور شرطی if-else در جاوا به بررسی true یا false بودن یک عبارت می پردازیم if به زبان
+                    فارسی یعنی اگر.
+                </blockquote>
+
+
+                <p>فرم کلی:</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+if(condition == true){
+
+    ...
+
+}else {
+
+    ...
+
+}
+                        </div>
+                    </div>
+                </div>
+
+
+                <p>در عبارت بالا اگر شرط داخل پرانتز برابر با true بود کد های داخل بدنه ی if رو اجرا میکنه </p>
+
+                <p>کلید واژه ی else به معنی در غیر این صورت، یعنی در غیر اینصورت کد های داخل بدنه ی else رو اجرا کن</p>
+
+                <p> برای کوتاهی میتونیم شرط داخل پرانتز رو به صورت زیر بنویسیم</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+if(condition){
+
+    ...
+
+}else{
+
+    ...
+
+}
+                        </div>
+                    </div>
+                </div>
+
+
+                <p>هچنین میتونیم چند شرط رو بررسی کنیم:</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+if(condition0){
+
+    ...
+
+}else if(condition1){
+
+    ...
+
+}else if(condition2){
+
+    ...
+
+}else if(condition3){
+
+    ...
+
+}else{
+
+    ...
+
+}
+                        </div>
+                    </div>
+                </div>
+
+
+                <p>مثال:</p>
+                <p>در این مثال میخوایم نسبت قد به وزن رو حساب کنیم و بررسی کنیم که کاربر اضافه وزن داره یا کاهش وزن یا
+                    وزنش متعادله</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+Scanner input = new Scanner(System.in);
+
+System.out.println("Enter a weight: ");
+double weight = input.nextDouble();
+
+System.out.println("Enter height: ");
+double height = input.nextDouble();
+
+
+double bmi = weight / (height * height);
+
+System.out.println("BMI is " + bmi);
+
+if (bmi &lt; 18.5){
+    System.out.println("Underweight");
+}else if (bmi &lt; 25){
+    System.out.println("Normal");
+}else if (bmi &lt; 30){
+    System.out.println("Overweight");
+}else {
+    System.out.println("Obese");
+}
+                        </div>
+                    </div>
+                </div>
+
+
+                <h3>if های تو در تو :</h3>
+                <p> میتونیم داخل هر if یک if دیگه بیان کنیم</p>
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+if(condition0){
+    ...
+    if(condition1){
+        ...
+        if(condition2){
+            ...
+        }
+    }
+
+}else {
+  ...
+}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="subsection" id="sub2">
+                <h2>عملگر های منطقی در جاوا</h2>
+                <p>عملگر های منطقی برای تغییر مقدار boolean است</p>
+
+
+                <h3>۱- عملگر ! :</h3>
+                <p>مقدار عبارت boolean رو معکوس میکنه مثلا اگ مقدار یک عبارت true باشه با این عملگر false میشه </p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+boolean condition0 = true;
+
+if(!condition0){
+    ...
+}
+                        </div>
+                    </div>
+                </div>
+
+
+                <h3>۲- عملگر && :</h3>
+                <p>معنی and (و) میده، فرض کنید چندتا شرط داریم میخوایم بررسی کنیم اگه همه true بودن عبارت داخل بدنه ی if
+                    اجرا بشه به صورت زیر عمل میکنیم:</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+if(condition0 && condition1 && ... && conditionN) {
+          ...
+}
+                        </div>
+                    </div>
+                </div>
+
+                <h3>۳- عملگر || :</h3>
+                <p>معنی or (یا) میده، فرض کنید چندتا شرط داریم میخوایم بررسی کنیم اگه یکیشون true بود کد های داخل {}
+                    مربوط به if اجرا بشه به صورت زیر عمل میکنیم:</p>
+
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+if(condition0 || condition1 || ... || conditionN){
+      ...
+}
+                        </div>
+                    </div>
+                </div>
+
+                <h3>۴- عملگر ^ :</h3>
+                <p>معنی or اختصاصی (exclusive or) میده فرض کنید دو عبارت شرطی داریم میخوایم بررسی کنیم فقط یکیش درست باشه و هردو نباید
+                    درست
+                    باشه :</p>
+
+                <div class="piece">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+if(condition0 ^ condition1){
+    ...
+}
+                        </div>
+                    </div>
+                </div>
+
+                <p>مثال: </p>
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+Scanner input = new Scanner(System.in);
+
+System.out.println("Enter a number: ");
+int num = input.nextInt();
+
+if (num % 2 == 0 && num % 3 == 0)
+        System.out.println("Number is divisible by 2 and 3");
+
+if (num % 2 == 0 || num % 3 == 0)
+        System.out.println("Number is divisible by 2 or 3");
+
+if (num % 2 == 0 ^ num % 3 == 0)
+        System.out.println("Number is divisible by 2 or 3 but not both");
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="subsection" id="sub3">
+
+                <h2>دستور switch در جاوا</h2>
+                <p>اگه چندین مورد برای بررسی داشته باشیم بهجای استفاده از چندین if-else میتونیم از کلید واژه ی
+                    سوییچ (switch) در جاوا استفاده کنیم</p>
+
+                <p>مثال:</p>
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+Scanner input = new Scanner(System.in);
+System.out.println("Enter number of day week (between 1 - 7");
+int dayNumber = input.nextInt();
+
+switch (dayNumber){
+    case 1: System.out.println("Saturday");break;
+    case 2: System.out.println("Sunday"); break;
+    case 3: System.out.println("Monday"); break;
+    case 4: System.out.println("Tuesday"); break;
+    case 5: System.out.println("Wednesday"); break;
+    case 6: System.out.println("Thursday");break;
+    case 7: System.out.println("Friday"); break;
+    default:
+    System.out.println("Day is not in range");
+}
+                        </div>
+                    </div>
+                </div>
+
+                <p>در مثال بالا کاربر عدد یکی از روز های هفته رو وارد میکنه اگه مطابق با هرکدوم از case ها بود
+                    برنامه اسم اون روزو نمایش میده از کلید واژه ی break برای خارج شدن از switch در جاوا استفاده میشه،
+                    چون بعد از برابر بودن متغیر با یک case، علاوه بر کد های مربوط به case برابر با متغیر کد های مربوط به
+                    case های بعدی هم به صورت خودکار اجرا میشن
+                    در این مثال بعد از هر case عبارت ()System.out.println اجرا میشه، از default زمانی استفاده میکنیم که
+                    متغیر با هیچ کدوم از case ها برابر نباشه و برنامه کدهای مربوط به default رو اجرا میکنه.</p>
+
+            </div>
+
+            <div class="subsection" id="sub4">
+
+                <h2>عبارت شرطی</h2>
+                <p>مثال:</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+Scanner input = new Scanner(System.in);
+System.out.println("Enter number1: ");
+int num1 = input.nextInt();
+
+System.out.println("Enter number2: ");
+int num2 = input.nextInt();
+
+int max = (num1 &gt; num2) ? num1 : num2;
+
+System.out.println("number 1 is " + num1 + " number 2 is " + num2 + " maximum is " + max);
+                        </div>
+                    </div>
+                </div>
+
+                <p>مثال بالا یک برنامه ی ساده است که از کاربر دو عدد میگیره و عدد بزرگتر رو نمایش میده</p>
+
+            </div>
+
+                <h2>خلاصه</h2>
+
+            <p>در این مقاله با دستور شرطی if-else, switch و عبارت شرطی در جاوا اشنا شدیم اینکه از کدوم باید کجا استفاده
+                کنید
+                بستگی به نیاز و تشخیص خودتون داره امیدوارم براتون مفید واقع شده باشه</p>
+
+            <p>موفق باشید</p>
+        </article>
+
+       <div class="article-foot">
+          <div class="navigator-container">
+
+          </div>
+            <div class="relative-articles-container">
+              <p>مطالب مرتبط</p>
+
+              <div>
+
+
+                <div>
+                  <a href="/article/blog/switch-statement-jdk-17.html">تغییرات سوییچ تا JDK 17</a>
+                </div>
+
+                <div>
+                  <a href="/article/java/selectors.html">حلقه ها در جاوا</a>
+                </div>
+
+                <div>
+                  <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/flow.html">مطالعه در وبسایت رسمی جاوا</a>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+</main>
+
+<div class="scroll-top-container">
+    <a class="text-decoration-none link-dark material-icons" href="#">
+        arrow_drop_up
+    </a>
+</div>
+
+<footer></footer>
+
+<div class="dialog hide"></div>
+
+<div class="copy-message">
+    <span class="copy-message-text">کپی شد!</span>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+
+<html lang="fa">
+
+<head>
+
+  <meta http-equiv="X-UA-Compatible" content="IE=7">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <meta name="description" content="چند ریختی یکی از اصول شی گرایی است؛ در این مقاله به چند ریختی (polymorphism) و سپس به پیوند پویا (dynamic binding) و کست کردن (type casting) در کاتلین می پردازیم.">
+
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>چند ریختی (Polymorphism) و کست کردن (Type Casting) در کاتلین</title>
+
+  <meta name="og:title" content="چند ریختی (Polymorphism) و کست کردن (Type Casting) در کاتلین">
+  <meta name="og:description" content="چند ریختی یکی از اصول شی گرایی است؛ در این مقاله به چند ریختی (polymorphism) و سپس به پیوند پویا (dynamic binding) و کست کردن (type casting) در کاتلین می پردازیم.">
+
+  <meta property="og:image" content="https://kodedevel.github.io/resources/favicon.png">
+  <meta property="og:url" content="https://kodedevel.github.io/article/kotlin/polymirphism-and-type-casting.html">
+
+  <meta property="og:type" content="article">
+
+  <link rel="shortcut icon" href="/resources/favicon.png" type="image/x-icon">
+
+  <link rel="stylesheet" href="/resources/css/main.css">
+  <script type="module" src="/resources/js/main.js"></script>
+
+</head>
+
+<body>
+  <header></header>
+  <main>
+    <div class="page-wrap">
+
+      <div class="article-head">
+        <h1>
+چند ریختی و کست کردن در کاتلین
+        </h1>
+
+        <address>
+          <a class="author text-muted text-decoration-none" rel="author">یونس سلیمانی</a>
+        </address>
+
+        <figure class="figure figure-wrapper">
+          <img alt="چند ریختی و کست کردن در کاتلین" class="rounded figure-img" src="/resources/image/kotlin/cover_polymorphism_type_casting.png" />
+        </figure>
+
+        <div class="toc">
+          <p class="p-2 mx-2 h5">دسترسی سریع</p>
+          <div class="list-group">
+
+            <a class="list-group-item list-group-item-action" href="#sub0">توضیحات</a>
+
+            <a class="list-group-item list-group-item-action" href="#sub1">مفهوم چند ریختی</a>
+
+            <a class="list-group-item list-group-item-action" href="#sub2">پیوند پویا (Dynamic Binding)</a>
+
+            <a class="list-group-item list-group-item-action" href="#sub3">کست کردن (Type Casting)</a>
+
+            <a class="list-group-item list-group-item-action" href="#sub4">خلاصه</a>
+          </div>
+        </div>
+      </div>
+
+      <article>
+        <div class="subsection" id="sub0">
+
+                <h2>توضیحات</h2>
+
+            <p>سه رکن شی گرایی عبارتند از <strong>کپسوله کردن (encapsulation)</strong>،<strong> وراثت (inheritance)</strong> و <strong>چند ریختی (polymorphism)</strong>.</p>
+
+            <p> بعضی از برنامه نویس ها <strong>abstraction</strong> هم به عنوان رکن چهارم شی گرایی در نظر میگیرن که اینجا موضوع بحث ما نیست.</p>
+
+          <p>در دو بخش قبل با <a class="text-decoration-none" href="/article/kotlin/objects-and-classes.html">کپسوله کردن (Encapsulation)</a> و <a class="text-decoration-none" href="/article/kotlin/inheritance.html">وراثت (inheritance)</a> آشنا شدیم در این بخش میخوایم با رکن سوم شی گرایی یعنی چند ریختی (Polymorphism) آشنا بشیم. و سپس به پیوند پویا (Dynamic Binding) و کست کردن (Type Casting) که با چند ریختی مرتبط هستند می پردازیم.</p>
+
+
+          <p>برای پرداختن به پیوند پویا (dynamic binding) و کست کردن (type casting) ابتدا لازمه با چند ریختی (polymorphism) در کاتلین آشنا بشیم.</p>
+
+        </div>
+        <div class="subsection" id="sub1">
+
+                <h2>چند ریختی (Polymorphism)</h2>
+
+          <blockquote>چند ریختی یعنی متغیر از جنس یکی از superclass ها اشاره کنه به آبجکت ایجاد شده از subclass</blockquote>
+
+          <p>همینطور که در قسمت قبل (وراثت) گفته شد subclass ویژگی های superclass رو به ارث میبره به علاوه ویژگی های جدید خودشو میتونه داشته باشه پس میشه گفت subclass یک کلاس اختصاصی از superclass است.</p>
+
+          <p>هر دایره شکل هندسیه اما هر شکل هندسی دایره نیست (میتونه مستطیل باشه).</p>
+
+          <p>بنابراین هر دایره علاوه بر ویژگی های یک شکل هندسی ویژگی های اختصاصی خودشم داره که دایره رو از بقیه شکل های هندسی متمایز میکنه.</p>
+
+          <p>با توجه به این استدلال میشه گفت هر متغیر از GeometricShape میتونه به هر آبجکت از Circle یا Rectangle اشاره کنه اما برعکسش نمیشه.</p>
+
+
+          <p>در <a class="text-decoration-none" href="/article/kotlin/inheritance.html">بخش قبل</a> کلاس های Circle، Rectangle و GeometricShape تعریف شدن. همینطور کلاس GeometricShape از Shape نیز ارث بری میکنه.</p>
+
+          <p>در مثال زیر برای خلاصه شدن از دوباره نویسیشون خودداری کردیم میتونید به بخش قبل مراجعه و در <strong>مورد مطالعه</strong> کد هاشونو کپی کنید.</p>
+
+          <div class="sample">
+              <div class="snippet-container">
+                  <div class="snippet Kotlin">
+fun displayObject(object: GeometricShape){
+  println("Created on $dateCreated. Color is $color and Stroke is $stroke"
+}
+
+fun main(){
+
+  val object0: GeometricShape = Circle(4, "red", "yellow", false)
+
+  println("Created on ${object0.dateCreated}. Color is ${object0.color} and Stroke is ${object0.stroke}")
+
+  val object1: GeometricShape = Rectangle(3, 4)
+
+
+  println("Created on ${object1.dateCreated}. Color is ${object1.color} and Stroke is ${object1.stroke}")
+
+}
+                  </div>
+              </div>
+          </div>
+          
+
+          <p>در مثال زیر کلاس Person سوپر کلاس Student و Citizen است.</p>
+
+          <div class="sample">
+              <div class="snippet-container">
+                  <div class="snippet Kotlin">
+open class Person(val name: String, val age: Int) {
+  val dateCreated = java.util.Date()
+}
+
+class Student(name: String, age: Int, val studyField: String): Person(name, age)
+  
+
+class Citizen(name: String, age: Int, val job: String): Person(name, age)
+
+
+fun printMessage(person: Person){
+  
+  println("Created on ${person.dateCreated}, name is ${person.name} and age is ${person.age}")
+
+}
+
+fun main(){
+  
+  printMessage(Student("Jim", "Computer Science", 26))
+  printMessage(Citizen("Rose", "Business Manager", 35))
+
+}
+                  </div>
+              </div>
+          </div>
+
+        </div>
+
+        <div class="subsection" id="sub2">
+                <h2>پیوند پویا (Dynamic Binding)</h2>
+
+          <blockquote>یک تابع در طی ارث بری میتونه به چند روش پیاده‌سازی بشه زمان اجرای برنامه jvm تصمیم میگیره کدوم پیاده‌سازی به اجرا در بیاد.</blockquote>
+
+          <p>یک تابع میتونه در superclass تعریف بشه و در subclass باز نویسی بشه به عنوان مثال تابع toString در کلاس Any تعریف شده و چون کلاس Any سوپر کلاس تمام کلاس هاست تابع toString میتونه در هر کلاسی بازنویسی و به طور اختصاصی پیاده‌سازی بشه.</p>
+
+          <p>به قطعه کد زیر توجه کنید:</p>
+
+          <div class="sample">
+              <div class="snippet-container">
+                  <div class="snippet Kotlin">
+val shape: Any = Shape("blue", "yellow", false)
+println(shape.toString())
+                  </div>
+              </div>
+          </div>
+
+          <p>سؤال: هنگام اجرای کد کدوم toString اجرا میشه؟ اونی که در Shape بازنویسی شده یا اونی که در Any تعریف شده؟</p>
+          
+          <p>برای پاسخ به این سؤال ابتدا با دو مفهوم نوع تعریف شده (declared type) و نوع واقعی (actual type) باید اشنا بشیم.</p>
+
+                <h3>نوع تعریف شده (declared type)</h3>
+
+          <p>هنگام تعریف متغیر اگه نوع متغیر رو مشخص کنیم بهش declared type میگیم در بالا declared type کلاس Any است.</p>
+
+                <h3>نوع واقعی (actual type)</h3>
+          <p>به آبجکتی که ایجاد میکنیم نوع واقعی (actual type) میگیم. actual type میتونه نوعش با declared type یکی باشه یا یکی از subclass های <strong>declared type</strong> باشه. در بالا actual type کلاس Shape است.</p>
+
+          <p>بهتره برگردیم به سوالمون اینکه کدوم toString اجرا میشه؟ </p>
+
+          <p>جواب: بستگی به actual type داره.</p>
+
+          <p>زمان اجرا JVM از actual type شروع میکنه به بررسی تا به declared type برسه و به اولین پیاده‌سازی تابع که رسید بررسی رو متوقف و تابع رو اجرا میکنه. در بالا چون اولین پیاده‌سازی toString داخل Shape اتفاق افتاده همونو اجرا میکنه.</p>
+
+                    <p>مثال</p>
+
+          <div class="sample">
+              <div class="snippet-container">
+                  <div class="snippet Kotlin">
+open class Person: Any{
+  override fun toString(): String {
+    return "Person"
+  }
+}
+
+open class Student: Person{
+  override fun toString(): String {
+    return "Student"
+  }
+}
+
+class GraduateStudent: Student{
+
+}
+
+fun m(x: Object){
+  println(x.toString())
+}
+
+fun main(){
+  m(GraduateStudent())
+  m(Student())
+  m(Person())
+  m(Any())
+}
+                  </div>
+              </div>
+          </div>
+
+        </div>
+
+        <div class="subsection" id="sub3">
+                <h2>کست کردن (Type Casting)</h2>
+          <blockquote>
+            تبدیل آبجکت به یک آبجکت از نوع دیگه رو کست کردن (type casting) میگیم.
+          </blockquote>
+
+          <p>فرض کنید declared type سوپر کلاس actual type است.</p>
+
+          <p>به عبارتی یک متغیر تعریف میکنیم که نوع متغیر superclass آبجکتی است که بهش داره اشاره میکنه.</p>
+
+          <p>در این حالت هنگام صدا زدن پراپرتی و توابع با استفاده از متغیر فقط توابع و پراپرتی هایی که در  superclass تعریف شدن در دسترس هستند.</p>
+
+          <p>گاهی در کد نیاز داریم از توابع و پراپرتی های actual type در کد استفاده کنیم برای همین رو میاریم به کست کردن declared type به actual type.</p>
+
+          <p>برای کست کردن (type casting) از کلیدواژه ی <strong>as</strong> در کاتلین استفاده میکنیم.</p>
+
+                    <p>مثال</p>
+
+          <div class="sample">
+              <div class="snippet-container">
+                  <div class="snippet Kotlin">
+  open class Shape(var color: String ,var stroke: String, var isFilled: Boolean = false){
+  
+  val dateCreated = java.util.Date()
+
+  override fun toString(): String{
+    return "Shape created at $dateCreated \ncolor is $color and stroke is $stroke \nisFilled? $isFilled"
+  }
+
+}
+
+fun main(){
+  val o: Any = Shape("blue", "indigo", true)
+
+  println(o.toString())
+
+  //Casting Any to Shape
+  (o as Shape).isFilled = false
+  (o as Shape).color = "amber"
+
+  println(o.toString())
+
+}
+                  </div>
+              </div>
+          </div>
+
+          <p>در این حالت کامپایلر اخطار میده که ممکنه <strong>o</strong> به <strong>Shape</strong> در حافظه اشاره نکنه و این کست کردن safe نیست. به هر حال کست کردن انجام میشه و برنامه بدون مشکل اجرا میشه.</p>
+
+          <p>میتونیم با استفاده از is بررسی کنیم declared type سوپر کلاس actual type هست یا خیر.</p>
+
+          <div class="sample">
+              <div class="snippet-container">
+                  <div class="snippet Kotlin">
+open class Person(val name: String, val age: Int) {
+  val dateCreated = java.util.Date()
+}
+
+class Student(name: String, age: Int, val studyField: String): Person(name, age)
+  
+
+class Citizen(val name: String, age: Int, val job: String): Person(name, age)
+
+fun displayData(object: Any){
+  
+  if(object is Student){
+
+    //Casting Any to Student
+    val student = (object as Student)
+
+    println("Student: \nName: " + student.name + " Age: " + student.age + " Field of study " + student.studyField)
+
+    }else if(object is Citizen){
+
+      //Casting Any to Citizen
+      val citizen = (object as Citizen)
+
+      println("Citizen: \n Name: " + citizen.name + " Age: " + citizen.age + " Job: " + citizen.job)
+
+  }
+
+}
+
+fun main(){
+  displayData(Student("Jim", "Computer Science", 26)
+  displayData(Citizen("Rose", "Business Manager", 35)
+}
+                  </div>
+              </div>
+          </div>
+
+          <p>
+            کاتلین از ویژگی کست هوشمند (smart casting) بهره می بره یعنی اگه با is معلوم بشه declared type به کدوم actual type داره اشاره میکنه دیگه نیاز به کست کردن آشکار نیست.</p>
+
+          <div class="sample">
+              <div class="snippet-container">
+                  <div class="snippet Kotlin">
+fun displayData(object: Any){
+  
+  if(object is Student){
+
+    println("Student: \nName: " + object.name + " Age: " + object.age + " Field of study " + object.studyField)
+
+    }else if(object is Citizen){
+
+      println("Citizen: \n Name: " + object.name + " Age: " + object.age + " Job: " + object.job)
+
+  }
+
+}
+                  </div>
+              </div>
+          </div>
+
+        </div>
+
+        <div class="subsection" id="sub4">
+                <h2>خلاصه</h2>
+          <p>- سه رکن شی گرایی عبارتند از encapsulation، inheritance، polymorphism</p>
+
+          <p>- چند ریختی یعنی یک متغیر از جنس superclass اشاره کنه به آبجکتی از جنس subclass</p>
+
+          <p>- هنگامی که یک تابع صدا زده میشه JVM از actual type شروع میکنه به بررسی و اولین پیاده‌سازی تابع رو اجرا میکنه.</p>
+
+          <p>- کست کردن یعنی تبدیل آبجکت از یک نوع به آبجکتی از نوع دیگه.</p>
+
+         <p>- کاتلین از ویژگی کست هوشمند یا (smart casting) پشتیبانی میکنه.</p> 
+
+        </div>
+
+      </article>
+
+      <div class="article-foot">
+
+        <div class="navigator-container">
+
+          <a href="/article/kotlin/abstract-classes.html" class="md-bt md-bt-light">
+            <span class="material-icons">
+              navigate_next
+            </span>
+            <span class="hint">
+              بعدی
+            </span>
+          </a>
+
+          <a href="/article/kotlin/inheritance.html" class="md-bt md-bt-light">
+            <span class="hint">
+              قبلی
+            </span>
+            <span class="material-icons">
+              navigate_before
+            </span>
+          </a>
+        </div>
+
+        <div class="relative-articles-container">
+          <p>مطالب مرتبط</p>
+          <div>
+            <div>
+              <a href="/article/kotlin/inheritance.html">وراثت در کاتلین</a>
+            </div>
+
+            <div>
+              <a href="/article/kotlin/objects-and-classes.html">آبجکت ها و کلاس ها در کاتلین</a>
+            </div>
+           
+            <div>
+              <a href="/article/kotlin/functions.html">توابع در کاتلین</a>
+            </div>
+
+            <div>
+              <a href="https://kotlinlang.org/docs/typecasts.html">مطالعه type casting در وبسایت رسمی کاتلین</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <div class="scroll-top-container">
+    <a class="text-decoration-none link-dark material-icons" href="#">
+      arrow_drop_up
+    </a>
+  </div>
+
+  <footer></footer>
+
+<div class="dialog hide"></div>
+
+  <div class="copy-message">
+    <span class="copy-message-text">کپی شد!</span>
+  </div>
+</body>
+
+</html>

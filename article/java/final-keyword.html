@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+
+<html lang="fa">
+
+<head>
+
+    <meta content="IE=7" http-equiv="X-UA-Compatible">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+
+    <meta content="به طور کلی کلیدواژه ی final یک کلاس، متد یا متغیر رو برامون نهایی میکنه مثلا اگه کلاس باشه نمیتونیم ازش ارث ببریم اگه متد باشه نمیتونیم بازنویسیش کنیم و اگه متغیر باشه مقدارش ثابته و تغییر نمیکنه. در ادامه با جزئیات بیشتر همین حرفا رو میخوایم تکرار کنیم."
+          name="description">
+
+    <meta content="text/html;charset=UTF-8" http-equiv="Content-Type">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>کلیدواژه ی final در جاوا</title>
+
+    <meta content="" name="og:title">
+    <meta content="به طور کلی کلیدواژه ی final یک کلاس، متد یا متغیر رو برامون نهایی میکنه مثلا اگه کلاس باشه نمیتونیم ازش ارث ببریم اگه متد باشه نمیتونیم بازنویسیش کنیم و اگه متغیر باشه مقدارش ثابته و تغییر نمیکنه. در ادامه با جزئیات بیشتر همین حرفا رو میخوایم تکرار کنیم."
+          name="og:description">
+
+    <meta content="https://kodedevel.github.io/resources/favicon.png" property="og:image">
+    <meta content="https://kodedevel.github.io/article/java/final-keyowrd.html" property="og:url">
+
+    <meta content="article" property="og:type">
+
+    <link href="/resources/favicon.png" rel="shortcut icon" type="image/x-icon">
+
+    <link href="/resources/css/main.css" rel="stylesheet">
+    <script src="/resources/js/main.js" type="module"></script>
+
+</head>
+
+<body>
+<header></header>
+<main>
+    <div class="page-wrap">
+
+        <div class="article-head">
+            <h1>
+                کلیدواژه ی final در جاوا
+            </h1>
+
+            <address>
+                <a class="author text-muted text-decoration-none" rel="author">یونس سلیمانی</a>
+            </address>
+
+            <figure class="figure figure-wrapper">
+                <img alt="" class="rounded figure-img" src="/resources/image/java/cover_final_keyword.png"/>
+            </figure>
+
+            <div class="toc">
+                <p class="p-2 mx-2 h5">دسترسی سریع</p>
+                <div class="list-group">
+
+                    <a class="list-group-item list-group-item-action" href="#sub0">بررسی کلیدواژه ی final</a>
+                    <a class="list-group-item list-group-item-action" href="#sub1">خلاصه</a>
+                </div>
+            </div>
+        </div>
+
+        <article>
+
+            <div class="subsection" id="sub0">
+                <h2>بررسی کلیدواژه ی final</h2>
+
+                <p>به طور کلی کلیدواژه ی <strong>final</strong> یک <strong>کلاس، متد یا متغیر</strong> رو برامون نهایی میکنه مثلا اگه کلاس باشه نمیتونیم ازش ارث ببریم اگه متد باشه نمیتونیم بازنویسیش کنیم و اگه متغیر باشه مقدارش ثابته و تغییر نمیکنه. در ادامه با جزئیات بیشتر همین حرفا رو میخوایم تکرار کنیم.</p>
+
+                <p>اگه یک متغیر یا دیتافیلد رو با کلیدواژه ی final تعریف کنیم مقدار متغیر در طی زمان اجرای برنامه تغییر نمیکنه.</p>
+
+                <div class="note">
+                    <p class="note-head">راهنمایی</p>
+                    <p>به طور قرارداد فیلد های ثابت یک کلاس رو با final و static تعریف میکنیم و اسمشونو با حروف بزرگ مینویسیم.</p>
+                </div>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+public class MyClass{
+
+    public static final String MY_STATIC_CONSTANT = "x";
+
+    private final int myFinalField = 0;
+
+    public void myMethod(){
+
+        final double myFinalVariable = 32.131;
+
+    }
+
+}
+                        </div>
+                    </div>
+                </div>
+
+
+                <p>اگه یک متد رو با کلیدواژه ی final تعریف کنیم متد هنگام ارث بری <a class="text-decoration-none" href="inheritance.html">قابل بازنویسی (Override)</a> نیست.</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+public class MyClass{
+
+    public final void m(){
+        ...
+    }
+
+}
+                        </div>
+                    </div>
+                </div>
+
+                <p>اگه یک کلاس رو با کلیدواژه ی final تعریف کنیم، از کلاس نمیتونیم <a class="text-decoration-none" href="inheritance.html">ارث بری</a> کنیم.</p>
+
+                <div class="note">
+                    <p class="note-head">توجه</p>
+                    <p>کلاس های <strong>abstract و اینترفیس ها</strong> رو نمیتونیم با final تعریف کنیم.</p>
+                </div>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+public final class MyClass{
+    ...
+}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="subsection" id="sub1">
+                <h2>خلاصه</h2>
+                <p>- کلیدواژه ی final یک کلاس، متد یا متغیر رو برامون نهایی میکنه.</p>
+                <p>- اگه یک متغیر رو با final تعریف کنیم مقدارش ثابت میمونه.</p>
+                <p>- اگه یک متد رو با final تعریف کنیم متد در وراثت قابل بازنویسی نیست.</p>
+                <p>- اگه کلاس رو با final تعریف کنیم دیگه نمیتونیم از کلاس ارث بری کنیم.</p>
+            </div>
+
+        </article>
+
+        <div class="article-foot">
+
+            <div class="navigator-container">
+
+                <a class="md-bt md-bt-light" href="#">
+            <span class="material-icons">
+              navigate_next
+            </span>
+                    <span class="hint">بعدی</span>
+                </a>
+
+                <a class="md-bt md-bt-light" href="interfaces.html">
+                    <span class="hint">قبلی</span>
+                    <span class="material-icons">
+              navigate_before
+            </span>
+
+                </a>
+            </div>
+
+            <div class="relative-articles-container">
+                <p>مطالب مرتبط</p>
+                <div>
+                    <div>
+                        <a href="inheritance.html">وراث</a>
+                    </div>
+                    <div>
+                        <a href="methods.html">متد ها در جاوا</a>
+                    </div>
+                    <div>
+                        <a href="type-variables.html">انواع متغیر ها در جاوا</a>
+                    </div>
+                    <div>
+                        <a href="https://docs.oracle.com/javase/tutorial/java/IandI/final.html">مطالعه در اوراکل</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+<div class="scroll-top-container">
+    <a class="text-decoration-none link-dark material-icons" href="#">
+        arrow_drop_up
+    </a>
+</div>
+
+<footer></footer>
+
+<div class="dialog hide"></div>
+
+<div class="copy-message">
+    <span class="copy-message-text">کپی شد!</span>
+</div>
+
+</body>

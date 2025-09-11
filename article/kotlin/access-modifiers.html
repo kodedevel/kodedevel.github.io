@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+
+<html lang="fa">
+
+<head>
+
+  <meta http-equiv="X-UA-Compatible" content="IE=7">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <meta name="description" content="در این مطلب به کلیدواژه های سطح دسترسی می پردازیم و نحوه ی تعیبن سطح دسترسی، متغیر، توابع و کلاس رو در کاتلین بررسی میکنیم.">
+
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>کلیدواژه های سطح دسترسی (access modifiers) در کاتلین</title>
+
+  <meta name="og:title" content="کلیدواژه های سطح دسترسی (access modifiers) در کاتلین">
+
+  <meta name="og:description" content="در این مطلب به کلیدواژه های سطح دسترسی می پردازیم و نحوه ی تعیبن سطح دسترسی، متغیر، توابع و کلاس رو در کاتلین بررسی میکنیم.">
+
+  <meta property="og:image" content="https://kodedevel.github.io/resources/favicon.png">
+  <meta property="og:url" content="https://kodedevel.github.io/article/kotlin/">
+
+  <meta property="og:type" content="article">
+
+  <link rel="shortcut icon" href="/resources/favicon.png" type="image/x-icon">
+
+  <link rel="stylesheet" href="/resources/css/main.css">
+  <script type="module" src="/resources/js/main.js"></script>
+
+</head>
+
+<body>
+  <header></header>
+  <main>
+    <div class="page-wrap">
+
+      <div class="article-head">
+        <h1>
+          کلیدواژه های سطح دسترسی (access modifiers)
+        </h1>
+
+        <address>
+          <a class="author text-muted text-decoration-none" rel="author">یونس سلیمانی</a>
+        </address>
+
+        <figure class="figure figure-wrapper">
+          <img alt="کلیدواژه های سطح دسترسی در کاتلین" class="rounded figure-img" src="/resources/image/kotlin/cover_access_modifiers.png" />
+        </figure>
+
+        <div class="toc">
+          <p class="p-2 mx-2 h5">دسترسی سریع</p>
+          <div class="list-group">
+
+
+            <a class="list-group-item list-group-item-action" href="#sub0">توضیحات</a>
+
+            <a class="list-group-item list-group-item-action" href="#sub1">سطح دسترسی اعضای top level</a>
+
+            <a class="list-group-item list-group-item-action" href="#sub2">سطح دسترسی اعضای کلاس</a>
+
+            <a class="list-group-item list-group-item-action" href="#sub3">خلاصه</a>
+          </div>
+        </div>
+      </div>
+
+      <article>
+        <div class="subsection" id="sub0">
+                <h2>توضیحات</h2>
+
+          <blockquote>سطح دسترسی پیشفرض تمام اعضا در کاتلین public است.</blockquote>
+
+          <p>با استفاده از کلیدواژه های سطح دسترسی (access modifiers) در کاتلین میتونیم مشخص کنیم متغیرها، توابع، کلاس ها و اینترفیس ها کجاها قابل دسترسی باشن.</p>
+
+          <div class="note">
+                    <p class="note-head">نکته</p>
+          <p>کلیدواژه های سطح دسترسی برای متغیر ها، توابع و کلاس های محلی (local) قابل استفاده نیستند.</p>
+          </div>
+
+          <p>در کاتلین چهارتا کلیدواژه ی سطح دسترسی داریم:</p>
+          <p class="ltr"><strong>1- public</strong></p>
+          <p class="ltr"><strong>2- protected</strong></p>
+          <p class="ltr"><strong>3- internal</strong></p>
+          <p class="ltr"><strong>4- private</strong></p>
+         
+        </div>
+
+        <div class="subsection" id="sub1">
+                <h2>سطح دسترسی اعضای تاپ لول (top level)</h2>
+
+          <p>متغیر ها، توابع، کلاس ها، آبجکت های اعلامی و اینترفیس ها میتونن به صورت <a class="text-decoration-none" href="/article/kotlin/variable_scope.html">top level</a> تعریف بشن.</p>
+          
+                <h3>private</h3>
+
+          <p>با کلیدواژه ی private اعلام میکنیم عضو top level فقط برای اعضای داخل فایل در دسترس است.</p>
+
+          <div class="sample">
+            <div class="snippet-container">
+              <div class="snippet Kotlin">
+private var v = ...
+            
+private fun myFunction(){
+  ...
+}
+
+private class MyClass{
+
+  ...
+
+}
+              </div>
+            </div>
+          </div>
+
+                <h3>internal</h3>
+
+          <p>با کلیدواژه ی internal میگیم عضو top level فقط برای اعضای داخل ماژول (module) در دسترس است.</p>
+
+          <div class="sample">
+            <div class="snippet-container">
+              <div class="snippet Kotlin">
+internal var v = ...
+            
+internal fun myFunction(){
+  ...
+}
+
+internal class MyClass{
+
+  ...
+
+}
+              </div>
+            </div>
+          </div>
+
+
+
+                <h3>public</h3>
+
+          <p>با استفاده از کلیدواژه ی public اعلام میکنیم تمام کلاس ها و فایل های پروژه میتونن به عضو top level دسترسی داشته باشن.</p>
+
+           <div class="sample">
+             <div class="snippet-container">
+               <div class="snippet Kotlin">
+public var v = ...
+            
+public fun myFunction(){
+  ...
+}
+
+public class MyClass{
+  ...
+}
+               </div>
+             </div>
+          </div>
+
+          <div class="note">
+                    <p class="note-head">نکته</p>
+            <p>کلیدواژه ی protected برای اعضای <a class="text-decoration-none" href="/article/kotlin/variable_scope.html">top-level</a> قابل استفاده نیست.</p>
+          </div>
+
+        </div>
+
+        <div class="subsection" id="sub2">
+                <h2>سطح دسترسی اعضای کلاس</h2>
+                <h3>private</h3>
+          <p>با استفاده از کلیدواژه ی private برای یک عضو کلاس اعلام میکنیم فقط اعضای داخل کلاس میتونن بهش دسترسی داشته باشن.</p>
+
+          <div class="sample">
+            <div class="snippet-container">
+              <div class="snippet Kotlin">
+class MyClass{
+  private var prop = ...
+
+  ...
+
+  private fun myFunction(){
+    ...
+  }
+  
+  ...
+
+}
+              </div>
+            </div>
+          </div>
+
+                <h3>protected</h3>
+          <p>اگه از کلاسی که عضوش با سطح دسترسی protected تعریف شده ارث بری نداشته باشیم مثل private عمل میکنه. در صورت ارث بری، اعضای کلاس فرزند به عضوی که در کلاس پدر با protected تعریف شده دسترسی دارند.</p>
+
+          <div class="sample">
+            <div class="snippet-container">
+              <div class="snippet Kotlin">
+class MyClass{
+
+  protected var prop = ...
+
+  ...
+
+  protected fun myFunction(){
+    ...
+  }
+  
+  ...
+
+}
+              </div>
+            </div>
+          </div>
+
+                <h3>internal</h3>
+
+          <p>تمام اعضای module که به کلاس دسترسی دارن؛ به عضو کلاس که با سطح دسترسی internal تعریف شده نیز دسترسی دارن.</p>
+
+          <div class="sample">
+            <div class="snippet-container">
+              <div class="snippet Kotlin">
+class MyClass{
+  internal var prop = ...
+
+  ...
+
+  internal fun myFunction(){
+    ...
+  }
+  
+  ...
+
+}
+              </div>
+            </div>
+          </div>
+
+                <h3>public</h3>
+
+          <p>اعضای تمام کلاس ها و فایل های پروژه میتونن به عضوی که در کلاس با public تعریف شده، دسترسی داشته باشند.</p>
+
+          <div class="sample">
+            <div class="snippet-container">
+              <div class="snippet Kotlin">
+class MyClass{
+  public var prop = ...
+
+  ...
+
+  public fun myFunction(){
+
+    ...
+
+  }
+  
+  ...
+
+}
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="subsection" id="sub3">
+                <h2>خلاصه</h2>
+          <p>- کلیدواژه های سطح دسترسی تعیبن میکنن یک تابع متغیر، کلاس و ... در کجا قابل دسترسی هستند.</p>
+          
+          <p>- در کاتلین چهارتا کلیدواژه ی سطح دسترسی داریم که عبارتند از private، protected، internal و public.</p>
+
+          <p>- کلیدواژه های سطح دسترسی برای اعضای داخلی (local) قابل استفاده نیستند.</p>
+
+          <p>- کلیدواژه ی protected برای اعضای top level قابل استفاده نیست.</p>
+
+        </div>
+
+      </article>
+
+      <div class="article-foot">
+
+        <div class="navigator-container">
+
+          <a href="/article/kotlin/objects-and-classes.html" class="md-bt md-bt-light">
+
+            <span class="material-icons">
+              navigate_next
+            </span>
+            <span class="hint">
+              بعدی
+            </span>
+          </a>
+
+          <a href="/article/kotlin/variable_scope.html" class="md-bt md-bt-light">
+            <span class="hint">
+              قبلی
+            </span>
+            <span class="material-icons">
+              navigate_before
+            </span>
+
+          </a>
+        </div>
+
+        <div class="relative-articles-container">
+          <p>مطالب مرتبط</p>
+          <div>
+            <div>
+              <a href="/article/kotlin/variable_scope.html">محدوده ی متغیر ها در کاتلین</a>
+            </div>
+
+            <div>
+              <a href="/article/kotlin/functions.html">توابع در کاتلین</a>
+            </div>
+
+            <div>
+              <a href="https://kotlinlang.org/docs/visibility-modifiers.html">مطالعه در وبسایت رسمی کاتلین</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <div class="scroll-top-container">
+    <a class="text-decoration-none link-dark material-icons" href="#">
+      arrow_drop_up
+    </a>
+  </div>
+
+  <footer></footer>
+
+<div class="dialog hide"></div>
+
+  <div class="copy-message">
+    <span class="copy-message-text">کپی شد!</span>
+  </div>
+</body>
+
+</html>

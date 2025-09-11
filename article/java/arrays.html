@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+
+<html lang="fa">
+
+<head>
+
+    <meta content="IE=7" http-equiv="X-UA-Compatible">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+
+    <meta content="از آرایه برای نگهداری چندتا متغیر از یک نوع در جاوا استفاده میکنیم. به متغیر هایی که در آرایه ذخیره میشن عنصر (element) میگیم؛ آرایه ها در جاوا در واقع آبجکت هایی با ظاهر متفاوت هستند؛ در ادامه به بررسی آرایه ها در جاوا می پردازیم."
+          name="description">
+
+    <meta content="text/html;charset=UTF-8" http-equiv="Content-Type">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>آرایه ها در جاوا</title>
+
+    <meta content="آرایه ها در جاوا" name="og:title">
+    <meta content="از آرایه برای نگهداری چندتا متغیر از یک نوع در جاوا استفاده میکنیم. به متغیر هایی که در آرایه ذخیره میشن عنصر (element) میگیم؛ آرایه ها در جاوا در واقع آبجکت هایی با ظاهر متفاوت هستند؛ در ادامه به بررسی آرایه ها در جاوا می پردازیم."
+          name="og:description">
+
+    <meta content="https://kodedevel.github.io/resources/favicon.png" property="og:image">
+    <meta content="https://kodedevel.githbu.io/article/java/arrays.html" property="og:url">
+
+    <meta content="article" property="og:type">
+
+    <link href="/resources/favicon.png" rel="shortcut icon" type="image/x-icon">
+
+    <link href="/resources/css/main.css" rel="stylesheet">
+    <script src="/resources/js/main.js" type="module"></script>
+
+</head>
+
+<body>
+<header></header>
+<main>
+    <div class="page-wrap">
+
+        <div class="article-head">
+            <h1>
+                آرایه ها در جاوا
+            </h1>
+
+            <address>
+                <a class="author text-muted text-decoration-none" rel="author">یونس سلیمانی</a>
+            </address>
+
+            <figure class="figure figure-wrapper">
+                <img alt="آرایه ها در جاوا" class="rounded figure-img" src="/resources/image/java/cover_arrays.png"/>
+            </figure>
+
+            <div class="toc">
+                <p class="p-2 mx-2 h5">دسترسی سریع</p>
+                <div class="list-group">
+
+                    <a class="list-group-item list-group-item-action" href="#sub0">تعریف آرایه در جاوا</a>
+
+                    <a class="list-group-item list-group-item-action" href="#sub1">روش های ایجاد آرایه</a>
+
+                    <a class="list-group-item list-group-item-action" href="#sub2">کلاس Arrays</a>
+
+                    <a class="list-group-item list-group-item-action" href="#sub3">آرایه های چند بعدی</a>
+
+                    <a class="list-group-item list-group-item-action" href="#sub4">خلاصه</a>
+                </div>
+            </div>
+        </div>
+
+        <article>
+
+            <div class="subsection" id="sub0">
+                <h2>تعریف آرایه در جاوا</h2>
+
+                <blockquote>از آرایه در جاوا برای نگهداری تعداد متناهی از متغیر های هم نوع استفاده میکنیم. و به متغیر های آرایه عنصر (element) میگیم.</blockquote>
+
+                <p>از آرایه در جاوا برای نگهداری n متغیر از نوع یکسان استفاده میکنیم.</p>
+                <p>متغیر های یک آرایه میتونن از نوع Primitive یا Object باشن.</p>
+                <p>آرایه در جاوا یک آبجکت با ظاهری متفاوت است؛ وقتی یک آرایه به طول n ایجاد میکنیم در واقع n تا فیلد از نوع متغیر داخل آرایه به صورت خودکار ایجاد میشه.</p>
+                <p>به تعداد متغیر هایی که یک آرایه میتونه در خودش نگهداره طول آرایه میگیم؛ هنگامی که یک آرایه n تا متغیر در خودش نگهداری میکنه میگیم طول آرایه n است.</p>
+                <p>طول آرایه در جاوا ثابت است و هنگام ایجاد آرایه یک فیلد به اسم <strong>length</strong> به طور خودکار ایجاد میشه که مقدار این فیلد طول آرایه است.</p>
+
+                <p>فرض کنید میخواید ۷ تا متغیر int تعریف و در برنامه استفاده کنید برای این کار باید مثل زیر عمل کنید:</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+int n0 = 7;
+int n1 = 4;
+int n2 = 2;
+int n3 = 8;
+int n4 = 9;
+int n5 = 1;
+int n6 = 3;
+                        </div>
+                    </div>
+                </div>
+
+
+                <p>این کار ممکنه وقت گیر باشه و کد های برنامه رو زیاد کنه مخصوصا زمانی که تعداد متغیر ها زیاد باشن.</p>
+
+                <p>میتونیم از آرایه برای راحت تر کردن کار استفاده کنیم:</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+int[] numbers = {7, 4, 2, 8, 9, 1, 3};
+                        </div>
+                    </div>
+                </div>
+
+                <p>در بالا یک آرایه به طول 7 تعریف کردیم؛ این آرایه 7 تا فیلد از جنس int داره که هر فیلد به ترتیب مقادیر 7, 4, 2, 8, 9, 1 و 3 رو در خودش ذخیره کرده.</p>
+
+                <p>در تصویر زیر ساختار یک آرایه به طول ۷ رو میتونید مشاهده کنید:</p>
+
+                <figure class="figure figure-wrapper">
+                    <img alt="ساختار یک آرایه به طول 7" class="rounded figure-img"
+                         src="/resources/image/generic/array_structure.png">
+                </figure>
+
+
+                <p>طول آرایه 7 است؛ یعنی 7 تا فیلد از نوع متغیر در آرایه ایجاد شده و میتونیم به هر فیلد یک مقدار دلخواه اختصاص بدیم. به این فیلد ها به طور عامیانه خونه های هر متغیر در آرایه میگیم.</p>
+                <p>طول آرایه ثابته یعنی تعداد خونه های آرایه تغییر نمیکنه اما مقادیر هر خونه قابل تغییر است.</p>
+                <p>هر خونه میزبان یک مقدار است؛ برای صدا زدن مقدار مورد نظر، باید شماره خونه ی مرتبط با اون مقدار رو بنویسیم.</p>
+                <p>در یک آرایه به طول n شماره ی خونه ها از 0 شروع میشه و شماره ی آخرین خونه n -1 است.</p>
+
+                <p>مثال:</p>
+                <p>در مثال زیر میخوایم عدد 9 رو در آرایه صدا بزنیم. عدد 9 در خونه ی چهارم قرار داره.</p>
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+//               0  1  2  3  4  5  6
+int[] numbers = {7, 4, 2, 8, 9, 1, 3};
+int index = 4;
+int n = numbers[index];
+System.out.println(n);
+                        </div>
+                    </div>
+                </div>
+
+                <div class="note">
+                    <p class="note-head">توجه</p>
+                    <p>اگه عددی که به عنوان شماره خونه ی آرایه در نظر گرفته باشیم، خارج از شماره خونه های آرایه باشه، زمان اجرا برنامه دچار خطا میشه.</p>
+                </div>
+
+                <p>با کمک length در آرایه میتونیم طول آرایه رو به دست بیاریم.</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+int[] numbers = {7, 4, 2, 8, 9, 1, 3};
+System.out.println("Array created");
+//طول آرایه
+System.out.println("length of array is " + numbers.length);
+//مقدار خونه ی شماره ی ۴ در آرایه
+System.out.println("index is 6 the value is " + numbers[6]);
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+            <div class="subsection" id="sub1">
+                <h2>روش های ایجاد آرایه در جاوا</h2>
+                <blockquote>آرایه در جاوا آبجکت با ظاهری متفاوت است.</blockquote>
+
+                <p>در جاوا میتونیم آرایه رو به دو روش ایجاد کنیم.</p>
+
+                <p>1- میتونیم مثل قسمت قبل یک ارایه ساخته و مقادیر رو هنگام ایجاد آرایه به خونه های مورد نظر اختصاص بدیم.</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+String[] names = {"John", "Alex", "Susan", "Lora"};
+                        </div>
+                    </div>
+                </div>
+
+                <p>برای صدا زدن تمام اعضای یک آرایه میتونیم از <a class="text-decoration-none" href="loops.html">حلقه ی for</a> استفاده کنیم.</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+public static void main(String[] args){
+
+    String[] names = {"John", "Alex", "Susan", "Lora"};
+
+    System.out.println("Names are: ");
+
+    for(int i =0; i< names.length; i++){
+        System.out.print(names[i] + " ");
+    }
+}
+                        </div>
+                    </div>
+                </div>
+
+                <p>در بالا i از صفر شروع میشه و ابتدا خونه ی شماره ی 0 رو بر میگردونه و با تکرار حلقه یک واحد به i اضافه شده و میره سراغ خونه ی شماره بعد. حلقه تا زمانی که مقدار i کمتر از شماره ی اخرین خونه است تکرار میشه.</p>
+
+                <p>علاوه بر for میتونیم از foreach برای صدا زدن اعضای یک ارایه استفاده کنیم.</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+for(String name: names){
+    System.out.print(name + " ");
+}
+                        </div>
+                    </div>
+                </div>
+
+
+                <p>2- میتونیم آرایه رو ایجاد و بعدا در برنامه هر خونه در آرایه رو مقدار دهی کنیم.</p>
+                <p>در این روش آرایه بعد از به وجود اومدن دارای مقادیر پیشفرض است و بعدا در برنامه میتونیم مقادیر آرایه رو تغییر بدیم.</p>
+
+                <p>چون آرایه یک آبجکت است و اعضای یک آرایه در واقع فیلد های آبجکت هستند مقادیر پیشفرض اعضای یک آرایه ی ایجاد شده همان مقادیر پیشفرض فیلد های یک کلاس در جاواست.</p>
+                <p>هنگامی که یک آرایه با مقادیر پیشفرض ایجاد میکنیم؛ اگه آرایه از نوع boolean باشه مقادیر پیشفرض آن false است؛ اگه آرایه از نوع عددی باشه (int, long, double, ...) مقادیر پیشفرض آن 0 است و اگه آرایه از نوع آبجکت باشه مقادیر پیشفرض null است.</p>
+
+
+                <p>مثال:</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+String[] names = new String[4];
+System.out.println("Current names: " + Arrays.toString(names));
+                        </div>
+                    </div>
+                </div>
+
+
+                <p>مثال</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+String[] names = new String[4];
+names[0] = "John";
+names[1] = "Alex";
+names[2] = "Susan";
+names[3] = "Lora";
+System.out.println(names[2]);
+                        </div>
+                    </div>
+                </div>
+
+
+                <p>در بالا برای نشون دادن اعضای آرایه از کلاس Arrays استفاده کردیم؛ این کلاس متد های کمکی خوبی از جمله (binarySearch و ...) داره که به عنوان ابزار میتونیم ازشون برای ارایه استفاده کنیم.</p>
+
+                <p>مثال:</p>
+
+                <p>در مثال زیر میخوایم کاربر آرایه رو مقداردهی کنه و سپس مقادیر ذخیره شده در آرایه رو نمایش بدیم.</p>
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+public static void main(String[] args){
+    Scanner input = new Scanner(System.in);
+
+    String[] names = new String[4];
+    System.out.println("Enter names:");
+    for(int i=0; i< names.length; i++){
+        names[i] = input.next();
+    }
+
+    System.out.println("Stored names in array: " + Arrays.toString(names));
+}
+                        </div>
+                    </div>
+                </div>
+
+                <p>مثال:</p>
+                <p>در مثال زیر برنامه مقادیر خونه های فرد در آرایه رو نمایش میده.</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+public static void main(String[] args){
+}
+                        </div>
+                    </div>
+                </div>
+
+                <p>مثال:</p>
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+public static void main(String[] args){
+
+    Scanner input = new Scanner(System.in);
+
+    String[] names = {"John", "Alex", "Susan", "Lora"};
+
+    System.out.println("Enter corresponding name index (between 0 and 3, -1 to Exit).");
+
+    int index;
+
+    do{
+        index = input.nextInt();
+
+        if(index >= 0 && index <= names.length -1)
+        System.out.println("Name for index " + index + " is " + names[index]);
+        else if(index != -1)
+        System.out.println("Index is out of bound; enter new index");
+
+    }while(index != -1)
+
+    System.out.println("quit ok.");
+}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="subsection" id="sub2">
+                <h2>کلاس Arrays</h2>
+                <p>در کلاس آرایه یک سری متد های <a class="text-decoration-none" href="static-keyword.html">استاتیک</a> پر کاربرد تعریف شده که برای آرایه ها استفاده میشن.</p>
+
+                <p>در این قسمت یه سری از متد های پرکاربرد این کلاس رو بررسی میکنیم.</p>
+
+                <p>متد binarySearch</p>
+                <p>با متد <strong>binarySearch</strong> میتونیم داخل یک آرایه به جستجوی شماره خونه ی مقدار مورد نظر در آرایه بگردیم اگه این مقدار وجود نداشته باشه -1 رو بر میگردونه.</p>
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+                            int[] numbers = { 2, 5, 6, 7, 1, 0, 4, 8};
+                            System.out.println(Arrays.binarySearch(numbers, 7);
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <h3>toString متد</h3>
+                <p>با <strong>toString</strong> میتونیم اعضای آرایه رو بدون نیاز به بررسی خونه های ارایه نمایش بدیم.</p>
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+                            int[] numbers = { 2, 5, 6, 7, 1, 0, 4, 8};
+                            System.out.println(Arrays.toString(numbers));
+                        </div>
+                    </div>
+                </div>
+
+
+                <h3>sort متد</h3>
+                <p>با متد <strong>sort</strong> میتونیم اعضای ارایه رو از کم به زیاد مرتب کنیم.</p>
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+int[] numbers = { 2, 5, 6, 7, 1, 0, 4, 8};
+Arrays.sort(numbers);
+System.out.println(Arrays.toString(numbers));
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <h3>متد asList</h3>
+                <p>با متد <strong>asList</strong> میتونیم یک لیست از مقادیر دلخواه درست کنیم.</p>
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+List&lt;Integer&gt; numberList = Arrays.asList(33, 42, 76, 66, 99);
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="subsection" id="sub3">
+                <h2>آرایه های چند بعدی</h2>
+
+                <blockquote>عناصر یک آرایه میتونن آرایه باشند.</blockquote>
+
+                <p>آرایه هایی که تا اینجا باهاشون آشنا شدیم <strong>یک بعدی</strong> بودن این در حالیه که میتونیم آرایه های <strong>دو بعدی یا چند بعدی</strong> در جاوا ایجاد کنیم.</p>
+                <p>گفتیم آرایه یک آبجکت است پس میتونیم یک آرایه از نوع آرایه ایجاد کنیم که به این آرایه دو بعدی میگیم.</p>
+
+                <p>در زیر طول آرایه اول ۳ است، این آرایه آبجکت فرض شده و آرایه ای به طول ۴ از نوع این آرایه به وجود آوردیم.</p>
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+int[][] matrix = new int[3][4];
+                        </div>
+                    </div>
+                </div>
+
+                <p>میتونیم آرایه های دو بعدی رو مانند آرایه یک بعدی هنگام تعریف مقداردهی کنیم.</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+int[][] matrix = { {2, 4, 1}, {7, 3, 6}, {12, 9, 5} , {0, 11, 8}};
+                        </div>
+                    </div>
+                </div>
+
+                <p>در بالا آرایه ای به طول ۴ ایجاد کردیم که تمام عناصر آن آرایه ای به طول ۳ است و عناصر آرایه هایی که به طول ۳ ایجاد کردیم int است.</p>
+
+
+
+                <p>برای خوندن عناصر آرایه های دو بعدی توسط حلقه مانند زیر عمل میکنیم.</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+int[][] matrix = { {2, 4, 1}, {7, 3, 6}, {12, 9, 5} , {0, 11, 8}};
+for(int i=0; i&lt;matrix.length; i++){
+    for(int j = 0; j&lt;matrix[i].length; j++){
+        System.out.println(matrix[i][j]);
+    }
+}
+                        </div>
+                    </div>
+                </div>
+
+                <p>در بالا i در حلقه ی اولی عناصر آرایه به طول 4 رو بررسی میکنه که هر عنصر آرایه ای به طول 3 است. و سپس داخل حلقه ی دوم با j عناصر آرایه به طول 3 رو که از نوع int هستند بررسی میکنیم.</p>
+
+                <p>هنگام تعریف آرایه دو بعدی از طریق مقداردهی عناصر، لزومی نداره طول عناصر که خود یک آرایه هستند یکسان باشه.</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+String[][] families = { {"Rose", "Micheal", "John", "Tina"}, {"Fredrick", "Lian", "Jill"}, {"Lucy", "John"}, {"Samuel"} };
+for (int i=0; i&lt;families.length; i++) {
+    for (int j = 0; j < families[i].length; j++) {
+        System.out.print(families[i][j] + " ");
+    }
+    System.out.println();
+}
+                        </div>
+                    </div>
+                </div>
+
+
+                <p>مثال</p>
+                <p>فرض کنید 6 دانش آموز در یک امتحان ۴ گزینه ای شرکت کردن و میخوایم نمره هاشونو با توجه به پاسخنامه حساب کنیم.</p>
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+//پاسخ دانش آموز ها
+char[][] studentAnswers = {
+{'A', 'B', 'A', 'C', 'C', 'D', 'A', 'A', 'A', 'D'},
+{'D', 'B', 'A', 'B', 'C', 'A', 'A', 'A', 'A', 'D'},
+{'D', 'D', 'D', 'A', 'C', 'B', 'C', 'B', 'A', 'D'},
+{'C', 'B', 'A', 'A', 'D', 'C', 'C', 'B', 'A', 'D'},
+{'A', 'B', 'D', 'C', 'C', 'D', 'A', 'A', 'A', 'D'},
+{'B', 'B', 'B', 'C', 'C', 'D', 'B', 'B', 'A', 'D'}};
+
+//کلید پاسخ های درست
+char[] keys = {'D', 'B', 'D', 'C', 'C', 'D', 'A', 'E', 'A', 'D'};
+
+//محاسبه ی نمره ها
+for (int i=0; i&lt;studentAnswers.length; i++){
+    int score = 0;
+    for (int j=0; j< studentAnswers[i].length; j++){
+
+        if (studentAnswers[i][j] == keys[j]) score++;
+
+    }
+
+    System.out.println("Student " + i + " 's score " + score);
+
+}
+                        </div>
+                    </div>
+                </div>
+
+
+                <p>مثال</p>
+                <p>در برنامه زیر ابتدا کاربر تعداد نقاط صفحه رو مشخص میکنه بعد مختصات هر نقطه روی صفحه رو وارد میکنه و در آخر برنامه نزدیک ترین نقاط به همدیگه رو نمایش میده.</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+public static void main(String[] args){
+    Scanner input = new Scanner(System.in);
+    System.out.println("Enter number of points");
+    int numberOfPoints = input.nextInt();
+
+    double[][] points = new double[numberOfPoints][2];
+
+    System.out.println("Enter " + numberOfPoints + " points");
+
+    for (int i=0; i&lt;points.length; i++){
+        points[i][0] = input.nextDouble();
+        points[i][1] = input.nextDouble();
+    }
+
+    int p0 = 0, p = 1;
+    double shortestDistance = distance(points[p0][0], points[p0][1], points[p][0], points[p][1]);
+
+    for (int i=0; i&lt;points.length; i++){
+        for (int j = i + 1; j&lt;points.length; j++){
+            double distance = distance(points[i][0], points[i][1], points[j][0], points[j][1]);
+            if (shortestDistance > distance){
+                p0 = i;
+                p = j;
+                shortestDistance = distance;
+            }
+        }
+    }
+
+    System.out.println("The closest two points are (" + points[p0][0] + ", " + points[p0][1] + ") and (" + points[p][0] + ", " + points[p][1] + ")");
+}
+
+private static double distance(double x0, double y0, double x, double y){
+    return Math.sqrt((x - x0) * (x - x0) + (y - y0) * (y - y0));
+}
+                        </div>
+                    </div>
+                </div>
+
+                <p>اگه یک آرایه دو بعدی رو آبجکت در نظر بگیریم میتونیم با ایجاد آرایه ای از نوع آرایه دو بعدی یک آرایه سه بعدی ایجاد کنیم.</p>
+
+            </div>
+
+
+
+            <div class="subsection" id="sub4">
+                <h2>خلاصه</h2>
+                <p>- از آرایه ها در جاوا برای نگهداری n تا متغیر هم نوع استفاده میکنیم.</p>
+                <p>- آرایه در واقع نوعی از آبجکت است با ظاهری متفاوت و خاص.</p>
+                <p>- متغیر های داخل آرایه در واقع دیتافیلد های آرایه هستند.</p>
+                <p>- به متغیر های داخل آرایه عنصر (element) میگیم و در واقع این متغیر ها دیتا فیلد های آرایه هستند.</p>
+                <p>- به تعداد عناصر داخل آرایه طول آرایه میگیم و این طول رو با متد length میتونیم صدا بزنیم.</p>
+                <p>مانند سایر آبجکت ها اگه عناصر آرایه مقداردهی نشن دارای مقادیر پیشفرض هستند.</p>
+                <p>- کلاس Arrays دارای متد های استاتیک کمک برای آرایه ها است.</p>
+                <p>- میتونیم یک آرایه رو آبجکت در نظر بگیریم و با ایجاد آرایه ازش یک آرایه دو بعدی ایجاد کنیم.</p>
+                <p>- در مورد آرایه سه بعدی نیز میتونیم یک آرایه دو بعدی رو آبجکت در نظر بگیریم و یک آرایه از نوع آرایه دو بعدی ایجاد کنیم. و به همین ترتیب...</p>
+            </div>
+
+
+
+        </article>
+
+        <div class="article-foot">
+
+            <div class="navigator-container">
+
+                <a class="md-bt md-bt-light" href="access-modifiers.html">
+            <span class="material-icons">
+              navigate_next
+            </span>
+                    <span class="hint">
+              بعدی
+            </span>
+                </a>
+
+                <a class="md-bt md-bt-light" href="objects-and-classes.html">
+            <span class="hint">
+              قبلی
+            </span>
+                    <span class="material-icons">
+              navigate_before
+            </span>
+
+                </a>
+            </div>
+
+            <div class="relative-articles-container">
+                <p>مطالب مرتبط</p>
+                <div>
+                    <div>
+                        <a href="objects-and-classes.html">آبجکت و کلاس ها در جاوا</a>
+                    </div>
+
+                    <div>
+                        <a href="access-modifiers.html">کلیدواژه های سطح دسترسی</a>
+                    </div>
+
+                    <div>
+                        <a href="static-keyword.html">کلیدواژه ی استاتیک</a>
+                    </div>
+
+                    <div>
+                        <a href="loops.html">حلقه ها در جاوا</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+<div class="scroll-top-container">
+    <a class="text-decoration-none link-dark material-icons" href="#">
+        arrow_drop_up
+    </a>
+</div>
+
+<footer></footer>
+
+<div class="dialog hide"></div>
+
+<div class="copy-message">
+    <span class="copy-message-text">کپی شد!</span>
+</div>
+
+</body>

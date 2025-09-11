@@ -1,0 +1,10 @@
+{
+  "id": "web_chapters",
+  "title": "وب",
+  "links": [
+    {
+      "subject": "ویدیو استریمینگ در اسپرینگ بوت",
+      "href": "/article/web/streaming-spring-boot.html"
+    }
+  ]
+}

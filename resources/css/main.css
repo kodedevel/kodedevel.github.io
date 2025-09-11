@@ -1,0 +1,76 @@
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+@import url("https://fonts.googleapis.com/css?family=JetBrains+Mono");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css");
+@import url("bt.css");
+@import url("text.css");
+@import url("base.css");
+@import url("utils.css");
+@import url("article.css");
+
+main{
+    position: relative;
+    min-height: 64vh;
+    width: 100vw;
+    background-color: #ffffff;
+    padding-bottom: 128px;
+    font-variant-ligatures: none;
+
+}
+
+.figure {
+width: 100%;
+height: auto;
+display: flex;
+justify-content: center;
+margin-top: 32px;
+
+}
+
+.figure .figure-img {
+    max-height: 690px;
+    width: 100%;
+}
+
+.offcanvas-body{
+    direction: rtl;
+    padding: 0px;
+    margin: 0px;
+}
+
+
+nav, .offcanvas-header{
+    background-color: #212121;
+    min-height: 80px;
+    height: 80px;
+}
+
+
+@font-face {
+  font-family: Samim;
+  src: url('/resources/font/Samim.eot');
+  src: url('/resources/font/Samim.eot?#iefix') format('embedded-opentype'),
+       url('/resources/font/Samim.woff2') format('woff2'),
+       url('/resources/font/Samim.woff') format('woff'),
+       url('/resources/font/Samim.ttf') format('truetype');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: Samim;
+  src: url('/resources/font/Samim-Bold.eot');
+  src: url('/resources/font/Samim-Bold.eot?#iefix') format('embedded-opentype'),
+       url('/resources/font/Samim-Bold.woff2') format('woff2'),
+       url('/resources/font/Samim-Bold.woff') format('woff'),
+       url('/resources/font/Samim-Bold.ttf') format('truetype');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: Samim;
+  src: url('/resources/font/Samim-Medium.eot');
+  src: url('/resources/font/Samim-Medium.eot?#iefix') format('embedded-opentype'),
+       url('/resources/font/Samim-Medium.woff2') format('woff2'),
+       url('/resources/font/Samim-Medium.woff') format('woff'),
+       url('/resources/font/Samim-Medium.ttf') format('truetype');
+  font-weight: 500;
+}

@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+
+<html lang="fa">
+
+<head>
+
+  <meta http-equiv="X-UA-Compatible" content="IE=7">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <meta name="description" content="در این مقاله یک توضیح کامل از کلاس ها و آبجکت ها در کاتلین داریم؛ سازنده (constructor) ها، متغیر ها و توابع داخل کلاس رو بررسی کرده و به اعضای ابجکت همراه میپردازیم و در آخر گفته ها رو با مثال بیان میکنیم.">
+
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>آبجکت ها و کلاس ها در کاتلین</title>
+
+  <meta name="og:title" content="آبجکت ها و کلاس ها در کاتلین">
+  <meta name="og:description" content="در این مقاله یک توضیح کامل از کلاس ها و آبجکت ها در کاتلین داریم؛ سازنده (constructor) ها، متغیر ها و توابع داخل کلاس رو بررسی کرده و به اعضای ابجکت همراه میپردازیم و در آخر گفته ها رو با مثال بیان میکنیم.">
+
+  <meta property="og:image" content="https://kodedevel.github.io/resources/favicon.png">
+  <meta property="og:url" content="https://kodedevel.github.io/article/kotlin/objects-and-classes.html">
+
+  <meta property="og:type" content="article">
+
+  <link rel="shortcut icon" href="/resources/favicon.png" type="image/x-icon">
+
+  <link rel="stylesheet" href="/resources/css/main.css">
+  <script type="module" src="/resources/js/main.js"></script>
+
+</head>
+
+<body>
+  <header></header>
+  <main>
+    <div class="page-wrap">
+
+      <div class="article-head">
+        <h1>
+          آبجکت (اشیا) و کلاس ها در کاتلین
+        </h1>
+
+        <address>
+          <a class="author text-muted text-decoration-none" rel="author">یونس سلیمانی</a>
+        </address>
+
+        <figure class="figure figure-wrapper">
+          <img alt="" class="rounded figure-img" src="/resources/image/kotlin/cover_objects_and_classes.png" />
+        </figure>
+
+        <div class="toc">
+          <p class="p-2 mx-2 h5">دسترسی سریع</p>
+          <div class="list-group">
+
+            <a class="list-group-item list-group-item-action" href="#sub0">توضیحات</a>
+
+            <a class="list-group-item list-group-item-action" href="#sub1">ساختار کلاس</a>
+
+            <a class="list-group-item list-group-item-action" href="#sub2">سازنده (constructor)</a>
+
+            <a class="list-group-item list-group-item-action" href="#sub3">متغیر های کلاس</a>
+
+            <a class="list-group-item list-group-item-action" href="#sub4">توابع کلاس</a>
+
+            <a class="list-group-item list-group-item-action" href="#sub5">آبجکت همراه (companion object)</a>
+            
+            <a class="list-group-item list-group-item-action" href="#sub6">مورد مطالعه (مثال ها)</a>
+
+            <a class="list-group-item list-group-item-action" href="#sub7">خلاصه</a>
+          </div>
+        </div>
+      </div>
+
+      <article>
+
+        <div class="subsection" id="sub0">
+                <h2>توضیحات</h2>
+          <blockquote>با استفاده از ویژگی شی گرایی در برنامه نویسی راحت تر میتونید به توسعه ی اپ های بزرگ و رابط گرافیکی کاربری بپردازید.</blockquote>
+
+          <p>معمولا آبجکت یک ماهیت از دنیای واقعی رو شبیه سازی میکنه مثلا یک دانش آموز، یک تلویزیون، یک دایره ، یک مستطیل و هر شی تو دنیای واقعی میتونه با یک آبجکت (object) شبیه سازی بشه.</p>
+          <p>به آبجکت ها، اشیا نیز گفته میشه اما کلمه ی آبجکت شناخته شده تر است.</p>
+
+          <p>باید متناسب با آبجکتی که میخوایم ایجاد کنیم یک کلاس تعریف کرده باشیم.</p>
+
+          <p>هرچندتا آبجکت که بخوایم میتونیم از یک کلاس ایجاد کنیم و هر آبجکت اطلاعات مختص به خودشو داره و از سایر آبجکت ها مستقله.</p>
+
+          <p>هنگامی که یک آبجکت از یک کلاس (class) ایجاد میکنیم میگیم یک نمونه از کلاس ایجاد کردیم.</p>
+
+        </div>
+
+        <div class="subsection" id="sub1">
+                <h2>ساختار کلاس</h2>
+
+          <blockquote>برای ایجاد آبجکت نیاز داریم کلاس (class) تعریف کنیم.</blockquote>
+
+
+          <p>با استفاده از کلیدواژه ی class و اسم دلخواه برای کلاس میتونیم یک کلاس تعریف کنیم.</p>
+
+          <div class="code-container">
+class Name{
+  ...
+}
+          </div>
+          
+
+          <p>به طور کلی یک کلاس در کاتلین از چهار قسمت تشکیل شده.</p>
+
+
+        <figure>
+          <img alt="ساختار کلاس در کاتلین" class="rounded figure-img img-fluid" src="/resources/image/kotlin/class_structure.png" />
+          <figcaption class="figure-caption text-end p-2">ساختار یک کلاس </figcaption>
+        </figure>
+
+
+                    <h3>۱- سازنده (constructor)</h3>
+
+          <p><strong>&#x200e;t0, t1, ..., tn</strong> پارامتر های کانستراکتور هستند</p>
+          <p>در اینجا یک کانستراکتور اولیه داریم بلوک init بدنه ی کانستراکتور های اولیه رو تشکیل میدن.</p>
+
+
+                    <h3>۲- متغیر ها</h3>
+          <p>هرچندتا متغیر بخوایم میتونیم داخل یک کلاس تعریف کنیم.</p>
+          <p>متغیر های داخل کلاس به دیتا فیلد (data field) یا پراپرتی (property) معروف هستند.</p>
+
+                    <h3>۳- توابع</h3>
+          <p>هر چندتا تابع بخوایم میتونیم داخل کلاس تعریف کنیم.</p>
+
+                    <p class="note-head">۴- آبجکت همراه (companion object)</p>
+
+          <p>داخل هر کلاس میتونیم فقط یک آبجکت همراه (companion object) داشته باشیم.</p>
+
+        </div>
+
+        <div class="subsection" id="sub2">
+                <h2>سازنده (constructor)</h2>
+          <p> برای تعریف سازنده در کلاس کاتلین از کلیدواژه ی constructor استفاده میکنیم.</p>
+
+          <p>با استفاده از سازنده (constructor) در کاتلین میتونیم یک نمونه از کلاس ایجاد کنیم، کانستراکتور نوع خاصی از تابع است که هیچ مقداری رو بر نمیگردونه و برای ایجاد آبجکت از کلاس باید یک بار ابتدای کار صدا زده بشه.</p>
+
+          <p>بدون صدا زدن کانستراکتور نمیتونیم از کلاس نمونه ایجاد کنیم.</p>
+
+          <p>در هر کلاس میتونیم یک یا چند کانستراکتور تعریف کنیم و برای ایجاد نمونه از کلاس هرکدومو خواستیم صدا کنیم.</p>
+
+          <p>در کاتلین اولین کانستراکتور که هنگام تعریف کلاس بعد از اسم کلاس وجود داره به <strong>کانستراکتور اولیه</strong> و بقیه کانستراکتور ها به <strong>کانستراکتور های ثانویه</strong>  معروف هستند.</p>
+
+         
+                <h3>کانستراکتور اولیه</h3>
+
+          <p>با استفاده از کلیدواژه ی constructor بعد از اسم کلاس میتونیم سازنده ی اولیه در کاتلین ایجاد کنیم.</p>
+
+          <div class="sample">
+              <div class="snippet-container">
+                  <div class="snippet Kotlin">
+class MyClass constructor(){
+  ...
+}
+                  </div>
+              </div>
+          </div>
+
+         <p>سازنده (constructor) که در بالا میبینیم به عنوان کنستراکتور اولیه (primary constructor) شناخته میشه. یک کانستراکتور اولیه و چند کانستراکتور ثانویه در کاتلین میتونیم داشته باشیم.</p>
+
+
+            <p>میشه از <a class="text-decoration-none" href="/article/kotlin/access-modifiers.html">کلیدواژه های سطح دسترسی</a> در هر کانستراکتوری که خواستیم استفاده کنیم.</p>
+
+          <div class="sample">
+              <div class="snippet-container">
+                  <div class="snippet Kotlin">
+class MyClass private constructor(){
+
+}
+                  </div>
+              </div>
+          </div>
+            
+          <p>        بدنه ی کنستراکتور اولیه بلوک init است برای کانستراکتور اولیه در کاتلین هرچندتا بلوک init خواستیم میتونیم تعریف کنیم که به ترتیب موقع اجرای برنامه کد های داخلشون اجرا میشن.</p>
+
+         <div class="sample">
+             <div class="snippet-container">
+                 <div class="snippet Kotlin">
+class MyClass(){
+
+  init{
+    println("First Block")
+  }
+ 
+  init{
+    println("Second Block")
+  }
+ 
+  init{
+    println("Third Block")
+  }
+
+}
+                 </div>
+             </div>
+         </div>
+
+          <p>میتونیم داخل بدنه ی کانستراکتور پارامتر های کانستراکتور رو به متغیر های کلاس اختصاص بدیم.</p>
+
+         <p>اگه قبل از کانستراکتور اولیه نخوایم کلیدواژه ی سطح دسترسی تعریف کنیم یا annotation بزاریم میتونیم از نوشتن کلید واژه ی constructor صرف نظر کنیم:</p>
+
+         <div class="sample">
+             <div class="snippet-container">
+                 <div class="snippet Kotlin">
+class MyClass <s>constructor</s>(){
+  ...
+}
+                 </div>
+             </div>
+         </div>
+
+            <p>در یک کلاس کانستراکتور اولیه به طور پیشفرض وجود داره حتی اگه آشکارا نوشته نشه.</p>
+
+            <div class="sample">
+                <div class="snippet-container">
+                    <div class="snippet Kotlin">
+class MyClass{
+  
+}
+                    </div>
+                </div>
+            </div>
+
+                <h3>کانستراکتور های ثانویه</h3>
+            <p>کانستراکتور های ثانویه (Secondary Constructors) رو داخل کلاس و مانند کانستراکتور اولیه با استفاده از کلیدواژه ی constructor تعریف میکنیم.</p>
+
+            <p>در تعریف کانستراکتور های ثانویه استفاده از کلیدواژه ی constructor همیشه لازمه.</p>
+
+            <p>بدنه ی کانستراکتور های ثانویه دنباله ی خودشونه و بلوکی مثل init براشون وجود نداره.</p>
+
+            <div class="sample">
+                <div class="snippet-container">
+                    <div class="snippet Kotlin">
+class TV{
+
+  constructor(size: Float, panel: String){
+    ...
+  }
+
+}
+                    </div>
+                </div>
+            </div>
+
+
+            <p>اگه کانستراکتور اولیه آشکارا تعریف شده باشه، هرکدوم از کانستراکتور های ثانویه باید وکالت کانستراکتور اولیه رو <strong>مستقیم</strong> یا <strong>غیر مستقیم</strong> با استفاده از کلیدواژه ی <strong>this</strong> به عهده بگیرن.</p>
+
+            <p>به بیان دیگه کانستراکتور اولیه به صورت پیشفرض قبل از سایر کانستراکتور ها صدا زده میشه، اگه کانستراکتور اولیه آشکارا تعریف شده باشه، باید با استفاده از کلیدواژه ی this بعد از پرانتز آشکارا کانستراکتور اولیه رو قبل از کانستراکتور ثانویه صدا بزنیم.</p>
+
+            <div class="sample">
+                <div class="snippet-container">
+                    <div class="snippet Kotlin">
+//تعریف آشکار کانستراکتور اولیه بدون پارامتر      
+class MyClass(){
+  //صدا زدن کانستراکتور اولیه با کلیدواژه ی this
+  constructor(...): this(){
+    ...
+  }
+
+}
+                    </div>
+                </div>
+            </div>
+
+            <div class="sample">
+                <div class="snippet-container">
+                    <div class="snippet Kotlin">
+class TV(size: Float){
+
+  constructor(size: Float, panel: String): this(size){
+
+  }
+
+}
+                    </div>
+                </div>
+            </div>
+
+            <p>میتونیم پارامتر های یکی از کانستراکتور های ثانویه که وکالت کانستراکتور اولیه رو به عهده داره با کلیدواژه ی this در کانستراکتور جدید مقداردهی کنیم، بدین ترتیب وکالت <strong>غیر مستقیم</strong> کانستراکتور اولیه رو به کانستراکتور جدید دادیم.</p>
+
+            <div class="sample">
+                <div class="snippet-container">
+                    <div class="snippet Kotlin">
+class TV(size: Float){
+
+  constructor(size: Float, panel: String): this(size){
+
+  }
+
+  constructor(size: Float, panel: String, color: String): this(size, panel){
+
+  }
+  
+}
+                    </div>
+                </div>
+            </div>
+
+
+                <h3>ایجاد نمونه (آبجکت) از کلاس</h3>
+
+            <p>برای ایجاد نمونه از کلاس کافیه یکی از کانستراکتور های کلاسو صدا بزنیم.</p>
+
+            <p>هنگامی که یک آبجکت (نمونه از کلاس) در حافظه ایجاد میشه متغیر به آدرس آبجکت در حافظه اشاره میکنه و خود متغیر حاوی مقداری نیست، به عبارتی متغیر نقش یک <strong>اشاره گر</strong> رو بازی میکنه.</p>
+
+                    <p>مثال</p>
+
+            <p>میخوایم یک کلاس به اسم TV تعریف کنیم و ازش سه تا نمونه در تابع main ایجاد کنیم. در این مثال سه تا سازنده (کانستراکتور) در کلاس TV تعریف میکنیم و هر سه کانستراکتور ها رو به ترتیب در تابع main صدا میزنیم.</p>
+
+            <div class="sample">
+                <div class="snippet-container">
+                    <div class="snippet Kotlin">
+fun main(){
+  val tv0 = TV(21f)
+  val tv1 = TV(42.5f, "LCD")
+  val tv2 = TV(32f, "LED", "White")
+  
+}
+
+class TV(size: Float){
+  
+
+  constructor(size: Float, panel: String): this(size){
+
+  }
+
+  constructor(size: Float, panel: String, color: String): this(size, panel){
+
+  }
+  
+}
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="subsection" id="sub3">
+
+                <h2>۲- متغیرهای کلاس (Properties)</h2>
+
+
+          <p>میتونیم داخل کلاس متغیر تعریف و مقداردهی کنیم، به متغیر های داخل کلاس  دیتا فیلد (field data) یا پراپرتی (property) میگیم. پراپرتی ها گویای وضعیت آبجکت هستند.</p>
+
+          <p>میتونیم به پراپرتی ها مقدار اولیه بدیم یا با پارمتر های کانستراکتور مقداردهیشون کنیم.</p>
+
+          <div class="sample">
+              <div class="snippet-container">
+                  <div class="snippet Kotlin">
+class TV(size: Float){
+   val size: Float
+   var isOn: Boolean = false
+
+    init {
+      this.size = size
+    }
+
+}
+                  </div>
+              </div>
+          </div>
+
+          <p>در کاتلین بدون نیاز به بلوک init میتونیم پارامتر های <strong>کانستراکتور اولیه</strong> رو مستقیم به پراپرتی ها اختصاص بدیم. </p>
+
+          <div class="sample">
+              <div class="snippet-container">
+                  <div class="snippet Kotlin">
+class TV(size: Float){
+  
+  private val _size = size
+
+}
+                  </div>
+              </div>
+          </div>
+
+          <p>همینطور میتونیم پراپرتی ها رو مستقیم به‌جای پارامتر های <strong>کانستراکتور اولیه</strong> تعریف کنیم، کاتلین به صورت خودکار پارامتر های لازم رو تعریف میکنه و به پراپرتی ها اختصاص میده.</p>
+
+          <div class="sample">
+              <div class="snippet-container">
+                  <div class="snippet Kotlin">
+class TV(private val size: Float){
+
+}
+                  </div>
+              </div>
+          </div>
+
+                <h3>توابع setter و getter پراپرتی ها</h3>
+
+          <p>برای هر پراپرتی دو تابع setter و getter در کاتلین به صورت پیشفرض تعریف شده وقتی بخوایم مقدار جدیدی به پراپرتی بدیم تابع set به طور پنهان صدا زده میشه؛ وقتی بخوایم از پراپرتی استفاده کنیم تابع get به طور پنهان صدا زده میشه.</p>
+
+
+                <h3>تعریف آشکار setter و معرفی backing field</h3>
+
+          <p>میتونیم تابع setter رو برای هر پراپرتی به طور <strong>آشکار</strong> پیاده سازی کنیم.</p>
+
+          <div class="sample">
+              <div class="snippet-container">
+                  <div class="snippet Kotlin">
+ class TV{
+  
+  var channel: Int = 1
+    set(value){
+      if(value &gt;= 1 && value &lt;= 120 ){
+        field = value
+      }
+    }
+
+}
+                  </div>
+              </div>
+          </div>
+
+          <p>در بالا value یک اسم دلخواه برای پارامتر تابع set است و field داخل تابع set به طور خودکار توسط کاتلین ایجاد شده و مقدار پراپرتی در حافظه رو نگه داری میکنه. بهش بکینگ فیلد (backing field) میگیم.</p>
+
+          <p>میتونیم با استفاده از کلیدواژه ی private از دسترسی به تابع setter در بیرون کلاس جلوگیری کنیم.</p>
+          
+          <div class="sample">
+              <div class="snippet-container">
+                  <div class="snippet Kotlin">
+class TV(){
+  var isOn: Boolean = false
+    private set
+      
+}
+                  </div>
+              </div>
+          </div>
+
+                <h3>تعریف آشکار getter</h3>
+
+          <p>میتونیم تابع getter رو برای هر متغیری که خواستیم، به طور <strong>آشکار</strong> تعریف کنیم.</p>
+
+            <div class="sample">
+                <div class="snippet-container">
+                    <div class="snippet Kotlin">
+class MyClass{
+    
+  var prop: T = ...
+    get(){
+      ...
+      return t
+    }
+
+}
+                    </div>
+                </div>
+            </div>
+
+          <p>اگه مقداری که getter بر میگردونه به صورت تک عبارتی و متغیر <a class="text-decoration-none" href="/article/kotlin/variables_mutable_immutable.html">تغییرناپذیر</a> (val) باشه، میتونیم getter رو به فرم زیر تعریف کنیم:</p>
+
+          <div class="sample">
+              <div class="snippet-container">
+                  <div class="snippet Kotlin">
+class MyClass{
+    
+  var prop: T get() = t
+
+}
+                  </div>
+              </div>
+          </div>
+
+                <h3>معرفی بکینگ پراپرتی (Backing Property)</h3>
+
+          <p>اگه متغیر <a class="text-decoration-none" href="/article/kotlin/variables_mutable_immutable.html">تغییرپذیر</a> (var) باشه و تابع setter پنهان باشه و به هر دلیلی نخواید مقدار متغیر در بیرون از کلاس تغییر کنه میتونید متغیر رو به صورت بکینگ پراپرتی (Backing Property) پیاده سازی کنید.</p>
+
+          <p>در این روش با استفاده از کلیدواژه ی سطح دسترسی private از دسترسی به متغیر اصلی در خارج از کلاس جلوگیری میکنیم و با تعریف یک متغیر به عنوان نماینده ی متغیر اصلی به متغیر اصلی در خارج از کلاس با getter دسترسی میدیم. به متغیر اصلی بکینگ پراپرتی (backing property) میگیم.</p>
+
+          <div class="sample">
+              <div class="snippet-container">
+                  <div class="snippet Kotlin">
+class TV(){
+  
+  private var _volumeLevel: Int = 0
+  val volumeLevel: Int get() = _volumeLevel
+
+
+}
+                  </div>
+              </div>
+          </div>
+
+                <h3>صدا زدن پراپرتی</h3>
+
+          <p>برای صدا زدن پراپرتی در خارج از کلاس کافیه اسم متغیری که به آبجکت اشاره داره رو بنویسیم، نقطه بزاریم و اسم پراپرتی مورد نظر در آبجکت رو بنویسیم.</p>
+
+          <div class="sample">
+              <div class="snippet-container">
+                  <div class="snippet Kotlin">
+fun main(){
+  val tv = TV()
+
+  println("is tv on? ${tv.isOn}")
+
+  tv.isOn = true
+
+  println("is tv on? ${tv.isOn}")
+
+}
+
+class TV{
+
+  var isOn = false
+
+}
+                  </div>
+              </div>
+          </div>
+
+          <p>در داخل کلاس هنگامی که متغیر عضو کلاس با یک متغیر دیگه که عضو کلاس <strong>هم نام</strong> باشه؛ با کلیدواژه ی this در کاتلین باید مشخص کنیم کدوم متغیر عضو کلاس است.</p>
+
+          <div class="sample">
+              <div class="snippet-container">
+                  <div class="snippet Kotlin">
+class TV(private val size){
+
+  private val panel: String
+
+  constructor(size, panel){
+    this.panel = panel
+  }
+
+}
+                  </div>
+              </div>
+          </div>
+
+        </div>
+
+       
+
+        <div class="subsection" id="sub4">
+                <h2>توابع کلاس</h2>
+          <p>میتونیم داخل کلاس تابع تعریف کنیم اگه با توابع در کاتلین آشنایی ندارید میتونید به موضوع <a class="text-decoration-none" href="/article/kotlin/functions.html">توابع</a> مراجعه کنید.</p>
+
+        <p>توابع در کلاس نیز از قوانین سطح دسترسی پیروی میکنند.</p>
+
+        <p>رفتار (behavior) یک آبجکت با توابع تعریف میشه. وقتی تابع مربوط به آبجکت رو صدا میزنیم تابع از آبجکت میخواد کاری رو انجام بده، مثلا در بخش پراپرتی ها دیدیم تابع getter مقدار پراپرتی رو بر میگردونه یا تابع setter مقدار جدید به پراپرتی اضافه میکنه.</p>
+
+        <div class="sample">
+            <div class="snippet-container">
+                <div class="snippet Kotlin">
+class TV{
+  var isOn = false
+    private set
+
+  fun turnOn(){
+    isOn = true
+  }
+
+}
+                </div>
+            </div>
+        </div>
+
+                <h3>صدا زدن تابع کلاس</h3>
+        <p>برای صدا زدن توابع کلاس مانند پراپرتی ها اسم متغیری که به آبجکت اشاره داره رو مینویسیم نقطه میزاریم و سپس اسم تابع مورد نظر رو مینویسیم.</p>
+        <div class="sample">
+            <div class="snippet-container">
+                <div class="snippet Kotlin">
+fun main(){
+  val tv = TV()
+
+  tv.turnOn()
+
+}
+                </div>
+            </div>
+        </div>
+        
+        </div>
+
+        <div class="subsection" id="sub5">
+                <h2>آبجکت همراه</h2>
+
+          <blockquote>آبجکت همراه (companion object) در کاتلین از خانواده ی آبجکت های اعلامی است.</blockquote>
+
+          <p>با تعریف آبجکت همراه (companion object) در کلاس میتونیم پراپرتی و توابع مستقل از آبجکت های کلاس تعریف کنیم.</p>
+
+          <p>پراپرتی و توابع تعریف شده در companion object مستقل از آبجکت های ایجاد شده از کلاس هستند و مقدار پراپرتی های companion object بین تمام آبجکت های ایجاد شده از کلاس مشترک است.</p>
+
+          <p>عموما اعضای companion object رو با دیتا فیلد (data field) و توابع <a class="text-decoration-none" href="/article/java/static-keyword.html">استاتیک در جاوا</a> یکی میدونن با اینکه اعضای companion object چیزی شبیه به اعضای استاتیک در جاوا هستند اما در واقع اعضای companion object استاتیک نیستند.</p>
+
+          <p>آبجکت های همراه نوعی سینگلتون (singlton) هستند که همراه با کلاس ایجاد شده و مستقل از آبجکت های ایجاد شده از کلاسند.</p>
+
+          <div class="sample">
+              <div class="snippet-container">
+                  <div class="snippet Kotlin">
+fun main(){
+
+  val first = MyClass()
+  first.printCurrentObjectIndex()
+
+  val second = MyClass()
+  second.printCurrentObjectIndex()
+
+  val third = MyClass()
+  third.printCurrentObjectIndex()
+
+
+  val fourth = MyClass()
+  fourth.printCurrentObjectIndex()
+
+  MyClass.printTotalNumberOfCreatedObjects()
+
+}
+
+class MyClass{
+
+  var index
+
+  init{
+    index = count++
+  }
+
+  fun printCurrentObjectIndex(){
+    println("Index of current object is $index")
+
+  companion object Counter{
+    var count = 0
+    fun printTotalNumberOfCreatedObjects(){
+      println("Total number of objects created by MyClass are $count")
+    }
+  }
+}
+                  </div>
+              </div>
+          </div>
+
+          <p>اسم Counter اسمی دلخواه برای companion object است.</p>
+
+          <p>میتونیم آبجکت های همراه رو نامگذاری نکنیم در این صورت برای صدا زدن اعضای آبجکت همراه باید اسم کلاس نقطه، اسم Companion نقطه و اسم عضو مورد نظر رو بنویسیم:</p>
+
+          <div class="sample">
+              <div class="snippet-container">
+                  <div class="snippet Kotlin">
+ fun main(){
+
+  val first = MyClass()
+  first.printCurrentObjectIndex()
+
+  val second = MyClass()
+  second.printCurrentObjectIndex()
+
+  val third = MyClass()
+  third.printCurrentObjectIndex()
+
+
+  val fourth = MyClass()
+  fourth.printCurrentObjectIndex()
+
+  MyClass.Companion.printTotalNumberOfCreatedObjects()
+
+}
+
+class MyClass{
+
+  var index
+
+  init{
+    index = count++
+  }
+
+  fun printCurrentObjectIndex(){
+    println("Index of current object is $index")
+
+  companion object <s>Counter</s>{
+    var count = 0
+    fun printTotalNumberOfCreatedObjects(){
+      println("Total number of objects created by MyClass are $count")
+    }
+  }
+}
+                  </div>
+              </div>
+          </div>
+
+        </div>
+
+        <div class="subsection" id="sub6">
+                <h2>مورد مطالعه (مثال ها)</h2>
+
+          <p>خب الان وقتشه مثال هایی از کلاس و آبجکت ببینیم.</p>
+
+
+                <h3>تعریف کلاس تلویزیون و ایجاد نمونه از کلاس.</h3>
+
+          <p>از قسمت های کلاس TV در بالا برای توضیحات استفاده کردیم الان وقتشه این قسمت ها رو یکجا در قالب یک مثال کامل بیاریم.</p>
+
+          
+          <div class="sample">
+              <div class="snippet-container">
+                  <div class="snippet Kotlin">
+fun main(){
+
+    val tv0 = TV(21f)
+
+    tv0.turnOn()
+    tv0.printBasicInfo()
+
+    tv0.channel = 25
+    tv0.volumeUp()
+
+    println("tv0's channel is ${tv0.channel} and volume level is ${tv0.volumeLevel}")
+ 
+    val tv1 = TV(42.5f, "LCD", "Silver")
+
+    tv1.turnOn()
+    tv1.printBasicInfo()
+
+    tv1.channel = 12
+    tv1.volumeUp()
+    tv1.volumeUp()
+    tv1.volumeUp()
+
+    println("tv1's channel is ${tv1.channel} and volume level is ${tv1.volumeLevel}")         
+}
+
+class TV(private val size: Float){
+
+  private var panel: String = "Flatiron"
+  private var color: String = "Black"
+
+  var isOn: Boolean = false
+    private set
+
+  var channel: Int = 1
+    set(value){
+      if(value &gt; 0 && value &lt;= 120)
+        //Backing Field
+        field = value
+    }
+  
+  //Backing Property  
+  private var _volumeLevel: Int =  1
+  val volumeLevel get() = _volumeLevel
+
+  constructor(size: Float, panel: String): this(size){
+    this.panel panel
+  }
+
+
+  constructor(size: Float, panel: String, color: String): this(size, panel){
+
+    this.color = color
+
+  }
+
+  fun turnOn(){
+    isOn = true
+  }
+
+  fun turnOff(){
+    isOn = false
+  }
+
+  fun channelUp(){
+    if(isOn && channel &lt; 120)
+      channel++
+  }
+
+  fun channelDown(){
+    if(isOn && channel &gt; 1)
+      channel--
+  }
+
+  fun volumeUp(){
+    if(isOn && volumeLevel &lt; 100)
+      _volumeLevel++
+  }
+
+  fun volumeDown(){
+    if(isOn && volumeLevel &gt; 0)
+      _volumeLevel--
+   }
+
+   fun printBasicInfo(){
+    println("Television:\nsize: $size\" \npanel: $panel \ncolor: $color")
+   }
+
+}
+                  </div>
+              </div>
+          </div>
+
+                <h3>تعریف کلاس مستطیل و ایجاد نمونه از کلاس.</h3>
+
+          <p>طول و عرض مستطیل ویژگی های مستطیل هستند، مساحت و محیط مستطیل از طول و عرض مستطیل محاسبه میشه بنابراین دوتا پراپرتی برای طول و عرض داریم و دو تابع برای مساحت و محیط مستطیل.</p>
+
+          <div class="sample">
+              <div class="snippet-container">
+                  <div class="snippet Kotlin">
+fun main(){
+  
+  val r0 = Rectangle()
+  
+  println("Rectangle r0: \n width: ${r0.width} \n height: ${r0.height} \n area: ${r0.area()} \n perimeter: ${r0.perimeter()}")
+
+  val r1 = Rectangle(4, 8)
+
+  println("Rectangle r1: \n width: ${r1.width} \n height: ${r1.height} \n area: ${r1.area()} \n perimeter: ${r1.perimeter()}")
+
+} 
+            
+class Rectangle(var width: Double = 1.0, var height: Double = 1.0){
+
+  fun area(): Double = width * height
+  
+  fun perimeter() = 2 * (width + height)
+
+}
+                  </div>
+              </div>
+          </div>
+
+                <h3>تعریف کلاس دایره و ایجاد نمونه از کلاس.</h3>
+
+          <p>دایره یه شکل هندسیه و محاسبات مساحت و محیط دایره بستگی به مقدار شعاع دایره داره. در این مثال برای محاسبه ی مساحت و محیط بجای تابع از پراپرتی val با getter استفاده میکنیم وقتی پراپرتی تغییر ناپذیر با getter تعریف میشه نقشی شبیه به تابع رو ایفا میکنه.</p>
+
+          <div class="sample">
+              <div class="snippet-container">
+                  <div class="snippet Kotlin">
+fun main(){
+  val c0 = Circle(2)
+  println("c0's radius is ${c0.radius} so the area is ${c0.area}, and the perimeter is ${c0.perimeter})
+
+
+  c0.radius = 4
+  println("Radius is changed to ${c0.radius} so the Area is ${c0.area}, and the Perimeter is ${c0.perimeter})
+
+ 
+  val c1 = Circle(2)
+
+  println("c1's radius is ${c1.radius} so the Area is ${c1.area}, and the perimeter is ${c1.perimeter})
+
+}
+
+
+class Circle(){
+
+  var radius: Double = 1.0
+
+  val area: Double get() = radius * radius * PI
+  
+  var perimeter: Double get() = 2 * radius * PI
+
+    constructor(radius: Double){
+      this.radius = radius
+    }
+
+}
+                  </div>
+              </div>
+          </div>
+
+        </div>
+
+        <div class="subsection" id="sub7">
+                <h2>خلاصه</h2>
+
+          <p>- برای ایجاد آبجکت نیاز به کلاس داریم</p>
+          <p>- کانستراکتور ها نوع خاصی از تابع هستند که هیچ مقداریو بر نمیگردونن</p>
+
+          <p>- هنگام ایجاد یک آبجکت (نمونه) از کلاس یکی از کانستراکتور های کلاس صدا زده میشه.</p>
+
+          <p>- پراپرتی های کلاس حاوی اطلاعات کلاس هستند و تعیین کننده ی وضعیت کلاس اند.
+          </p>
+
+          <p>- دو تابع getter و setter در کاتلین به صورت پنهان برای هر پراپرتی تعریف میشه.</p>
+
+          <p>- با استفاده از کلیدواژه ی this در داخل کلاس میتونیم رجوع کنیم به پراپرتی های کلاس.</p>
+
+          <p>- توابع در کلاس، رفتار آبجکت رو تعیین میکنن و بهش میگن چکار کنه.</p>
+
+          <p>- با اینکه اعضای آبجکت همراه (companion object) استاتیک نیستند اما شبیه اعضای استاتیک در جاوا عمل میکنن.</p>
+
+        </div>
+
+      </article>
+
+      <div class="article-foot">
+
+        <div class="navigator-container">
+
+          <a href="/article/kotlin/inheritance.html" class="md-bt md-bt-light">
+            <span class="material-icons">
+              navigate_next
+            </span>
+            <span class="hint">
+              بعدی
+            </span>
+          </a>
+
+          <a href="/article/kotlin/access-modifiers.html" class="md-bt md-bt-light">
+            <span class="hint">
+              قبلی
+            </span>
+            <span class="material-icons">
+              navigate_before
+            </span>
+
+          </a>
+        </div>
+
+        <div class="relative-articles-container">
+          <p>مطالب مرتبط</p>
+          <div>
+            <div>
+              <a href="/article/kotlin/functions.html">توابع در کاتلین</a>
+            </div>
+
+            <div>
+              <a href="/article/kotlin/access-modifiers.html">کلیدواژه های سطح دسترسی در کاتلین</a>
+            </div>
+
+            <div>
+              <a href="/article/kotlin/variable_scope.html">محدوده ی تعریف متغیر ها در کاتلین</a>
+            </div>
+
+            <div>
+              <a href="https://kotlinlang.org/docs/classes.html">مطالعه در وبسایت رسمی کاتلین</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <div class="scroll-top-container">
+    <a class="text-decoration-none link-dark material-icons" href="#">
+      arrow_drop_up
+    </a>
+  </div>
+
+  <footer></footer>
+
+<div class="dialog hide"></div>
+
+  <div class="copy-message">
+    <span class="copy-message-text">کپی شد!</span>
+  </div>
+</body>
+
+</html>

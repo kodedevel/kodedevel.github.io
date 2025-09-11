@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+
+<html lang="fa">
+
+<head>
+
+    <meta content="IE=7" http-equiv="X-UA-Compatible">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+
+    <meta content="دیتا کلاس ها هایی برای نگهداری و استفاده از داده ها در زمان اجرای برنامه در زبان کاتلین به وجود اومدن هدف از ایجاد این کلاس ها به صورت نیتیو در زبان کاتلین کاهش کد ها ، افزایش سرعت کد نویسی و بهینه سازی برنامه است..."
+          name="description">
+
+    <meta content="text/html;charset=UTF-8" http-equiv="Content-Type">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>دیتا کلاس ها در کاتلین</title>
+
+    <meta content="دیتا کلاس ها در کاتلین" name="og:title">
+    <meta content="دیتا کلاس ها هایی برای نگهداری و استفاده از داده ها در زمان اجرای برنامه در زبان کاتلین به وجود اومدن هدف از ایجاد این کلاس ها به صورت نیتیو در زبان کاتلین کاهش کد ها ، افزایش سرعت کد نویسی و بهینه سازی برنامه است..."
+          name="og:description">
+
+    <meta content="https://kodedevel.github.io/resources/favicon.png" property="og:image">
+    <meta content="https://kodedevel.github.io/article/kotlin/data-classes.html" property="og:url">
+
+    <meta content="article" property="og:type">
+
+    <link href="/resources/favicon.png" rel="shortcut icon" type="image/x-icon">
+
+    <link href="/resources/css/main.css" rel="stylesheet">
+    <script src="/resources/js/main.js" type="module"></script>
+
+</head>
+
+<body>
+<header></header>
+<main>
+    <div class="page-wrap">
+
+        <div class="article-head">
+            <h1>
+                دیتا کلاس ها در کاتلین
+            </h1>
+
+            <address>
+                <a class="author text-muted text-decoration-none" rel="author">یونس سلیمانی</a>
+            </address>
+
+            <figure class="figure figure-wrapper">
+                <img alt="دیتا کلاس ها در کاتلین" class="rounded figure-img" src="/resources/image/kotlin/cover_data_classes.png"/>
+            </figure>
+
+            <div class="toc">
+                <p class="p-2 mx-2 h5">دسترسی سریع</p>
+                <div class="list-group">
+
+                    <a class="list-group-item list-group-item-action" href="#sub0">توضیحات و کاربرد ها</a>
+
+                    <a class="list-group-item list-group-item-action" href="#sub1">بررسی ویژگی ها</a>
+
+                    <a class="list-group-item list-group-item-action" href="#sub2">خلاصه</a>
+
+                </div>
+            </div>
+        </div>
+
+        <article>
+
+            <div class="subsection" id="sub0">
+                <h2>توضیحات و کاربردها</h2>
+
+                <blockquote>دیتا کلاس (Data Class) ها توسط کاتلین به صورت نیتیو پشتیبانی میشن و برای ذخیره و استفاده از داده ها طی زمان اجرای برنامه مورد استفاده قرار میگیرن.</blockquote>
+
+                <p>یکی از نیاز های برنامه، ذخیره ی داده ها و استفاده از آنها طی زمان اجرای برنامه است.</p>
+
+                <p>وقتی داده ها رو از پایگاه داده میگیریم باید محلی برای ذخیره‌سازی و نگهداری اونا داشته باشیم یا برعکس وقتی بخوایم داده ای رو در پایگاه داده ‌ذخیره کنیم باید از جایی اونا رو بگیریم و به صورت تکی ‌ذخیره کنیم.</p>
+
+                <p>معمولا برای این کار برنامه نویس ها کلاس طراحی میکنن که این کلاس ها وظیفه ی نگهداری داده ها رو به عهده داره؛ کاتلین اومده این موضوع کاربردی رو به صورت نیتیو پیاده‌سازی کرده.</p>
+
+                <p>اگه بخوایم صحبت از طراحی کلاس معمولی برای ذخیره ی داده ها کنیم؛ این امر کاملا ممکنه اما کاتلین با نیتیو کردن کلاس های دیتا سعی در بهینه کردن برنامه و سریع تر شدن سرعت کد نویسی رو داشته.</p>
+
+                <p>یکی از کاربرد های مهم دیتا کلاس ها ایفا کردن نقش مدل در طراحی الگو است؛ در طراحی الگو های MVC، MVP، MVVM و ... از این کلاس ها به عنوان کلاس مدل میتونیم استفاده کنیم.</p>
+
+
+                <p>فرم کلی دیتا کلاس ها به صورت زیر است:</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Kotlin">
+data class ClassName(val t0: T0, val t1: T1, ... , val tn: Tn){
+    ...
+}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="note">
+                    <p class="note-head">توجه</p>
+                    <p>هنگامی که از نقش کلاس های داده برای ذخیره ی اطلاعات صحبت می کنیم منظور طی زمان اجرای برنامه و بر روی حافظه ی موقت یعنی RAM است و تا زمانی که برنامه در حال اجراست این کلاس ها داده ها رو در خودشون میتونن نگه دارن و بعد از بسته شدن برنامه از بین میرن.</p>
+                </div>
+
+            </div>
+
+            <div class="subsection" id="sub1">
+                <h2>بررسی ویژگی ها</h2>
+
+                <p>همینطور که گفتیم کاتلین به صورت نیتیو برای ذخیره، نگهداری و استفاده از داده ها در زمان اجرای برنامه از دیتا کلاس پشتیبانی می کنه.</p>
+
+                <p>در ادامه به بررسی ویژگی های این <a class="text-decoration-none" href="objects-and-classes.html">کلاس ها</a> می پردازیم.</p>
+
+
+                <h3>لزوم تعریف حداقل یک پراپرتی در کانستراکتور اولیه</h3>
+
+                <p>هنگام تعریف دیتا کلاس تمام پارامتر های کانستراکتور اولیه باید به صورت پراپرتی تعریف بشن و حداقل باید یک پراپرتی در <a class="text-decoration-none" href="objects-and-classes.html#sub2">کانستراکتور</a> اولیه تعریف کنیم.</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Kotlin">
+data class Contact(val name: String){
+    ...
+}
+                        </div>
+                    </div>
+                </div>
+
+                <h3>تابع equals در دیتا کلاس</h3>
+                <p>اگر تمام پراپرتی های کانستراکتور اولیه دو دیتا کلاس باهم برابر باشن دو کلاس باهم برابرند:</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Kotlin">
+fun main(){
+    val c0 = Contact("Fredrick" , 332144141)
+    var c1 = Contact("Fredrick", 332144141)
+    val c2 = Contact("Fredrick", 442321345)
+
+    println("Are c0 and c1 equals? ${c0 == c1)")
+    println("Are c0 and c2 equals? ${c2 == c0}")
+    println("What about c1 and c0? ${c1 == c0}")
+}
+
+data class Contact(val name: String, val phone: Long)
+                        </div>
+                    </div>
+                </div>
+
+                <h3>تابع hashCode</h3>
+
+                <p>تابع hashCode در دیتا کلاس ها نیز تحت تاثیر پراپرتی های تعریف شده در کانستراکتور اولیه قرار داره</p>
+
+
+                <h3>تابع toString</h3>
+
+                <p>در دیتا کلاس ها <strong>toString</strong> به طور پیشفرض به فرم <strong>ClassName(t0=value0, t1=value1,..., tn=valueN)</strong> نمایش داده میشه؛ <strong>ClassName</strong> اسم کلاس و<strong> t0-tN</strong> اسم پراپرتی های تعریف شده در کانستراکتور اولیه هستند.</p>
+
+
+                <h3>تابع copy</h3>
+                <p>با تابع کپی میتونیم یک نمونه از دیتا کلاس رو به طور کامل یا در صورت نیاز با تغییر در بعضی از پراپرتی هاش به یک متغیر جدید کپی کنیم:</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Kotlin">
+fun main(){
+
+    val c0 = Contact("Fredrick" , 332144141)
+    val c1 = c0.copy()
+    var c2 = c0.copy(name = "Joe", phone = 13214521)
+
+    println(c0)
+    println(c1)
+    println(c2)
+
+}
+
+data class Contact(val name: String, val phone: Long){
+
+    //پراپرتی تعریف شده در بدنه ی کلاس
+    val id = (1..INT.MAX_VALUE).random()
+}
+                        </div>
+                    </div>
+                </div>
+
+                <p> پراپرتی های تعریف شده در <strong>بدنه ی</strong> کلاس تاثیری در ویژگی یا عملکرد توابع بالا ندارن.</p>
+
+
+                <div class="note">
+                    <p class="note-head">توجه</p>
+                    <p>دیتا کلاس ها نمیتونن با <strong>abstract</strong> ، <strong>open</strong> ، <strong>sealed</strong> یا <strong>inner</strong> تعریف بشن!</p>
+                </div>
+
+
+
+            </div>
+
+            <div class="subsection" id="sub2">
+                <h2>خلاصه</h2>
+                <p>دیتا کلاس ها توسط کاتلین برای کوتاه تر، سریع تر و بهینه تر کردن کد های برنامه معرفی شدن.</p>
+                <p>هنگام تعریف دیتا کلاس ها حداقل باید یک پراپرتی در کانستراکتور اولیه تعریف کنیم.</p>
+                <p>توابع toString ، hashCode و copy در دیتا کلاس ها تحت تاثیر مستقیم پراپرتی های تعریف شده در کانستراکتور اولیه ی کلاس هستند.</p>
+                <p>با استفاده از تابع copy در دیتا کلاس ها میتونیم یک نمونه ی جدید از کلاسمون ایجاد کنیم و در صورت نیاز مقادیر بعضی از پراپرتی های تعریف شده در کانستراکتور اولیه رو تغییر بدیم.</p>
+            </div>
+        </article>
+
+        <div class="article-foot">
+
+            <div class="navigator-container">
+
+                <a class="md-bt md-bt-light" href="#">
+            <span class="material-icons">
+              navigate_next
+            </span>
+                    <span class="hint">
+              بعدی
+            </span>
+                </a>
+
+                <a class="md-bt md-bt-light" href="/article/kotlin/sealed-classes.html">
+            <span class="hint">
+              قبلی
+            </span>
+                    <span class="material-icons">
+              navigate_before
+            </span>
+                </a>
+            </div>
+
+            <div class="relative-articles-container">
+                <p>مطالب مرتبط</p>
+                <div>
+                    <div>
+                        <a href="/article/kotlin/objects-and-classes.html">آبجکت و کلاس ها</a>
+                    </div>
+
+                    <div>
+                        <a href="/article/kotlin/inheritance.html">وراثت یا ارث بری</a>
+                    </div>
+
+                    <div>
+                        <a href="/article/kotlin/functions.html">توابع در کاتلین</a>
+                    </div>
+
+                    <div>
+                        <a href="https://kotlinlang.org/docs/data-classes.html">مطالعه در وبسایت رسمی</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+<div class="scroll-top-container">
+    <a class="text-decoration-none link-dark material-icons" href="#">
+        arrow_drop_up
+    </a>
+</div>
+
+<footer></footer>
+
+<div class="dialog hide"></div>
+
+<div class="copy-message">
+    <span class="copy-message-text">کپی شد!</span>
+</div>
+
+</body>

@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta content="ie=edge" http-equiv="x-ua-compatible"/>
+    <meta content=" عبارت لاندا ، توابع بی نام، برنامه نویسی تابعی، عبارت لامبدا، کاتلین، اندروید، تابع anonymous، توابع تحت لفظی، تابع بی نام" name="keywords"/>
+    <meta content="عبارات لامبدا و توابع بی نام در کاتلین دو موضوع از برنامه نویسی تابعی هستند. این دو کاربرد های متعددی دارن و در فریمورک های مختلف از جمله اندروید استفاده های زیادی دارن. در ادامه به بررسی این دو تابع می پردازیم." name="description"/>
+    <meta charset="UTF-8"/>
+    <meta content="width:device-width, initial-scale=1" name="viewport"/>
+
+    <title>عبارات لامبدا و توابع بی نام در کاتلین</title>
+
+    <meta property="og:title" content="توابع بی نام و عبارت لامبدا در کاتلین"/>
+    <meta property="og:description" content="عبارات لامبدا و توابع بی نام در کاتلین دو موضوع از برنامه نویسی تابعی هستند. این دو کاربرد های متعددی دارن و در فریمورک های مختلف از جمله اندروید استفاده های زیادی دارن. در ادامه به بررسی این دو تابع می پردازیم."/>
+    <meta property="og:image" content="https://kodedevel.github.io/resources/favicon.png" />
+    <meta property="og:url" content="https://kodedevel.github.io/article/kotlin/anonymous-function-and-lambda.html" />
+    <meta property="og:type" content="article">
+
+    <link href="/resources/css/main.css" rel="stylesheet">
+    <link href="/resources/favicon.png" rel="icon" type="image/x-icon">
+    <script type="module" src="/resources/js/main.js"></script>
+
+
+</head>
+<body>
+
+<header></header>
+
+<main>
+
+    <div class="page-wrap">
+        <div class="article-head">
+            <h1>
+                عبارات لامبدا و توابع بی نام در کاتلین
+            </h1>
+
+            <address>
+                <a class="author text-muted text-decoration-none" rel="author">یونس سلیمانی</a>
+            </address>
+
+            <figure class="figure figure-wrapper">
+                <img alt="عبارت لامبدا"
+                     class="rounded figure-img"
+                     src="/resources/image/kotlin/cover_lambda.png">
+            </figure>
+
+            <div class="toc">
+                <p class="p-2 mx-2 h5">دسترسی سریع</p>
+
+                <div class="list-group">
+
+                    <a class="list-group-item list-group-item-action" href="#sub0">توضیحات</a>
+
+                    <a class="list-group-item list-group-item-action" href="#sub1">بررسی یه ویژگی از کاتلین</a>
+                    
+                        <a class="list-group-item list-group-item-action" href="#sub2">عبارت لامبدا در کاتلین</a>
+                        <a class="list-group-item list-group-item-action" href="#sub3">تابع بی نام  در کاتلین</a>
+
+                        <a class="list-group-item list-group-item-action" href="#sub4">توابع تحت لفظی با receiver</a>
+                        <a class="list-group-item list-group-item-action" href="#sub5">خلاصه</a>
+                </div>
+            </div>
+
+        </div>
+        <article>
+
+          <div class="subsection" id="sub0">
+                <h2>توضیحات</h2>
+            <p>عبارات لامبدا و توابع بی نام در کاتلین دو موضوع از برنامه نویسی تابعی هستند. این دو کاربرد های متعددی دارن و در فریمورک های مختلف از جمله اندروید استفاده های زیادی دارن.</p>
+
+            <p>به عبارت لامبدا و تابع بی نام، توابع تحت لفظی (Function Literals) گفته میشه.</p>
+
+            <p>توابع تحت لفظی رو مثل توابع معمولی تعریف نمیکنیم بلکه مانند یک متغیر تعریفشون میکنیم و هنگام صدا زدن مانند تابع معمولی صداشون میزنیم.</p>
+
+            <p>عبارات لامبدا و توابع بی نام هر دو از یک جنس هستند و تنها در مدل پیاده سازی باهم فرق دارن. مثلا اگه بخوایم برای عبارت لامبدا یک متغیر تعریف کنیم میتونیم بجای عبارت لامبدا تابع بی نامو بهش اختصاص بدیم و برعکس.</p>
+
+            <p> یکی از تفاوت هایی که تابع بی نام با عبارت لامبدا داره در استفاده از return است، در تابع بی نام به صورت آشکار میشه از return استفاده کرد در حالی که در عبارت لامبدا به صورت آشکار <strong>نمیشه</strong> استفاده کرد مگه با تعریف برچسب برای عبارت.</p>
+
+            <p>در ادامه به بررسی این دو تابع میپردازیم.</p>
+          </div>
+
+            <div id="sub1" class="subsection">
+                <h2>بررسی یه ویژگی از کاتلین</h2>
+
+                <blockquote>
+                    در کاتلین همه چیز دارای مقدار است؛ تقریبا هر متغیر و تابعی که وجود داره، حتی void که مفدارش Unit است.
+                </blockquote>
+                <p>
+                    فرض کنید تو جاوا تابعی رو صدا میزنیم اگه مقداریو برگردونه میتونیم به متغیر اختصاص بدیم:
+                </p>
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Kotlin">
+private String myMethod(){
+    return "This is a result type of String"
+}
+
+//correct
+String result = myMethod();
+                        </div>
+                    </div>
+                </div>
+
+                <p>
+                    اگه مقداریو بر نگردونه چیزی رو نمیتونیم به متغیر اختصاص بدیم و دچار خطای کامپایل میشیم:
+                </p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Kotlin">
+private void myMethod(){
+    ...
+}
+
+//compile error
+String result = myMethod()
+                        </div>
+                    </div>
+                </div>
+
+                <p> در کاتلین void هم یک مقدار داره از نوع Unit :</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Kotlin">
+private fun myMethod(){
+...
+}
+
+//correct
+val result = myMethod()
+                        </div>
+                    </div>
+                </div>
+                <p>
+               دونستن این موضوع شاید به درک بهتر عبارت لامبدا (Lambda Expression) و توابع بی نام (Anonymous Function) کمک کنه.
+               </p>
+
+            </div>
+
+            <div id="sub2" class="subsection">
+                <p class="title">
+                    عبارت لامبدا در کاتلین
+                </p> 
+
+                <p>
+                    برای تعریف متغیر هایی از جنس لامبدا مانند متغیر های معمولی عمل میکنیم:
+                </p>
+
+                <figure class="figure figure-wrapper">
+                    <img alt="حالت کلی عبارت لاندا"
+                         class="figure figure-img"
+                         src="/resources/image/kotlin/lambda_expression.png"/>
+                </figure>
+
+                <p>
+                    اسم متغیر: اسم دلخواهیه که برای متغیر در نظر میگیریم.
+                </p>
+
+                <p>
+                    نوع متغیر: همان نوع لانداییه که میخوایم تعریف کنیم در داخل () پارامتر هایی که میخوایم عبارت داشته باشه
+                    رو تعریف میکنیم و Type همان نوعیست که عبارت بر میگردونه.
+                </p>
+
+                <p>
+                    مقدار لامبدا: همان مقدار متغیر است و با {...} متغیرو مقداردهی میکنیم.
+                </p>
+
+                <p>
+                اگه بخوایم عبارت پارامتر داشته باشه به صورت زیر براش پارامتر تعریف میکنیم:
+                </p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Kotlin">
+val myLambda: (T0, T1 , ... , Tn) -&gt; Type = {
+    t0, t1, ... tn -&gt;
+    ...
+    type
+}
+                        </div>
+                    </div>
+                </div>
+
+                <p>
+                در بالا T0, T1, ..., Tn پارامتر هاییست که میخوایم عبارت داشته باشه.
+                </p>
+
+                <p>
+                t0, t1, ..., tn اسامی دلخواهیه که به پارامتر ها اختصاص میدیم و داخل {} از پارامتر ها استفاده میکنیم.
+                </p>
+
+                <p>
+                type متغیری از جنس Type است که برگردونده میشه.
+                </p>
+
+                <p>
+                    سپس عبارتو مانند تابع معمولی به صورت زیر صدا میزنیم:
+                </p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Kotlin">
+val t0 = T0()
+val t1 = T1()
+...
+val tn = Tn()
+val type = myLambda(t0, t1, ..., tn)
+                        </div>
+                    </div>
+                </div>
+
+                <p>
+                        مثال:
+                </p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Kotlin">
+val myLambda: () -&gt; String = {
+    "Hello From Lambda"
+}
+                        </div>
+                    </div>
+                </div>
+
+
+                <p>
+                    در مثال بالا عبارت لاندا بدون پارامتر است و مقدار "Hello From Lambda" رو پس از اجرا برمیگردونه.
+                </p>
+
+                <p>
+                    صدا زدن عبارت به صورت تابع:
+                </p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Kotlin">
+val result: String = myLambda()
+                        </div>
+                    </div>
+                </div>
+
+                <p>
+                        مثال:
+                </p>
+
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Kotlin">
+val myLambda: (String) -&gt; String = {
+    it -&gt; "Hello $it, From Lambda!"
+}
+                        </div>
+                    </div>
+                </div>
+
+
+                <p>
+                      در مثال بالا عبارت لاندا دارای یک پارامتر از جنس String است
+                </p>
+
+                <p>
+                    صدا زدن عبارت به صورت تابع:
+                </p>
+
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Kotlin">
+val name = "Joe"
+val result: String = myLambda(name)
+println(result)
+                        </div>
+                    </div>
+                </div>
+
+                <p>
+                        مثال:
+                </p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Kotlin">
+val myLambda: (String , Int) -&gt; String = {
+    name , age -&gt;
+    "My name is $name, I'm $age years old, this is a message from lambda expmression"
+}
+                        </div>
+                    </div>
+                </div>
+
+                <p>
+                        در مثال بالا عبارت لاندا دارای دو پارامتر است یکی برای اسم و دیگری برای سن.
+                </p>
+
+                <div class="note">
+                    <p class="note-head">توجه:</p>
+                  <p>
+                        name و age اسم های دلخواه برای پارامتر های تعریف شده هستند
+                  </p>
+                </div>
+
+                <p>
+                    صدا زدن عبارت به صورت تابع:
+                </p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Kotlin">
+val name = "Joe"
+val age = 24
+val result: String = myLambda(name, age)
+println(result)
+                        </div>
+                    </div>
+                </div>
+
+                <p class="piece">
+                    برچسب زدن به عبارت لامبدا:
+                </p>
+
+                <p>
+                استفاده از کلیدواژه ی return داخل لامبدا ممنوعه مگه در مواردی که لامبدا خطی (inline) باشه یا برای مقدار لامبدا برچسب تعریف کرده باشیم.
+                </p>
+
+                <p>
+                    میتونیم به مقداری که برای عبارت تعریف میکنیم برچسب بزنیم تا هنگام بازگرداندن نتیجه به صورت آشکارمشخص کنیم میخواهیم نتیجه رو از داخل مقدار عبارت برگردونیم:
+                </p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Kotlin">
+val myLambda: () -&gt; String = mylambda@{
+    return@mylambda "Hello From Lambda"
+}
+                        </div>
+                    </div>
+                </div>
+
+
+                <p>
+                در بالا برچسب 
+                <strong>&#x200E;myLambda@{...}</strong>
+                رو برای عبارت تعریف کردیم. و از return با برچسبی که تعریف کردیم میتونیم استفاده کنیم.
+                </p>
+            </div>
+
+            <div id="sub3" class="subsection">
+                <p class="title">
+                    تابع بی نام در کاتلین
+                </p>
+
+                <p>
+                همینطور که از اسمش مشخصه این توابع اسم ندارن.
+                نحوه ی بیان کردنشون مانند توابع معمولیه.
+                فرقشون با توابع معمولی تو نداشتن اسمه.
+                این توابع رو میتونیم به یک متغیر اختصاص بدیم و برای صدا زدنشون مانند تابع معمولی عمل میکنیم.
+                </p>
+
+                <p>به این توابع ، تابع anonymous ننیز گفته میشه.</p>
+
+                <p>
+                        مثال:
+                </p>
+
+                <p>
+                    تعریف تابع:
+                </p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Kotlin">
+val myAnonymous: () -&gt; Unit = fun(){
+  println("Hello From Anonymous")
+}
+                        </div>
+                    </div>
+                </div>
+
+                <p>
+                    صدا زدن تابع:
+                </p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Kotlin">
+myAnonymous()
+                        </div>
+                    </div>
+                </div>
+
+                <p>
+                        مثال:
+                </p>
+
+                <p>
+                    تعریف تابع:
+                </p>
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Kotlin">
+val myAnonymous: (String) -&gt; String = fun(name: String): String{
+
+    return "Hello $name from Anonymous"
+}
+                        </div>
+                    </div>
+                </div>
+
+                <p>صدا زدن تابع:</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Kotlin">
+val name = "Joe"
+val message = myAnonymous(name)
+println(message)
+                        </div>
+                    </div>
+                </div>
+
+                <p>
+                        مثال:
+                </p>
+
+                <p>
+                    تعریف تابع:
+                </p>
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Kotlin">
+val myAnonymous: (String, Int) -&gt; String = fun(name: String, age: Int): String {
+
+   return "Hello my name is $name, I'm $age years old this is a message from anonymous"
+
+}
+                        </div>
+                    </div>
+                </div>
+
+                <p>صدا زدن تابع:</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Kotlin">
+val name = "Joe"
+val age = 24
+val message = myAnonymous(name , age)
+println(message)
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="subsection" id="sub4">
+                <h2>توابع تحت لفظی با receiver</h2>
+              <p>میتونیم عبارت لامبدا رو با یک کلاس receiver بنویسیم. سپس به اعضای کلاس در داخل تابع دسترسی داریم. این کار شبیه تعریف <a href="/article/kotlin/extension-function.html" class="text-decoration-none">اکستنشن ها</a> در کاتلین است.
+              </p>
+
+              <p>مثال:</p>
+
+              <p>در زیر یک تابع تعریف کردیم که بررسی میکنه یک رقم در داخل استرینگ وجود داره یا خیر.</p>
+
+              <div class="sample">
+                  <div class="snippet-container">
+                      <div class="snippet Kotlin">
+val containsDigit: String.(Int) -&gt; Boolean = {
+  digit -&gt;
+
+  val d = digit.toString()
+
+
+  var containsDigit = false
+
+  if(d.length == 1){
+
+    for(ch in this){
+      if(ch.toString() == d){ 
+        containsDigit = true
+        break
+      }
+    }
+  }
+
+  containsDigit
+}
+  
+
+//صدا زدن تابع
+
+fun main(){
+  var s = "A binary number 01001 equals 9 in decimal"
+  
+  println("s contains 9? ${s.containsDigit(9)}")
+
+  println("s contains 5? ${s.containsDigit(5)}")
+
+  println("s contains 0? ${s.containsDigit(0)}")
+
+  println("s contains 1? ${s.containsDigit(1)}")
+}
+                      </div>
+                  </div>
+              </div>
+
+              <p>مثال:</p>
+              <p>در مثال زیر یک عبارت بدون پارامتر تعریف میکنیم که بررسی میکنه طول یک String زوج است یا خیر.</p>
+
+              <div class="sample">
+                  <div class="snippet-container">
+                      <div class="snippet Kotlin">
+val isLengthEven: String.() -&gt; Boolean {
+  (length % 2) == 0
+}
+
+fun main(){
+  val s = "Lambda Expression"
+  val even = s.isLengthEven()
+  println("Is $s length even? $even")
+}
+                      </div>
+                  </div>
+              </div>
+
+      <p>تابع بی نام هم مانند عبارت لامبدا میتونه کلاس receiver داشته باشه.</p>
+
+      <p>مثال:</p>
+
+      <div class="sample">
+          <div class="snippet-container">
+              <div class="snippet Kotlin">
+val divide = fun Int.(other: Int): Int{
+  return this / other
+}
+
+fun main(){
+  val a = 8
+  val b = 2
+
+  val result = a.divide(b)
+
+  println("$a divided by $b equals $result")
+              </div>
+          </div>
+      </div>
+              
+            </div>
+
+            <div class="subsection" id="sub5">
+                <h2>خلاصه</h2>
+
+              <p>- دو عبارت بی نام و تابع لامبدا جزو توابع تحت لفظی هستند</p>
+
+              <p>- توابع تحت لفظی رو مانند یک متغیر تعریف میکنیم و مثل تابع معمولی صدا میزنیم</p>
+              
+              <p>میتونیم مثل اکستنشن ها توابع تحت لفظی رو با رسیور تعریف کنیم</p>
+
+            </div>
+
+                <p>
+                یکی از ویژگی هایی که کاتلینو با جاوا متمایز کرده قدرت functionality کاتلینه.
+                در این مقاله با توابع anonymous و عبارت لاندا در کاتلین اشنا شدیم.
+                </p>
+
+                <p>
+                امیدوارم براتون مفید واقع شده باشه.🌸🌸🌸
+                </p>
+
+        </article>
+        <div class="article-foot">
+
+          <div class="navigator-container">
+
+            <a href="/article/kotlin/higher-order-functions.html" class="md-bt md-bt-light">
+
+              <span class="material-icons">
+                navigate_next
+              </span>
+              <span class="hint">
+                بعدی
+              </span>
+            </a>
+
+            <a href="/article/kotlin/extension-function.html" class="md-bt md-bt-light">
+              <span class="hint">
+                قبلی
+              </span>
+              <span class="material-icons">
+                navigate_before
+              </span>
+
+            </a>
+          </div>
+            <div class="relative-articles-container">
+              <p>مطالب مرتبط</p>
+              <div>
+                <div>
+                  <a href="/article/kotlin/functions.html">بررسی توابع در کاتلین</a>
+                </div>
+                <div>
+                  <a href="/article/kotlin/extension-function.html">توابع اکستنشن در کاتلین</a>
+                </div>
+                <div>
+                  <a href="/article/kotlin/higher-order-functions.html">توابع مرتبه ی بالا در کاتلین</a>
+                </div>
+                <div>
+                  <a href="https://kotlinlang.org/docs/lambdas.html">سایت رسمی کاتلین برای مطالعه موضوع</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+    </div>
+</main>
+
+<div class="scroll-top-container">
+    <a class="text-decoration-none link-dark material-icons" href="#">
+        arrow_drop_up
+    </a>
+</div>
+
+<footer></footer>
+
+<div class="dialog hide"></div>
+
+<div class="copy-message">
+    <span class="copy-message-text">کپی شد!</span>
+</div>
+
+
+</body>
+</html>

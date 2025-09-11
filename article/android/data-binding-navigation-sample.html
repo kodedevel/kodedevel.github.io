@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta content="ie=edge" http-equiv="x-ua-compatible"/>
+    <meta content="دیتا بایندینگ در اندروید, نویگیشن در اندروید, اندروید, برنامه نویسی اندروید" name="keywords"/>
+    <meta content="در این مطلب به طور عملی در یک پروژه ی اندروید دیتا بایندینگ و نویگیشن رو فعال و ازشون استفاده میکنیم." name="description"/>
+    <meta charset="UTF-8"/>
+    <meta content="width:device-width, initial-scale=1" name="viewport"/>
+    <title>استفاده از Data Binding و Navigation در یک پروژه ی اندرویدی</title>
+
+    <meta content="استفاده از Data Binding و Navigation در یک پروژه ی اندرویدی." property="og:title"/>
+    <meta content="در این مطلب به طور عملی در یک پروژه ی اندروید دیتا بایندینگ و نویگیشن رو فعال و ازشون استفاده میکنیم."
+          property="og:description"/>
+    <meta content="https://kodedevel.github.io/resources/favicon.png" property="og:image"/>
+    <meta content="https://kodedevel.github.io/article/android/data-binding-navigation-sample.html" property="og:url"/>
+    <meta content="article" property="og:type">
+
+    <link href="/resources/css/main.css" rel="stylesheet">
+    <link href="/resources/favicon.png" rel="icon" type="image/x-icon">
+    <script src="/resources/js/main.js" type="module"></script>
+
+
+</head>
+
+
+<body>
+
+<header></header>
+
+<main>
+    <div class="page-wrap">
+        <div class="article-head">
+            <h1>استفاده از Data Binding و Navigation در یک پروژه ی اندرویدی</h1>
+            <address>
+                <a class="author text-muted text-decoration-none" rel="author">یونس سلیمانی</a>
+            </address>
+
+            <figure class="figure figure-wrapper">
+                <img alt="پروژه ی عملی استفاده از دیتا بایندینگ و نویگیشن در اندروید"
+                     class="rounded figure-img"
+                     src="/resources/image/android/cover_sample_navigation_data_binding.png"/>
+
+            </figure>
+
+            <div class="toc">
+                <p class="p-2 mx-2 h5">دسترسی سریع</p>
+                <div class="list-group">
+                    <a class="list-group-item list-group-item-action" href="#sub0">درباره ی پروژه</a>
+                    <a class="list-group-item list-group-item-action" href="#sub1">ایجاد فایل های پروژه و ویرایش
+                        آنها</a>
+                </div>
+            </div>
+
+        </div>
+        <article>
+            <div class="subsection" id="sub0">
+                <h2>درباره ی پروژه</h2>
+                <p>در این قسمت میخوایم از databinding و navigation به صورت عملی در یک پروژه استفاده کنیم.</p>
+
+                <p>این پروژه دارای دو Fragment و یک Activity است نقطه ی شروع LoginFragment است کاربر با وارد کردن نام
+                    کاربری و رمز عبور از LoginFragment به ProfileFragment منتقل میشه در ProfileFragment نام کاربری و
+                    آیدی تصادفی ساخته شده برای خودشو میبینه و همچنین میتونه از صفحه ی ProfileFragment خارج بشه و دوباره
+                    Login کنه.</p>
+
+                <figure class="figure figure-wrapper">
+                    <img class="figure-img" src="/resources/image/android/data_binding_navigation_sample.png" alt="نمونه برنامه ی استفاده از data-binding و navigation در اندروید"/>
+                </figure>
+
+                <div class="note">
+                    <p class="note-head">توجه:</p>
+                    <p> برای فعالسازی و اضافه کردن DataBinding و Navigation در پروژه به لینک های زیر
+                        برید.
+                    </p>
+                </div>
+
+                <span><a href="data-binding.html">Data Binding</a></span>
+                <span><a href="navigation.html">Navigation</a></span>
+
+                <p>خب دیگه شروع کنیم!</p>
+
+                <p>ابتدا در اندروید استادیو یه پروژه ایجاد کنید به اسم LoginDemo اسم پکیج پروژه رو
+                    com.skybirdbits.logindemo بزارید </p>
+            </div>
+
+            <p>قبل از هر کاری فایل strings را به صورت زیر ویرایش کنید</p>
+
+            <p>RootProject -&gt; app -&gt; main -&gt; res -&gt; values </p>
+
+
+            <p><strong>strings.xml</strong></p>
+
+            <div class="sample">
+                <div class="snippet-container">
+                    <div class="snippet XML">
+&lt;resources&gt;
+    &lt;string name="app_name"&gt;Login Demo&lt;/string&gt;
+    &lt;string name="login_label_description"&gt;Please login to your profile&lt;/string&gt;
+    &lt;string name="welcome"&gt;Welcome&lt;/string&gt;
+    &lt;string name="logout"&gt;Logout&lt;/string&gt;
+    &lt;string name="id"&gt;Id:&lt;/string&gt;
+    &lt;string name="user"&gt;User:&lt;/string&gt;
+    &lt;string name="login"&gt;Login&lt;/string&gt;
+&lt;/resources&gt;
+                    </div>
+                </div>
+            </div>
+
+            <div class="subsection" id="sub1">
+                <h2>ایجاد فایل های پروژه و ویرایش آنها</h2>
+
+                <p>در پروژه فایل های زیر را ایجاد و ویرایش میکنیم</p>
+
+                <p><strong>Activity:</strong></p>
+
+                <p>MainActivity.kt</p>
+
+                <p>activity_main.xml</p>
+
+                <div class="note">
+                    <p class="note-head">توجه:</p>
+                    <p>هنگام ایجاد پروژه اگه گزینه ی EmptyActivity رو بزنید فایل های Activity به صورت خودکارساخته میشن پس از این قسمت عبور میکنیم.</p>
+                </div>
+
+                <p><strong>Fragments:</strong></p>
+
+                <p>LoginFragment.kt</p>
+
+                <p>fragment_login.xml</p>
+
+
+                <p>ProfileFragment.kt</p>
+
+                <p>fragment_profile.xml</p>
+
+
+                <p><strong>NavGraph:</strong></p>
+
+                <p>main_navgraph.xml</p>
+
+                <h3>۱- ایجاد ویو های فرگمنت :</h3>
+
+                <p> در مسیر زیر فایل های xml مورد نظر رو ایجاد کنید:</p>
+
+                <p>RootProject -&gt; app -&gt; main -&gt; res -&gt; layout</p>
+
+                <p><strong>fragment_login.xml</strong></p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet XML">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+
+&lt;layout xmlns:android="http://schemas.android.com/apk/res/android"&gt;
+
+    &lt;LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"&gt;
+
+        &lt;TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:layout_margin="16dp"
+        android:text="@string/login_label_description"
+        android:gravity="center"
+        /&gt;
+
+        &lt;EditText
+        android:id="@+id/username_input"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:inputType="textAutoComplete"
+        android:layout_margin="8dp"
+        /&gt;
+
+        &lt;EditText
+        android:id="@+id/password_input"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:layout_margin="8dp"
+        app:hintEnabled="true"
+        app:helperText="Input" /&gt;
+
+        &lt;Button
+        android:id="@+id/login_button"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="@string/login"
+        /&gt;
+
+    &lt;/LinearLayout&gt;
+
+&lt;/layout&gt;
+                        </div>
+                    </div>
+                </div>
+
+
+                <p><strong>fragment_profile.xml</strong></p>
+
+
+                <div class="smaple">
+                    <div class="snippet-container">
+                        <div class="snippet XML">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+
+&lt;layout&gt;
+
+    &lt;data&gt;
+        &lt;variable
+            name="username"
+            type="String" /&gt;
+
+        &lt;variable
+            name="userId"
+            type="String" /&gt;
+    &lt;/data&gt;
+
+    &lt;androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"&gt;
+
+
+    &lt;TextView
+        android:id="@+id/welcome_text_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/welcome"
+        android:textSize="32sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" /&gt;
+
+
+    &lt;TextView
+        android:id="@+id/id_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:padding="8dp"
+        android:text="@string/id"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/welcome_text_label" /&gt;
+
+
+    &lt;TextView
+        android:id="@+id/textview_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:padding="8dp"
+        android:text="@{userId}"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@id/id_label"
+        app:layout_constraintTop_toBottomOf="@id/welcome_text_label"
+        tools:text="text" /&gt;
+
+
+    &lt;TextView
+        android:id="@+id/username_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:padding="8dp"
+        android:text="@string/user"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/id_label" /&gt;
+
+    &lt;TextView
+        android:id="@+id/textview_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="monospace"
+        android:padding="8dp"
+        android:text="@{username}"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@id/username_label"
+        app:layout_constraintTop_toBottomOf="@id/id_label"
+        tools:text="Rawhide95" /&gt;
+
+
+    &lt;com.google.android.material.button.MaterialButton
+        android:id="@+id/logout_button"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/logout"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textview_id" /&gt;
+
+    &lt;/androidx.constraintlayout.widget.ConstraintLayout&gt;
+
+
+&lt;/layout&gt;
+                        </div>
+                    </div>
+                </div>
+
+                <p>توضیح:</p>
+
+                <p>در این دو فایل از عنصر layout به عنوان روت فایل ها استفاده کردیم که بیانگر استفاده از databinding است
+                    سپس با استفاده از عنصر data داده های مورد نظر که باید view ها بهشون وصل بشن رو تعریف کردیم </p>
+
+                <p> در fragment_profile ویو های مورد نظر رو به داده های تعریف شده متصل کردیم </p>
+
+                <p>@{username} </p>
+
+                <p>@{userId}</p>
+
+                <h3>۲-ایجاد کلاس های فرگمنت</h3>
+
+                <p> در مسیر زیر دو کلاس زیر رو ایجاد کنید:</p>
+
+                <p>RootProject -&gt; app -&gt; main -&gt; java -&gt; com.skybirdbits.logindemo </p>
+
+
+                <p><strong>LoginFragment.kt</strong></p>
+
+                <div class="smaple">
+                    <div class="snippet-container">
+                        <div class="snippet Kotlin">
+package com.skybirdbits.logindemo
+
+import androidx.fragment.app.Fragment
+
+
+class LoginFragment: Fragment() {
+}
+                        </div>
+                    </div>
+                </div>
+
+                <p><strong>ProfileFragment.kt</strong></p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Kotlin">
+package com.skybirdbits.logindemo
+
+import androidx.fragment.app.Fragment
+
+class ProfileFragment: Fragment() {
+}
+                        </div>
+                    </div>
+                </div>
+
+                <h3>۳- ایجاد فایل NavGraph :</h3>
+
+                <p>در مسیر زیر فایل navgraph رو ایجاد کنید و کد هاشو به صورت زیر تغییر بدید:</p>
+
+                <p>RootProject -&gt; app -&gt; main -&gt; res -&gt; navigation</p>
+
+
+                <p><strong>main_nav_graph.xml</strong></p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet XML">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav_graph"
+    app:startDestination="@id/loginFragment"&gt;
+
+    &lt;fragment
+        android:id="@+id/loginFragment"
+        android:name="com.skybirdbits.logindemo.LoginFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_login"&gt;
+        &lt;action
+            android:id="@+id/from_loginFragment_to_profileFragment"
+            app:destination="@id/profileFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true"&gt;
+
+            &lt;argument
+                android:name="usrname"
+                app:argType="string"
+                app:nullable="false" /&gt;
+
+            &lt;argument
+                android:name="id"
+                app:argType="string"
+                app:nullable="false"/&gt;
+
+        &lt;/action&gt;
+    &lt;/fragment&gt;
+
+    &lt;fragment
+        android:id="@+id/profileFragment"
+        android:name="com.skybirdbits.logindemo.ProfileFragment"
+        android:label="ProfileFragment"
+        tools:layout="@layout/fragment_profile" &gt;
+
+        &lt;action
+            android:id="@+id/from_profileFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/profileFragment"
+            app:popUpToInclusive="true" /&gt;
+
+    &lt;/fragment&gt;
+
+&lt;/navigation&gt;
+                        </div>
+                    </div>
+                </div>
+
+
+                <p>توضیح:</p>
+
+                <p>در فایل بالا برای هرکدوم از فرگمنت ها یک عنصر fragment تعریف کردیم</p>
+
+                <p>با استفاده از عنصر action مسیر های بین این دو فرگمنت رو تعریف کردیم</p>
+
+                <p>عناصر argument به عنوان فرزند عنصر action در loginFragment حامل مقادیری هستند که میخوایم هنگام رفتن
+                    کاربر از LoginFragment به ProfileFragment منتقل بشه</p>
+
+
+                <p>
+                    <strong>توضیح مختصر از فیلد popUpTo در عنصر اکشن:</strong>
+                </p>
+
+                <p>فرض کنید به صورت زیر سه تا فرگمنت داریم و کاربر بینشون جا به جا شده</p>
+
+                <p><strong>A -> B -> C</strong></p>
+
+                <p>میخوایم بعد از رفتن کاربر از B به C با زدن دکمه ی back بدون برگشتن به B به A برگرده به عبارتی
+                    فرگمنت B رو در Stack حذف کنیم در این صورت برای عنصر action مورد نظر که مسیر B به C رو تعریف کرده Id
+                    فرگمنت A رو به عنوان popUpTo تعریف میکنیم</p>
+
+
+                <h3>۴-تعریف عنصر FragmentContainerView به عنوان NavHost در activity_main</h3>
+
+                <p>فایل activity_main رو به صورت زیر ویرایش کنید:</p>
+
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet XML">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;merge  xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity"&gt;
+
+        &lt;androidx.fragment.app.FragmentContainerView
+            android:id="@+id/nav_host_fragment_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            app:navGraph="@navigation/main_nav_graph"
+            app:defaultNavHost="true" /&gt;
+
+&lt;/merge&gt;
+                        </div>
+                    </div>
+                </div>
+
+                <p>توضیح:</p>
+
+
+                <p>-از FragmentContainerView به عنوان navhost استفاده کردیم</p>
+
+
+                <p>- در فیلد name اسم کلاس NavHostFragment رو وارد کردیم تا FragmentContainerView به عنوان
+                    NavHostFragment شناخته بشه</p>
+
+
+                <p>-در فیلد navGraph فایل main_nav_graph رو به عنوان NavGraph مورد استفاده قرار دادیم</p>
+
+
+                <p>-در فیلد defaultNavhost چ با قرار دادن true گفتیم که عنصر FragmentContainerView به عنوان NavHost
+                    پیشفرض در نظر گرفته بشه</p>
+
+
+                <h3>۵- وصل کردن view ها به کلاس های فرگمنت و استفاده از NavController برای جابه جایی کاربر بین دو فرگمنت:</h3>
+
+
+                <p>کلاس LoginFragment رو به صورت زیر ویرایش کنید:</p>
+
+
+                <p><strong>LoginFragment.kt</strong></p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Kotlin">
+package com.skybirdbits.logindemo
+
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
+import com.skybirdbits.logindemo.databinding.FragmentLoginBinding
+import kotlin.random.Random
+
+class LoginFragment: Fragment() {
+
+    override fun onCreateView(
+    inflater: LayoutInflater,
+    container: ViewGroup?,
+    savedInstanceState: Bundle?
+    ): View {
+
+    val binding = FragmentLoginBinding.inflate(inflater, container , false)
+
+    val usernameInput = binding.usernameInput
+    val passwordInput = binding.passwordInput
+
+
+    binding.loginButton.setOnClickListener {
+        val username = usernameInput.text.toString()
+        val password = passwordInput.text.toString()
+        val id = Random(1000)
+
+        if(password.isNotBlank() && username.isNotBlank()) {
+            Snackbar.make(binding.root, "Welcome $username" , Snackbar.LENGTH_SHORT).show()
+            val action =
+            LoginFragmentDirections.fromLoginFragmentToProfileFragment(username, id.nextLong().toString())
+            findNavController().navigate(action)
+            }else {
+            Toast.makeText(context , "Username and password should not be empty!", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+
+    return binding.root
+    }
+}
+                        </div>
+                    </div>
+                </div>
+
+
+                <p>توضیح:</p>
+
+
+                <p>-با توجه به عنصر layout که در فایل fragment_login تعریف کرده بودیم کلاس FragmentLoginBinding به صورت
+                    خودکار ایجاد شده با استفاده از این کلاس فایل fragment_login رو inflate کردیم سپس view ها رو به صورت
+                    مستقیم صدا زدیم</p>
+
+
+                <p> -دو متغیر usernameInput و passwordInput همون ویو های داخل fragment_login هستن در واقع از روی id
+                    انها٬ به صورت خودکار ساخته شده اند و مستقیم به خود view ها اشاره دارن</p>
+
+
+                <p> -با کلاس Random یک متغیر تصادفی از جنس Long ایجاد کردیم که به عنوان آی دی کاربر در نظر گرفته میشه
+                    سپس با شرط بررسی کردیم اگه usernameInput و passwordInput خالی نبودن</p>
+
+
+                <p> -با Snackbar پیغام ورود موفقیت امیز به کاربر بده و کاربر رو به ProfileFragment منتقل کنه </p>
+
+                <p> -متد fromLoginFragmentToProfileFragment رو به متد navigate پاس دادیم تا کاربر به ProfileFragment
+                    منتقل بشه؛ این متد بر اساس id عنصر اکشن در loginFragment ایجاد شده</p>
+
+
+                <p>کلاس ProfileFragment رو به صورت زیر ویرایش کنید:</p>
+
+                <p><strong>ProfileFragment.kt</strong></p>
+
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Kotlin">
+package com.skybirdbits.logindemo
+
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
+import com.skybirdbits.logindemo.databinding.FragmentProfileBinding
+
+class ProfileFragment: Fragment() {
+
+    override fun onCreateView(
+    inflater: LayoutInflater,
+    container: ViewGroup?,
+    savedInstanceState: Bundle?
+    ): View {
+
+        val binding = FragmentProfileBinding.inflate(inflater, container, false)
+
+        val username = requireArguments().getString("usrname")
+        val id = requireArguments().getString("id")
+
+        binding.username = username
+        binding.userId = id
+
+        binding.logoutButton.setOnClickListener {
+            val action = ProfileFragmentDirections.fromProfileFragmentToLoginFragment()
+            findNavController().navigate(action)
+            Snackbar.make(binding.root,"You've been logged out", Snackbar.LENGTH_SHORT).show()
+        }
+
+        return binding.root
+    }
+}
+                        </div>
+                    </div>
+                </div>
+
+
+                <p>توضیح:</p>
+
+
+                <p>-با توجه به عنصر layout که در فایل fragment_profile تعریف کرده بودیم کلاس FragmentProfileBinding به
+                    صورت خودکار ایجاد شده با استفاده از این کلاس فایل fragment_profile رو inflate کردیم</p>
+
+
+                <p>-در کلاس بالا همونطور که مشخصه با استفاده از متد requireArguments داده های حمل شده توسط عناصر
+                    argument در فایل NavGraph رو در ProfileFragment تحویل گرفتیم.</p>
+
+
+                <p>-با استفاده از binding.username و binding.id متغیر های username و id تعریف شده در عنصر data در xml
+                    مورد نظر رو مقدارهی کردیم.</p>
+
+
+                <p>-متد fromProfileFragmentToLoginFragment رو داخل navigate پاس دادیم تا به وسیلش کاربر از
+                    ProfileFragment به LoginFragment منتقل بشه این متد بر اساس id عنصر action مربوط به profileFragmnet
+                    به صورت خودکار ساخته شده.</p>
+
+
+                <p>-با Snackbar پیغام خروج کاربر رو نمایش دادیم.</p>
+
+            </div>
+
+            <p>اینم آخر این داستان سه بخشی ما!</p>
+
+            <p>دلم میخواد یه جوری با کد نویسی پولدار بشید که بیل گیتس پیشتون لنگ بندازه!</p>
+
+            <p>🌸البته قبلش خوش بخت باشید🌸</p>
+
+        </article>
+
+
+       <div class="article-foot">
+          <div class="navigator-container">
+
+          </div>
+            <div class="relative-articles-container">
+              <p>مطالب مرتبط</p>
+
+              <div>
+
+                <div>
+                  <a href="/article/kotlin/selectors.html">شروع کاتلین</a>
+                </div>
+
+                <div>
+                  <a href="/article/android/activity-lifecycle.html">چرخه ی حیات یک اکتیویتی در اندروید</a>
+                </div>
+                <div>
+                  <a href="/article/android/data-binding.html">دیتا بایندینگ در اندروید</a>
+                </div>
+
+                <div>
+                  <a href="/article/android/navigation.html">استفاده از نویگیشن در اندروید</a>
+                </div>
+
+              </div>
+            </div>
+          </div>
+    </div>
+
+</main>
+
+<div class="scroll-top-container">
+    <a class="text-decoration-none link-dark material-icons" href="#">
+        arrow_drop_up
+    </a>
+</div>
+
+<footer></footer>
+
+<div class="dialog hide"></div>
+
+<div class="copy-message">
+    <span class="copy-message-text">کپی شد!</span>
+</div>
+
+</body>
+</html>
+

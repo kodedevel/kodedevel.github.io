@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta content="ie=edge" http-equiv="x-ua-compatible"/>
+
+    <meta content="حلقه ها برای تکرار یک عمل در زبان برنامه نویسی مورد استفاده قرار می گیرند در این مطلب به بررسی حلقه ی while ، foreach ، for و do-while در زبان برنامه نویسی جاوا به همراه مثال می پردازیم."
+          name="description"/>
+    <meta charset="UTF-8"/>
+    <meta content="width:device-width, initial-scale=1" name="viewport"/>
+    <title>حلقه (Loop) ها در جاوا</title>
+
+    <meta content="حلقه (Loop) ها در جاوا" property="og:title"/>
+    <meta content="حلقه ها برای تکرار یک عمل در زبان برنامه نویسی مورد استفاده قرار می گیرند در این مطلب به بررسی حلقه ی while ، foreach ، for و do-while در زبان برنامه نویسی جاوا به همراه مثال می پردازیم."
+          property="og:description"/>
+    <meta content="https://kodedevel.github.io/resources/favicon.png" property="og:image"/>
+    <meta content="https://kodedevel.github.io/article/java/loops.html" property="og:url"/>
+    <meta content="article" property="og:type">
+
+    <link href="/resources/css/main.css" rel="stylesheet">
+    <link href="/resources/favicon.png" rel="icon" type="image/x-icon">
+    <script src="/resources/js/main.js" type="module"></script>
+
+
+</head>
+
+<body>
+
+<header></header>
+
+<main>
+
+    <div class="page-wrap">
+        <div class="article-head">
+            <h1>حلقه (Loop) ها در جاوا</h1>
+            <address>
+                <a class="author text-muted text-decoration-none" rel="author">یونس سلیمانی</a>
+            </address>
+
+            <figure class="figure figure-wrapper">
+                <img alt="حلقه ها در جاوا"
+                     class="rounded figure-img" src="/resources/image/java/cover_loops.png"/>
+            </figure>
+
+
+            <div class="toc">
+                <p class="p-2 mx-2 h5">دسترسی سریع</p>
+                <div class="list-group">
+                    <a class="list-group-item list-group-item-action" href="#sub0">تعریف حلقه</a>
+                    <a class="list-group-item list-group-item-action" href="#sub1">حلقه ی for</a>
+                    <a class="list-group-item list-group-item-action" href="#sub2">کلید واژه ی break و continue</a>
+                    <a class="list-group-item list-group-item-action" href="#sub3">حلقه ی while</a>
+                    <a class="list-group-item list-group-item-action" href="#sub4">حلقه ی do-while</a>
+                    <a class="list-group-item list-group-item-action" href="#sub5">خلاصه</a>
+                </div>
+            </div>
+        </div>
+
+        <article>
+
+
+            <div class="subsection" id="sub0">
+                <h2>تعریف</h2>
+                <blockquote>برای تکرار یک عمل از حلقه استفاده میکنیم.</blockquote>
+
+                <p>یک حلقه تا زمانی که شرط برقرار باشه به تکرار ادامه میده و تعریف یک شرط برای حلقه اجباریه.</p>
+
+                <p>در جاوا سه حلقه ی for ، while , do-while داریم که هرکدوم کاربرد های خودشونو در برنامه نویسی دارن.</p>
+            </div>
+
+
+
+            <div class="subsection" id="sub1">
+                <h2>حلقه ی for</h2>
+
+                <p>حلقه ی for در جاوا دارای چهار بخشه:</p>
+
+
+                <figure class="figure figure-wrapper">
+                    <img alt="ساختار حلقه ی for در جاوا" class="rounded figure-img"
+                         src="/resources/image/java/java_for_loop_structure.png">
+                </figure>
+
+                <p>۱- تعریف یک یا چند متغیر و اختصاص دادن مقدار به هر متغیر در صورت لزوم. این عمل یکبار هنگام شروع حلقه،
+                    انجام میشه (اختیاری)</p>
+                <p>۲- بررسی شرط (condition) پس از هر بار تکرار حلقه (الزامی)</p>
+                <p>۳- بیان یک یا چند عبارت که با هر بار تکرار حلقه اجرا میشن (اختیاری)</p>
+                <p>۴- بدنه ی حلقه و اجرای کد های داخل آن</p>
+
+
+                <p>مثال:</p>
+                <p>مثال زیر اعداد یک تا صد رو نمایش میده</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+for(int i=1; i&lt;= 100; i++){
+    System.out.print(i + " ");
+}
+                        </div>
+                    </div>
+                </div>
+
+                <p> مثال:</p>
+                <p>مثال زیر مجموع اعداد صفر تا صد رو نمایش میده.</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+int sum = 0;
+for (int i=1; i&lt;= 100; i++){
+    sum += i;
+}
+
+                    System.out.println("Sum of 0 to 100 is " + sum);
+                        </div>
+                    </div>
+                </div>
+
+                <p> مثال:</p>
+                <p>مثال زیر یک عدد رو از کاربر میگیره و فاکتوریل آن را حساب کرده و نمایش میده.</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+Scanner input = new Scanner(System.in);
+
+System.out.print("Enter a number to compute factorial: ");
+
+int fact = input.nextInt();
+
+System.out.print(fact + "! is ");
+
+int result = 1;
+
+for (int i = fact; i &gt; 0; i--) {
+
+    if (i &gt; 1)
+        System.out.print(i + " * ");
+    else
+        System.out.print(i + " = ");
+
+    result *= i;
+
+}
+
+System.out.println(result);
+                        </div>
+                    </div>
+                </div>
+
+                <h3>حلقه ی foreach</h3>
+
+                <p> از جاوا 8 به بعد نوع خاصی از for به وجود اومد که foreach loop یا enhanced loop نام گرفت از این حلقه
+                    برای خواندن مقادیر داخل آرایه، List، Map، و هر کلاسی که از Iterator ارث بری میکنه در جاوا استفاده
+                    میشه.</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+String names = {"Joe", "Billy", "James", "Maya"};
+
+for(String n : names){
+    System.out.println("Name: " + n);
+}
+                        </div>
+                    </div>
+                </div>
+
+
+                <p>در مثال بالا حلقه پس از هربار تکرار یک مقدار از ارایه رو میگیره و در متغیر n ذخیره میکنه و از n داخل
+                    بدنه ی حلقه در دسترسه.</p>
+
+            </div>
+
+            <div class="subsection" id="sub2">
+                <h2>کلید واژه ی break و continue</h2>
+                <p>این کلید واژه ها داخل بدنه ی حلقه مورد استفاده قرار میگیرن</p>
+
+                <h3>۱- کلید واژه ی break:</h3>
+                <p> برای شکستن حلقه و جلو گیری از ادامه ی تکرار استفاده میشه</p>
+
+                <h3>۲-کلید واژه ی continue:</h3>
+                <p>برای جلو گیری از اجرای بقیه کد ها در داخل حلقه استفاده میشه</p>
+
+            </div>
+
+            <div class="subsection" id="sub3">
+                <h2>حلقه ی while</h2>
+
+                <p>حلقه ی while در جاوا داری دو بخشه:</p>
+
+                <figure class="figure figure-wrapper">
+                    <img alt="ساختار حلقه ی while " class="rounded figure-img"
+                         src="/resources/image/generic/while_loop_structure.png">
+                </figure>
+
+                <p>۱- بررسی شرط (condition) برای تکرار حلقه</p>
+                <p>۲- بدنه ی حلقه و اجرای کد های داخل آن پس از برقرار بودن شرط در هر تکرار</p>
+
+
+                <p> مثال:</p>
+
+                <p>در مثال زیر برنامه یک عدد بین 0 تا 10 به صورت تصادفی ایجاد میکنه و کاربر باید عدد رو حدس بزنه.
+           در این مثال از کلید واژه ی break استفاده شده.</p>
+
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+Scanner input = new Scanner(System.in);
+
+int num = (int)(Math.random() * 10);
+
+int answer = -1;
+
+
+System.out.println("Guess the number generated by random:");
+
+while (answer != num){
+
+    answer = input.nextInt();
+
+    if (answer == num)
+        break;
+    else if (answer&gt; num)
+        System.out.println("Your answer " + answer + " is too high guess again");
+    else
+        System.out.println("Your answer " + answer + " is too low guess again");
+}
+
+System.out.println("Congratulations! you guessed correct");
+                        </div>
+                    </div>
+                </div>
+
+                <p>
+                در داخل حلقه به بررسی جواب میپردازیم اگر جواب برابر با عدد ساخته شده بود تکرار رو متوقف میکنه و از حلقه خارج میشه.
+                اگه جواب بزرگتر از عدد ساخته شده بود پیغام بزرگ بودن مقدار پاسخ نمایش میده و کاربر دوباره باید پاسخ بده.
+                اگه جواب کوچیکتر بود پیغام کوچیکتر بودن مقدار پاسخ میده و کاربر باید دوباره پاسخ بده.
+                </p>
+
+            </div>
+
+            <div class="subsection" id="sub4">
+                <h2>حلقه ی do-while</h2>
+                <p>این حلقه مثل while است با این تفاوت که ابتدا کد های داخل بدنه ی حلقه اجرا میشن بعد حلقه شرط رو بررسی
+                    میکنه</p>
+
+
+                <p> مثال:</p>
+                <p>در برنامه ی زیر کاربر عدد رو وارد میکنه و پس وارد کردن همه ی اعداد دلخواه با صفر از حلقه خارج شده و
+                    برنامه مجموع اعداد وارد شده رو نمایش میده</p>
+
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+int data;
+int sum = 0;
+
+Scanner input = new Scanner(System.in);
+
+do {
+
+    System.out.print("Enter a data (the input ends with 0): ");
+    data = input.nextInt();
+    sum += data;
+
+}while (data != 0);
+
+System.out.println("The sum is " + sum);
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="subsection" id="sub5">
+                <h2>خلاصه</h2>
+                <p>-در جاوا سه نوع کلی حلقه داریم for ، while و do-while</p>
+                <p>-وجود شرط برای هر سه حلقه ضروریه</p>
+                <p>-کلید واژه های break و continue برای شکستن حلقه و صرف نظر کردن از بقیه ی کدهای داخل حلقه</p>
+                <p>-در do-while ابتدا کد های داخل بدنه اجرا میشه بعد حلقه تکرار میشه</p>
+
+            </div>
+
+            <div class="mt-5">
+                <p>امیدوارم این مطلب بدردتون خورده باشه</p>
+                <p>خوش شانس باشید</p>
+            </div>
+        </article>
+
+
+       <div class="article-foot">
+          <div class="navigator-container">
+
+          </div>
+            <div class="relative-articles-container">
+              <p>مطالب مرتبط</p>
+
+              <div>
+
+                <div>
+                  <a href="/article/java/selectors.html">دستورات شرطی در جاوا</a>
+                </div>
+
+                <div>
+                  <a href="/article/blog/switch-statement-jdk-17.html">تغییرات سوییچ تا JDK 17</a>
+                </div>
+
+                <div>
+                  <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/for.html">مطالعه در وبسایت رسمی جاوا</a>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+</main>
+
+<div class="scroll-top-container">
+    <a class="text-decoration-none link-dark material-icons" href="#">
+        arrow_drop_up
+    </a>
+</div>
+
+<footer></footer>
+
+<div class="dialog hide"></div>
+
+<div class="copy-message">
+    <span class="copy-message-text">کپی شد!</span>
+</div>
+
+</body>
+</html>

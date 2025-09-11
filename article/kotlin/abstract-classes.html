@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+
+<html lang="fa">
+
+<head>
+
+  <meta http-equiv="X-UA-Compatible" content="IE=7">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <meta name="description" content="به کلاس، تابع و پراپرتی های معمولی concrete میگیم اما نوعی از کلاس در کاتلین وجود داره که بهش abstract میگیم و میتونیم داخلش علاوه بر توابع و پراپرتی های concrete، توابع و پراپرتی های abstract نیز تعریف کنیم.">
+
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>کلاس های ابسترکت (abstract) در کاتلین</title>
+
+  <meta name="og:title" content="">
+  <meta name="og:description" content="به کلاس، تابع و پراپرتی های معمولی concrete میگیم اما نوعی از کلاس در کاتلین وجود داره که بهش abstract میگیم و میتونیم داخلش علاوه بر توابع و پراپرتی های concrete، توابع و پراپرتی های abstract نیز تعریف کنیم.">
+
+  <meta property="og:image" content="https://kodedevel.github.io/resources/favicon.png">
+  <meta property="og:url" content="https://kodedevel.github.io/article/kotlin/">
+
+  <meta property="og:type" content="article">
+
+  <link rel="shortcut icon" href="/resources/favicon.png" type="image/x-icon">
+
+  <link rel="stylesheet" href="/resources/css/main.css">
+
+  <script type="module" src="/resources/js/main.js"></script>
+
+</head>
+
+<body>
+  <header></header>
+  <main>
+    <div class="page-wrap">
+
+      <div class="article-head">
+        <h1>
+          کلاس های ابسترکت (abstract) در کاتلین
+        </h1>
+
+        <address>
+          <a class="author text-muted text-decoration-none" rel="author">یونس سلیمانی</a>
+        </address>
+
+        <figure class="figure figure-wrapper">
+          <img alt="کلاس های abstract در کاتلین" class="rounded figure-img" src="/resources/image/kotlin/cover_abstract_classes.png" />
+        </figure>
+
+        <div class="toc">
+          <p class="p-2 mx-2 h5">دسترسی سریع</p>
+          <div class="list-group">
+
+            <a class="list-group-item list-group-item-action" href="#sub0">توضیحات و ساختار</a>
+
+            <a class="list-group-item list-group-item-action" href="#sub1">مورد مطالعه</a>
+
+            <a class="list-group-item list-group-item-action" href="#sub2">خلاصه</a>
+          </div>
+        </div>
+      </div>
+
+      <article>
+        <div class="subsection" id="sub0">
+
+                <h2>توضیحات و ویژگی ها</h2>
+
+          <p>
+به کلاس، تابع و پراپرتی های معمولی concrete میگیم اما نوعی از کلاس در کاتلین وجود داره که بهش abstract میگیم و میتونیم داخلش علاوه بر توابع و پراپرتی های concrete، توابع و پراپرتی های abstract نیز تعریف کنیم.
+          </p>
+
+          <p>میتونیم یک تابع (متد) رو abstract تعریف کنیم و هنگام ارث بری و بازنویسی تابعو کامل پیاده‌سازی کنیم برای این کار تابع باید در کلاس <strong>abstract</strong> یا در <strong>interface</strong> تعریف بشه و هنگام ارث بری بازنویسی بشه، در این مطلب کلاس های ابسترکت رو بررسی میکنیم و در مطلب بعدی به اینترفیس ها می پردازیم.</p>
+
+          <p>برای تعریف کلاس ابسترکت از کلیدواژه ی abstract قبل از کلیدواژه ی class استفاده میکنیم و برای تعریف پراپرتی و توابع ابسترکت هم مثل کلاس ابسترکت ابتدا کلیدواژه ی abstract رو مینویسیم.</p>
+
+          <p>با اینکه میتونیم در کلاس ابسترکت، کانستراکتور تعریف کنیم اما نمیتونیم مستقیم از این کلاس ها نمونه (شی) سازی کنیم و باید از ساب کلاسی که concrete است نمونه سازی کنیم.</p>
+
+          <p>فرم کلی کلاس های ابسترکت:</p>
+
+          <div class="sample">
+              <div class="snippet-container">
+                  <div class="snippet Kotlin">
+abstract class MyAbstractClass{
+  //abstract property
+  abstract val t0: T
+
+  //concrete property
+  val t1: T = ...
+
+  ...
+
+  //abstract function
+  abstract fun myAbstractFunction(t: T)
+
+  //concrete function
+  fun myFunction(t: T){
+
+    //Do Something Here...
+
+  }
+  ...
+}
+                  </div>
+              </div>
+          </div>
+
+          <p>همینطور که در بالا مشخصه در کلاس های ابسترکت، علاوه بر توابع و متغیر های concrete توابع و متغیر های abstract نیز میتونیم تعریف کنیم.</p>
+
+          <p>اگه ساب کلاس concrete بود توابع و پراپرتی های abstract تعریف شده در سوپر کلاس باید به صورت concrete (کامل) در subclass بازنویسی بشن</p>
+
+                    <p class="note-head">مثال</p>
+
+          <p>فرض کنید کلاس Foo سوپر کلاس و Bar ساب کلاس Foo است.</p>
+
+          <div class="sample">
+              <div class="snippet-container">
+                  <div class="snippet Kotlin">
+abstract class Foo{
+  abstract val prop0: String
+
+  abstract fun abstractSayHello()
+
+  fun concreteSayHello(){
+    println("Hello from concrete function!")
+  }
+}
+
+class Bar: Foo{
+
+  override val prop0 = "Hello from abstract property!"
+
+  override fun abstractSayHello(){
+    println("Hello from Abstract function!")
+  }
+
+}
+
+fun main(){
+
+  val bar = Bar()
+
+  println(bar.prop0)
+
+  bar.abstractSayHello()
+  bar.concreteSayHello()
+
+}
+                  </div>
+              </div>
+          </div>
+
+          <p>هنگامی که در یک کلاس abstract متغیر یا تابع abstract تعریف نکنیم معمولا به عنوان کلاس Base در نظرش میگیریم. کلاس Base پایه و سوپر کلاس تمام subclass های یک بخشی از پروژه است.</p>
+
+          <div class="sample">
+              <div class="snippet-container">
+                  <div class="snippet Kotlin">
+abstract class MyBase{
+  //without abstract properties and (or) functions
+  ...
+
+}
+                  </div>
+              </div>
+          </div>
+
+        </div>
+
+        <div class="subsection" id="sub1">
+                <h2>مورد مطالعه (مثال ها)</h2>
+
+          <p>در مطلب <a href="/article/kotlin/inheritance.html">وراثت</a> کلاس Circle و Rectangle از کلاس GeometricShape ارث بری کردن و کلاس GeometricShape از کلاس Shape.</p>
+
+          <p>نمودار رابطه ی بین این چهار کلاس نیز در زیر ترسیم شده:</p>
+
+          <figure>
+            <img src="/resources/image/generic/inheritance_example_diagram2.png" alt="رابطه ی ارث بری بین چهار کلاس" class="rounded figure-img img-fluid">
+            <figcaption class="rtl figure-caption text-end p-2">ارث بری از Shape و GeometricShape</figcaption>
+          </figure>
+
+          <p>حالا میخوایم دو کلاس Shape و GeometricShape رو به صورت abstract تعربف کنیم:</p>
+
+          <div class="sample">
+              <div class="snippet-container">
+                  <div class="snippet Kotlin">
+abstract class Shape(var color: String, var isFilled: Boolean = false){
+  
+  val dateCreated = java.util.Date()
+
+  override fun toString(): String{
+    return "Shape created at $dateCreated \ncolor is $color, \nisFilled? $isFilled"
+  }
+
+}
+
+abstract class GeometricShape(color: String, isFilled: Boolean): Shape(color, isFilled){
+
+  abstract val area: Int
+  abstract val perimeter: Int
+
+  constructor(): this("White", false)
+
+  override fun toString(): String{
+    return super.toString() + "\nArea is $area \nperimeter is $perimeter \nX is $x and Y is $y"
+  }
+
+  override fun equals(other: Any?): Boolean{
+    if(other !is GeometricShape) 
+      throw IllegalArgumentException("GeometricShape argument required")
+
+      return other.area == this.area
+  }
+}
+
+// تعریف کلاس دایره
+class Circle: GeometricShape{
+
+  var radius = 1
+
+  override val area get() = (radius * radius * PI).toInt()
+
+  override val perimeter get() = (2 * radius * PI).toInt()
+
+  constructor(radius: Int, color: String, isFilled: Boolean): super(color, isFilled){
+   this.radius = radius
+}
+
+  constructor(): super()
+
+  constructor(radius: Int): super(){
+    this.radius = radius
+  }
+ 
+  override fun toString(): String{
+    val fromGeometricShape = super.toString()
+
+    return fromGeometricShape + "\nThe shape is Circle!"
+  }  
+}
+
+// تعریف کلاس مستطیل
+class Rectangle: GeometricShape{
+
+  var width = 1
+  var height = 1
+
+  override val area get() = width * height
+
+  override val perimeter get() = (width + height) * 2
+
+  constructor(width: Int, height: Int, color: String, isFilled: Boolean): super(color, isFilled){
+   this.width = width
+   this.height = height
+}
+
+  constructor(): super()
+
+  constructor(width: Int, height: Int): super(){
+    this.width = width
+    this.height = height
+  }
+
+  fun isSquare(): Boolean = (width == height)
+ 
+  override fun toString(): String{
+    val fromGeometricShape = super.toString()
+
+    return fromGeometricShape + "\nThe shape is Rectangle!"
+  }
+  
+}
+
+fun main(){
+
+    val c = Circle(2)
+    c.stroke = "Blue"
+
+    val c1 = Circle(radius = 5, x = 1, y =  1, "Yellow", true)
+
+    val rect = Rectangle(3 , 4)
+
+    val rect1 = Rectangle(7, 7)
+
+    println("$c")
+
+    println("\n$c1")
+
+    println("\n$rect")
+
+    println("\n$rect1")
+
+    println()
+
+    println("Are c and rect equal? ${c.equals(rect)}")
+
+    println("Are c1 and c equal? ${c1.equals(c)}" )
+
+    println()
+
+    println("Is rect square? ${rect.isSquare()}")
+
+    println("Is rect1 square? ${rect1.isSquare()}")
+
+}
+                  </div>
+              </div>
+          </div>
+        </div>
+
+        <div class="subsection" id="sub2">
+
+                <h2>خلاصه</h2>
+
+          <p>به توابع و متغیر های کامل concrete میگیم.</p>
+          <p>- متغیر و پراپرتی های ابسترکت رو‌فقط داخل کلاس ابسترکت یا داهل اینترفیس مبتونیم تعریف کنیم.</p>
+
+          <p>در کلاس ابسترکت علاوه بر پراپرتی و توابع ابسترکت میتونیم پراپرتی و توابع کامل (concrete) نیز تعریف کنیم.</p>
+
+          <p>با اینکه میتونیم برای کلاس ابسترکت، کانستراکتور تعریف کنیم اما نمیتونیم از اون کلاس نمونه ایجاد کنیم.</p>
+
+          <p>معمولا کلاس ابسترکتی که پراپرتی و تابع ابسترکت نداشته باشه رو به عنوان کلاس Base تعریف میکنن.</p>
+        </div>
+
+      </article>
+
+      <div class="article-foot">
+
+        <div class="navigator-container">
+
+          <a href="#" class="md-bt md-bt-light">
+
+            <span class="material-icons">
+              navigate_next
+            </span>
+            <span class="hint">
+            </span>
+          </a>
+
+          <a href="/article/kotlin/polymorphism.html" class="md-bt md-bt-light">
+            <span class="hint">
+            </span>
+            <span class="material-icons">
+              navigate_before
+            </span>
+
+          </a>
+        </div>
+
+        <div class="relative-articles-container">
+          <p>مطالب مرتبط</p>
+          <div>
+            <div>
+              <a href="/article/kotlin/inheritance.html">وراثت</a>
+            </div>
+
+            <div>
+              <a href="/article/kotlin/objects-and-classes.html">آبجکت ها و کلاس ها</a>
+            </div>
+
+            <div>
+              <a href="/article/kotlin/polymorphism.html">چند ریختی و کست کردن</a>
+            </div>
+
+            <div>
+              <a href="https://kotlinlang.org/docs/classes.html#abstract-classes">مطالعه در وبسایت رسمی کاتلین</a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <div class="scroll-top-container">
+    <a class="text-decoration-none link-dark material-icons" href="#">
+      arrow_drop_up
+    </a>
+  </div>
+
+  <footer></footer>
+
+<div class="dialog hide"></div>
+
+  <div class="copy-message">
+    <span class="copy-message-text">کپی شد!</span>
+  </div>
+</body>
+
+</html>

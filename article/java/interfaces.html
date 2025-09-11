@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+
+<html lang="fa">
+
+<head>
+
+    <meta content="IE=7" http-equiv="X-UA-Compatible">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+
+    <meta content="اینترفیس ها شبه کلاس هایی هستند که کانستراکتور براشون نمیتونیم تعریف کنیم و ازشون نمیتونیم نمونه (آبجکت) ایجاد کنیم؛ در این مطلب به بررسی ویژگی ها و کاربرد های اینترفیس ها در جاوا پرداختیم."
+          name="description">
+
+    <meta content="text/html;charset=UTF-8" http-equiv="Content-Type">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>اینترفیس ها در جاوا</title>
+
+    <meta content="اینترفیس (interface) ها در جاوا" name="og:title">
+    <meta content="اینترفیس ها شبه کلاس هایی هستند که کانستراکتور براشون نمیتونیم تعریف کنیم و ازشون نمیتونیم نمونه (آبجکت) ایجاد کنیم؛ در این مطلب به بررسی ویژگی ها و کاربرد های اینترفیس ها در جاوا پرداختیم."
+          name="og:description">
+
+    <meta content="https://kodedevel.github.io/resources/favicon.png" property="og:image">
+    <meta content="https://kodedevel.github.io/article/java/interfaces.html" property="og:url">
+
+    <meta content="article" property="og:type">
+
+    <link href="/resources/favicon.png" rel="shortcut icon" type="image/x-icon">
+
+    <link href="/resources/css/main.css" rel="stylesheet">
+    <script src="/resources/js/main.js" type="module"></script>
+
+</head>
+
+<body>
+<header></header>
+<main>
+    <div class="page-wrap">
+
+        <div class="article-head">
+            <h1>
+                اینترفیس ها در جاوا
+            </h1>
+
+            <address>
+                <a class="author text-muted text-decoration-none" rel="author">یونس سلیمانی</a>
+            </address>
+
+            <figure class="figure figure-wrapper">
+                <img alt="اینترفیس ها در جاوا" class="rounded figure-img" src="/resources/image/java/cover_interfaces.png"/>
+            </figure>
+
+            <div class="toc">
+                <p class="p-2 mx-2 h5">دسترسی سریع</p>
+                <div class="list-group">
+
+                    <a class="list-group-item list-group-item-action" href="#sub0">بررسی اینترفیس ها</a>
+
+                    <a class="list-group-item list-group-item-action" href="#sub1">پیاده‌سازی اینترفیس ها در کلاس</a>
+
+                    <a class="list-group-item list-group-item-action" href="#sub2">بررسی Comparable</a>
+
+                    <a class="list-group-item list-group-item-action" href="#sub3">اینترفیس های تابعی</a>
+
+                    <a class="list-group-item list-group-item-action" href="#sub4">مورد مطالعه (مثال ها)</a>
+
+                    <a class="list-group-item list-group-item-action" href="#sub5">خلاصه</a>
+                </div>
+            </div>
+        </div>
+
+        <article>
+
+            <div class="subsection" id="sub0">
+                <h2>بررسی اینترفیس ها</h2>
+
+                <blockquote>اینترفیس ها شبه کلاس هستند و متدهای رایج در آبجکت ها رو داخل اینترفیس ها تعریف میکنیم.</blockquote>
+
+                <p><strong>اینترفیس (interface)</strong> ها در جاوا برای تعریف متد های رایج بین کلاس ها و یا مقادیر ثابت استاتیک مورد استفاده قرار میگیرند.</p>
+                <p>در اینترفیس ها نمیتونیم کانستراکتور تعریف کنیم و ازشون نمونه (آبجکت) ایجاد کنیم.</p>
+
+
+                <p>فرم کلی:</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+interface Foo{
+    ...
+}
+                        </div>
+                    </div>
+                </div>
+
+                <p>برای ارث بردن از اینترفیس ها از کلیدواژه <strong>extends</strong> بعد از اسم اینترفیس استفاده میکنیم.</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+interface Foo extends Bar{
+    ...
+}
+
+interface Bar{
+    ...
+}
+                        </div>
+                    </div>
+                </div>
+
+                <p>هر اینترفیس میتونه از یک یا چند اینترفیس دیگه ارث ببره.</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+interface Foo extends Bar, Baz, Qux{
+    ...
+}
+
+interface Bar{
+    ...
+}
+
+interface Baz{
+    ...
+}
+
+interface Qux{
+    ...
+}
+                        </div>
+                    </div>
+                </div>
+
+                <p>تنها فیلد هایی که میتونیم داخل یک اینترفیس تعریف کنیم فیلد های <strong>public static final</strong> است.</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+interface Foo{
+    public static final int MY_STATIC_CONSTANT = 1;
+}
+                        </div>
+                    </div>
+                </div>
+
+                <p>در اینترفیس ها متد های وابسته به آبجکت رو فقط میتونیم به صورت ابستراکت تعریف کنیم و اگه بخوایم یک متد کامل داخل اینترفیس تعریف کنیم باید <strong>متد استاتیک و با سطح دسترسی private یا public</strong> باشه. یا متد <strong>default</strong> با <strong>سطح دسترسی public</strong>.</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+interface Foo{
+
+    //متد ابستراکت
+    public void bee();
+
+    //متد کامل استاتیک
+    public static void boo(){
+        System.out.println("Hello Foo!");
+    }
+}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="note">
+                    <p class="note-head">توجه</p>
+                    <p>متد های ابستراکت در اینترفیس ها به طور پیشفرض ابستراکت و public هستند بنابراین نیاز به نوشتن کلیدواژه های abstract و public هنگام تعریف متد های ابستراکت در اینترفیس نیست.</p>
+                </div>
+
+
+                <p>از اینترفیس ها میتونیم به عنوان نوع متغیر نیز استفاده کنیم.</p>
+
+                <p>فرض کنید MyClass از MyInterface رو در خودش پیاده‌سازی کرده؛ یک متغیر از نوع MyInterface میتونه به یک آبجکت از کلاس اشاره کنه.</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+MyInterface obj = new MyClass();
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="subsection" id="sub1">
+                <h2>پیاده‌سازی اینترفیس ها در کلاس</h2>
+
+                <blockquote>یک کلاس همزمان میتونه از یک کلاس دیگه ارث ببره چند اینترفیس رو داخلش پیاده‌سازی کنه.</blockquote>
+
+
+                <p>هنگامی که یک اینترفیس رو داخل کلاس پیاده‌سازی میکنیم باید تمام متد های ابستراکت در اینترفیس رو داخل کلاس بازنویسی کنیم؛ اگه کلاس <a class="text-decoration-none" href="abstract-classes.html">ابستراکت</a> باشه نیاز نداریم متد های اینترفیس رو بازنویسی کنیم.</p>
+                <p>با استفاده از کلید واژه ی <strong>implements</strong> میتونیم یک یا چند اینترفیس رو در کلاس پیاده‌سازی کنیم.</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+public class Foo extends Bar implements Baz, Qux{
+    ...
+}
+
+class Bar{
+    ...
+}
+
+interface Baz {
+    ...
+}
+                        </div>
+                    </div>
+                </div>
+
+
+                <p>مثال</p>
+
+                <p>فرض کنید یک کلاس MusicPlayer داریم و میخوایم عملیات Play، Pause و Stop اینترفیس Player رو داخلش پیاده‌سازی کنیم.</p>
+
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+public class MusicPlayer implements Player{
+
+    @Override
+    public void Play(){
+        System.out.println("Playing...");
+    }
+
+
+    @Override
+    public void pause(){
+        System.out.println("Pausing...");
+    }
+
+    @Override
+    public void stop(){
+        System.out.println("Stopping...");
+    }
+
+    @Override
+    public void next(){
+        System.out.println("Next..");
+    }
+
+}
+
+interface Player{
+
+    void play();
+    void pause();
+    void stop();
+    void next();
+
+}
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+public static void main(String[] args){
+
+    Player player = new MusicPlayer();
+    player.play();
+
+}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="subsection" id="sub2">
+                <h2>بررسی Comparable</h2>
+
+                <blockquote>اینترفیس Comparable دارای یک متد به اسم compareTo است که دو آبجکت رو با همدیگه مقایسه میکنه.</blockquote>
+
+                <p>اینترفیس Comparable یکی از اینترفیس های تعریف شده در <strong>java.lang</strong> است؛ از Comparable برای مقایسه ی دوتا آبجکت استفاده میکنیم.</p>
+
+                <p>متد <strong>compareTo(T)</strong> بری بررسی دو نوع از جنس همدیگه مورد استفاده قرار میگیره اگه ویژگی هایی که هردو آبجکت دارن یکسان بود طبق قرارداد مقدار 0 رو بر میگردونیم؛ اگه آبجکتی که متد داخلش پیاده شده ویژگیش به لحاظ عددی بزرگتر بود مقدار 1 و اگه کوچیکتر بود مقدار -1 رو برمیگردونیم.</p>
+
+
+                <p>مثال</p>
+
+                <p>در مثال زیر میخوایم از Comparable در کلاس GeometricShape ارث بری کنیم؛ با اینکه GeometricShape ابستراکت است ولی میتونیم متد compareTo رو در خود GeometricShape پیاده‌سازی کنیم.</p>
+
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+public abstract class GeometricShape implements Comparable&lt;GeometricShape&gt;{
+
+    private final Date dateCreated = new Date();
+    private String color;
+    private boolean filled;
+
+
+    public GeometricShape(String color, boolean filled){
+        this.color = color;
+        this.filled = filled;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public Date getDateCreated() {
+        return dateCreated;
+    }
+
+    public boolean isFilled() {
+        return filled;
+    }
+
+    public void setFilled(boolean filled) {
+        this.filled = filled;
+    }
+
+    public abstract double getPerimeter();
+    public abstract double getArea();
+
+    //پیاده سازی compareTo در Comparable
+    @Override
+    public int compareTo(GeometricShape o) {
+        if (o.getArea() < this.getArea())
+            return 1;
+        else if (o.getArea() > this.getArea())
+            return -1;
+        else
+            return 0;
+    }
+
+    @Override
+    public String toString() {
+        if(this instanceof Circle)
+            return "Circle: created on " + getDateCreated().toString() + "\n" + " area: " + getArea() + " perimeter " + getPerimeter();
+        else
+            return "Rectangle: created on " + getDateCreated().toString() + "\n" + " area: " + getArea() + " perimeter: " + getPerimeter();
+        }
+}
+
+
+class Circle extends GeometricShape{
+    private double radius;
+
+    public Circle(double radius, String color, boolean filled){
+        super(color, filled);
+        this.radius = radius;
+    }
+
+    public Circle(double radius){
+        this(radius, "white", false);
+    }
+
+    public double getRadius() {
+        return radius;
+    }
+
+    public void setRadius(double radius) {
+        this.radius = radius;
+    }
+
+    public double getArea(){
+        return Math.PI * radius * radius;
+    }
+
+    public double getPerimeter(){
+        return 2 * Math.PI * radius;
+    }
+
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Circle)
+            return ((Circle) obj).radius == this.radius;
+
+        return false;
+    }
+}
+
+class Rectangle extends GeometricShape{
+    private double width;
+    private double height;
+
+
+    public Rectangle(double width , double height, String color, boolean filled){
+        super(color, filled);
+        this.width = width;
+        this.height = height;
+    }
+
+    public Rectangle(){
+        this(1.0, 1.0, "White", true);
+    }
+
+    public double getWidth() {
+        return width;
+    }
+
+    public void setWidth(double width) {
+        this.width = width;
+    }
+
+    public double getHeight() {
+        return height;
+    }
+
+    public void setHeight(double height) {
+        this.height = height;
+    }
+
+
+    @Override
+    public double getArea(){
+        return width * height;
+    }
+
+    @Override
+    public double getPerimeter(){
+        return (width + height) * 2;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Rectangle){
+        Rectangle r = (Rectangle) obj;
+        return r.width == this.width && r.height == this.height;
+        }
+
+        return false;
+    }
+}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+public static void main(String[] args){
+
+GeometricShape circle = new Circle(4, "Blue", true);
+GeometricShape rectangle = new Rectangle(5, 3, "Red", true);
+GeometricShape rectangle1 = new Rectangle(5, 3, "Black", false);
+
+System.out.println(circle.compareTo(rectangle));
+System.out.println(circle.compareTo(rectangle1));
+System.out.println(rectangle.compareTo(rectangle1));
+
+}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="subsection" id="sub3">
+                <h2>اینترفیس های تابعی</h2>
+
+                <p>اینترفیس هایی که فقط یک متد دارند و به عنوان پارامتر یک متد تعریف شده باشند رو میتونیم به صورت <strong>عبارت لامبدا</strong> پیاده سازیشون کنیم.</p>
+                <p>یکی از موارد معروف از این مورد متد setOnClickListener در کلاس View اندروید است که در مثال زیر نشون میده چطور کار میکنه.</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+public class View {
+
+    public void setOnClickListener(OnClickListener listener){
+        listener.onClick(this);
+    }
+
+    public interface OnClickListener{
+        void onClick(View view);
+    }
+}
+                        </div>
+                    </div>
+                </div>
+
+                <p>استفاده از اینترفیس به عنوان پارامتر متد.</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+public static void main(String[] args){
+    View v = new View();
+    v.setOnClickListener(v -> System.out.println("clicked!"))
+}
+                        </div>
+                    </div>
+                </div>
+
+
+                <p>چون در مثال بالا برنامه منتظر کلیک کاربر نیست با اجرای کد عبارت clicked اجرا میشه.</p>
+
+            </div>
+
+            <div class="subsection" id="sub4">
+                <h2>مورد مطالعه (مثال ها)</h2>
+
+                <p>فرض کنید میخوایم برای گوشت و میوه اینترفیسی طراحی کنیم که در میوه ها پیاده‌سازی بشه و فقط گوشت هایی که قابل خوردن هستند پیاده سازیش کنن.</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+interface Edible {
+    public abstract String howToEat();
+}
+
+abstract class Animal {
+    private double weight;
+
+    public double getWeight() {
+        return weight;
+    }
+    public void setWeight(double weight) {
+        this.weight = weight;
+    }
+
+    public abstract String sound();
+
+}
+
+class Chicken extends Animal implements Edible {
+    @Override
+    public String howToEat() {
+        return "Chicken: Fry it";
+    }
+
+    @Override
+    public String sound() {
+        return "Chicken: cock-a-doodle-doo";
+    }
+}
+
+class Tiger extends Animal {
+    @Override
+    public String sound() {
+        return "Tiger: RROOAARR";
+    }
+}
+
+abstract class Fruit implements Edible {
+//چون همه ی میوه ها خوراکی هستند یک کلاس ابستراکت به اسم میوه به عنوان کلاس بیس برای تمام کلاس های میوه طراحی کردیم.
+}
+
+class Apple extends Fruit {
+    @Override
+    public String howToEat() {
+        return "Apple: Make apple cider";
+    }
+}
+
+class Orange extends Fruit {
+    @Override
+    public String howToEat() {
+        return "Orange: Make orange juice";
+    }
+}
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Java">
+public static void main(String[] args) {
+    Object[] objects = {new Tiger(), new Chicken(), new Apple()};
+    for (int i = 0; i < objects.length; i++) {
+        if (objects[i] instanceof Edible)
+            System.out.println(((Edible)objects[i]).howToEat());
+        if (objects[i] instanceof Animal) {
+            System.out.println(((Animal)objects[i]).sound());
+        }
+    }
+}
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="subsection" id="sub5">
+                <h2>خلاصه</h2>
+                <p>- از اینترفیس ها نمیتونیم نمونه ایجاد کنیم و همینطور نمیتونیم داخل اینترفیس کانستراکتور تعریف کنیم.</p>
+                <p>- در اینترفیس ها فقط میتونیم متد های ثابت استاتیک با دسترسی public و private و همچنین متد های default با دسترسی public رو به صورت کامل تعریف کنیم.</p>
+                <p>- متد های وابسته به آبجکت در اینترفیس ها ابستراکت هستند و دسترسی public باید داشته باشند.</p>
+                <p>- در اینترفیس ها تنها فیلد های ثابت استاتیک با دسترسی public رو میتونیم تعریف کنیم.</p>
+                <p>- یک اینترفیس میتونه از چند اینترفیس همزمان ارث بری کنه.</p>
+                <p>- یک کلاس میتونه همزمان از یک کلاس دیگه ارث بری کنه و چند اینترفیس رو پیاده‌سازی کنه.</p>
+            </div>
+
+        </article>
+
+        <div class="article-foot">
+
+            <div class="navigator-container">
+
+                <a class="md-bt md-bt-light" href="final-keyword.html">
+            <span class="material-icons">
+              navigate_next
+            </span>
+                    <span class="hint">بعدی</span>
+                </a>
+
+                <a class="md-bt md-bt-light" href="abstract-classes.html">
+                    <span class="hint">قبلی</span>
+                    <span class="material-icons">
+              navigate_before
+            </span>
+
+                </a>
+            </div>
+
+            <div class="relative-articles-container">
+                <p>مطالب مرتبط</p>
+                <div>
+                    <div>
+                        <a href="abstract-classes.html">کلاس های ابستراکت در جاوا</a>
+                    </div>
+
+
+                    <div>
+                        <a href="polymorphism.html">چند ریختی در جاوا</a>
+                    </div>
+
+                    <div>
+                        <a href="inheritance.html">وراثت در جاوا</a>
+                    </div>
+
+                    <div>
+                        <a href="objects-and-classes.html">آبجکت و کلاس ها در جاوا</a>
+                    </div>
+
+                    <div>
+                        <a href="methods.html">متد ها در جاوا</a>
+                    </div>
+
+                    <div>
+                        <a href="https://docs.oracle.com/javase/tutorial/java/concepts/interface.html">مطالعه در اوراکل</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+<div class="scroll-top-container">
+    <a class="text-decoration-none link-dark material-icons" href="#">
+        arrow_drop_up
+    </a>
+</div>
+
+<footer></footer>
+
+<div class="dialog hide"></div>
+
+<div class="copy-message">
+    <span class="copy-message-text">کپی شد!</span>
+</div>
+
+</body>

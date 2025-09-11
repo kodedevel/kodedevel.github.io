@@ -1,0 +1,94 @@
+{
+  "title": "کاتلین",
+  "id": "kotlin_chapters",
+  "links": [
+    {
+      "subject": "دستورات شرطی",
+      "href": "/article/kotlin/selectors.html"
+    },
+    {
+      "subject": "حلقه (loop) ها",
+      "href": "/article/kotlin/loops.html"
+    },
+    {
+      "subject": "توابع",
+      "href": "/article/kotlin/functions.html"
+    },
+    {
+      "subject": "اکستنشن ها",
+      "href": "/article/kotlin/extension-function.html"
+    },
+    {
+      "subject": "عبارت لامبدا و توابع بی نام",
+      "href": "/article/kotlin/anonymous-function-and-lambda.html"
+    },
+    {
+      "subject": "توابع مرتبه بالا",
+      "href": "/article/kotlin/higher-order-functions.html"
+    },
+    {
+      "subject": "توابع خطی",
+      "href": "/article/kotlin/inline-functions.html"
+    },
+    {
+      "subject": "آرایه ها",
+      "href": "/article/kotlin/arrays.html"
+    },
+    {
+      "subject": "متغیر های تغییرپذیر و تغییرناپذیر",
+      "href": "/article/kotlin/variables_mutable_immutable.html"
+    },
+    {
+      "subject": "توابع و مقادیر ثابت ریاضی",
+      "href": "/article/kotlin/mathematics.html"
+    },
+    {
+      "subject": "محدوده ی تعریف متغیر و توابع",
+      "href": "/article/kotlin/variable_scope.html"
+    },
+    {
+      "subject": "کلیدواژه های سطح دسترسی",
+      "href": "/article/kotlin/access-modifiers.html"
+    },
+    {
+      "subject": "ابجکت ها و کلاس ها",
+      "href": "/article/kotlin/objects-and-classes.html"
+    },
+    {
+      "subject": "وراثت (inheritance)",
+      "href": "/article/kotlin/inheritance.html"
+    },
+    {
+      "subject": "چند ریختی و کست کردن",
+      "href": "/article/kotlin/polymorphism.html"
+    },
+    {
+      "subject": "کلاس های ابسترکت",
+      "href": "/article/kotlin/abstract-classes.html"
+    },
+    {
+      "subject": "اینترفیس ها",
+      "href": "/article/kotlin/interfaces.html"
+    },
+    {
+      "subject": "کلاس های تو در تو",
+      "href": "/article/kotlin/nested-classes.html"
+    },
+    {
+      "subject": "کلاس های enum",
+      "href": "/article/kotlin/enum-classes.html"
+    },
+    {
+      "subject": "کلاس های sealed",
+      "href": "/article/kotlin/sealed-classes.html"
+    },
+    {
+      "subject": "کلاس های دیتا",
+      "href": "/article/kotlin/data-classes.html"
+    },
+    {
+      "subject": "الگوی Delegation",
+      "href": "/article/kotlin/delegation.html"
+    }
+  ]
+}

@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+
+<html lang="fa">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="keywords" content="کاتلین، توابع، فانکشن، متد، تابع، توابع کاتلین، فانکشن کاتلین، تابع تک عبارتی، تابع infix، لوکال فانکشن، تابع جنریک، تابع void، کلیدواژه ی vararg، تابع tail recursive، تابع داخلی، تاپ لول فانکشن، ممبر فانکشن، برنامه نویسی تابعی، تابع single expression، تابع Generic، تابع Unit Type، کلیدواژه ی infix، کلیدواژه ی return، ساختار تابع" />
+
+  <meta name="description" content="در این مقاله با توابع در کاتلین آشنا میشیم و تابع تک عبارتی (single expression)، void، infix، جنریک و tail recursive رو بررسی میکنیم و در اخر توضیح میدیم توابع رو در چه محدوده (مکان) هایی میشه تعریف کرد.">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>توابع (functions) در کاتلین</title>
+
+  <meta property="og:title" content="توابع (functions) در کاتلین"/>
+
+  <meta property="og:description" content="در این مقاله با توابع در کاتلین آشنا میشیم و تابع تک عبارتی (single expression)، void، infix، جنریک و tail recursive رو بررسی میکنیم و در اخر توضیح میدیم توابع رو در چه محدوده (مکان) هایی میشه تعریف کرد." />
+
+  <meta property="og:image" content="https://kodedevel.github.io/resources/favicon.png" />
+
+  <meta property="og:url" content="https://kodedevel.github.io/article/kotlin/functions.html" />
+
+  <meta property="og:type" content="article">
+
+  <link href="/resources/css/main.css" rel="stylesheet">
+
+  <link href="/resources/favicon.png" rel="icon" type="image/x-icon">
+
+  <script type="module" src="/resources/js/main.js"></script>
+
+</head>
+
+<body>
+  <main>
+
+    <header></header>
+
+    <div class="page-wrap">
+
+      <div class="article-head">
+
+        <h1>
+          توابع (functions) در کاتلین
+        </h1>
+
+        <address>
+          <a class="author text-muted text-decoration-none" rel="author">یونس سلیمانی</a>
+        </address>
+
+        <figure class="figure figure-wrapper">
+          <img alt="توابع در کاتلین" class="rounded figure-img" src="/resources/image/kotlin/cover_functions.png">
+        </figure>
+
+        <div class="toc">
+          <p class="p-2 mx-2 h5">دسترسی سریع</p>
+          <div class="list-group">
+
+            <a class="list-group-item list-group-item-action" href="#sub0">تعریف تابع</a>
+
+            <a class="list-group-item list-group-item-action" href="#sub1">ساختار تابع</a>
+
+            <a class="list-group-item list-group-item-action" href="#sub2">ویژگی پارامترها در توابع</a>
+
+            <a class="list-group-item list-group-item-action" href="#sub3">تابع تک عبارتی</a>
+
+            <a class="list-group-item list-group-item-action" href="#sub4">تابع Void</a>
+
+            <a class="list-group-item list-group-item-action" href="#sub5">تابع Infix</a>
+
+            <a class="list-group-item list-group-item-action" href="#sub6">تابع Generic</a>
+
+            <a class="list-group-item list-group-item-action" href="#sub7">تابع Tail Recursive</a>
+
+            <a class="list-group-item list-group-item-action" href="#sub8">محدوده ی تعریف توابع</a>
+
+            <a class="list-group-item list-group-item-action" href="#sub9">خلاصه</a>
+          </div>
+        </div>
+
+      </div>
+
+      <article>
+
+        <div class="subsection" id="sub0">
+
+                <h2>تعریف تابع</h2>
+
+          <blockquote>برای جلو گیری از باز نویسی کد ها از توابع استفاده میکنیم همینطور تابع به مرتب شدن و خوانا تر شدن کد های برنامه کمک میکنه.</blockquote>
+          <p>به طور کلی تابع یه سری داده رو به عنوان ورودی میگیره و بعد از انجام محاسبات لازم نتیجه رو به صورت خروجی نمایش میده، برمیگردونه و یا داده های ورودی رو دستخوش تغییر میکنه.</p>
+
+          <p>موضوع تابع و برنامه نویسی تابعی (<a class="text-decoration-none" href="https://en.wikipedia.org/wiki/Functional_programming">Functional Programming</a>) در کاتلین به خوبی پشتیبانی میشه و کاتلین در این زمینه قوی عمل کرده.</p>
+
+          <p>به تابع ، فانکشن (function) و متد گفته می شود.</p>
+
+          <p>به علت گستردگی موضوع  توابع مرتبه بالا (higher order functions)، توابع بی نام، عبارت لامبدا ، توابع اکستنشن و توابع خطی (inline functions) رو این مطلب پوشش نمیده و باید در صفحه ی اختصاصی خودشون مطالعه کنید.</p>
+
+          <p>برای مطالعه ی موارد ذکر شده میتونید به هر کدوم در مطالب مرتبط پایین همین صفحه مراجعه کنید.</p>
+
+        </div>
+
+        <div class="subsection" id="sub1">
+
+                <h2>ساختار تابع</h2>
+
+          <p>فرم کلی:</p>
+
+          <p>فرم کلی ساختار یک تابع در تصویر زیرنمایان شده.</p>
+
+          <figure>
+            <img src="/resources/image/kotlin/function_structure.png" alt=" ساختار تابع در کاتلین" class="rounded figure-img img-fluid">
+            <figcaption class="figure-caption text-end p-2">ساختار تابع در کاتلین</figcaption>
+          </figure>
+
+          <p>۱-بیان کننده ی <a class="text-decoration-none" href="/article/kotlin/access-modifiers.html">سطح دسترسی</a> به تابع در پروژه است. سطح دسترسی میتونه private، protected، internal و public باشه. به این کلیدواژه ها کلیدواژه های سطح دسترسی یا access modifier گفته میشه.</p>
+
+          <div class="note">
+                    <p class="note-head">توجه:</p>
+            <p>
+سطح دسترسی توابع در کاتلین به صورت پیشفرض public است و نیازی به نوشتن نداره.
+            </p>
+          </div>
+
+
+          <p>۲- با استفاده از کلیدواژه ی fun به کامپایلر اعلام میکنیم عبارت یک تابع است.</p>
+
+          <p>۳- myFunction اسم تابع است و هر اسمی میتونه باشه.</p>
+
+          <p>۴- برای تابع میتونیم پارامتر هایی تعریف کنیم تا هنگام صدا زدن تابع مقادیری به داخل تابع پاس بدیم. مثلا t0: T0 رو در نظر بگیرید t0 اسم دلخواه برای پارامتر و T0 کلاسی از نوع  دلخواه برای پارامتر است سپس با یک ویرگول میتونیم پارامتر بعدی که در اینجا t1: T1 است رو برای فانکشن تعریف کنیم. به همین ترتیب هرچندتا پارامتر خواستید میتونید برای تابع تعریف کنید.</p>
+
+          <div class="note">
+
+                    <p class="note-head">توجه:</p>
+
+            <p>هنگام استفاده از پارامتر داخل فانکشن در کاتلین، پارامتر val است.</p>
+
+          </div>
+
+          <p>۵- R کلاسیه که تابع بر میگردونه و هر نوعی میتونه باشه</p>
+
+
+          <p>۶- r مقداری از جنس R است که بعد از اجرای کد های داخل تابع با استفاده از کلیدواژه ی return برگردونده میشه.</p>
+
+          <div class="note">
+
+                    <p class="note-head">توجه:</p>
+
+            <p>
+   تابع حتما باید مقداری از جنس R برگردونه در غیر این صورت دچار خطای کامپایل میشیم، مگه اینکه R از نوع Unit باشه، در اینصورت نیاری نیست چیزی برگردونده بشه.
+            </p>
+
+          </div>
+
+
+
+          <div class="note">
+
+                    <p class="note-head">توجه:</p>
+            <p>
+            علاوه بر اخرین عبارت میتونیم از return هرجای تابع که خواستیم استفاده کنیم، در اینصورت بعد از اجرای return تابع متوقف میشه و کد های بعد از return اجرا نمیشه.
+            </p>
+
+          </div>
+
+
+          <p>مثال:</p>
+
+          <div class="sample">
+              <div class="snippet-container">
+                  <div class="snippet Kotlin">
+fun squareEven(a: Int): Int{
+  if(a % 2 != 0) return -1
+
+  val square = a * a
+
+  return square
+}
+                  </div>
+              </div>
+          </div>
+
+          <p>در مثال بالا اگه عدد زوج نباشه مقدار -1 بر گردونده میشه و ادامه ی کد اجرا نمیشه.</p>
+
+          <p>صدا زدن تابع:</p>
+
+          <p>برای صدا زدن تابع کافیه اسم تابعو با پارامتر هایی که براش تعریف کردیم بنویسیم:</p>
+
+          <div class="sample">
+              <div class="snippet-container">
+                  <div class="snippet Kotlin">
+var t0: T0 = ...            
+val t1: T1 = ...
+...
+var tn: Tn = ...
+
+val returnedValue: R = myFunction(t0, t1, ..., tn)
+                  </div>
+              </div>
+          </div>
+
+<p>مثال:</p>
+
+<p>در زیر یک تابع با modifier پیشفرض public مقدار maximum بین دو عددو بر میگردونه.</p>
+
+
+          <div class="sample">
+              <div class="snippet-container">
+                  <div class="snippet Kotlin">
+fun main(){            
+  val number0 = 34
+  val number1 = 48
+
+  //صدا زدن تابع
+  val result = max(number0, number1)
+
+  println("Maximum number between $number0 and $number1 is $result")
+
+}
+
+//تعریف تابع
+fun max(a: Int, b: Int): Int {
+  return if(a &lt; b) a else b
+}
+                  </div>
+              </div>
+          </div>
+
+                <h3>تعریف overloading</h3>
+          <p>وقتی دو یا چند تابع هم نام با پارامتر های متفاوت تعریف کنیم بهش میگیم overloading</p>
+
+          <p>مثال</p>
+
+          <div class="sample">
+              <div class="snippet-container">
+                  <div class="snippet Kotlin">
+ fun max(a: Int, b: Int): Int {
+  return if(a &lt; b) a else b
+}
+
+fun max(a: Double, b: Double): Double {
+  return if(a &lt; b) a else b
+}
+
+fun max(a: Long, b: Long): Long {
+  return if(a &lt; b) a else b
+}
+                  </div>
+              </div>
+          </div>
+
+          <p>در بالا تابع max رو با تغییر دادن نوع پارامتر ها overload کردیم.</p>
+
+        </div>
+
+        <div class="subsection" id="sub2">
+
+                <h2>ویژگی پارامتر ها در توابع</h2>
+
+                <h3>۱- اختصاص دادن مقدار پیشفرض به پارامتر:</h3>
+
+          <p>هر پارامتری که برای تابع تعریف میکنید میتونید بهش مقدار پیشفرض اختصاص بدید. در اینصورت هنگام صدا زدن تابع اگه مقداری به پارامتر اختصاص نداده باشید ، کامپایلر به صورت خودکار مقدار پیشفرض رو برای پارامتر در نظر میگیره.</p>
+
+          <p>مثال:</p>
+
+          <p>تعریف تابع:</p>
+
+          <div class="sample">
+              <div class="snippet-container">
+                  <div class="snippet Kotlin">
+fun hello(name: String = "World"): String{
+  return "Hello $name"
+}
+                  </div>
+              </div>
+          </div>
+
+          <p>صدا زدن تابع:</p>
+
+          <div class="sample">
+              <div class="snippet-container">
+                  <div class="snippet Kotlin">
+fun main(){
+  val helloWorld = hello()
+ 
+  val helloKotlin = hello("Kotlin")
+  
+  println(helloWorld)
+  
+  println(helloKotlin)
+}
+                  </div>
+              </div>
+          </div>
+
+                <h3>نوشتن اسم پارامتر به صورت آشکار هنگام صدا زدن تابع:</h3>
+
+          <p>بعد از صدا زدن تابع هنگامی که بخوایم مقداری به پارامتر اختصاص بدیم، میتونیم اسم پارامتر رو به صورت آشکار بنویسیم.</p>
+
+          <p>مثال:</p>
+
+          <p>تعریف تابع:</p>
+
+          <div class="sample">
+              <div class="snippet-container">
+                  <div class="snippet Kotlin">
+fun multiply(number1: Double, number2: Double): Double{
+
+  return number1 * number2
+}
+                  </div>
+              </div>
+          </div>
+
+          <p>صدا زدن تابع:</p>
+
+          <div class="sample">
+              <div class="snippet-container">
+                  <div class="snippet Kotlin">
+val mult = multiply(number1 = 78.3, number2 = 36.0)
+println("Multiplication of 78.3 and 36 is $mult")
+                  </div>
+              </div>
+          </div>
+
+                <h3>۳- استفاده از کلیدواژه ی vararg هنگام تعریف پارامتر:</h3>
+
+          <p><strong>توابع arrayOf ، listOf ، asList و ... با این روش پیاده‌سازی شدن.</strong></p>
+
+          <p>با استفاده از کلیدواژه ی <strong>vararg</strong> برای پارامتر، هنگام صدا زدن تابع میتونید چندین مقدار به پارامتر اختصاص بدید.</p>
+
+
+          <p>هنگام استفاده از پارامتر در داخل تابع، پارامتر به صورت ارایه ای از مقادیر اختصاص داده شده در میاد.</p>
+
+          <div class="note">
+
+                    <p class="note-head">توجه:</p>
+
+            <p>
+  از این کلید واژه فقط برای یک پارامتر میتونید استفاده کنید.
+            </p>
+          </div>
+
+
+          <div class="note">
+
+                    <p class="note-head">توجه:</p>
+
+            <p>
+          معمولا از این کلیدواژه در اخرین پارامتر استفاده میکنن. اگه از این کلیدواژه در اخرین پارامتر استفاده نشه هنگام صدا زدن تابع و اختصاص دادن مقدار به پارامتر باید اسم پارامتر به صورت آشکار نوشته بشه.
+            </p>
+
+          </div>
+
+          <p>مثال:</p>
+
+          <p>حساب کردن میانگین اعداد.</p>
+
+         <p>تعریف تابع:</p>
+
+          <div class="sample">
+              <div class="snippet-container">
+                  <div class="snippet Kotlin">
+fun findAverage(vararg numbers: Double): Double{
+  
+  var sum = 0
+  for(num in numbers) sum += num
+
+  return sum / numbers.size
+}
+                  </div>
+              </div>
+          </div>
+
+          <p>صدا زدن تابع:</p>
+
+          <div class="sample">
+              <div class="snippet-container">
+                  <div class="snippet Kotlin">
+val average = findAverage(4, 7, 2, 9)
+
+println("Average is $average")
+                  </div>
+              </div>
+          </div>
+
+          <p>مثال:</p>
+
+          <p>بررسی دفعات تکرار یک کد ASCII در مجموعه ی استرینگ ها.</p>
+
+          <p>تعریف تابع:</p>
+
+          <div class="sample">
+              <div class="snippet-container">
+                  <div class="snippet Kotlin">
+fun countASCIIOccurrences(asciiCode: Int, vararg strings: String): Int{
+
+  var count = 0
+
+  for(s in strings)
+    for(ch in s)
+      if(ch.code == asciiCode) count++
+
+  return count
+}
+                  </div>
+              </div>
+          </div>
+          
+          <p>صدا زدن تابع:</p>
+
+          <div class="sample">
+              <div class="snippet-container">
+                  <div class="snippet Kotlin">
+val asciiCode = 65
+
+val asciiCodeOccurrences = countASCIIOccurrences(asciiCode, "Emily, "Adam", "Billy", "Michael")
+
+println("ASCII code $asciiCode has occurrences")
+                  </div>
+              </div>
+          </div>
+
+
+        </div>
+
+
+        <div class="subsection" id="sub3">
+
+                <h2>تابع تک عبارتی</h2>
+
+          <p>اگه داخل تابع فقط یک عبارت داشته باشیم و اون عبارتو میخوایم برگردونیم، به این تابع تک عبارتی یا تابع single expression در کاتلین میگیم.</p>
+
+
+          <p>هنگام تعریف تابع میتونیم از نوشتن بدنه ی تابع <strong>{}</strong> صرف نظر کنیم و در جلوی تابع علامت <strong>=</strong> میزاریم.</p>
+
+          <p>مثال:</p>
+
+          <div class="sample">
+              <div class="snippet-container">
+                  <div class="snippet Kotlin">
+fun multiply(number1: Double, number2: Double): Double = number1 * number2
+                  </div>
+              </div>
+          </div>
+
+          <p>میتونیم از نوشتن نوع کلاسی که تابع برمیگردونه صرف نظر کنیم کامپایلر به صورت خودکار تشخصی میده چه نوعی تابع قراره برگردونه.</p>
+
+          <p>مثال:</p>
+
+          <div class="sample">
+              <div class="snippet-container">
+                  <div class="snippet Kotlin">
+fun multiply(number1: Double, number2: Double) = number1 * number2
+                  </div>
+              </div>
+          </div>
+
+          <p>مثال:</p>
+
+          <div class="sample">
+              <div class="snippet-container">
+                  <div class="snippet Kotlin">
+fun max(a: Double, b: Double) = if(a &gt; b) a else b
+                  </div>
+              </div>
+          </div>
+
+        </div>
+
+        <div class="subsection" id="sub4">
+          
+                <h2>تابع Void</h2>
+
+          <blockquote>تابع main که برای run کردن پروژه تعریف میکنیم void است.</blockquote>
+
+          <p>اگه نوع کلاسی که تابع برمیگردونه Unit باشه تابع void محسوب میشه ، به این توابع در کاتاین تابع  Unit Type نیز گفته میشه.</p>
+
+          <p>Unit در کاتلین بدون مقدار در نظر گرفته شده ، یک کلاس بدون هیچ عضوی.</p>
+
+          <p>مثال:</p>
+
+          <div class="sample">
+              <div class="snippet-container">
+                  <div class="snippet Kotlin">
+fun hello(): Unit{
+ 
+  println("Hello World")
+
+  return Unit
+}
+                  </div>
+              </div>
+          </div>
+
+          <p>برای تعریف تابع void در کاتلین میتونیم از نوشتن Unit صرف نظر کنیم.
+          کامپایلر به صورت خودکار تشخیص میده تابع Unit است.
+          </p>
+
+          <p>در توابع void میتونیم از return برای متوقف کردن تابع و جلوگیری از اجرای بقیه ی کد ها استفاده کنیم.</p>
+
+          
+
+          <p>مثال:</p>
+
+          <div class="sample">
+              <div class="snippet-container">
+                  <div class="snippet Kotlin">
+fun hello(){
+  println("Hello World")
+}
+                  </div>
+              </div>
+          </div>
+
+          <p>مثال:</p>
+
+          <div class="sample">
+              <div class="snippet-container">
+                  <div class="snippet Kotlin">
+fun hello(name: String = "World!"){
+  println("Hello $name")
+}
+                  </div>
+              </div>
+          </div>
+
+          <p>مثال:</p>
+
+          <div class="sample">
+              <div class="snippet-container">
+                  <div class="snippet Kotlin">
+fun printSquareEven(n: Int){
+  if(n % 2 != 0){
+    println("Not Even Number")
+  }
+
+  val square = n * n
+  println("Square of number $n is $square")
+
+}
+                  </div>
+              </div>
+          </div>
+
+          <p>مثال:</p>
+
+          <div class="sample">
+              <div class="snippet-container">
+                  <div class="snippet Kotlin">
+fun printGrade(score: Double){
+  if(score &gt;= 90){
+    println('A')
+  }else if(score &gt;= 80){
+    println('B')
+  else if(score &gt;= 70){
+    println('C')
+  }else if(score &gt;= 60)
+    println('E')
+  }else {
+    println('F')
+  }
+}
+                  </div>
+              </div>
+          </div>
+
+        </div>
+
+        <div class="subsection" id="sub5">
+          
+                <h2>تابع Infix</h2>
+
+          <blockquote>توابع until، downTo و step که در حلقه ی for به کار میبریم به صورت infix تعریف شدن.</blockquote>
+
+          <p>به تابعی که با کلیدواژه ی infix تعریف میشه، تابع infix میگن.</p>
+
+          <p>برای تعریف تابع infix در کاتلین باید قوانین زیر رعایت بشه:</p>
+
+          <p>۱-تابع باید عضو  کلاس (Member Function) یا <a class="text-decoration-none" href="/article/kotlin/extension-function.html#sub1">تابع اکستنشن</a> باشه.</p>
+
+          <p>۲-تابع نباید بیشتر از یک پارامتر داشته باشه.</p>
+
+          <p>۳- در پارامتر نباید از vararg استفاده کنیم.</p>
+
+          <p>
+          ۴- به پارامتر نباید مقدار پیشفرض اختصاص بدیم.
+          </p>
+
+          <p>فرم کلی:</p>
+
+          <div class="sample">
+              <div class="snippet-container">
+                  <div class="snippet Kotlin">
+infix fun myInfixFunction(t: T): R {
+  ...
+}
+                  </div>
+              </div>
+          </div>
+
+          <p>صدا زدن تابع:</p>
+
+          <p>میتونیم به یکی از دو روش زیر تابع رو صدا بزنیم.</p>
+
+          <div class="sample">
+              <div class="snippet-container">
+                  <div class="snippet Kotlin">
+a myInfixFunction b
+
+//Or
+
+a.myInfixFunction(b)
+                  </div>
+              </div>
+          </div>
+
+          <p>متغیر a رسیور (receiver) و متغیر b مقدار اختصاصی به پارامتر است.</p>
+
+          <div class="note">
+                    <p class="note-head">توجه:</p>
+
+            <p>
+          متغیر a باید یک آبجکت از کلاسی باشه که براش تابع رو تعریف کردیم.
+            </p>
+          </div>
+          
+
+          <p>مثال:</p>
+
+          <p>در زیر یک تابع infix تعریف میکنیم تا دوتا String رو به هم زنجیر کنه: </p>
+
+          <div class="sample">
+              <div class="snippet-container">
+                  <div class="snippet Kotlin">
+infix fun String.chain(other: String): String {
+  return this.plus(other)
+}
+                  </div>
+              </div>
+          </div>
+
+          <div class="note">
+
+                    <p class="note-head">توجه: </p>
+
+            <p>
+          کلیدواژه ی this اشاره به آبجکت همون کلاسی داره که تابع رو براش تعریف کردیم.
+            </p>
+          </div>
+
+
+          <p>صدا زدن تابع</p>
+
+          <div class="sample">
+              <div class="snippet-container">
+                  <div class="snippet Kotlin">
+val s = "Hello!" 
+val chained = s chain " I have been chained to hello"
+println(chained)
+                  </div>
+              </div>
+          </div>
+
+
+          <p>مثال:</p>
+
+          <p>تابع زیر مانند until عمل میکنه با این تفاوت، بزرگترین عدد هم تو عمل تکرار به حساب میاد.</p>
+
+          <div class="sample">
+              <div class="snippet-container">
+                  <div class="snippet Kotlin">
+infix fun Int.to(to: Int): IntRange{
+
+  if(to &lt;= Int.MIN_VALUE) return IntRange.EMPTY
+
+  return this..to
+}
+                  </div>
+              </div>
+          </div>
+
+          <p>مثال:</p>
+         
+          <p>تابع زیر معادل downTo برای حلقه ی for عمل میکنه با این تفاوت کوچکترین عدد تو عمل تکرار حساب نمیشه. </p>
+
+          <div class="sample">
+              <div class="snippet-container">
+                  <div class="snippet Kotlin">
+infix fun Int.downUntil(to: Int): IntProgression{
+  
+  return IntProgression.fromClosedRange(this, (to + 1) , -1)
+
+}
+                  </div>
+              </div>
+          </div>
+
+          <p>صدا زدن تابع:</p>
+
+          <div class="sample">
+              <div class="snippet-container">
+                  <div class="snippet Kotlin">
+for(i in 100 downUntil 0) println(i)
+                  </div>
+              </div>
+          </div>
+
+
+          <div class="note">
+
+                    <p class="note-head">توجه:</p>
+
+              <p>
+              اجرای تابع infix نسبت به عمل ریاضی، rangeTo و کست کردن اولویت پایین تری داره.</p>
+
+              <p>مثلا وقتی عمل ریاضی به عنوان پارامتر برای تابع تعریف میکنیم ابتدا عمل ریاضی اتفاق میفته بعد به عنوان پارامتر به تابع پاس داده میشه.</p>
+
+              <p><strong>p until 8 + 5</strong> همون <strong>p until (8 + 5)</strong> است. ابتدا 8 با 5 جمع میشه بعد به تابع until پاس داده میشه.</p>
+
+          </div>
+
+          <div class="note">
+                    <p class="note-head">توجه:</p>
+              
+              <p>
+              اجرای تابع نسبت به عملگر های منطقی و in اولویت بالاتری داره.</p>
+
+              <p><strong>a && b xor c</strong> همون <strong>a && (b xor c)</strong> است. ابتدا تابع xor اجرا میشه بعد && بررسی میشه.</p>
+          </div>
+
+        </div>
+
+        <div class="subsection" id="sub6">
+                <h2>تابع Generic</h2>
+
+          <p>به توابعی که پارامتر های جنریک دارن تابع جنریک میگیم.</p>
+
+          <p>فرم کلی:</p>
+          
+          <div class="sample">
+              <div class="snippet-container">
+                  <div class="snippet Kotlin">
+fun &lt;E&gt; myFunction(e: E): Type&lt;E&gt;{
+    ...
+}
+                  </div>
+              </div>
+          </div>
+
+          <p>E میتونه هر کلاسی باشه کافیه هنگام صدا زدن تابع نوع کلاسو مشخص کنیم.</p>
+
+          <p>Type هم کلاسیه که تابع برمیگردونه و میدونیم که میتونه هر نوعی باشه.</p>
+
+
+          <p>مثال:</p>
+
+          <div class="sample">
+              <div class="snippet-container">
+                  <div class="snippet Kotlin">
+fun &lt;E&gt; myList(vararg e: E): MutableList&lt;E&gt;{
+
+  val list = MutableList&lt;E&gt;()
+  for(item in e) list.add(item)
+
+  return list
+}
+                  </div>
+              </div>
+          </div>
+
+          <p>صدا زدن تابع:</p>
+
+
+          <div class="sample">
+              <div class="snippet-container">
+                  <div class="snippet Kotlin">
+val myFriendList = myList&lt;String&gt;("Joe", "Rose", "Kate", "Jane")
+                  </div>
+              </div>
+          </div>
+
+        </div>
+
+
+        <div class="subsection" id="sub7">
+
+                <h2>تابع Tail Recursive</h2>
+
+          <p>با استفاده از کلیدواژه ی tailrec میتونید به صورت native تابع tail recursive در کاتلین تعریف کنید. tail recursion نوع خاصی از توابع بازگشتی است که صدا زدن تابع داخل خودش باید اخرین عبارت داخل تابع باشه.</p>
+
+          <div class="note">
+                    <p class="note-head">توجه:</p>
+
+              <p>
+              در تابع tail recursive پس از صدا کردن تابع در داخل خود تابع، هیچ کدی نباید نوشته بشه در غیر این صورت دچار خطای کامپایل میشیم.</p>
+          </div>
+
+          <p>مثال:</p>
+
+          <p>محاسبه ی فیبوناچی به روش tail recursion.</p>
+
+          <div class="sample">
+              <div class="snippet-container">
+                  <div class="snippet Kotlin">
+tailrec fun printFib(n: Int, a: Int = 0, b: Int = 1){
+  if(n == 0){
+    print("$a ")
+  }else {
+    print("$a, ")
+    printFib(n - 1, b , a + b)
+  }
+}
+                  </div>
+              </div>
+          </div>
+
+          <p>فرض کنید n = 3. برای n=3 ، a = 0 و b = 1 سپس تابع در داخل خودش صدا زده میشه و n = 2 میشه a = b و b = a + b میشه و به همین منوال این عمل تکرار میشه تا n به 0 برسه در اینجا صدا زدن تابع متوقف میشه.</p>
+
+          <p>مثال:</p>
+          <p>محاسبه ی فاکتوریل به روش tail recursion.</p>
+
+          <div class="sample">
+              <div class="snippet-container">
+                  <div class="snippet Kotlin">
+tailrec fun fact(n: Int, result: Int = 1): Int = if(n &lt;= 1) result else fact(n -1 , n * result)
+                  </div>
+              </div>
+          </div>
+
+          <p>فرض کنید میخوایم 5! حساب کنیم در اینصورت n=5 و result=5*4*3*2*1.</p>
+        </div>
+
+        <div class="subsection" id="sub8">
+
+                <h2>محدوده ی تعریف توابع</h2>
+
+          <p>یک تابع رو میتونیم:</p>
+
+          <p>
+  در فایل کاتلین تعریف کنیم، که بهش میگیم تاپ لول فانکشن (Top Level Function).
+          </p>
+
+          <p> میتونیم داخل یک کلاس تعریف کنیم که بهش میگیم ممبر فانکشن (Member Function).</p>
+
+          <p>میتونیم داخل یک تابع دیگه تعریف کنیم که بهش میگیم لوکال فانکشن (Local Function).</p>
+
+                <h3>تاپ لول فانکشن:</h3>
+
+          <div class="sample">
+              <div class="snippet-container">
+                  <div class="snippet Kotlin">
+fun myFunction(){
+  ...
+}
+                  </div>
+              </div>
+          </div>
+
+                <h3>ممبر فانکشن:</h3>
+          <div class="code-container">
+class MyClass{
+  fun myFunction(){
+    ...
+  }
+}
+          </div>
+
+                <h3>لوکال فانکشن:</h3>
+
+
+          <p>لوکال فانکشن (تابع داخلی) رو فقط داخل تابعی که تعریف کردیم میشه صدا زد.</p>
+
+          <p>تابع داخلی در کاتلین میتونه به متغیر های تابع خارجی دسترسی داشته باشه.</p>
+
+          <p>فرم کلی:</p>
+
+          <div class="sample">
+              <div class="snippet-container">
+                  <div class="snippet Kotlin">
+fun outerFunction(...): R0{
+  
+  ...
+  
+  innerFunction(...): R1{
+
+      ...
+
+  }
+  
+  ...
+  
+  innerFunction(...)
+
+  ...
+}
+                  </div>
+              </div>
+          </div>
+
+          <p>مثال:</p>
+
+          <div class="sample">
+              <div class="snippet-container">
+                  <div class="snippet Kotlin">
+fun myFunction(){
+  val a = 23
+  val b = 54
+
+  fun printNumbers(){
+    print("a is $a and b is $b)
+  }
+
+  printNumbers()
+}
+                  </div>
+              </div>
+          </div>
+
+
+          <p>مثال:</p>
+
+          <div class="sample">
+              <div class="snippet-container">
+                  <div class="snippet Kotlin">
+tailrec fun printFib(n: Int, p0: Int = 0, p1: Int = 1){
+  
+  var a: Int = p0
+  var b: Int = p1
+
+  fun printAndUpdate(){
+    if(n == 0){
+      print("$a ")
+      return
+    }
+
+    print("$a, ")
+    a = p1
+    b = p0 + p1
+    
+  }
+
+  printAndUpdate()
+
+  if(n &gt; 0){
+     printFib(n -1, a, b)
+  }
+
+}
+                  </div>
+              </div>
+          </div>
+
+          </div>
+
+        <div class="subsection" id="sub9">
+                <h2>خلاصه</h2>
+
+          <p>-از توابع برای جلوگیری از دوباره نویسی استفاده میشه. همونطور به مرتب و خوانا کردن کد ها کمک میکنه.</p>
+
+
+          <p>-در حالت نرمال توابع از 6 قسمت تشکیل شدن:
+          </p>
+
+          <p>
+۱-کلیدواژه ی سطح دسترسی ۲-کلیدواژه ی fun که مخفف فانکشن است ۳-اسم تابع ۴-پارامتر های تابع ۵-نوعی که تابع بر میگردونه ۶-کلیدواژه ی return برای برگردوندن.
+          </p>
+
+
+          <p>-هرجای تابع که خواستیم میتونیم از return استفاده کنیم. پس از اجرای return تابع متوقف شده و کد های بعد از return اجرا نمیشن.</p>
+
+          <p>به تابعی که یک عبارت داشته باشه single expression میگیم.</p>
+
+          <p>-توابع void مقداری از Unit بر میگردونن که میتونیم از نوشتنش صرف نظر کنیم</p>
+
+          <p>-توابع infix چهارتا قانون دارن که هنگام تعریف باید رعایت بشه: </p>
+          <p>
+۱-تابع باید ممبر فانکشن یا اکستنشن باشه. ۲-باید فقط یک پارامتر داشته باشه. ۳-برای پارامتر نباید vararg تعریف کنیم. ۴-به پارامتر نباید مقدار پیشفرض اختصاص بدیم.
+          </p>
+
+          <p>-کاتلین به صورت native از تابع tail recursive پشتیبانی میکنه. برای تعریف این تابع کافیه از کلیدواژه ی tailrec استفاده کنیم.</p>
+
+          <p>-در توابع tail recursive اخرین عبارت باید صدا زدن تابع داخل خودش باشه و بعدش هیچ کدی نباید نوشته بشه.</p>
+
+          <p>-میتونیم توابع رو در سه جا تعریف کنیم: ۱-داخل فایل کاتلین. ۲-داخل کلاس. ۳ داخل یک تابع دیگه.</p>
+
+        </div>
+
+        <p>بحث توابع در کاتلین بسیار گستردس پشتیبانی کاتلین از توابع قویه. در این مطلب به بخشی از توابع پرداختیم، همینطور که بالا گفتم، یه سری از تابعها رو اینجا پوشش ندادم وبراشون مطلب اختصاصی گذاشتم میتونید مطالعه کنید.</p>
+
+        <p>موفق باشید.</p>
+
+      </article>
+
+       <div class="article-foot">
+          <div class="navigator-container">
+
+            <a href="/article/kotlin/extension-function.html" class="md-bt md-bt-light">
+
+              <span class="material-icons">
+                navigate_next
+              </span>
+              <span class="hint">
+                بعدی
+              </span>
+            </a>
+
+            <a href="/article/kotlin/loops.html" class="md-bt md-bt-light">
+              <span class="hint">
+                قبلی
+              </span>
+              <span class="material-icons">
+                navigate_before
+              </span>
+
+            </a>
+          </div>
+            <div class="relative-articles-container">
+              <p>مطالب مرتبط</p>
+
+              <div>
+                <div>
+                  <a href="/article/kotlin/extension-function.html">اکستنشن ها در کاتلین</a>
+                </div>
+
+                <div>
+                  <a href="/article/kotlin/anonymous-function-and-lambda.html">توابع بی نام و عبارات لامبدا در کاتلین</a>
+                </div>
+
+                <div>
+                  <a href="/article/kotlin/higher-order-functions.html">توابع مرتبه ی بالا در کاتلین</a>
+                </div>
+
+                <div>
+                  <a href="/article/kotlin/inline-functions.html">توابع خطی در کاتلین</a>
+                </div>
+
+                <div>
+                  <a href="https://kotlinlang.org/docs/functions.html">سایت رسمی کاتلین برای مطالعه موضوع</a>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+  </main>
+
+  <div class="scroll-top-container">
+    <a class="text-decoration-none link-dark material-icons" href="#">
+      arrow_drop_up
+    </a>
+  </div>
+
+  <footer></footer>
+
+<div class="dialog hide"></div>
+
+  <div class="copy-message">
+    <span class="copy-message-text">کپی شد!</span>
+  </div>
+
+</body>
+
+</html>
