@@ -1,83 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/9.0">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://kodedevel.github.io/article/java/abstract-classes.html</loc>
-    <lastmod>2025-09-12</lastmod>
+    <lastmod>2025-09-15</lastmod>
   </url>
   <url>
     <loc>https://kodedevel.github.io/article/java/access-modifiers.html</loc>
-    <lastmod>2025-09-12</lastmod>
+    <lastmod>2025-09-15</lastmod>
   </url>
   <url>
     <loc>https://kodedevel.github.io/article/java/arrays.html</loc>
-    <lastmod>2025-09-12</lastmod>
+    <lastmod>2025-09-15</lastmod>
   </url>
   <url>
     <loc>https://kodedevel.github.io/article/java/binary-io.html</loc>
-    <lastmod>2025-09-12</lastmod>
+    <lastmod>2025-09-15</lastmod>
   </url>
   <url>
     <loc>https://kodedevel.github.io/article/java/exceptions.html</loc>
-    <lastmod>2025-09-12</lastmod>
+    <lastmod>2025-09-15</lastmod>
   </url>
   <url>
     <loc>https://kodedevel.github.io/article/java/file.html</loc>
-    <lastmod>2025-09-12</lastmod>
+    <lastmod>2025-09-15</lastmod>
   </url>
   <url>
     <loc>https://kodedevel.github.io/article/java/final-keyword.html</loc>
-    <lastmod>2025-09-12</lastmod>
+    <lastmod>2025-09-15</lastmod>
   </url>
   <url>
     <loc>https://kodedevel.github.io/article/java/inheritance.html</loc>
-    <lastmod>2025-09-12</lastmod>
+    <lastmod>2025-09-15</lastmod>
   </url>
   <url>
     <loc>https://kodedevel.github.io/article/java/interfaces.html</loc>
-    <lastmod>2025-09-12</lastmod>
+    <lastmod>2025-09-15</lastmod>
   </url>
   <url>
     <loc>https://kodedevel.github.io/article/java/introduction.html</loc>
-    <lastmod>2025-09-12</lastmod>
+    <lastmod>2025-09-15</lastmod>
   </url>
   <url>
     <loc>https://kodedevel.github.io/article/java/loops.html</loc>
-    <lastmod>2025-09-12</lastmod>
+    <lastmod>2025-09-15</lastmod>
   </url>
   <url>
     <loc>https://kodedevel.github.io/article/java/methods.html</loc>
-    <lastmod>2025-09-12</lastmod>
+    <lastmod>2025-09-15</lastmod>
   </url>
   <url>
     <loc>https://kodedevel.github.io/article/java/nested-classes.html</loc>
-    <lastmod>2025-09-12</lastmod>
+    <lastmod>2025-09-15</lastmod>
   </url>
   <url>
     <loc>https://kodedevel.github.io/article/java/objects-and-classes.html</loc>
-    <lastmod>2025-09-12</lastmod>
+    <lastmod>2025-09-15</lastmod>
   </url>
   <url>
     <loc>https://kodedevel.github.io/article/java/polymorphism.html</loc>
-    <lastmod>2025-09-12</lastmod>
+    <lastmod>2025-09-15</lastmod>
   </url>
   <url>
     <loc>https://kodedevel.github.io/article/java/printwriter.html</loc>
-    <lastmod>2025-09-12</lastmod>
+    <lastmod>2025-09-15</lastmod>
   </url>
   <url>
     <loc>https://kodedevel.github.io/article/java/scanner.html</loc>
-    <lastmod>2025-09-12</lastmod>
+    <lastmod>2025-09-15</lastmod>
   </url>
   <url>
     <loc>https://kodedevel.github.io/article/java/selectors.html</loc>
-    <lastmod>2025-09-12</lastmod>
+    <lastmod>2025-09-15</lastmod>
   </url>
   <url>
     <loc>https://kodedevel.github.io/article/java/static-keyword.html</loc>
-    <lastmod>2025-09-12</lastmod>
+    <lastmod>2025-09-15</lastmod>
   </url>
   <url>
     <loc>https://kodedevel.github.io/article/java/type-variables.html</loc>
-    <lastmod>2025-09-12</lastmod>
+    <lastmod>2025-09-15</lastmod>
   </url>
 </urlset>

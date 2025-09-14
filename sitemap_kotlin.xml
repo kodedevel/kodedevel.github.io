@@ -1,91 +1,91 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/9.0">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://kodedevel.github.io/article/kotlin/abstract-classes.html</loc>
-    <lastmod>2025-09-12</lastmod>
+    <lastmod>2025-09-15</lastmod>
   </url>
   <url>
     <loc>https://kodedevel.github.io/article/kotlin/access-modifiers.html</loc>
-    <lastmod>2025-09-12</lastmod>
+    <lastmod>2025-09-15</lastmod>
   </url>
   <url>
     <loc>https://kodedevel.github.io/article/kotlin/anonymous-function-and-lambda.html</loc>
-    <lastmod>2025-09-12</lastmod>
+    <lastmod>2025-09-15</lastmod>
   </url>
   <url>
     <loc>https://kodedevel.github.io/article/kotlin/arrays.html</loc>
-    <lastmod>2025-09-12</lastmod>
+    <lastmod>2025-09-15</lastmod>
   </url>
   <url>
     <loc>https://kodedevel.github.io/article/kotlin/data-classes.html</loc>
-    <lastmod>2025-09-12</lastmod>
+    <lastmod>2025-09-15</lastmod>
   </url>
   <url>
     <loc>https://kodedevel.github.io/article/kotlin/delegation.html</loc>
-    <lastmod>2025-09-12</lastmod>
+    <lastmod>2025-09-15</lastmod>
   </url>
   <url>
     <loc>https://kodedevel.github.io/article/kotlin/enum-classes.html</loc>
-    <lastmod>2025-09-12</lastmod>
+    <lastmod>2025-09-15</lastmod>
   </url>
   <url>
     <loc>https://kodedevel.github.io/article/kotlin/extension-function.html</loc>
-    <lastmod>2025-09-12</lastmod>
+    <lastmod>2025-09-15</lastmod>
   </url>
   <url>
     <loc>https://kodedevel.github.io/article/kotlin/functions.html</loc>
-    <lastmod>2025-09-12</lastmod>
+    <lastmod>2025-09-15</lastmod>
   </url>
   <url>
     <loc>https://kodedevel.github.io/article/kotlin/higher-order-functions.html</loc>
-    <lastmod>2025-09-12</lastmod>
+    <lastmod>2025-09-15</lastmod>
   </url>
   <url>
     <loc>https://kodedevel.github.io/article/kotlin/inheritance.html</loc>
-    <lastmod>2025-09-12</lastmod>
+    <lastmod>2025-09-15</lastmod>
   </url>
   <url>
     <loc>https://kodedevel.github.io/article/kotlin/inline-functions.html</loc>
-    <lastmod>2025-09-12</lastmod>
+    <lastmod>2025-09-15</lastmod>
   </url>
   <url>
     <loc>https://kodedevel.github.io/article/kotlin/interfaces.html</loc>
-    <lastmod>2025-09-12</lastmod>
+    <lastmod>2025-09-15</lastmod>
   </url>
   <url>
     <loc>https://kodedevel.github.io/article/kotlin/loops.html</loc>
-    <lastmod>2025-09-12</lastmod>
+    <lastmod>2025-09-15</lastmod>
   </url>
   <url>
     <loc>https://kodedevel.github.io/article/kotlin/mathematics.html</loc>
-    <lastmod>2025-09-12</lastmod>
+    <lastmod>2025-09-15</lastmod>
   </url>
   <url>
     <loc>https://kodedevel.github.io/article/kotlin/nested-classes.html</loc>
-    <lastmod>2025-09-12</lastmod>
+    <lastmod>2025-09-15</lastmod>
   </url>
   <url>
     <loc>https://kodedevel.github.io/article/kotlin/objects-and-classes.html</loc>
-    <lastmod>2025-09-12</lastmod>
+    <lastmod>2025-09-15</lastmod>
   </url>
   <url>
     <loc>https://kodedevel.github.io/article/kotlin/polymorphism.html</loc>
-    <lastmod>2025-09-12</lastmod>
+    <lastmod>2025-09-15</lastmod>
   </url>
   <url>
     <loc>https://kodedevel.github.io/article/kotlin/sealed-classes.html</loc>
-    <lastmod>2025-09-12</lastmod>
+    <lastmod>2025-09-15</lastmod>
   </url>
   <url>
     <loc>https://kodedevel.github.io/article/kotlin/selectors.html</loc>
-    <lastmod>2025-09-12</lastmod>
+    <lastmod>2025-09-15</lastmod>
   </url>
   <url>
     <loc>https://kodedevel.github.io/article/kotlin/variable_scope.html</loc>
-    <lastmod>2025-09-12</lastmod>
+    <lastmod>2025-09-15</lastmod>
   </url>
   <url>
     <loc>https://kodedevel.github.io/article/kotlin/variables_mutable_immutable.html</loc>
-    <lastmod>2025-09-12</lastmod>
+    <lastmod>2025-09-15</lastmod>
   </url>
 </urlset>
