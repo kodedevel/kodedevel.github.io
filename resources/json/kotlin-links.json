@@ -36,7 +36,7 @@
     },
     {
       "subject": "متغیر های تغییرپذیر و تغییرناپذیر",
-      "href": "/article/kotlin/variables_mutable_immutable.html"
+      "href": "/article/kotlin/variable-types.html"
     },
     {
       "subject": "توابع و مقادیر ثابت ریاضی",
@@ -44,7 +44,7 @@
     },
     {
       "subject": "محدوده ی تعریف متغیر و توابع",
-      "href": "/article/kotlin/variable_scope.html"
+      "href": "/article/kotlin/variable-and-function-scope.html"
     },
     {
       "subject": "کلیدواژه های سطح دسترسی",
