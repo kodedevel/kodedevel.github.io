@@ -1,10 +1,227 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
 
+<html lang="fa">
+
+<head>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=7">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="description" content="زبان برنامه نویسی کاتلین یک زبان شی گرا و تابعی بر مبنای زبان جاواست؛ اولین نسخه از این زبان سال ۲۰۱۶ توسط Jetbrains رونمایی شد، در این مطلب به بررسی زبان کاتلین می پردازیم.">
+
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>معرفی زبان برنامه نویسی کاتلین</title>
+
+    <meta name="og:title" content="معرفی زبان برنامه نویسی کاتلین">
+    <meta name="og:description" content="زبان برنامه نویسی کاتلین یک زبان شی گرا و تابعی بر مبنای زبان جاواست؛ اولین نسخه از این زبان سال ۲۰۱۶ توسط Jetbrains رونمایی شد، در این مطلب به بررسی زبان کاتلین می پردازیم.">
+
+    <meta property="og:image" content="/resources/favicon.png">
+    <meta property="og:url" content="/article/blog/programming-languages.html">
+
+    <meta property="og:type" content="article">
+
+    <link rel="shortcut icon" href="/resources/favicon.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="/resources/css/main.css">
+
+    <script type="module" src="/resources/js/main.js"></script>
+
+</head>
+
+<body>
+<header></header>
+<main>
+    <div class="page-wrap">
+
+        <div class="article-head">
+            <h1>
+                معرفی زبان برنامه نویسی کاتلین
+            </h1>
+
+            <address>
+                <a class="author text-muted text-decoration-none" rel="author">یونس سلیمانی</a>
+            </address>
+
+            <figure class="figure figure-wrapper">
+                <img alt="کلاس های abstract در کاتلین" class="rounded figure-img" src="/resources/image/kotlin/cover_abstract_classes.png" />
+            </figure>
+
+            <div class="toc">
+                <p class="p-2 mx-2 h5">دسترسی سریع</p>
+                <div class="list-group">
+
+                    <a class="list-group-item list-group-item-action" href="#sub0">معرفی کاتلین</a>
+                </div>
+            </div>
+        </div>
+
+        <article>
+
+            <div class="subsection" id="sub0">
+
+                <h2>معرفی کاتلین</h2>
+
+                <p>کاتلین یک زبان <a class="text-decoration-none" href="/article/blog/programming-languages.html">کراس پلتفرم، سطح بالا و با اهداف عمومی</a> بر پایه ی جاواست؛ اولین نسخه از این زبان ابتدا در سال ۲۰۱۶ توسط jetbrains ارائه شد.</p>
+                <p>در سال ۲۰۱۹ گوگل، کاتلین رو به عنوان یکی از زبان های رسمی پشتیبانی شده در اندروید معرفی کرد.</p>
+
+                <h3>کامپایلر کاتلین</h3>
+
+                <p>کامپایلر کاتلین میتونه کد های کاتلین رو به سه فرمت زیر تبدیل کنه:</p>
+
+                <p>۱- کد های قابل تفسیر برای JVM</p>
+                <p>۲- کد های JavaScript برای توسعه ی فرانت اند و فول استک</p>
+                <p>۳- فایل های قابل اجرا در پلتفرم هایی از قبیل ویندوز، مک، لینوکس، ios و اندروید.</p>
+
+                <h3>ویژگی ها</h3>
+                <p>میخوایم بعضی از ویژگی های زبان کاتلین رو بررسی کنیم؛ این ویژگی ها ممکنه با بعضی از زبان های برنامه نویسی مشترک باشن.</p>
+                <h4>اجرای کد های کاتلین در JVM</h4>
+                <p>کد های کاتلین توسط JVM قابل اجرا هستند از این رو استفاده از زبان کاتلین در کنار زبان جاوا در یک پروژه ی واحد امکان‌پذیر است.</p>
+                <h4>عدم نیاز به نقطه ویرگول</h4>
+                <p>در پایان هر statement نیازی به نوشتن نقطه ویرگول نداریم.</p>
+                <h4>استفاده از Unit به جای void</h4>
+                <p>در کاتلین همه چیز دارای مقدار است حتی توابع؛ در این زبان کلاس Unit جایگزین void شده.</p>
+                <h4>تعریف متغیر ها</h4>
+                <p>متغیر های کاتلین با کلید واژه های var یا val، اسم، نوع و مقدار متغیر مانند زیر تعریف میشن</p>
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Kotlin">
+var number: Int = 23
+val number1: Double = 12.5
+                        </div>
+                    </div>
+                </div>
+
+                <h4>پشتیبانی از برنامه نویسی تابعی</h4>
+                <p>در زبان کاتلین علاوه بر شی گرایی از قوانین تابعی نیز به خوبی پشتیبانی میشه. میتونید توابع <a href="extension-function.html" class="text-decoration-none">اکستنشن</a>، <a class="text-decoration-none" href="higher-order-functions.html">مرتبه ی بالا</a>، <a class="text-decoration-none" href="inline-functions.html">خطی</a>، <a class="text-decoration-none" href="anonymous-function-and-lambda.html">عبارت لامبدا و توابع بی نام</a> را در این زبان تعریف کنید.</p>
+
+                <h4>کلاس ها</h4>
+                <p>کلاس های معمولی در کاتلین به طور پیشفرض final هستند و برای ارث بری از یک کلاس باید از کلیدواژه ی open هنگام تعریف کلاس پدر استفاده کنیم.</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Kotlin">
+open class Parent{
+    //something goes here
+}
+
+class Child: Parent{
+    //...
+}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="note">
+                    <p class="note-head">توجه</p>
+                    <p>کلاس های abstract در کاتلین به صورت پیشفرض open هستند و نیازی به تعریف کلیدواژه ی open براشون نداریم.</p>
+                </div>
+
+                <h4>دیتا کلاس ها</h4>
+
+                <p>در کاتلین برای تعریف کلاس هایی که getter و setter دارن، با تعریف کلاس به عنوان <a class="text-decoration-none" href="data-classes.html">data class</a> متد های getter و setter به صورت خودکار ساخته میشن و از نوشتن متد های تکراری و خسته کننده ی getter و setter خلاص میشیم.</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Kotlin">
+data class MyDataClass(val t0: Type0, val t2: Type2, ...)
+                        </div>
+                    </div>
+                </div>
+
+
+                <h4>کاتلین یک زبان Null Safe</h4>
+                <p>کاتلین یک زبان Null Safe است؛ در کاتلین به‌جای زمان اجرا، زمان کامپایل Null بودن یک متغیر بررسی میشه. این کار از بروز استثناهایی مثل NullPointerException جلوگیری میکنه.</p>
+                <p>وقتی که بخوایم به کامپایلر اعلام کنیم متغیر امکان داره Null باشه از ? هنگام تعریف متغیر استفاده میکنیم و هنگامی که بخوایم از Null نبودن متغیر دفاع کنیم از !! استفاده میکنیم.</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <div class="snippet Kotlin">
+var number: Int? = null
+var number1: Int = null //خطای کامپایل
+
+number = 32
+println(number!!.toString())
+                        </div>
+                    </div>
+                </div>
+
+                <h4>پشتیبانی از الگوی Delegation</h4>
+                <p>زبان کاتلین به صورت نیتیو از الگوی <a class="text-decoration-none" href="delegation.html">دلیگیشن (Delegation)</a> پشتیبانی میکنه.</p>
+
+            </div>
+
+
+            <div class="subsection" id="sub1">
+                <h2>خلاصه</h2>
+                <p>- زبان برنامه نویسی کاتلین بر پایه ی جاوا ساخته شده.</p>
+                <p>- کامپایلر کاتلین کد های کاتلین رو میتونه به JVM، JavaScript، پلتفرم های ویندوز، لینوکس، مک، ios و اندروید تبدیل کنه.</p>
+                <p>- زبان کاتلین علاوه بر ویژگی شی گرایی یک زبان تابعی نیز است.</p>
+                <p>- برای ارث بردن از یک کلاس باید کلاس رو با کلیدواژه ی open تعریف کنیم.</p>
+                <p>- برای تعریف کلاس هایی که برای ذخیره ی داده هستند میتونیم از کلیدواژه ی data هنگام تعریف کلاس استفاده کنیم.</p>
+                <p>- کاتلین یک زبان Null safe است.</p>
+                <p>- در کاتلین به طور نیتیو از الگوی Delegation پشتیبانی میشه.</p>
+                <p></p>
+            </div>
+
+        </article>
+
+        <div class="article-foot">
+
+            <div class="navigator-container">
+
+                <a href="selectors.html" class="md-bt md-bt-light">
+
+                    <span class="material-icons">navigate_next</span>
+                    <span class="hint">
+            </span>
+                </a>
+            </div>
+
+            <div class="relative-articles-container">
+                <p>مطالب مرتبط</p>
+                <div>
+                    <div>
+                        <a href="/article/kotlin/selectors.html">دستورات شرطی در کاتلین</a>
+                    </div>
+
+                    <div>
+                        <a href="/article/kotlin/loops.html">حلقه ها در کاتلین</a>
+                    </div>
+
+                    <div>
+                        <a href="/article/kotlin/functions.html">توابع در کاتلین</a>
+                    </div>
+
+                    <div>
+                        <a href="/article/kotlin/functions.html">آبجکت و کلاس ها در کاتلین</a>
+                    </div>
+
+                    <div>
+                        <a href="https://kotlinlang.org/">وبسایت کاتلین</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+<div class="scroll-top-container">
+    <a class="text-decoration-none link-dark material-icons" href="#">
+        arrow_drop_up
+    </a>
+</div>
+
+<footer></footer>
+
+<div class="dialog hide"></div>
+
+<div class="copy-message">
+    <span class="copy-message-text">کپی شد!</span>
+</div>
 </body>
+
 </html>
