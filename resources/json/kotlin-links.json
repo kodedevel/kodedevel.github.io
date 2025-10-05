@@ -3,6 +3,10 @@
   "id": "kotlin_chapters",
   "links": [
     {
+      "subject": "معرفی کاتلین",
+      "href": "/article/kotlin/introduction.html"
+    },
+    {
       "subject": "دستورات شرطی",
       "href": "/article/kotlin/selectors.html"
     },
