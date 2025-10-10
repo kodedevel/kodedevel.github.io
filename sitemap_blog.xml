@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://kodedevel.github.io/article/blog/switch-statement-jdk-17.html</loc>
-    <lastmod>2025-09-12T00:21:29+0330</lastmod>
+    <loc>https://kodedevel.github.io/post/blog/programming-languages.html</loc>
+    <lastmod>2025-10-10T20:19:46+0330</lastmod>
+  </url>
+  <url>
+    <loc>https://kodedevel.github.io/post/blog/switch-statement-jdk-17.html</loc>
+    <lastmod>2025-10-10T20:19:46+0330</lastmod>
   </url>
 </urlset>

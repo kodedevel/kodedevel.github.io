@@ -1,23 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <sitemap>
-    <loc>https://kodedevel.github.io/sitemap_android.xml</loc>
-    <lastmod>2025-09-22T02:36:01+0330</lastmod>
-  </sitemap>
-  <sitemap>
-    <loc>https://kodedevel.github.io/sitemap_blog.xml</loc>
-    <lastmod>2025-09-22T02:36:01+0330</lastmod>
-  </sitemap>
-  <sitemap>
-    <loc>https://kodedevel.github.io/sitemap_home.xml</loc>
-    <lastmod>2025-09-22T02:36:01+0330</lastmod>
-  </sitemap>
-  <sitemap>
     <loc>https://kodedevel.github.io/sitemap_java.xml</loc>
     <lastmod>2025-09-22T02:36:01+0330</lastmod>
   </sitemap>
   <sitemap>
+    <loc>https://kodedevel.github.io/sitemap_android.xml</loc>
+    <lastmod>2025-09-22T02:36:01+0330</lastmod>
+  </sitemap>
+  <sitemap>
     <loc>https://kodedevel.github.io/sitemap_kotlin.xml</loc>
+    <lastmod>2025-09-22T02:37:00+0330</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://kodedevel.github.io/sitemap_blog.xml</loc>
     <lastmod>2025-09-22T02:36:01+0330</lastmod>
   </sitemap>
   <sitemap>
@@ -26,6 +22,10 @@
   </sitemap>
   <sitemap>
     <loc>https://kodedevel.github.io/sitemap_web.xml</loc>
+    <lastmod>2025-09-22T02:36:01+0330</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://kodedevel.github.io/sitemap_home.xml</loc>
     <lastmod>2025-09-22T02:36:01+0330</lastmod>
   </sitemap>
 </sitemapindex>
