@@ -4,82 +4,82 @@
   "links": [
     {
       "subject": "معرفی جاوا",
-      "href": "/article/java/introduction.html"
+      "href": "/post/java/introduction.html"
     },
     {
       "subject": "انواع متغیر",
-      "href": "/article/java/type-variables.html"
+      "href": "/post/java/type-variables.html"
     },
     {
       "subject": "دستورات شرطی",
-      "href": "/article/java/selectors.html"
+      "href": "/post/java/selectors.html"
     },
     {
       "subject": "حلقه (loop) ها",
-      "href": "/article/java/loops.html"
+      "href": "/post/java/loops.html"
     },
     {
       "subject": "متد (تابع)",
-      "href": "/article/java/methods.html"
+      "href": "/post/java/methods.html"
     },
     {
       "subject": "آبجکت و کلاس ها",
-      "href": "/article/java/objects-and-classes.html"
+      "href": "/post/java/objects-and-classes.html"
     },
     {
       "subject": "کلیدواژه های سطح دسترسی",
-      "href": "/article/java/access-modifiers.html"
+      "href": "/post/java/access-modifiers.html"
     },
     {
       "subject": "کلیدواژه ی استاتیک در جاوا",
-      "href": "/article/java/static-keyword.html"
+      "href": "/post/java/static-keyword.html"
     },
     {
       "subject": "آرایه ها",
-      "href": "/article/java/arrays.html"
+      "href": "/post/java/arrays.html"
     },
     {
       "subject": "کلاس های تو در تو",
-      "href": "/article/java/nested-classes.html"
+      "href": "/post/java/nested-classes.html"
     },
     {
       "subject": "وراثت (inheritance)",
-      "href": "/article/java/inheritance.html"
+      "href": "/post/java/inheritance.html"
     },
     {
       "subject": "چند ریختی و کست کردن",
-      "href": "/article/java/polymorphism.html"
+      "href": "/post/java/polymorphism.html"
     },
     {
       "subject": "کلاس های ابستراکت",
-      "href": "/article/java/abstract-classes.html"
+      "href": "/post/java/abstract-classes.html"
     },{
       "subject": "اینترفیس ها",
-      "href": "/article/java/interfaces.html"
+      "href": "/post/java/interfaces.html"
     },
     {
       "subject": "کلیدواژه ی final",
-      "href": "/article/java/final-keyword.html"
+      "href": "/post/java/final-keyword.html"
     },
     {
       "subject": "اکسپشن ها",
-      "href": "/article/java/exceptions.html"
+      "href": "/post/java/exceptions.html"
     },
     {
       "subject": "کلاس File",
-      "href": "/article/java/file.html"
+      "href": "/post/java/file.html"
     },
     {
       "subject": "نوشتن متن در فایل با PrintWriter",
-      "href": "/article/java/printwriter.html"
+      "href": "/post/java/printwriter.html"
     },
     {
       "subject": "خوندن متن فایل با Scanner",
-      "href": "/article/java/scanner.html"
+      "href": "/post/java/scanner.html"
     },
     {
       "subject": "خوندن و نوشتن مقادیر باینری در جاوا",
-      "href": "/article/java/binary-io.html"
+      "href": "/post/java/binary-io.html"
     }
   ]
 }

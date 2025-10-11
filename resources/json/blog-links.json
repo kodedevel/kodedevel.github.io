@@ -4,11 +4,11 @@
   "links": [
     {
       "subject": "تغییرات switch تا jdk-17",
-      "href": "/article/blog/switch-statement-jdk-17.html"
+      "href": "/post/blog/switch-statement-jdk-17.html"
     },
     {
       "subject": "زبان های برنامه نویسی",
-      "href": "/article/blog/programming-languages.html"
+      "href": "/post/blog/programming-languages.html"
     }
   ]
 }

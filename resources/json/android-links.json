@@ -4,19 +4,19 @@
   "links": [
     {
       "subject": "دیتا بایندینگ",
-      "href": "/article/android/data-binding.html"
+      "href": "/post/android/data-binding.html"
     },
     {
       "subject": "نویگیشن",
-      "href": "/article/android/navigation.html"
+      "href": "/post/android/navigation.html"
     },
     {
       "subject": "پروژه ی عملی از دیتابایندینگ و نویگیشن",
-      "href": "/article/android/data-binding-navigation-sample.html"
+      "href": "/post/android/data-binding-navigation-sample.html"
     },
     {
       "subject": "چرخه ی حیات اکتیویتی",
-      "href": "/article/android/activity-lifecycle.html"
+      "href": "/post/android/activity-lifecycle.html"
     }
   ]
 }
