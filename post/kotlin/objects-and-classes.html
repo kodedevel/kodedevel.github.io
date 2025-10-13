@@ -17,7 +17,7 @@
   <meta name="og:description" content="در این مقاله یک توضیح کامل از کلاس ها و آبجکت ها در کاتلین داریم؛ سازنده (constructor) ها، متغیر ها و توابع داخل کلاس رو بررسی کرده و به اعضای ابجکت همراه میپردازیم و در آخر گفته ها رو با مثال بیان میکنیم.">
 
   <meta property="og:image" content="https://kodedevel.github.io/resources/favicon.png">
-  <meta property="og:url" content="https://kodedevel.github.io/article/kotlin/objects-and-classes.html">
+  <meta property="og:url" content="https://kodedevel.github.io/post/kotlin/objects-and-classes.html">
 
   <meta property="og:type" content="article">
 
@@ -159,7 +159,7 @@ class MyClass constructor(){
          <p>سازنده (constructor) که در بالا میبینیم به عنوان کنستراکتور اولیه (primary constructor) شناخته میشه. یک کانستراکتور اولیه و چند کانستراکتور ثانویه در کاتلین میتونیم داشته باشیم.</p>
 
 
-            <p>میشه از <a class="text-decoration-none" href="/article/kotlin/access-modifiers.html">کلیدواژه های سطح دسترسی</a> در هر کانستراکتوری که خواستیم استفاده کنیم.</p>
+            <p>میشه از <a class="text-decoration-none" href="/post/kotlin/access-modifiers.html">کلیدواژه های سطح دسترسی</a> در هر کانستراکتوری که خواستیم استفاده کنیم.</p>
 
           <div class="sample">
               <div class="snippet-container">
@@ -449,7 +449,7 @@ class MyClass{
                 </div>
             </div>
 
-          <p>اگه مقداری که getter بر میگردونه به صورت تک عبارتی و متغیر <a class="text-decoration-none" href="/article/kotlin/variables_mutable_immutable.html">تغییرناپذیر</a> (val) باشه، میتونیم getter رو به فرم زیر تعریف کنیم:</p>
+          <p>اگه مقداری که getter بر میگردونه به صورت تک عبارتی و متغیر <a class="text-decoration-none" href="/post/kotlin/variables_mutable_immutable.html">تغییرناپذیر</a> (val) باشه، میتونیم getter رو به فرم زیر تعریف کنیم:</p>
 
           <div class="sample">
               <div class="snippet-container">
@@ -465,7 +465,7 @@ class MyClass{
 
                 <h3>معرفی بکینگ پراپرتی (Backing Property)</h3>
 
-          <p>اگه متغیر <a class="text-decoration-none" href="/article/kotlin/variables_mutable_immutable.html">تغییرپذیر</a> (var) باشه و تابع setter پنهان باشه و به هر دلیلی نخواید مقدار متغیر در بیرون از کلاس تغییر کنه میتونید متغیر رو به صورت بکینگ پراپرتی (Backing Property) پیاده سازی کنید.</p>
+          <p>اگه متغیر <a class="text-decoration-none" href="/post/kotlin/variables_mutable_immutable.html">تغییرپذیر</a> (var) باشه و تابع setter پنهان باشه و به هر دلیلی نخواید مقدار متغیر در بیرون از کلاس تغییر کنه میتونید متغیر رو به صورت بکینگ پراپرتی (Backing Property) پیاده سازی کنید.</p>
 
           <p>در این روش با استفاده از کلیدواژه ی سطح دسترسی private از دسترسی به متغیر اصلی در خارج از کلاس جلوگیری میکنیم و با تعریف یک متغیر به عنوان نماینده ی متغیر اصلی به متغیر اصلی در خارج از کلاس با getter دسترسی میدیم. به متغیر اصلی بکینگ پراپرتی (backing property) میگیم.</p>
 
@@ -534,7 +534,7 @@ class TV(private val size){
 
         <div class="subsection" id="sub4">
                 <h2>توابع کلاس</h2>
-          <p>میتونیم داخل کلاس تابع تعریف کنیم اگه با توابع در کاتلین آشنایی ندارید میتونید به موضوع <a class="text-decoration-none" href="/article/kotlin/functions.html">توابع</a> مراجعه کنید.</p>
+          <p>میتونیم داخل کلاس تابع تعریف کنیم اگه با توابع در کاتلین آشنایی ندارید میتونید به موضوع <a class="text-decoration-none" href="/post/kotlin/functions.html">توابع</a> مراجعه کنید.</p>
 
         <p>توابع در کلاس نیز از قوانین سطح دسترسی پیروی میکنند.</p>
 
@@ -582,7 +582,7 @@ fun main(){
 
           <p>پراپرتی و توابع تعریف شده در companion object مستقل از آبجکت های ایجاد شده از کلاس هستند و مقدار پراپرتی های companion object بین تمام آبجکت های ایجاد شده از کلاس مشترک است.</p>
 
-          <p>عموما اعضای companion object رو با دیتا فیلد (data field) و توابع <a class="text-decoration-none" href="/article/java/static-keyword.html">استاتیک در جاوا</a> یکی میدونن با اینکه اعضای companion object چیزی شبیه به اعضای استاتیک در جاوا هستند اما در واقع اعضای companion object استاتیک نیستند.</p>
+          <p>عموما اعضای companion object رو با دیتا فیلد (data field) و توابع <a class="text-decoration-none" href="/post/java/static-keyword.html">استاتیک در جاوا</a> یکی میدونن با اینکه اعضای companion object چیزی شبیه به اعضای استاتیک در جاوا هستند اما در واقع اعضای companion object استاتیک نیستند.</p>
 
           <p>آبجکت های همراه نوعی سینگلتون (singlton) هستند که همراه با کلاس ایجاد شده و مستقل از آبجکت های ایجاد شده از کلاسند.</p>
 
@@ -885,7 +885,7 @@ class Circle(){
 
         <div class="navigator-container">
 
-          <a href="/article/kotlin/inheritance.html" class="md-bt md-bt-light">
+          <a href="/post/kotlin/inheritance.html" class="md-bt md-bt-light">
             <span class="material-icons">
               navigate_next
             </span>
@@ -894,7 +894,7 @@ class Circle(){
             </span>
           </a>
 
-          <a href="/article/kotlin/access-modifiers.html" class="md-bt md-bt-light">
+          <a href="/post/kotlin/access-modifiers.html" class="md-bt md-bt-light">
             <span class="hint">
               قبلی
             </span>
@@ -909,15 +909,15 @@ class Circle(){
           <p>مطالب مرتبط</p>
           <div>
             <div>
-              <a href="/article/kotlin/functions.html">توابع در کاتلین</a>
+              <a href="/post/kotlin/functions.html">توابع در کاتلین</a>
             </div>
 
             <div>
-              <a href="/article/kotlin/access-modifiers.html">کلیدواژه های سطح دسترسی در کاتلین</a>
+              <a href="/post/kotlin/access-modifiers.html">کلیدواژه های سطح دسترسی در کاتلین</a>
             </div>
 
             <div>
-              <a href="/article/kotlin/variable_scope.html">محدوده ی تعریف متغیر ها در کاتلین</a>
+              <a href="/post/kotlin/variable_scope.html">محدوده ی تعریف متغیر ها در کاتلین</a>
             </div>
 
             <div>

@@ -20,7 +20,7 @@
   <meta name="og:description" content="برای بهبود کیفیت برنامه و یا تعریف پارامتر های جنریک نوع reified از توابع خطی استفاده میکنیم، در این مطلب به بررسی توابع و پراپرتی (property) های خطی در کاتلین می پردازیم.">
 
   <meta property="og:image" content="https://kodedevel.github.io/resources/favicon.png">
-  <meta property="og:url" content="https://kodedevel.github.io/article/kotlin/inline-functions.html">
+  <meta property="og:url" content="https://kodedevel.github.io/post/kotlin/inline-functions.html">
   <meta property="og:type" content="article">
 
   <link rel="shortcut icon" href="/resources/favicon.png" type="image/x-icon">
@@ -88,7 +88,7 @@
                 <h3>تعریف تابع خطی</h3>
           
           <p>
-          هنگامی که یک <a class="text-decoration-none" href="/article/kotlin/higher-order-functions.html">تابع مرتبه بالا</a> تعریف میکنیم لامبدا هایی که به عنوان پارامتر تابع تعریف کردیم هرکدوم یک Object هستند که میتونن فضای حافظه رو اشغال کنن.
+          هنگامی که یک <a class="text-decoration-none" href="/post/kotlin/higher-order-functions.html">تابع مرتبه بالا</a> تعریف میکنیم لامبدا هایی که به عنوان پارامتر تابع تعریف کردیم هرکدوم یک Object هستند که میتونن فضای حافظه رو اشغال کنن.
           </p>
 
           <p>برای بهبود کیفیت برنامه میتونیم از توابع خطی (inline) در کاتلین استفاده کنیم تا از دست ابجکت هایی که حافظه رو اشغال کردن خلاص بشیم.</p>
@@ -108,7 +108,7 @@ fun foo(block: () -&gt; Unit){
               </div>
           </div>
 
-          <p>در بالا یک تابع مرتبه بالا داریم و یک <a class="text-decoration-none" href="/article/kotlin/anonymous-function-and-lambda.html">عبارت لامبدا</a> رو به عنوان پارامتر براش تعریف کردیم. اگه کد رو بخوایم کامپایل کنیم قبلش تو جاوا یه چیزی شبیه زیر میشه:</p>
+          <p>در بالا یک تابع مرتبه بالا داریم و یک <a class="text-decoration-none" href="/post/kotlin/anonymous-function-and-lambda.html">عبارت لامبدا</a> رو به عنوان پارامتر براش تعریف کردیم. اگه کد رو بخوایم کامپایل کنیم قبلش تو جاوا یه چیزی شبیه زیر میشه:</p>
 
           <div class="sample">
               <div class="snippet-container">
@@ -319,7 +319,7 @@ inline fun foo(crossinline body: () -&gt; Unit) {
 
           <blockquote>توابعی که پارامتر های نوع جنریکشون reified است باید خطی باشن.</blockquote>
 
-          <p>داخل بدنه ی <a class="text-decoration-none" href="/article/kotlin/functions.html#sub6">تابع جنریک</a> نمیشه به پارامتر های جنریک (مثلا T) دسترسی داشت چون فقط T هنگام کامپایل وجود داره و زمان اجرا پاک میشه. اما اگه نوع T با reified تعریف شده باشه میتونیم بهش  زمان اجرا دسترسی داشته باشیم.</p>
+          <p>داخل بدنه ی <a class="text-decoration-none" href="/post/kotlin/functions.html#sub6">تابع جنریک</a> نمیشه به پارامتر های جنریک (مثلا T) دسترسی داشت چون فقط T هنگام کامپایل وجود داره و زمان اجرا پاک میشه. اما اگه نوع T با reified تعریف شده باشه میتونیم بهش  زمان اجرا دسترسی داشته باشیم.</p>
 
           <p>با بیان یک مثال میخوایم بررسی کنیم یک آبجکت نمونه ای از یک کلاس هست یا خیر؟</p>
 
@@ -424,7 +424,7 @@ inline val foo: Foo
        <div class="article-foot">
           <div class="navigator-container">
 
-            <a href="/article/kotlin/arrays.html" class="md-bt md-bt-light">
+            <a href="/post/kotlin/arrays.html" class="md-bt md-bt-light">
 
               <span class="material-icons">
                 navigate_next
@@ -434,7 +434,7 @@ inline val foo: Foo
               </span>
             </a>
 
-            <a href="/article/kotlin/higher-order-functions.html" class="md-bt md-bt-light">
+            <a href="/post/kotlin/higher-order-functions.html" class="md-bt md-bt-light">
 
               <span class="hint">
                 قبلی
@@ -451,15 +451,15 @@ inline val foo: Foo
               <div>
 
                 <div>
-                  <a href="/article/kotlin/functions.html">توابع در کاتلین</a>
+                  <a href="/post/kotlin/functions.html">توابع در کاتلین</a>
                 </div>
 
                 <div>
-                  <a href="/article/kotlin/extension-function.html">اکستنشن ها در کاتلین</a>
+                  <a href="/post/kotlin/extension-function.html">اکستنشن ها در کاتلین</a>
                 </div>
 
                 <div>
-                  <a href="/article/kotlin/anonymous-function-and-lambda.html">توابع بی نام و عبارات لامبدا در کاتلین</a>
+                  <a href="/post/kotlin/anonymous-function-and-lambda.html">توابع بی نام و عبارات لامبدا در کاتلین</a>
                 </div>
 
                 <div>
