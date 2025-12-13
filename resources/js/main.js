@@ -2,6 +2,7 @@ import {prepareSlider} from "./index.js";
 import {prepareSubjectItems} from "./learn.js";
 import {createCodeViews} from './article.js';
 import {loadAllUiComponents, scrollTopVisibility} from './base.js';
+import {applySEOConfigurations} from "./seo-config.js";
 import * as fileloader from './fileloader.js';
 
 fileloader.loadStylesheet(
@@ -28,17 +29,25 @@ function executeCodes() {
   window.onscroll = scrollTopVisibility;
   createCodeViews();
   loadAllUiComponents();
-}
-
-function start() {
 
   var path = window.location.pathname;
 
+  //check if the path is index page
   if (path === "/") {
     prepareSlider();
-  } else if (path.startsWith("/learn")) {
+  }
+
+  //check if the file path origins from learn
+  if (path.startsWith("/learn")) {
     prepareSubjectItems();
   }
+
+  //apply all neccessary configurations for seo
+  applySEOConfigurations();
+
+}
+
+function start() {
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", executeCodes);
