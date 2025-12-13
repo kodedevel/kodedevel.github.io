@@ -1,27 +1,16 @@
-window.SITE_URL = "https://kodedevel.github.io";
-const url = window.SITE_URL + window.location.pathname;
-const faviconURL = window.SITE_URL + "/resources/favicon.png"
-
-function applyOGURL() {
-  document.querySelector('meta[property="og:url"]')?.setAttribute("content", url);
-}
-
-function applyOGImage() {
-  document.querySelector('meta[property="og:image"]')?.setAttribute("content", faviconURL)
-}
+const BASE_URL = "https://kodedevel.github.io";
+const URL = BASE_URL + window.location.pathname;
 
 function applyCanonical() {
-  document.querySelector('link[rel="canonical"]')?.setAttribute("href", url);
+  const head = document.querySelector("head");
+  const link = document.createElement("link");
+  link.rel = "canonical";
+  link.href = URL;
+  head.insertBefore(link, head.firstElementChild);
 }
 
 function applySEOConfigurations() {
-
-  if (!window.SITE_URL) return;
-
-  applyOGURL();
-  applyOGImage();
   applyCanonical();
-
 }
 
 export {applySEOConfigurations};

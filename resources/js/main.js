@@ -25,7 +25,6 @@ fileloader.loadJavaScript(
 
 
 function executeCodes() {
-
   window.onscroll = scrollTopVisibility;
   createCodeViews();
   loadAllUiComponents();
