@@ -1,3 +1,5 @@
+import {prepareSlider} from "./index.js";
+import {prepareSubjectItems} from "./learn.js";
 import {createCodeViews} from './article.js';
 import {loadAllUiComponents, scrollTopVisibility} from './base.js';
 import * as fileloader from './fileloader.js';
@@ -30,14 +32,20 @@ function executeCodes() {
 
 function start() {
 
+  var path = window.location.pathname;
+
+  if (path === "/") {
+    prepareSlider();
+  } else if (path.startsWith("/learn")) {
+    prepareSubjectItems();
+  }
+
   if (document.readyState === "loading") {
-
     document.addEventListener("DOMContentLoaded", executeCodes);
-
   } else {
     executeCodes();
   }
+
 }
 
 start();
-

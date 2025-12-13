@@ -11,6 +11,13 @@
     height: auto;
 }
 
+.icon{
+  display: inline-flex;
+  font-size: inherit;
+  vertical-align: middle;
+  font-weight: bold;
+}
+
 .md-text-gray300{
     color: #e0e0e0;
 }

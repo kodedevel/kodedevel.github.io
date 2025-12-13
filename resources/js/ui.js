@@ -137,5 +137,10 @@ function createCodeTableView(codeWrap, callback) {
 
 }
 
+function createDot(){
+  const dot = document.createElement('div');
+  dot.classList.add("dot");
+  return dot;
+}
 
-export {createCourseListView, createSampleHeader, createSnippetToggler, createSnippetToggleButton, createCodeWrap, createCodeTableView}
+export {createCourseListView, createSampleHeader, createSnippetToggler, createSnippetToggleButton, createCodeWrap, createCodeTableView, createDot}

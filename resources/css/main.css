@@ -1,12 +1,13 @@
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 @import url("https://fonts.googleapis.com/css?family=JetBrains+Mono");
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined");
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css");
 @import url("bt.css");
 @import url("text.css");
 @import url("base.css");
 @import url("utils.css");
 @import url("article.css");
-
+@import url("learn.css");
 main{
     position: relative;
     min-height: 64vh;

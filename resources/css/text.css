@@ -17,6 +17,7 @@ button, a, p, h1, h2,h3 ,h4, h5, h6, blockquote, strong {
 h1{
     font-size: 1.8em !important;
     font-weight: bold !important;
+    margin: 32px 0 32px 0 !important;
 }
 
 h2{

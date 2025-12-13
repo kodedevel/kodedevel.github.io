@@ -1,2 +1,2 @@
-Sitemap: https://kodedevel.github.io/sitemap_index.xml
 User-agent: *
+Disallow: /article/

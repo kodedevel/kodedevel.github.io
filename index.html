@@ -7,9 +7,6 @@
   <meta content="ie=edge" http-equiv="x-ua-compatible" />
   <meta content="width:device-width, initial-scale=1" name="viewport">
   <meta
-    content="برنامه نویسی، برنامه نویسی جاوا، برنامه نویسی کاتلین، برنامه نویسی اندروید، کامپیوتر، نرم افزار، آموزش، آموزش کاتلین، آموزش جاوا، اندروید، آموزش اندروید، اسپرینگ، اسپرینگ بوت، spring boot"
-    name="keywords" />
-  <meta
     content="در این صفحه به تمام عناوین اصلی آموزشی دسترسی دارید. موضوعات به ترتیب دسته بندی شده و به راحتی میتونید موضوعی که دنبالش هستید پیدا و مطالعه کنید."
     name="description" />
 
@@ -23,6 +20,7 @@
   <link href="/resources/favicon.png" rel="icon" type="image/x-icon">
 
   <link href="/resources/css/main.css" rel="stylesheet">
+  <link rel="stylesheet" href="/resources/css/index.css">
 
   <script src="/resources/js/main.js" type="module"></script>
 
@@ -35,41 +33,141 @@
 
   <header></header>
 
-  <main>
+  <main class="page-wrap">
 
-    <div class="page-wrap">
 
-      <div class="article-head">
+    <h1 class="index-top-head">
+      <span class="material-symbols-outlined icon" style="color: #0D47A1;">
+        home
+      </span>
+      <span>
+        مطالب و آموزش های رایگان برنامه نویسی
+      </span>
+    </h1>
 
-        <div class="d-flex">
-          <span class="material-icons" style="font-size: 2.25rem; color: #0277bd;">
-            local_library
-          </span>
-          <h1>صفحه ی اصلی</h1>
-        </div>
+    <div class="slider-container">
 
-        <p>سلام به صفحه ی آموزش ها خوش اومدید.</p>
+      <div class="slider-wrapper">
 
-        <p>این وبسایت در حوزه ی نرم افرار، زبان های برنامه نویسی جاوا، کاتلین و فریمورک های مربوطه از جمله اندروید پایه
-          ریزی شده. کلیه مطالب و آموزش ها به صورت رایگان در اختیارتون قرار میگیره. همینطور سعی شده مطالب کامل و بروز
-          باشن.</p>
+        <figure class="figure figure-wrapper slide">
+          <a href="/learn/java.html" class="slide-link">
+            <img class="slide-img" src="/resources/image/learn/java-cover.png">
+            <figcaption class="slide-caption">
+              آموزش رایگان جاوا از مبتدی تا پیشرفته
+            </figcaption>
+          </a>
+        </figure>
 
-        <p>
-          در این صفحه به تمام عناوین آموزشی دسترسی دارید. موضوعات به ترتیب دسته بندی شده و به راحتی میتونید موضوعی که
-          دنبالش هستید پیدا و مطالعه کنید.
-        </p>
+        <figure class="figure figure-wrapper slide">
 
-        <p>در حال حاضر مطالب مربوط به کاتلین از ابتدا ومرتب در صفحات بارگذاری شدند؛ اما سایر مطالب گسسته هستند و با توجه
-          به نیازتون میتونید بهشون مراجعه کنید.</p>
-
-        <p>میتونید از طریق منو همین صفحه به تمامی مطالب صفحات دسترسی داشته باشید.</p>
-
+          <a href="/learn/kotlin.html" class="slide-link">
+            <img class="slide-img" src="/resources/image/learn/kotlin-cover.png">
+            <figcaption class="slide-caption">
+              آموزش رایگان کاتلین از مبتدی تا پیشرفته
+            </figcaption>
+          </a>
+        </figure>
+        <figure class="figure figure-wrapper slide">
+          <a href="/learn/linux.html" class="slide-link">
+            <img class="slide-img" src="/resources/image/learn/linux-commands-cover.png">
+            <figcaption class="slide-caption">
+              دستورات لینوکس
+            </figcaption>
+          </a>
+        </figure>
       </div>
 
+      <div>
+        <a class="md-bt md-bt-dark slide-navigator next">
+          <span class="material-symbols-outlined">navigate_next</span>
+        </a>
+        <a class="md-bt md-bt-dark slide-navigator prev">
+          <span class="material-symbols-outlined">navigate_before</span>
+        </a>
+      </div>
+
+      <div class="slider-dots-wrapper"> </div>
+
     </div>
+
+    <section>
+      <h2 class="index-section-head">
+        <span class="material-symbols-outlined icon">local_library</span>
+        <span>آموزش ها</span>
+      </h2>
+
+      <div class="learn-redirect-link-container">
+        <div>
+          <a href="/learn/java.html" class="learn-redirect-link java">آموزش جاوا</a>
+          <p class="learn-redirect-link-description">کد های جاوا در فایل هایی با پسوند .java نوشته میشن و سپس کامپایل
+            شده و با JVM اجرا میشن.</p>
+        </div>
+        <div>
+          <a href="/learn/kotlin.html" class="learn-redirect-link kotlin">آموزش کاتلین</a>
+          <p class="learn-redirect-link-description">کد های کاتلین در فایل هایی با پسوند .kt یا .kts نوشته میشن و سپس
+            کامپایل شده و با JVM اجرا میشن.
+          </p>
+        </div>
+        <div>
+          <a href="/learn/linux.html" class="learn-redirect-link linux">دستورات لینوکس</a>
+          <p class="learn-redirect-link-description">در گنو لینوکس یک محیط اسکریپتی برای اجرای برنامه های لینوکس وجود
+            داره، به این محیط shell میگیم.</p>
+        </div>
+      </div>
+
+    </section>
+
+
+    <section>
+
+      <h2 class="index-section-head">
+        <span class="material-symbols-outlined icon" aria-hidden="true">bolt</span>
+        <span>شروع سریع</span>
+      </h2>
+
+      <aside class="redirect-link-container">
+
+        <div>
+          <a class="redirect-link" href="post/java/introduction.html">معرفی زبان برنامه نویسی جاوا</a>
+        </div>
+
+        <div>
+          <a class="redirect-link" href="post/kotlin/introduction.html">معرفی زبان برنامه نویسی کاتلین</a>
+        </div>
+
+        <div>
+          <a class="redirect-link" href="post/linux/introduction.html">معرفی سیستم عامل گنو لینوکس</a>
+        </div>
+
+      </aside>
+    </section>
+    <section>
+      <h2 class="index-section-head">
+        <span class="material-symbols-outlined icon" aria-hidden="true">rss_feed</span>
+        <span>بلاگ</span>
+      </h2>
+      <aside class="redirect-link-container">
+        <div>
+          <a class="redirect-link" href="post/blog/programming-languages.html">انواع زبان های برنامه نویسی</a>
+        </div>
+
+        <div>
+          <a class="redirect-link" href="post/blog/switch-statement-jdk-17.html">تغییرات سوییچ تا جاوا ۱۷</a>
+        </div>
+
+      </aside>
+    </section>
+
+
   </main>
 
+  <div class="scroll-top-container">
+    <a class="text-decoration-none link-dark material-icons" href="#">arrow_drop_up</a>
+  </div>
+
   <footer></footer>
+
+  <div class="dialog hide"></div>
 
 </body>
 

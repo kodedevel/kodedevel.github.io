@@ -147,7 +147,6 @@ header{
     transform: scale(1);
 }
 
-
 @media (max-width: 768px){
     footer .footer-content{
         display: block;
