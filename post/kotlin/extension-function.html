@@ -1,167 +1,183 @@
 <!DOCTYPE html>
 <html lang="fa">
+
 <head>
-    <meta content="ie=edge" http-equiv="x-ua-compatible"/>
-    <meta content="برنامه نویسی کاتلین، اکستنشن فانکشن ، extension function ، extension property ، اکشتنشن پروپرتی ، برنامه نویسی تابعی، تابع اکستنشن، توابع اکستنشن، اکستنشن ها در کاتلین، توابع، توابع در کاتلین، اکستنشن پراپرتی"
-          name="keywords"/>
 
-    <meta content="در این مطلب به بررسی اکستنشن ها در کاتلین می پردازیم و با انوع اکستنشن از جمله تابع اکستنشن، اکستنشن پراپرتی، اکستنشن های Companion Object اشنا شده و تعریف اکستنشن ها در داخل کلاس رو بررسی میکنیم." name="description"/>
-    <meta charset="UTF-8"/>
-    <meta content="width:device-width, initial-scale=1" name="viewport"/>
+  <meta
+    content="در این مطلب به بررسی اکستنشن ها در کاتلین می پردازیم و با انوع اکستنشن از جمله تابع اکستنشن، اکستنشن پراپرتی، اکستنشن های Companion Object اشنا شده و تعریف اکستنشن ها در داخل کلاس رو بررسی میکنیم."
+    name="description" />
+  <meta charset="UTF-8" />
+  <meta content="width:device-width, initial-scale=1" name="viewport" />
 
-    <title>اکستنشن ها در کاتلین</title>
+  <title>اکستنشن ها در کاتلین</title>
 
-    <meta property="og:title" content="اکستنشن ها در کاتلین"/>
-    <meta property="og:description" content="در این مطلب به بررسی اکستنشن ها در کاتلین می پردازیم و با تابع اکستنشن، اکستنشن پراپرتی، اکستنشن های Companion Object اشنا شده و تعریف اکستنشن ها در داخل کلاس رو بررسی میکنیم."/>
+  <meta property="og:title" content="اکستنشن ها در کاتلین" />
+  <meta property="og:description"
+    content="در این مطلب به بررسی اکستنشن ها در کاتلین می پردازیم و با تابع اکستنشن، اکستنشن پراپرتی، اکستنشن های Companion Object اشنا شده و تعریف اکستنشن ها در داخل کلاس رو بررسی میکنیم." />
 
-    <meta property="og:image" content="https://kodedevel.github.io/resources/favicon.png" />
-    <meta property="og:url" content="https://kodedevel.github.io/article/kotlin/extension-function.html" />
-    <meta property="og:type" content="article">
+  <meta property="og:image" content="https://kodedevel.github.io/resources/favicon.png" />
+  <meta property="og:url" content="https://kodedevel.github.io/article/kotlin/extension-function.html" />
+  <meta property="og:type" content="article">
 
-    <link href="/resources/css/main.css" rel="stylesheet">
-    <link href="/resources/favicon.png" rel="icon" type="image/x-icon">
-    <script type="module" src="/resources/js/main.js"></script>
+  <link href="/resources/css/main.css" rel="stylesheet">
+  <link href="/resources/favicon.png" rel="icon" type="image/x-icon">
+  <script type="module" src="/resources/js/main.js"></script>
 
 
 </head>
+
 <body>
 
-<header></header>
+  <header></header>
 
-<main>
+  <main>
+    <h1>
+      اکستنشن ها در کاتلین
+    </h1>
 
-    <div class="page-wrap">
-        <div class="article-head">
-            <h1>
-              اکستنشن ها در کاتلین
-            </h1>
+    <div class="article-head">
+      <div class="article-meta">
+        <address class="author">
+          <span class="material-symbols-outlined" aria-hidden="true">person</span>
+          <a href="/about.html" rel="author">یونس سلیمانی</a>
+        </address>
 
-            <address>
-                <a class="author text-muted text-decoration-none" rel="author">یونس سلیمانی</a>
-            </address>
-
-            <figure class="figure figure-wrapper">
-                <img alt="تابع اکستنشن در کاتلین"
-                     class="rounded figure-img"
-                     src="/resources/image/kotlin/cover_extensions.png">
-            </figure>
-
-
-            <div class="toc">
-                <p class="p-2 mx-2 h5">دسترسی سریع</p>
-                <div class="list-group">
-                    <a class="list-group-item list-group-item-action" href="#sub0">تعریف Extension در کاتلین</a>
-                    <a class="list-group-item list-group-item-action" href="#sub1">تابع اکستنشن</a>
-                    <a class="list-group-item list-group-item-action" href="#sub2">اکستنشن پراپرتی در کاتلین</a>
-                    <a class="list-group-item list-group-item-action" href="#sub3">اکستنشن های Companion Object</a>
-                    
-                    <a class="list-group-item list-group-item-action" href="#sub4">تعریف اکستنشن به عنوان عضو یک کلاس</a>
-
-                    <a class="list-group-item list-group-item-action" href="#sub5">خلاصه</a>
-                </div>
-            </div>
-
+        <div class="eta">
+          <span class="material-symbols-outlined" aria-hidden="true">schedule</span>
+          <span aria-live="polite"></span>
         </div>
 
-        <article>
+        <time datetime="2025-12-16">
+          <span class="material-symbols-outlined" aria-hidden="true">cached</span>
+          <span>آخرین بروزرسانی: ۱۶ دسامبر ۲۰۲۵</span>
+        </time>
+      </div>
+      <figure class="figure figure-wrapper">
+        <img alt="تابع اکستنشن در کاتلین" class="rounded figure-img" src="/resources/image/kotlin/cover_extensions.png">
+      </figure>
 
-            <div id="sub0" class="subsection">
-            <p class="title">
-               تعریف Extension در کاتلین
-            </p>
+      <div class="toc">
+        <p class="p-2 mx-2 h5">دسترسی سریع</p>
+        <div class="list-group">
+          <a class="list-group-item list-group-item-action" href="#p0">تعریف Extension در کاتلین</a>
+          <a class="list-group-item list-group-item-action" href="#p1">تابع اکستنشن</a>
+          <a class="list-group-item list-group-item-action" href="#p2">اکستنشن پراپرتی در کاتلین</a>
+          <a class="list-group-item list-group-item-action" href="#p3">اکستنشن های Companion Object</a>
+          <a class="list-group-item list-group-item-action" href="#p4">تعریف اکستنشن به عنوان عضو یک کلاس</a>
+          <a class="list-group-item list-group-item-action" href="#p5">خلاصه</a>
+        </div>
+      </div>
 
-                <blockquote>در این مطلب فرض شده با شی گرایی و توابع (متدها) در کاتلین آشنایی دارید. اگه با توابع در کاتلین اشنایی ندارید میتونید به مطلب <a class="text-decoration-none" href="/post/kotlin/functions.html">بررسی توابع در کاتلین</a> مراجعه کنید.</blockquote>
+    </div>
 
-            <p>اکستنشن ها در کاتلین توابع و متغیر هایی هستن که برای کلاس تعریفشون میکنیم.</p>
+    <article>
 
-            <p>
-            اکستنشن ها تغییری در داخل کلاس ایجاد نمیکنن و مانند پراپرتی (field) و تابع (function) های عضو کلاس اونا رو صدا میزنیم.
-            </p>
+      <section id="p0">
+        <h2>
+          تعریف Extension در کاتلین
+        </h2>
 
-            <p>با اینکه اکستنشن ها مانند اعضای کلاس صدا زده میشن اما عضوی به کلاس اضافه نمیکنن و <a class="text-decoration-none" href="/post/java/static-keyword.html">استاتیک</a> در نظر گرفته میشن. مثلا اگه برای دو کلاس تابع اکستنشن یکسان تعریف کرده باشیم، و دو کلاس از همدیگ ارث ببرن بدون توجه به وراثت؛ زمان کامپایل مشخص میشه تابع اکستنشن کدوم کلاس اجرا میشه.</p>
+        <blockquote>در این مطلب فرض شده با شی گرایی و توابع (متدها) در کاتلین آشنایی دارید. اگه با توابع در کاتلین
+          اشنایی ندارید میتونید به مطلب <a class="text-decoration-none" href="/post/kotlin/functions.html">بررسی توابع
+            در کاتلین</a> مراجعه کنید.</blockquote>
+
+        <p>اکستنشن ها در کاتلین توابع و متغیر هایی هستن که برای کلاس تعریفشون میکنیم.</p>
+
+        <p>
+          اکستنشن ها تغییری در داخل کلاس ایجاد نمیکنن و مانند پراپرتی (field) و تابع (function) های عضو کلاس اونا رو صدا
+          میزنیم.
+        </p>
+
+        <p>با اینکه اکستنشن ها مانند اعضای کلاس صدا زده میشن اما عضوی به کلاس اضافه نمیکنن و <a
+            class="text-decoration-none" href="/post/java/static-keyword.html">استاتیک</a> در نظر گرفته میشن. مثلا اگه
+          برای دو کلاس تابع اکستنشن یکسان تعریف کرده باشیم، و دو کلاس از همدیگ ارث ببرن بدون توجه به وراثت؛ زمان کامپایل
+          مشخص میشه تابع اکستنشن کدوم کلاس اجرا میشه.</p>
 
 
-            <p>معمولا اکستنشن ها رو داخل فایل کاتلین؛ یعنی به صورت <a class="text-decoration-none" href="https://skybirdbits.github.io/post/kotlin/functions.html#sub8">Top Level</a> تعریف میکنیم.
-            </p>
+        <p>معمولا اکستنشن ها رو داخل فایل کاتلین؛ یعنی به صورت <a class="text-decoration-none"
+            href="https://skybirdbits.github.io/post/kotlin/functions.html#p8">Top Level</a> تعریف میکنیم.
+        </p>
 
-            <p>
-            اکستنشن ها شامل توابع اکستنشن، اکستنشن پراپرتی (Extension Property)، و اکستنشن های Companion Object هستند.
-            </p>
+        <p>
+          اکستنشن ها شامل توابع اکستنشن، اکستنشن پراپرتی (Extension Property)، و اکستنشن های Companion Object هستند.
+        </p>
 
-            </div>
+      </section>
 
-                <div id="sub1" class="subsection">
-            <p class="title">
-              تابع اکستنشن
-            </p>
+      <section id="p1">
+        <h2>
+          تابع اکستنشن
+        </h2>
 
-            <p>
-            به توابعی گفته میشه که برای یک کلاس، در خارج از کلاس تعریف میکنیم.
-            </p>
+        <p>
+          به توابعی گفته میشه که برای یک کلاس، در خارج از کلاس تعریف میکنیم.
+        </p>
 
-            <p>
-                فرم کلی:
-            </p>
+        <p>
+          فرم کلی:
+        </p>
 
-            <div class="sample">
-                <div class="snippet-container">
-                    <div class="snippet Kotlin">
+        <div class="sample">
+          <div class="snippet-container">
+            <pre class="snippet Kotlin">
 fun &lt;T&gt; MyClass&lt;T&gt;.myFunction(...){
 
     ....
 
 }
-                    </div>
-                </div>
-            </div>
+                    </pre>
+          </div>
+        </div>
 
 
-            <p>
-                در اینجا MyClass اسم کلاس مورد نظر است یه نقطه میزاریم سپس اسم دلخواه برای تابعمون مینویسیم و مثل
-                توابع معمولی پارامتر های دلخواه داخل پرانتز تابع رو تعریف میکنیم.
-            </p>
+        <p>
+          در اینجا MyClass اسم کلاس مورد نظر است یه نقطه میزاریم سپس اسم دلخواه برای تابعمون مینویسیم و مثل
+          توابع معمولی پارامتر های دلخواه داخل پرانتز تابع رو تعریف میکنیم.
+        </p>`
 
-            <p>
-            همینطور اگه برای کلاس Generic تعریف شده بود مانند بالا میتونیم برای تابعی که تعریف میکنیم Generic تعریف کنیم تا برای هر نوع متغیری قابل استفاده باشه
-            </p>
+        <p>
+          همینطور اگه برای کلاس Generic تعریف شده بود مانند بالا میتونیم برای تابعی که تعریف میکنیم Generic تعریف کنیم
+          تا برای هر نوع متغیری قابل استفاده باشه
+        </p>
 
-            <p>
-                توابع اکستنشن رو مثل توابع عضو کلاس (ممبر فانکشن ها) صدا میزنیم.
-            </p>
+        <p>
+          توابع اکستنشن رو مثل توابع عضو کلاس (ممبر فانکشن ها) صدا میزنیم.
+        </p>
 
-            <div class="sample">
-                <div class="snippet-container">
-                    <div class="snippet Kotlin">
+        <div class="sample">
+          <div class="snippet-container">
+            <pre class="snippet Kotlin">
 val myClass = MyClass&lt;T&gt;()
 myClass.myFunction(...)
-                    </div>
-                </div>
-            </div>
+                    </pre>
+          </div>
+        </div>
 
 
-            <div class="note">
+        <div class="note">
 
-              <p class="h6">
+          <p class="h6">
             نکته:
-              </p>
-              <p>
-                 اگه تابع اکستنشن با یکی از توابع داخل کلاس از نظر پارامتر و اسم یکی باشه هنگام صدا زدن، تابع داخل کلاس به اجرا در میاد.
-              </p>
+          </p>
+          <p>
+            اگه تابع اکستنشن با یکی از توابع داخل کلاس از نظر پارامتر و اسم یکی باشه هنگام صدا زدن، تابع داخل کلاس به
+            اجرا در میاد.
+          </p>
 
-            </div>
+        </div>
 
-            <p>
-                    مثال:
-            </p>
-            <p>یک function به کلاس String اضافه کردیم که بررسی میکنه یک String متقارن است یا خیر</p>
+        <p>
+          مثال:
+        </p>
+        <p>یک function به کلاس String اضافه کردیم که بررسی میکنه یک String متقارن است یا خیر</p>
 
-            <div class="sample">
-                <div class="snippet-container">
-                    <div class="snippet Kotlin">
+        <div class="sample">
+          <div class="snippet-container">
+            <pre class="snippet Kotlin">
 fun String.isPalindrome(): Boolean{
    return if (length &lt;= 1) true
     else if (this[0] != this[length -1]) false
-    else substring(1, length -1).isPalindrome()
+    else pstring(1, length -1).isPalindrome()
 }
 
 fun main(){
@@ -175,16 +191,16 @@ fun main(){
   println("is $s2 palindrome? ${s2.isPalindrome()}")
   println("is $s3 palindrome? ${s3.isPalindrome()}")
 }
-                    </div>
-                </div>
-            </div>
+                    </pre>
+          </div>
+        </div>
 
-            <p>مثال:</p>
-            <p>اجرای تابع اکستنشن از دو کلاس پدر و فرزند.</p>
+        <p>مثال:</p>
+        <p>اجرای تابع اکستنشن از دو کلاس پدر و فرزند.</p>
 
-            <div class="sample">
-                <div class="snippet-container">
-                    <div class="snippet Kotlin">
+        <div class="sample">
+          <div class="snippet-container">
+            <pre class="snippet Kotlin">
 open class A { }
 
 class ChildA: A() { }
@@ -205,59 +221,60 @@ fun main(){
   show(A())
   show(ChildA())
 }
-                    </div>
-                </div>
-            </div>
-            <p>همینطور که در ابتدا گفتیم اکستنشن ها استاتیک در نظر گرفته میشن و زمان کامپایل مشخص میشه تابع کدوم کلاس اجرا بشه در بالا نتیجه اجرای تابع printInfo مربوط به A است. چون پارامتر show از نوع A است.</p>
+                    </pre>
+          </div>
+        </div>
+        <p>همینطور که در ابتدا گفتیم اکستنشن ها استاتیک در نظر گرفته میشن و زمان کامپایل مشخص میشه تابع کدوم کلاس اجرا
+          بشه در بالا نتیجه اجرای تابع printInfo مربوط به A است. چون پارامتر show از نوع A است.</p>
 
-                <h3>استفاده از کلیدواژه ی this داخل تابع:</h3>
+        <h3>استفاده از کلیدواژه ی this داخل تابع:</h3>
 
-            <p>
-                 داخل تابع اکستنشن با کلید واژه ی this میتونیم به نمونه کلاس و اعضای کلاس دسترسی داشته باشیم.
-            </p>
+        <p>
+          داخل تابع اکستنشن با کلید واژه ی this میتونیم به نمونه کلاس و اعضای کلاس دسترسی داشته باشیم.
+        </p>
 
-            <p>مثال:</p>
+        <p>مثال:</p>
 
-            <p>تابع swap رو برای MutableList هایی از نوع Int تعریف میکنیم.</p>
-            
-            <div class="sample">
-                <div class="snippet-container">
-                    <div class="snippet Kotlin">
+        <p>تابع swap رو برای MutableList هایی از نوع Int تعریف میکنیم.</p>
+
+        <div class="sample">
+          <div class="snippet-container">
+            <pre class="snippet Kotlin">
 fun MutableList&lt;Int&gt;.swap(index1: Int, index2: Int) {
     val tmp = this[index1]
     this[index1] = this[index2]
     this[index2] = tmp
 }
-                    </div>
-                </div>
-            </div>
+                    </pre>
+          </div>
+        </div>
 
-            <p>این تابع برای هر MutableList که نوعش Int باشه قابل استفاده است.</p>
+        <p>این تابع برای هر MutableList که نوعش Int باشه قابل استفاده است.</p>
 
-            <p>صدا زدن تابع:</p>
+        <p>صدا زدن تابع:</p>
 
-            <div class="sample">
-                <div class="snippet-container">
-                    <div class="snippet Kotlin">
+        <div class="sample">
+          <div class="snippet-container">
+            <pre class="snippet Kotlin">
 val list = mutableListOf(96, 78, 44)
 list.swap(0, 2)
-                    </div>
-                </div>
-            </div>
+                    </pre>
+          </div>
+        </div>
 
 
-                <h3>تعریف تابع اکستنشن به صورت Generic:</h3>
+        <h3>تعریف تابع اکستنشن به صورت Generic:</h3>
 
-            <p>میتونیم توابع اکستنشن رو به صورت، جنریک تعریف کنیم.</p>
+        <p>میتونیم توابع اکستنشن رو به صورت، جنریک تعریف کنیم.</p>
 
-            <p>مثال:</p>
+        <p>مثال:</p>
 
-            <p>در زیر تابع swap رو به صورت جنریک تعریف کردیم تا برای هر نوعی قابل استفاده باشه.</p>
+        <p>در زیر تابع swap رو به صورت جنریک تعریف کردیم تا برای هر نوعی قابل استفاده باشه.</p>
 
 
-            <div class="sample">
-                <div class="snippet-container">
-                    <div class="snippet Kotlin">
+        <div class="sample">
+          <div class="snippet-container">
+            <pre class="snippet Kotlin">
 // &lt;T&gt; after function satisfies the generic.
 
 fun &lt;T&gt; MutableList&lt;T&gt;.swap(index1: Int, index2: Int) {
@@ -265,49 +282,48 @@ fun &lt;T&gt; MutableList&lt;T&gt;.swap(index1: Int, index2: Int) {
     this[index1] = this[index2]
     this[index2] = tmp
 }
-                    </div>
-                </div>
-            </div>
+                    </pre>
+          </div>
+        </div>
 
+      </section>
 
-            </div>
+      <section id="p2">
+        <h2>
+          اکستنشن پراپرتی در کاتلین
+        </h2>
 
-            <div id="sub2" class="subsection">
-            <p class="title">
-                 اکستنشن پراپرتی در کاتلین
-            </p>
+        <p>
+          فرم کلی:
+        </p>
 
-            <p>
-                فرم کلی:
-            </p>
-
-            <div class="sample">
-                <div class="snippet-container">
-                    <div class="snippet Kotlin">
+        <div class="sample">
+          <div class="snippet-container">
+            <pre class="snippet Kotlin">
 val &lt;T&gt; MyClass&lt;T&gt;.myProperty: Int
     get(){...}
-                    </div>
-                </div>
-            </div>
+                    </pre>
+          </div>
+        </div>
 
-            <p>
-            کاملا شبیه extension function هاست
-            </p>
-            <p>
-            اکستنشن پروپرتی ها نمیتونن دارای مقدار اولیه باشن.
-            </p>
+        <p>
+          کاملا شبیه extension function هاست
+        </p>
+        <p>
+          اکستنشن پروپرتی ها نمیتونن دارای مقدار اولیه باشن.
+        </p>
 
-            <p>
-            همونطور که گفتیم extension ها ربطی به کلاس ندارن پس مقدار اولیه ای برای extension property ها وجود نداره
-            </p>
+        <p>
+          همونطور که گفتیم extension ها ربطی به کلاس ندارن پس مقدار اولیه ای برای extension property ها وجود نداره
+        </p>
 
-            <p>
-                مثال:
-            </p>
+        <p>
+          مثال:
+        </p>
 
-            <div class="sample">
-                <div class="snippet-container">
-                    <div class="snippet Kotlin">
+        <div class="sample">
+          <div class="snippet-container">
+            <pre class="snippet Kotlin">
 val Int.even: Boolean get(){
     return this % 2 == 0
 }
@@ -319,74 +335,76 @@ fun main(){
   println("is $num0 even? ${num0.even}")
   println("is $num1 even? ${num1.even}")
 }
-                    </div>
-                </div>
-            </div>
+                    </pre>
+          </div>
+        </div>
 
-            <p>
-                در بالا یک property به کلاس Int اضافه کردیم که بررسی میکنه عدد زوجه یا نه.
-            </p>
-            </div>
-
-
-            <div id="sub3" class="subsection">
-            <p class="title">
-                اکستنشن های Companion Object
-            </p>
+        <p>
+          در بالا یک property به کلاس Int اضافه کردیم که بررسی میکنه عدد زوجه یا نه.
+        </p>
+      </section>
 
 
-            <p>
-                اگه برای یک کلاس Companion Object تعریف شده باشه، میتونیم برای Companion Object اکستنشن فانکشن و اکستنشن پراپرتی تعریف کنیم.
-            </p>
+      <section id="p3">
+        <h2>
+          اکستنشن های Companion Object
+        </h2>
 
 
-            <div class="sample">
-                <div class="snippet-container">
-                    <div class="snippet Kotlin">
+        <p>
+          اگه برای یک کلاس Companion Object تعریف شده باشه، میتونیم برای Companion Object اکستنشن فانکشن و اکستنشن
+          پراپرتی تعریف کنیم.
+        </p>
+
+
+        <div class="sample">
+          <div class="snippet-container">
+            <pre class="snippet Kotlin">
 MyClass.Companion.myFunction(){
 
 //...
 
 }
-                    </div>
-                </div>
-            </div>
+                    </pre>
+          </div>
+        </div>
 
 
-            <p>
-                برای صدا زدنش مثل بقیه اعضای داخل companion object عمل میکنیم:
-            </p>
+        <p>
+          برای صدا زدنش مثل بقیه اعضای داخل companion object عمل میکنیم:
+        </p>
 
 
-            <div class="sample">
-                <div class="snippet-container">
-                    <div class="snippet Kotlin">
+        <div class="sample">
+          <div class="snippet-container">
+            <pre class="snippet Kotlin">
 MyClass.myFunction()
-                    </div>
-                </div>
-            </div>
+                    </pre>
+          </div>
+        </div>
 
-            </div>
+      </section>
 
-            <div class="subsection" id="sub4">
-              <p class="title">تعریف اکستنشن به عنوان عضو یک کلاس
-              </p>
+      <section id="p4">
+        <h2>تعریف اکستنشن به عنوان عضو یک کلاس
+        </h2>
 
-              <div class="note">
-                    <p class="note-head">توجه:</p>
-                <p>
-                برای مطالعه ی این بخش توصیه میشه با مبانی شی گرایی اشنایی داشته باشید.
-                </p>
-              </div>
+        <div class="note">
+          <p class="note-head">توجه:</p>
+          <p>
+            برای مطالعه ی این بخش توصیه میشه با مبانی شی گرایی اشنایی داشته باشید.
+          </p>
+        </div>
 
-              <p>میتونیم برای یک کلاس داخل کلاس دیگه اکستنشن تعریف کنیم به کلاسی که داخلش اکستنشن تعریف کردیم dispatch receiver و به کلاسی که اکستنشن رو براش تعریف کردیم extension receiver میگیم.</p>
-              <p>مثال:</p>
+        <p>میتونیم برای یک کلاس داخل کلاس دیگه اکستنشن تعریف کنیم به کلاسی که داخلش اکستنشن تعریف کردیم dispatch
+          receiver و به کلاسی که اکستنشن رو براش تعریف کردیم extension receiver میگیم.</p>
+        <p>مثال:</p>
 
-              <p>استفاده از یک کلاس به عنوان extension receiver.</p>
+        <p>استفاده از یک کلاس به عنوان extension receiver.</p>
 
-              <div class="sample">
-                  <div class="snippet-container">
-                      <div class="snippet Kotlin">
+        <div class="sample">
+          <div class="snippet-container">
+            <pre class="snippet Kotlin">
 class MyExtensionReceiver{               
   val id: Int = (0..100).random()
 
@@ -394,17 +412,17 @@ class MyExtensionReceiver{
     println("This is a message from MyExtensionReceiver")
   }
 }
-                      </div>
-                  </div>
-              </div>
+                      </pre>
+          </div>
+        </div>
 
-              <p>
-              استفاده از یک کلاس به عنوان dispatch receiver.
-              </p>
+        <p>
+          استفاده از یک کلاس به عنوان dispatch receiver.
+        </p>
 
-              <div class="sample">
-                  <div class="snippet-container">
-                      <div class="snippet Kotlin">
+        <div class="sample">
+          <div class="snippet-container">
+            <pre class="snippet Kotlin">
 class MyDispatchReceiver(val er: MyExtensionReceiver){
 
   MyExtensionReceiver.printInfo(){
@@ -412,20 +430,23 @@ class MyDispatchReceiver(val er: MyExtensionReceiver){
   }
 
 }
-                      </div>
-                  </div>
-              </div>
+                      </pre>
+          </div>
+        </div>
 
-              <div class="note">
-                    <p class="note-head">توجه:</p>
-                <p>اگه بخوایم داخل تابع printInfo یکی از اعضای dispatch receiver رو صدا بزنیم و با عضو extension receiver هم نام باشه، اولویت با اعضای extension receiver است. برای همین موقع صدا زدن اعضای dispatch receiver از <strong>this@ClassName</strong> استفاده میکنیم تا از تداخل اسمی جلوگیری بشه.</p>
-              </div>
+        <div class="note">
+          <p class="note-head">توجه:</p>
+          <p>اگه بخوایم داخل تابع printInfo یکی از اعضای dispatch receiver رو صدا بزنیم و با عضو extension receiver هم
+            نام باشه، اولویت با اعضای extension receiver است. برای همین موقع صدا زدن اعضای dispatch receiver از
+            <strong>this@ClassName</strong> استفاده میکنیم تا از تداخل اسمی جلوگیری بشه.
+          </p>
+        </div>
 
-              <p>فرض کنید در کلاس MyDispatchReceiver عضوی با اسم id نیز وجود داشته باشه: </p>
+        <p>فرض کنید در کلاس MyDispatchReceiver عضوی با اسم id نیز وجود داشته باشه: </p>
 
-              <div class="sample">
-                  <div class="snippet-container">
-                      <div class="snippet Kotlin">
+        <div class="sample">
+          <div class="snippet-container">
+            <pre class="snippet Kotlin">
 class MyDispatchReceiver(val er: MyExtensionReceiver){
   val id: Int = (0..20).random()
 
@@ -438,24 +459,24 @@ class MyDispatchReceiver(val er: MyExtensionReceiver){
   }
 
 }
-                      </div>
-                  </div>
-              </div>
+                      </pre>
+          </div>
+        </div>
 
-              <p>میتونیم تابع اکستنشن داخل کلاس رو به صورت open تعریف کنیم تا در وراثت بتونیم override کنیم.</p>
+        <p>میتونیم تابع اکستنشن داخل کلاس رو به صورت open تعریف کنیم تا در وراثت بتونیم override کنیم.</p>
 
-              <div class="note">
-                    <p class="note-head">توجه:</p>
-                تابع اکستنشن برای extension receiver و فرزندانش استاتیک و برای dispatcher receiver عضو به حساب میاد.
-              </div>
+        <div class="note">
+          <p class="note-head">توجه:</p>
+          تابع اکستنشن برای extension receiver و فرزندانش استاتیک و برای dispatcher receiver عضو به حساب میاد.
+        </div>
 
-              <p>
-              مثال:
-              </p>
+        <p>
+          مثال:
+        </p>
 
-              <div class="sample">
-                  <div class="snippet-container">
-                      <div class="snippet Kotlin">
+        <div class="sample">
+          <div class="snippet-container">
+            <pre class="snippet Kotlin">
 open class A { }
 
 class ChildA: A() { }
@@ -497,34 +518,38 @@ fun main() {
     cb.call(A())
     cb.call(ChildA())
 }
-                      </div>
-                  </div>
-              </div>
+                      </pre>
+          </div>
+        </div>
 
-              <p>ابتدا برای کلاس های A و ChildA تابع اکستنشن printInfo رو در B تعریف کردیم، سپس با ارث بری ChildB از B این دو تابع رو در ChildB بازنویسی کردیم، سپس در تابع main، تابع call رو صدا کردیم و نمونه جدید از A و ChildA رو به call پاس دادیم. چون پارامتر تعریف شده در  call از نوع A است، تابع printInfo برای A در B و ChildB اجرا میشه.</p>
+        <p>ابتدا برای کلاس های A و ChildA تابع اکستنشن printInfo رو در B تعریف کردیم، سپس با ارث بری ChildB از B این دو
+          تابع رو در ChildB بازنویسی کردیم، سپس در تابع main، تابع call رو صدا کردیم و نمونه جدید از A و ChildA رو به
+          call پاس دادیم. چون پارامتر تعریف شده در call از نوع A است، تابع printInfo برای A در B و ChildB اجرا میشه.</p>
 
-            </div>
+      </section>
 
-            <div id="sub5" class="subsection">
+      <section id="p5">
 
-                <h2>خلاصه</h2>
+        <h2>خلاصه</h2>
 
-            <p>
-                -در کاتلین Extension ها تاثیری روی کلاس ندارن وقتی برای یک کلاس extension تعریف میکنیم فقط بیان میکنیم که
-                function یا property تعریف شده رو باید با استفاده از متغیر کلاس صدا بزنیم.
-            </p>
+        <p>
+          -در کاتلین Extension ها تاثیری روی کلاس ندارن وقتی برای یک کلاس extension تعریف میکنیم فقط بیان میکنیم که
+          function یا property تعریف شده رو باید با استفاده از متغیر کلاس صدا بزنیم.
+        </p>
 
-            <p>
-            -برای صدا زدن extension ها مانند اعضای داخل کلاس باید اسم متغیر کلاس نقطه و اسم function یا property تعریف شده رو بنویسیم.
-            </p>
-
-
-            <p>
-                در قطعه کد زیر به طور خلاصه از هر سه نوع یک نمونه بیان شده است:
-            </p>
+        <p>
+          -برای صدا زدن extension ها مانند اعضای داخل کلاس باید اسم متغیر کلاس نقطه و اسم function یا property تعریف شده
+          رو بنویسیم.
+        </p>
 
 
-            <div class="code-container">
+        <p>
+          در قطعه کد زیر به طور خلاصه از هر سه نوع یک نمونه بیان شده است:
+        </p>
+
+        <div class="sample">
+          <div class="snippet-container">
+            <pre class="snippet Koitlin">
 //Extension Function
 fun MyClass.myExtensionFunction(){
     //...
@@ -547,75 +572,79 @@ myObject.myExtensionFunction()
 val list = myObject.myExtensionProperty
 
 MyClass.myExtensionCompanionFunction()
-            </div>
-
-            </div>
-
-            <p>
-            در این مطلب به بررسی اکستنشن ها در کاتلین پرداختیم و با توابع اکستنشن ، اکستنشن پراپرتی  و اکستنشن های companion object اشنا شدیم و اکستنشن های عضو کلاس رو بررسی کردیم.
-            </p>
-
-            <p>موفق باشید</p>
-
-        </article>
-        <div class="article-foot">
-          <div class="navigator-container">
-
-            <a href="/post/kotlin/anonymous-function-and-lambda.html" class="md-bt md-bt-light">
-
-              <span class="material-icons">
-                navigate_next
-              </span>
-              <span class="hint">
-                بعدی
-              </span>
-            </a>
-
-            <a href="/post/kotlin/functions.html" class="md-bt md-bt-light">
-              <span class="hint">
-                قبلی
-              </span>
-              <span class="material-icons">
-                navigate_before
-              </span>
-
-            </a>
+            </pre>
           </div>
-            <div class="relative-articles-container">
-              <p>مطالب مرتبط</p>
-              <div>
-                <div>
-                  <a href="/post/kotlin/functions.html">بررسی توابع در کاتلین</a>
-                </div>
-                <div>
-                  <a href="/post/kotlin/anonymous-function-and-lambda.html">توابع بی نام و عبارات لامبدا در کاتلین</a>
-                </div>
-                <div>
-                  <a href="/post/kotlin/higher-order-functions.html">توابع مرتبه ی بالا در کاتلین</a>
-                </div>
-                <div>
-                  <a href="https://kotlinlang.org/docs/extensions.html">سایت رسمی کاتلین برای مطالعه موضوع</a>
-                </div>
-              </div>
-            </div>
-          </div>
+        </div>
+
+      </section>
+
+      <p>
+        در این مطلب به بررسی اکستنشن ها در کاتلین پرداختیم و با توابع اکستنشن ، اکستنشن پراپرتی و اکستنشن های companion
+        object اشنا شدیم و اکستنشن های عضو کلاس رو بررسی کردیم.
+      </p>
+
+      <p>موفق باشید</p>
+
+    </article>
+    <div class="article-foot">
+      <aside>
+        <nav class="post-navigation-container">
+
+          <a href="/post/kotlin/anonymous-function-and-lambda.html" class="md-bt md-bt-light">
+
+            <span class="material-symbols-outlined">
+              navigate_next
+            </span>
+            <span class="hint">
+              بعدی
+            </span>
+          </a>
+
+          <a href="/post/kotlin/functions.html" class="md-bt md-bt-light">
+            <span class="hint">
+              قبلی
+            </span>
+            <span class="material-symbols-outlined">
+              navigate_before
+            </span>
+          </a>
+        </nav>
+        <section>
+          <h2>مطالب مرتبط</h2>
+          <ul>
+            <li>
+              <a href="/post/kotlin/functions.html">بررسی توابع در کاتلین</a>
+            </li>
+            <li>
+              <a href="/post/kotlin/anonymous-function-and-lambda.html">توابع بی نام و عبارات لامبدا در کاتلین</a>
+            </li>
+            <li>
+              <a href="/post/kotlin/higher-order-functions.html">توابع مرتبه ی بالا در کاتلین</a>
+            </li>
+            <li>
+              <a href="https://kotlinlang.org/docs/extensions.html">سایت رسمی کاتلین برای مطالعه موضوع</a>
+            </li>
+          </ul>
+        </section>
+      </aside>
     </div>
 
-</main>
+  </main>
 
-<div class="scroll-top-container">
+  <div class="scroll-top-container">
     <a class="text-decoration-none link-dark material-icons" href="#">
-        arrow_drop_up
+      arrow_drop_up
     </a>
-</div>
+  </div>
 
-<footer></footer>
+  <footer></footer>
 
-<div class="dialog hide"></div>
+  <div class="dialog hide"></div>
 
-<div class="copy-message">
+  <div class="copy-message">
     <span class="copy-message-text">کپی شد!</span>
-</div>
+  </div>
 
 </body>
+
 </html>

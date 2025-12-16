@@ -37,16 +37,11 @@
   transition: max-height 200ms ease-out;
 }
 
-.subject-item-content ul{
-  padding-top: 16px;
-  padding-bottom: 4px;
-}
-
 .subject-item-content a{
   position: relative;
   display: block;
   text-decoration: none;
-  color: #212121;
+  color: #212121 !important;
   background-color: #fafafa;
   text-align: center;
   text-anchor: middle;
@@ -58,7 +53,8 @@
 }
 
 .subject-item-content a:hover{
-  background-color: #fafafa;
+  background-color: #fafafa !important;
+  color: #1976D2 !important;
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
 }
 

@@ -61,6 +61,7 @@
   z-index: 2;
   top: 50%;
   opacity: 0.8;
+  color: #fafafa !important;
 }
 
 .slide-navigator.next{
@@ -129,7 +130,7 @@
   width: 320px;
   height: 320px;
   text-align: center;
-  color: #fafafa;
+  color: #fafafa !important;
   font-size: 1.2rem;
   font-weight: bold;
   align-content: center;
@@ -142,7 +143,7 @@
 
 .learn-redirect-link:hover{
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
-  color: #e5e5e5;
+  color: #e5e5e5 !important;
 }
 
 .learn-redirect-link.java{

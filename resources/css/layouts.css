@@ -1,0 +1,139 @@
+.sidebar-content{
+    background-color: #fafafa;
+    padding: 0 !important;
+}
+
+.list-container{
+    width: 100vw;
+    height: auto;
+    background-color: transparent;
+    padding-bottom: 8px;
+}
+
+.list-container .list{
+    padding: 8px;
+    margin-right: 42px;
+}
+
+.list .list-item {
+    color: #212121;
+}
+
+
+.footer-content{
+    display: flex;
+    width: 100%;
+    height: auto;
+    min-height: 80px;
+    justify-content: space-between;
+    align-items: center;
+    text-decoration: none;
+    color: #fafafa;
+    direction: rtl;
+    font-size: 1.1em;
+
+}
+
+.footer-content .footer-content-item{
+    display: flex;
+    padding: 8px;
+    align-items: center;
+    justify-content: center;
+}
+
+.offcanvas-header a{
+  color: #fafafa !important;
+}
+
+.offcanvas-header a:hover{
+  color: #e0e0e0 !important;
+}
+
+.navbar-brand{
+  color:#fafafa !important;
+}
+
+.navbar-brand:hover{
+  color: #e0e0e0 !important;
+}
+
+.dialog {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    position: fixed;
+    background-color: rgba(0,0,0, 0.6);
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    z-index: 1100;
+    transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out;
+}
+
+.dialog.show{
+    visibility: visible;
+    opacity: 1;
+}
+
+.dialog.hide{
+    visibility: hidden;
+    opacity: 0;
+}
+
+.dialog .dialog-content{
+    width: auto;
+    min-width: 25%;
+    max-width: 720px;
+    height: auto;
+    display: block;
+    visibility: hidden;
+    background-color: #fafafa;
+    color: #212121;
+    padding: 16px;
+    direction: rtl;
+    border: 1px solid #888;
+    border-radius: 16px;
+    transform: scale(0.9);
+    transition: visibility 0.4s ease-in-out ,transform 0.4s ease-in-out;
+}
+
+.dialog-content .dialog-content-head{
+    padding: 8px;
+}
+
+.dialog-content .dialog-content-body{
+    padding-top: 8px;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-bottom: 32px;
+}
+
+.dialog-content-body .link-wrapper{
+    display: flex;
+    justify-content: center;
+}
+
+.dialog-content .dialog-content-foot{
+    display: flex;
+    background-color: #212121;
+    color: #fafafa;
+    padding: 16px;
+    border-radius: 16px;
+    direction: ltr;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.dialog.show .dialog-content{
+    visibility: visible;
+    transform: scale(1);
+}
+
+@media (max-width: 768px){
+    footer .footer-content{
+        display: block;
+        justify-content: center;
+        align-items: center;
+    }
+}

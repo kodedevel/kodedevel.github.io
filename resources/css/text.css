@@ -42,6 +42,30 @@ blockquote {
  text-align: justify;
 }
 
+a{
+  text-decoration: none !important;
+  color: #212121 !important;
+}
+
+a:hover{
+  color: #0D47A1 !important;
+}
+
+article a{
+  color: #1976D2 !important;
+  font-style: italic;
+}
+
+footer a{
+  color: #fafafa !important;
+  margin: 2px;
+  padding: 2px;
+}
+
+footer a:hover{
+  color: #e0e0e0 !important;
+}
+
 .keyword{
     color: #0033b3;
 }

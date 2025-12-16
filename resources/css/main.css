@@ -5,18 +5,10 @@
 @import url("bt.css");
 @import url("text.css");
 @import url("base.css");
+@import url("layouts.css");
 @import url("utils.css");
 @import url("article.css");
 @import url("learn.css");
-main{
-    position: relative;
-    min-height: 64vh;
-    width: 100vw;
-    background-color: #ffffff;
-    padding-bottom: 128px;
-    font-variant-ligatures: none;
-
-}
 
 .figure {
 width: 100%;
@@ -39,12 +31,15 @@ margin-top: 32px;
 }
 
 
-nav, .offcanvas-header{
+.offcanvas-header{
     background-color: #212121;
     min-height: 80px;
     height: 80px;
 }
 
+.material-symbols-outlined{
+  vertical-align: middle;
+}
 
 @font-face {
   font-family: Samim;

@@ -6,14 +6,17 @@
   <meta http-equiv="X-UA-Compatible" content="IE=7">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-  <meta name="keywords" content="کاتلین، آرایه ها در کاتلین، arrayOf، arrayOfNulls، emptyArray، کلاس Array، آرایه یک بعدی، آرایه های دو بعدی، آرایه های چند بعدی، isEmpty، shuffle، isContentEquals، آرایه ها">
-  <meta name="description" content="در این مطلب به تعریف آرایه، آرایه های یک بعدی، آرایه های دو بعدی و آرایه های چند بعدی در کاتلین میپردازیم.">
+  <meta name="keywords"
+    content="کاتلین، آرایه ها در کاتلین، arrayOf، arrayOfNulls، emptyArray، کلاس Array، آرایه یک بعدی، آرایه های دو بعدی، آرایه های چند بعدی، isEmpty، shuffle، isContentEquals، آرایه ها">
+  <meta name="description"
+    content="در این مطلب به تعریف آرایه، آرایه های یک بعدی، آرایه های دو بعدی و آرایه های چند بعدی در کاتلین میپردازیم.">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>آرایه (Array) ها در کاتلین</title>
 
   <meta property="og:title" content="آرایه (Array) ها در کاتلین">
-  <meta property="og:description" content="در این مطلب به تعریف آرایه، آرایه های یک بعدی، آرایه های دو بعدی و آرایه های چند بعدی در کاتلین میپردازیم.">
+  <meta property="og:description"
+    content="در این مطلب به تعریف آرایه، آرایه های یک بعدی، آرایه های دو بعدی و آرایه های چند بعدی در کاتلین میپردازیم.">
 
   <meta property="og:url" content="https://kodedevel.github.io/post/kotlin/arrays.html">
   <meta property="og:image" content="https://kodedevel.github.io/resources/favicon.png">
@@ -28,52 +31,65 @@
 </head>
 
 <body>
+  <header></header>
   <main>
-    <header></header>
-    <div class="page-wrap">
-      <div class="article-head">
-        <h1>آرایه (Array) ها در کاتلین</h1>
+    <h1>آرایه (Array) ها در کاتلین</h1>
 
-        <address>
-          <a class="author text-muted text-decoration-none" rel="author">یونس سلیمانی</a>
+    <div class="article-head">
+      <div class="article-meta">
+
+        <address class="author">
+          <span class="material-symbols-outlined" aria-hidden="true">person</span>
+          <a href="/about.html" rel="author">یونس سلیمانی</a>
         </address>
 
-        <figure class="figure figure-wrapper">
-          <img alt="آرایه ها در کاتلین" class="rounded figure-img"
-            src="/resources/image/kotlin/cover_arrays.png">
-        </figure>
-
-        <div class="toc">
-          <p class="p-2 mx-2 h5">دسترسی سریع</p>
-          <div class="list-group">
-            <a class="list-group-item list-group-item-action" href="#sub0">تعریف آرایه</a>
-
-            <a class="list-group-item list-group-item-action" href="#sub1">روش های ایجاد آرایه در کاتلین</a>
-
-            <a class="list-group-item list-group-item-action" href="#sub2">توابع رایج در آرایه</a>
-
-            <a class="list-group-item list-group-item-action" href="#sub3">آرایه دو بعدی</a>
-
-            <a class="list-group-item list-group-item-action" href="#sub4">آرایه چند بعدی</a>
-
-            <a class="list-group-item list-group-item-action" href="#sub5">خلاصه</a>
-
-          </div>
+        <div class="eta">
+          <span class="material-symbols-outlined" aria-hidden="true">schedule</span>
+          <span aria-live="polite"></span>
         </div>
 
+        <time datetime="2025-12-16">
+          <span class="material-symbols-outlined" aria-hidden="true">cached</span>
+          <span>آخرین بروزرسانی: ۱۶ دسامبر ۲۰۲۵</span>
+        </time>
+      </div>
+      <figure class="figure figure-wrapper">
+        <img alt="آرایه ها در کاتلین" class="rounded figure-img" src="/resources/image/kotlin/cover_arrays.png">
+      </figure>
+
+      <div class="toc">
+        <p class="p-2 mx-2 h5">دسترسی سریع</p>
+        <div class="list-group">
+          <a class="list-group-item list-group-item-action" href="#p0">تعریف آرایه</a>
+
+          <a class="list-group-item list-group-item-action" href="#p1">روش های ایجاد آرایه در کاتلین</a>
+
+          <a class="list-group-item list-group-item-action" href="#p2">توابع رایج در آرایه</a>
+
+          <a class="list-group-item list-group-item-action" href="#p3">آرایه دو بعدی</a>
+
+          <a class="list-group-item list-group-item-action" href="#p4">آرایه چند بعدی</a>
+
+          <a class="list-group-item list-group-item-action" href="#p5">خلاصه</a>
+
+        </div>
       </div>
 
-      <article>
-        <div class="subsection" id="sub0">
-                <h2>تعریف آرایه</h2>
+    </div>
 
-          <blockquote>از آرایه برای نگهداشتن تعداد متناهی از متغیر های هم نوع استفاده میکنیم. که بهشون عنصر (element) یا عضو میگیم.</blockquote>
+    <article>
+      <section id="p0">
+        <h2>تعریف آرایه</h2>
 
-          <p>فرض کنید داخل برنامه به 7 تا متغیر از نوع یکسان احتیاج دارید؛ باید مثل زیر برای هر مقدار یک متغیر تعریف کنید:</p>
+        <blockquote>از آرایه برای نگهداشتن تعداد متناهی از متغیر های هم نوع استفاده میکنیم. که بهشون عنصر (element) یا
+          عضو میگیم.</blockquote>
 
-          <div class="sample">
-              <div class="snippet-container">
-                  <div class="snippet Kotlin">
+        <p>فرض کنید داخل برنامه به 7 تا متغیر از نوع یکسان احتیاج دارید؛ باید مثل زیر برای هر مقدار یک متغیر تعریف کنید:
+        </p>
+
+        <div class="sample">
+          <div class="snippet-container">
+            <pre class="snippet Kotlin">
 var v0 = 5
 var v1 = 2
 var v2 = 8
@@ -81,83 +97,89 @@ var v3 = 0
 var v4 = 9
 var v5 = 1
 var v6 = 3
-                  </div>
-              </div>
-          </div>
-
-          <p>این کار ممکنه وقت گیر باشه و کد های برنامه رو زیاد کنه؛ مخصوصا زمانی که تعداد متغیر ها بالاست.</p>
-
-          <p>میتونیم از ارایه برای راحت تر کردن کار استفاده کنیم:</p>
-
-          <div class="sample">
-              <div class="snippet-container">
-                  <div class="snippet Kotlin">
-var myArray = arrayOf&lt;Int&gt;(5, 2, 8, 0, 9, 1, 3)
-                  </div>
-              </div>
-          </div>
-
-          <p>همینطور که می بینید دیگه نیاز به تعریف 7 تا متغیر نداریم بلکه هر 7 متغیر رو داخل متغیری به اسم آرایه قرار دادیم، اصطلاحا میگیم یک آرایه به طول 7 ایجاد کردیم.</p>
-
-          <p>وقتی میگیم آرایه به طول n؛ شما n تا خونه کنار همو درنظر بگیرید که هر خونه میزبان یک متغیر است. به متغیر های آرایه عناصر آرایه میگیم.<br> در زیر ساختار یک آرایه به طول 7 رو به تصویر کشیدیم:</p>
-
-        <figure class="figure figure-wrapper">
-          <img alt="ساختار یک آرایه" class="rounded figure-img"
-            src="/resources/image/generic/array_structure.png">
-        </figure>
-
-
-          <p>جایگاه هر عنصر ثابته مثلا وقتی عدد 1 رو به خونه ی شماره 5 اختصاص دادیم تا وقتی مقدار خونه شماره 5 رو تغییر نداده باشیم این خونه میزبان مقدار 1 است.</p>
-
-          <p>طول یک ارایه عموما ثابت و تغییر ناپذیره یعنی وقتی یک آرایه به طول n ایجاد میکنیم n تا خونه ایجاد میشه و تعداد خونه ها نه میتونن کم بشن و نه زیاد. <br> طول یک آرایه در کاتلین رو با <strong>size</strong> بدست میاریم:</p>
-
-          <div class="sample">
-              <div class="snippet-container">
-                  <div class="snippet Kotlin">
-val n = myArray.size
-println(n)
-                  </div>
-              </div>
-          </div>
-
-          <p>با اینکه طول یک آرایه ثابته اما متغیر های هر خونه میتونن تغییر کنن:</p>
-          
-          <div class="sample">
-              <div class="snippet-container">
-                  <div class="snippet Kotlin">
-myArray[5] = 32
-println(myArray[5])
-                  </div>
-              </div>
+                  </pre>
           </div>
         </div>
 
-        <div class="subsection" id="sub1">
-                <h2>روش های ایجاد آرایه در کاتلین</h2>
+        <p>این کار ممکنه وقت گیر باشه و کد های برنامه رو زیاد کنه؛ مخصوصا زمانی که تعداد متغیر ها بالاست.</p>
 
-          <p>به یک آرایه، آرایه یک بعدی گفته میشه.</p>
+        <p>میتونیم از ارایه برای راحت تر کردن کار استفاده کنیم:</p>
 
-          <p>ارایه ها در کاتلین رو به دو روش کلی میشه ایجاد کرد:</p>
+        <div class="sample">
+          <div class="snippet-container">
+            <pre class="snippet Kotlin">
+var myArray = arrayOf&lt;Int&gt;(5, 2, 8, 0, 9, 1, 3)
+                  </pre>
+          </div>
+        </div>
 
-          <p>۱- با استفاده از توابع arrayOf، arrayOfNulls و emptyArray</p>
+        <p>همینطور که می بینید دیگه نیاز به تعریف 7 تا متغیر نداریم بلکه هر 7 متغیر رو داخل متغیری به اسم آرایه قرار
+          دادیم، اصطلاحا میگیم یک آرایه به طول 7 ایجاد کردیم.</p>
 
-          <p>۲- با ایجاد آبجکت از کلاس Array</p>
+        <p>وقتی میگیم آرایه به طول n؛ شما n تا خونه کنار همو درنظر بگیرید که هر خونه میزبان یک متغیر است. به متغیر های
+          آرایه عناصر آرایه میگیم.<br> در زیر ساختار یک آرایه به طول 7 رو به تصویر کشیدیم:</p>
+
+        <figure class="figure figure-wrapper">
+          <img alt="ساختار یک آرایه" class="rounded figure-img" src="/resources/image/generic/array_structure.png">
+        </figure>
 
 
-                <h3>ایجاد آرایه با تابع arrayOf</h3>
+        <p>جایگاه هر عنصر ثابته مثلا وقتی عدد 1 رو به خونه ی شماره 5 اختصاص دادیم تا وقتی مقدار خونه شماره 5 رو تغییر
+          نداده باشیم این خونه میزبان مقدار 1 است.</p>
 
-          <p>پارامتر تابع arrayOf در کاتلین از نوع <a class="text-decoration-none" href="/post/kotlin/functions.html">vararg</a> است.</p>
+        <p>طول یک ارایه عموما ثابت و تغییر ناپذیره یعنی وقتی یک آرایه به طول n ایجاد میکنیم n تا خونه ایجاد میشه و تعداد
+          خونه ها نه میتونن کم بشن و نه زیاد. <br> طول یک آرایه در کاتلین رو با <strong>size</strong> بدست میاریم:</p>
 
-          <p>تابعو صدا میزنیم و متغیر ها رو به صورت پارامتر به داخل تابع پاس میدیم. طول آرایه برابر میشه با تعداد عناصر های پارامتر.</p>
+        <div class="sample">
+          <div class="snippet-container">
+            <pre class="snippet Kotlin">
+val n = myArray.size
+println(n)
+                  </pre>
+          </div>
+        </div>
+
+        <p>با اینکه طول یک آرایه ثابته اما متغیر های هر خونه میتونن تغییر کنن:</p>
+
+        <div class="sample">
+          <div class="snippet-container">
+            <pre class="snippet Kotlin">
+myArray[5] = 32
+println(myArray[5])
+                  </pre>
+          </div>
+        </div>
+
+      </section>
+
+      <section id="p1">
+        <h2>روش های ایجاد آرایه در کاتلین</h2>
+
+        <p>به یک آرایه، آرایه یک بعدی گفته میشه.</p>
+
+        <p>ارایه ها در کاتلین رو به دو روش کلی میشه ایجاد کرد:</p>
+
+        <p>۱- با استفاده از توابع arrayOf، arrayOfNulls و emptyArray</p>
+
+        <p>۲- با ایجاد آبجکت از کلاس Array</p>
+
+        <section>
+          <h3>ایجاد آرایه با تابع arrayOf</h3>
+
+          <p>پارامتر تابع arrayOf در کاتلین از نوع <a class="text-decoration-none"
+              href="/post/kotlin/functions.html">vararg</a> است.</p>
+
+          <p>تابعو صدا میزنیم و متغیر ها رو به صورت پارامتر به داخل تابع پاس میدیم. طول آرایه برابر میشه با تعداد عناصر
+            های پارامتر.</p>
 
           <p>فرم کلی:</p>
 
           <div class="sample">
-              <div class="snippet-container">
-                  <div class="snippet Kotlin">
+            <div class="snippet-container">
+              <pre class="snippet Kotlin">
 val arr = arrayOf&lt;T&gt;(t0, t1, ..., tn)
-                  </div>
-              </div>
+                  </pre>
+            </div>
           </div>
 
           <p>در بالا t0 تا tn متغیر هایی از جنس T هستند که به تابع پاس داده شدن.</p>
@@ -166,13 +188,19 @@ val arr = arrayOf&lt;T&gt;(t0, t1, ..., tn)
 
           <p>در زیر یک آرایه از نوع String با طول 4 ایجاد کردیم.</p>
 
-          <div class="code-container">
+          <div class="sample">
+            <div class="snippet-container">
+              <pre class="snippet Kotlin">
 val names = arrayOf&lt;String&gt;("James", "Tom", "Joy", "Issuable")
 
 println(names.joinToString())
+</pre>
+            </div>
           </div>
 
-                <h3>ایجاد آرایه با تابع arrayOfNulls</h3>
+        </section>
+        <section>
+          <h3>ایجاد آرایه با تابع arrayOfNulls</h3>
 
           <p>تابع arrayOfNulls در کاتلین یک آرایه به طول n و با عناصر null ایجاد میکنه.</p>
 
@@ -181,11 +209,11 @@ println(names.joinToString())
           <p>فرم کلی</p>
 
           <div class="sample">
-              <div class="snippet-container">
-                  <div class="snippet Kotlin">
+            <div class="snippet-container">
+              <pre class="snippet Kotlin">
 val arr = arrayOfNulls&lt;T&gt;(n)
-                  </div>
-              </div>
+                  </pre>
+            </div>
           </div>
 
           <p>در بالا n یک عدد از نوع Int است که طول ارایه رو مشخص میکنه.</p>
@@ -195,21 +223,24 @@ val arr = arrayOfNulls&lt;T&gt;(n)
           <p>در زیر یک آرایه به طول 100 و از نوع Double با عناصر null ایجاد کردیم:</p>
 
           <div class="sample">
-              <div class="snippet-container">
-                  <div class="snippet Kotlin">
+            <div class="snippet-container">
+              <pre class="snippet Kotlin">
 val v = arrayOfNulls&lt;Double&gt;(100)
-                  </div>
-              </div>
+                  </pre>
+            </div>
           </div>
 
+        </section>
 
-                <h3>ایجاد آرایه با استفاده از تابع emptyArray</h3>
+        <section>
+          <h3>ایجاد آرایه با استفاده از تابع emptyArray</h3>
 
           <p>با استفاده از این تابع یک آرایه با طول 0 ایجاد میکنیم.</p>
 
           <div class="note">
-                    <p class="note-head">توجه:</p>
-            <p> با استفاده از += میشه یک آرایه جدید از قبلی با طول بیشتر ایجاد کرد، در مجموع این کار بیهوده است. چون Collection ها برای حذف و اضافه ی عناصر وجود دارن.</p>
+            <p class="note-head">توجه:</p>
+            <p> با استفاده از += میشه یک آرایه جدید از قبلی با طول بیشتر ایجاد کرد، در مجموع این کار بیهوده است. چون
+              Collection ها برای حذف و اضافه ی عناصر وجود دارن.</p>
           </div>
 
           <p>مثال</p>
@@ -217,8 +248,8 @@ val v = arrayOfNulls&lt;Double&gt;(100)
           <p>یک آرایه String به طول 0 تعریف میکنیم و با افزودن یک مقدار به آرایه طولش 1 میشه:</p>
 
           <div class="sample">
-              <div class="snippet-container">
-                  <div class="snippet Kotlin">
+            <div class="snippet-container">
+              <pre class="snippet Kotlin">
 val lastNames = emptyArray&lt;String&gt;()
 
 println("Before adding value(s) length is ${lastNames.size}")
@@ -226,36 +257,43 @@ println("Before adding value(s) length is ${lastNames.size}")
 arr += "Smith"
 
 println("After adding value(s) length is ${lastNames.size}")
-                  </div>
-              </div>
+                  </pre>
+            </div>
           </div>
 
-                <h3>ایجاد آرایه با استفاده از کلاس Array</h3>
+        </section>
+
+        <section>
+          <h3>ایجاد آرایه با استفاده از کلاس Array</h3>
 
           <p>در این روش با ایجاد یک نمونه (آبجکت) از کلاس Array در کاتلین میتونیم یک آرایه ایجاد کنیم.</p>
-          
+
           <p>فرم کلی</p>
 
           <div class="sample">
-              <div class="snippet-container">
-                  <div class="snippet Kotlin">
+            <div class="snippet-container">
+              <pre class="snippet Kotlin">
 val arr = Array&lt;T&gt;(n){ 
   index -&gt; 
 
   t
 }
-                  </div>
-              </div>
+                </pre>
+            </div>
           </div>
 
-          <p>در بالا تابع constructor کلاس Array <a class="text-decoration-none" href="/post/kotlin/higher-order-functions.html">تابع مرتبه ی بالا</a> است. n طول آرایه از نوع Int است، T نوع متغیر های آرایه، index شماره ی هر خونه که نوعش Int و t مقدار اختصاص داده شده به خونه ی شماره ی index است. </p>
+          <p>در بالا تابع constructor کلاس Array <a class="text-decoration-none"
+              href="/post/kotlin/higher-order-functions.html">تابع مرتبه ی بالا</a> است. n طول آرایه از نوع Int است، T
+            نوع متغیر های آرایه، index شماره ی هر خونه که نوعش Int و t مقدار اختصاص داده شده به خونه ی شماره ی index
+            است. </p>
 
           <p>مثال</p>
-          <p>یک آرایه به طول 20 ایجاد میکنیم که در صورت زوج بودن شماره خونه ی آرایه مقدار زوج و در صورت فرد بودنش مقدار فرد رو به صورت String بهش اختصاص بده.</p>
+          <p>یک آرایه به طول 20 ایجاد میکنیم که در صورت زوج بودن شماره خونه ی آرایه مقدار زوج و در صورت فرد بودنش مقدار
+            فرد رو به صورت String بهش اختصاص بده.</p>
 
           <div class="sample">
-              <div class="snippet-container">
-                  <div class="snippet Kotlin">
+            <div class="snippet-container">
+              <pre class="snippet Kotlin">
 val evenOrOdd = Array(20){
   index -&gt;
 
@@ -268,18 +306,18 @@ val evenOrOdd = Array(20){
 
     result
 }
-                  </div>
-              </div>
+                  </pre>
+            </div>
           </div>
 
           <p>مثال</p>
 
-
-          <p>یک آرایه به طول 30 تعریف میکنیم و اگه  شماره ی هر خونه عدد اول بود مقدار اون شماره رو به خونه ی مورد نظر اختصاص میدیم و بقیه رو 0 میزاریم.</p>
+          <p>یک آرایه به طول 30 تعریف میکنیم و اگه شماره ی هر خونه عدد اول بود مقدار اون شماره رو به خونه ی مورد نظر
+            اختصاص میدیم و بقیه رو 0 میزاریم.</p>
 
           <div class="sample">
-              <div class="snippet-container">
-                  <div class="snippet Kotlin">
+            <div class="snippet-container">
+              <pre class="snippet Kotlin">
 val primeIndices = Array&lt;Int&gt;(30){
   index -&gt;
 
@@ -295,58 +333,61 @@ val primeIndices = Array&lt;Int&gt;(30){
 }
 
 println(primeIndices.joinToString())
-                  </div>
-              </div>
+                  </pre>
+            </div>
           </div>
+        </section>
 
-                <h3>صدا زدن عناصر داخل آرایه</h3>
-          <blockquote>برای استفاده از آرایه داخل حلقه ها به قسمت <a class="text-decoration-none" href="/post/kotlin/loops.html">حلقه ها</a>مراجعه کنید.</blockquote>
+        <section>
+          <h3>صدا زدن عناصر داخل آرایه</h3>
+          <blockquote>برای استفاده از آرایه داخل حلقه ها به قسمت <a class="text-decoration-none"
+              href="/post/kotlin/loops.html">حلقه ها</a>مراجعه کنید.</blockquote>
 
           <p>برای صدا زدن متغیر های داخل آرایه مانند زیر عمل میکنیم:</p>
 
           <div class="sample">
-              <div class="snippet-container">
-                  <div class="snippet Kotlin">
+            <div class="snippet-container">
+              <pre class="snippet Kotlin">
 val names = arrayOf("Peter", "Fredrick", "Kyle", "Simon")
 
 val name = names[2]
 
 println("Index is 2 name is $name")
-                  </div>
-              </div>
+                  </pre>
+            </div>
           </div>
-          
 
-        </div>
+        </section>
 
-        <div class="subsection" id="sub2">
+      </section>
 
-                <h2>توابع رایج در آرایه</h2>
+      <section id="p2">
 
-                <h3>تابع isEmpty</h3>
+        <h2>توابع رایج در آرایه</h2>
 
-          <p>این تابع معلوم میکنه یک آرایه خالی است یا خیر.</p>
+        <h3>تابع isEmpty</h3>
 
-          <div class="sample">
-              <div class="snippet-container">
-                  <div class="snippet Kotlin">
+        <p>این تابع معلوم میکنه یک آرایه خالی است یا خیر.</p>
+
+        <div class="sample">
+          <div class="snippet-container">
+            <pre class="snippet Kotlin">
 val arr = emptyArray&lt;String&gt;()
 println(arr.isEmpty())
-                  </div>
-              </div>
+                  </pre>
           </div>
+        </div>
 
-
-
-                <h3>تابع shuffle</h3>
+        <section>
+          <h3>تابع shuffle</h3>
 
           <p>این تابع جایگاه عناصر داخل آرایه رو با همدیگه عوض میکنه اصطلاحا عناصر داخل آرایه رو قاطی پاتی میکنه.</p>
 
           <p>مثال</p>
 
           <div class="sample">
-              <div class="snippet-container">
-                  <div class="snippet Kotlin">
+            <div class="snippet-container">
+              <pre class="snippet Kotlin">
 val numbers = arrayOf(1, 2, 3, 4, 5, 6, 7)
 
 println("Before shuffling: ${numbers.joinToString()}")
@@ -354,21 +395,25 @@ println("Before shuffling: ${numbers.joinToString()}")
 numbers.shuffle()
 
 println("After shuffling: ${numbers.joinToString()}")
-                  </div>
-              </div>
+                  </pre>
+            </div>
           </div>
 
-                <h3>تابع contentEquals</h3>
+        </section>
 
-          <p>تایع contentEquals در کاتلین یک تابع <a class="text-decoration-none" href="/post/kotlin/functions.html#sub5">infix</a> است.</p>
+        <section>
+          <h3>تابع contentEquals</h3>
+
+          <p>تایع contentEquals در کاتلین یک تابع <a class="text-decoration-none"
+              href="/post/kotlin/functions.html#p5">infix</a> است.</p>
 
           <p>اگه تمام اعضای دو آرایه باهم یکسان باشن مقدار true و اگه یکسان نباشن false رو بر میگردونه.</p>
 
           <p>مثال</p>
 
           <div class="sample">
-              <div class="snippet-container">
-                  <div class="snippet Kotlin">
+            <div class="snippet-container">
+              <pre class="snippet Kotlin">
 val arr0 = arrayOf("a", "b", "c")
 val arr1 = arrayOf("a", "b", "c")
 
@@ -377,41 +422,45 @@ println(arr0 contentEquals arr1)
 arr1 += "z"
 
 println(arr0 contentEquals arr1)
-                  </div>
-              </div>
+                  </pre>
+            </div>
           </div>
+        </section>
 
-                <h3>توابع toList و toSet</h3>
+        <section>
+          <h3>توابع toList و toSet</h3>
 
           <p>تابع toList برای تبدیل آرایه به List و تابع toSet برای تبدیل آرایه به Set به کار برده میشه.</p>
 
           <p>مثال</p>
 
           <div class="sample">
-              <div class="snippet-container">
-                  <div class="snippet Kotlin">
+            <div class="snippet-container">
+              <pre class="snippet Kotlin">
 val arr = arrayOf("Sophia", "Billy", "Jonathan")
 val list: List&lt;String&gt; = arr.toList()
-                  </div>
-              </div>
+                  </pre>
+            </div>
           </div>
-        </div>
+        </section>
+      </section>
 
-        <div class="subsection" id="sub3">
 
-                <h2>آرایه های دو بعدی</h2>
+      <section id="p3">
 
-          <blockquote>
-            عناصر یک آرایه خود میتونن آرایه باشن.
-          </blockquote>
+        <h2>آرایه های دو بعدی</h2>
 
-          <p>خود آرایه متغیر است بنابراین میتونیم یک یا چند آرایه رو داخل یک آرایه قرار بدیم.</p>
+        <blockquote>
+          عناصر یک آرایه خود میتونن آرایه باشن.
+        </blockquote>
 
-          <p>مثال</p>
+        <p>خود آرایه متغیر است بنابراین میتونیم یک یا چند آرایه رو داخل یک آرایه قرار بدیم.</p>
 
-          <div class="sample">
-              <div class="snippet-container">
-                  <div class="snippet Kotlin">
+        <p>مثال</p>
+
+        <div class="sample">
+          <div class="snippet-container">
+            <pre class="snippet Kotlin">
 val row0 = arrayOf&lt;String&gt;("a", "b", "c")
 val row1 = arrayOf&lt;String&gt;("x", "y", "z")
 
@@ -424,17 +473,17 @@ for(row in twoD.indices){
   }
   println()
 }
-                  </div>
-              </div>
+                  </pre>
           </div>
+        </div>
 
-          <p>مثال</p>
-          
-          <p>چاپ فاصله ی بین پنج شهر اراک، قم، همدان، تهران و شیراز به صورت دو بعدی.</p>
+        <p>مثال</p>
 
-          <div class="sample">
-              <div class="snippet-container">
-                  <div class="snippet Kotlin">
+        <p>چاپ فاصله ی بین پنج شهر اراک، قم، همدان، تهران و شیراز به صورت دو بعدی.</p>
+
+        <div class="sample">
+          <div class="snippet-container">
+            <pre class="snippet Kotlin">
 //Qom, Hamedan, Tehran, Shiraz
 val arak = arrayOf&lt;Int&gt;(132, 191, 282, 681)
 
@@ -473,17 +522,17 @@ for(row in distances.indices){
   }
   println()
 }
-                  </div>
-              </div>
+                  </pre>
           </div>
+        </div>
 
-          <p>در بالا printf یک متد (تابع) جاواست.</p>
+        <p>در بالا printf یک متد (تابع) جاواست.</p>
 
-          <p>مثال</p>
+        <p>مثال</p>
 
-          <div class="sample">
-              <div class="snippet-container">
-                  <div class="snippet Kotlin">
+        <div class="sample">
+          <div class="snippet-container">
+            <pre class="snippet Kotlin">
 val matrix = Array&lt;Array&lt;Int&gt;&gt;(4){
   arrayOfNulls&lt;Int&gt;(3)
 }
@@ -503,23 +552,24 @@ for(row in matrix.indices){
   }
   println()
 }
-                  </div>
-              </div>
+                  </pre>
           </div>
         </div>
-       
-        <div class="subsection" id="sub4">
-                <h2>آرایه های چند بعدی</h2>
+      </section>
 
-          <p>در آرایه دو بعدی اگه عناصر آرایه های داخل آرایه اول نیز یک آرایه باشن آرایه سه بعدی میشه.</p>
+      <section id="p4">
 
-          <p>مثال</p>
+        <h2>آرایه های چند بعدی</h2>
 
-           <p>ایجاد و چاپ یک ارایه سه بعدی از اعداد تصادفی در کاتلین.</p>
+        <p>در آرایه دو بعدی اگه عناصر آرایه های داخل آرایه اول نیز یک آرایه باشن آرایه سه بعدی میشه.</p>
 
-          <div class="sample">
-              <div class="snippet-container">
-                  <div class="snippet Kotlin">
+        <p>مثال</p>
+
+        <p>ایجاد و چاپ یک ارایه سه بعدی از اعداد تصادفی در کاتلین.</p>
+
+        <div class="sample">
+          <div class="snippet-container">
+            <pre class="snippet Kotlin">
 val threeD = Array(4){
   Array(3){
     arrayOfNulls&lt;Int&gt;(2)
@@ -535,7 +585,6 @@ for(i in threeD.indices){
 }
 
  
-
 for(i in threeD.indices){
   for(j in threeD[i].indices){
     for(k in threeD[i][j].indices){
@@ -546,88 +595,92 @@ for(i in threeD.indices){
   }
   println()
 }
-                  </div>
-              </div>
+                  </pre>
           </div>
-
         </div>
 
-        <div class="subsection" id="sub5">
-                <h2>خلاصه</h2>
+      </section>
 
-          <p>آرایه ها برای نگهداری تعداد متناهی از متغیر های یک نوع به کار میروند.</p>
-          <p>به متغیر های داخل آرایه عنصر یا عضو میگیم.</p>
+      <section id="p5">
+        <h2>خلاصه</h2>
 
-          <p>آرایه در کاتلین رو به دو روش میشه ایجاد کرد، با استفاده از توابع یا با استفاده از کلاس آرایه.</p>
+        <ul>
+          <li>آرایه ها برای نگهداری تعداد متناهی از متغیر های یک نوع به کار میروند.</li>
+          <li>به متغیر های داخل آرایه عنصر یا عضو میگیم.</li>
 
-          <p>با استفاده از توابع arrayOf، arrayOfNulls، emptyArray در کاتلین میتونیم یک آرایه ایجاد کنیم.</p>
+          <li>آرایه در کاتلین رو به دو روش میشه ایجاد کرد، با استفاده از توابع یا با استفاده از کلاس آرایه.</li>
 
-          <p>تابع constructor کلاس Array یک تابع مرتبه بالاست.</p>
+          <li>با استفاده از توابع arrayOf، arrayOfNulls، emptyArray در کاتلین میتونیم یک آرایه ایجاد کنیم.</li>
 
-          <p>برای تعریف توابع چند بعدی کافیه اعضای آرایه خود یک آرایه باشن</p>
+          <li>تابع constructor کلاس Array یک تابع مرتبه بالاست.</li>
 
-        </div>
+          <li>برای تعریف توابع چند بعدی کافیه اعضای آرایه خود یک آرایه باشن</li>
+        </ul>
+      </section>
 
-      </article>
-        <div class="article-foot">
-          <div class="navigator-container">
+    </article>
 
-            <a href="/post/kotlin/variables_mutable_immutable.html" class="md-bt md-bt-light">
+    <div class="article-foot">
+      <aside>
+        <nav class="post-navigation-container">
 
-              <span class="material-icons">
-                navigate_next
-              </span>
-              <span class="hint">
-                بعدی
-              </span>
-            </a>
+          <a href="/post/kotlin/variable-types.html" class="md-bt md-bt-light">
 
-            <a href="/post/kotlin/inline-functions.html" class="md-bt md-bt-light">
-              <span class="hint">
-                قبلی
-              </span>
-              <span class="material-icons">
-                navigate_before
-              </span>
+            <span class="material-icons">
+              navigate_next
+            </span>
+            <span class="hint">
+              بعدی
+            </span>
+          </a>
 
-            </a>
-          </div>
-            <div class="relative-articles-container">
-              <p>مطالب مرتبط</p>
-              <div>
-                <div>
-                  <a href="/post/kotlin/functions.html">بررسی توابع در کاتلین</a>
-                </div>
-                <div>
-                  <a href="/post/kotlin/selectors.html">دستورات شرطی در کاتلین</a>
-                </div>
-                <div>
-                  <a href="/post/kotlin/loops.html">حلقه ها در کاتلین</a>
-                </div>
-                <div>
-                  <a href="https://kotlinlang.org/docs/arrays.html">سایت رسمی کاتلین برای مطالعه موضوع</a>
-                </div>
-              </div>
-            </div>
-          </div>
-            
+          <a href="/post/kotlin/inline-functions.html" class="md-bt md-bt-light">
+            <span class="hint">
+              قبلی
+            </span>
+            <span class="material-icons">
+              navigate_before
+            </span>
+
+          </a>
+        </nav>
+
+        <section>
+          <h2>مطالب مرتبط</h2>
+          <ul>
+            <li>
+              <a href="/post/kotlin/functions.html">بررسی توابع در کاتلین</a>
+            </li>
+            <li>
+              <a href="/post/kotlin/selectors.html">دستورات شرطی در کاتلین</a>
+            </li>
+            <li>
+              <a href="/post/kotlin/loops.html">حلقه ها در کاتلین</a>
+            </li>
+            <li>
+              <a target="_blank" href="https://kotlinlang.org/docs/arrays.html">سایت رسمی کاتلین برای مطالعه موضوع</a>
+            </li>
+          </ul>
+        </section>
+      </aside>
     </div>
+
   </main>
 
 </body>
 
-  <div class="scroll-top-container">
-    <a class="text-decoration-none link-dark material-icons" href="#">
-      arrow_drop_up
-    </a>
-  </div>
+<div class="scroll-top-container">
+  <a class="text-decoration-none link-dark material-icons" href="#">
+    arrow_drop_up
+  </a>
+</div>
 
-  <footer></footer>
+<footer></footer>
 
 <div class="dialog hide"></div>
 
-  <div class="copy-message">
-    <span class="copy-message-text">کپی شد!</span>
-  </div>
+<div class="copy-message">
+  <span class="copy-message-text">کپی شد!</span>
+</div>
 
 </html>

@@ -4,6 +4,12 @@
     direction: rtl;
 }
 
+.article-meta{
+  color: #757775;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
 .page-wrap{
     max-width: 732px;
     margin: 0 auto;
@@ -11,16 +17,21 @@
 }
 
 .author{
-    color: #f5f5f5;
-    font-family: Samim;
-    direction: rtl;
-    margin-right: 16px;
+    margin-right: 4px;
 }
 
+.author a{
+  text-decoration: none;
+  color: #757775;
+}
 
-.subsection{
-    margin: 32px 0 32px 0;
-    padding: 4px 6px 4px 6px;
+.eta{
+  margin: 8px 4px 8px 0;
+}
+
+.article-meta time{
+  margin-right: 4px;
+  opacity: 0.75;
 }
 
 .sample{
@@ -198,7 +209,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid #bcbcbc;
+    border: 1px solid #bdbdbd;
     width: 36px;
     height: 36px;
     right: 32px;
@@ -212,20 +223,24 @@
     background: #eeeeee;
 }
 
-
 .article-foot{
     display: block;
     min-height: 150px;
     background-color: #eeeeee;
-    margin: 30px 8px 30px 8px;
+    margin: 48px 8px 0 8px;
     padding-bottom: 8px;
     overflow: none;
-    direction: rtl;
 }
 
-.article-foot .navigator-container{
+.article-foot.about{
+  min-height: 0;
+  padding-bottom: 0;
+}
+
+.article-foot .post-navigation-container{
   display: flex;
   min-height: 48px;
+  height: auto;
   background: #01579b;
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
@@ -239,27 +254,11 @@
   text-decoration: none;
 }
 
-.article-foot a>span{
-  padding: 2px;
-}
-
-.article-foot .relative-articles-container{
-  display: block;
-  margin-top: 16px;
-  margin-bottom: 16px;
-}
-
-.article-foot .relative-articles-container p {
-  padding-right: 8px;
-  padding-left: 8px;
-  font-weight: 500;
-  font-size: 1.32rem;
-}
-
-.article-foot .relative-articles-container div{
-  padding: 2px;
-  margin-right: 8px;
-  margin-bottom:4px;
+.article-foot h2 {
+  width: 100%;
+  background-color: transparent;
+  border-radius: 0;
+  margin: 0 0 16px 0;
 }
 
 blockquote{
