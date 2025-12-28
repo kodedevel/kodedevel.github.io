@@ -1,75 +1,50 @@
-<!DOCTYPE html>
-<html lang="fa">
-<head>
-    <meta content="ie=edge" http-equiv="x-ua-compatible"/>
-    <meta content="برنامه نویسی جاوا، کلید واژه ی سوییچ، کلید واژه ها در جاوا، دستور سوییچ در جاوا" name="keywords"/>
-    <meta content="بررسی تغییرات سوییچ قبل از jdk 1.8 تا jdk 17 lts در هر ورژن از جاوا دستور سوییچ در جاوا چه تغییراتی کرده و چه قابلیت هایی پیدا کرده"
-          name="description"/>
-    <meta charset="UTF-8"/>
-    <meta content="width:device-width, initial-scale=1" name="viewport"/>
-    <title>بررسی تغییرات سوییچ تا JDK 17 LTS</title>
+---
+layout: default
+notopics: true
+---
 
-    <meta content="بررسی تغییرات سوییچ تا JDK 17 LTS" property="og:title"/>
-    <meta content="بررسی تغییرات سوییچ قبل از jdk 1.8 تا jdk 17 lts در هر ورژن از جاوا دستور سوییچ در جاوا چه تغییراتی کرده و چه قابلیت هایی پیدا کرده"
-          property="og:description"/>
-    <meta content="https://kodedevel.github.io/resources/favicon.png" property="og:image"/>
-    <meta content="https://kodedevel.github.io/article/java/switch-statement-jdk-17.html" property="og:url"/>
-    <meta content="article" property="og:type">
+<article>
+  <nav class="toc">
+    <div>دسترسی سریع</div>
+    <ul>
+      <li>
+        <a href="#p0">JDK &lt; 1.8</a>
+      </li>
+      <li>
+        <a href="#p1">JDK &gt;= 1.8</a>
+      </li>
+      <li>
+        <a href="#p2">JDK &gt;= 17</a>
+      </li>
+    </ul>
+  </nav>
+  <p>
+    جاوا از اولین نسخه ای که منتشر شد تا الان تغییرات زیادی داشته سوییچ هم
+    مستثنا از این قاعده نبوده و در JDK 17 LTS تغییرات قابل توجهی داشته تو این
+    مقاله به طور خلاصه به این تغییرات میپردازیم
+  </p>
 
-    <link href="/resources/css/main.css" rel="stylesheet">
-    <link href="/resources/favicon.png" rel="icon" type="image/x-icon">
-    <script src="/resources/js/main.js" type="module"></script>
+  <div class="note">
+    <p class="note-head">توجه:</p>
+    <p>
+      در این مقاله i0, i1, i2, ... , ik و سمبل هایی از این قبیل فرضی هستن که
+      میتوان هر مقدار دلخواهی رو بجاشون در نظر بگیریم
+    </p>
+  </div>
 
+  <section id="p0">
+    <h2>JDK &lt; 1.8</h2>
 
-</head>
+    <p>
+      قبل از JDK 1.8 شما فقط میتوانستید اعداد integer را به عنوان پارامتر داخل
+      سوییچ پاس کنید
+    </p>
 
-<body>
+    <p>مثال:</p>
 
-<header></header>
-
-
-<main>
-    <div class="page-wrap">
-        <div class="article-head">
-            <h1>تغییرات سوییچ تا JDK 17 LTS </h1>
-            <address>
-                <a class="author text-muted text-decoration-none" rel="author">یونس سلیمانی</a>
-            </address>
-
-            <figure class="figure figure-wrapper">
-                <img alt="دستور سوییچ در jdk 17"
-                     class="rounded figure-img" src="/resources/image/blog/cover_switch_until_jdk17.png"/>
-            </figure>
-            <div class="toc">
-                <p class="h5 p-2 mx-2">دسترسی سریع</p>
-                <div class="list-group">
-                    <a class="list-group-item list-group-item-action" href="#sub0">JDK &lt; 1.8</a>
-                    <a class="list-group-item list-group-item-action" href="#sub1">JDK &gt;= 1.8</a>
-                    <a class="list-group-item list-group-item-action" href="#sub2">JDK &gt;= 17</a>
-                </div>
-            </div>
-        </div>
-        <article>
-
-            <p>جاوا از اولین نسخه ای که منتشر شد تا الان تغییرات زیادی داشته سوییچ هم مستثنا از این قاعده نبوده و در
-                JDK 17 LTS تغییرات قابل توجهی داشته تو این مقاله به طور خلاصه به این تغییرات میپردازیم</p>
-
-
-            <div class="note">
-                    <p class="note-head">توجه:</p>
-              <p>در این مقاله i0, i1, i2, ... , ik و سمبل هایی از این قبیل فرضی هستن که میتوان هر مقدار
-                دلخواهی رو بجاشون در نظر بگیریم</p></div>
-
-            <div class="subsection" id="sub0">
-                <h2>JDK &lt; 1.8</h2>
-
-                <p>قبل از JDK 1.8 شما فقط میتوانستید اعداد integer را به عنوان پارامتر داخل سوییچ پاس کنید</p>
-
-                <p>مثال:</p>
-
-                <div class="sample">
-                    <div class="snippet-container">
-                        <div class="snippet Java">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
 int myInteger = ...
 
 switch(myInteger){
@@ -93,23 +68,22 @@ switch(myInteger){
         ...
     }
 }
-                        </div>
-                    </div>
-                </div>
+                        </pre
+        >
+      </div>
+    </div>
+  </section>
 
-            </div>
+  <section id="p1">
+    <h2>JDK &gt;= 1.8</h2>
 
-            <div class="subsection" id="sub1">
-                <h2>JDK &gt;= 1.8</h2>
+    <p>از JDK 1.8 به بعد علاوه بر integer از string و enum هم پشتیبانی شد</p>
 
-                <p>از JDK 1.8 به بعد علاوه بر integer از string و enum هم پشتیبانی شد</p>
+    <p>مثال:</p>
 
-
-                <p>مثال:</p>
-
-                <div class="sample">
-                    <div class="snippet-container">
-                        <div class="snippet Java">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
 String myString = ...
 
 switch(myString){
@@ -134,29 +108,27 @@ switch(myString){
         ...
     }
 }
-                        </div>
-                    </div>
-                </div>
+                        </pre
+        >
+      </div>
+    </div>
 
-                <p>در JDK 17 چه اتفاقی برای سوییچ افتاده؟ بیایید باهم بررسی کنیم :)</p>
+    <p>در JDK 17 چه اتفاقی برای سوییچ افتاده؟ بیایید باهم بررسی کنیم :)</p>
+  </section>
 
-            </div>
+  <section id="p2">
+    <h2>JDK &gt;= 17</h2>
 
-            <div class="subsection" id="sub2">
+    <section>
+      <h3>۱-قابلیت بازگرداندن مقدار توسط سوییچ:</h3>
 
-                <h2>JDK &gt;= 17</h2>
+      <p>شما میتوانید هر چیزی را با کلید واژه ی yield برگردانید</p>
 
-                <h3>۱-قابلیت بازگرداندن مقدار توسط سوییچ: </h3>
+      <p>مثال:</p>
 
-
-                <p>شما میتوانید هر چیزی را با کلید واژه ی yield برگردانید</p>
-
-
-                <p>مثال:</p>
-
-                <div class="sample">
-                    <div class="snippet-container">
-                        <div class="snippet Java">
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
 String myString = ...
 
 MyType myType = switch(myString){
@@ -181,26 +153,28 @@ MyType myType = switch(myString){
         yield myValue;
     }
 };
-                        </div>
-                    </div>
-                </div>
+                        </pre
+          >
+        </div>
+      </div>
 
-                <div class="note">
-                    <p class="note-head"></p>
+      <div class="note">
+        <p class="note-head"></p>
 
-                  <p> در این مثال myValue از نوع MyType هست و MyType متغیر فرضیه</p>
-                </div>
+        <p>در این مثال myValue از نوع MyType هست و MyType متغیر فرضیه</p>
+      </div>
+    </section>
 
+    <section>
+      <h3>۲-پشتیبانی از چند برچسبی:</h3>
 
-                <h3>۲-پشتیبانی از چند برچسبی: </h3>
+      <p>در هر case میتوانید چند برچسب را مورد بررسی قرار بدید</p>
 
-                <p> در هر case میتوانید چند برچسب را مورد بررسی قرار بدید</p>
+      <p>مثال:</p>
 
-                <p>مثال:</p>
-
-                <div class="sample">
-                    <div class="snippet-container">
-                        <div class="snippet Java">
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
 String myString = ...
 
 MyType myType = switch(myString){
@@ -227,36 +201,37 @@ MyType myType = switch(myString){
         yield myValue;
     }
 };
-                        </div>
-                    </div>
-                </div>
+                        </pre
+          >
+        </div>
+      </div>
 
+      <p>در کد بالا:</p>
 
-                <p>در کد بالا:</p>
-
-                <div class="sample">
-                    <div class="snippet-container">
-                        <div class="snippet Java">
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
 case s0, s4:{
 ...
 }
-                        </div>
-                    </div>
-                </div>
+                        </pre
+          >
+        </div>
+      </div>
 
-                <p>یعنی اگر s0 یا s2 درست بود بلاک را اجرا کن...</p>
+      <p>یعنی اگر s0 یا s2 درست بود بلاک را اجرا کن...</p>
+    </section>
 
+    <section>
+      <h3>۳- علامت فلش:</h3>
 
-                <h3>۳- علامت فلش:</h3>
+      <p>میتونیم در case ها به جای دو نقطه از فلش استفاده کنیم</p>
 
-                <p>میتونیم در case ها به جای دو نقطه از فلش استفاده کنیم</p>
+      <p>مثال:</p>
 
-
-                <p>مثال:</p>
-
-                <div class="sample">
-                    <div class="snippet-container">
-                        <div class="snippet Java">
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
 String myString = ...
 
 MyType myType = switch(myString){
@@ -283,58 +258,29 @@ MyType myType = switch(myString){
         yield myValue;
     }
 };
-                        </div>
-                    </div>
-                </div>
+                        </pre
+          >
+        </div>
+      </div>
+    </section>
+  </section>
 
-            </div>
+  <p>
+    جاوا تا این نسخه بروزرسانی های مختلفی درونش به وجود اومده که بهبود سوییچ یکی
+    از این بروزرسانی ها درجاوا است.
+  </p>
+</article>
 
-            <p> جاوا تا این نسخه بروزرسانی های مختلفی درونش به وجود اومده که بهبود سوییچ یکی از این بروزرسانی ها درجاوا است.</p>
-        </article>
+{% capture links %}
+<li>
+  <a href="/post/java/selectors.html">دستورات شرطی در جاوا</a>
+</li>
 
+<li>
+  <a href="/post/java/selectors.html">حلقه ها در جاوا</a>
+</li>
 
-       <div class="article-foot">
-          <div class="navigator-container">
-
-          </div>
-            <div class="relative-articles-container">
-              <p>مطالب مرتبط</p>
-
-              <div>
-
-                <div>
-                  <a href="/post/java/selectors.html">دستورات شرطی در جاوا</a>
-                </div>
-
-
-                <div>
-                  <a href="/post/java/selectors.html">حلقه ها در جاوا</a>
-                </div>
-
-                <div>
-                  <a href="/post/java/static-keyword.html">کلیدواژه ی استاتیک در جاوا</a>
-                </div>
-
-              </div>
-            </div>
-          </div>
-    </div>
-</main>
-
-<div class="scroll-top-container">
-    <a class="text-decoration-none link-dark material-icons" href="#">
-        arrow_drop_up
-    </a>
-</div>
-
-<footer></footer>
-
-<div class="dialog hide"></div>
-
-<div class="copy-message">
-    <span class="copy-message-text">کپی شد!</span>
-</div>
-
-
-</body>
-</html>
+<li>
+  <a href="/post/java/static-keyword.html">کلیدواژه ی استاتیک در جاوا</a>
+</li>
+{% endcapture %} {% include article-foot.html relative_links = links %}

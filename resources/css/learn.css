@@ -13,19 +13,8 @@
   background-color: #f5f5f5;
   margin: 0;
   border-radius: 0;
-  cursor: pointer;
+  padding: 16px 0;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-}
-
-.subject-item-head.expanded{
-  background-color: #0D47A1;
-  color: #fafafa;
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
-}
-
-.subject-item-head .icon{
-  font-size: 1.5rem;
-  transition:all 200ms;
 }
 
 .subject-item-content{
@@ -41,7 +30,7 @@
   position: relative;
   display: block;
   text-decoration: none;
-  color: #212121 !important;
+  color: #212121;
   background-color: #fafafa;
   text-align: center;
   text-anchor: middle;
@@ -53,8 +42,7 @@
 }
 
 .subject-item-content a:hover{
-  background-color: #fafafa !important;
-  color: #1976D2 !important;
+  background-color: #fafafa;
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
 }
 

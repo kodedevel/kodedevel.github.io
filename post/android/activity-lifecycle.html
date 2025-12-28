@@ -1,192 +1,137 @@
-<!DOCTYPE html>
-<html lang="fa">
-<head>
-    <meta content="ie=edge" http-equiv="x-ua-compatible"/>
-    <meta content="برنامه نویسی اندروید, اکتیویتی, چرخه ی اکتیویتی, activity " name="keywords"/>
-    <meta content="بررسی چرخه ی اکتیویتی و متد های مرتبط با چرخه در اندروید" name="description"/>
-    <meta charset="UTF-8"/>
-    <meta content="width:device-width, initial-scale=1" name="viewport"/>
-    <title>چرخه ی حیات اکتیویتی در اندروید</title>
+---
+layout: default
+---
 
-    <meta content="چرخه ی حیات اکتیویتی در اندروید" property="og:title"/>
-    <meta content="بررسی چرخه ی اکتیویتی و متد های مرتبط با چرخه در اندروید" property="og:description"/>
-    <meta content="https://kodedevel.github.io/resources/favicon.png" property="og:image"/>
-    <meta content="https://kodedevel.github.io/article/android/activity-lifecycle.html" property="og:url"/>
-    <meta content="article" property="og:type">
+<article>
 
-    <link href="/resources/css/main.css" rel="stylesheet">
-    <link href="/resources/favicon.png" rel="icon" type="image/x-icon">
-    <script src="/resources/js/main.js" type="module"></script>
-</head>
-<body>
+  <nav class="toc">
+    <div>دسترسی سریع</div>
+    <ul>
+      <li>
+        <a href="#p0">پیش نیاز</a>
+      </li>
+      <li>
+        <a href="#p1">وضعیت های یک اکتیویتی</a>
+      </li>
+    </ul>
+  </nav>
 
-<header></header>
+  <section id="p0">
+    <h2>پیش نیاز</h2>
+    <section>
+      <h3>قسمت های یک برنامه ی اندرویدی:</h3>
 
-<main>
-
-
-    <div class="page-wrap">
-
-        <div class="article-head">
-            <h1>چرخه ی حیات اکتیویتی در اندروید</h1>
-            <address>
-                <a class="author text-muted text-decoration-none" rel="author">یونس سلیمانی</a>
-            </address>
-
-            <figure class="figure figure-wrapper">
-                <img alt="چرخه ی حیات اکتیویتی در اندروید"
-                     class="rounded figure-img" src="/resources/image/android/cover_activity_lifecycle.png"/>
-            </figure>
-
-            <div class="toc">
-                <p class="h5 p-2 mx-2">دسترسی سریع</p>
-                <div class="list-group">
-                    <a class="list-group-item list-group-item-action" href="#sub0">پیش نیاز</a>
-                    <a class="list-group-item list-group-item-action" href="#sub1">وضعیت های یک اکتیویتی</a>
-                </div>
-            </div>
-
-        </div>
-        <article>
-
-            <div class="subsection" id="sub0">
-                <h2>پیش نیاز</h2>
-                <h3>قسمت های یک برنامه ی اندرویدی:</h3>
-
-                <p>یه برنامه ی اندرویدی سه قسمت کلی داره که هنگام شروع برنامه به ترتیب اجرا میشن:</p>
+      <p>یه برنامه ی اندرویدی سه قسمت کلی داره که هنگام شروع برنامه به ترتیب اجرا میشن:</p>
 
 
-                <p class="ltr"><strong>Application -&gt; Activity -&gt; Fragment</strong></p>
+      <p class="ltr"><strong>Application -&gt; Activity -&gt; Fragment</strong></p>
 
-                <p class="ltr">------------------------------------------------------</p>
+      <p class="ltr">------------------------------------------------------</p>
 
-                <p class="ltr">1 * Application</p>
+      <p class="ltr">1 * Application</p>
 
-                <p class="ltr">-------------------------------------------------------</p>
+      <p class="ltr">-------------------------------------------------------</p>
 
-                <p class="ltr">m * Activity</p>
+      <p class="ltr">m * Activity</p>
 
-                <p class="ltr">1 &lt;= m</p>
+      <p class="ltr">1 &lt;= m</p>
 
-                <p class="ltr">-------------------------------------------------------</p>
+      <p class="ltr">-------------------------------------------------------</p>
 
-                <p class="ltr">n * Fragment</p>
+      <p class="ltr">n * Fragment</p>
 
-                <p class="ltr">0 &lt;= n</p>
+      <p class="ltr">0 &lt;= n</p>
 
-                <p class="ltr">------------------------------------------------------</p>
+      <p class="ltr">------------------------------------------------------</p>
 
 
-                <p>در یک برنامه ی اندرویدی تنها یک Application داریم و حداقل یک Activity </p>
+      <p>در یک برنامه ی اندرویدی تنها یک Application داریم و حداقل یک Activity </p>
 
-                <p>داشتن یک یا چند Fragment اختیاریه البته استفاده از Fragment بجای اکتیویتی باعث میشه برنامه انعطاف‌پذیر تر
-                    باشه.</p>
+      <p>داشتن یک یا چند Fragment اختیاریه البته استفاده از Fragment بجای اکتیویتی باعث میشه برنامه انعطاف‌پذیر تر
+        باشه.</p>
 
-                <p>یک برنامه ی اندرویدی می تونه یک یا چند اکتیویتی داشته باشه اکتیویتی ها به عنوان مجری اصلی کد های ما
-                    به حساب میان (مثل متد main در برنامه های کنسولی جاوا) پس از Application به اولین اکتیویتی که شروع به
-                    فعالیت میکنه main activity گفته میشه.</p>
-            </div>
+      <p>یک برنامه ی اندرویدی می تونه یک یا چند اکتیویتی داشته باشه اکتیویتی ها به عنوان مجری اصلی کد های ما
+        به حساب میان (مثل متد main در برنامه های کنسولی جاوا) پس از Application به اولین اکتیویتی که شروع به
+        فعالیت میکنه main activity گفته میشه.</p>
+    </section>
+  </section>
 
-            <div class="subsection" id="sub1">
-                <h2>وضعیت های یک اکتیویتی</h2>
+  <section id="p1">
+    <h2>وضعیت های یک اکتیویتی</h2>
 
-                <figure class="figure figure-wrapper">
-                    <img alt="چرخه ی یک اکتیویتی"
-                         class="rounded figure-img" src="/resources/image/android/activity_lifecycle.png"/>
-                </figure>
+    <figure class="figure figure-wrapper">
+      <img alt="چرخه ی یک اکتیویتی" src="/resources/image/android/activity_lifecycle.png" />
+    </figure>
 
-                <p>در سیستم عامل اندروید یک اکتیویتی دارای شش وضعیت کلیه به مجموع این وضعیت ها چرخه ی حیات اکتیویتی در اندروید میگیم.</p>
+    <p>در سیستم عامل اندروید یک اکتیویتی دارای شش وضعیت کلیه به مجموع این وضعیت ها چرخه ی حیات اکتیویتی در اندروید
+      میگیم.</p>
 
-                <p>وقتی در هر وضعیتی از چرخه قرار داریم وضعیت متقارنش وجود داره که اگر Activity وارد وضعیت جدید نشه و
-                    باز بخواد شروع به اجرا شدن کنه از وضعیت متقارن خودش شروع میکنه به اجرا شدن.</p>
+    <p>وقتی در هر وضعیتی از چرخه قرار داریم وضعیت متقارنش وجود داره که اگر Activity وارد وضعیت جدید نشه و
+      باز بخواد شروع به اجرا شدن کنه از وضعیت متقارن خودش شروع میکنه به اجرا شدن.</p>
 
-                <p>متقارن هر وضعیت:</p>
+    <p>متقارن هر وضعیت:</p>
 
-                <div class="sample">
-                    <div class="snippet-container">
-                        <div class="snippet">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet">
 onDestroy() -&gt; onCreate()
 onStop() -&gt; onStart()
 onPause() -&gt; onResume()
-                        </div>
-                    </div>
-                </div>
+                        </pre>
+      </div>
+    </div>
 
-                <div class="note">
+    <div class="note">
 
-                    <p class="note-head">نکته</p>
+      <p class="note-head">نکته</p>
 
-                    <p>برای onPause و onStop حالت استثنا هم وجود داره در این حالت اکتیویتی از onCreate شروع
-                        به اجرا شدن می کنه و این حالت زمانی اتفاق میفته که حافظه ی گوشی کمه و برنامه هایی با اولویت
-                        بالاتر به حافظه نیاز دارن تو این شرایط اکتیویتی به وضعیت onPause یا onStop میره بعد برای اجرا به
-                        onCreate برمیگرده</p>
-                </div>
+      <p>برای onPause و onStop حالت استثنا هم وجود داره در این حالت اکتیویتی از onCreate شروع
+        به اجرا شدن می کنه و این حالت زمانی اتفاق میفته که حافظه ی گوشی کمه و برنامه هایی با اولویت
+        بالاتر به حافظه نیاز دارن تو این شرایط اکتیویتی به وضعیت onPause یا onStop میره بعد برای اجرا به
+        onCreate برمیگرده</p>
+    </div>
 
-                <div class="sample">
-                    <div class="snippet-container">
-                        <div class="snippet">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet">
 onPause() -&gt; onCreate()
 onStop() -&gt; onCreate()
-                        </div>
-                    </div>
-                </div>
-
-                <p>البته وضعیت های دیگه ای هم برای یک اکتیویتی وجود داره مثل onRestart, onSavedInstanceState و... که
-                    بین این 6 وضعیت اصلی قرار دارن برای خلاصه نویسی و کوتاه کردن کلام و قابل فهم تر بودن همین شش وضعیتو
-                    به اختصار بیان کردم</p>
-
-                <p> در تصویر نمونه ی override کردن هر وضعیت برای اجرای کد به زبان کاتلین نوشته شده دیگه خودتون به عنوان
-                    برنامه نویس باید تصمیم بگیرید کد هاتونو تو کدوم وضعیت اجرا کنید...</p>
-
-            </div>
-        </article>
-
-       <div class="article-foot">
-          <div class="navigator-container">
-
-          </div>
-            <div class="relative-articles-container">
-              <p>مطالب مرتبط</p>
-
-              <div>
-
-                <div>
-                  <a href="/post/kotlin/selectors.html">شروع کاتلین</a>
-                </div>
-                <div>
-                  <a href="/post/android/data-binding.html">دیتا بایندینگ در اندروید</a>
-                </div>
-
-                <div>
-                  <a href="/post/android/navigation.html">استفاده از نویگیشن در اندروید</a>
-                </div>
-
-                <div>
-                  <a href="/post/android/data-binding-navigation-sample.html">پروژه عملی از نویگیشن و دیتابایندینگ</a>
-                </div>
-
-                <div>
-                  <a href="https://developer.android.com/guide/components/activities/activity-lifecycle">مطالعه در وبسایت رسمی اندروید</a>
-                </div>
-              </div>
-            </div>
-          </div>
+                        </pre>
+      </div>
     </div>
-</main>
 
-<div class="scroll-top-container">
-    <a class="text-decoration-none link-dark material-icons" href="#">
-        arrow_drop_up
-    </a>
-</div>
+    <p>البته وضعیت های دیگه ای هم برای یک اکتیویتی وجود داره مثل onRestart, onSavedInstanceState و... که
+      بین این 6 وضعیت اصلی قرار دارن برای خلاصه نویسی و کوتاه کردن کلام و قابل فهم تر بودن همین شش وضعیتو
+      به اختصار بیان کردم</p>
 
-<footer></footer>
+    <p> در تصویر نمونه ی override کردن هر وضعیت برای اجرای کد به زبان کاتلین نوشته شده دیگه خودتون به عنوان
+      برنامه نویس باید تصمیم بگیرید کد هاتونو تو کدوم وضعیت اجرا کنید...</p>
 
-<div class="dialog hide"></div>
+  </section>
+</article>
 
-<div class="copy-message">
-    <span class="copy-message-text">کپی شد!</span>
-</div>
 
-</body>
-</html>
+{% capture links %}
+<li>
+  <a href="/post/kotlin/selectors.html">شروع کاتلین</a>
+</li>
+<li>
+  <a href="/post/android/data-binding.html">دیتا بایندینگ در اندروید</a>
+</li>
+
+<li>
+  <a href="/post/android/navigation.html">استفاده از نویگیشن در اندروید</a>
+</li>
+
+<li>
+  <a href="/post/android/data-binding-navigation-sample.html">پروژه عملی از نویگیشن و دیتابایندینگ</a>
+</li>
+
+<li>
+  <a target="_blank" href="https://developer.android.com/guide/components/activities/activity-lifecycle">مطالعه در
+    وبسایت رسمی اندروید</a>
+</li>
+{% endcapture %}
+
+
+{% include article-foot.html relative_links = links %}

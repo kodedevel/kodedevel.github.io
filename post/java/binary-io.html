@@ -1,256 +1,336 @@
-<!DOCTYPE html>
+---
+layout: default
+---
 
-<html lang="fa">
+<article>
+  <nav class="toc">
+    <p>دسترسی سریع</p>
+    <ul>
+      <li>
+        <a href="#p0">مقایسه ی کلاس های Text-IO با Binary-IO</a>
+      </li>
+      <li>
+        <a href="#p1">کلاس های Binary-IO</a>
+      </li>
+      <li>
+        <a href="#p2">کلاس FileInputStream و FileOutputStream</a>
+      </li>
+      <li>
+        <a href="#p3">کلاس DataInputStream و DataOutputStream</a>
+      </li>
+      <li>
+        <a href="#p4">کلاس ObjectInputStream و ObjectOutputStream</a>
+      </li>
+      <li>
+        <a href="#p5">کلاس BufferedInputStream و BufferedOutputStream</a>
+      </li>
+      <li>
+        <a href="#p6">مورد مطالعه (مثال)</a>
+      </li>
+      <li>
+        <a href="#p7">خلاصه</a>
+      </li>
+    </ul>
+  </nav>
 
-<head>
+  <section id="p0">
+    <h2>مقایسه ی کلاس های Text-IO با Binary-IO</h2>
+    <blockquote>
+      تمام فایل هایی که در حافظه ذخیره میشن از نوع باینری هستند.
+    </blockquote>
 
-  <meta http-equiv="X-UA-Compatible" content="IE=7">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-  <meta name="description" content="برای کامپیوتر فرقی نداره یک فایل از چه نوعی (متنی، تصویری یا...) باشه؛ تمام فایل ها در کامپیوتر به صورت باینری ذخیره میشن؛ تنها چیزی که یک فایل متنی رو با باینری در جاوا متمایز میکنه رمزنگاری و رمزگشایی کاراکترهای (حروف) فایل متنی است...">
-
-  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>خوندن و نوشتن مقادیر باینری در جاوا</title>
-
-  <meta name="og:title" content="">
-  <meta name="og:description" content="">
-
-  <meta property="og:image" content="https://kodedevel.github.io/resources/favicon.png">
-  <meta property="og:url" content="https://kodedevel.github.io/post/java/binary-io.html">
-
-  <meta property="og:type" content="article">
-
-  <link rel="shortcut icon" href="/resources/favicon.png" type="image/x-icon">
-
-  <link rel="stylesheet" href="/resources/css/main.css">
-  <script type="module" src="/resources/js/main.js"></script>
-
-</head>
-
-<body>
-<header></header>
-<main>
-  <div class="page-wrap">
-
-    <div class="article-head">
-      <h1>
-        خوندن و نوشتن مقادیر باینری در جاوا
-      </h1>
-
-      <address>
-        <a class="author text-muted text-decoration-none" rel="author">یونس سلیمانی</a>
-      </address>
-
-      <figure class="figure figure-wrapper">
-        <img alt="" class="rounded figure-img" src="/resources/image/java/cover_binary_io.png" />
-      </figure>
-
-      <div class="toc">
-        <p class="p-2 mx-2 h5">دسترسی سریع</p>
-        <div class="list-group">
-
-            <a class="list-group-item list-group-item-action" href="#sub0">مقایسه ی کلاس های Text-IO با Binary-IO</a>
-            <a class="list-group-item list-group-item-action" href="#sub1">کلاس های Binary-IO</a>
-            <a class="list-group-item list-group-item-action" href="#sub2">کلاس FileInputStream و FileOutputStream</a>
-            <a class="list-group-item list-group-item-action" href="#sub3">کلاس DataInputStream و DataOutputStream</a>
-            <a class="list-group-item list-group-item-action" href="#sub4">کلاس ObjectInputStream و ObjectOutputStream</a>
-            <a class="list-group-item list-group-item-action" href="#sub5">کلاس BufferedInputStream و BufferedOutputStream</a>
-            <a class="list-group-item list-group-item-action" href="#sub6">مورد مطالعه (مثال)</a>
-            <a class="list-group-item list-group-item-action" href="#sub7">خلاصه</a>
-        </div>
-      </div>
+    <div class="note">
+      <p class="note-head">توجه</p>
+      <p>
+        مطالب این قسمت زبان کاتلین را نیز پوشش می دهند و مثال هایی که زده شده با
+        هردو زبان جاوا و کاتلین است.
+      </p>
     </div>
+    <p>
+      برای کامپیوتر فرقی نداره یک فایل از چه نوعی (متنی، تصویری یا...) باشه؛
+      تمام فایل ها در کامپیوتر به صورت باینری ذخیره میشن؛ تنها چیزی که یک فایل
+      متنی رو با باینری در جاوا متمایز میکنه رمزنگاری و رمزگشایی کاراکترهای
+      (حروف) فایل متنی است.
+    </p>
+    <p>
+      هنگامی که بخوایم یک کاراکتر رو داخل فایل ذخیره کنیم ابتدا کاراکتر به کد
+      متناظر خودش تبدیل میشه و سپس این کد که یک عدد است توسط کلاس مربوطه در فایل
+      نوشته میشه. به این فرایند رمزنگاری (encoding) کاراکتر میگیم.
+    </p>
 
-    <article>
-      <div class="subsection" id="sub0">
-                        <h2>مقایسه ی کلاس های Text-IO با Binary-IO</h2>
-        <blockquote>تمام فایل هایی که در حافظه ذخیره میشن از نوع باینری هستند.</blockquote>
+    <p>
+      با هربار نوشتن کاراکتر در فایل توسط کلاس هایی مانند
+      <a class="text-decoration-none" href="printwriter.html">PrintWriter</a> در
+      جاوا مشابه عملیات زیر اتفاق میوفته.
+    </p>
 
-          <div class="note">
-                    <p class="note-head">توجه</p>
-              <p>مطالب این قسمت زبان کاتلین را نیز پوشش می دهند و مثال هایی که زده شده با هردو زبان جاوا و کاتلین است.</p>
-          </div>
-        <p>برای کامپیوتر فرقی نداره یک فایل از چه نوعی (متنی، تصویری یا...) باشه؛ تمام فایل ها در کامپیوتر به صورت باینری ذخیره میشن؛ تنها چیزی که یک فایل متنی رو با باینری در جاوا متمایز میکنه رمزنگاری و رمزگشایی کاراکترهای (حروف) فایل متنی است.</p>
-        <p>هنگامی که بخوایم یک کاراکتر رو داخل فایل ذخیره کنیم ابتدا کاراکتر به کد متناظر خودش تبدیل میشه و سپس این کد که یک عدد است توسط کلاس مربوطه در فایل نوشته میشه. به این فرایند رمزنگاری (encoding) کاراکتر میگیم.</p>
-
-        <p>با هربار نوشتن کاراکتر در فایل توسط کلاس هایی مانند <a class="text-decoration-none" href="printwriter.html">PrintWriter</a> در جاوا مشابه عملیات زیر اتفاق میوفته.</p>
-
-        <div class="sample">
-          <div class="snippet-container">
-            <div class="snippet Java">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
 char ch = 'A';
 //encoding A
 int code = (int) ch;
 
 System.out.println("The code for character A is " + code);
-            </div>
-          </div>
-        </div>
+            </pre
+        >
+      </div>
+    </div>
 
-        <p>هنگامی که بخوایم یک کاراکتر رو از فایل متنی بخونیم ابتدا کد متناظر با کاراکتر در فایل متنی توسط برنامه خونده شده و سپس این کد توسط jvm به کاراکتر (حرف) مورد نظر تبدیل شده و نمایش داده میشه. به این فرایند رمزگشایی (decoding) کاراکتر میگیم.</p>
+    <p>
+      هنگامی که بخوایم یک کاراکتر رو از فایل متنی بخونیم ابتدا کد متناظر با
+      کاراکتر در فایل متنی توسط برنامه خونده شده و سپس این کد توسط jvm به
+      کاراکتر (حرف) مورد نظر تبدیل شده و نمایش داده میشه. به این فرایند رمزگشایی
+      (decoding) کاراکتر میگیم.
+    </p>
 
-        <p>با خوندن هر کاراکتر (حرف) از فایل توسط کلاس هایی مانند <a class="text-decoration-none" href="scanner.html">Scanner</a> در جاوا مشابه عملیات زیر اتفاق میوفته.</p>
+    <p>
+      با خوندن هر کاراکتر (حرف) از فایل توسط کلاس هایی مانند
+      <a class="text-decoration-none" href="scanner.html">Scanner</a> در جاوا
+      مشابه عملیات زیر اتفاق میوفته.
+    </p>
 
-        <div class="sample">
-          <div class="snippet-container">
-            <div class="snippet Java">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
 int code = 66;
 char ch = (char) code;
 System.out.println("The character for code  " + code + " is " + ch);
-            </div>
-          </div>
+            </pre
+        >
+      </div>
+    </div>
+
+    <p>
+      کلاس های binary-io سریع تر از کلاس های text-io هستند چون هنگام خوندن و
+      نوشتن درگیر فرایند رمزگشایی و رمزنگاری نمیشن.
+    </p>
+    <p>
+      در جاوا کلاس های مختلفی برای عملیات io تعریف شده در ادامه ی این مطلب به
+      چندتا از این کلاس ها می پردازیم.
+    </p>
+  </section>
+
+  <section id="p1">
+    <h2>کلاس های Binary-IO</h2>
+
+    <blockquote>
+      کلاس های InputStream و OutputStream سوپرکلاس تمام کلاس های Stream در پکیج
+      io در جاوا هستند.
+    </blockquote>
+
+    <p>
+      در نمودار زیر رابطه ی بین کلاس هایی که قراره در این مطلب بهشون پرداخته بشه
+      رو نشون دادیم.
+    </p>
+
+    <figure>
+      <img
+        src="/resources/image/java/java_io_inheritance_hierarchy.png"
+        alt="سلسله مراتب ارث بری کلاس های Binary IO در جاوا"
+      />
+      <figcaption>سلسله مراتب ارث بری کلاس های Binary-IO در جاوا</figcaption>
+    </figure>
+
+    <p>
+      همونطور که مشاهده کردید تمام کلاس ها در تصویر از کلاس های InputStream و
+      OutputStream ارث بری میکنن، این دو کلاس
+      <a class="text-decoration-none" href="abstract-classes.html">ابسترکت</a>
+      هستند و ازشون نمیتونیم شی سازی کنیم و فقط برای ارث بری سایر کلاس ها ساخته
+      شده اند.
+    </p>
+    <p>
+      کلاس InputStream سوپر کلاس تمام کلاس های Input و کلاس OutputStream سوپر
+      کلاس تمام کلاسهای Output در پکیج io است.
+    </p>
+
+    <p>
+      دو نمودار UML زیر متد (تابع) های تعریف شده در این دو کلاس رو نشون میدن.
+    </p>
+
+    <div class="tb" id="uml_input_stream">
+      <div class="tRow">
+        <div class="tHead">java.io.InputStream</div>
+      </div>
+
+      <div class="tRow">
+        <div class="tDataLTR">read(): int</div>
+        <div class="tDataRTL">
+          یک بایت از فایل رو میخونه و اگه به انتهای فایل برسه -1 رو بر میگردونه.
         </div>
-
-        <p>کلاس های binary-io سریع تر از کلاس های text-io هستند چون هنگام خوندن و نوشتن درگیر فرایند رمزگشایی و رمزنگاری نمیشن.</p>
-          <p>در جاوا کلاس های مختلفی برای عملیات io تعریف شده در ادامه ی این مطلب به چندتا از این کلاس ها می پردازیم.</p>
-
-
       </div>
 
-      <div class="subsection" id="sub1">
-                          <h2>کلاس های Binary-IO</h2>
-
-          <blockquote>کلاس های InputStream و OutputStream سوپرکلاس تمام کلاس های Stream در پکیج io در جاوا هستند.</blockquote>
-
-          <p>در نمودار زیر رابطه ی بین کلاس هایی که قراره در این مطلب بهشون پرداخته بشه رو نشون دادیم.</p>
-
-          <figure class="figure figure-wrapper">
-              <img class="rounded figure-img" src="/resources/image/java/java_io_inheritance_hierarchy.png" alt="سلسله مراتب ارث بری کلاس های Binary IO در جاوا"/>
-              <figcaption class="figure-caption rtl">سلسله مراتب ارث بری کلاس های Binary-IO در جاوا</figcaption>
-          </figure>
-
-          <p>همونطور که مشاهده کردید تمام کلاس ها در تصویر از کلاس های InputStream و OutputStream ارث بری میکنن، این دو کلاس <a class="text-decoration-none" href="abstract-classes.html">ابسترکت</a> هستند و ازشون نمیتونیم شی سازی کنیم و فقط برای ارث بری سایر کلاس ها ساخته شده اند.</p>
-          <p>کلاس InputStream سوپر کلاس تمام کلاس های Input و کلاس OutputStream سوپر کلاس تمام کلاسهای Output در پکیج io است.</p>
-
-
-          <p>دو نمودار UML زیر متد (تابع) های تعریف شده در این دو کلاس رو نشون میدن.</p>
-
-          <div class="tb" id="uml_input_stream">
-              <div class="tRow">
-                  <div class="tHead">java.io.InputStream</div>
-              </div>
-
-              <div class="tRow">
-                  <div class="tDataLTR">read(): int</div>
-                  <div class="tDataRTL">یک بایت از فایل رو میخونه و اگه به انتهای فایل برسه -1 رو بر میگردونه.</div>
-              </div>
-
-              <div class="tRow">
-                  <div class="tDataLTR">read(b: byte[]): int</div>
-                  <div class="tDataRTL">به اندازه ی طول آرایه ی b از فایل بایت میخونه و تعداد بایت هایی که خونده رو به صورت integer برمیگردونه و اگه به اخر فایل برسه -1 رو بر میگردونه.</div>
-              </div>
-
-              <div class="tRow">
-                  <div class="tDataLTR">available(): int</div>
-                  <div class="tDataRTL">میگه چندتا بایت باقی مونده و اگه به انتهای فایل رسیده باشیم مقدار 0 رو بر میگردونه.</div>
-              </div>
-
-              <div class="tRow">
-                  <div class="tDataLTR">skip(n: long): long</div>
-                  <div class="tDataRTL">تعداد n بایت از فایل رو نادیده میگیره و تعداد نادیده گرفته شده رو بر میگردونه.</div>
-              </div>
-
-              <div class="tRow">
-                  <div class="tDataLTR">+close()</div>
-                  <div class="tDataRTL">استریم فعلی رو میبنده و منابع درگیر رو آزاد میکنه استفاده از close در پایان کار ضروریه.</div>
-              </div>
-          </div>
-
-
-          <div class="tb" id="uml_output_stream">
-              <div class="tRow">
-                  <div class="tHead">java.io.OutputStream</div>
-              </div>
-
-              <div class="tRow">
-                  <div class="tDataLTR">write(b: int): void</div>
-                  <div class="tDataRTL">مقدار یک بایت رو در فایل مینویسه.</div>
-              </div>
-
-              <div class="tRow">
-                  <div class="tDataLTR">write(b: byte[]): void</div>
-                  <div class="tDataRTL">بایت های داخل آرایه ی b رو در فایل می نویسه.</div>
-              </div>
-
-              <div class="tRow">
-                  <div class="tDataLTR">flush(): void</div>
-                  <div class="tDataRTL">پس از پایان کار صدا زدن این متد توصیه میشه چون مقادیر باقی مونده ای که در buffer وجود دارند و ممکنه هنوز نوشته نشده باشن رو در فایل مینویسه.</div>
-              </div>
-
-              <div class="tRow">
-                  <div class="tDataLTR">+close()</div>
-                  <div class="tDataRTL">استریم فعلی رو میبنده و منابع درگیر رو آزاد میکنه استفاده از close در پایان کار ضروریه.</div>
-              </div>
-          </div>
-
+      <div class="tRow">
+        <div class="tDataLTR">read(b: byte[]): int</div>
+        <div class="tDataRTL">
+          به اندازه ی طول آرایه ی b از فایل بایت میخونه و تعداد بایت هایی که
+          خونده رو به صورت integer برمیگردونه و اگه به اخر فایل برسه -1 رو بر
+          میگردونه.
+        </div>
       </div>
 
-        <div class="subsection" id="sub2">
-                            <h2>کلاس FileInputStream و FileOutputStream</h2>
+      <div class="tRow">
+        <div class="tDataLTR">available(): int</div>
+        <div class="tDataRTL">
+          میگه چندتا بایت باقی مونده و اگه به انتهای فایل رسیده باشیم مقدار 0 رو
+          بر میگردونه.
+        </div>
+      </div>
 
-            <p>دو کلاس FileInputStream و FileOutputStream به ترتیب از کلاس های InputStream و OutputStream ارث بری کردن در ادامه کانستراکتور های تعریف شده در این دو کلاس رو بررسی میکنیم.</p>
+      <div class="tRow">
+        <div class="tDataLTR">skip(n: long): long</div>
+        <div class="tDataRTL">
+          تعداد n بایت از فایل رو نادیده میگیره و تعداد نادیده گرفته شده رو بر
+          میگردونه.
+        </div>
+      </div>
 
-            <p>نمودار UML مربوط به FileInputStream در جاوا</p>
+      <div class="tRow">
+        <div class="tDataLTR">+close()</div>
+        <div class="tDataRTL">
+          استریم فعلی رو میبنده و منابع درگیر رو آزاد میکنه استفاده از close در
+          پایان کار ضروریه.
+        </div>
+      </div>
+    </div>
 
-            <div class="tb" id="uml_file_input_stream">
-                <div class="tRow">
-                    <div class="tHead">java.io.FileInputStream</div>
-                </div>
-                <div class="tRow">
-                    <div class="tDataLTR">+FileInputStream(path: String)</div>
-                    <div class="tDataRTL">یک نمونه از FileInputStream با پاس دادن String به کانستراکتور ایجاد میکنه؛ String مسیر فایل مورد نظر است.</div>
-                </div>
+    <div class="tb" id="uml_output_stream">
+      <div class="tRow">
+        <div class="tHead">java.io.OutputStream</div>
+      </div>
 
-                <div class="tRow">
-                    <div class="tDataLTR">+FileInputStream(file: File)</div>
-                    <div class="tDataRTL">یک نمونه از FileInputStream با پاس دادن File به کانستراکتور ایجاد میکنه.</div>
-                </div>
-            </div>
+      <div class="tRow">
+        <div class="tDataLTR">write(b: int): void</div>
+        <div class="tDataRTL">مقدار یک بایت رو در فایل مینویسه.</div>
+      </div>
 
+      <div class="tRow">
+        <div class="tDataLTR">write(b: byte[]): void</div>
+        <div class="tDataRTL">بایت های داخل آرایه ی b رو در فایل می نویسه.</div>
+      </div>
 
-            <p>نمودار UML مربوط به FileOutputStream در جاوا</p>
-            <div class="tb" id="uml_file_output_stream">
-                <div class="tRow">
-                    <div class="tHead">java.io.FileOutputStream</div>
-                </div>
-                <div class="tRow">
-                    <div class="tDataLTR">+FileOutputStream(path: String)</div>
-                    <div class="tDataRTL">یک نمونه از FileOutputStream با پاس دادن String به کانستراکتور ایجاد میکنه؛ String مسیر فایل مورد نظر است.</div>
-                </div>
+      <div class="tRow">
+        <div class="tDataLTR">flush(): void</div>
+        <div class="tDataRTL">
+          پس از پایان کار صدا زدن این متد توصیه میشه چون مقادیر باقی مونده ای که
+          در buffer وجود دارند و ممکنه هنوز نوشته نشده باشن رو در فایل مینویسه.
+        </div>
+      </div>
 
+      <div class="tRow">
+        <div class="tDataLTR">+close()</div>
+        <div class="tDataRTL">
+          استریم فعلی رو میبنده و منابع درگیر رو آزاد میکنه استفاده از close در
+          پایان کار ضروریه.
+        </div>
+      </div>
+    </div>
+  </section>
 
-                <div class="tRow">
-                    <div class="tDataLTR">+FileOutputStream(path: String, append: boolean)</div>
-                    <div class="tDataRTL">یک نمونه از FileOutputStream با پاس دادن String و مقدار boolean به کانستراکتور ایجاد میکنه؛ String مسیر فایل مورد نظر است و اگه فایل از قبل وجود داشته باشه و مقدار boolean برابر با true باشه داده ها رو ادامه ی فایل می نویسه و اگه false باشه فایل رو حذف کرده و یک فایل جدید ایجاد میکنه.</div>
-                </div>
+  <section id="p2">
+    <h2>کلاس FileInputStream و FileOutputStream</h2>
 
-                <div class="tRow">
-                    <div class="tDataLTR">+FileOutputStream(file: File)</div>
-                    <div class="tDataRTL">یک نمونه از FileOutputStream با پاس دادن File به کانستراکتور ایجاد میکنه.</div>
-                </div>
+    <p>
+      دو کلاس FileInputStream و FileOutputStream به ترتیب از کلاس های
+      InputStream و OutputStream ارث بری کردن در ادامه کانستراکتور های تعریف شده
+      در این دو کلاس رو بررسی میکنیم.
+    </p>
 
-                <div class="tRow">
-                    <div class="tDataLTR">+FileOutputStream(file: File, append: boolean)</div>
-                    <div class="tDataRTL">یک نمونه از FileOutputStream با پاس دادن File به کانستراکتور ایجاد میکنه. اگه فایل از قبل وجود داشته باشه و مقدار boolean برابر با true باشه داده ها رو ادامه ی فایل می نویسه و اگه false باشه فایل رو حذف کرده و یک فایل جدید ایجاد میکنه.</div>
-                </div>
-            </div>
+    <p>نمودار UML مربوط به FileInputStream در جاوا</p>
 
-            <p>در مثال زیر میخوایم یک فایل به نام temp.dat با FileOutputStream ایجاد کنیم و سپس مقادیر بایت ها رو در فایل نوشته و در نهایت فایل رو با FileInputStream بخونیم.</p>
+    <div class="tb" id="uml_file_input_stream">
+      <div class="tRow">
+        <div class="tHead">java.io.FileInputStream</div>
+      </div>
+      <div class="tRow">
+        <div class="tDataLTR">+FileInputStream(path: String)</div>
+        <div class="tDataRTL">
+          یک نمونه از FileInputStream با پاس دادن String به کانستراکتور ایجاد
+          میکنه؛ String مسیر فایل مورد نظر است.
+        </div>
+      </div>
 
+      <div class="tRow">
+        <div class="tDataLTR">+FileInputStream(file: File)</div>
+        <div class="tDataRTL">
+          یک نمونه از FileInputStream با پاس دادن File به کانستراکتور ایجاد
+          میکنه.
+        </div>
+      </div>
+    </div>
 
-            <div class="note">
-                <p class="note-head">نکته</p>
-                <p>تمام کلاس های io-stream در جاوا حامل <a class="text-decoration-none" href="exceptions.html">checked-exception</a> هستند یعنی باید حتما اکسپشن هاشون رو هندل کنیم اما در کاتلین checked-exception وجود نداره. </p>
-            </div>
+    <p>نمودار UML مربوط به FileOutputStream در جاوا</p>
+    <div class="tb" id="uml_file_output_stream">
+      <div class="tRow">
+        <div class="tHead">java.io.FileOutputStream</div>
+      </div>
+      <div class="tRow">
+        <div class="tDataLTR">+FileOutputStream(path: String)</div>
+        <div class="tDataRTL">
+          یک نمونه از FileOutputStream با پاس دادن String به کانستراکتور ایجاد
+          میکنه؛ String مسیر فایل مورد نظر است.
+        </div>
+      </div>
 
-            <div class="sample">
-                <div class="snippet-container">
-                    <div class="snippet Java">
+      <div class="tRow">
+        <div class="tDataLTR">
+          +FileOutputStream(path: String, append: boolean)
+        </div>
+        <div class="tDataRTL">
+          یک نمونه از FileOutputStream با پاس دادن String و مقدار boolean به
+          کانستراکتور ایجاد میکنه؛ String مسیر فایل مورد نظر است و اگه فایل از
+          قبل وجود داشته باشه و مقدار boolean برابر با true باشه داده ها رو
+          ادامه ی فایل می نویسه و اگه false باشه فایل رو حذف کرده و یک فایل جدید
+          ایجاد میکنه.
+        </div>
+      </div>
+
+      <div class="tRow">
+        <div class="tDataLTR">+FileOutputStream(file: File)</div>
+        <div class="tDataRTL">
+          یک نمونه از FileOutputStream با پاس دادن File به کانستراکتور ایجاد
+          میکنه.
+        </div>
+      </div>
+
+      <div class="tRow">
+        <div class="tDataLTR">
+          +FileOutputStream(file: File, append: boolean)
+        </div>
+        <div class="tDataRTL">
+          یک نمونه از FileOutputStream با پاس دادن File به کانستراکتور ایجاد
+          میکنه. اگه فایل از قبل وجود داشته باشه و مقدار boolean برابر با true
+          باشه داده ها رو ادامه ی فایل می نویسه و اگه false باشه فایل رو حذف
+          کرده و یک فایل جدید ایجاد میکنه.
+        </div>
+      </div>
+    </div>
+
+    <p>
+      در مثال زیر میخوایم یک فایل به نام temp.dat با FileOutputStream ایجاد کنیم
+      و سپس مقادیر بایت ها رو در فایل نوشته و در نهایت فایل رو با
+      FileInputStream بخونیم.
+    </p>
+
+    <div class="note">
+      <p class="note-head">نکته</p>
+      <p>
+        تمام کلاس های io-stream در جاوا حامل
+        <a class="text-decoration-none" href="exceptions.html"
+          >checked-exception</a
+        >
+        هستند یعنی باید حتما اکسپشن هاشون رو هندل کنیم اما در کاتلین
+        checked-exception وجود نداره.
+      </p>
+    </div>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
 public static void main(String[] args) throws IOException{
 
     try(FileOutputStream output = new FileOutputStream("temp.dat")) {
-        for (int i =0; i<10; i++)
+        for (int i =0; i&lt;10; i++)
         output.write(i);
     }
 
@@ -261,9 +341,9 @@ public static void main(String[] args) throws IOException{
         }
     }
 }
-                    </div>
-
-                    <div class="snippet Kotlin">
+                    </pre
+        >
+        <pre class="snippet Kotlin">
 fun main() {
 
     val file = File("temp.dat")
@@ -282,155 +362,191 @@ fun main() {
     }while (b != -1)
     output.close()
 }
-                    </div>
-                </div>
-            </div>
-            <p>برای جلوگیری از دست رفتن داده ها و اطمینان از نوشته شدن تمام داده ها در فایل ضروریه که در پایان کار متد close رو صدا بزنیم اما در قسمت جاوا در مثال بالا این کار رو نکردیم. چرا؟</p>
-            <p>چون تمام کلاس های IO Stream در جاوا از AutoClosable ارث بری میکنن AutoCloseable مشخص میکنه که کلاس یک io-stream است پس باید متد close در پایان کار صدا زده بشه. بنابراین میتونیم از کلاس های io-stream در try-catch مانند بالا داخل پرانتز یک نمونه ایجاد کنیم.</p>
-            <p>به این نوع از try-catch، در جاوا <strong>try-with-resources</strong> گفته میشه. در این حالت سیستم پس از پایان کار به طور خودکار stream ایجاد شده داخل پرانتز رو می بنده و نیازی به صدا زدن close نداریم. </p>
+                    </pre
+        >
+      </div>
+    </div>
+    <p>
+      برای جلوگیری از دست رفتن داده ها و اطمینان از نوشته شدن تمام داده ها در
+      فایل ضروریه که در پایان کار متد close رو صدا بزنیم اما در قسمت جاوا در
+      مثال بالا این کار رو نکردیم. چرا؟
+    </p>
+    <p>
+      چون تمام کلاس های IO Stream در جاوا از AutoClosable ارث بری میکنن
+      AutoCloseable مشخص میکنه که کلاس یک io-stream است پس باید متد close در
+      پایان کار صدا زده بشه. بنابراین میتونیم از کلاس های io-stream در try-catch
+      مانند بالا داخل پرانتز یک نمونه ایجاد کنیم.
+    </p>
+    <p>
+      به این نوع از try-catch، در جاوا <strong>try-with-resources</strong> گفته
+      میشه. در این حالت سیستم پس از پایان کار به طور خودکار stream ایجاد شده
+      داخل پرانتز رو می بنده و نیازی به صدا زدن close نداریم.
+    </p>
+  </section>
+
+  <section id="p3">
+    <h2>کلاس DataInputStream و DataOutputStream</h2>
+    <p>
+      وظیفه ی این کلاس ها نوشتن و خوندن مقادیر primitive و string داخل فایل است.
+      در این دو کلاس به ترتیب
+      <a class="text-decoration-none" href="interfaces.html">اینترفیس</a> های
+      DataInput و DataOutput پیاده‌سازی شده است.
+    </p>
+
+    <p>
+      تصویر زیر ارث بری دو کلاس DataInputStream و DataOutputStream رو نشان می
+      دهد.
+    </p>
+
+    <figure>
+      <img
+        src="/resources/image/java/java_data_io_stream_inheritance.png"
+        alt="ارث بری دو کلاس DataInputStream و DataOutputStream در جاوا"
+      />
+      <figcaption>
+        ارث بری دو کلاس DataInputStream و DataOutputStream در جاوا
+      </figcaption>
+    </figure>
+
+    <p>
+      برای این کلاس های DataInputStream و DataOutputStream فقط یک کانستراکتور
+      تعریف شده که به ترتیب مقادیری از جنس InputStream و OutputStream رو باید به
+      صورت پارامتر بهشون پاس بدیم.
+    </p>
+
+    <p>بررسی متد های اینترفیس DataInput</p>
+
+    <div class="tb" id="data_input_uml">
+      <div class="tRow">
+        <div class="tHead">&lt;&lt;java.io.DataInput&gt;&gt;</div>
+      </div>
+
+      <div class="tRow">
+        <div class="tDataLTR">+readBoolean(): boolean</div>
+        <div class="tDataRTL">
+          مقدار boolean رو از فایل میخونه و برمیگردونه.
         </div>
+      </div>
 
-        <div class="subsection" id="sub3">
-                            <h2>کلاس DataInputStream و DataOutputStream</h2>
-            <p>وظیفه ی این کلاس ها نوشتن و خوندن مقادیر primitive و string داخل فایل است. در این دو کلاس به ترتیب <a class="text-decoration-none" href="interfaces.html">اینترفیس</a> های DataInput و DataOutput پیاده‌سازی شده است.</p>
+      <div class="tRow">
+        <div class="tDataLTR">+readByte(): byte</div>
+        <div class="tDataRTL">مقدار byte رو از فایل میخونه و بر میگردونه.</div>
+      </div>
 
-            <p>تصویر زیر ارث بری دو کلاس DataInputStream و DataOutputStream رو نشان می دهد.</p>
+      <div class="tRow">
+        <div class="tDataLTR">+readChar(): char</div>
+        <div class="tDataRTL">مقدار char رو از فایل میخونه و بر میگردونه.</div>
+      </div>
 
-            <figure class="figure figure-wrapper">
-                <img class="rounded figure-img" src="/resources/image/java/java_data_io_stream_inheritance.png" alt="ارث بری دو کلاس DataInputStream و DataOutputStream در جاوا"/>
-                <figcaption class="figure-caption rtl">ارث بری دو کلاس DataInputStream و DataOutputStream در جاوا</figcaption>
-            </figure>
+      <div class="tRow">
+        <div class="tDataLTR">+readFloat(): float</div>
+        <div class="tDataRTL">مقدار float رو از فایل میخونه و بر میگردونه.</div>
+      </div>
 
-            <p>برای این کلاس های DataInputStream و DataOutputStream فقط یک کانستراکتور تعریف شده که به ترتیب مقادیری از جنس InputStream و OutputStream رو باید به صورت پارامتر بهشون پاس بدیم.</p>
+      <div class="tRow">
+        <div class="tDataLTR">+readDouble(): double</div>
+        <div class="tDataRTL">
+          مقدار double رو از فایل میخونه و بر میگردونه.
+        </div>
+      </div>
 
+      <div class="tRow">
+        <div class="tDataLTR">+readInt(): int</div>
+        <div class="tDataRTL">مقدار int رو از فایل میخونه و بر میگردونه.</div>
+      </div>
 
-            <p>بررسی متد های اینترفیس DataInput</p>
+      <div class="tRow">
+        <div class="tDataLTR">+readLong(): long</div>
+        <div class="tDataRTL">مقدار long رو از فایل میخونه و بر میگردونه.</div>
+      </div>
 
-            <div class="tb" id="data_input_uml">
-                <div class="tRow">
-                    <div class="tHead">&lt;&lt;java.io.DataInput&gt;&gt;</div>
-                </div>
+      <div class="tRow">
+        <div class="tDataLTR">+readShort(): short</div>
+        <div class="tDataRTL">مقدار short رو از فایل میخونه و بر میگردونه.</div>
+      </div>
 
-                <div class="tRow">
-                    <div class="tDataLTR">+readBoolean(): boolean</div>
-                    <div class="tDataRTL">مقدار boolean رو از فایل میخونه و برمیگردونه.</div>
-                </div>
+      <div class="tRow">
+        <div class="tDataLTR">+readLine(): String</div>
+        <div class="tDataRTL">
+          مقدار String رو از فایل میخونه و بر میگردونه.
+        </div>
+      </div>
 
-                <div class="tRow">
-                    <div class="tDataLTR">+readByte(): byte</div>
-                    <div class="tDataRTL">مقدار byte رو از فایل میخونه و بر میگردونه.</div>
-                </div>
+      <div class="tRow">
+        <div class="tDataLTR">+readString(): String</div>
+        <div class="tDataRTL">
+          مقدار String رو به صورت UTF از فایل میخونه و بر میگردونه.
+        </div>
+      </div>
+    </div>
 
+    <p>بررسی متد های اینترفیس DataOutput</p>
+    <div class="tb" id="data_output_uml">
+      <div class="tRow">
+        <div class="tHead">&lt;&lt;java.io.DataOutput&gt;&gt;</div>
+      </div>
 
-                <div class="tRow">
-                    <div class="tDataLTR">+readChar(): char</div>
-                    <div class="tDataRTL">مقدار char رو از فایل میخونه و بر میگردونه.</div>
-                </div>
+      <div class="tRow">
+        <div class="tDataLTR">+writeBoolean(b: boolean): void</div>
+        <div class="tDataRTL">مقدار boolean رو داخل فایل می نویسه.</div>
+      </div>
 
-                <div class="tRow">
-                    <div class="tDataLTR">+readFloat(): float</div>
-                    <div class="tDataRTL">مقدار float رو از فایل میخونه و بر میگردونه.</div>
-                </div>
+      <div class="tRow">
+        <div class="tDataLTR">+writeChar(c: char): void</div>
+        <div class="tDataRTL">مقدار char رو داخل فایل می نویسه.</div>
+      </div>
 
-                <div class="tRow">
-                    <div class="tDataLTR">+readDouble(): double</div>
-                    <div class="tDataRTL">مقدار double رو از فایل میخونه و بر میگردونه.</div>
-                </div>
+      <div class="tRow">
+        <div class="tDataLTR">+writeFloat(f: float): void</div>
+        <div class="tDataRTL">مقدار float رو داخل فایل می نویسه.</div>
+      </div>
 
-                <div class="tRow">
-                    <div class="tDataLTR">+readInt(): int</div>
-                    <div class="tDataRTL">مقدار int رو از فایل میخونه و بر میگردونه.</div>
-                </div>
+      <div class="tRow">
+        <div class="tDataLTR">+writeDouble(d: double): void</div>
+        <div class="tDataRTL">مقدار double رو داخل فایل می نویسه.</div>
+      </div>
 
+      <div class="tRow">
+        <div class="tDataLTR">+writeInt(i: int): void</div>
+        <div class="tDataRTL">مقدار int رو داخل فایل می نویسه.</div>
+      </div>
 
-                <div class="tRow">
-                    <div class="tDataLTR">+readLong(): long</div>
-                    <div class="tDataRTL">مقدار long رو از فایل میخونه و بر میگردونه.</div>
-                </div>
+      <div class="tRow">
+        <div class="tDataLTR">+writeLong(l: long): void</div>
+        <div class="tDataRTL">مقدار long رو داخل فایل می نویسه.</div>
+      </div>
 
+      <div class="tRow">
+        <div class="tDataLTR">+writeShort(sh: short): void</div>
+        <div class="tDataRTL">مقدار short رو داخل فایل می نویسه.</div>
+      </div>
 
-                <div class="tRow">
-                    <div class="tDataLTR">+readShort(): short</div>
-                    <div class="tDataRTL">مقدار short رو از فایل میخونه و بر میگردونه.</div>
-                </div>
+      <div class="tRow">
+        <div class="tDataLTR">+writeByte(b : byte): void</div>
+        <div class="tDataRTL">مقدار byte رو داخل فایل می نویسه.</div>
+      </div>
 
+      <div class="tRow">
+        <div class="tDataLTR">+writeChars(s: String): void</div>
+        <div class="tDataRTL">مقدار String رو داخل فایل می نویسه.</div>
+      </div>
 
-                <div class="tRow">
-                    <div class="tDataLTR">+readLine(): String</div>
-                    <div class="tDataRTL">مقدار String رو از فایل میخونه و بر میگردونه.</div>
-                </div>
+      <div class="tRow">
+        <div class="tDataLTR">+writeUTF(utf: String): void</div>
+        <div class="tDataRTL">
+          مقدار String رو داخل به فرمت utf داخل فایل می نویسه.
+        </div>
+      </div>
+    </div>
 
-                <div class="tRow">
-                    <div class="tDataLTR">+readString(): String</div>
-                    <div class="tDataRTL">مقدار String رو به صورت UTF از فایل میخونه و بر میگردونه.</div>
-                </div>
-            </div>
+    <p>
+      در زیر میخوایم مقادیری رو با DataOutputStream در فایل بنویسیم و با
+      DataInputStream همان مقادیر رو بخونیم.
+    </p>
 
-            <p>بررسی متد های اینترفیس DataOutput</p>
-            <div class="tb" id="data_output_uml">
-                <div class="tRow">
-                    <div class="tHead">&lt;&lt;java.io.DataOutput&gt;&gt;</div>
-                </div>
-
-                <div class="tRow">
-                    <div class="tDataLTR">+writeBoolean(b: boolean): void</div>
-                    <div class="tDataRTL">مقدار boolean رو داخل فایل می نویسه.</div>
-                </div>
-
-                <div class="tRow">
-                    <div class="tDataLTR">+writeChar(c: char): void</div>
-                    <div class="tDataRTL">مقدار char رو داخل فایل می نویسه.</div>
-                </div>
-
-                <div class="tRow">
-                    <div class="tDataLTR">+writeFloat(f: float): void</div>
-                    <div class="tDataRTL">مقدار float رو داخل فایل می نویسه.</div>
-                </div>
-
-                <div class="tRow">
-                    <div class="tDataLTR">+writeDouble(d: double): void</div>
-                    <div class="tDataRTL">مقدار double رو داخل فایل می نویسه.</div>
-                </div>
-
-                <div class="tRow">
-                    <div class="tDataLTR">+writeInt(i: int): void</div>
-                    <div class="tDataRTL">مقدار int رو داخل فایل می نویسه.</div>
-                </div>
-
-                <div class="tRow">
-                    <div class="tDataLTR">+writeLong(l: long): void</div>
-                    <div class="tDataRTL">مقدار long رو داخل فایل می نویسه.</div>
-                </div>
-
-                <div class="tRow">
-                    <div class="tDataLTR">+writeShort(sh: short): void</div>
-                    <div class="tDataRTL">مقدار short رو داخل فایل می نویسه.</div>
-                </div>
-
-
-                <div class="tRow">
-                    <div class="tDataLTR">+writeByte(b : byte): void</div>
-                    <div class="tDataRTL">مقدار byte رو داخل فایل می نویسه.</div>
-                </div>
-
-                <div class="tRow">
-                    <div class="tDataLTR">+writeChars(s: String): void</div>
-                    <div class="tDataRTL">مقدار String رو داخل فایل می نویسه.</div>
-                </div>
-
-                <div class="tRow">
-                    <div class="tDataLTR">+writeUTF(utf: String): void</div>
-                    <div class="tDataRTL">مقدار String رو داخل به فرمت utf داخل فایل می نویسه.</div>
-                </div>
-
-            </div>
-
-
-            <p>در زیر میخوایم مقادیری رو با DataOutputStream در فایل بنویسیم و با DataInputStream همان مقادیر رو بخونیم.</p>
-
-            <div class="sample">
-                <div class="snippet-container">
-                    <div class="snippet Java">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
 public static void main(String[] args) throws IOException{
 
     try(DataOutputStream output = new DataOutputStream(new FileOutputStream("temp.dat"))){
@@ -443,13 +559,14 @@ public static void main(String[] args) throws IOException{
     }
 
     try(DataInputStream input = new DataInputStream(new FileInputStream("temp.dat"))){
-        while (input.available() > 0) {
+        while (input.available() &gt; 0) {
             System.out.println("Name: " + input.readUTF() + " Score: " + input.readDouble());
         }
     }
 }
-                    </div>
-                    <div class="snippet Kotlin">
+                    </pre
+        >
+        <pre class="snippet Kotlin">
 fun main() {
 
 val file = File("temp.dat")
@@ -473,74 +590,109 @@ val file = File("temp.dat")
 
     do {
         println("name: ${dataInput.readUTF()} score: ${dataInput.readDouble()}")
-    }while (dataInput.available() > 0)
+    }while (dataInput.available() &gt; 0)
 
     output.close()
 }
-                    </div>
-                </div>
-            </div>
+                    </pre
+        >
+      </div>
+    </div>
+  </section>
 
-        </div>
+  <section id="p4">
+    <h2>کلاس ObjectInputStream و ObjectOutputStream</h2>
 
+    <blockquote>
+      برای نوشتن آبجکت در فایل باید کلاس مربوط به آبجکت اینترفیس Serializable رو
+      پیاده‌سازی کرده باشه.
+    </blockquote>
 
-        <div class="subsection" id="sub4">
-                <h2>کلاس ObjectInputStream و ObjectOutputStream</h2>
+    <p>
+      این دو کلاس به ترتیب اینترفیس های ObjectInput و ObjectOutput رو پیاده‌سازی
+      میکنن.
+    </p>
 
-            <blockquote>برای نوشتن آبجکت در فایل باید کلاس مربوط به آبجکت اینترفیس Serializable رو پیاده‌سازی کرده باشه.</blockquote>
+    <p>تصویر زیر نحوه ی ارث بری این دو کلاس رو نشون میده.</p>
 
-            <p> این دو کلاس به ترتیب اینترفیس های ObjectInput و ObjectOutput رو پیاده‌سازی میکنن.</p>
+    <figure class="figure figure-wrapper">
+      <img
+        src="/resources/image/java/java_object_io_stream_inheritance.png"
+        alt="نمودار uml نحوه ی ارث بری دو کلاس ObjectInputStream و ObjectOutputStream در جاوا"
+      />
+      <figcaption>
+        ارث بری دو کلاس ObjectInputStream و ObjectOutputStream در جاوا
+      </figcaption>
+    </figure>
 
-            <p>تصویر زیر نحوه ی ارث بری این دو کلاس رو نشون میده.</p>
+    <p>
+      همانطور که در تصویر مشاهده میکنید برای هردو کلاس یک کانستراکتور تعریف شده
+      که هنگام نمونه سازی از ObjectInputStream و ObjectOutputStream میتونیم به
+      ترتیب مقادیری از جنس InputStream و OutputStream رو به کانستراکتور هاشون
+      پاس بدیم.
+    </p>
 
-            <figure class="figure figure-wrapper">
-                <img class="rounded figure-img" src="/resources/image/java/java_object_io_stream_inheritance.png" alt="نمودار uml نحوه ی ارث بری دو کلاس ObjectInputStream و ObjectOutputStream در جاوا"/>
-                <figcaption class="figure-caption rtl">ارث بری دو کلاس ObjectInputStream و ObjectOutputStream در جاوا</figcaption>
-            </figure>
+    <p>
+      اینترفیس های ObjectInput و ObjectOutput به ترتیب از اینترفیس های DataInput
+      و DataOutput ارث بری میکنن و تمام متد های این دو اینترفیس رو به ارث می
+      برن.
+    </p>
 
-            <p>همانطور که در تصویر مشاهده میکنید برای هردو کلاس یک کانستراکتور تعریف شده که هنگام نمونه سازی از ObjectInputStream و ObjectOutputStream میتونیم به ترتیب مقادیری از جنس InputStream و OutputStream رو به کانستراکتور هاشون پاس بدیم.</p>
+    <p>
+      در اینترفیس ObjectInput علاوه بر متد های اینترفیس
+      <strong>DataInput</strong> که به ارث می بره یک متد به اسم readObject تعریف
+      شده است.
+    </p>
 
-            <p>اینترفیس های ObjectInput و ObjectOutput به ترتیب از اینترفیس های DataInput و DataOutput ارث بری میکنن و تمام متد های این دو اینترفیس رو به ارث می برن.
+    <div class="tb" id="object-input-uml">
+      <div class="tRow">
+        <div class="tHead">&lt;&lt;java.io.ObjectInput&gt;&gt;</div>
+      </div>
 
-            <p>در اینترفیس ObjectInput علاوه بر متد های اینترفیس <strong>DataInput</strong> که به ارث می بره یک متد به اسم readObject تعریف شده است.</p>
+      <div class="tRow">
+        <div class="tDataLTR">readObject(): Object</div>
+        <div class="tDataRTL">یک آبجکت رو از فایل میخونه.</div>
+      </div>
+    </div>
 
-            <div class="tb" id="object-input-uml">
-                <div class="tRow">
-                    <div class="tHead">&lt;&lt;java.io.ObjectInput&gt;&gt;</div>
-                </div>
+    <p>
+      در اینترفیس ObjectOutput علاوه بر متد های اینترفیس
+      <strong>DataOutput</strong> که به ارث می بره یک متد به اسم writeObject
+      تعریف شده است.
+    </p>
 
-                <div class="tRow">
-                    <div class="tDataLTR">readObject(): Object</div>
-                    <div class="tDataRTL">یک آبجکت رو از فایل میخونه.</div>
-                </div>
-            </div>
+    <div class="tb" id="object_output_uml">
+      <div class="tRow">
+        <div class="tHead">&lt;&lt;java.io.ObjectOutput&gt;&gt;</div>
+      </div>
 
-            <p>در اینترفیس ObjectOutput علاوه بر متد های اینترفیس <strong>DataOutput</strong> که به ارث می بره یک متد به اسم writeObject تعریف شده است.</p>
+      <div class="tRow">
+        <div class="tDataLTR">writeObject(object: Object): void</div>
+        <div class="tDataRTL">یک آبجکت رو داخل فایل می نویسه.</div>
+      </div>
+    </div>
 
-            <div class="tb" id="object_output_uml">
-                <div class="tRow">
-                    <div class="tHead">&lt;&lt;java.io.ObjectOutput&gt;&gt;</div>
-                </div>
+    <div class="note">
+      <p class="note-head">توجه</p>
+      <p>
+        آبجکتی که میخوایم داخل فایل بنویسیم باید
+        <strong>Serializable</strong> باشه در غیر این صورت دچار اکسپشن میشیم.
+      </p>
+      <p>
+        اینترفیس Serializable متدی برای پیاده‌سازی نداره و صرفا یک برچسبه که به
+        جاوا میگیم آبجکت های کلاس مورد نظر قابل نوشتن در فایل هستند.
+      </p>
+    </div>
 
-                <div class="tRow">
-                    <div class="tDataLTR">writeObject(object: Object): void</div>
-                    <div class="tDataRTL">یک آبجکت رو داخل فایل می نویسه.</div>
-                </div>
-            </div>
+    <p>
+      کلاس java.util.Date اینترفیس Serializable رو پیاده‌سازی کرده است. در مثال
+      زیر آبجکت های کلاس Date رو داخل فایل می نویسیم و سپس با ObjectInputStream
+      از فایل میخونیمشون.
+    </p>
 
-
-
-            <div class="note">
-                    <p class="note-head">توجه</p>
-                <p>آبجکتی که میخوایم داخل فایل بنویسیم باید <strong>Serializable</strong> باشه در غیر این صورت دچار اکسپشن میشیم.</p>
-                <p>اینترفیس Serializable متدی برای پیاده‌سازی نداره و صرفا یک برچسبه که به جاوا میگیم آبجکت های کلاس مورد نظر قابل نوشتن در فایل هستند.</p>
-            </div>
-
-            <p>کلاس java.util.Date اینترفیس Serializable رو پیاده‌سازی کرده است. در مثال زیر آبجکت های کلاس Date رو داخل فایل می نویسیم و سپس با ObjectInputStream از فایل میخونیمشون.</p>
-
-            <div class="sample">
-                <div class="snippet-container">
-                    <div class="snippet Java">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
 public static void main(String[] args) throws IOException, ClassNotFoundException{
 
     //نوشتن داده ها
@@ -564,9 +716,9 @@ public static void main(String[] args) throws IOException, ClassNotFoundExceptio
             System.out.println("Name: " + input.readUTF() + " Score: " + input.readDouble() + " Date: " + input.readObject());
         }
 }
-                    </div>
-
-                    <div class="snippet Kotlin">
+                    </pre
+        >
+        <pre class="snippet Kotlin">
 fun main() {
 
     val file = File("temp.dat")
@@ -594,68 +746,102 @@ fun main() {
 
     do {
         println("Name: ${objectInput.readUTF()} Score: ${objectInput.readDouble()} Date: ${objectInput.readObject()}")
-    }while (objectInput.available() > 0)
+    }while (objectInput.available() &gt; 0)
 
     objectInput.close()
 }
-                    </div>
-                </div>
-            </div>
+                    </pre
+        >
+      </div>
+    </div>
+  </section>
 
+  <section id="p5">
+    <h2>کلاس BufferedInputStream و BufferedOutputStream</h2>
+    <blockquote>
+      از BufferedInputStream و BufferedOutputStream برای خوندن یا نوشتن فایل
+      هایی با حجم بیش از 100 مگابایت استفاده میکنیم.
+    </blockquote>
+    <p>
+      هر بار که عملیات خوندن یا نوشتن انجام میشه، کلاس های IO Stream برای خوندن
+      یا نوشتن، کرنل سیستم عامل رو صدا میزنن و از طریق کرنل و سایر اجزای سیستم
+      عامل عملیات خوندن یا نوشتن رو انجام میدن؛ برای همین این کار سنگین و هزینه
+      بره.
+    </p>
+    <p>
+      کلاس های BufferedInputStream و BufferedOutputStream دارای حافظه های موقتی
+      به اسم buffer هستند که با هر بار خوندن یا نوشتن به‌جای اینکه مقادیر مستقیم
+      توسط اجزای سیستم عامل خونده یا نوشته بشه ابتدا داخل حافظه ی buffer این
+      کلاس ها ذخیره میشه و زمانی که این حافظه پر شد داده ها یه جا توسط سیستم
+      عامل خونده یا نوشته میشن، بنابراین با این کلاس ها میتونیم عملیات خوندن و
+      نوشتن رو بهینه تر کنیم.
+    </p>
+    <p>
+      حافظه ی پیشفرض buffer در این کلاس ها ۵۱۲ بایت است؛ میتونیم داخل کد این
+      حافظه رو تغییر داده و به مقدار دلخواه خود تنظیم کنیم.
+    </p>
+
+    <p>در نمودار uml زیر به بررسی BufferedInputStream پرداخته ایم:</p>
+    <div class="tb" id="buffered_input_stream_uml">
+      <div class="tRow">
+        <div class="tHead">java.io.BufferedInputStream</div>
+      </div>
+      <div class="tRow">
+        <div class="tDataLTR">+BufferedInputStream(in: InputStream)</div>
+        <div class="tDataRTL">
+          یک نمونه از BufferedInputStream با حافظه ی buffer پیش فرض 512 بایت
+          ایجاد میکنه.
         </div>
+      </div>
 
-        <div class="subsection" id="sub5">
-                <h2>کلاس BufferedInputStream و BufferedOutputStream</h2>
-            <blockquote>از BufferedInputStream و BufferedOutputStream برای خوندن یا نوشتن فایل هایی با حجم بیش از 100 مگابایت استفاده میکنیم.</blockquote>
-            <p>هر بار که عملیات خوندن یا نوشتن انجام میشه، کلاس های IO Stream برای خوندن یا نوشتن، کرنل سیستم عامل رو صدا میزنن و از طریق کرنل و سایر اجزای سیستم عامل عملیات خوندن یا نوشتن رو انجام میدن؛ برای همین این کار سنگین و هزینه بره.</p>
-            <p>کلاس های BufferedInputStream و BufferedOutputStream دارای حافظه های موقتی به اسم buffer هستند که با هر بار خوندن یا نوشتن به‌جای اینکه مقادیر مستقیم توسط اجزای سیستم عامل خونده یا نوشته بشه ابتدا داخل حافظه ی buffer این کلاس ها ذخیره میشه و زمانی که این حافظه پر شد داده ها یه جا توسط سیستم عامل خونده یا نوشته میشن، بنابراین با این کلاس ها میتونیم عملیات خوندن و نوشتن رو بهینه تر کنیم.</p>
-            <p>حافظه ی پیشفرض buffer در این کلاس ها ۵۱۲ بایت است؛ میتونیم داخل کد این حافظه رو تغییر داده و به مقدار دلخواه خود تنظیم کنیم.</p>
+      <div class="tRow">
+        <div class="tDataLTR">
+          +BufferedInputStream(in: InputStream, bufferSize: int)
+        </div>
+        <div class="tDataRTL">
+          یک نمونه از BufferedInputStream با حافظه ی buffer دلخواه ایجاد میکنه.
+        </div>
+      </div>
+    </div>
 
+    <p>در نمودار uml زیر به بررسی BufferedOutputStream پرداخته ایم:</p>
 
-            <p>در نمودار uml زیر به بررسی BufferedInputStream پرداخته ایم:</p>
-            <div class="tb" id="buffered_input_stream_uml">
-                <div class="tRow">
-                    <div class="tHead">java.io.BufferedInputStream</div>
-                </div>
-                <div class="tRow">
-                    <div class="tDataLTR">+BufferedInputStream(in: InputStream)</div>
-                    <div class="tDataRTL">یک نمونه از BufferedInputStream با حافظه ی buffer پیش فرض 512 بایت ایجاد میکنه.</div>
-                </div>
+    <div class="tb" id="buffered_output_stream_uml">
+      <div class="tRow">
+        <div class="tHead">java.io.BufferedOutputStream</div>
+      </div>
+      <div class="tRow">
+        <div class="tDataLTR">+BufferedOutputStream(out: OutputStream)</div>
+        <div class="tDataRTL">
+          یک نمونه از BufferedOutputStream با حافظه ی buffer پیش فرض 512 بایت
+          ایجاد میکنه.
+        </div>
+      </div>
 
-                <div class="tRow">
-                    <div class="tDataLTR">+BufferedInputStream(in: InputStream, bufferSize: int)</div>
-                    <div class="tDataRTL">یک نمونه از BufferedInputStream با حافظه ی buffer دلخواه ایجاد میکنه.</div>
-                </div>
-            </div>
+      <div class="tRow">
+        <div class="tDataLTR">
+          +BufferedInputStream(in: OutputStream, bufferSize: int)
+        </div>
+        <div class="tDataRTL">
+          یک نمونه از BufferedOutputStream با حافظه ی buffer دلخواه ایجاد میکنه.
+        </div>
+      </div>
+    </div>
 
-            <p>در نمودار uml زیر به بررسی BufferedOutputStream پرداخته ایم:</p>
+    <p>
+      در زیر با استفاده از BufferedInputStream یک صد عدد تصادفی ۰ - ۲۵۵ (یک
+      بایت) رو در فایل ذخیره میکنیم و سپس با BufferedInputStream اونا رو
+      میخونیم.
+    </p>
 
-            <div class="tb" id="buffered_output_stream_uml">
-                <div class="tRow">
-                    <div class="tHead">java.io.BufferedOutputStream</div>
-                </div>
-                <div class="tRow">
-                    <div class="tDataLTR">+BufferedOutputStream(out: OutputStream)</div>
-                    <div class="tDataRTL">یک نمونه از BufferedOutputStream با حافظه ی buffer پیش فرض 512 بایت ایجاد میکنه.</div>
-                </div>
-
-                <div class="tRow">
-                    <div class="tDataLTR">+BufferedInputStream(in: OutputStream, bufferSize: int)</div>
-                    <div class="tDataRTL">یک نمونه از BufferedOutputStream با حافظه ی buffer دلخواه ایجاد میکنه.</div>
-                </div>
-            </div>
-
-
-            <p>در زیر با استفاده از BufferedInputStream یک صد عدد تصادفی ۰ - ۲۵۵ (یک بایت) رو در فایل ذخیره میکنیم و سپس با BufferedInputStream اونا رو میخونیم.</p>
-
-            <div class="sample">
-                <div class="snippet-container">
-                    <div class="snippet Java">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
 public static void main(String[] args) throws IOException {
 
     try(BufferedOutputStream output = new BufferedOutputStream(new FileOutputStream("temp.dat"))){
 
-        for (int i =0; i<100; i++){
+        for (int i =0; i&lt;100; i++){
             output.write((int)(Math.random() * 255));
         }
     }
@@ -671,9 +857,9 @@ public static void main(String[] args) throws IOException {
         }
     }
 }
-                    </div>
-
-                    <div class="snippet Kotlin">
+                    </pre
+        >
+        <pre class="snippet Kotlin">
 fun main() {
 
     val file = File("temp.dat")
@@ -697,24 +883,26 @@ fun main() {
         if (numberOfBytesPerLine % 10 == 0) {
             println()
         }
-    }while (bufferedInput.available() > 0)
+    }while (bufferedInput.available() &gt; 0)
 
     bufferedInput.close()
 }
-                    </div>
-                </div>
-            </div>
+                    </pre
+        >
+      </div>
+    </div>
+  </section>
 
-        </div>
+  <section id="p6">
+    <h2>مورد مطالعه (مثال)</h2>
+    <p>
+      مثال زیر یک برنامه ی کاربردی است که از طریق کنسول (terminal یا cmd) یک
+      فایل رو کپی میکنه.
+    </p>
 
-
-        <div class="subsection" id="sub6">
-                <h2>مورد مطالعه (مثال)</h2>
-            <p>مثال زیر یک برنامه ی کاربردی است که از طریق کنسول (terminal یا cmd) یک فایل رو کپی میکنه.</p>
-
-            <div class="sample">
-                <div class="snippet-container">
-                    <div class="snippet Java">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
 public static void main(String[] args) {
 
     if (args.length != 2) {
@@ -752,8 +940,9 @@ public static void main(String[] args) {
         System.out.println("Copy ok!" + numberOfBytesCopied + " bytes copied");
     }
 }
-                    </div>
-                    <div class="snippet Kotlin">
+                    </pre
+        >
+        <pre class="snippet Kotlin">
 fun main(args: Array&lt;String&gt;) {
 
     if (args.size != 2){
@@ -792,98 +981,77 @@ fun main(args: Array&lt;String&gt;) {
     println("Copy ok!$numberOfBytesCopied bytes copied")
 
 }
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="subsection" id="sub7">
-                <h2>خلاصه</h2>
-            <p>- تمام فایل ها به صورت باینری در کامپیوتر ذخیره میشن.</p>
-            <p>- فایل های متنی کدگذاری شده هستند که هر کد مختص به یک حرف است.</p>
-            <p>- به فرایند تبدیل کاراکتر (حرف) به کد متناظر خودش رمزنگاری (encoding) میگیم</p>
-            <p>- به فرایند تبدیل کد به کاراکتر متناظر خودش رمزگشایی (decoding) میگیم.</p>
-            <p>- خوندن و نوشتن به صورت باینری سریع تر از متنی است چون عملیات مستقیم و بدون رمزنگار یا رمزگشایی انجام میشه.</p>
-            <p>- تمام کلاس های استریم پیکیج io در جاوا از دو کلاس InputStream و OutputStream ارث بری میکنن.</p>
-            <p>- کلاس FileInputStream برای خوندن بایت های یک فایل و کلاس FileOutputStream برای نوشتن بایت ها در فایل مورد استفاده قرار میگیرن.</p>
-            <p>- از دو کلاس DataInputStream و DataOutputStream برای خوندن و نوشتن مقادیر primitive استفاده میکنیم.</p>
-            <p>- دو کلاس ObjectInputStream و ObjectOutputStream علاوه بر مقادیر primitive آبجکت هایی که Serializable هستند رو نیز برای خوندن و نوشتن پشتیبانی میکنن.</p>
-            <p>- دو کلاس BufferedInputStream و BufferedOutputStream برای فایل هایی با حجم بالا مورد استفاده قرار میگیرند.</p>
-        </div>
-
-    </article>
-
-    <div class="article-foot">
-
-      <div class="navigator-container">
-
-        <a href="#" class="md-bt md-bt-light">
-
-            <span class="material-icons">
-              navigate_next
-            </span>
-          <span class="hint">
-              بعدی
-            </span>
-        </a>
-
-        <a href="scanner.html" class="md-bt md-bt-light">
-            <span class="hint">
-              قبلی
-            </span>
-          <span class="material-icons">
-              navigate_before
-            </span>
-
-        </a>
-      </div>
-
-      <div class="relative-articles-container">
-        <p>مطالب مرتبط</p>
-        <div>
-          <div>
-            <a href="objects-and-classes.html">آبجکت و کلاس ها در جاوا</a>
-          </div>
-
-          <div>
-            <a href="inheritance.html">وراثت در جاوا</a>
-          </div>
-
-            <div>
-                <a href="interfaces.html">اینترفیس ها در جاوا</a>
-            </div>
-
-            <div>
-                <a href="exceptions.html">اکسپشن ها در جاوا</a>
-            </div>
-
-            <div>
-                <a href=""></a>
-            </div>
-
-          <div>
-            <a href="https://docs.oracle.com/javase/tutorial/essential/io/streams.html">مطالعه در وبسایت رسمی اوراکل</a>
-          </div>
-        </div>
+                    </pre
+        >
       </div>
     </div>
+  </section>
 
-  </div>
-</main>
+  <section id="p7">
+    <h2>خلاصه</h2>
+    <ul>
+      <li>تمام فایل ها به صورت باینری در کامپیوتر ذخیره میشن.</li>
+      <li>فایل های متنی کدگذاری شده هستند که هر کد مختص به یک حرف است.</li>
+      <li>
+        به فرایند تبدیل کاراکتر (حرف) به کد متناظر خودش رمزنگاری (encoding)
+        میگیم
+      </li>
+      <li>
+        به فرایند تبدیل کد به کاراکتر متناظر خودش رمزگشایی (decoding) میگیم.
+      </li>
+      <li>
+        خوندن و نوشتن به صورت باینری سریع تر از متنی است چون عملیات مستقیم و
+        بدون رمزنگار یا رمزگشایی انجام میشه.
+      </li>
+      <li>
+        تمام کلاس های استریم پیکیج io در جاوا از دو کلاس InputStream و
+        OutputStream ارث بری میکنن.
+      </li>
+      <li>
+        کلاس FileInputStream برای خوندن بایت های یک فایل و کلاس FileOutputStream
+        برای نوشتن بایت ها در فایل مورد استفاده قرار میگیرن.
+      </li>
+      <li>
+        از دو کلاس DataInputStream و DataOutputStream برای خوندن و نوشتن مقادیر
+        primitive استفاده میکنیم.
+      </li>
+      <li>
+        دو کلاس ObjectInputStream و ObjectOutputStream علاوه بر مقادیر primitive
+        آبجکت هایی که Serializable هستند رو نیز برای خوندن و نوشتن پشتیبانی
+        میکنن.
+      </li>
+      <li>
+        دو کلاس BufferedInputStream و BufferedOutputStream برای فایل هایی با حجم
+        بالا مورد استفاده قرار میگیرند.
+      </li>
+    </ul>
+  </section>
+</article>
 
-<div class="scroll-top-container">
-  <a class="text-decoration-none link-dark material-icons" href="#">
-    arrow_drop_up
-  </a>
-</div>
+{% capture links %}
+<li>
+  <a href="objects-and-classes.html">آبجکت و کلاس ها در جاوا</a>
+</li>
 
-<footer></footer>
+<li>
+  <a href="inheritance.html">وراثت در جاوا</a>
+</li>
 
-<div class="dialog hide"></div>
+<li>
+  <a href="interfaces.html">اینترفیس ها در جاوا</a>
+</li>
 
-<div class="copy-message">
-  <span class="copy-message-text">کپی شد!</span>
-</div>
-</body>
+<li>
+  <a href="exceptions.html">اکسپشن ها</a>
+</li>
 
-</html>
+<li>
+  <a href="polymorphism.html">چند ریختی و کست کردن</a>
+</li>
+
+<li>
+  <a href="https://docs.oracle.com/javase/tutorial/essential/io/streams.html"
+    >مطالعه در وبسایت رسمی اوراکل</a
+  >
+</li>
+{% endcapture %} {% include article-foot.html relative_links = links %}

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fa">
+
+
+{% assign page_metadata = nil %}
+
+<!-- Meta data variables for previous, current and next page to auto set next and previous page anchor tags in article-foot.html -->
+{% assign prev_page = nil %}
+{% assign next_page = nil %}
+
+{% for data in site.data.json.topics %}
+
+{% assign metadata_list = data[1].metadata_list %}
+
+{% for entry in metadata_list %}
+
+{% if entry.link == page.url %}
+{% assign page_metadata = entry %}
+
+{% break %}
+{% endif %}
+
+{% endfor %}
+
+{% endfor %}
+
+
+{% include head.html metadata = page_metadata %}
+
+<body>
+
+  {% include header.html %}
+  <div>
+
+    {% include sidebar.html %}
+
+    <main>
+
+      <h1>{{ page_metadata.title }}</h1>
+      {% include article-head.html metadata = page_metadata %}
+
+      {{ content }}
+
+    </main>
+
+  </div>
+
+
+  {% include footer.html %}
+
+  {% include dialog.html %}
+
+  <div class="scroll-top-container">
+    <a class="text-decoration-none link-dark material-icons" href="#">
+      arrow_drop_up
+    </a>
+  </div>
+  <div class="copy-message">
+    <span class="copy-message-text">کپی شد!</span>
+  </div>
+
+</body>
+
+
+</html>

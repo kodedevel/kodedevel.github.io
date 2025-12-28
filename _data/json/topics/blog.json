@@ -1,0 +1,30 @@
+{
+  "id": "blogs",
+  "name": "بلاگ",
+  "metadata_list": [
+    {
+      "title": "آموزش پخش تدریجی مدیا (ویدیو و صدا) در اسپرینگ بوت",
+      "description": "در این مطلب یک پروژه ی عملی از پخش تدریجی ویدیو و صدا در اسپرینگ بوت در حین دانلود رو پیاده سازی میکنیم.",
+      "datePublished": "2025-12-28",
+      "lastModified": "",
+      "imgCover": "/resources/image/blog/cover_spring-media-streaming.png",
+      "link": "/post/blog/spring-boot-media-streaming.html"
+    },
+    {
+      "title": "تغییرات switch تا jdk-17",
+      "description": "بررسی تغییرات سوییچ قبل از jdk 1.8 تا jdk 17 lts در هر ورژن از جاوا دستور سوییچ در جاوا چه تغییراتی کرده و چه قابلیت هایی پیدا کرده",
+      "datePublished": "2025-09-12",
+      "lastModified": "",
+      "imgCover": "/resources/image/blog/cover_switch_until_jdk17.png",
+      "link": "/post/blog/switch-statement-jdk-17.html"
+    },
+    {
+      "title": "زبان های برنامه نویسی",
+      "description": "زبان های برنامه نویسی بر اساس ویژگی و کاربرد های مشترک بینشون به انواع مختلفی دسته بندی میشن؛ مطالعه ی این مطلب میتونه به تصمیم شما برای انتخاب زبان برنامه نویسی مناسب کمک کنه.",
+      "datePublished": "2025-12-05",
+      "lastModified": "",
+      "imgCover": "/resources/image/blog/cover_programming_languages.png",
+      "link": "/post/blog/programming-languages.html"
+    }
+  ]
+}

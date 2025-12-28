@@ -1,17 +1,21 @@
+html{
+  direction: rtl;
+  scroll-behavior: smooth;
+}
+
+
+body{
+  margin: 0;
+  padding: 0;
+}
+
 main{
   position: relative;
   background-color: #ffffff;
   max-width: 732px;
-  min-height: 64vh;
-  margin: 0 auto;
+  margin: auto;
   padding-bottom: 64px;
-  direction: rtl;
   font-variant-ligatures: normal;
-}
-
-nav{
-  background-color: #212121;
-  min-height: 80px;
 }
 
 section {
@@ -24,11 +28,37 @@ li{
 }
 
 footer {
-  width: 100vw;
+  width: 100%;
   background-color: #212121;
   flex-wrap: wrap;
 }
 
-header{
-  width: 100vw;
+figure {
+  width: 100%;
+  margin: 0;
+}
+
+img{
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+figcaption{
+  color: #757575;
+  padding: 2px 8px;
+}
+
+
+pre{
+  font-size: 0.95rem;
+  margin: 0;
+  font-family: JetBrains Mono;
+  border-right: 1px solid #bdbdbd;
+}
+
+table{
+  border-collapse: collapse;
 }

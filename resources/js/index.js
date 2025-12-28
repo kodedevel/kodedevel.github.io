@@ -1,16 +1,13 @@
-import {createDot} from './ui.js';
-
+import { createDot } from "./ui.js";
 
 const sliderWrapper = document.querySelector(".slider-wrapper");
-
 
 const slides = document.querySelectorAll(".slide");
 const totalNumberOfSlides = slides.length;
 
 let currentIndex = 0;
 
-function prepareSlider() {
-
+function initSlider() {
   const btNext = document.querySelector(".next");
   btNext.addEventListener("click", slideNext);
 
@@ -22,7 +19,6 @@ function prepareSlider() {
 }
 
 function updateSlider() {
-
   const slideWidth = slides[0].clientWidth;
 
   //since the direction is rtl so the currentIndex is positive to transform images correctly.
@@ -31,25 +27,22 @@ function updateSlider() {
   sliderWrapper.style.transform = `translateX(${offset}px)`;
 
   updateDots();
-
 }
 
 function slideNext() {
-  currentIndex = (currentIndex > 0) ? currentIndex - 1 : totalNumberOfSlides - 1;
+  currentIndex = currentIndex > 0 ? currentIndex - 1 : totalNumberOfSlides - 1;
   updateSlider();
 }
 
 function slidePrev() {
-  currentIndex = (currentIndex < totalNumberOfSlides - 1) ? currentIndex + 1 : 0;
+  currentIndex = currentIndex < totalNumberOfSlides - 1 ? currentIndex + 1 : 0;
   updateSlider();
 }
 
 function createDots() {
-
   const sliderDotsWrapper = document.querySelector(".slider-dots-wrapper");
 
   for (var i = 0; i < totalNumberOfSlides; i++) {
-
     const dot = createDot();
     dot.dataset.index = i;
 
@@ -59,23 +52,18 @@ function createDots() {
     });
 
     sliderDotsWrapper.appendChild(dot);
-
   }
 
   updateDots();
 }
 
 function updateDots() {
-
-  const dots = document.querySelectorAll('.dot');
+  const dots = document.querySelectorAll(".dot");
 
   dots.forEach((dot, index) => {
-    if (index === currentIndex)
-      dot.classList.add("active");
-    else
-      dot.classList.remove("active");
-
+    if (index === currentIndex) dot.classList.add("active");
+    else dot.classList.remove("active");
   });
 }
 
-export {prepareSlider};
+export { initSlider };

@@ -1,164 +1,186 @@
-<!DOCTYPE html>
+---
+layout: default
+---
 
-<html lang="fa">
+<article>
+  <nav class="toc">
+    <div>دسترسی سریع</div>
+    <ul>
+      <li>
+        <a href="#p0">بررسی Scanner</a>
+      </li>
+      <li>
+        <a href="#p1">خلاصه</a>
+      </li>
+    </ul>
+  </nav>
 
-<head>
+  <section id="p0">
+    <h2>بررسی کلاس Scanner</h2>
 
-    <meta content="IE=7" http-equiv="X-UA-Compatible">
-    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <blockquote>
+      کلاس Scanner علاوه بر خوندن داده ها از کنسول برای خوندن متن فایل هم مورد
+      استفاده قرار میگیره.
+    </blockquote>
 
-    <meta content="با استفاده از کلاس Scanner در جاوا و کاتلین علاوه بر خوندن داده ها از کنسول میتونیم داده های فایل های متنی رو هم بخونیم؛ در این مطلب به بررسی کلاس Scanner می پردازیم و متد های این کلاس رو به همراه مثال بیان میکنیم."
-          name="description">
+    <p>
+      در
+      <a class="text-decoration-none" href="printwriter.html">مطلب قبل</a> گفتیم
+      با استفاده از PrintWriter میتونیم داده های متنی رو در فایل بنویسیم. در این
+      مطلب به خوندن متن از فایل با استفاده از Scanner در جاوا و کاتلین
+      میپردازیم.
+    </p>
+    <p>
+      احتمالا با کلاس Scanner آشنایی داشته باشید تا اینجا از Scanner برای خوندن
+      ورودی از کنسول استفاده میکردیم؛ برای این کار نیاز داشتیم فیلد استاتیک in
+      در کلاس System رو به عنوان پارامتر به کانستراکتور Scanner پاس بدیم. مقدار
+      فیلد in از نوع InputStream است.
+    </p>
 
-    <meta content="text/html;charset=UTF-8" http-equiv="Content-Type">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <p>
+      کلاس Scanner در جاوا و کاتلین علاوه بر خوندن داده ها از کنسول برای خوندن
+      متن و داده های
+      <a class="text-decoration-none" href="type-variables.html">Primitive</a>
+      از فایل نیز مورد استفاده قرار میگیره.
+    </p>
+    <p>
+      این کلاس همانند سایر کلاس های خوندن و نوشتن از AutoClosable ارث بری میکنه
+      بنابراین میتونیم داخل try-with-resources تعریفش کنیم.
+    </p>
 
-    <title>خوندن فایل با Scanner در جاوا و کاتلین</title>
+    <p>
+      کلاس Scanner برخلاف سایر کلاس های خوندن و نوشتن در فایل، که در پکیج io یا
+      nio تعریف شدن، در پکیج util تعریف شده است.
+    </p>
 
-    <meta content="خوندن فایل با Scanner در جاوا و کاتلین" name="og:title">
-    <meta content="با استفاده از کلاس Scanner در جاوا و کاتلین علاوه بر خوندن داده ها از کنسول میتونیم داده های فایل های متنی رو هم بخونیم؛ در این مطلب به بررسی کلاس Scanner می پردازیم و متد های این کلاس رو به همراه مثال بیان میکنیم."
-          name="og:description">
+    <p>کانستراکتور و متد (توابع) کلاس Scanner در زیر بیان شده است.</p>
 
-    <meta content="https://kodedevel.github.io/resources/favicon.png" property="og:image">
-    <meta content="https://kodedevel.github.io/post/java/scanner.html" property="og:url">
+    <div class="tb">
+      <div class="tRow">
+        <div class="tHead">java.util.Scanner</div>
+      </div>
 
-    <meta content="article" property="og:type">
-
-    <link href="/resources/favicon.png" rel="shortcut icon" type="image/x-icon">
-
-    <link href="/resources/css/main.css" rel="stylesheet">
-    <script src="/resources/js/main.js" type="module"></script>
-
-</head>
-
-<body>
-<header></header>
-<main>
-    <div class="page-wrap">
-
-        <div class="article-head">
-            <h1>
-                خوندن فایل با Scanner در جاوا و کاتلین
-            </h1>
-
-            <address>
-                <a class="author text-muted text-decoration-none" rel="author">یونس سلیمانی</a>
-            </address>
-
-            <figure class="figure figure-wrapper">
-                <img alt="خوندن فایل با Scanner در جاوا و کاتلین" class="rounded figure-img" src="/resources/image/java/cover_scanner.png"/>
-            </figure>
-
-            <div class="toc">
-                <p class="p-2 mx-2 h5">دسترسی سریع</p>
-                <div class="list-group">
-                    <a class="list-group-item list-group-item-action" href="#sub0">بررسی Scanner</a>
-                    <a class="list-group-item list-group-item-action" href="#sub1">خلاصه</a>
-                </div>
-            </div>
+      <div class="tRow">
+        <div class="tDataLTR">+Scanner(File)</div>
+        <div class="tDataRTL">
+          یک آبجکت از Scanner ایجاد میکنه و مسیر فایل رو با File تعریف میکنیم.
         </div>
+      </div>
+      <div class="tRow">
+        <div class="tDataLTR">+Scanner(String)</div>
+        <div class="tDataRTL">
+          یک آبجکت از Scanner ایجاد میکنه و مسیر فایل رو با String تعریف میکنیم.
+        </div>
+      </div>
+      <div class="tRow">
+        <div class="tDataLTR">+Scanner(Path)</div>
+        <div class="tDataRTL">
+          یک آبجکت از Scanner ایجاد میکنه و مسیر فایل رو با Path تعریف میکنیم.
+        </div>
+      </div>
+      <div class="tRow">
+        <div class="tDataLTR">+Scanner(InputStream)</div>
+        <div class="tDataRTL">
+          یک آبجکت از Scanner ایجاد میکنه و مسیر فایل رو با کلاس های InputStream
+          تعریف میکنیم.
+        </div>
+      </div>
+      <div class="tRow">
+        <div class="tDataLTR">+nextLine()</div>
+        <div class="tDataRTL">خط فعلی متن فایل رو میخونه و میره خط بعدی.</div>
+      </div>
+      <div class="tRow">
+        <div class="tDataLTR">+next()</div>
+        <div class="tDataRTL">
+          کلمه ی فعلی متن رو تا جایی که اسپیس نباشه میخونه و میره سراغ بعدی.
+        </div>
+      </div>
+      <div class="tRow">
+        <div class="tDataLTR">+nextInt()</div>
+        <div class="tDataRTL">
+          اگه کلمه ی فعلی عدد باشه مانند next میخونه و به عنوان متغیر int در
+          برنامه برمیگردونه.
+        </div>
+      </div>
 
-        <article>
+      <div class="tRow">
+        <div class="tDataLTR">+nextLong()</div>
+        <div class="tDataRTL">
+          اگه کلمه ی فعلی عدد باشه مانند next میخونه و به عنوان long در برنامه
+          برمیگردونه.
+        </div>
+      </div>
+      <div class="tRow">
+        <div class="tDataLTR">+nextFloat()</div>
+        <div class="tDataRTL">
+          اگه کلمه ی بعدی عدد باشه مانند next میخونه و به عنوان float در برنامه
+          برمیگردونه.
+        </div>
+      </div>
 
-            <div class="subsection" id="sub0">
-                <h2>بررسی کلاس Scanner</h2>
+      <div class="tRow">
+        <div class="tDataLTR">+nextDouble()</div>
+        <div class="tDataRTL">
+          اگه کلمه ی فعلی عدد باشه مانند next میخونه و به عنوان double در برنامه
+          برمیگردونه.
+        </div>
+      </div>
 
-                <blockquote>کلاس Scanner علاوه بر خوندن داده ها از کنسول برای خوندن متن فایل هم مورد استفاده قرار میگیره.</blockquote>
+      <div class="tRow">
+        <div class="tDataLTR">+hasNext()</div>
+        <div class="tDataRTL">
+          بررسی میکنه آیا کلمه ی بعدی در متن وجود داره یا خیر.
+        </div>
+      </div>
+      <div class="tRow">
+        <div class="tDataLTR">+hasNextLine()</div>
+        <div class="tDataRTL">
+          بررسی میکنه آیا خط بعدی در متن وجود داره یا خیر
+        </div>
+      </div>
 
-                <p>در <a class="text-decoration-none" href="printwriter.html">مطلب قبل</a> گفتیم با استفاده از PrintWriter میتونیم داده های متنی رو در فایل بنویسیم. در این مطلب به خوندن متن از فایل با استفاده از Scanner در جاوا و کاتلین میپردازیم.</p>
-                <p>احتمالا با کلاس Scanner آشنایی داشته باشید تا اینجا از Scanner برای خوندن ورودی از کنسول استفاده میکردیم؛ برای این کار نیاز داشتیم فیلد استاتیک in در کلاس System رو به عنوان پارامتر به کانستراکتور Scanner پاس بدیم. مقدار فیلد in از نوع InputStream است.</p>
+      <div class="tRow">
+        <div class="tDataLTR">+close()</div>
+        <div class="tDataRTL">
+          فایل رو میبنده؛ استفاده نکردن از این متد بعد از پایان خوندن فایل یا
+          try-with-resources ممکنه باعث رسیدن آسیب به فایل بشه.
+        </div>
+      </div>
+    </div>
 
-                <p>کلاس Scanner در جاوا و کاتلین علاوه بر خوندن داده ها از کنسول برای خوندن متن و داده های <a class="text-decoration-none" href="type-variables.html">Primitive</a> از فایل نیز مورد استفاده قرار میگیره.</p>
-                <p>این کلاس همانند سایر کلاس های خوندن و نوشتن از AutoClosable ارث بری میکنه بنابراین میتونیم داخل try-with-resources تعریفش کنیم.</p>
+    <p>
+      اگه جایی از متن عدد باشه علاوه بر next میتونیم با nextInt، nextDouble،
+      nextLong و nextFloat بخونیم تفاوتشون تو نوعیه که بر میگردونن مثلا اگه عددی
+      رو در متن با nextInt بخونیم نوع int برمیگردونه و...
+    </p>
 
-                <p>کلاس Scanner برخلاف سایر کلاس های خوندن و نوشتن در فایل، که در پکیج io یا nio تعریف شدن، در پکیج util تعریف شده است.</p>
+    <div class="note">
+      <p class="note-head">توجه</p>
+      <p>
+        اگه بجای خوندن عدد با nextInt، nextLong، nextFloat و nextDouble کلمه ای
+        رو بخونیم که عدد نیست دچار InputMismatchException میشیم.
+      </p>
+    </div>
 
+    <div class="note">
+      <p class="note-head">توجه</p>
+      <p>
+        اگه متن خالی باشه و یا با Scanner اخر متن باشیم و بخوایم کلمه فعلی رو
+        بخونیم؛ چون کلمه ای برای خوندن وجود نداره دچار NoSuchElementException
+        میشیم.
+      </p>
+    </div>
 
-                <p>کانستراکتور و متد (توابع) کلاس Scanner در زیر بیان شده است.</p>
+    <p>مثال</p>
 
-                <div class="tb">
-                    <div class="tRow">
-                        <div class="tHead">java.util.Scanner</div>
-                    </div>
+    <p>
+      ابتدا با PrintWriter اطلاعات یک فرد رو در فایل ذخیره میکنیم و سپس با
+      Scanner اطلاعات ذخیره شده در فایل رو میخونیم
+    </p>
 
-                    <div class="tRow">
-                        <div class="tDataLTR">+Scanner(File)</div>
-                        <div class="tDataRTL">یک آبجکت از Scanner ایجاد میکنه و مسیر فایل رو با File تعریف میکنیم.</div>
-                    </div>
-                    <div class="tRow">
-                        <div class="tDataLTR">+Scanner(String)</div>
-                        <div class="tDataRTL">یک آبجکت از Scanner ایجاد میکنه و مسیر فایل رو با String تعریف میکنیم.</div>
-                    </div>
-                    <div class="tRow">
-                        <div class="tDataLTR">+Scanner(Path)</div>
-                        <div class="tDataRTL">یک آبجکت از Scanner ایجاد میکنه و مسیر فایل رو با Path تعریف میکنیم.</div>
-                    </div>
-                    <div class="tRow">
-                        <div class="tDataLTR">+Scanner(InputStream)</div>
-                        <div class="tDataRTL">یک آبجکت از Scanner ایجاد میکنه و مسیر فایل رو با کلاس های InputStream تعریف میکنیم.</div>
-                    </div>
-                    <div class="tRow">
-                        <div class="tDataLTR">+nextLine()</div>
-                        <div class="tDataRTL">خط فعلی متن فایل رو میخونه و میره خط بعدی.</div>
-                    </div>
-                    <div class="tRow">
-                        <div class="tDataLTR">+next()</div>
-                        <div class="tDataRTL">کلمه ی فعلی متن رو تا جایی که اسپیس نباشه میخونه و میره سراغ بعدی.</div>
-                    </div>
-                    <div class="tRow">
-                        <div class="tDataLTR">+nextInt()</div>
-                        <div class="tDataRTL">اگه کلمه ی فعلی عدد باشه مانند next میخونه و به عنوان متغیر int در برنامه برمیگردونه.</div>
-                    </div>
-
-                    <div class="tRow">
-                        <div class="tDataLTR">+nextLong()</div>
-                        <div class="tDataRTL">اگه کلمه ی فعلی عدد باشه مانند next میخونه و به عنوان long در برنامه برمیگردونه.</div>
-                    </div>
-                    <div class="tRow">
-                        <div class="tDataLTR">+nextFloat()</div>
-                        <div class="tDataRTL">اگه کلمه ی بعدی عدد باشه مانند next میخونه و به عنوان float در برنامه برمیگردونه.</div>
-                    </div>
-
-                    <div class="tRow">
-                        <div class="tDataLTR">+nextDouble()</div>
-                        <div class="tDataRTL">اگه کلمه ی فعلی عدد باشه مانند next میخونه و به عنوان double در برنامه برمیگردونه.</div>
-                    </div>
-
-                    <div class="tRow">
-                        <div class="tDataLTR">+hasNext()</div>
-                        <div class="tDataRTL">بررسی میکنه آیا کلمه ی بعدی در متن وجود داره یا خیر.</div>
-                    </div>
-                    <div class="tRow">
-                        <div class="tDataLTR">+hasNextLine()</div>
-                        <div class="tDataRTL">بررسی میکنه آیا خط بعدی در متن وجود داره یا خیر</div>
-                    </div>
-
-                    <div class="tRow">
-                        <div class="tDataLTR">+close()</div>
-                        <div class="tDataRTL">فایل رو میبنده؛ استفاده نکردن از این متد بعد از پایان خوندن فایل یا try-with-resources ممکنه باعث رسیدن آسیب به فایل بشه.</div>
-                    </div>
-                </div>
-
-
-                <p>اگه جایی از متن عدد باشه علاوه بر next میتونیم با nextInt، nextDouble، nextLong و nextFloat بخونیم تفاوتشون تو نوعیه که بر میگردونن مثلا اگه عددی رو در متن با nextInt بخونیم نوع int برمیگردونه و...</p>
-
-                <div class="note">
-                    <p class="note-head">توجه</p>
-                    <p>اگه بجای خوندن عدد با nextInt، nextLong، nextFloat و nextDouble کلمه ای رو بخونیم که عدد نیست دچار InputMismatchException میشیم.</p>
-                </div>
-
-                <div class="note">
-                    <p class="note-head">توجه</p>
-                    <p>اگه متن خالی باشه و یا با Scanner اخر متن باشیم و بخوایم کلمه فعلی رو بخونیم؛ چون کلمه ای برای خوندن وجود نداره دچار NoSuchElementException میشیم.</p>
-                </div>
-
-                <p>مثال</p>
-
-                <p>ابتدا با PrintWriter اطلاعات یک فرد رو در فایل ذخیره میکنیم و سپس با Scanner اطلاعات ذخیره شده در فایل رو میخونیم</p>
-
-                <div class="sample">
-                    <div class="snippet-container">
-                        <div class="snippet Java">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
 public static void main(String[] args){
 
     File file = new File("user-info.txt");
@@ -189,8 +211,9 @@ public static void main(String[] args){
         System.out.println(e.getMessage());
     }
 }
-                        </div>
-                        <div class="snippet Kotlin">
+                        </pre
+        >
+        <pre class="snippet Kotlin">
 fun main(){
 
     val file = File("user-info.txt")
@@ -198,7 +221,7 @@ fun main(){
     if(!file.exists()){
 
         val output = PrintWriter(file);
-        output.use{ it ->
+        output.use{ it -&gt;
 
             it.print("John ");
             it.print("Smith ");
@@ -209,7 +232,7 @@ fun main(){
     }
 
     val input = new Scanner(File("user-info.txt");
-    input.use{ it ->
+    input.use{ it -&gt;
 
             val firstname = it.next()
             val lastname = it.next()
@@ -220,28 +243,36 @@ fun main(){
             println(age)
     }
 }
-                        </div>
-                    </div>
-                </div>
+                        </pre
+        >
+      </div>
+    </div>
 
+    <p>
+      در بالا با next به ترتیب نام و نام خانوادگی رو خونده و سپس با nextInt سن
+      فرد رو میخونیم و در نهایت با println داده ها رو در کنسول نمایش میدیم.
+    </p>
 
-                <p>در بالا با next به ترتیب نام و نام خانوادگی رو خونده و سپس با nextInt سن فرد رو میخونیم و در نهایت با println داده ها رو در کنسول نمایش میدیم.</p>
+    <p>مثال</p>
 
-                <p>مثال</p>
+    <p>
+      در مثال زیر میخوایم یک متن رو از فایل با Scanner بخونیم و کلمات sun رو با
+      rain و sunny رو با rainy عوض کنیم و در آخر ذخیره کنیم.
+    </p>
 
-                <p>در مثال زیر میخوایم یک متن رو از فایل با Scanner بخونیم و کلمات sun رو با rain و sunny رو با rainy عوض کنیم و در آخر ذخیره کنیم.</p>
+    <p>
+      متن زیر رو در یک فایل ذخیره کرده و در برنامه مسیر متن ذخیره شده رو به‌جای
+      PATH_TO_SOURCE_FILE بدید.
+    </p>
+    <p dir="ltr">
+      The weather is sunny it's a good idea to walk through a sunny day The
+      perfume of sweet plants is pleasurable in this sunny day. Let's walk
+      through this sunny day.
+    </p>
 
-                <p>متن زیر رو در یک فایل ذخیره کرده و در برنامه مسیر متن ذخیره شده رو به‌جای PATH_TO_SOURCE_FILE بدید.</p>
-                <p dir="ltr">
-                    The weather is sunny it's a good idea to walk through a sunny day
-                    The perfume of sweet plants is pleasurable in this sunny day.
-                    Let's walk through this sunny day.
-                </p>
-
-
-                <div class="sample">
-                    <div class="snippet-container">
-                        <div class="snippet Java">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
 public static void main(String[] args) {
 
 File f = new File("PATH_TO_SOURCE_FILE");
@@ -275,8 +306,9 @@ try {
     }
 
 }
-                        </div>
-                        <div class="snippet Kotlin">
+                        </pre
+        >
+        <pre class="snippet Kotlin">
 fun main(){
     val f = File("PATH_TO_SOURCE_FILE")
 
@@ -284,7 +316,7 @@ fun main(){
     val edited = StringBuilder()
 
     val input = Scanner(f)
-    input.use { it ->
+    input.use { it -&gt;
 
         while (it.hasNext()) {
             var line: String = it.nextLine()
@@ -296,92 +328,69 @@ fun main(){
     }
 
     val output = PrintWriter(f)
-    output.use { it ->
+    output.use { it -&gt;
         it.println(edited)
     }
 }
-                        </div>
-                    </div>
-                </div>
-
-                <p>هنگام خوندن فایل با Scanner در هربار تکرار حلقه ی while یک خط از متن خونده شده و در متغیر line ذخیره میشه در همونجا کلمه ی sunny با rainy عوض کرده و در آخر کار با PrintWriter کل متن رو ذخیره میکنیم.</p>
-                <p>کلاس StringBuilder با جاوا کمی تفاوت داره، در مثال بالا همینطور که دیدید متد replaceAll در StringBuilder کاتلین وجود نداره و بجاش تابع replace در StringBuilder کاتلین به کار برده شده اما وجه مشترک هردو استفاده از Regular Expression برای جاگزینی کلمه ی rainy با sunny است.</p>
-
-            </div>
-
-            <div class="subsection" id="sub1">
-                <h2>خلاصه</h2>
-                <p>- برای خوندن متن از فایل یا کسنول از کلاس Scanner استفاده میکنیم.</p>
-                <p>- کلاس اسکنر مناسب خوندن داده های متنی و Primitive از فایل یا کنسول است.</p>
-                <p>- از next برای خوندن کلمه ی فعلی متن تا جایی که اسپیس نباشه استفاده میکنیم و از nextLine برای خوندن خط فعلی متن.</p>
-                <p>- اگه جایی از متن عدد باشه علاوه بر next میتونیم از nextInt، nextDouble، nextLong و nextFloat برای خوندنش استفاده کنیم تفاوتشون تو نوعیه که بر میگردونن.</p>
-            </div>
-
-        </article>
-
-        <div class="article-foot">
-
-            <div class="navigator-container">
-
-                <a class="md-bt md-bt-light" href="#">
-            <span class="material-icons">
-              navigate_next
-            </span>
-                    <span class="hint">
-              بعدی
-            </span>
-                </a>
-
-                <a class="md-bt md-bt-light" href="printwriter.html">
-            <span class="hint">
-              قبلی
-            </span>
-                    <span class="material-icons">
-              navigate_before
-            </span>
-
-                </a>
-            </div>
-
-            <div class="relative-articles-container">
-                <p>مطالب مرتبط</p>
-                <div>
-                    <div>
-                        <a href="printwriter.html">نوشتن در فایل با PrintWriter</a>
-                    </div>
-                    <div>
-                        <a href="file.html">معرفی کلاس File در جاوا</a>
-                    </div>
-                    <div>
-                        <a href="/post/kotlin/functions.html">توابع در کاتلین</a>
-                    </div>
-
-                    <div>
-                        <a href="type-variables.html">انواع متغیر در جاوا</a>
-                    </div>
-
-                    <div>
-                        <a href="https://docs.oracle.com/javase/tutorial/essential/io/scanning.html">مطالعه در وبسایت رسمی</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+                        </pre
+        >
+      </div>
     </div>
-</main>
 
-<div class="scroll-top-container">
-    <a class="text-decoration-none link-dark material-icons" href="#">
-        arrow_drop_up
-    </a>
-</div>
+    <p>
+      هنگام خوندن فایل با Scanner در هربار تکرار حلقه ی while یک خط از متن خونده
+      شده و در متغیر line ذخیره میشه در همونجا کلمه ی sunny با rainy عوض کرده و
+      در آخر کار با PrintWriter کل متن رو ذخیره میکنیم.
+    </p>
+    <p>
+      کلاس StringBuilder با جاوا کمی تفاوت داره، در مثال بالا همینطور که دیدید
+      متد replaceAll در StringBuilder کاتلین وجود نداره و بجاش تابع replace در
+      StringBuilder کاتلین به کار برده شده اما وجه مشترک هردو استفاده از Regular
+      Expression برای جاگزینی کلمه ی rainy با sunny است.
+    </p>
+  </section>
 
-<footer></footer>
+  <section id="p1">
+    <h2>خلاصه</h2>
+    <ul>
+      <li>برای خوندن متن از فایل یا کسنول از کلاس Scanner استفاده میکنیم.</li>
+      <li>
+        کلاس اسکنر مناسب خوندن داده های متنی و Primitive از فایل یا کنسول است.
+      </li>
+      <li>
+        از next برای خوندن کلمه ی فعلی متن تا جایی که اسپیس نباشه استفاده میکنیم
+        و از nextLine برای خوندن خط فعلی متن.
+      </li>
+      <li>
+        اگه جایی از متن عدد باشه علاوه بر next میتونیم از nextInt، nextDouble،
+        nextLong و nextFloat برای خوندنش استفاده کنیم تفاوتشون تو نوعیه که بر
+        میگردونن.
+      </li>
+    </ul>
+  </section>
+</article>
 
-<div class="dialog hide"></div>
+{% capture links %}
+<li>
+  <a href="printwriter.html">نوشتن در فایل با PrintWriter</a>
+</li>
+<li>
+  <a href="file.html">معرفی کلاس File در جاوا</a>
+</li>
+<li>
+  <a href="/post/kotlin/functions.html">توابع در کاتلین</a>
+</li>
 
-<div class="copy-message">
-    <span class="copy-message-text">کپی شد!</span>
-</div>
+<li>
+  <a href="type-variables.html">انواع متغیر در جاوا</a>
+</li>
 
-</body>
+<li>
+  <a
+    target="_blank"
+    href="https://docs.oracle.com/javase/tutorial/essential/io/scanning.html"
+    >مطالعه در وبسایت رسمی</a
+  >
+</li>
+
+{% endcapture %} {% include article-foot.html relative_links = links %}

@@ -1,79 +1,43 @@
-<!DOCTYPE html>
+---
+layout: default
+---
 
-<html lang="fa">
+<article>
+  <nav class="toc">
+    <div>دسترسی سریع</div>
+    <ul class="list-group">
+      <li>
+        <a href="#p0">توضیحات و ویژگی ها</a>
+      </li>
+      <li>
+        <a href="#p1">استفاده از اینترفیس</a>
+      </li>
+      <li>
+        <a href="#p2">اینترفیس های تابعی</a>
+      </li>
+      <li>
+        <a href="#p3">خلاصه</a>
+      </li>
+    </ul>
+  </nav>
 
-<head>
+  <section id="p0">
+    <h2>توضیحات و ویژگی ها</h2>
 
-  <meta http-equiv="X-UA-Compatible" content="IE=7">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <p>
+      در این مطلب به مقایسه و بررسی اینترفیس (interface) ها با کلاس های ابستراکت
+      و ویژگی آنها در کاتلین پرداختیم و همچنین اینترفیس های تابعی در کاتلین رو
+      بررسی کردیم.
+    </p>
 
-  <meta name="description" content="در این مطلب به مقایسه و بررسی اینترفیس (interface) ها با کلاس های ابستراکت و ویژگی انها در کاتلین پرداختیم و همچنین اینترفیس های تابعی در کاتلین رو بررسی کردیم.">
+    <p>
+      مشابه کلاس های ابستراکت در اینترفیس (interface) ها، میتونیم توابع concrete
+      (کامل) و توابع abstract تعریف کنیم.
+    </p>
 
-  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>اینترفیس ها در کاتلین</title>
-
-  <meta name="og:title" content="اینترفیس  ها در کاتلین">
-  <meta name="og:description" content="در این مطلب به مقایسه و بررسی اینترفیس (interface) ها با کلاس های ابستراکت و ویژگی انها در کاتلین پرداختیم و همچنین اینترفیس های تابعی در کاتلین رو بررسی کردیم.">
-
-  <meta property="og:image" content="https://kodedevel.github.io/resources/favicon.png">
-  <meta property="og:url" content="https://kodedevel.github.io/post/kotlin/">
-
-  <meta property="og:type" content="article">
-
-  <link rel="shortcut icon" href="/resources/favicon.png" type="image/x-icon">
-
-  <link rel="stylesheet" href="/resources/css/main.css">
-
-  <script type="module" src="/resources/js/main.js"></script>
-
-</head>
-
-<body>
-  <header></header>
-  <main>
-    <div class="page-wrap">
-
-      <div class="article-head">
-        <h1>
-اینترفیس ها در کاتلین
-        </h1>
-
-        <address>
-          <a class="author text-muted text-decoration-none" rel="author">یونس سلیمانی</a>
-        </address>
-
-        <figure class="figure figure-wrapper">
-          <img alt="اینترفیس ها در کاتلین" class="rounded figure-img" src="/resources/image/kotlin/cover_interfaces.png" />
-        </figure>
-
-        <div class="toc">
-          <p class="p-2 mx-2 h5">دسترسی سریع</p>
-          <div class="list-group">
-
-
-            <a class="list-group-item list-group-item-action" href="#sub0">توضیحات و ویژگی ها</a>
-
-            <a class="list-group-item list-group-item-action" href="#sub1">استفاده از اینترفیس</a>
-
-            <a class="list-group-item list-group-item-action" href="#sub2">اینترفیس های تابعی</a>
-
-            <a class="list-group-item list-group-item-action" href="#sub3">خلاصه</a>
-          </div>
-        </div>
-      </div>
-
-      <article>
-        <div class="subsection" id="sub0">
-                <h2>توضیحات و ویژگی ها</h2>
-
-          <p>در این مطلب به مقایسه و بررسی اینترفیس (interface) ها با کلاس های ابستراکت و ویژگی آنها در کاتلین پرداختیم و همچنین اینترفیس های تابعی در کاتلین رو بررسی کردیم.</p>
-
-          <p> مشابه کلاس های ابستراکت در اینترفیس (interface) ها، میتونیم توابع concrete (کامل) و توابع abstract تعریف کنیم.</p>
-
-          <div class="sample">
-              <div class="snippet-container">
-                  <div class="snippet Kotlin">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Kotlin">
 interface Foo {
 
  //Concrete Function Implementation
@@ -85,15 +49,20 @@ interface Foo {
  fun myAbstractFunction()
 
 }
-                  </div>
-              </div>
-          </div>
+                  </pre
+        >
+      </div>
+    </div>
 
-          <p>در اینترفیس ها نمیتونیم کانستراکتور تعریف کنیم؛ چون اینترفیس ها کانستراکتور ندارن پس پراپرتی ها باید abstract باشن مگه پراپرتی های val که تابع getter دارن.</p>
+    <p>
+      در اینترفیس ها نمیتونیم کانستراکتور تعریف کنیم؛ چون اینترفیس ها
+      کانستراکتور ندارن پس پراپرتی ها باید abstract باشن مگه پراپرتی های val که
+      تابع getter دارن.
+    </p>
 
-          <div class="sample">
-              <div class="snippet-container">
-                  <div class="snippet Kotlin">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Kotlin">
 interface Foo {
 
   abstract var prop0: String
@@ -101,15 +70,16 @@ interface Foo {
   val prop1: String get() = "Prop1"
 
 }
-                  </div>
-              </div>
-          </div>
+                  </pre
+        >
+      </div>
+    </div>
 
-          <p>هر اینترفیس میتونه از یک یا چند اینترفیس ارث بری کنه.</p>
+    <p>هر اینترفیس میتونه از یک یا چند اینترفیس ارث بری کنه.</p>
 
-          <div class="sample">
-              <div class="snippet-container">
-                  <div class="snippet Kotlin">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Kotlin">
 interface A {
   ... 
 }
@@ -121,17 +91,22 @@ interface B {
 interface C: A, B {
   ...
 }
-                  </div>
-              </div>
-         </div>
+                  </pre
+        >
+      </div>
+    </div>
 
-          <p>همانند کلاس های ابستراکت از اینترفیس ها نیز نمیشه نمونه (شی) سازی کرد.</p>
+    <p>
+      همانند کلاس های ابستراکت از اینترفیس ها نیز نمیشه نمونه (شی) سازی کرد.
+    </p>
 
-          <p>هر کلاسی میتونه از یک کلاس و<strong>چند اینترفیس</strong> ارث بری کنه.</p>
+    <p>
+      هر کلاسی میتونه از یک کلاس و<strong>چند اینترفیس</strong> ارث بری کنه.
+    </p>
 
-          <div class="sample">
-              <div class="snippet-container">
-                  <div class="snippet Kotlin">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Kotlin">
 interface A {
   ...
 }
@@ -148,29 +123,33 @@ open class Foo {
 class Bar: Foo(), A, B{
   ...
 }
-                  </div>
-              </div>
-          </div>
+                  </pre
+        >
+      </div>
+    </div>
+  </section>
 
+  <section id="p1">
+    <h2>استفاده از اینترفیس</h2>
 
-        </div>
+    <p>به دو روش میتونیم از اینترفیس استفاده کنیم:</p>
 
-        <div class="subsection" id="sub1">
-                <h2>استفاده از اینترفیس</h2>
+    <section>
+      <h3>۱- ارث بری از اینترفیس</h3>
+      <p>
+        در این روش مانند قسمت قبل که اشاره شد اینترفیس رو تعریف میکنیم و ازش
+        توسط کلاس یا اینترفیس دیگه ارث بری میکنیم.
+      </p>
+    </section>
 
-          <p>به دو روش میتونیم از اینترفیس استفاده کنیم:</p>
+    <section>
+      <h3>۲- پیاده سازی مستقیم اینترفیس</h3>
 
-          <p class="h4">۱- ارث بری از اینترفیس</p>
-          <p>در این روش مانند قسمت قبل که اشاره شد اینترفیس رو تعریف میکنیم و ازش توسط کلاس یا اینترفیس دیگه ارث بری میکنیم.</p>
+      <p>میتونیم اینترفیس رو مانند زیر در کد پیاده‌سازی کنیم:</p>
 
-
-          <p class="h4">۲- پیاده سازی مستقیم اینترفیس</p>
-
-          <p>میتونیم اینترفیس رو مانند زیر در کد پیاده‌سازی کنیم: </p>
-
-          <div class="sample">
-              <div class="snippet-container">
-                  <div class="snippet Kotlin">
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Kotlin">
 interface Player{
   fun play()
 
@@ -200,24 +179,32 @@ val player = object: Player{
 }
 
 }
-                  </div>
-              </div>
-          </div>
+                  </pre
+          >
         </div>
+      </div>
+    </section>
+  </section>
 
-        <div class="subsection" id="sub2">
+  <section id="p2">
+    <h2>اینترفیس های تابعی</h2>
 
-                <h2>اینترفیس های تابعی</h2>
+    <p>
+      اینترفیس هایی که فقط یک تابع دارن میتونیم به صورت تابعی داخل کد پیاده
+      سازیشون کنیم به این اینترفیس ها Single Abstract Method Interface (SAM) نیز
+      گفته میشه.
+    </p>
 
-          <p>اینترفیس هایی که فقط یک تابع دارن میتونیم به صورت تابعی داخل کد پیاده سازیشون کنیم به این اینترفیس ها Single Abstract Method Interface (SAM) نیز گفته میشه.</p>
+    <p>
+      برای اینکه یک اینترفیس تابعی باشه باید قبل از کلیدواژه ی اینترفیس از کلید
+      واژه ی fun نیز استفاده کنیم.
+    </p>
 
-            <p>برای اینکه یک اینترفیس تابعی باشه باید قبل از کلیدواژه ی اینترفیس از کلید واژه ی fun نیز استفاده کنیم.</p>
+    <p>در مثال زیر اینترفیس رو به دو روش معمولی و تابعی پیاده‌سازی کردیم:</p>
 
-          <p>در مثال زیر اینترفیس رو به دو روش معمولی و تابعی پیاده‌سازی کردیم:</p>
-
-          <div class="sample">
-              <div class="snippet-container">
-                  <div class="snippet Kotlin">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Kotlin">
 fun interface PredictableNumber{
   fun predict(v: Int): Boolean
 }
@@ -244,98 +231,59 @@ fun main(){
   println("is 53 prime? ${prime.predict(53)"}
 
   println("is 53 even? ${even.predict(53)"}
-                  </div>
-              </div>
-          </div>
-          
-
-        </div>
-
-        <div class="subsection" id="sub3">
-                <h2>خلاصه</h2>
-
-          <p>در اینترفیس ها در کاتلین مانند کلاس های ابستراکت هم تابع ابستراکت میتونیم تعریف کنیم هم تابع کامل.</p>
-          <p>در اینترفیس ها نمیتونیم کانستراکتور داشته باشیم.</p>
-          <p>در اینترفیس ها نمیتونیم پراپرتی تعریف کنیم مگه پراپرتی نوع val با تابع getter باشه.</p>
-
-          <p>هر اینترفیس میتونه از یک یا چند اینترفیس ارث ببره.</p>
-
-          <p>هر کلاسی علاوه بر یک کلاس از یک یا چند اینترفیس میتونه ارث ببره.</p>
-
-          <p>علاوه بر ارث بری میتونیم اینترفیس ها رو داخل کد پیاده‌سازی کنیم.</p>
-
-          <p>اینترفیس هایی که فقط یک تابع ابستراکت دارند رو میتونیم به صورت تابعی پیاده‌سازی کنیم که بهشون اینترفیس های تابعی و یا Single Abstract Method Interface (SAM) گفته میشه.</p>
-
-        </div>
-      </article>
-
-      <div class="article-foot">
-
-        <div class="navigator-container">
-
-          <a href="/post/kotlin/nested-classes.html" class="md-bt md-bt-light">
-
-            <span class="material-icons">
-              navigate_next
-            </span>
-            <span class="hint">
-              بعدی
-            </span>
-          </a>
-
-          <a href="/post/kotlin/abstract-classes.html" class="md-bt md-bt-light">
-            <span class="hint">
-              قبلی
-            </span>
-            <span class="material-icons">
-              navigate_before
-            </span>
-
-          </a>
-        </div>
-
-        <div class="relative-articles-container">
-          <p>مطالب مرتبط</p>
-          <div>
-            <div>
-              <a href="/post/kotlin/abstract-classes.html">کلاس های ابستراکت</a>
-            </div>
-
-            <div>
-              <a href="/post/kotlin/inheritance.html">وراثت</a>
-            </div>
-
-            <div>
-              <a href="/post/kotlin/objects-and-classes.html">آبجکت و کلاس ها</a>
-            </div>
-
-              <div>
-                  <a href="/post/kotlin/nested-classes.html">کلاس های تو در تو</a>
-              </div>
-
-            <div>
-              <a href="https://kotlinlang.org/docs/interfaces.html">مطالعه در وبسایت رسمی کاتلین</a>
-            </div>
-          </div>
-        </div>
+                  </pre
+        >
       </div>
-
     </div>
-  </main>
+  </section>
 
-  <div class="scroll-top-container">
-    <a class="text-decoration-none link-dark material-icons" href="#">
-      arrow_drop_up
-    </a>
-  </div>
+  <section id="p3">
+    <h2>خلاصه</h2>
 
-  <footer></footer>
+    <li>
+      در اینترفیس ها در کاتلین مانند کلاس های ابستراکت هم تابع ابستراکت میتونیم
+      تعریف کنیم هم تابع کامل.
+    </li>
+    <li>در اینترفیس ها نمیتونیم کانستراکتور داشته باشیم.</li>
+    <li>
+      در اینترفیس ها نمیتونیم پراپرتی تعریف کنیم مگه پراپرتی نوع val با تابع
+      getter باشه.
+    </li>
 
-<div class="dialog hide"></div>
+    <li>هر اینترفیس میتونه از یک یا چند اینترفیس ارث ببره.</li>
 
-  <div class="copy-message">
-    <span class="copy-message-text">کپی شد!</span>
-  </div>
-</body>
+    <li>هر کلاسی علاوه بر یک کلاس از یک یا چند اینترفیس میتونه ارث ببره.</li>
 
-</html>
+    <li>علاوه بر ارث بری میتونیم اینترفیس ها رو داخل کد پیاده‌سازی کنیم.</li>
+
+    <li>
+      اینترفیس هایی که فقط یک تابع ابستراکت دارند رو میتونیم به صورت تابعی
+      پیاده‌سازی کنیم که بهشون اینترفیس های تابعی و یا Single Abstract Method
+      Interface (SAM) گفته میشه.
+    </li>
+  </section>
+</article>
+
+{% capture links %}
+<li>
+  <a href="/post/kotlin/abstract-classes.html">کلاس های ابستراکت</a>
+</li>
+
+<li>
+  <a href="/post/kotlin/inheritance.html">وراثت</a>
+</li>
+
+<li>
+  <a href="/post/kotlin/objects-and-classes.html">آبجکت و کلاس ها</a>
+</li>
+
+<li>
+  <a href="/post/kotlin/nested-classes.html">کلاس های تو در تو</a>
+</li>
+
+<li>
+  <a href="https://kotlinlang.org/docs/interfaces.html"
+    >مطالعه در وبسایت رسمی کاتلین</a
+  >
+</li>
+{% endcapture %} {% include article-foot.html relative_links = links %}

@@ -1,0 +1,190 @@
+{
+  "id": "kotlin_chapters",
+  "name": "کاتلین",
+  "metadata_list": [
+    {
+      "title": "معرفی زبان برنامه نویسی کاتلین",
+      "description": "زبان برنامه نویسی کاتلین یک زبان شی گرا و تابعی بر مبنای زبان جاواست؛ اولین نسخه از این زبان سال ۲۰۱۶ توسط Jetbrains رونمایی شد، در این مطلب به بررسی زبان کاتلین می پردازیم.",
+      "datePublished": "2025-05-12",
+      "lastModified": "2025-12-28",
+      "imgCover": "/resources/image/kotlin/cover_introduction.png",
+      "link": "/post/kotlin/introduction.html"
+    },
+    {
+      "title": "دستورات شرطی در کاتلین",
+      "description": "بررسی دستورات شرطی if else ، کلیدواژه های in ، is ، استفاده از عملگر های منطقی و مقایسه ی چند شرط با when در کاتلین.",
+      "datePublished": "2025-09-12",
+      "lastModified": "",
+      "imgCover": "/resources/image/kotlin/cover_selectors.png",
+      "link": "/post/kotlin/selectors.html"
+    },
+    {
+      "title": "حلقه (loop) ها در کاتلین",
+      "description": "بررسی حلقه ی for ، while do ، while استفاده از کلید واژه های break و continue در حلقه ها و بررسی حلقه های تو در تو در کاتلین",
+      "datePublished": "2025-09-12",
+      "lastModified": "",
+      "imgCover": "/resources/image/kotlin/cover_loops.png",
+      "link": "/post/kotlin/loops.html"
+    },
+    {
+      "title": "توابع در کاتلین",
+      "description": "در این مقاله با توابع در کاتلین آشنا میشیم و تابع تک عبارتی (single expression)، void، infix، جنریک و tail recursive رو بررسی میکنیم و در اخر توضیح میدیم توابع رو در چه محدوده (مکان) هایی میشه تعریف کرد.",
+      "datePublished": "2025-09-12",
+      "lastModified": "",
+      "imgCover": "/resources/image/kotlin/cover_functions.png",
+      "link": "/post/kotlin/functions.html"
+    },
+    {
+      "title": "اکستنشن ها در کاتلین",
+      "description": "در این مطلب به بررسی اکستنشن ها در کاتلین می پردازیم و با انوع اکستنشن از جمله تابع اکستنشن، اکستنشن پراپرتی، اکستنشن های Companion Object اشنا شده و تعریف اکستنشن ها در داخل کلاس رو بررسی میکنیم.",
+      "datePublished": "2025-09-12",
+      "lastModified": "",
+      "imgCover": "/resources/image/kotlin/cover_extensions.png",
+      "link": "/post/kotlin/extension-function.html"
+    },
+    {
+      "title": "عبارت لامبدا و توابع بی نام در کاتلین",
+      "description": "عبارات لامبدا و توابع بی نام در کاتلین دو موضوع از برنامه نویسی تابعی هستند. این دو کاربرد های متعددی دارن و در فریمورک های مختلف از جمله اندروید استفاده های زیادی دارن. در ادامه به بررسی این دو تابع می پردازیم.",
+      "datePublished": "2025-09-12",
+      "lastModified": "",
+      "imgCover": "/resources/image/kotlin/cover_lambda.png",
+      "link": "/post/kotlin/anonymous-function-and-lambda.html"
+    },
+    {
+      "title": "توابع مرتبه بالا و توابع لفظی در کاتلین",
+      "description": "در کاتلین همه چیز دارای مقدار است و آبجکت تلقی میشه توابع مرتبه ی بالا نیز به سبب همین ویژگی کاتلین به وجود اومدن در این مطلب به توابع مرتبه ی بالا و توابع تحت لفظی به عنوان پارامتر تابع مرتبه ی بالا در کاتلین می پردازیم.",
+      "datePublished": "2025-09-12",
+      "lastModified": "",
+      "imgCover": "/resources/image/kotlin/cover_higher_order_functions.png",
+      "link": "/post/kotlin/higher-order-functions.html"
+    },
+    {
+      "title": "توابع خطی در کاتلین",
+      "description": "برای بهبود کیفیت برنامه و یا تعریف پارامتر های جنریک نوع reified از توابع خطی استفاده میکنیم، در این مطلب به بررسی توابع و پراپرتی (property) های خطی در کاتلین می پردازیم.",
+      "datePublished": "2025-09-12",
+      "lastModified": "",
+      "imgCover": "/resources/image/kotlin/cover_inline_functions.png",
+      "link": "/post/kotlin/inline-functions.html"
+    },
+    {
+      "title": "آرایه ها در کاتلین",
+      "description": "در این مطلب به تعریف آرایه، آرایه های یک بعدی، آرایه های دو بعدی و آرایه های چند بعدی در کاتلین میپردازیم.",
+      "datePublished": "2025-09-12",
+      "lastModified": "",
+      "imgCover": "/resources/image/kotlin/cover_arrays.png",
+      "link": "/post/kotlin/arrays.html"
+    },
+    {
+      "title": "انواع متغیر ها در کاتلین",
+      "description": "در این مطلب به تعریف متغیر های تغییر پذیر و تغییر ناپذیر با استفاده از کلیدواژه ی val، var و const در کاتلین می پردازیم.",
+      "datePublished": "2025-09-12",
+      "lastModified": "",
+      "imgCover": "/resources/image/kotlin/cover_mutable_immutable_variables.png",
+      "link": "/post/kotlin/variable-types.html"
+    },
+    {
+      "title": "توابع و مقادیر ثابت ریاضی در کاتلین",
+      "description": "توابع و مقادیر ثابت ریاضی در بسیاری از زبان های برنامه نویسی به عنوان کتابخونه ی رسمی زبان تعریف شدن؛ زبان کاتلین از این قاعده مستثنی نبوده و برای کاتلین نیز این توابع در کتابخونه ی رسمی زبان تعریف شده.",
+      "datePublished": "2025-09-12",
+      "lastModified": "",
+      "imgCover": "/resources/image/kotlin/cover_mathematics.png",
+      "link": "/post/kotlin/mathematics.html"
+    },
+    {
+      "title": "محدوده ی تعریف متغیر و توابع در کاتلین",
+      "description": "در کاتلین چهار محل برای ایجاد متغیر و توابع وجود داره هنگامی که یک متغیر رو در یک محل تعریف کنیم ممکنه متغیر تو محل دیگه در کد قابل دسترسی نباشه؛ در این مطلب میخوایم این چهار محل رو بررسی کنیم...",
+      "datePublished": "2025-09-12",
+      "lastModified": "",
+      "imgCover": "/resources/image/kotlin/cover_variable_scope.png",
+      "link": "/post/kotlin/variable-and-function-scope.html"
+    },
+    {
+      "title": "کلیدواژه های سطح دسترسی در کاتلین",
+      "description": "در این مطلب به کلیدواژه های سطح دسترسی می پردازیم و نحوه ی تعیبن سطح دسترسی، متغیر، توابع و کلاس رو در کاتلین بررسی میکنیم.",
+      "datePublished": "2025-09-12",
+      "lastModified": "",
+      "imgCover": "/resources/image/kotlin/cover_access_modifiers.png",
+      "link": "/post/kotlin/access-modifiers.html"
+    },
+    {
+      "title": "ابجکت و کلاس ها در کاتلین",
+      "description": "در این مقاله یک توضیح کامل از کلاس ها و آبجکت ها در کاتلین داریم؛ سازنده (constructor) ها، متغیر ها و توابع داخل کلاس رو بررسی کرده و به اعضای ابجکت همراه میپردازیم و در آخر گفته ها رو با مثال بیان میکنیم.",
+      "datePublished": "2025-09-12",
+      "lastModified": "",
+      "imgCover": "/resources/image/kotlin/cover_objects_and_classes.png",
+      "link": "/post/kotlin/objects-and-classes.html"
+    },
+    {
+      "title": "وراثت (inheritance) در کاتلین",
+      "description": "وراثت (inheritance) یکی از ویژگی های شی گراییه که با استفاده ازش میتونیم از دوباره نویسی توابع و پراپرتی های یک کلاس در کلاس دیگه جلوگیری کنیم در این مقاله به بررسی این ویژگی در کاتلین پرداختیم.",
+      "datePublished": "2025-09-12",
+      "lastModified": "",
+      "imgCover": "/resources/image/kotlin/cover_inheritance.png",
+      "link": "/post/kotlin/inheritance.html"
+    },
+    {
+      "title": "چند ریختی و کست کردن در کاتلین",
+      "description": "چند ریختی یکی از اصول شی گرایی است؛ در این مقاله به چند ریختی (polymorphism) و سپس به پیوند پویا (dynamic binding) و کست کردن (type casting) در کاتلین می پردازیم.",
+      "datePublished": "2025-09-12",
+      "lastModified": "",
+      "imgCover": "/resources/image/kotlin/cover_polymorphism_type_casting.png",
+      "link": "/post/kotlin/polymorphism.html"
+    },
+    {
+      "title": "کلاس های ابسترکت (abstract) در کاتلین",
+      "description": "به کلاس، تابع و پراپرتی های معمولی concrete میگیم اما نوعی از کلاس در کاتلین وجود داره که بهش abstract میگیم و میتونیم داخلش علاوه بر توابع و پراپرتی های concrete، توابع و پراپرتی های abstract نیز تعریف کنیم.",
+      "datePublished": "2025-09-12",
+      "lastModified": "",
+      "imgCover": "/resources/image/kotlin/cover_abstract_classes.png",
+      "link": "/post/kotlin/abstract-classes.html"
+    },
+    {
+      "title": "اینترفیس ها در کاتلین",
+      "description": "در این مطلب به مقایسه و بررسی اینترفیس (interface) ها با کلاس های ابستراکت و ویژگی انها در کاتلین پرداختیم و همچنین اینترفیس های تابعی در کاتلین رو بررسی کردیم.",
+      "datePublished": "2025-09-12",
+      "lastModified": "",
+      "imgCover": "/resources/image/kotlin/cover_interfaces.png",
+      "link": "/post/kotlin/interfaces.html"
+    },
+    {
+      "title": "کلاس های تو در تو در کاتلین",
+      "description": "در کاتلین دو نوع کلاس تو در تو داریم: کلاس استاتیک تو در تو و کلاس غیر استاتیک داخلی در این مطلب به بررسی هردو کلاس و ویژگی های آنها می پردازیم و نحوه ی ایجاد آبجکت از هرکدوم رو بررسی میکنیم همچنین یه نگاهی ام داریم به ساخت آبجکت بی نام از کلاس های تو در تو.",
+      "datePublished": "2025-09-12",
+      "lastModified": "",
+      "imgCover": "/resources/image/kotlin/cover_nested_classes.png",
+      "link": "/post/kotlin/nested-classes.html"
+    },
+    {
+      "title": "کلاس های enum در کاتلین",
+      "description": "در این مقاله به کلاس enum و کاربردهای آن در کاتلین میپردازیم و همینطور ویژگی های کلاس enum و آبجکت های ثابتی که براش تعریف میکنیم رو بررسی میکنیم.",
+      "datePublished": "2025-09-12",
+      "lastModified": "",
+      "imgCover": "/resources/image/kotlin/cover_enum_classes.png",
+      "link": "/post/kotlin/enum-classes.html"
+    },
+    {
+      "title": "کلاس های sealed در کاتلین",
+      "description": "معنی اسم sealed یعنی مهر و موم شده، در این مطلب کلاس های sealed رو بررسی کردیم و به کاربرد و ویژگی کلاس های sealed در کاتلین پرداختیم.",
+      "datePublished": "2025-09-12",
+      "lastModified": "",
+      "imgCover": "/resources/image/kotlin/cover_sealed_classes.png",
+      "link": "/post/kotlin/sealed-classes.html"
+    },
+    {
+      "title": "کلاس های دیتا در کاتلین",
+      "description": "دیتا کلاس ها هایی برای نگهداری و استفاده از داده ها در زمان اجرای برنامه در زبان کاتلین به وجود اومدن هدف از ایجاد این کلاس ها به صورت نیتیو در زبان کاتلین کاهش کد ها ، افزایش سرعت کد نویسی و بهینه سازی برنامه است...",
+      "datePublished": "2025-09-12",
+      "lastModified": "",
+      "imgCover": "/resources/image/kotlin/cover_data_classes.png",
+      "link": "/post/kotlin/data-classes.html"
+    },
+    {
+      "title": "الگوی Delegation در کاتلین",
+      "description": "یکی از ویژگی هایی که کاتلین رو محبوب کرده پشتیبانی نیتیو از الگوهای برنامه نویسی محبوبه یکی از این الگو ها دلیگیشن (Delegation) است که توسط کاتلین به صورت نیتیو پشتیبانی میشه",
+      "datePublished": "2025-09-12",
+      "lastModified": "",
+      "imgCover": "/resources/image/kotlin/cover_delegation.png",
+      "link": "/post/kotlin/delegation.html"
+    }
+  ]
+}

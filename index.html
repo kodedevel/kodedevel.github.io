@@ -1,3 +1,5 @@
+---
+---
 <!DOCTYPE html>
 <html lang="fa">
 
@@ -29,8 +31,9 @@
 
 <body>
 
-  <header></header>
+  {% include header.html %}
 
+  {% include sidebar.html %}
   <main class="page-wrap">
 
 
@@ -160,13 +163,12 @@
 
   </main>
 
+  {% include footer.html %}
+  {% include dialog.html %}
   <div class="scroll-top-container">
     <a class="text-decoration-none link-dark material-icons" href="#">arrow_drop_up</a>
   </div>
 
-  <footer></footer>
-
-  <div class="dialog hide"></div>
 
 </body>
 

@@ -1,0 +1,71 @@
+<head>
+
+  {% assign metadata = include.metadata %}
+  <meta content="{{ metadata.description | default: site.description }}" name="description" />
+  <meta charset="UTF-8" />
+  <meta content="width:device-width, initial-scale=1" name="viewport" />
+
+  <title>{{ metadata.title | default: site.title }}</title>
+
+  <meta name="author" content="{{ metadata.author.name | default: site.author.name }}">
+
+  <meta property="og:title" content="{{ metadata.title | default: site.title }}">
+  <meta property="og:description" content="{{ metadata.description | default: site.description }}">
+  <meta property="og:image" content="{{ site.url }}/resources/favicon.png">
+  <meta property="og:url" content="{{ site.url }}{{ metadata.link }}">
+  <meta property="og:locale" content="fa_IR">
+  <meta property="og:image:alt" content="{{ metadata.title }}">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="{{ social.name }}" <link rel="canonical"
+    href="{{ site.url }}{{ metadata.link }}">
+
+  <meta name="twitter:title" content="{{ metadata.title }}">
+  <meta name="twitter:description" content="{{ metadata.description }}">
+
+  <link rel="icon" type="image/png" sizes="512x512" href="/resources/favicon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/resources/apple-touch-icon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="dns-prefetch" href="//www.google-analytics.com">
+
+
+  <link href="/resources/css/main.css" rel="stylesheet">
+  <link href="/resources/favicon.png" rel="icon" type="image/x-icon">
+  <script type="module" src="/resources/js/main.js"></script>
+
+  <script type="application/ld+json">
+    {
+    
+    "@context": "https://schema.org",
+    "@type": "Article",
+    
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "{{ site.url }}{{ metadata.link }}"
+    },
+    "headline": "{{ metadata.title }}",
+    "description": "{{ metadata.description }},
+    "author": {
+      "@type": "Person",
+      "name": "{{ metadata.author.name | default: site.author.name }}",
+      "url": "{{ metadata.author.link | default: 'kodedevel.ir/about.html' }}"
+    },
+    
+    "publisher": {
+      "@type": "Organization",
+      "name": "KodeDevel",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "{{ site.url }}/image/favicon.png"
+      },
+      "sameAs": {{ site.social.links | jsonify }} 
+    },
+
+    "datePublished": "{{ metadata.datePublished | default: '' }}",
+    "dateModified": "{{ metadata.lastModified | default: '' }}",
+    "inLanguage": "fa-IR"
+
+    }
+  </script>
+</head>

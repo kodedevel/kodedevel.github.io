@@ -1,265 +1,257 @@
-<!DOCTYPE html>
+---
+layout: default
+---
 
-<html lang="fa">
+<article>
+  <nav class="toc" aria-label="Page contents">
+    <div>دسترسی سریع</div>
+    <ul>
+      <li>
+        <a href="#p0">تابع خطی</a>
+      </li>
+      <li>
+        <a href="#p1">کلیدواژه ی noinline</a>
+      </li>
+      <li>
+        <a href="#p2">استفاده از return غیر محلی</a>
+      </li>
+      <li>
+        <a href="#p3">کلیدواژه ی crossinline</a>
+      </li>
+      <li>
+        <a href="#p4">پارامتر های نوع refied</a>
+      </li>
+      <li>
+        <a href="#p5">پراپرتی (property) های خطی</a>
+      </li>
+      <li>
+        <a href="#p6">خلاصه</a>
+      </li>
+    </ul>
+  </nav>
+  <section id="p0">
+    <h2>تابع خطی</h2>
 
-<head>
+    <blockquote>
+      از توابع خطی برای بهبود کیفیت برنامه و یا تعریف پارامتر های جنریک نوع
+      reified استفاده میشه.
+    </blockquote>
 
-  <meta charset="UTF-8">
+    <h3>فرایند اجرای کد های کاتلین در jvm</h3>
 
-  <meta name="description"
-    content="برای بهبود کیفیت برنامه و یا تعریف پارامتر های جنریک نوع reified از توابع خطی استفاده میکنیم، در این مطلب به بررسی توابع و پراپرتی (property) های خطی در کاتلین می پردازیم.">
+    <p>
+      هنگام کامپایل کد های کاتلین ابتدا تبدیل به کد های جاوا شده و سپس با
+      کامپایلر جاوا به کد های خوانا توسط jvm تبدیل میشن.
+    </p>
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <figure class="figure figure-wrapper">
+      <img
+        alt="مراحل اجرای کد های کاتلین در jvm"
+        class="rounded figure-img"
+        src="/resources/image/kotlin/process_of_running_kotlin_in_jvm.png"
+      />
+    </figure>
 
-  <title>توابع و پراپرتی (property) های خطی (inline) در کاتلین</title>
+    <section>
+      <h3>تعریف تابع خطی</h3>
 
-  <meta name="og:title" content="توابع و پراپرتی (property) های خطی (inline) در کاتلین">
-  <meta name="og:description"
-    content="برای بهبود کیفیت برنامه و یا تعریف پارامتر های جنریک نوع reified از توابع خطی استفاده میکنیم، در این مطلب به بررسی توابع و پراپرتی (property) های خطی در کاتلین می پردازیم.">
+      <p>
+        هنگامی که یک
+        <a
+          class="text-decoration-none"
+          href="/post/kotlin/higher-order-functions.html"
+          >تابع مرتبه بالا</a
+        >
+        تعریف میکنیم لامبدا هایی که به عنوان پارامتر تابع تعریف کردیم هرکدوم یک
+        Object هستند که میتونن فضای حافظه رو اشغال کنن.
+      </p>
 
-  <meta property="og:image" content="https://kodedevel.github.io/resources/favicon.png">
-  <meta property="og:url" content="https://kodedevel.github.io/post/kotlin/inline-functions.html">
-  <meta property="og:type" content="article">
+      <p>
+        برای بهبود کیفیت برنامه میتونیم از توابع خطی (inline) در کاتلین استفاده
+        کنیم تا از دست ابجکت هایی که حافظه رو اشغال کردن خلاص بشیم.
+      </p>
 
-  <link rel="shortcut icon" href="/resources/favicon.png" type="image/x-icon">
+      <p>به کد زیر دقت کنید</p>
 
-  <link rel="stylesheet" href="/resources/css/main.css">
-  <script type="module" src="/resources/js/main.js"></script>
-
-</head>
-
-<body>
-  <header></header>
-
-  <main>
-    <h1>
-      توابع خطی (inline) در کاتلین
-    </h1>
-    <div class="article-head">
-
-      <div class="article-meta">
-        <address class="author">
-          <span class="material-symbols-outlined" aria-hidden="true">person</span>
-          <a href="/about" rel="author">یونس سلیمانی</a>
-        </address>
-
-        <div class="eta">
-          <span class="material-symbols-outlined" aria-hidden="true">schedule</span>
-          <span aria-live="polite"></span>
-        </div>
-
-        <time datetime="2025-12-16">
-          <span class="material-symbols-outlined" aria-hidden="true">cached</span>
-          <span>آخرین بروزرسانی: ۱۶ دسامبر ۲۰۲۵</span>
-        </time>
-      </div>
-      <figure class="figure figure-wrapper">
-        <img alt="توابع خطی" class="rounded figure-img" src="/resources/image/kotlin/cover_inline_functions.png">
-      </figure>
-
-      <div class="toc">
-        <p class="p-2 mx-2 h5">دسترسی سریع</p>
-        <div class="list-group">
-          <a class="list-group-item list-group-item-action" href="#p0">تابع خطی</a>
-
-          <a class="list-group-item list-group-item-action" href="#p1">کلیدواژه ی noinline</a>
-
-          <a class="list-group-item list-group-item-action" href="#p2">استفاده از return غیر محلی</a>
-
-          <a class="list-group-item list-group-item-action" href="#p3">کلیدواژه ی crossinline</a>
-
-          <a class="list-group-item list-group-item-action" href="#p4">پارامتر های نوع refied</a>
-
-          <a class="list-group-item list-group-item-action" href="#p5">پراپرتی (property) های خطی</a>
-
-          <a class="list-group-item list-group-item-action" href="#p6">خلاصه</a>
-        </div>
-      </div>
-    </div>
-
-    <article>
-      <section id="p0">
-        <h2>تابع خطی</h2>
-
-        <blockquote>از توابع خطی برای بهبود کیفیت برنامه و یا تعریف پارامتر های جنریک نوع reified استفاده میشه.
-        </blockquote>
-
-        <h3>فرایند اجرای کد های کاتلین در jvm</h3>
-
-        <p>هنگام کامپایل کد های کاتلین ابتدا تبدیل به کد های جاوا شده و سپس با کامپایلر جاوا به کد های خوانا توسط jvm
-          تبدیل میشن.</p>
-
-
-        <figure class="figure figure-wrapper">
-          <img alt="مراحل اجرای کد های کاتلین در jvm" class="rounded figure-img"
-            src="/resources/image/kotlin/process_of_running_kotlin_in_jvm.png">
-        </figure>
-
-        <section>
-          <h3>تعریف تابع خطی</h3>
-
-          <p>
-            هنگامی که یک <a class="text-decoration-none" href="/post/kotlin/higher-order-functions.html">تابع مرتبه
-              بالا</a> تعریف میکنیم لامبدا هایی که به عنوان پارامتر تابع تعریف کردیم هرکدوم یک Object هستند که میتونن
-            فضای حافظه رو اشغال کنن.
-          </p>
-
-          <p>برای بهبود کیفیت برنامه میتونیم از توابع خطی (inline) در کاتلین استفاده کنیم تا از دست ابجکت هایی که حافظه
-            رو اشغال کردن خلاص بشیم.</p>
-
-
-          <p>به کد زیر دقت کنید</p>
-
-          <div class="sample">
-            <div class="snippet-container">
-              <pre class="snippet Kotlin">
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Kotlin">
 fun foo(block: () -&gt; Unit){
   println("Before")
   block()
   println("After")
 }
-                  </pre>
-            </div>
-          </div>
+                  </pre
+          >
+        </div>
+      </div>
 
-          <p>در بالا یک تابع مرتبه بالا داریم و یک <a class="text-decoration-none"
-              href="/post/kotlin/anonymous-function-and-lambda.html">عبارت لامبدا</a> رو به عنوان پارامتر براش تعریف
-            کردیم. اگه کد رو بخوایم کامپایل کنیم قبلش تو جاوا یه چیزی شبیه زیر میشه:</p>
+      <p>
+        در بالا یک تابع مرتبه بالا داریم و یک
+        <a
+          class="text-decoration-none"
+          href="/post/kotlin/anonymous-function-and-lambda.html"
+          >عبارت لامبدا</a
+        >
+        رو به عنوان پارامتر براش تعریف کردیم. اگه کد رو بخوایم کامپایل کنیم قبلش
+        تو جاوا یه چیزی شبیه زیر میشه:
+      </p>
 
-          <div class="sample">
-            <div class="snippet-container">
-              <pre class="snippet Kotlin">
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Kotlin">
 public void foo(Function block){
   System.out.println("before");
   block.invoke();
   System.out.println("after");
 }
-                  </pre>
-            </div>
-          </div>
+                  </pre
+          >
+        </div>
+      </div>
 
-          <p>وقتی بخوایم تابعو صدا بزنیم:</p>
+      <p>وقتی بخوایم تابعو صدا بزنیم:</p>
 
-          <div class="sample">
-            <div class="snippet-container">
-              <pre class="snippet Kotlin">
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Kotlin">
 foo(){
   println("Do something here")
 }
-                  </pre>
-            </div>
-          </div>
+                  </pre
+          >
+        </div>
+      </div>
 
-          <p>
-            به چیزی شبیه زیر تو جاوا تبدیل میشه:
-          </p>
+      <p>به چیزی شبیه زیر تو جاوا تبدیل میشه:</p>
 
-          <div class="sample">
-            <div class="snippet-container">
-              <pre class="snippet Kotlin">
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Kotlin">
 foo(new Function(){
   @Override
   public void invoke(){
     System.out.println("Do something here")
   }
 });
-                  </pre>
-            </div>
-          </div>
+                  </pre
+          >
+        </div>
+      </div>
 
-          <p>همینطور که ملاحظه کردید اگه بخوایم تابع foo رو به صورت معمولی ایجاد کنیم یک آبجکت از Function ایجاد میشه که
-            حافظه رو اشغال میکنه.</p>
+      <p>
+        همینطور که ملاحظه کردید اگه بخوایم تابع foo رو به صورت معمولی ایجاد کنیم
+        یک آبجکت از Function ایجاد میشه که حافظه رو اشغال میکنه.
+      </p>
 
-          <p>حالا تابع foo رو با استفاده از کلید واژه ی inline تعریف میکنیم:</p>
+      <p>حالا تابع foo رو با استفاده از کلید واژه ی inline تعریف میکنیم:</p>
 
-          <div class="sample">
-            <div class="snippet-container">
-              <pre class="snippet Kotlin">
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Kotlin">
 inline fun foo(block: () -&gt; Unit){
   println("Before")
   block()
   println("After")
 }
-                  </pre>
-            </div>
-          </div>
+                  </pre
+          >
+        </div>
+      </div>
 
-          <p>وقتی تابعو مثل قبل صدا کنیم کامپایلر کد ها رو مثل زیر از تابع میندازه بیرون:
-          </p>
+      <p>
+        وقتی تابعو مثل قبل صدا کنیم کامپایلر کد ها رو مثل زیر از تابع میندازه
+        بیرون:
+      </p>
 
-          <div class="sample">
-            <div class="snippet-container">
-              <pre class="snippet Kotlin">
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Kotlin">
 System.out.println("Before");
 block()
 System.out.println("After");
-                  </pre>
-            </div>
-          </div>
+                  </pre
+          >
+        </div>
+      </div>
 
-          <p>دیگه خبری از Function نیست و عبارت block به صورت تابع ایجاد شد؛ همین در بهبود کیفیت مخصوصا زمانی که حافظه
-            رو با آبجکت های زیادی اشغال کرده باشیم میتونه کمک کنه.</p>
+      <p>
+        دیگه خبری از Function نیست و عبارت block به صورت تابع ایجاد شد؛ همین در
+        بهبود کیفیت مخصوصا زمانی که حافظه رو با آبجکت های زیادی اشغال کرده باشیم
+        میتونه کمک کنه.
+      </p>
+    </section>
 
-        </section>
+    <section>
+      <h3>نکات قابل توجه هنگام تعریف تابع خطی</h3>
+      <p>
+        ۱- از تعریف توابع بزرگ (به لحاظ زیاد بودن کد های داخل تابع) باید خودداری
+        کرد.
+      </p>
 
-        <section>
-          <h3>نکات قابل توجه هنگام تعریف تابع خطی</h3>
-          <p>۱- از تعریف توابع بزرگ (به لحاظ زیاد بودن کد های داخل تابع) باید خودداری کرد.</p>
+      <p>
+        ۲- اگه عبارت لامبدا رو به صورت inline تعریف کنیم فقط میتونیم در توابع
+        خطی صداش بزنیم یا به صورت پارامتر به توابع خطی پاس بدیم.
+      </p>
 
-          <p>
-            ۲- اگه عبارت لامبدا رو به صورت inline تعریف کنیم فقط میتونیم در توابع خطی صداش بزنیم یا به صورت پارامتر به
-            توابع خطی پاس بدیم.
-          </p>
+      <p>
+        ۳- توابع خطی نمیتونن به توابع و متغیر های private دسترسی داشته باشن، در
+        مورد internal ها باید با
+        <strong>&#x200e;@PublishedApi</strong> علامتگذاری بشن.
+      </p>
+    </section>
+  </section>
 
-          <p>
-            ۳- توابع خطی نمیتونن به توابع و متغیر های private دسترسی داشته باشن، در مورد internal ها باید با
-            <strong>&#x200e;@PublishedApi</strong> علامتگذاری بشن.
-          </p>
+  <section id="p1">
+    <h2>کلیدواژه ی noinline</h2>
 
-        </section>
-      </section>
+    <p>
+      هنگامی که یک تابع مرتبه ی بالا رو به صورت خطی تعریف میکنیم، تمام پارمتر ها
+      خطی میشن، اگه بخوایم بعضی از پارامتر ها خطی نباشن از کلیدواژه ی noinline
+      استفاده میکنیم.
+    </p>
 
-      <section id="p1">
-        <h2>کلیدواژه ی noinline</h2>
+    <p>مثال:</p>
 
-        <p>هنگامی که یک تابع مرتبه ی بالا رو به صورت خطی تعریف میکنیم، تمام پارمتر ها خطی میشن، اگه بخوایم بعضی از
-          پارامتر ها خطی نباشن از کلیدواژه ی noinline استفاده میکنیم.</p>
-
-        <p>مثال:</p>
-
-        <div class="sample">
-          <div class="snippet-container">
-            <pre class="snippet Kotlin">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Kotlin">
 inline fun foo(bar: (String) -&gt; Unit, noinline baz: (Int) -&gt; Unit){
 
   //Do something here
 
 }
-                  </pre>
-          </div>
-        </div>
+                  </pre
+        >
+      </div>
+    </div>
 
-        <p>در بالا <strong>bar</strong> خطی و <strong>baz</strong> غیر خطی است.</p>
+    <p>در بالا <strong>bar</strong> خطی و <strong>baz</strong> غیر خطی است.</p>
+  </section>
 
-      </section>
+  <section id="p2">
+    <h2>استفاده از return غیر محلی</h2>
 
-      <section id="p2">
-        <h2>استفاده از return غیر محلی</h2>
+    <p>
+      هنگام تعریف عبارت لامبدا به طور اشکار از return نمیشه استفاده کرد مگه با
+      تعریف برچسب برای عبارت اما اگه لامبدا خطی باشه میتونیم داخل لامبدا مستقیم
+      از return (فقط برای متوقف کردن تابع) استفاده کنیم.
+    </p>
 
-        <p>هنگام تعریف عبارت لامبدا به طور اشکار از return نمیشه استفاده کرد مگه با تعریف برچسب برای عبارت اما اگه
-          لامبدا خطی باشه میتونیم داخل لامبدا مستقیم از return (فقط برای متوقف کردن تابع) استفاده کنیم.</p>
+    <p>
+      به این return غیر محلی گفته میشه چون تابع بیرون لامبدا هم متوقف میکنه.
+    </p>
 
-        <p>به این return غیر محلی گفته میشه چون تابع بیرون لامبدا هم متوقف میکنه.</p>
+    <p>مثال:</p>
 
-        <p>مثال:</p>
+    <p>
+      در زیر از return یک بار به صورت غیر محلی استفاده کردیم و یک بار به صورت
+      محلی با تعریف برچسب <strong>op</strong> برای operator.
+    </p>
 
-        <p>در زیر از return یک بار به صورت غیر محلی استفاده کردیم و یک بار به صورت محلی با تعریف برچسب
-          <strong>op</strong> برای operator.
-        </p>
-
-        <div class="sample">
-          <div class="snippet-container">
-            <pre class="snippet Kotlin">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Kotlin">
 fun main(){
   val a = 5.0
   val b = 0.0
@@ -287,28 +279,32 @@ inline fun operateSquareNumbers(a: Double, b: Double, operator: (Double, Double)
 
   return operator(sqA, sqB)
 }
-                  </pre>
-          </div>
-        </div>
+                  </pre
+        >
+      </div>
+    </div>
+  </section>
 
-      </section>
+  <section id="p3">
+    <h2>کلیدواژه ی crossinline</h2>
+    <p>
+      بعضی از پارامتر های لامبدایی که برای تابع خطی تعریف میکنیم، ممکنه به صورت
+      مستقیم داخل تابع صدا زده نشن و در یک تابع یا ابجکت داخل تابع خطی صداشون
+      کنیم؛ اما اجازه نداریم از خطی داخل <strong>غیر خطی</strong> استفاه کنیم
+      چون نمیشه داخل تابع غیر خطی از return غیر محلی استفاده کرد. در اینجا باید
+      پارامتر تابعو با کلیدواژه ی crossinline تعریف کنیم.
+    </p>
 
-      <section id="p3">
-        <h2>کلیدواژه ی crossinline</h2>
-        <p>بعضی از پارامتر های لامبدایی که برای تابع خطی تعریف میکنیم، ممکنه به صورت مستقیم داخل تابع صدا زده نشن و در
-          یک تابع یا ابجکت داخل تابع خطی صداشون کنیم؛ اما اجازه نداریم از خطی داخل <strong>غیر خطی</strong> استفاه کنیم
-          چون نمیشه داخل تابع غیر خطی از return غیر محلی استفاده کرد. در اینجا باید پارامتر تابعو با کلیدواژه ی
-          crossinline تعریف کنیم.</p>
+    <p>مثال:</p>
 
+    <p>
+      فرض کنید تابع foo غیر خطی و تابع bar خطی باشه، میخوایم foo رو داخل bar صدا
+      بزنیم و از پارامتر bar داخل foo استفاده کنیم.
+    </p>
 
-        <p>مثال:</p>
-
-        <p>فرض کنید تابع foo غیر خطی و تابع bar خطی باشه، میخوایم foo رو داخل bar صدا بزنیم و از پارامتر bar داخل foo
-          استفاده کنیم.</p>
-
-        <div class="sample">
-          <div class="snippet-container">
-            <pre class="snippet Kotlin">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Kotlin">
 fun foo(executor: () -&gt; Unit){
   executor()
 }
@@ -321,64 +317,77 @@ inline fun bar(crossinline block: (String) -&gt; Unit){
     block("From noinline function")  
   }
 }
-                  </pre>
-          </div>
-        </div>
+                  </pre
+        >
+      </div>
+    </div>
 
-        <p>مثال:</p>
+    <p>مثال:</p>
 
-        <div class="sample">
-          <div class="snippet-container">
-            <pre class="snippet Kotlin">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Kotlin">
 inline fun foo(crossinline body: () -&gt; Unit) {
     val bar = object: Runnable {
         override fun run() = body()
     }
     // ...
 }
-                  </pre>
-          </div>
-        </div>
+                  </pre
+        >
+      </div>
+    </div>
 
-        <p>در مثال بالا یک object از نوع Runnable داخل foo تعریف کردیم و body رو داخل آبجکت صدا زدیم.</p>
+    <p>
+      در مثال بالا یک object از نوع Runnable داخل foo تعریف کردیم و body رو داخل
+      آبجکت صدا زدیم.
+    </p>
+  </section>
 
-      </section>
+  <section id="p4">
+    <h2>پارامتر های Reified Type</h2>
 
-      <section id="p4">
+    <blockquote>
+      توابعی که پارامتر های نوع جنریکشون reified است باید خطی باشن.
+    </blockquote>
 
-        <h2>پارامتر های Reified Type</h2>
+    <p>
+      داخل بدنه ی
+      <a class="text-decoration-none" href="/post/kotlin/functions.html#p6"
+        >تابع جنریک</a
+      >
+      نمیشه به پارامتر های جنریک (مثلا T) دسترسی داشت چون فقط T هنگام کامپایل
+      وجود داره و زمان اجرا پاک میشه. اما اگه نوع T با reified تعریف شده باشه
+      میتونیم بهش زمان اجرا دسترسی داشته باشیم.
+    </p>
 
-        <blockquote>توابعی که پارامتر های نوع جنریکشون reified است باید خطی باشن.</blockquote>
+    <p>
+      با بیان یک مثال میخوایم بررسی کنیم یک آبجکت نمونه ای از یک کلاس هست یا
+      خیر؟
+    </p>
 
-        <p>داخل بدنه ی <a class="text-decoration-none" href="/post/kotlin/functions.html#p6">تابع جنریک</a> نمیشه به
-          پارامتر های جنریک (مثلا T) دسترسی داشت چون فقط T هنگام کامپایل وجود داره و زمان اجرا پاک میشه. اما اگه نوع T
-          با reified تعریف شده باشه میتونیم بهش زمان اجرا دسترسی داشته باشیم.</p>
+    <p>اگه یک تابع جنریک برای این کار تعریف کنیم، برنامه دچار خطا میشه:</p>
 
-        <p>با بیان یک مثال میخوایم بررسی کنیم یک آبجکت نمونه ای از یک کلاس هست یا خیر؟</p>
-
-        <p>اگه یک تابع جنریک برای این کار تعریف کنیم، برنامه دچار خطا میشه:</p>
-
-
-
-        <div class="sample">
-          <div class="snippet-container">
-            <pre class="snippet Kotlin">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Kotlin">
 // Error            
 fun &lt;T&gt; Any.instanceOf() = this is T
-                  </pre>
-          </div>
-        </div>
+                  </pre
+        >
+      </div>
+    </div>
 
-        <p>
-          برای حل این موضوع یا باید از reflection در تابع جنریک استفاده کنیم یا یک تابع خطی جنریک تعریف کنیم که پارامتر
-          نوع جنریکش reified باشه.
-        </p>
+    <p>
+      برای حل این موضوع یا باید از reflection در تابع جنریک استفاده کنیم یا یک
+      تابع خطی جنریک تعریف کنیم که پارامتر نوع جنریکش reified باشه.
+    </p>
 
-        <p>مثال:</p>
+    <p>مثال:</p>
 
-        <div class="sample">
-          <div class="snippet-container">
-            <pre class="snippet Kotlin">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Kotlin">
 inline fun &lt;reified T&gt; Any.instanceOf() = this is T
 
 fun main(){
@@ -388,146 +397,106 @@ fun main(){
 
 
   println("myInt is Int? ${myInt.instanceOf&lt;Int&gt;()}")
-                  </pre>
-          </div>
-        </div>
+                  </pre
+        >
+      </div>
+    </div>
 
-        <p>در بالا یک پارامتر جنریک نوع T با reified تعریف کردیم.</p>
+    <p>در بالا یک پارامتر جنریک نوع T با reified تعریف کردیم.</p>
+  </section>
 
-      </section>
+  <section id="p5">
+    <h2>پراپرتی (property) های خطی</h2>
 
-      <section id="p5">
-        <h2>پراپرتی (property) های خطی</h2>
+    <p>
+      کلیدواژه ی inline میتونه برای getter و setter های property که backing
+      field ندارن استفاده بشه.
+    </p>
 
-        <p>کلیدواژه ی inline میتونه برای getter و setter های property که backing field ندارن استفاده بشه.</p>
+    <p>مثال:</p>
 
-        <p>مثال:</p>
-
-        <div class="sample">
-          <div class="snippet-container">
-            <pre class="snippet Kotlin">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Kotlin">
 val foo: Foo
     inline get() = Foo()
 
 var bar: Bar
     inline set(v) { ... }
-                  </pre>
-          </div>
-        </div>
+                  </pre
+        >
+      </div>
+    </div>
 
-        <p>همچنین میتونیم کل property رو خطی کنیم:</p>
+    <p>همچنین میتونیم کل property رو خطی کنیم:</p>
 
-        <div class="sample">
-          <div class="snippet-container">
-            <pre class="snippet Kotlin">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Kotlin">
 inline val foo: Foo 
   get() = Foo()
   set(v){...}
-                  </pre>
-          </div>
-        </div>
-
-        <p>به پراپرتی که در مثال دیدید property های خطی در کاتلین میگیم.</p>
-
-      </section>
-
-      <section id="p6">
-
-        <h2>خلاصه</h2>
-
-        <ul>
-          <li>از توابع خطی برای بهبود کیفیت برنامه و تعریف پارامتر reified استفاده میشه.</li>
-
-          <li>هنگام استفاده از کلیدواژه ی inline تابع و پارامتر هاش خطی میشه.</li>
-
-          <li>پارامتر توابع خطی با استفاده از کلیدواژه ی noinline میتونن غیر خطی بشن.
-          </li>
-
-          <li>در لامبدا های خطی میتونیم از return غیر محلی برای متوقف کردن تابع استفاده کنیم</li>
-
-          <li>با استفاده از کلیدواژه ی crossinline میتونیم پارامتر های خطی رو در غیر خطی های داخل تابع صدا بزنیم.</li>
-
-          <li>میتونیم برای تابع خطی جنریک های reified تعریف کنیم.</li>
-
-          <li>میتونیم getter و setter های پراپرتی ها رو به صورت خطی تعریف کنیم یا کل پراپرتی رو خطی کنیم.</li>
-        </ul>
-      </section>
-
-
-    </article>
-
-    <div class="article-foot">
-
-      <aside>
-        <nav aria-label="Post navigation" class="post-navigation-container">
-
-          <a href="/post/kotlin/arrays.html" class="md-bt md-bt-light">
-
-            <span class="material-icons">
-              navigate_next
-            </span>
-            <span class="hint">
-              بعدی
-            </span>
-          </a>
-
-          <a href="/post/kotlin/higher-order-functions.html" class="md-bt md-bt-light">
-
-            <span class="hint">
-              قبلی
-            </span>
-            <span class="material-icons">
-              navigate_before
-            </span>
-
-          </a>
-        </nav>
-
-        <section>
-          <h2>مطالب مرتبط</h2>
-
-          <ul>
-
-            <li>
-              <a href="/post/kotlin/functions.html">توابع در کاتلین</a>
-            </li>
-
-            <li>
-              <a href="/post/kotlin/extension-function.html">اکستنشن ها در کاتلین</a>
-            </li>
-
-            <li>
-              <a href="/post/kotlin/anonymous-function-and-lambda.html">توابع بی نام و عبارات لامبدا در کاتلین</a>
-            </li>
-
-            <li>
-              <a target="_blank" href="https://kotlinlang.org/docs/inline-functions.html">سایت رسمی کاتلین برای مطالعه
-                موضوع</a>
-            </li>
-          </ul>
-        </section>
-
-      </aside>
-
+                  </pre
+        >
+      </div>
     </div>
 
+    <p>به پراپرتی که در مثال دیدید property های خطی در کاتلین میگیم.</p>
+  </section>
 
-  </main>
+  <section id="p6">
+    <h2>خلاصه</h2>
 
-  <div class="scroll-top-container">
-    <a class="text-decoration-none link-dark material-icons" href="#">
-      arrow_drop_up
-    </a>
-  </div>
+    <ul>
+      <li>
+        از توابع خطی برای بهبود کیفیت برنامه و تعریف پارامتر reified استفاده
+        میشه.
+      </li>
 
-  <footer></footer>
+      <li>هنگام استفاده از کلیدواژه ی inline تابع و پارامتر هاش خطی میشه.</li>
 
-  <div class="dialog hide"></div>
+      <li>
+        پارامتر توابع خطی با استفاده از کلیدواژه ی noinline میتونن غیر خطی بشن.
+      </li>
 
-  <div class="copy-message">
-    <span class="copy-message-text">کپی شد!</span>
-  </div>
+      <li>
+        در لامبدا های خطی میتونیم از return غیر محلی برای متوقف کردن تابع
+        استفاده کنیم
+      </li>
 
-</body>
+      <li>
+        با استفاده از کلیدواژه ی crossinline میتونیم پارامتر های خطی رو در غیر
+        خطی های داخل تابع صدا بزنیم.
+      </li>
 
-</html>
+      <li>میتونیم برای تابع خطی جنریک های reified تعریف کنیم.</li>
+
+      <li>
+        میتونیم getter و setter های پراپرتی ها رو به صورت خطی تعریف کنیم یا کل
+        پراپرتی رو خطی کنیم.
+      </li>
+    </ul>
+  </section>
+</article>
+
+{% capture links %}
+<li>
+  <a href="/post/kotlin/functions.html">توابع در کاتلین</a>
+</li>
+
+<li>
+  <a href="/post/kotlin/extension-function.html">اکستنشن ها در کاتلین</a>
+</li>
+
+<li>
+  <a href="/post/kotlin/anonymous-function-and-lambda.html"
+    >توابع بی نام و عبارات لامبدا در کاتلین</a
+  >
+</li>
+
+<li>
+  <a target="_blank" href="https://kotlinlang.org/docs/inline-functions.html"
+    >سایت رسمی کاتلین برای مطالعه موضوع</a
+  >
+</li>
+{% endcapture %} {% include article-foot.html relative_links = links %}

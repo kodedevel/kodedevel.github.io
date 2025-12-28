@@ -1,97 +1,68 @@
-<!DOCTYPE html>
+---
+layout: default
+---
 
-<html lang="fa">
+<article>
+  <nav class="toc">
+    <div>دسترسی سریع</div>
+    <ul>
+      <li>
+        <a href="#sub0">محدوده ی تعریف متغیر و توابع</a>
+      </li>
+    </ul>
+  </nav>
 
-<head>
+  <section id="sub0">
+    <h2>محدوده ی ایجاد متغیر ها و توابع</h2>
 
-  <meta http-equiv="X-UA-Compatible" content="IE=7">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <p>
+      در کاتلین چهار محل برای ایجاد متغیر ها و توابع وجود داره به این محل ها
+      محدوده ی ایجاد متغیر ها و توابع گفته میشه (scope of variables).
+    </p>
 
-  <meta name="description" content="در کاتلین چهار محل برای ایجاد متغیر و توابع وجود داره در این مطلب میخوایم این چهار محل رو بررسی کنیم...">
+    <div class="note">
+      <p class="note-head">توجه:</p>
+      <p>
+        در این مطلب فقط ایجاد یک متغیر رو نشون میدیم و از تابع صرف تظر میکنیم
+        همینطور صدا زدن متغیر رو نادیده گرفتیم، فقط میخوایم بدونیم یک متغیر یا
+        تابع در کجا میتونه ایجاد بشه.
+      </p>
+    </div>
 
-  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <section>
+      <h3>محدوده ی تاپ لول (top level)</h3>
 
-  <title>محدوده ی ایجاد متغیر ها و توابع در کاتلین</title>
+      <p>
+        وقتی یک متغیر یا تابع رو داخل فایل کاتالین تعریف کنیم بهش متغیر یا تابع
+        تاپ لول (top level) میگیم. کل توابع و کلاس های داخل فایل میتونن به این
+        متغیر دسترسی مستقیم داشته باشن.
+      </p>
 
-  <meta name="og:title" content="محدوده ی ایجاد متغیر ها و توابع در کاتلین">
-
-  <meta name="og:description" content="در کاتلین چهار محل برای ایجاد متغیر و توابع وجود داره در این مطلب میخوایم این چهار محل رو بررسی کنیم...">
-
-  <meta property="og:image" content="https://kodedevel.github.io/resources/favicon.png">
-  <meta property="og:url" content="https://kodedevel.github.io/post/kotlin/">
-
-  <meta property="og:type" content="article">
-
-  <link rel="shortcut icon" href="/resources/favicon.png" type="image/x-icon">
-
-  <link rel="stylesheet" href="/resources/css/main.css">
-  <script type="module" src="/resources/js/main.js"></script>
-
-</head>
-
-<body>
-  <header></header>
-  <main>
-    <div class="page-wrap">
-
-      <div class="article-head">
-        <h1>محدوده ی ایجاد متغیر ها و توابع</h1>
-
-        <address>
-          <a class="author text-muted text-decoration-none" rel="author">یونس سلیمانی</a>
-        </address>
-
-        <figure class="figure figure-wrapper">
-          <img alt="محدوده ی تعریف متغیر و توابع در کاتلین" class="rounded figure-img" src="/resources/image/kotlin/cover_variable_scope.png" />
-        </figure>
-
-        <div class="toc">
-          <p class="p-2 mx-2 h5">دسترسی سریع</p>
-          <div class="list-group">
-
-            <a class="list-group-item list-group-item-action" href="#sub0">محدوده ی تعریف متغیر و توابع</a>
-
-          </div>
-        </div>
-      </div>
-
-      <article>
-        <div class="subsection" id="sub0">
-                <h2>محدوده ی ایجاد متغیر ها و توابع</h2>
-         
-          <p>در کاتلین چهار محل برای ایجاد متغیر ها و توابع وجود داره به این محل ها محدوده ی ایجاد متغیر ها و توابع گفته میشه (scope of variables).</p>
-
-          <div class="note">
-                    <p class="note-head">توجه:</p>
-            <p>در این مطلب فقط ایجاد یک متغیر رو نشون میدیم و از تابع صرف تظر میکنیم همینطور صدا زدن متغیر رو نادیده گرفتیم، فقط میخوایم بدونیم یک متغیر یا تابع در کجا میتونه ایجاد بشه.</p>
-          </div>
-
-        </div>
-
-                <h3>محدوده ی تاپ لول (top level)</h3>
-
-          <p>وقتی یک متغیر یا تابع رو داخل فایل کاتالین تعریف کنیم بهش متغیر یا تابع تاپ لول (top level) میگیم. کل توابع و کلاس های داخل فایل میتونن به این متغیر دسترسی مستقیم داشته باشن.</p>
-
-          <div class="sample">
-            <div class="snippet-container">
-              <div class="snippet Kotlin">
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Kotlin">
 var topLevel = "This is a top level variable"
 
 fun main(){
    println(topLevel)
 }
-              </div>
-            </div>
-          </div>
+              </pre
+          >
+        </div>
+      </div>
+    </section>
 
-                <h3> محدوده ی داخل کلاس (member class)</h3>
-          <p>متغیر یا توابعی که داخل کلاس تعریف میشن بهشون member میگیم.</p>
-          <p>اعضای کلاس بجز اعضای companion object به متغیر یا تابع دسترسی مستقیم دارن.</p>
+    <section>
+      <h3>محدوده ی داخل کلاس (member class)</h3>
+      <p>متغیر یا توابعی که داخل کلاس تعریف میشن بهشون member میگیم.</p>
+      <p>
+        اعضای کلاس بجز اعضای companion object به متغیر یا تابع دسترسی مستقیم
+        دارن.
+      </p>
 
-          <div class="sample">
-            <div class="snippet-container">
-              <div class="snippet Kotlin">
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Kotlin">
 class MyClass{
   ...
 
@@ -99,18 +70,24 @@ class MyClass{
 
   ...
 }
-              </div>
-            </div>
-          </div>
+              </pre
+          >
+        </div>
+      </div>
+    </section>
 
-                <h3>محدوده ی companion object</h3>
-          <p>متغیر یا توابعی که داخل companion object تعریف میشن.</p>
+    <section>
+      <h3>محدوده ی companion object</h3>
+      <p>متغیر یا توابعی که داخل companion object تعریف میشن.</p>
 
-          <p>اعضای companion object و اعضای کلاس به متغیر یا تابع تعریف شده دسترسی مستقیم دارن.</p>
+      <p>
+        اعضای companion object و اعضای کلاس به متغیر یا تابع تعریف شده دسترسی
+        مستقیم دارن.
+      </p>
 
-          <div class="sample">
-            <div class="snippet-container">
-              <div class="snippet Kotlin">
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Kotlin">
 class MyClass{
 
 ...
@@ -124,19 +101,23 @@ class MyClass{
 
   }
 }
-              </div>
-            </div>
-          </div>
+              </pre
+          >
+        </div>
+      </div>
+    </section>
 
+    <section>
+      <h3>محدوده ی داخل تابع (local)</h3>
 
-                <h3>محدوده ی داخل تابع (local)</h3>
+      <p>
+        متغیر یا توابعی که داخل تابع تعریف میشن بهشون اعضای لوکال (local) میگیم.
+      </p>
+      <p>فقط اعضای داخل تابع به متغیر یا تابع تعریف شده دسترسی مستقیم دارن.</p>
 
-          <p>متغیر یا توابعی که داخل تابع تعریف میشن بهشون اعضای لوکال (local) میگیم.</p>
-          <p>فقط اعضای داخل تابع به متغیر یا تابع تعریف شده دسترسی مستقیم دارن.</p>
-
-          <div class="sample">
-            <div class="snippet-container">
-              <div class="snippet Kotlin">
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Kotlin">
 fun myFunction(){
 
   ...
@@ -145,81 +126,32 @@ fun myFunction(){
 
   ...
 }
-              </div>
-            </div>
-          </div>
+              </pre
+          >
+        </div>
+      </div>
+    </section>
+  </section>
+  <p>
+    خب اینم از مکان های تعریف متغیر و توابع. موضوعی به نام سطوح دسترسی یک متغیر
+    یا تابع وجود داره که در این بخش گفته نشد؛ انشالله بعدا بهش می پردازیم.
+  </p>
 
+  <p>موفق باشید.</p>
+</article>
 
-            <p>خب اینم از مکان های تعریف متغیر و توابع. موضوعی به نام سطوح دسترسی یک متغیر یا تابع وجود داره که در این بخش  گفته نشد؛ انشالله بعدا بهش می پردازیم.</p>
+{% capture links %}
+<li>
+  <a href="/post/kotlin/mathematics.html">توابع ریاضی در کاتلین</a>
+</li>
 
-            <p>موفق باشید.</p>
+<li>
+  <a href="/post/kotlin/variables_mutable_immutable.html"
+    >متغیر های تغییرپذیر و تغییرناپذیر در کاتلین</a
+  >
+</li>
 
-      </article>
-
-
-       <div class="article-foot">
-          <div class="navigator-container">
-
-            <a href="/post/kotlin/access-modifiers.html" class="md-bt md-bt-light">
-
-              <span class="hint">
-                بعدی
-              </span>
-              <span class="material-icons">
-                navigate_next
-              </span>
-
-            </a>
-
-            <a href="/post/kotlin/mathematics.html" class="md-bt md-bt-light">
-
-              <span class="hint">
-                قبلی
-              </span>
-              <span class="material-icons">
-                navigate_before
-              </span>
-
-            </a>
-
-          </div>
-            <div class="relative-articles-container">
-              <p>مطالب مرتبط</p>
-
-              <div>
-
-                <div>
-                  <a href="/post/kotlin/mathematics.html">توابع ریاضی در کاتلین</a>
-                </div>
-
-                <div>
-                  <a href="/post/kotlin/variables_mutable_immutable.html">متغیر های تغییرپذیر و تغییرناپذیر در کاتلین</a>
-                </div>
-
-                <div>
-                  <a href="/post/kotlin/selectors.html">دستورات شرطی در کاتلین</a>
-                </div>
-
-              </div>
-            </div>
-          </div>
-    </div>
-  </main>
-
-  <div class="scroll-top-container">
-    <a class="text-decoration-none link-dark material-icons" href="#">
-      arrow_drop_up
-    </a>
-  </div>
-
-  <footer></footer>
-
-<div class="dialog hide"></div>
-
-  <div class="copy-message">
-    <span class="copy-message-text">کپی شد!</span>
-  </div>
-
-</body>
-
-</html>
+<li>
+  <a href="/post/kotlin/selectors.html">دستورات شرطی در کاتلین</a>
+</li>
+{% endcapture %} {% include article-foot.html relative_links = links %}

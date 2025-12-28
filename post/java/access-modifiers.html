@@ -1,80 +1,44 @@
-<!DOCTYPE html>
+---
+layout: default
+---
 
-<html lang="fa">
+<article>
+  <nav class="toc">
+    <div>دسترسی سریع</div>
+    <ul>
+      <li>
+        <a href="#p0">بررسی کلیدواژه های سطح دسترسی</a>
+      </li>
+      <li>
+        <a href="#p1">خلاصه</a>
+      </li>
+    </ul>
+  </nav>
 
-<head>
+  <section id="sub0">
+    <h2>بررسی کلیدواژه های سطح دسترسی</h2>
 
-    <meta content="IE=7" http-equiv="X-UA-Compatible">
-    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <blockquote>
+      با کلیدواژه های سطح دسترسی در جاوا میتونیم مشخص کنیم یک دیتافیلد، متد،
+      کانستراکتور یا کلاس کجا در پروژه قابل دسترس باشه.
+    </blockquote>
 
-    <meta content="در جاوا چهارتا سطح دسترسی private, default, protected و public داریم؛ در این مطلب میخوایم این سطوح دسترسی رو برای دیتافیلد، متد، کانستراکتور و کلاس ها بررسی کنیم."
-          name="description">
+    <p>
+      در جاوا چهار نوع سطح دسترسی داریم که عبارتند از
+      <strong>&#x200e;private, default, protected و public</strong>
+    </p>
 
-    <meta content="text/html;charset=UTF-8" http-equiv="Content-Type">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <section>
+      <h3>سطح دسترسی private</h3>
+      <p>
+        با کلیدواژه ی private میتونیم دسترسی یک متغیر، متد، کانستراکتور یا inner
+        class رو محدود به کلاس کنیم.
+      </p>
+      <p>این کلیدواژه برای کلاس های بیرونی (outer class) قابل تعریف نیست.</p>
 
-    <title>کلیدواژه های سطح دسترسی در جاوا</title>
-
-    <meta content="کلیدواژه های سطح دسترسی در جاوا" name="og:title">
-    <meta content="در جاوا چهارتا سطح دسترسی private, default, protected و public داریم؛ در این مطلب میخوایم این سطوح دسترسی رو برای دیتافیلد، متد، کانستراکتور و کلاس ها بررسی کنیم."
-          name="og:description">
-
-    <meta content="https://kodedevel.github.io/resources/favicon.png" property="og:image">
-    <meta content="https://kodedevel.github.io/post/java/access-modifiers.html" property="og:url">
-
-    <meta content="article" property="og:type">
-
-    <link href="/resources/favicon.png" rel="shortcut icon" type="image/x-icon">
-
-    <link href="/resources/css/main.css" rel="stylesheet">
-    <script src="/resources/js/main.js" type="module"></script>
-
-</head>
-
-<body>
-<header></header>
-<main>
-    <div class="page-wrap">
-
-        <div class="article-head">
-            <h1>
-                کلیدواژه های سطح دسترسی در جاوا
-            </h1>
-
-            <address>
-                <a class="author text-muted text-decoration-none" rel="author">یونس سلیمانی</a>
-            </address>
-
-            <figure class="figure figure-wrapper">
-                <img alt="سطح دسترسی در جاوا" class="rounded figure-img" src="/resources/image/java/cover_access_modifiers.png"/>
-            </figure>
-
-            <div class="toc">
-                <p class="p-2 mx-2 h5">دسترسی سریع</p>
-                <div class="list-group">
-
-                    <a class="list-group-item list-group-item-action" href="#sub0">بررسی کلیدواژه های سطح دسترسی</a>
-                    <a class="list-group-item list-group-item-action" href="#sub1">خلاصه</a>
-                </div>
-            </div>
-        </div>
-
-        <article>
-
-            <div class="subsection" id="sub0">
-                <h2>بررسی کلیدواژه های سطح دسترسی</h2>
-
-                <blockquote>با کلیدواژه های سطح دسترسی در جاوا میتونیم مشخص کنیم یک دیتافیلد، متد، کانستراکتور یا کلاس کجا در پروژه قابل دسترس باشه.</blockquote>
-
-                <p>در جاوا چهار نوع سطح دسترسی داریم که عبارتند از <strong>&#x200e;private, default, protected و public</strong></p>
-
-                <h3>سطح دسترسی private</h3>
-                <p>با کلیدواژه ی private میتونیم دسترسی یک متغیر، متد، کانستراکتور یا inner class رو محدود به کلاس کنیم.</p>
-                <p>این کلیدواژه برای کلاس های بیرونی (outer class) قابل تعریف نیست.</p>
-
-                <div class="sample">
-                    <div class="snippet-container">
-                        <div class="snippet Java">
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
 class MyClass{
 
     private int number;
@@ -91,17 +55,23 @@ class MyClass{
         ...
     }
 }
-                        </div>
-                    </div>
-                </div>
+                        </pre
+          >
+        </div>
+      </div>
+    </section>
 
-                <h3>سطح دسترسی default</h3>
-                <p>اگه کلیدواژه ای تعریف نکنیم سطح دسترسی default میشه.</p>
-                <p>اگه کلاس، متغیر، متد یا کانستراکتور سطح دسترسیشون default باشه فقط داخل پکیج قابل دسترسی هستند، سطح دسترسی default معروف به package-private است.</p>
+    <section>
+      <h3>سطح دسترسی default</h3>
+      <p>اگه کلیدواژه ای تعریف نکنیم سطح دسترسی default میشه.</p>
+      <p>
+        اگه کلاس، متغیر، متد یا کانستراکتور سطح دسترسیشون default باشه فقط داخل
+        پکیج قابل دسترسی هستند، سطح دسترسی default معروف به package-private است.
+      </p>
 
-                <div class="sample">
-                    <div class="snippet-container">
-                        <div class="snippet Java">
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
 class MyClass{
 
     int number;
@@ -118,19 +88,24 @@ class MyClass{
         ...
     }
 }
-                        </div>
-                    </div>
-                </div>
+                        </pre
+          >
+        </div>
+      </div>
+    </section>
 
+    <section>
+      <h3>سطح دسترسی protected</h3>
+      <p>
+        کلیدواژه ی protected سطح دسترسی اعضا رو مانند default محدود به پکیج
+        میکنه؛ با این تفاوت اعضایی که با این کلیدواژه تعریف میشن در کلاس هایی که
+        از کلاسمون در خارج از پکیج ارث بری میکنند هم قابل دسترسی هستند.
+      </p>
+      <p>این کلیدواژه برای کلاس های بیرونی قابل تعریف نیست.</p>
 
-
-                <h3>سطح دسترسی protected</h3>
-                <p>کلیدواژه ی protected سطح دسترسی اعضا رو مانند default محدود به پکیج میکنه؛ با این تفاوت اعضایی که با این کلیدواژه تعریف میشن در کلاس هایی که از کلاسمون در خارج از پکیج ارث بری میکنند هم قابل دسترسی هستند.</p>
-                <p>این کلیدواژه برای کلاس های بیرونی قابل تعریف نیست.</p>
-
-                <div class="sample">
-                    <div class="snippet-container">
-                        <div class="snippet Java">
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
 MyClass{
 
     protected int number;
@@ -148,18 +123,23 @@ MyClass{
     }
 
 }
-                        </div>
-                    </div>
-                </div>
+                        </pre
+          >
+        </div>
+      </div>
+    </section>
 
+    <section>
+      <h3>سطح دسترسی public</h3>
 
-                <h3>سطح دسترسی public</h3>
+      <p>
+        اگه کلاس، دیتافیلد، متد، کانستراکتور یا inner class با کلیدواژه ی public
+        تعریف بشن در سرتاسر پروژه قابل دسترس هستند.
+      </p>
 
-                <p>اگه کلاس، دیتافیلد، متد، کانستراکتور یا inner class با کلیدواژه ی public تعریف بشن در سرتاسر پروژه قابل دسترس هستند.</p>
-
-                <div class="sample">
-                    <div class="snippet-container">
-                        <div class="snippet Java">
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
 public MyClass{
 
     public int number;
@@ -176,76 +156,49 @@ public MyClass{
         ...
     }
 }
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="subsection" id="sub1">
-                <h2>خلاصه</h2>
-                <p>- در جاوا چهارتا سطح دسترسی private, default, protected و public داریم.</p>
-                <p>کلیدواژه ی private متغیر یا تابع رو محدود به داخل کلاس میکنه.</p>
-                <p>- یک کلاس بیرونی رو نمیتونیم با private تعریف کنیم.</p>
-                <p>- سطح دسترسی default پیشفرض همه ی متغیر هاست هنگامی که هیچ کلیدواژه ی سطح دسترسی برای متغیر تعریف نکنیم سطح دسترسیش default است.</p>
-                <p>- سطح دسترسی protected مانند default است با این تفاوت اگه یک کلاسی ارثبری کرده و خارج از پکیج باشه متغیر در اونجا در دسترس است.</p>
-                <p>سطح دسترسی یک کلاس بیرونی نمیتونه protected باشه.</p>
-                <p>- متغیر هایی که با کلیدواژه ی public تعریف میشن در سرتاسر پروژه قابل دسترسی هستند.</p>
-            </div>
-        </article>
-
-        <div class="article-foot">
-
-            <div class="navigator-container">
-
-                <a class="md-bt md-bt-light" href="static-keyword.html">
-                    <span class="material-icons">
-                      navigate_next
-                    </span>
-
-                    <span class="hint">بعدی</span>
-                </a>
-
-                <a class="md-bt md-bt-light" href="objects-and-classes.html">
-                    <span class="hint">قبلی</span>
-                    <span class="material-icons">navigate_before</span>
-                </a>
-            </div>
-
-            <div class="relative-articles-container">
-                <p>مطالب مرتبط</p>
-                <div>
-                    <div>
-                        <a href="methods.html">متد ها</a>
-                    </div>
-                    <div>
-                        <a href="objects-and-classes.html">آبجکت و کلاس ها</a>
-                    </div>
-                    <div>
-                        <a href="static-keyword.html">کلیدواژه ی استاتیک</a>
-                    </div>
-                    <div>
-                        <a href="/post/kotlin/functions.html">توابع در کاتلین</a>
-                    </div>
-                </div>
-            </div>
+                        </pre
+          >
         </div>
+      </div>
+    </section>
+  </section>
 
-    </div>
-</main>
+  <section id="sub1">
+    <h2>خلاصه</h2>
+    <ul>
+      <li>
+        در جاوا چهارتا سطح دسترسی private, default, protected و public داریم.
+      </li>
+      <li>کلیدواژه ی private متغیر یا تابع رو محدود به داخل کلاس میکنه.</li>
+      <li>یک کلاس بیرونی رو نمیتونیم با private تعریف کنیم.</li>
+      <li>
+        سطح دسترسی default پیشفرض همه ی متغیر هاست هنگامی که هیچ کلیدواژه ی سطح
+        دسترسی برای متغیر تعریف نکنیم سطح دسترسیش default است.
+      </li>
+      <li>
+        سطح دسترسی protected مانند default است با این تفاوت اگه یک کلاسی ارثبری
+        کرده و خارج از پکیج باشه متغیر در اونجا در دسترس است.
+      </li>
+      <li>سطح دسترسی یک کلاس بیرونی نمیتونه protected باشه.</li>
+      <li>
+        متغیر هایی که با کلیدواژه ی public تعریف میشن در سرتاسر پروژه قابل
+        دسترسی هستند.
+      </li>
+    </ul>
+  </section>
+</article>
 
-<div class="scroll-top-container">
-    <a class="text-decoration-none link-dark material-icons" href="#">
-        arrow_drop_up
-    </a>
-</div>
-
-<footer></footer>
-
-<div class="dialog hide"></div>
-
-<div class="copy-message">
-    <span class="copy-message-text">کپی شد!</span>
-</div>
-
-</body>
+{% capture links %}
+<li>
+  <a href="methods.html">متد ها</a>
+</li>
+<li>
+  <a href="objects-and-classes.html">آبجکت و کلاس ها</a>
+</li>
+<li>
+  <a href="static-keyword.html">کلیدواژه ی استاتیک</a>
+</li>
+<li>
+  <a href="/post/kotlin/functions.html">توابع در کاتلین</a>
+</li>
+{% endcapture %} {% include article-foot.html relative_links = links %}

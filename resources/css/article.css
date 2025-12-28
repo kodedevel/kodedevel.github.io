@@ -1,13 +1,17 @@
 .article-head{
     word-wrap: break-word;
     padding: 8px;
-    direction: rtl;
 }
 
 .article-meta{
   color: #757775;
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   font-weight: bold;
+  border-bottom: 1px solid #0D47A1;
+  border-top: 1px solid #0D47A1;
+  padding: 16px 0;
+  margin-top: 16px;
+  margin-bottom: 48px;
 }
 
 .page-wrap{
@@ -16,22 +20,13 @@
     direction: rtl;
 }
 
-.author{
-    margin-right: 4px;
+.article-meta .author{
+    color: #212121;
+    font-style: normal;
 }
 
-.author a{
-  text-decoration: none;
-  color: #757775;
-}
-
-.eta{
+.article-meta > * {
   margin: 8px 4px 8px 0;
-}
-
-.article-meta time{
-  margin-right: 4px;
-  opacity: 0.75;
 }
 
 .sample{
@@ -43,22 +38,23 @@
     direction: ltr;
 }
 
-.sample .snippet{
+.snippet{
     display: block;
 }
 
-.snippet .code-wrap{
+.code-wrap{
      padding-bottom: 12px;
      overflow-x: auto;
      overflow-y: hidden;
 }
 
-.snippet .code-wrap .code-body{
-    border-bottom: 2px solid #0277bd;
+.code-body{
+    border-bottom: 2px solid #0D47A1;
     background: white;
 }
 
-.snippet .code-wrap .code-body .code{
+
+.code{
    width: 100%;
    height: auto;
    padding-top: 4px;
@@ -66,24 +62,19 @@
    position:relative;
    padding-right: 10px;
    padding-left: 10px;
-   line-height: 20px;
+   padding: 4px 8px;
    vertical-align: top;
    word-wrap: anywhere;
-   font-size: 0.9em;
+   margin: 0;
 }
 
-.snippet .code-wrap .code-body .code-line-number{
+.code-line-number{
     background: #eeeeee;
-    width: 1%;
-    min-width: 50px;
-    font-size: 0.9em;
-    line-height: 20px;
+    min-width: 25px;
     white-space: nowrap;
     vertical-align: top;
-    padding-right: 10px;
-    padding-left: 10px;
-    padding-top: 4px;
-    cursor: pointer;
+    padding: 4px 8px;
+    cursor: initial;
     user-select: none;
     text-align: right;
 }
@@ -91,47 +82,63 @@
 .sample .sample-head{
     position: relative;
     padding: 8px;
-    background: #01579B;
+    background: #0D47A1;
     border-radius: 3px 3px 0 0;
     display: flex;
     justify-content: end;
 }
 
  .copy-message{
+    max-width: 100%;
     width: 100%;
-    height: 48px;
+    max-height: 48px;
     background-color: #212121;
     padding: 16px;
     position: fixed;
     justify-content: end;
     display: flex;
     bottom: -128px;
+    left: 0;
+    right: 0;
     z-index: 2;
 }
 
 .copy-message .copy-message-text{
     color: #fafafa;
-    direction:rtl;
 }
 
-.toc .list-group{
-    border: none !important;
-    border-radius: 0px;
-}
-
-.toc .list-group-item{
-    border: none !important;
-    border-top: 1px solid #bcbcbc !important;
-    overflow: hidden;
-}
 
 .toc{
-    margin-top: 64px;
-    margin-bottom: 32px;
-    border: 1px solid #bcbcbc;
-    border-radius: 8px;
-    overflow: hidden;
+  margin: 32px 16px;
+  border: 1px solid #bcbcbc;
+  border-radius: 8px;
+  overflow: hidden;
 }
+
+.toc ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.toc div {
+  margin-right: 8px;
+  padding: 8px 0;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.toc ul li{
+  width: 100%;
+  border-top: 1px solid #bdbdbd;
+  padding: 4px 8px;
+}
+
+.toc ul li a{
+  display: block;
+  width: 100%;
+}
+
 
 .tb{
     display: block;
@@ -226,21 +233,15 @@
 .article-foot{
     display: block;
     min-height: 150px;
-    background-color: #eeeeee;
+    background-color: #f5f5f5;
     margin: 48px 8px 0 8px;
     padding-bottom: 8px;
     overflow: none;
 }
 
-.article-foot.about{
-  min-height: 0;
-  padding-bottom: 0;
-}
-
 .article-foot .post-navigation-container{
   display: flex;
-  min-height: 48px;
-  height: auto;
+  min-height: 32px;
   background: #01579b;
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
@@ -249,19 +250,13 @@
   padding: 8px;
 }
 
-.article-foot a{
-  color: #212121;
-  text-decoration: none;
+.article-foot h2, .article-foot h3{
+  margin: 0 8px 0 0;
+  padding-bottom: 8px;
 }
 
-.article-foot h2 {
-  width: 100%;
-  background-color: transparent;
-  border-radius: 0;
-  margin: 0 0 16px 0;
-}
-
-blockquote{
-    color: #0277bd;
-    font-weight: bold;
+.article-foot ul, .article-foot li{
+  margin: 0 12px 0 0;
+  padding: 6px 0;
+  list-style-type: none;
 }

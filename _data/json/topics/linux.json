@@ -1,0 +1,30 @@
+{
+  "id": "linux_chapters",
+  "name": "لینوکس",
+  "metadata_list": [
+    {
+      "title": "معرفی لینوکس سیستم عامل گنو لینوکس",
+      "description": "سیستم عامل گنو لینوکس (GNU Linux) یک سیستم عامل متن باز (open source) است کرنل آن لینوکس و نرم‌افزار آن گنو است",
+      "datePublished": "2025-09-12",
+      "lastModified": "",
+      "imgCover": "/resources/image/linux/cover_introduction.png",
+      "link": "/post/linux/introduction.html"
+    },
+    {
+      "title": "دستور ls در لینوکس",
+      "description": "با دستور ls در ترمینال لینوکس قادر خواهیم بود محتوای یک پوشه مشاهده کنیم این دستور یکی از دستورات پر کاربرد در لینوکس است در این مطلب به بررسی این دستور می پردازیم.",
+      "datePublished": "2025-09-12",
+      "lastModified": "",
+      "imgCover": "/resources/image/linux/cover_list_directory_contents.png",
+      "link": "/post/linux/list-directory-contents.html"
+    },
+    {
+      "title": "دستور cd در لینوکس",
+      "description": "با دستور cd در ترمینال لینوکس قادر خواهیم بود محل پوشه ی خود در ترمینال رو عوض کنیم.",
+      "datePublished": "2025-09-12",
+      "lastModified": "",
+      "imgCover": "/resources/image/linux/cover_change_directory.png",
+      "link": "/post/linux/change-directory.html"
+    }
+  ]
+}

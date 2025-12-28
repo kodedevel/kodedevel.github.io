@@ -1,0 +1,14 @@
+[
+  {
+    "title": "آموزش جاوا",
+    "link": "/learn/java.html"
+  },
+  {
+    "title": "آموزش کاتلین",
+    "link": "/learn/kotlin.html"
+  },
+  {
+    "title": "دستورات لینوکس",
+    "link": "/learn/linux.html"
+  }
+]

@@ -1,127 +1,93 @@
-<!DOCTYPE html>
-<html lang="fa">
+---
+layout: default
+---
 
-<head>
+<article>
+  <nav class="toc" aria-label="Page contents">
+    <div>دسترسی سریع</div>
 
-  <meta
-    content="بررسی دستورات شرطی if else ، کلیدواژه های in ، is ، استفاده از عملگر های منطقی و مقایسه ی چند شرط با when در کاتلین."
-    name="description" />
-  <meta charset="UTF-8" />
-  <meta content="width:device-width, initial-scale=1" name="viewport" />
+    <ul>
+      <li>
+        <a class="list-group-item list-group-item-action" href="#p0">توضیحات</a>
+      </li>
 
-  <title>دستورات شرطی (selector) ها در کاتلین</title>
+      <li>
+        <a class="list-group-item list-group-item-action" href="#p1"
+          ><span>دستور شرطی if–else در کاتلین</span></a
+        >
+      </li>
 
-  <meta property="og:title" content="بررسی selector ها در کاتلین" />
-  <meta property="og:description"
-    content="در کاتلین از کلیدواژه های if و when برای ایجاد دستورات شرطی استفاده میکنیم. در این مقاله به دستورات شرطی و عملگر های منطقی، کلیدواژه های in و is برای ایجاد مقادیر boolean می پردازیم." />
+      <li>
+        <a class="list-group-item list-group-item-action" href="#p2"
+          >عملگر های منطقی در کاتلین</a
+        >
+      </li>
 
-  <meta property="og:image" content="https://kodedevel.github.io/resources/favicon.png" />
-  <meta property="og:url" content="https://kodedevel.github.io/article/kotlin/selectors.html" />
-  <meta property="og:type" content="article">
+      <li>
+        <a class="list-group-item list-group-item-action" href="#p3"
+          >کلیدواژه ی in</a
+        >
+      </li>
 
-  <link href="/resources/css/main.css" rel="stylesheet">
-  <link href="/resources/favicon.png" rel="icon" type="image/x-icon">
-  <script type="module" src="/resources/js/main.js"></script>
+      <li>
+        <a class="list-group-item list-group-item-action" href="#p4"
+          >کلیدواژه ی is</a
+        >
+      </li>
 
-</head>
+      <li>
+        <a class="list-group-item list-group-item-action" href="#p5"
+          >دستور when در کاتلین</a
+        >
+      </li>
 
-<body>
+      <li>
+        <a class="list-group-item list-group-item-action" href="#p6">خلاصه</a>
+      </li>
+    </ul>
+  </nav>
 
-  <header></header>
+  <section id="p0">
+    <h2>توضیحات</h2>
 
-  <main>
+    <p>
+      دستورات شرطی یکی از مفاهیم پایه ای و مهم زبان های برنامه نویسی است، تمام
+      زبان های برنامه نویسی و اسکریپتی از ساختار شرطی برخوردار هستند. در کاتلین
+      از کلیدواژه های if و when برای ایجاد دستورات شرطی استفاده میکنیم. در این
+      مقاله به دستورات شرطی و عملگر های منطقی، کلیدواژه های in و is برای ایجاد
+      مقادیر boolean می پردازیم.
+    </p>
 
+    <h3>متغیر های بولین (boolean) در کاتلین</h3>
 
-    <h1>دستورات شرطی (selector) ها در کاتلین</h1>
+    <p>
+      متغیر boolean در کاتلین دارای دو مقدار true یا false است و به صورت زیر
+      تعریف میشه:
+    </p>
 
-    <div class="article-head">
-
-      <div class="article-meta">
-
-        <address class="author">
-          <span class="material-symbols-outlined" aria-hidden="true">person</span>
-          <a href="/about.html" rel="author">یونس سلیمانی</a>
-        </address>
-
-        <div class="eta">
-          <span class="material-symbols-outlined" aria-hidden="true">schedule</span>
-          <span aria-live="polite"></span>
-        </div>
-
-        <time datetime="2025-12-16">
-          <span class="material-symbols-outlined" aria-hidden="true">cached</span>
-          <span>آخرین بروزرسانی: ۱۶ دسامبر ۲۰۲۵</span>
-        </time>
-
-      </div>
-
-
-      <figure class="figure figure-wrapper">
-        <img alt="kotlin_selectors_cover" class="rounded figure-img"
-          src="/resources/image/kotlin/cover_selectors.png" />
-      </figure>
-
-      <div class="toc">
-        <p class="p-2 mx-2 h5">دسترسی سریع</p>
-        <div class="list-group">
-          <a class="list-group-item list-group-item-action" href="#p0">پیشنیاز</a>
-          <a class="list-group-item list-group-item-action" href="#p1">دستور شرطی if–else در کاتلین</a>
-          <a class="list-group-item list-group-item-action" href="#p2">عملگر های منطقی در کاتلین</a>
-
-          <a class="list-group-item list-group-item-action" href="#p3">کلیدواژه ی in</a>
-
-          <a class="list-group-item list-group-item-action" href="#p4">کلیدواژه ی is</a>
-
-          <a class="list-group-item list-group-item-action" href="#p5">دستور when در کاتلین</a>
-
-          <a class="list-group-item list-group-item-action" href="#p6">خلاصه</a>
-        </div>
-
-      </div>
-
-    </div>
-
-
-
-    <article>
-
-      <section id="p0">
-
-        <h2>توضیحات</h2>
-
-        <p>دستورات شرطی یکی از مفاهیم پایه ای و مهم زبان های برنامه نویسی است، تمام زبان های برنامه نویسی و اسکریپتی از
-          ساختار شرطی برخوردار هستند. در کاتلین از کلیدواژه های if و when برای ایجاد دستورات شرطی استفاده میکنیم. در این
-          مقاله به دستورات شرطی و عملگر های منطقی، کلیدواژه های in و is برای ایجاد مقادیر boolean می پردازیم.</p>
-
-        <h3>متغیر های بولین (boolean) در کاتلین</h3>
-
-        <p>متغیر boolean در کاتلین دارای دو مقدار true یا false است و به صورت زیر تعریف میشه:</p>
-
-
-        <div class="sample">
-          <div class="snippet-container">
-            <pre class="snippet Kotlin">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Kotlin">
 var v0 = true
 var v1 = false
-                  </pre>
-          </div>
-        </div>
+                  </pre
+        >
+      </div>
+    </div>
+  </section>
 
-      </section>
+  <section id="p1">
+    <h2>دستور if–else</h2>
+    <blockquote>
+      با دستور if else در کاتلین به بررسی true یا false بودن یک عبارت می پردازیم
+      if یعنی اگر.
+    </blockquote>
 
-      <section id="p1">
+    <p>فرم کلی:</p>
 
-        <h2>دستور if–else</h2>
-        <blockquote>
-          با دستور if else در کاتلین به بررسی true یا false بودن یک عبارت می پردازیم if یعنی اگر.
-        </blockquote>
-
-
-        <p> فرم کلی:</p>
-
-        <div class="sample">
-          <div class="snippet-container">
-            <pre class="snippet Kotlin">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Kotlin">
 if(condition == true){
 
   ...
@@ -131,20 +97,26 @@ if(condition == true){
   ...
 
 }
-                  </pre>
-          </div>
-        </div>
+                  </pre
+        >
+      </div>
+    </div>
 
+    <p>
+      در عبارت بالا اگر شرط داخل پرانتز برابر با true بود کد های داخل بدنه ی if
+      رو اجرا میکنه
+    </p>
 
-        <p>در عبارت بالا اگر شرط داخل پرانتز برابر با true بود کد های داخل بدنه ی if رو اجرا میکنه </p>
+    <p>
+      کلید واژه ی else به معنی در غیر این صورت، یعنی در غیر اینصورت کد های داخل
+      بدنه ی else رو اجرا کن
+    </p>
 
-        <p>کلید واژه ی else به معنی در غیر این صورت، یعنی در غیر اینصورت کد های داخل بدنه ی else رو اجرا کن</p>
+    <p>برای کوتاهی میتونیم شرط داخل پرانتز رو به صورت زیر بنویسیم</p>
 
-        <p> برای کوتاهی میتونیم شرط داخل پرانتز رو به صورت زیر بنویسیم</p>
-
-        <div class="sample">
-          <div class="snippet-container">
-            <pre class="snippet Kotlin">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Kotlin">
 if(condition){
 
   ...
@@ -154,16 +126,16 @@ if(condition){
   ...
 
 }
-                  </pre>
-          </div>
-        </div>
+                  </pre
+        >
+      </div>
+    </div>
 
+    <p>هچنین میتونیم چند شرط رو بررسی کنیم:</p>
 
-        <p>هچنین میتونیم چند شرط رو بررسی کنیم:</p>
-
-        <div class="sample">
-          <div class="snippet-container">
-            <pre class="snippet Kotlin">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Kotlin">
 if(condition0){
 
   ...
@@ -185,14 +157,15 @@ if(condition0){
   ...
 
 }
-                  </pre>
-          </div>
-        </div>
+                  </pre
+        >
+      </div>
+    </div>
 
-        <p>مثال:</p>
-        <div class="sample">
-          <div class="snippet-container">
-            <pre class="snippet Kotlin">
+    <p>مثال:</p>
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Kotlin">
 val input = Scanner(System.in)
 
 println("Enter Weight in kg: ")
@@ -221,17 +194,19 @@ if(bmi &lt; 18.5){
   println("Obese")
 
 }
-                  </pre>
-          </div>
-        </div>
+                  </pre
+        >
+      </div>
+    </div>
 
+    <p>
+      میتونیم داخل هر if یا else یک if دیگه بیان کنیم که به if های تو در تو یا
+      nested if معروفن:
+    </p>
 
-        <p>میتونیم داخل هر if یا else یک if دیگه بیان کنیم که به if های تو در تو یا nested if معروفن:
-        </p>
-
-        <div class="sample">
-          <div class="snippet-container">
-            <pre class="snippet Kotlin">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Kotlin">
 if(condition0){
 
   if(condition1){
@@ -245,17 +220,20 @@ if(condition0){
   }
 
 }
-                  </pre>
-          </div>
-        </div>
+                  </pre
+        >
+      </div>
+    </div>
 
-        <p>میتونیم if-else در کاتلین به صورت یک عبارت بیان کنیم تا مقداری رو برگردونه</p>
+    <p>
+      میتونیم if-else در کاتلین به صورت یک عبارت بیان کنیم تا مقداری رو برگردونه
+    </p>
 
-        <p>مثال:</p>
+    <p>مثال:</p>
 
-        <div class="sample">
-          <div class="snippet-container">
-            <pre class="snippet Kotlin">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Kotlin">
 val input = Scanner(System.in)
 
 println("Enter first number: ")
@@ -268,97 +246,105 @@ var v1 = input.nextInt()
 var max = if(v0 &gt; v1) v0 else v1
 
 println("Maximum is: $max")
-                  </pre>
-          </div>
-        </div>
+                  </pre
+        >
+      </div>
+    </div>
+  </section>
 
-      </section>
+  <section id="p2">
+    <h2>عملگر های منطقی در کاتلین</h2>
 
-      <section id="p2">
-        <h2>عملگر های منطقی در کاتلین</h2>
+    <p>عملگر های منطقی برای تغییر مقدار boolean است</p>
 
-        <p>عملگر های منطقی برای تغییر مقدار boolean است</p>
+    <section>
+      <h3>۱- عملگر ! :</h3>
+      <p>
+        مقدار عبارت boolean رو معکوس میکنه مثلا اگ مقدار یک عبارت true باشه با
+        این عملگر false میشه
+      </p>
 
-
-        <section>
-          <h3>۱- عملگر ! :</h3>
-          <p>مقدار عبارت boolean رو معکوس میکنه مثلا اگ مقدار یک عبارت true باشه با این عملگر false میشه </p>
-
-          <div class="sample">
-            <div class="snippet-container">
-              <pre class="snippet Kotlin">
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Kotlin">
 val condition = true
 
 if(!condition){
   ...
 }
-                  </pre>
-            </div>
-          </div>
-        </section>
+                  </pre
+          >
+        </div>
+      </div>
+    </section>
 
+    <section>
+      <h3>۲- عملگر && :</h3>
+      <p>
+        معنی and (و) میده، فرض کنید چندتا شرط داریم میخوایم بررسی کنیم اگه همه
+        true بودن عبارت داخل بدنه ی if اجرا بشه به صورت زیر عمل میکنیم:
+      </p>
 
-        <section>
-          <h3>۲- عملگر && :</h3>
-          <p>معنی and (و) میده، فرض کنید چندتا شرط داریم میخوایم بررسی کنیم اگه همه true بودن عبارت داخل بدنه ی if
-            اجرا بشه به صورت زیر عمل میکنیم:</p>
-
-          <div class="sample">
-            <div class="snippet-container">
-              <pre class="snippet Kotlin">
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Kotlin">
 if(condition0 && condition1 && ... && conditionN) {
   ...
 }
-                  </pre>
-            </div>
-          </div>
+                  </pre
+          >
+        </div>
+      </div>
+    </section>
 
-        </section>
+    <section>
+      <h3>۳- عملگر || :</h3>
+      <p>
+        معنی or (یا) میده، فرض کنید چندتا شرط داریم میخوایم بررسی کنیم اگه
+        یکیشون true بود کد های داخل {} مربوط به if اجرا بشه به صورت زیر عمل
+        میکنیم:
+      </p>
 
-        <section>
-          <h3>۳- عملگر || :</h3>
-          <p>معنی or (یا) میده، فرض کنید چندتا شرط داریم میخوایم بررسی کنیم اگه یکیشون true بود کد های داخل {}
-            مربوط به if اجرا بشه به صورت زیر عمل میکنیم:</p>
-
-          <div class="sample">
-            <div class="snippet-container">
-              <pre class="snippet Kotlin">
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Kotlin">
 if(condition0 || condition1 || ... || conditionN){
 ...
 }
-                  </pre>
-            </div>
-          </div>
+                  </pre
+          >
+        </div>
+      </div>
+    </section>
 
-        </section>
+    <section>
+      <h3>۴- عملگر xor:</h3>
+      <p>
+        معنی or اختصاصی میده فرض کنید دو عبارت شرطی داریم میخوایم بررسی کنیم فقط
+        یکیش درست باشه و هردو نباید درست باشه :
+      </p>
 
-        <section>
-          <h3>۴- عملگر xor:</h3>
-          <p>معنی or اختصاصی میده فرض کنید دو عبارت شرطی داریم میخوایم بررسی کنیم فقط یکیش درست باشه و هردو نباید
-            درست
-            باشه :</p>
-
-          <div class="sample">
-            <div class="snippet-container">
-              <pre class="snippet Kotlin">
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Kotlin">
 if(condition0 xor condition1){
   ...
 }
-                  </pre>
-            </div>
-          </div>
+                  </pre
+          >
+        </div>
+      </div>
 
-          <div class="note">
-            <p class="note-head">توجه:</p>
-            <p>عملگر xor در کاتلین یک تابع است.</p>
+      <div class="note">
+        <p class="note-head">توجه:</p>
+        <p>عملگر xor در کاتلین یک تابع است.</p>
+      </div>
 
-          </div>
+      <p>مثال:</p>
 
-          <p>مثال:</p>
-
-          <div class="sample">
-            <div class="snippet-container">
-              <pre class="snippet Kotlin">
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Kotlin">
 val input = Scanner(System.in);
 
 println("Enter a number: ");
@@ -372,88 +358,92 @@ if (num % 2 == 0 || num % 3 == 0)
 
 if (num % 2 == 0 ^ num % 3 == 0)
   println("Number is divisible by 2 or 3 but not both");
-                  </pre>
-            </div>
-          </div>
+                  </pre
+          >
+        </div>
+      </div>
+    </section>
 
-        </section>
+    <section id="p3">
+      <h2>کلیدواژه ی in</h2>
 
-        <section id="p3">
-          <h2>کلیدواژه ی in</h2>
+      <blockquote>
+        با استفاده از کلیدواژه ی in در کاتلین میتونیم بررسی کنیم یک متغیر عددی
+        در چه محدوده ای قرار داره
+      </blockquote>
 
-          <blockquote>
-            با استفاده از کلیدواژه ی in در کاتلین میتونیم بررسی کنیم یک متغیر عددی در چه محدوده ای قرار داره
-          </blockquote>
+      <p>
+        به عنوان مثال میخوایم بدونیم مقدار v در محدوده ی 0 تا 10 وجود داره یا
+        خیر
+      </p>
 
-          <p>
-            به عنوان مثال میخوایم بدونیم مقدار v در محدوده ی 0 تا 10 وجود داره یا خیر
-          </p>
-
-
-          <div class="sample">
-            <div class="snippet-container">
-              <pre class="snippet Kotlin">
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Kotlin">
 val v = 6
 
 val isNumberInRange = v in 0..10
 
 println("$v is between 0 to 10? $isNumberInRange")
-                  </pre>
-            </div>
-          </div>
+                  </pre
+          >
+        </div>
+      </div>
 
-          <div class="note">
-            <p class="note-head">نکته:</p>
-            <p>
-              اگه بخوایم اخرین عدد تو محدوده نباشه از تابع until استفاده میکنیم.
-            </p>
-          </div>
+      <div class="note">
+        <p class="note-head">نکته:</p>
+        <p>
+          اگه بخوایم اخرین عدد تو محدوده نباشه از تابع until استفاده میکنیم.
+        </p>
+      </div>
 
-          <div class="sample">
-            <div class="snippet-container">
-              <pre class="snippet Kotlin">
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Kotlin">
 val isNumberInRange = v in 0 until 10
-                  </pre>
-            </div>
-          </div>
+                  </pre
+          >
+        </div>
+      </div>
+    </section>
 
-        </section>
+    <section id="p4">
+      <h2>کلیدواژه ی is</h2>
 
-        <section id="p4">
-          <h2>کلیدواژه ی is</h2>
+      <p>
+        با استفاده از کلیدواژه ی is در کاتلین میتونیم بررسی کنیم یک متغیر از نوع
+        کدوم کلاس است.
+      </p>
 
-          <p>با استفاده از کلیدواژه ی is در کاتلین میتونیم بررسی کنیم یک متغیر از نوع کدوم کلاس است.
-          </p>
+      <p>مثال:</p>
 
-          <p>مثال:</p>
-
-          <div class="sample">
-            <div class="snippet-container">
-              <pre class="snippet Kotlin">
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Kotlin">
 val v = "Hello Condition!"
 val isString = v is String
 val isChar = v is Char
 
 println("Is v String? $isString")
 println("Is v Char? $isChar")
-                    </pre>
-            </div>
-          </div>
+                    </pre
+          >
+        </div>
+      </div>
+    </section>
 
-        </section>
+    <section id="p5">
+      <h2>کلیدواژه ی when</h2>
 
+      <p>
+        با استفاده از when در کاتلین میتونیم چند موردو به عنوان شرط بررسی کنیم
+      </p>
 
-        <section id="p5">
+      <p>مثال:</p>
 
-          <h2>کلید واژه ی when</h2>
-
-          <p>با استفاده از when در کاتلین میتونیم چند موردو به عنوان شرط بررسی کنیم</p>
-
-          <p>مثال:</p>
-
-          <div class="sample">
-            <div class="snippet-container">
-              <pre class="snippet Kotlin">
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Kotlin">
 val input = Scanner(System.in)
 println("Enter a day in week (between 1 and 7): ")
 val day = input.nextInt()
@@ -467,44 +457,43 @@ when(day){
   7 -&gt; println("Friday")
   else -&gt; println("Out of days not defined")
 }
-                    </pre>
-            </div>
-          </div>
+                    </pre
+          >
+        </div>
+      </div>
 
-          <p>با استفاده از when بررسی میکنیم مقدار day به کدوم عدد میخوره.
-          </p>
-          <p>
-            برنامه عبارت مربوط به اون عدد رو اجرا میکنه.
-          </p>
-          <p>اگه عدد وارد شده به هیچ کدوم از اعداد نخوره عبارت مربوط به else اجرا میشه
-          </p>
+      <p>با استفاده از when بررسی میکنیم مقدار day به کدوم عدد میخوره.</p>
+      <p>برنامه عبارت مربوط به اون عدد رو اجرا میکنه.</p>
+      <p>
+        اگه عدد وارد شده به هیچ کدوم از اعداد نخوره عبارت مربوط به else اجرا
+        میشه
+      </p>
 
-          <p>میتونیم دوتا مقدارو به صورت or داخل when بررسی کنیم:</p>
+      <p>میتونیم دوتا مقدارو به صورت or داخل when بررسی کنیم:</p>
 
-          <div class="sample">
-            <div class="snippet-container">
-              <pre class="snippet Kotlin">
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Kotlin">
 val v = 0
 when(v){
   0 , 1 -&gt; println("Is a binary number")
   else -&gt; println("Not a binary number")
 }
-                    </pre>
-            </div>
-          </div>
+                    </pre
+          >
+        </div>
+      </div>
 
-          <p>
-            مثال بالا اگه مقدار v برابر با 0 یا 1 باشه عبارت مربوط به 0,1 اجرا میشه در غیر اینصورت عبارت مربوط به else
-            اجرا میشه
-          </p>
+      <p>
+        مثال بالا اگه مقدار v برابر با 0 یا 1 باشه عبارت مربوط به 0,1 اجرا میشه
+        در غیر اینصورت عبارت مربوط به else اجرا میشه
+      </p>
 
-          <p>
-            میتونیم متغیر رو هنگام استفاده از when مقداردهی کنیم
-          </p>
+      <p>میتونیم متغیر رو هنگام استفاده از when مقداردهی کنیم</p>
 
-          <div class="sample">
-            <div class="snippet-container">
-              <pre class="snippet Kotlin">
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Kotlin">
 val input = Scanner(System.in)
 
 when(val v = input.nextInt()){
@@ -512,17 +501,16 @@ when(val v = input.nextInt()){
   1 -&gt; println("value is $v and equals to true")
   else -&gt; println("value is $v and not announced in binary")
 }
-                    </pre>
-            </div>
-          </div>
+                    </pre
+          >
+        </div>
+      </div>
 
-          <p>
-            میتونیم از when به عنوان جایگزین if-else استفاده کنیم
-          </p>
+      <p>میتونیم از when به عنوان جایگزین if-else استفاده کنیم</p>
 
-          <div class="sample">
-            <div class="snippet-container">
-              <pre class="snippet Kotlin">
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Kotlin">
 val input = Scanner(System.in)
 
 println("Enter weight in kg")
@@ -541,16 +529,17 @@ when{
   bmi &lt; 35 -&gt; println("Overweight")
   else -&gt; println("obese")
  }
-                    </pre>
-            </div>
-          </div>
+                    </pre
+          >
+        </div>
+      </div>
 
-          <p>مثال</p>
-          <p>استفاده از in در when</p>
+      <p>مثال</p>
+      <p>استفاده از in در when</p>
 
-          <div class="sample">
-            <div class="snippet-container">
-              <pre class="snippet Kotlin">
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Kotlin">
 val v = Scanner(System.in).nextInt()
 
 when(v){
@@ -559,111 +548,77 @@ when(v){
   in 100 until 1000 -&gt; println("Number has three digits")
   else -&gt; println("Number has more than three digits, or it's negative")
 }
-                    </pre>
-            </div>
-          </div>
+                    </pre
+          >
+        </div>
+      </div>
 
-          <p>در مثال بالا یک عدد کاربر وارد میکنه و برنامه بررسی میکنه که این عدد چند رقمیه اگه عدد بیشتر از سه رقم
-            باشه یا منفی عبارت مربوط به else اجرا میشه</p>
+      <p>
+        در مثال بالا یک عدد کاربر وارد میکنه و برنامه بررسی میکنه که این عدد چند
+        رقمیه اگه عدد بیشتر از سه رقم باشه یا منفی عبارت مربوط به else اجرا میشه
+      </p>
 
-          <p>مثال:</p>
+      <p>مثال:</p>
 
-          <p>استفاده از is در when</p>
+      <p>استفاده از is در when</p>
 
-          <div class="sample">
-            <div class="snippet-container">
-              <pre class="snippet Kotlin">
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Kotlin">
 val v = "This is an is example"
 
 when(v){
   is String -&gt; println("it's string type")
   is Int -&gt; println("v is type of Integer and its value is $v")
 }
-                    </pre>
-            </div>
-          </div>
+                    </pre
+          >
+        </div>
+      </div>
+    </section>
+  </section>
 
-        </section>
-      </section>
+  <section id="p6">
+    <h2>خلاصه</h2>
 
-      <section id="p6">
-        <h2>خلاصه</h2>
+    <ul>
+      <li>متغیر های boolean دارای دو مقدار true یا false هستند.</li>
+      <li>
+        با استفاده از if-else در کاتلین میتونیم به بررسی true یا false بودن یک
+        عبارت بپردازیم.
+      </li>
+      <li>از عملگر های منطقی برای تغییر مقدار boolean استفاده میشه.</li>
+      <li>
+        با استفاده از کلیدواژه ی in در کاتلین بررسی میکنیم متغیر عددی در چه
+        محدوده ای از اعداد قرار داره.
+      </li>
+      <li>
+        با استفاده از کلیدواژه ی is در کاتلین بررسی میکنیم متغیر از نوع کدوم
+        کلاس است.
+      </li>
+      <li>
+        با استفاده از when در کاتلین میتونیم چند مورد رو به عنوان شرط بررسی
+        کنیم.
+      </li>
+    </ul>
+  </section>
+</article>
 
-        <ul>
-          <li>متغیر های boolean دارای دو مقدار true یا false هستند.</li>
-          <li>با استفاده از if-else در کاتلین میتونیم به بررسی true یا false بودن یک عبارت بپردازیم.</li>
-          <li>از عملگر های منطقی برای تغییر مقدار boolean استفاده میشه.</li>
-          <li>با استفاده از کلیدواژه ی in در کاتلین بررسی میکنیم متغیر عددی در چه محدوده ای از اعداد قرار داره.</li>
-          <li>با استفاده از کلیدواژه ی is در کاتلین بررسی میکنیم متغیر از نوع کدوم کلاس است.</li>
-          <li>با استفاده از when در کاتلین میتونیم چند مورد رو به عنوان شرط بررسی کنیم.</li>
-        </ul>
+{% capture relative_links %}
+<li>
+  <a href="/post/kotlin/loops.html">حلقه ها در کاتلین</a>
+</li>
+<li>
+  <a href="/post/kotlin/functions.html">توابع در کاتلین</a>
+</li>
 
-      </section>
+<li>
+  <a href="/post/kotlin/mathematics.html">توابع ریاضی در کاتلین</a>
+</li>
 
-
-    </article>
-
-    <div class="article-foot">
-      <aside>
-        <nav class="post-navigation-container">
-          <a href="/post/kotlin/loops.html" class="md-bt md-bt-light">
-
-            <span class="material-symbols-outlined">
-              navigate_next
-            </span>
-            <span class="hint">
-              بعدی
-            </span>
-          </a>
-
-          <a href="/post/kotlin/introduction.html" class="md-bt md-bt-light">
-            <span class="material-symbols-outlined">
-              navigate_before
-            </span>
-            <span class="hint">
-              قبلی
-            </span>
-          </a>
-        </nav>
-        <section>
-          <h2>مطالب مرتبط</h2>
-
-          <ul>
-            <li>
-              <a href="/post/kotlin/loops.html">حلقه ها در کاتلین</a>
-            </li>
-            <li>
-              <a href="/post/kotlin/functions.html">توابع در کاتلین</a>
-            </li>
-
-            <li>
-              <a href="/post/kotlin/mathematics.html">توابع ریاضی در کاتلین</a>
-            </li>
-
-            <li>
-              <a href="https://kotlinlang.org/docs/control-flow.html">مطالعه در وبسایت رسمی</a>
-            </li>
-          </ul>
-        </section>
-      </aside>
-    </div>
-
-  </main>
-
-  <div class="scroll-top-container">
-    <a class="text-decoration-none link-dark material-icons" href="#">
-      arrow_drop_up
-    </a>
-  </div>
-
-  <footer></footer>
-
-  <div class="dialog hide"></div>
-
-  <div class="copy-message">
-    <span class="copy-message-text">کپی شد!</span>
-  </div>
-
-</body>
-
-</html>
+<li>
+  <a target="_blank" href="https://kotlinlang.org/docs/control-flow.html"
+    >مطالعه در وبسایت رسمی</a
+  >
+</li>
+{% endcapture %} {% include article-foot.html relative_links = relative_links %}

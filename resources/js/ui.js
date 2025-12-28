@@ -4,16 +4,15 @@
 
 //create list view for a course to show its content links inside sidebar
 function createCourseListView(courseData) {
-  var parent = document.createElement('div');
+  var parent = document.createElement("div");
 
   var btExpand = createExpandableButton(courseData);
 
-  var subjectListContainer = document.createElement('div');
-  subjectListContainer.classList.add('collapse');
+  var subjectListContainer = document.createElement("div");
+  subjectListContainer.classList.add("subject-list-container");
   subjectListContainer.id = courseData.id;
 
-  var unorderedList = document.createElement('ul');
-  unorderedList.classList.add('list');
+  var unorderedList = document.createElement("ul");
 
   var urls = courseData.urls;
   for (var i = 0; i < urls.length; i++) {
@@ -31,47 +30,43 @@ function createCourseListView(courseData) {
 
 //create an expandable button for every courses which contain links
 function createExpandableButton(courseData) {
-  var btExpand = document.createElement('button');
-  btExpand.classList.add('md-bt-expandable');
-  btExpand.dataset.bsTarget = ('#' + courseData.id);
-  btExpand.dataset.bsToggle = 'collapse';
+  var btExpand = document.createElement("button");
+  btExpand.classList.add("md-bt-expandable");
+  btExpand.dataset.target = courseData.id;
 
-  const icon = document.createElement('span');
-  icon.classList.add('material-icons');
-  icon.innerHTML = 'arrow_drop_down'
-  icon.style.transform = 'rotate(90deg)';
-  icon.style.transition = 'transform 0.2s ease-in-out'
-  const text = document.createElement('span');
+  const icon = document.createElement("span");
+  icon.classList.add("material-symbols-outlined");
+  icon.innerHTML = "arrow_drop_down";
+  icon.style.transform = "rotate(90deg)";
+  icon.style.transition = "transform 200ms ease-in-out";
+  const text = document.createElement("span");
   text.innerText = courseData.title;
 
   btExpand.appendChild(icon);
   btExpand.appendChild(text);
 
-  btExpand.addEventListener('click', function () {
-    rotate(icon, courseData);
+  btExpand.addEventListener("click", function () {
+    const l = document.getElementById(btExpand.dataset.target);
+
+    if (!courseData.isExpanded) {
+      icon.style.transform = "rotate(0deg)";
+      l.style.maxHeight = l.scrollHeight + "px";
+    } else {
+      icon.style.transform = "rotate(90deg)";
+      l.style.maxHeight = "0";
+    }
+
+    courseData.reverseExpandStatus();
   });
 
   return btExpand;
 }
 
-//animates arrow rotation beside of course title
-function rotate(icon, courseData) {
-  if (!courseData.isExpanded) {
-    icon.style.transform = 'rotate(0deg)';
-  } else {
-    icon.style.transform = 'rotate(90deg)';
-  }
-
-  courseData.reverseExpandStatus()
-}
-
-//creates item for every url related to course for showing in sidebar 
+//creates item for every url related to course for showing in sidebar
 function createListItemView(link) {
-  var item = document.createElement('li');
-  item.classList.add('list-item');
+  var item = document.createElement("li");
 
-  var anchor = document.createElement('a');
-  anchor.classList.add('list-item-link');
+  var anchor = document.createElement("a");
   anchor.href = link.href;
   anchor.innerHTML = link.subject;
   item.appendChild(anchor);
@@ -80,15 +75,16 @@ function createListItemView(link) {
 }
 
 /*
-  Views about code styling usable in article.js
+  Views for code styling usable in article.js
 */
 
 function createSampleHeader() {
-  var codeHead = document.createElement('div');
-  codeHead.classList.add('sample-head');
+  var codeHead = document.createElement("div");
+  codeHead.classList.add("sample-head");
 
-  var copyButton = document.createElement('button');
-  copyButton.classList.add('md-bt', 'md-bt-light', 'material-icons');
+  var copyButton = document.createElement("button");
+  copyButton.classList.add("md-bt", "md-bt-light", "material-symbols-outlined");
+  copyButton.style.cursor = "copy";
   copyButton.innerHTML = "content_copy";
 
   codeHead.appendChild(copyButton);
@@ -96,51 +92,57 @@ function createSampleHeader() {
   return codeHead;
 }
 
-function createSnippetToggler(buildToggleButtons){
-
-  var snippetToggler = document.createElement('div');
-  snippetToggler.classList.add('snippet-toggler');
+function createSnippetToggler(buildToggleButtons) {
+  var snippetToggler = document.createElement("div");
+  snippetToggler.classList.add("snippet-toggler");
 
   buildToggleButtons(snippetToggler);
 
   return snippetToggler;
 }
 
-function createSnippetToggleButton(name, id, appendable){
-  let snippetToggleButton = document.createElement('input');
-  snippetToggleButton.classList.add('snippet-toggle-button');
-  snippetToggleButton.type = 'radio';
+function createSnippetToggleButton(name, id, appendable) {
+  let snippetToggleButton = document.createElement("input");
+  snippetToggleButton.classList.add("snippet-toggle-button");
+  snippetToggleButton.type = "radio";
   snippetToggleButton.id = id;
   snippetToggleButton.name = name;
 
-  let snippetToggleLabel = document.createElement('label');
+  let snippetToggleLabel = document.createElement("label");
   snippetToggleLabel.htmlFor = snippetToggleButton.id;
   appendable(snippetToggleButton, snippetToggleLabel);
 }
 
 function createCodeWrap() {
+  var codeWrap = document.createElement("div");
+  codeWrap.classList.add("code-wrap");
 
-  var codeWrap = document.createElement('div');
-  codeWrap.classList.add('code-wrap');
-
-  return codeWrap
+  return codeWrap;
 }
 
 function createCodeTableView(codeWrap, callback) {
-  var table = document.createElement('table');
+  var table = document.createElement("table");
   var tBody = table.createTBody();
-  tBody.classList.add('code-body');
+  tBody.classList.add("code-body");
 
-  callback(table, tBody)
+  callback(table, tBody);
 
   codeWrap.appendChild(table);
-
 }
 
-function createDot(){
-  const dot = document.createElement('div');
+//for slider in main page
+function createDot() {
+  const dot = document.createElement("div");
   dot.classList.add("dot");
   return dot;
 }
 
-export {createCourseListView, createSampleHeader, createSnippetToggler, createSnippetToggleButton, createCodeWrap, createCodeTableView, createDot}
+export {
+  createCourseListView,
+  createSampleHeader,
+  createSnippetToggler,
+  createSnippetToggleButton,
+  createCodeWrap,
+  createCodeTableView,
+  createDot,
+};

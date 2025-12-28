@@ -1,290 +1,304 @@
-<!DOCTYPE html>
+---
+layout: default
+---
 
-<html lang="fa">
+<article>
+  <nav class="toc">
+    <div>دسترسی سریع</div>
+    <ul>
+      <li>
+        <a href="#p0">بررسی کلاس File</a>
+      </li>
+      <li>
+        <a href="#p1">تعریف مسیر</a>
+      </li>
+      <li>
+        <a href="#p2">مورد مطالعه (مثال)</a>
+      </li>
+      <li>
+        <a href="#p3">خلاصه</a>
+      </li>
+    </ul>
+  </nav>
 
-<head>
+  <section id="p0">
+    <h2>بررسی کلاس File</h2>
 
-    <meta content="IE=7" http-equiv="X-UA-Compatible">
-    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <blockquote>
+      جاوا علاوه بر پکیج io یک پکیج دیگه ای به اسم nio نیز برای کار با فایل ها
+      داره.
+    </blockquote>
 
-    <meta content="داده های یک برنامه به طور موقت در طول زمان اجرای برنامه وجود دارن؛ وقتی برنامه متوقف میشه این داده ها از بین میرن؛ برای نگهداری داده ها به طور دائم نیاز داریم اونا رو داخل فضاهای ذخیره‌ساز دائمی از جمله هارد کامپیوتر یا حافظه های micro-sd و... ذخیره کنیم برای این کار میتونیم از پکیج io در جاوا یا پایگاه داده استفاده کنیم در این مطلب به کلاس File در پکیج io در جاوا می پردازیم."
-          name="description">
+    <p>
+      داده های یک برنامه به طور موقت در طول زمان اجرای برنامه وجود دارن؛ وقتی
+      برنامه متوقف میشه این داده ها از بین میرن.
+    </p>
+    <p>
+      برای نگهداری داده ها به طور دائم نیاز داریم اونا رو داخل فضاهای ذخیره‌ساز
+      دائمی از جمله هارد کامپیوتر یا حافظه های micro-sd و... ذخیره کنیم.
+    </p>
 
-    <meta content="text/html;charset=UTF-8" http-equiv="Content-Type">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <p>
+      برای این کار میتونیم از پکیج <strong>Input Output (IO)</strong> و یا
+      کتابخونه ی <strong>پایگاه داده</strong> در جاوا استفاده کنیم.
+    </p>
 
-    <title>کلاس File در جاوا و کاتلین</title>
+    <p>
+      کلاس File از کلاس های مهم پکیج io در جاوا است این کلاس اساس همه ی عملیات
+      io است. از این کلاس برای دسترسی به فایل های کامپیوتر، گرفتن اطلاعات فایل و
+      انجام عملیاتی از قبیل تغییر نام، حذف فایل و یا ایجاد پوشه های جدید استفاده
+      میکنیم.
+    </p>
 
-    <meta content="کلاس File در جاوا و کاتلین" name="og:title">
-    <meta content="داده های یک برنامه به طور موقت در طول زمان اجرای برنامه وجود دارن؛ وقتی برنامه متوقف میشه این داده ها از بین میرن؛ برای نگهداری داده ها به طور دائم نیاز داریم اونا رو داخل فضاهای ذخیره‌ساز دائمی از جمله هارد کامپیوتر یا حافظه های micro-sd و... ذخیره کنیم برای این کار میتونیم از پکیج io در جاوا یا پایگاه داده استفاده کنیم در این مطلب به کلاس File در پکیج io در جاوا می پردازیم."
-          name="og:description">
+    <p>
+      کلاس File متد (تابع) های خوندن و نوشتن رو داده ها رو نداره برای خوندن و
+      نوشتن رو داده ها، از کلاس های دیگه در io استفاده میکنیم.
+    </p>
 
-    <meta content="https://kodedevel.github.io/resources/favicon.png" property="og:image">
-    <meta content="https://kodedevel.github.io/post/java-lib/file.html" property="og:url">
+    <p>
+      پکیج io در واقع یکی از پکیج های جاوا است اما در کاتلین هم مورد استفاده
+      قرار میگیره.
+    </p>
 
-    <meta content="article" property="og:type">
+    <p>
+      در نمودار UML زیر به بررسی کانستراکتور (constructor) و متد (تابع) های پر
+      کاربرد این کلاس پرداختیم:
+    </p>
 
-    <link href="/resources/favicon.png" rel="shortcut icon" type="image/x-icon">
-
-    <link href="/resources/css/main.css" rel="stylesheet">
-    <script src="/resources/js/main.js" type="module"></script>
-
-</head>
-
-<body>
-<header></header>
-<main>
-    <div class="page-wrap">
-
-        <div class="article-head">
-            <h1>
-                کلاس File در جاوا و کاتلین
-            </h1>
-
-            <address>
-                <a class="author text-muted text-decoration-none" rel="author">یونس سلیمانی</a>
-            </address>
-
-            <figure class="figure figure-wrapper">
-                <img alt="کلاس فایل در جاوا" class="rounded figure-img" src="/resources/image/java/cover_file.png"/>
-            </figure>
-
-            <div class="toc">
-                <p class="p-2 mx-2 h5">دسترسی سریع</p>
-                <div class="list-group">
-
-                    <a class="list-group-item list-group-item-action" href="#sub0">بررسی کلاس File</a>
-                    <a class="list-group-item list-group-item-action" href="#sub1">تعریف مسیر</a>
-                    <a class="list-group-item list-group-item-action" href="#sub2">مورد مطالعه (مثال)</a>
-                    <a class="list-group-item list-group-item-action" href="#sub3">خلاصه</a>
-                </div>
-            </div>
+    <div class="tb" id="file_uml_cheat_sheet">
+      <div class="tRow">
+        <div class="tHead">java.io.File</div>
+      </div>
+      <div class="tRow">
+        <div class="tDataLTR">+File(String)</div>
+        <div class="tDataRTL">
+          یک نمونه از کلاس File ایجاد می کنه و مقدار String مسیر فایل یا پوشه ی
+          مد نظر است.
         </div>
+      </div>
+      <div class="tRow">
+        <div class="tDataLTR">+File(String,String)</div>
+        <div class="tDataRTL">
+          یک نمونه از کلاس File ایجاد می کنه پارامتر ها از چپ parent مسیر پوشه
+          ها و child مسیر پوشه یا فایل داخل parent است.
+        </div>
+      </div>
 
-        <article>
+      <div class="tRow">
+        <div class="tDataLTR">+File(URI)</div>
+        <div class="tDataRTL">
+          یک نمونه از File بر اساس uri توسط کلاس URI در جاوا ایجاد میکنه.
+        </div>
+      </div>
 
-            <div class="subsection" id="sub0">
-                                <h2>بررسی کلاس File</h2>
+      <div class="tRow">
+        <div class="tDataLTR">+exists(): boolean</div>
+        <div class="tDataRTL">
+          بررسی میکنه آیا فایل در مسیر تعریف شده وجود داره یا خیر
+        </div>
+      </div>
 
-                <blockquote>جاوا علاوه بر پکیج io یک پکیج دیگه ای به اسم nio نیز برای کار با فایل ها داره.</blockquote>
+      <div class="tRow">
+        <div class="tDataLTR">+canRead(): boolean</div>
+        <div class="tDataRTL">بررسی میکنه آیا فایل قابل خوندن هست یا خیر.</div>
+      </div>
 
-                <p>داده های یک برنامه به طور موقت در طول زمان اجرای برنامه وجود دارن؛ وقتی برنامه متوقف میشه این داده ها
-                    از بین میرن.</p>
-                <p>برای نگهداری داده ها به طور دائم نیاز داریم اونا رو داخل فضاهای ذخیره‌ساز دائمی از جمله هارد کامپیوتر
-                    یا حافظه های micro-sd و... ذخیره کنیم.</p>
+      <div class="tRow">
+        <div class="tDataLTR">+canWrite(): boolean</div>
+        <div class="tDataRTL">بررسی میکنه آیا فایل قابل نوشتن هست یا خیر.</div>
+      </div>
 
-                <p>برای این کار میتونیم از پکیج <strong>Input Output (IO)</strong> و یا کتابخونه ی <strong>پایگاه
-                    داده</strong> در جاوا استفاده کنیم.</p>
+      <div class="tRow">
+        <div class="tDataLTR">+isDirectory(): boolean</div>
+        <div class="tDataRTL">بررسی می کنه فایل پوشه هست یا خیر.</div>
+      </div>
 
-                <p>کلاس File از کلاس های مهم پکیج io در جاوا است این کلاس اساس همه ی عملیات io است. از این کلاس برای
-                    دسترسی به فایل های کامپیوتر، گرفتن اطلاعات فایل و انجام عملیاتی از قبیل تغییر نام، حذف فایل و یا
-                    ایجاد پوشه های جدید استفاده میکنیم.</p>
+      <div class="tRow">
+        <div class="tDataLTR">+isFile(): boolean</div>
+        <div class="tDataRTL">
+          بررسی میکنه نوع فایل در مسیر تعریف شده فایل هست یا خیر.
+        </div>
+      </div>
 
-                <p>کلاس File متد (تابع) های خوندن و نوشتن رو داده ها رو نداره برای خوندن و نوشتن رو داده ها، از کلاس های
-                    دیگه در io استفاده میکنیم.</p>
+      <div class="tRow">
+        <div class="tDataLTR">+isHidden(): boolean</div>
+        <div class="tDataRTL">بررسی میکنه فایل مخفیه یا نه.</div>
+      </div>
 
-                <p>پکیج io در واقع یکی از پکیج های جاوا است اما در کاتلین هم مورد استفاده قرار میگیره.</p>
+      <div class="tRow">
+        <div class="tDataLTR">+isAbsolute(): boolean</div>
+        <div class="tDataRTL">
+          بررسی میکنه مسیر تعریف شده برای فایل یک مسیر کامل هست یا خیر.
+        </div>
+      </div>
 
+      <div class="tRow">
+        <div class="tDataLTR">+getAbsolutePath(): String</div>
+        <div class="tDataRTL">
+          مقدار مسیر کامل رو به صورت String بر میگردونه.
+        </div>
+      </div>
 
-                <p>در نمودار UML زیر به بررسی کانستراکتور (constructor) و متد (تابع) های پر کاربرد این کلاس
-                    پرداختیم:</p>
+      <div class="tRow">
+        <div class="tDataLTR">+getPath(): String</div>
+        <div class="tDataRTL">مقدار مسیر رو به صورت String بر می گردونه.</div>
+      </div>
 
-                <div class="tb" id="file_uml_cheat_sheet">
-                    <div class="tRow">
-                        <div class="tHead">java.io.File</div>
-                    </div>
-                    <div class="tRow">
-                        <div class="tDataLTR">+File(String)</div>
-                        <div class="tDataRTL">یک نمونه از کلاس File ایجاد می کنه و مقدار String مسیر فایل یا پوشه ی مد
-                            نظر است.
-                        </div>
-                    </div>
-                    <div class="tRow">
-                        <div class="tDataLTR">
-                            +File(String,String)
-                        </div>
-                        <div class="tDataRTL">
-                            یک نمونه از کلاس File ایجاد می کنه پارامتر ها از چپ parent مسیر پوشه ها و child مسیر پوشه یا
-                            فایل داخل parent است.
-                        </div>
-                    </div>
+      <div class="tRow">
+        <div class="tDataLTR">+getName(): String</div>
+        <div class="tDataRTL">اسم فایل رو به صورت String بر میگردونه.</div>
+      </div>
 
-                    <div class="tRow">
-                        <div class="tDataLTR">
-                            +File(URI)
-                        </div>
-                        <div class="tDataRTL">یک نمونه از File بر اساس uri توسط کلاس URI در جاوا ایجاد میکنه.</div>
-                    </div>
+      <div class="tRow">
+        <div class="tDataLTR">+getParent(): String</div>
+        <div class="tDataRTL">
+          مسیر پوشه ای که فایل داخلش قرار داره رو به صورت String بر میگردونه.
+        </div>
+      </div>
 
-                    <div class="tRow">
-                        <div class="tDataLTR">+exists(): boolean</div>
-                        <div class="tDataRTL">بررسی میکنه آیا فایل در مسیر تعریف شده وجود داره یا خیر</div>
-                    </div>
+      <div class="tRow">
+        <div class="tDataLTR">+listFiles(): File[]</div>
+        <div class="tDataRTL">
+          اگه مسیر تعریف شده برای کلاس File پوشه باشه یک لیست از محتوای داخل
+          پوشه به صورت آرایه ای از نوع File بر میگردونه.
+        </div>
+      </div>
 
-                    <div class="tRow">
-                        <div class="tDataLTR">+canRead(): boolean</div>
-                        <div class="tDataRTL">بررسی میکنه آیا فایل قابل خوندن هست یا خیر.</div>
-                    </div>
+      <div class="tRow">
+        <div class="tDataLTR">+list(): String[]</div>
+        <div class="tDataRTL">
+          اگه مسیر تعریف شده یک پوشه باشه آرایه ای از اسم فایل ها و پوشه های
+          داخلشو به صورت String بر میگردونه.
+        </div>
+      </div>
 
-                    <div class="tRow">
-                        <div class="tDataLTR">+canWrite(): boolean</div>
-                        <div class="tDataRTL">بررسی میکنه آیا فایل قابل نوشتن هست یا خیر.
-                        </div>
-                    </div>
+      <div class="tRow">
+        <div class="tDataLTR">+delete(): boolean</div>
+        <div class="tDataRTL">
+          فایل در مسیر تعریف شده رو حذف میکنه و اگه انجام بشه مقدار true بر
+          میگردونه. (اگه پوشه باشه باید محتوای داخل پوشه قبل از حذف پوشه حذف
+          بشن).
+        </div>
+      </div>
 
-                    <div class="tRow">
-                        <div class="tDataLTR">+isDirectory(): boolean</div>
-                        <div class="tDataRTL">بررسی می کنه فایل پوشه هست یا خیر.</div>
-                    </div>
+      <div class="tRow">
+        <div class="tDataLTR">+mkdir(): boolean</div>
+        <div class="tDataRTL">
+          یک پوشه در مسیر تعریف شده ایجاد میکنه و اگه انجام بشه true بر
+          میگردونه.
+        </div>
+      </div>
 
-                    <div class="tRow">
-                        <div class="tDataLTR">+isFile(): boolean</div>
-                        <div class="tDataRTL">بررسی میکنه نوع فایل در مسیر تعریف شده فایل هست یا خیر.</div>
-                    </div>
+      <div class="tRow">
+        <div class="tDataLTR">+mkdirs(): boolean</div>
+        <div class="tDataRTL">
+          یک یا چند پوشه در صورت عدم وجود در مسیر تعریف شده ایجاد میکنه و اگه
+          انجام بشه true بر میگردونه.
+        </div>
+      </div>
 
-                    <div class="tRow">
-                        <div class="tDataLTR">+isHidden(): boolean</div>
-                        <div class="tDataRTL">بررسی میکنه فایل مخفیه یا نه.</div>
-                    </div>
+      <div class="tRow">
+        <div class="tDataLTR">+lastModified(): long</div>
+        <div class="tDataRTL">
+          تاریخ اخرین تغییرات در فایل رو به صورت long بر میگردونه.
+        </div>
+      </div>
 
-                    <div class="tRow">
-                        <div class="tDataLTR">+isAbsolute(): boolean</div>
-                        <div class="tDataRTL">بررسی میکنه مسیر تعریف شده برای فایل یک مسیر کامل هست یا خیر.</div>
-                    </div>
+      <div class="tRow">
+        <div class="tDataLTR">+renameTo(File): boolean</div>
+        <div class="tDataRTL">
+          فایل موجود رو تغییر نام میده و اگه انجام بشه true بر میگردونه.
+        </div>
+      </div>
+    </div>
+  </section>
 
-                    <div class="tRow">
-                        <div class="tDataLTR">+getAbsolutePath(): String</div>
-                        <div class="tDataRTL">مقدار مسیر کامل رو به صورت String بر میگردونه.</div>
-                    </div>
+  <section id="p1">
+    <h2>تعریف مسیر</h2>
 
-                    <div class="tRow">
-                        <div class="tDataLTR">+getPath(): String</div>
-                        <div class="tDataRTL">مقدار مسیر رو به صورت String بر می گردونه.</div>
-                    </div>
+    <p>
+      برای کلاس File در جاوا و کاتلین به دو روش میتونیم مسیر پوشه یا فایل مورد
+      نظر رو تعریف کنیم.
+    </p>
 
-                    <div class="tRow">
-                        <div class="tDataLTR">+getName(): String</div>
-                        <div class="tDataRTL">اسم فایل رو به صورت String بر میگردونه.</div>
-                    </div>
+    <p>۱- تعریف مسیر کامل که بهش (Absolute Path) میگیم.</p>
+    <p>۲- تعریف مسیر کوتاه یا خلاصه که بهش (Abstract Path) میگیم.</p>
 
+    <h3>۱- تعریف مسیر absolute برای File</h3>
+    <p>
+      اگه مسیر تارگت رو به صورت کامل (از روت) تعریف کنیم، بهش مسیر کامل
+      (absolute) میگیم.
+    </p>
 
-                    <div class="tRow">
-                        <div class="tDataLTR">+getParent(): String</div>
-                        <div class="tDataRTL">مسیر پوشه ای که فایل داخلش قرار داره رو به صورت String بر میگردونه.</div>
-                    </div>
+    <p>
+      فرض کنید در ویندوز داخل درایو c یک پوشه داریم به اسم Music و داخل پوشه یک
+      آهنگ داریم به اسم Haydeh.mp3 مسیر کامل فایل به صورت زیر است:
+    </p>
 
+    <p>c:\Music\Haydeh.mp3</p>
 
-                    <div class="tRow">
-                        <div class="tDataLTR">+listFiles(): File[]</div>
-                        <div class="tDataRTL">اگه مسیر تعریف شده برای کلاس File پوشه باشه یک لیست از محتوای داخل پوشه به
-                            صورت آرایه ای از نوع File بر میگردونه.
-                        </div>
-                    </div>
+    <p>چون \ جزو کاراکتر های ویژه تو جاواست، باید دوتا \ قرار بدیم:</p>
 
-                    <div class="tRow">
-                        <div class="tDataLTR">+list(): String[]</div>
-                        <div class="tDataRTL">اگه مسیر تعریف شده یک پوشه باشه آرایه ای از اسم فایل ها و پوشه های داخلشو
-                            به صورت String بر میگردونه.
-                        </div>
-                    </div>
-
-                    <div class="tRow">
-                        <div class="tDataLTR">+delete(): boolean</div>
-                        <div class="tDataRTL">فایل در مسیر تعریف شده رو حذف میکنه و اگه انجام بشه مقدار true بر
-                            میگردونه. (اگه پوشه باشه باید محتوای داخل پوشه قبل از حذف پوشه حذف بشن).
-                        </div>
-                    </div>
-
-
-                    <div class="tRow">
-                        <div class="tDataLTR">+mkdir(): boolean</div>
-                        <div class="tDataRTL">یک پوشه در مسیر تعریف شده ایجاد میکنه و اگه انجام بشه true بر میگردونه.
-                        </div>
-                    </div>
-
-
-                    <div class="tRow">
-                        <div class="tDataLTR">+mkdirs(): boolean</div>
-                        <div class="tDataRTL">یک یا چند پوشه در صورت عدم وجود در مسیر تعریف شده ایجاد میکنه و اگه انجام
-                            بشه true بر میگردونه.
-                        </div>
-                    </div>
-
-                    <div class="tRow">
-                        <div class="tDataLTR">+lastModified(): long</div>
-                        <div class="tDataRTL">تاریخ اخرین تغییرات در فایل رو به صورت long بر میگردونه.</div>
-                    </div>
-
-                    <div class="tRow">
-                        <div class="tDataLTR">+renameTo(File): boolean</div>
-                        <div class="tDataRTL">فایل موجود رو تغییر نام میده و اگه انجام بشه true بر میگردونه.</div>
-                    </div>
-                </div>
-
-            </div>
-            <div class="subsection" id="sub1">
-                <h2>تعریف مسیر</h2>
-
-                <p>برای کلاس File در جاوا و کاتلین به دو روش میتونیم مسیر پوشه یا فایل مورد نظر رو تعریف
-                    کنیم.</p>
-
-                <p>۱- تعریف مسیر کامل که بهش (Absolute Path) میگیم.</p>
-                <p>۲- تعریف مسیر کوتاه یا خلاصه که بهش (Abstract Path) میگیم.</p>
-
-                <h3>۱- تعریف مسیر absolute برای File</h3>
-                <p>اگه مسیر تارگت رو به صورت کامل (از روت) تعریف کنیم، بهش مسیر کامل (absolute) میگیم.</p>
-
-                <p>فرض کنید در ویندوز داخل درایو c یک پوشه داریم به اسم Music و داخل پوشه یک آهنگ داریم به اسم
-                    Haydeh.mp3 مسیر کامل فایل به صورت زیر است:</p>
-
-                <p>c:\Music\Haydeh.mp3</p>
-
-                <p>چون \ جزو کاراکتر های ویژه تو جاواست، باید دوتا \ قرار بدیم:</p>
-
-                <div class="sample">
-                    <div class="snippet-container">
-                        <div class="snippet Java">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
 new File("c:\\Music\\Haydeh.mp3");
-                        </div>
-                    </div>
-                </div>
+                        </pre
+        >
+      </div>
+    </div>
 
-                <p>اگه سیستم عامل شبه یونیکس (لینوکس) باشه برای تعریف مسیر absolute باید مانند زیر عمل کنیم:</p>
+    <p>
+      اگه سیستم عامل شبه یونیکس (لینوکس) باشه برای تعریف مسیر absolute باید
+      مانند زیر عمل کنیم:
+    </p>
 
-                <div class="sample">
-                    <div class="snippet-container">
-                        <div class="snippet Java">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
 new File("/home/username/Music/Haydeh.mp3");
-                        </div>
-                    </div>
-                </div>
+                        </pre
+        >
+      </div>
+    </div>
 
+    <section>
+      <h3>۲- تعریف مسیر خلاصه (abstract)</h3>
 
-                <h3>۲- تعریف مسیر خلاصه (abstract)</h3>
+      <p>
+        اگه شروع مسیر از پوشه ای باشه که برنامه اجرا شده، بهش مسیر abstract
+        میگیم.
+      </p>
+      <p>
+        نحوه ی تعریف مسیر abstract در جاوا بین ویندوز و لینوکس مشابه یکدیگر است.
+      </p>
 
-                <p>اگه شروع مسیر از پوشه ای باشه که برنامه اجرا شده، بهش مسیر abstract میگیم.</p>
-                <p>نحوه ی تعریف مسیر abstract در جاوا بین ویندوز و لینوکس مشابه یکدیگر است.</p>
+      <p>
+        فرض کنید برنامه از یک پوشه قبل از پوشه ی Music اجرا شده، برای تعریف مسیر
+        abstract مانند زیر عمل میکنیم:
+      </p>
 
-                <p>فرض کنید برنامه از یک پوشه قبل از پوشه ی Music اجرا شده، برای تعریف مسیر abstract مانند زیر عمل
-                    میکنیم: </p>
-
-                <div class="sample">
-                    <div class="snippet-container">
-                        <div class="snippet Java">
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
 new File("Music/Haydeh.mp3");
-                        </div>
-                    </div>
-                </div>
+                        </pre
+          >
+        </div>
+      </div>
+    </section>
+  </section>
 
-            </div>
+  <section id="p2">
+    <h2>مورد مطالعه (مثال)</h2>
+    <p>
+      در زیر هرکس میتونه مسیر مورد نظر خودشو به‌جای پارامتر کانستراکتور قرار
+      بده.
+    </p>
 
-            <div class="subsection" id="sub2">
-                <h2>مورد مطالعه (مثال)</h2>
-                <p>در زیر هرکس میتونه مسیر مورد نظر خودشو به‌جای پارامتر کانستراکتور قرار بده.</p>
-
-                <div class="sample">
-                    <div class="snippet-container">
-                        <div class="snippet Java">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
 File file = new File("Path_To_File");
 System.out.println("Does it exist? " + file.exists());
 System.out.println("Is it Absolute? " + file.isAbsolute());
@@ -295,8 +309,9 @@ System.out.println("Is it Hidden? " + file.isHidden());
 System.out.println("Is it File? " + file.isFile());
 System.out.println("Is it Directory? " + file.isDirectory());
 System.out.println("Last modification date: " + java.util.Date(file.lastModified()));
-                        </div>
-                        <div class="snippet Kotlin">
+                        </pre
+        >
+        <pre class="snippet Kotlin">
 val file = File("Path_To_File");
 println("Does it exist? ${file.exists()}");
 println("Is it Absolute? ${file.isAbsolute()}");
@@ -307,89 +322,62 @@ println("Is it Hidden? ${file.isHidden()}");
 println("Is it File? ${file.isFile()}");
 println("Is it Directory? ${file.isDirectory()}");
 println("Last modification date: ${java.util.Date(file.lastModified())}");
-                        </div>
-                    </div>
-                </div>
-
-                <p>در مثال بالا چندتا از متد های پر کابرد کلاس File رو استفاده کردیم خودتون میتونید متد های دیگه ی این
-                    کلاس، که در <a class="text-decoration-none" href="#file_uml_cheat_sheet">نمودار UML</a> آورده شده رو
-                    بررسی کنید. </p>
-
-            </div>
-
-            <div class="subsection" id="sub3">
-                <h2>خلاصه</h2>
-                <p>برای خوندن و نوشتن داده ها رو حافظه ی دائمی از پکیج io در جاوا استفاده میکنیم.</p>
-                <p>کلاس File اساس همه ی عملیات های io در جاواست از این کلاس برای عملیاتی از جمله تغییر نام، حذف، گرفتن
-                    اطلاعات فایل و یا ایجاد پوشه ی جدید استفاده میکنیم.</p>
-                <p>کلاس File متد های خوندن و نوشتن روی فایل رو نداره و برای این کار از کلاس های دیگه در پکیج io استفاده
-                    میکنیم.</p>
-                <p>برای تعریف مسیر تارگت می تونیم به دو روش absolute یا abstract عمل کنیم.</p>
-            </div>
-        </article>
-
-        <div class="article-foot">
-
-            <div class="navigator-container">
-
-                <a class="md-bt md-bt-light" href="printwriter.html">
-            <span class="material-icons">
-              navigate_next
-            </span>
-                    <span class="hint">
-              بعدی
-            </span>
-                </a>
-
-                <a class="md-bt md-bt-light" href="#">
-            <span class="hint">
-              قبلی
-            </span>
-                    <span class="material-icons">
-              navigate_before
-            </span>
-
-                </a>
-            </div>
-
-            <div class="relative-articles-container">
-                <p>مطالب مرتبط</p>
-                <div>
-                    <div>
-                        <a href="printwriter.html">نوشتن در فایل با PrintWriter</a>
-                    </div>
-                    <div>
-                        <a href="/post/kotlin/functions.html">توابع در کاتلین</a>
-                    </div>
-                    <div>
-                        <a href="/post/kotlin/objects-and-classes.html">آبجکت و کلاس ها در کاتلین</a>
-                    </div>
-                    <div>
-                        <a href="/post/kotlin/inheritance.html">وراثت در کاتلین</a>
-                    </div>
-
-                    <div>
-                        <a href="https://docs.oracle.com/en/java/javase/22/docs/api/java.base/java/io/File.html">مطالعه در وبسایت رسمی</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+                        </pre
+        >
+      </div>
     </div>
-</main>
 
-<div class="scroll-top-container">
-    <a class="text-decoration-none link-dark material-icons" href="#">
-        arrow_drop_up
-    </a>
-</div>
+    <p>
+      در مثال بالا چندتا از متد های پر کابرد کلاس File رو استفاده کردیم خودتون
+      میتونید متد های دیگه ی این کلاس، که در
+      <a class="text-decoration-none" href="#file_uml_cheat_sheet"
+        >نمودار UML</a
+      >
+      آورده شده رو بررسی کنید.
+    </p>
+  </section>
 
-<footer></footer>
+  <section id="p3">
+    <h2>خلاصه</h2>
+    <ul>
+      <li>
+        برای خوندن و نوشتن داده ها رو حافظه ی دائمی از پکیج io در جاوا استفاده
+        میکنیم.
+      </li>
+      <li>
+        کلاس File اساس همه ی عملیات های io در جاواست از این کلاس برای عملیاتی از
+        جمله تغییر نام، حذف، گرفتن اطلاعات فایل و یا ایجاد پوشه ی جدید استفاده
+        میکنیم.
+      </li>
+      <li>
+        کلاس File متد های خوندن و نوشتن روی فایل رو نداره و برای این کار از کلاس
+        های دیگه در پکیج io استفاده میکنیم.
+      </li>
+      <li>
+        برای تعریف مسیر تارگت می تونیم به دو روش absolute یا abstract عمل کنیم.
+      </li>
+    </ul>
+  </section>
+</article>
 
-<div class="dialog hide"></div>
+{% capture links %}
+<li>
+  <a href="printwriter.html">نوشتن در فایل با PrintWriter</a>
+</li>
+<li>
+  <a href="/post/kotlin/functions.html">توابع در کاتلین</a>
+</li>
+<li>
+  <a href="/post/kotlin/objects-and-classes.html">آبجکت و کلاس ها در کاتلین</a>
+</li>
+<li>
+  <a href="/post/kotlin/inheritance.html">وراثت در کاتلین</a>
+</li>
 
-<div class="copy-message">
-    <span class="copy-message-text">کپی شد!</span>
-</div>
-
-</body>
+<li>
+  <a
+    href="https://docs.oracle.com/en/java/javase/22/docs/api/java.base/java/io/File.html"
+    >مطالعه در وبسایت رسمی</a
+  >
+</li>
+{% endcapture %} {% include article-foot.html relative_link = links %}

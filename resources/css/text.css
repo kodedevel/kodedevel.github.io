@@ -1,39 +1,38 @@
 button, a, p, h1, h2,h3 ,h4, h5, h6, blockquote, strong {
     font-family: Samim;
-    direction: rtl;
-    padding: 4px 0 4px 0;
+    padding: 4px 0;
 }
 
  h2, h3, h4, h5, h6{
-    width: 100%;
-    height: auto;
     font-weight: bold !important;
-    padding: 16px;
+    padding: 16px 8px;
     background-color: #f5f5f5;
     border-radius: 8px;
-    direction: rtl;
 }
 
 h1{
-    font-size: 1.8em !important;
-    font-weight: bold !important;
-    margin: 32px 0 32px 0 !important;
+    font-size: 1.8em;
+    font-weight: bold;
+    margin-right: 8px;
 }
 
 h2{
-    font-size: 1.44em !important;
+    font-size: 1.44em; 
 }
 
 h3{
-   font-size: 1.152em !important;
+   font-size: 1.152em;
 }
 
 h4{
-    font-size: 0.963em !important;
+    font-size: 0.963em;
 }
 
 blockquote {
-    font-style: italic;
+  color: #0277BD;
+  font-style: italic;
+  font-weight: bold;
+  margin: auto 12px 0 0;
 }
 
  p{
@@ -43,27 +42,26 @@ blockquote {
 }
 
 a{
-  text-decoration: none !important;
-  color: #212121 !important;
+  text-decoration: none;
+  color: #212121 ;
 }
 
 a:hover{
-  color: #0D47A1 !important;
+  color: #0D47A1;
 }
 
 article a{
-  color: #1976D2 !important;
-  font-style: italic;
+  color: #1976D2;
 }
 
 footer a{
-  color: #fafafa !important;
+  color: #fafafa;
   margin: 2px;
   padding: 2px;
 }
 
 footer a:hover{
-  color: #e0e0e0 !important;
+  color: #e0e0e0;
 }
 
 .keyword{

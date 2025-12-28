@@ -1,90 +1,69 @@
-<!DOCTYPE html>
+---
+layout: default
+---
 
-<html lang="fa">
+<article>
+  <nav class="toc">
+    <div>دسترسی سریع</div>
+    <ul>
+      <li>
+        <a href="#p0">مفهوم چند ریختی</a>
+      </li>
+      <li>
+        <a href="#p1">پیوندپویا (Dynamic Binding)</a>
+      </li>
+      <li>
+        <a href="#p2">کست کردن (Casting)</a>
+      </li>
+      <li>
+        <a href="#p3">خلاصه</a>
+      </li>
+    </ul>
+  </nav>
+  <section id="p0">
+    <h2>مفهوم چندریختی</h2>
 
-<head>
+    <blockquote>
+      چند ریختی (polymorphism) در جاوا یعنی یک متغیر آبجکتی، به‌جای آبجکت از نوع
+      خودش به یک آبجکت از کلاسی که ازش ارث بری کرده اشاره کنه.
+    </blockquote>
 
-    <meta content="IE=7" http-equiv="X-UA-Compatible">
-    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <p>
+      سه اصل شی گرایی عبارتند از کپسوله سازی
+      <strong>(Encapsulation)، وراثت (Inheritance)</strong> و<strong>
+        چند ریختی (Polymorphism)</strong
+      >.
+    </p>
+    <p>
+      بعضیا <strong>Abstraction</strong> هم اصل چهارم شی گرایی میدونن که در
+      اینجا موضوع قابل بحث ما نیست.
+    </p>
 
-    <meta content="چند ریختی یکی از اصول شی گرایی است، با چند ریختی یک متغیر از نوع سوپر کلاس اشاره میکنه به یک آبجکت از نوع ساب کلاس در این مطلب به چند ریختی در جاوا می پردازیم."
-          name="description">
+    <p>
+      در مطالب قبل با دو اصل کپسوله سازی و وراثت اشنا شدیم؛ در این مطلب میخوایم
+      به چند ریختی بپردازیم.
+    </p>
 
-    <meta content="text/html;charset=UTF-8" http-equiv="Content-Type">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <p>
+      در قسمت مورد مطالعه ی
+      <a class="text-decoration-none" href="inheritance.html">مطلب قبلی</a> یک
+      مثال از کلاس های Circle، Rectangle و GeometricShape زده بودیم.
+    </p>
 
-    <title>چند ریختی (Polymorphism) و کست کردن جاوا</title>
+    <p>
+      میتونیم بگیم هر دایره یک شکل هندسیه اما هر شکل هندسی قطعا دایره نیست؛ با
+      این استدلال در مثال قسمت قبل یک متغیر از نوع GeometricShape میتونه به یک
+      آبجکت از نوع Circle اشاره کنه.
+    </p>
 
-    <meta content="چند ریختی (Polymorphism) و کست کردن در جاوا" name="og:title">
-    <meta content="چند ریختی یکی از اصول شی گرایی است، با چند ریختی یک متغیر از نوع سوپر کلاس اشاره میکنه به یک آبجکت از نوع ساب کلاس در این مطلب به چند ریختی در جاوا می پردازیم."
-          name="og:description">
+    <p>
+      حالا میخوایم یک متد عمومی درست کنیم تا اطلاعات هر کلاسی که از
+      GeometricShape ارث میبره رو نمایش بده.
+    </p>
 
-    <meta content="https://kodedevel.github.io/resources/favicon.png" property="og:image">
-    <meta content="https://kodedevel.github.io/post/java/polymorphism.html" property="og:url">
-
-    <meta content="article" property="og:type">
-
-    <link href="/resources/favicon.png" rel="shortcut icon" type="image/x-icon">
-
-    <link href="/resources/css/main.css" rel="stylesheet">
-    <script src="/resources/js/main.js" type="module"></script>
-
-</head>
-
-<body>
-<header></header>
-<main>
-    <div class="page-wrap">
-
-        <div class="article-head">
-            <h1>
-                چند ریختی (Polymorphism) و کست کردن در جاوا
-            </h1>
-
-            <address>
-                <a class="author text-muted text-decoration-none" rel="author">یونس سلیمانی</a>
-            </address>
-
-            <figure class="figure figure-wrapper">
-                <img alt="چند ریختی و کست کردن در جاوا" class="rounded figure-img" src="/resources/image/java/cover_polymorphism.png"/>
-            </figure>
-
-            <div class="toc">
-                <p class="p-2 mx-2 h5">دسترسی سریع</p>
-                <div class="list-group">
-
-                    <a class="list-group-item list-group-item-action" href="#sub0">مفهوم چند ریختی</a>
-
-                    <a class="list-group-item list-group-item-action" href="#sub1">پیوندپویا (Dynamic Binding)</a>
-
-                    <a class="list-group-item list-group-item-action" href="#sub2">کست کردن (Casting)</a>
-
-                    <a class="list-group-item list-group-item-action" href="#sub3">خلاصه</a>
-                </div>
-            </div>
-        </div>
-
-        <article>
-
-            <div class="subsection" id="sub0">
-                <h2>مفهوم چندریختی</h2>
-
-                <blockquote>چند ریختی (polymorphism) در جاوا یعنی یک متغیر آبجکتی، به‌جای آبجکت از نوع خودش به یک آبجکت از کلاسی که ازش ارث بری کرده اشاره کنه.</blockquote>
-
-                <p>سه اصل شی گرایی عبارتند از کپسوله سازی <strong>(Encapsulation)، وراثت (Inheritance)</strong> و<strong> چند ریختی (Polymorphism)</strong>.</p>
-                <p>بعضیا <strong>Abstraction</strong> هم اصل چهارم شی گرایی میدونن که در اینجا موضوع قابل بحث ما نیست.</p>
-
-                <p>در مطالب قبل با دو اصل کپسوله سازی و وراثت اشنا شدیم؛ در این مطلب میخوایم به چند ریختی بپردازیم.</p>
-
-                <p>در قسمت مورد مطالعه ی <a class="text-decoration-none" href="inheritance.html">مطلب قبلی</a> یک مثال از کلاس های Circle، Rectangle و GeometricShape زده بودیم.</p>
-
-                <p>میتونیم بگیم هر دایره یک شکل هندسیه اما هر شکل هندسی قطعا دایره نیست؛ با این استدلال در مثال قسمت قبل یک متغیر از نوع GeometricShape میتونه به یک آبجکت از نوع Circle اشاره کنه.</p>
-
-                <p>حالا میخوایم یک متد عمومی درست کنیم تا اطلاعات هر کلاسی که از GeometricShape ارث میبره رو نمایش بده.</p>
-
-                <div class="sample">
-                    <div class="snippet-container">
-                        <div class="snippet Java">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
 public static void main(String args){
 
     displayShapeInfo(new Circle(4, "Blue", true);
@@ -95,35 +74,49 @@ public static void main(String args){
 public static void displayShapeInfo(GeometricShape shape){
     System.out.println("Created on " + shape.getDateCreated() + "\nThe color is " + shape.getColor() + "\nIs it filled? " + shape.isFilled());
 }
-                        </div>
-                    </div>
-                </div>
+                        </pre
+        >
+      </div>
+    </div>
 
+    <p>
+      در بالا پارامتر متد displayShapeInfo از نوع GeometricShape است. این متغیر
+      میتونه علاوه بر آبجکت هایی که از GeometricShape هستند به هر آبجکتی که از
+      GeometricShape ارث بری میکنه اشاره کنه.
+    </p>
 
-                <p>در بالا پارامتر متد displayShapeInfo از نوع GeometricShape است. این متغیر میتونه علاوه بر آبجکت هایی که از GeometricShape هستند به هر آبجکتی که از GeometricShape ارث بری میکنه اشاره کنه.</p>
+    <div class="note">
+      <p class="note-head">توجه</p>
+      <p>
+        هنگامی که با یک متغیر از سوپرکلاس داریم به آدرس یک آبجکت از ساب کلاس
+        اشاره میکنیم، فقط فیلد ها و متد های تعریف شده در سوپرکلاس رو میتونیم صدا
+        بزنیم.
+      </p>
+    </div>
 
-                <div class="note">
-                    <p class="note-head">توجه</p>
-                    <p>هنگامی که با یک متغیر از سوپرکلاس داریم به آدرس یک آبجکت از ساب کلاس اشاره میکنیم، فقط فیلد ها و متد های تعریف شده در سوپرکلاس رو میتونیم صدا بزنیم.</p>
-                </div>
+    <div class="note">
+      <p class="note-head">توجه</p>
+      <p>
+        هر متغیر از نوع سوپرکلاس میتونه به یک آبجکت از ساب کلاس اشاره کنه اما
+        برعکسش ممکن نیست به زبان ساده در مثال بخوایم بیان کنیم هر Circle یک
+        GeometricShape است اما هر GeometricShape همیشه Circle نیست مثلا در بالا
+        میتونه Rectangle باشه.
+      </p>
+    </div>
+  </section>
 
+  <section id="p1">
+    <h2>پیوندپویا (Dynamic Binding)</h2>
+    <blockquote>
+      هنگامی که یک متد طی وراثت، در چند کلاس بازنویسی بشه JVM تصمیم میگیره متد
+      در کدوم کلاس اجرا بشه.
+    </blockquote>
 
-                <div class="note">
-                    <p class="note-head">توجه</p>
-                    <p>هر متغیر از نوع سوپرکلاس میتونه به یک آبجکت از ساب کلاس اشاره کنه اما برعکسش ممکن نیست به زبان ساده در مثال بخوایم بیان کنیم هر Circle یک GeometricShape است اما هر GeometricShape همیشه Circle نیست مثلا در بالا میتونه Rectangle باشه.</p>
-                </div>
+    <p>یک متد طی وراثت میتونه در چند ساب کلاس پیاده‌سازی و بازنویسی بشه.</p>
 
-            </div>
-
-            <div class="subsection" id="sub1">
-                <h2>پیوندپویا (Dynamic Binding)</h2>
-                <blockquote>هنگامی که یک متد طی وراثت، در چند کلاس بازنویسی بشه JVM تصمیم میگیره متد در کدوم کلاس اجرا بشه.</blockquote>
-
-                <p>یک متد طی وراثت میتونه در چند ساب کلاس پیاده‌سازی و بازنویسی بشه.</p>
-
-                <div class="sample">
-                    <div class="snippet-container">
-                        <div class="snippet Java">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
 class A {
 
     String myMethod(){
@@ -141,37 +134,60 @@ class B extends A {
 
 class C extends B{
 }
-                        </div>
-                    </div>
-                </div>
+                        </pre
+        >
+      </div>
+    </div>
 
-                <div class="sample">
-                    <div class="snippet-container">
-                        <div class="snippet Java">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
 public static void main(String[] args){
     A o = new C();
     System.out.println(o.myMethod());
 }
-                        </div>
-                    </div>
-                </div>
+                        </pre
+        >
+      </div>
+    </div>
 
-                <p>به نظر شما وقتی یک متغیر از نوع A اشاره کنه به آبجکتی از نوع C چطور باید بدونیم کدوم متد اجرا میشه؟</p>
+    <p>
+      به نظر شما وقتی یک متغیر از نوع A اشاره کنه به آبجکتی از نوع C چطور باید
+      بدونیم کدوم متد اجرا میشه؟
+    </p>
 
-                <p>ابتدا به نوع بیان شده و نوع واقعی می پردازیم.</p>
-                <p>به متغیری که از نوع سوپر کلاس است و به یک آبجکت از نوع ساب کلاس داره اشاره میکنه <strong>نوع بیان شده (declared type)</strong> میگیم و به آبجکت اشاره شده از ساب کلاس، <strong>نوع واقعی (actual type)</strong> میگیم.</p>
+    <p>ابتدا به نوع بیان شده و نوع واقعی می پردازیم.</p>
+    <p>
+      به متغیری که از نوع سوپر کلاس است و به یک آبجکت از نوع ساب کلاس داره اشاره
+      میکنه <strong>نوع بیان شده (declared type)</strong> میگیم و به آبجکت اشاره
+      شده از ساب کلاس، <strong>نوع واقعی (actual type)</strong> میگیم.
+    </p>
 
-                <p>فرض کنید یک متغیر از نوع سوپرکلاس داره اشاره میکنه به یک آبجکت از ساب کلاس؛ وقتی یک متد که ابتدا در سوپرکلاس پیاده‌سازی شده و در ساب کلاس ها طی روند وراثت بازنویسی شده رو صدا میکنیم؛ JVM از actual type شروع میکنه به جستجو و تا declared type به اولین پیاده‌سازی متد که میرسه اون متد رو به عنوان متد اجرایی در نظر میگیره. </p>
+    <p>
+      فرض کنید یک متغیر از نوع سوپرکلاس داره اشاره میکنه به یک آبجکت از ساب
+      کلاس؛ وقتی یک متد که ابتدا در سوپرکلاس پیاده‌سازی شده و در ساب کلاس ها طی
+      روند وراثت بازنویسی شده رو صدا میکنیم؛ JVM از actual type شروع میکنه به
+      جستجو و تا declared type به اولین پیاده‌سازی متد که میرسه اون متد رو به
+      عنوان متد اجرایی در نظر میگیره.
+    </p>
 
-                <p>در مثال بالا JVM از C که actual type است شروع میکنه به بررسی میبینه در C بازنویسی متد نداریم میره سراغ B و اونجا متد رو بازنویسی کردیم؛ متدی که در B بازنویسی کردیم رو به کار میگیره و دیگه سراغ بررسی A نمیره.</p>
+    <p>
+      در مثال بالا JVM از C که actual type است شروع میکنه به بررسی میبینه در C
+      بازنویسی متد نداریم میره سراغ B و اونجا متد رو بازنویسی کردیم؛ متدی که در
+      B بازنویسی کردیم رو به کار میگیره و دیگه سراغ بررسی A نمیره.
+    </p>
 
-                <p>مثال</p>
+    <p>مثال</p>
 
-                <p>در مثال زیر متد toString رو در چند کلاس بازنویسی کردیم؛ زمان اجرا JVM از actual type شروع میکنه به جستجوی اولین پیاده‌سازی متد toString و بعد از پیدا کردن پیاده‌سازی متد رو اجرا میکنه و به جستجو ادامه نمیده.</p>
+    <p>
+      در مثال زیر متد toString رو در چند کلاس بازنویسی کردیم؛ زمان اجرا JVM از
+      actual type شروع میکنه به جستجوی اولین پیاده‌سازی متد toString و بعد از
+      پیدا کردن پیاده‌سازی متد رو اجرا میکنه و به جستجو ادامه نمیده.
+    </p>
 
-                <div class="sample">
-                    <div class="snippet-container">
-                        <div class="snippet Java">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
 public class DynamicBindingDemo {
     public static void main(String[] args) {
         Object graduateStudent = new GraduateStudent();
@@ -199,66 +215,95 @@ class Person extends Object {
         return "Person";
     }
 }
-                        </div>
-                    </div>
-                </div>
+                        </pre
+        >
+      </div>
+    </div>
+  </section>
 
-            </div>
+  <section id="p2">
+    <h2>کست کردن (Casting)</h2>
+    <blockquote>کست کردن یعنی تبدیل یک نوع به نوع دیگه.</blockquote>
 
-
-            <div class="subsection" id="sub2">
-                <h2>کست کردن (Casting)</h2>
-                <blockquote>کست کردن یعنی تبدیل یک نوع به نوع دیگه.</blockquote>
-
-
-                <p>در مثال قسمت قبل متغیری از نوع Object به Person اشاره کرد و فقط متد های toString، hashCode و equals رو با متغیر میتونستیم صدا بزنیم چون کلاس آبجکت فقط این متد ها داخلش تعریف شده.</p>
-                <div class="sample">
-                    <div class="snippet-container">
-                        <div class="snippet Java">
+    <p>
+      در مثال قسمت قبل متغیری از نوع Object به Person اشاره کرد و فقط متد های
+      toString، hashCode و equals رو با متغیر میتونستیم صدا بزنیم چون کلاس آبجکت
+      فقط این متد ها داخلش تعریف شده.
+    </p>
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
 Object declared = new Student();
-                        </div>
-                    </div>
-                </div>
+                        </pre
+        >
+      </div>
+    </div>
 
-                <p>این کار کاملا قانونیه چون هر Student یک Object نیز است و بهش <strong>کست کردن پنهانی (implicit casting)</strong> میگیم.</p>
-                <p>در کست کردن پنهانی حتما باید actual type ساب کلاس مستقیم یا غیر مستقیم declared type باشه.</p>
+    <p>
+      این کار کاملا قانونیه چون هر Student یک Object نیز است و بهش
+      <strong>کست کردن پنهانی (implicit casting)</strong> میگیم.
+    </p>
+    <p>
+      در کست کردن پنهانی حتما باید actual type ساب کلاس مستقیم یا غیر مستقیم
+      declared type باشه.
+    </p>
 
-                <p>یک متغیر از نوع ساب کلاس هم میتونیم به سوپرکلاس کست کنیم؛ در مثال چون هر Object ممکنه به یک Student یا یک Person و یا هر ساب کلاسی که ازش ارث برده باشه اشاره کنه، برای همین باید به صورت آشکار سوپر کلاس رو به ساب کلاس تبدیل کنیم. به این نوع کست، <strong>کست کردن آشکار (explicit casting)</strong> میگیم.</p>
+    <p>
+      یک متغیر از نوع ساب کلاس هم میتونیم به سوپرکلاس کست کنیم؛ در مثال چون هر
+      Object ممکنه به یک Student یا یک Person و یا هر ساب کلاسی که ازش ارث برده
+      باشه اشاره کنه، برای همین باید به صورت آشکار سوپر کلاس رو به ساب کلاس
+      تبدیل کنیم. به این نوع کست،
+      <strong>کست کردن آشکار (explicit casting)</strong> میگیم.
+    </p>
 
-                <div class="sample">
-                    <div class="snippet-container">
-                        <div class="snippet Java">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
 Student student = (Student) declared;
-                        </div>
-                    </div>
-                </div>
+                        </pre
+        >
+      </div>
+    </div>
 
+    <section>
+      <h3>کلیدواژه ی instanceof</h3>
 
-                <h3>کلیدواژه ی instanceof</h3>
+      <p>
+        کلیدواژه ی instanceof بررسی میکنه مقدار واقعی (actual type) یک متغیر، چه
+        کلاسی است.
+      </p>
 
-                <p>کلیدواژه ی instanceof بررسی میکنه مقدار واقعی (actual type) یک متغیر، چه کلاسی است.</p>
+      <p>
+        هنگام کست کردن سوپرکلاس به ساب کلاس (explicit casting) اگه متغیری که از
+        نوع سوپرکلاس است به یک آبجکت از ساب کلاس اشاره نکنه زمان اجرا دچار
+        ClassCastException میشیم. در جاوا یک کلیدواژه به نام instanceof وجود
+        داره که قبل از کست کردن میتونیم بررسی کنیم ایا متغیر یک نمونه از ساب
+        کلاس است یا خیر.
+      </p>
 
-                <p>هنگام کست کردن سوپرکلاس به ساب کلاس (explicit casting) اگه متغیری که از نوع سوپرکلاس است به یک آبجکت از ساب کلاس اشاره نکنه زمان اجرا دچار ClassCastException میشیم. در جاوا یک کلیدواژه به نام instanceof وجود داره که قبل از کست کردن میتونیم بررسی کنیم ایا متغیر یک نمونه از ساب کلاس است یا خیر.</p>
-
-
-                <div class="sample">
-                    <div class="snippet-container">
-                        <div class="snippet Java">
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
 GeometricShape o = new Circle();
 
 System.out.println("Is o instance of Circle? "+ o instanceof Circle);
 System.out.println("Is o instance of Rectangle? " + o instanceof Rectangle);
-                        </div>
-                    </div>
-                </div>
+                        </pre
+          >
+        </div>
+      </div>
 
-                <p>مثال:</p>
+      <p>مثال:</p>
 
-                <p>میتونیم در مورد مطالعه ی مطلب قبل، متد equals رو که ابتدا در کلاس Object تعریف شده در Circle و Rectangle بازنویسی کنیم و داخل متد از instanceof استفاده کنیم.</p>
+      <p>
+        میتونیم در مورد مطالعه ی مطلب قبل، متد equals رو که ابتدا در کلاس Object
+        تعریف شده در Circle و Rectangle بازنویسی کنیم و داخل متد از instanceof
+        استفاده کنیم.
+      </p>
 
-                <div class="sample">
-                    <div class="snippet-container">
-                        <div class="snippet Java">
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
 class GeometricShape {
     ...
 }
@@ -285,90 +330,51 @@ class Rectangle extends GeometricShape{
     public boolean equals(Object obj) {
         if (obj instanceof Rectangle){
             Rectangle r = (Rectangle) obj;
-            return r.width == this.width && r.height == this.height;
+            return r.width == this.width &amp;&amp; r.height == this.height;
         }
 
         return false;
     }
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="subsection" id="sub3">
-                <h2>خلاصه</h2>
-                <p>- سه رکن شی گرایی عبارتند از کپسوله سازی، وراثت و چند ریختی.</p>
-                <p>- چند ریختی یعنی یک متغیر از نوع سوپرکلاس اشاره کنه به آدرس آبجکت ایجاد شده از ساب کلاس.</p>
-                <p>- اگه متغیر از نوع سوپر کلاس باشه و به یک آبجکت از نوع ساب کلاس اشاره کنه به متغیر مقدار بیان شده (declared type) و به آبجکتی که بهش اشاره میکنه مقدار واقعی (actual type) میگیم.</p>
-                <p>- کست کردن یعنی تبدیل نوعی به نوع دیگه.</p>
-                <p>- با instanceof میتونیم نوع مقدار واقعی یک متغیر رو بررسی کنیم.</p>
-            </div>
-
-        </article>
-
-        <div class="article-foot">
-
-            <div class="navigator-container">
-
-                <a class="md-bt md-bt-light" href="abstract-classes.html">
-            <span class="material-icons">
-              navigate_next
-            </span>
-                    <span class="hint">
-              بعدی
-            </span>
-                </a>
-
-                <a class="md-bt md-bt-light" href="inheritance.html">
-            <span class="hint">
-              قبلی
-            </span>
-                    <span class="material-icons">
-              navigate_before
-            </span>
-
-                </a>
-            </div>
-
-            <div class="relative-articles-container">
-                <p>مطالب مرتبط</p>
-                <div>
-                    <div>
-                        <a href="objects-and-classes.html">آبجکت و کلاس ها در جاوا</a>
-                    </div>
-
-                    <div>
-                        <a href="inheritance.html">وراثت در جاوا</a>
-                    </div>
-
-                    <div>
-                        <a href="methods.html">متد ها در جاوا</a>
-                    </div>
-
-                    <div>
-                        <a href="nested-classes.html">کلاس های تو در تو در جاوا</a>
-                    </div>
-
-                </div>
-            </div>
+                        </pre
+          >
         </div>
+      </div>
+    </section>
+  </section>
 
-    </div>
-</main>
+  <section id="p3">
+    <h2>خلاصه</h2>
+    <ul>
+      <li>سه رکن شی گرایی عبارتند از کپسوله سازی، وراثت و چند ریختی.</li>
+      <li>
+        چند ریختی یعنی یک متغیر از نوع سوپرکلاس اشاره کنه به آدرس آبجکت ایجاد
+        شده از ساب کلاس.
+      </li>
+      <li>
+        اگه متغیر از نوع سوپر کلاس باشه و به یک آبجکت از نوع ساب کلاس اشاره کنه
+        به متغیر مقدار بیان شده (declared type) و به آبجکتی که بهش اشاره میکنه
+        مقدار واقعی (actual type) میگیم.
+      </li>
+      <li>کست کردن یعنی تبدیل نوعی به نوع دیگه.</li>
+      <li>با instanceof میتونیم نوع مقدار واقعی یک متغیر رو بررسی کنیم.</li>
+    </ul>
+  </section>
+</article>
 
-<div class="scroll-top-container">
-    <a class="text-decoration-none link-dark material-icons" href="#">
-        arrow_drop_up
-    </a>
-</div>
+{% capture links %}
+<li>
+  <a href="objects-and-classes.html">آبجکت و کلاس ها در جاوا</a>
+</li>
 
-<footer></footer>
+<li>
+  <a href="inheritance.html">وراثت در جاوا</a>
+</li>
 
-<div class="dialog hide"></div>
+<li>
+  <a href="methods.html">متد ها در جاوا</a>
+</li>
 
-<div class="copy-message">
-    <span class="copy-message-text">کپی شد!</span>
-</div>
-
-</body>
+<li>
+  <a href="nested-classes.html">کلاس های تو در تو در جاوا</a>
+</li>
+{% endcapture %} {% include article-foot.html relative_links = links %}

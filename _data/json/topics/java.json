@@ -1,0 +1,166 @@
+{
+  "id": "java_chapters",
+  "name": "جاوا",
+  "metadata_list": [
+    {
+      "title": "معرفی زبان برنامه نویسی جاوا",
+      "description": "جاوا یک زبون سطح بالا و تماما شی گراست اگرچه بعضی از ویژگی های تابعی مثل lambda و streaming برای این زبان طراحی شده اما کاربردی ترین ویژگی زبان قابلیت شی گرایی آن است.",
+      "datePublished": "2025-09-12",
+      "lastModified": "2025-12-28",
+      "imgCover": "/resources/image/java/cover_introduction.png",
+      "link": "/post/java/introduction.html"
+    },
+    {
+      "title": "انواع متغیر در جاوا",
+      "description": "متغیر ها در جاوا به دو دسته ی کلی تقسیم میشن؛ متغیر های نوع اول (primitive types) و متغیر های آبجکتی (Object Types) در این مطلب با انواع متغیر ها در جاوا آشنا میشیم؛ به بررسی متغیر های primitive ، عملگر های ریاضی می پردازیم و نگاه کوتاهی به متغیر های آبجکتی نیز خواهیم داشت.",
+      "datePublished": "2025-09-12",
+      "lastModified": "",
+      "imgCover": "/resources/image/java/cover_type_variables.png",
+      "link": "/post/java/type-variables.html"
+    },
+    {
+      "title": "دستورات شرطی در جاوا",
+      "description": "در این مطلب به بررسی دستورات شرطی if-else ، switch ، عملگر های منطقی و عبارت شرطی در جاوا به همراه مثال می پردازیم.",
+      "datePublished": "2025-09-12",
+      "lastModified": "",
+      "imgCover": "/resources/image/java/cover_selectors.png",
+      "link": "/post/java/selectors.html"
+    },
+    {
+      "title": "حلقه (loop) ها در جاوا",
+      "description": "حلقه ها برای تکرار یک عمل در زبان برنامه نویسی مورد استفاده قرار می گیرند در این مطلب به بررسی حلقه ی while ، foreach ، for و do-while در زبان برنامه نویسی جاوا به همراه مثال می پردازیم.",
+      "datePublished": "2025-09-12",
+      "lastModified": "",
+      "imgCover": "/resources/image/java/cover_loops.png",
+      "link": "/post/java/loops.html"
+    },
+    {
+      "title": "متد (تابع) در جاوا",
+      "description": "به طور کلی متد (تابع) یه سری کد ها رو به عنوان پارامتر از ورودی میگیره و نتیجه رو به عنوان خروجی برمیگردونه. متد ها کد های برنامه رو خواناتر قابل درک تر و ساده‌تر میکنن و از دوباره نویسی کد های تکراری جلوگیری میکنن؛ در این مطلب به بررسی متد (تابع) در جاوا می پردازیم.",
+      "datePublished": "2025-09-12",
+      "lastModified": "",
+      "imgCover": "/resources/image/java/cover_method.png",
+      "link": "/post/java/methods.html"
+    },
+    {
+      "title": "آبجکت و کلاس ها در جاوا",
+      "description": "جاوا یک زبان کاملا شی گراست، به شی آبجکت نیز میگیم، معمولا آبجکت یک ماهیت از دنیای واقعی رو شبیه سازی میکنه مثلا یک دانش آموز، یک تلویزیون، یک دایره ، یک مستطیل و هر شی تو دنیای واقعی میتونه با یک آبجکت (object) شبیه سازی بشه؛ در این مطلب به بررسی شی گرایی در جاوا خواهیم پرداخت.",
+      "datePublished": "2025-09-12",
+      "lastModified": "",
+      "imgCover": "/resources/image/java/cover_objects_and_classes.png",
+      "link": "/post/java/objects-and-classes.html"
+    },
+    {
+      "title": "کلیدواژه های سطح دسترسی در جاوا",
+      "description": "در جاوا چهارتا سطح دسترسی private, default, protected و public داریم؛ در این مطلب میخوایم این سطوح دسترسی رو برای دیتافیلد، متد، کانستراکتور و کلاس ها بررسی کنیم.",
+      "datePublished": "2025-09-12",
+      "lastModified": "",
+      "imgCover": "/resources/image/java/cover_access_modifiers.png",
+      "link": "/post/java/access-modifiers.html"
+    },
+    {
+      "title": "کلیدواژه ی استاتیک در جاوا",
+      "description": "با کلیدواژه ی استاتیک (static) در جاوا میتونیم فیلد، متد و کلاس های استاتیک تعریف کنیم. اعضای استاتیک وابسته به کلاس هستند در این مطلب به استفاده از کلیدواژه ی در جاوا میپردازیم.",
+      "datePublished": "2025-09-12",
+      "lastModified": "",
+      "imgCover": "/resources/image/java/cover_static_keyword.png",
+      "link": "/post/java/static-keyword.html"
+    },
+    {
+      "title": "آرایه ها در جاوا",
+      "description": "از آرایه برای نگهداری چندتا متغیر از یک نوع در جاوا استفاده میکنیم. به متغیر هایی که در آرایه ذخیره میشن عنصر (element) میگیم؛ آرایه ها در جاوا در واقع آبجکت هایی با ظاهر متفاوت هستند؛ در ادامه به بررسی آرایه ها در جاوا میپردازیم.",
+      "datePublished": "2025-09-12",
+      "lastModified": "",
+      "imgCover": "/resources/image/java/cover_arrays.png",
+      "link": "/post/java/arrays.html"
+    },
+    {
+      "title": "کلاس های تو در تو در جاوا",
+      "description": "هنگامی که یک کلاس داخل کلاس دیگه تعریف کنیم بهش کلاس تو در تو میگیم در جاوا میتونیم کلاس های تو در تواستاتیک و کلاس تو در تو غیر استاتیک تعریف کنیم که هر کلاس کاربرد های خاص خودشو داره در این مطلب به کلاس های تو در تو در جاوا و انواعش با مثال پرداختیم.",
+      "datePublished": "2025-09-12",
+      "lastModified": "",
+      "imgCover": "/resources/image/java/cover_nested_classes.png",
+      "link": "/post/java/nested-classes.html"
+    },
+    {
+      "title": "وراثت (inheritance) در جاوا",
+      "description": "گاهی اوقات نیاز داریم متد ها و فیلد های یک کلاس رو داخل کلاس دیگه پیاده‌سازی کنیم به‌جای اینکه متد و فیلد ها رو دوباره بنویسیم از کلاسی که مایحتاجمونو داره ارث بری میکنیم؛ در این مطلب به بررسی وراثت می پردازیم و در اخر یه نگاهی ام داریم به کلاس Object در جاوا",
+      "datePublished": "2025-09-12",
+      "lastModified": "",
+      "imgCover": "/resources/image/java/cover_inheritance.png",
+      "link": "/post/java/inheritance.html"
+    },
+    {
+      "title": "چند ریختی و کست کردن در جاوا",
+      "description": "چند ریختی یکی از اصول شی گرایی است، با قابلیت چند ریختی یک متغیر از نوع سوپر کلاس میتونه به یک آبجکت از ساب کلاس اشاره کنه و اگه این متغیر رو به نوع ساب کلاس خودش تبدیل کنیم میگیم نوع متغیر رو کست کردیم؛ در این مطلب به چند ریختی و کست کردن در جاوا می پردازیم.",
+      "datePublished": "2025-09-12",
+      "lastModified": "",
+      "imgCover": "/resources/image/java/cover_polymorphism.png",
+      "link": "/post/java/polymorphism.html"
+    },
+    {
+      "title": "کلاس های ابسترکت در جاوا",
+      "description": "ت (abstract) کلاس هایی هستند که میتونیم داخلشون متد های ابستراکت (بدون بدنه و کوتاه) تعریف کنیم از این کلاس ها نمیتونیم نمونه بسازیم اما میتونیم ازشون ارث بری کنیم؛ در این مطلب به بررسی کلاس های ابستراکت در جاوامیپردازیم.",
+      "datePublished": "2025-09-12",
+      "lastModified": "",
+      "imgCover": "/resources/image/java/cover_abstract_classes.png",
+      "link": "/post/java/abstract-classes.html"
+    },
+    {
+      "title": "اینترفیس ها در جاوا",
+      "description": "اینترفیس ها شبه کلاس هایی هستند که کانستراکتور براشون نمیتونیم تعریف کنیم و ازشون نمیتونیم نمونه (آبجکت) ایجاد کنیم؛ در این مطلب به بررسی ویژگی و کاربرد های اینترفیس ها در جاوا می پردازیم.",
+      "datePublished": "2025-09-12",
+      "lastModified": "",
+      "imgCover": "/resources/image/java/cover_interfaces.png",
+      "link": "/post/java/interfaces.html"
+    },
+    {
+      "title": "کلیدواژه ی final در جاوا",
+      "description": "به طور کلی کلیدواژه ی final یک کلاس، متد یا متغیر رو برامون نهایی میکنه مثلا اگه کلاس باشه نمیتونیم ازش ارث ببریم اگه متد باشه نمیتونیم بازنویسیش کنیم و اگه متغیر باشه مقدارش ثابته و تغییر نمیکنه. در ادامه با جزئیات بیشتر همین حرفا رو میخوایم تکرار کنیم.",
+      "datePublished": "2025-09-12",
+      "lastModified": "",
+      "imgCover": "/resources/image/java/cover_final_keyword.png",
+      "link": "/post/java/final-keyword.html"
+    },
+    {
+      "title": "اکسپشن ها در جاوا",
+      "description": "به خطاهای برنامه در جاوا اکسپشن میگیم؛ اکسپشن (exception) ها در جاوا برای اعلام باگ های برنامه مورد استفاده قرار میگیرن در این مطلب با عملکرد و نحوه ی استفاده از اکسپشن ها در جاوا اشنا میشیم.",
+      "datePublished": "2025-09-12",
+      "lastModified": "",
+      "imgCover": "/resources/image/java/cover_exceptions.png",
+      "link": "/post/java/exceptions.html"
+    },
+    {
+      "title": "کلاس File در جاوا",
+      "description": "داده های یک برنامه به طور موقت در طول زمان اجرای برنامه وجود دارن؛ وقتی برنامه متوقف میشه این داده ها از بین میرن؛ برای نگهداری داده ها به طور دائم نیاز داریم اونا رو داخل فضاهای ذخیره‌ساز دائمی از جمله هارد کامپیوتر یا حافظه های micro-sd و... ذخیره کنیم برای این کار میتونیم از پکیج io در جاوا یا پایگاه داده استفاده کنیم در این مطلب به کلاس File در پکیج io در جاوا می پردازیم.",
+      "datePublished": "2025-09-12",
+      "lastModified": "",
+      "imgCover": "/resources/image/java/cover_file.png",
+      "link": "/post/java/file.html"
+    },
+    {
+      "title": "نوشتن متن در فایل با PrintWriter در جاوا",
+      "description": "یکی از کلاس های io در جاوا کلاس PrintWriter است با کمک PrintWriter میتونیم محتوا رو به صورت متن در فایل بنویسیم در این مطلب به بررسی PrintWriter و try-with-resources پرداختیم.",
+      "datePublished": "2025-09-12",
+      "lastModified": "",
+      "imgCover": "/resources/image/java/cover_printwriter.png",
+      "link": "/post/java/printwriter.html"
+    },
+    {
+      "title": "خوندن متن فایل با Scanner در جاوا",
+      "description": "با استفاده از کلاس Scanner در جاوا و کاتلین علاوه بر خوندن داده ها از کنسول میتونیم داده های فایل های متنی رو هم بخونیم؛ در این مطلب به بررسی کلاس Scanner می پردازیم و متد های این کلاس رو به همراه مثال بیان میکنیم.",
+      "datePublished": "2025-09-12",
+      "lastModified": "",
+      "imgCover": "/resources/image/java/cover_scanner.png",
+      "link": "/post/java/scanner.html"
+    },
+    {
+      "title": "خوندن و نوشتن مقادیر باینری در جاوا",
+      "description": "برای کامپیوتر فرقی نداره یک فایل از چه نوعی (متنی، تصویری یا...) باشه؛ تمام فایل ها در کامپیوتر به صورت باینری ذخیره میشن؛ تنها چیزی که یک فایل متنی رو با باینری در جاوا متمایز میکنه رمزنگاری و رمزگشایی کاراکترهای (حروف) فایل متنی است...",
+      "datePublished": "2025-09-12",
+      "lastModified": "",
+      "imgCover": "/resources/image/java/cover_binary_io.png",
+      "link": "/post/java/binary-io.html"
+    }
+  ]
+}

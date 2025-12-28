@@ -1,0 +1,45 @@
+<div aria-labelledby="sidebar_label" class="sidebar" id="sidebar" tabindex="-1">
+
+  <div class="sidebar-head">
+
+    <button aria-label="close" class="material-symbols-outlined md-bt md-bt-dark sidebar-head-button" type="button"
+      id="bt_hide_sidebar">
+      arrow_forward
+    </button>
+
+    <p class="sidebar-head-title">لیست مقاله ها</p>
+
+    <a href="{{ site.url }}" class="sidebar-head-label" id="sidebar_label">
+      <span>KodeDevel</span>
+    </a>
+  </div>
+
+  <div>
+    <div class="list-container" id="article_container">
+      {% for data in site.data.json.topics %}
+
+      {% assign topic = data[1] %}
+
+      <div>
+
+        <button class="md-bt-expandable" data-target="{{ topic.id }}">
+          <span class="material-symbols-outlined icon">arrow_left</span>
+          <span>{{ topic.name }}</span>
+        </button>
+
+        <div class="subject-list-container" id="{{ topic.id }}">
+          {% assign metadata_list = topic.metadata_list %}
+          <ul>
+            {% for metadata in metadata_list %}
+            <li><a href="{{metadata.link}}">{{ metadata.title }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+
+      </div>
+
+      {% endfor %}
+    </div>
+  </div>
+
+</div>

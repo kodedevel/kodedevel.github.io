@@ -54,27 +54,41 @@
     width: 100%;
     background-color: transparent;
     border: none;
-    text-align: start;
+    cursor: pointer;
     font-size: 1.1em;
     font-weight: bold;
     color: #212121;
-    padding: 8px;
+    padding: 8px 0;
     margin-bottom: 4px;
 }
 
-.md-bt-expandable:focus{
-     background-color: #0277BD;
+.md-bt-expandable .icon{
+  font-size: 1.5em;
+  transition: all 200ms ease-in;
+  padding-right: 4px;
+}
+
+.md-bt-expandable .icon.expand{
+  transform: rotate(-90deg);
+}
+
+.md-bt-expandable.expanded{
+     background-color: #0D47A1;
      color: #fafafa;
+     box-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
 }
 
 .md-bt.md-bt-navbar-toggle{
+    width: 32px;
+    height: 32px;
     background-color: transparent;
-    color: #eeeeee;
+    color: #fafafa;
+    align-items: center;
+    justify-content: center;
 }
 
 .md-bt.md-bt-navbar-toggle:hover{
     background-color: #424242;
-    color: #eeeeee;
 }
 
 

@@ -1,0 +1,401 @@
+---
+layout: default
+notopics: true
+---
+
+<article>
+  <nav class="toc">
+    <div>دسترسی سریع</div>
+    <ul>
+      <li>
+        <a href="#p0">توضیحات</a>
+      </li>
+      <li>
+        <a href="#p1">هدر های سرور به کلاینت</a>
+      </li>
+      <li>
+        <a href="#p2">هدر های کلاینت به سرور</a>
+      </li>
+      <li>
+        <a href="#p3">پیاده سازی header ها با اسپرینگ</a>
+      </li>
+    </ul>
+  </nav>
+
+  <section id="p0">
+    <h2>توضیحات</h2>
+    <p>
+      وقتی سایت هایی مثل یوتیوب رو باز میکنیم و شروع به تماشای یک ویدیو میکنیم
+      اگه دقت کرده باشید صفحه منتظر دانلود کامل ویدیو نمیشه و درحالی که ویدیو
+      داره دانلود میشه میتونیم به طور همزمان فیلم رو تا جایی که دانلود شده تماشا
+      کنیم؛ برای این موضوع سایت هایی مثل یوتیوب از روش خوندن تدریجی ویدیو همزمان
+      با دانلود استفاده میکنن.
+    </p>
+    <p>
+      در اینجا میخوایم این روش رو بررسی کنیم و ببینیم سایت هایی مثل یوتیوب برای
+      انجام این کار چکار میکنن.
+    </p>
+    <p>
+      در ادامه ابتدا هدر های مورد نیاز کلاینت به سرور (درخواست) و سرور به کلاینت
+      (پاسخ) رو بررسی میکنیم و سپس به پیاده سازی هدر ها با کمک فریمورک اسپرینگ
+      (spring) در جاوا می پردازیم.
+    </p>
+
+    <div class="note">
+      <p class="note-head">توجه</p>
+      <p>
+        پروژه ای که میخوایم انجام بدیم علاوه بر پخش تدریجی ویدیو برای دانلود
+        فایل نیز قابل استفاده است.
+      </p>
+    </div>
+  </section>
+  <section id="p1">
+    <h2>هدر های سرور به کلاینت</h2>
+
+    <p>
+      هدر هایی که سرور به کلاینت ارسال می کنه عموما بهشون میگیم هدر های پاسخ
+      (Response http headers)
+    </p>
+    <p>
+      در این بخش بعضی از این هدر ها رو که بدرد پروژه میخوره مورد بررسی قرار
+      میدیم.
+    </p>
+
+    <section>
+      <h3>Content-Disposition</h3>
+
+      <p>
+        به کلاینت میگه محتوی رو به‌صورت inline نمایش بده یا به صورت attachment
+        دانلودش کن
+      </p>
+
+      <p>مثال</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet">
+Content-Disposition: inline; filename="name_of_the_file.extension"
+                        </pre>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h3>Content-Range</h3>
+
+      <p>به کلاینت میگه چه مقدار از فایل رو باید بخونه</p>
+
+      <p>مثال</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet">
+Content-Range: bytes rangeEnd-rangeStart/fileSize
+                        </pre>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h3>Accept-Range</h3>
+
+      <p>به کلاینت میگه واحد Range قابل قبول چیه (bytes, kilobytes...)</p>
+
+      <p>مثال</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet">
+Accept-Range: bytes
+                        </pre>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h3>Content-Length</h3>
+      <p>
+        مقدار بایت هایی که سرور به کلاینت ارسال می‌کنه در این مورد طول رینج
+        مقدار بایت ارسال شدست
+      </p>
+
+      <p>مثال</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet">
+Content-Length: 2048
+                        </pre>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h3>Content-Type</h3>
+
+      <p>نوع و فرمت فایل رو به کلاینت میگه</p>
+
+      <p>مثال</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet">
+Content-Type: audio/mpeg
+                        </pre>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <section id="p2">
+    <h2>هدر های کلاینت به سرور</h2>
+
+    <p>
+      هدر هایی که کلاینت به سرور ارسال میکنه رو میگیم هدر های درخواستی (Request
+      Http Headers)
+    </p>
+    <p>
+      در این قسمت هدر هایی رو که در پروژه میخوایم استفاده کنیم بررسی میکنیم.
+    </p>
+
+    <section>
+      <h3>Range</h3>
+
+      <p>
+        به سرور میگه چه قسمت هایی از فایل رو می‌خواد و سرور باید دقیقا همون رو
+        به کلاینت پس بده
+      </p>
+
+      <p>مثال:</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet">
+Range: bytes rangeEnd-rangeStart
+                        </pre>
+        </div>
+      </div>
+
+      <p>یا</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet">
+Range: bytes rangeStart-
+                        </pre>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <section id="p3">
+    <h2>پیاده‌سازی header ها با اسپرینگ</h2>
+
+    <p>حالا نوبت به استفاده از این هدر ها در کد است</p>
+
+    <section>
+      <h3>ایجاد کلاس StreamingService</h3>
+      <p>ابتدا منطق برنامه رو در کلاس StreamingService پیاده میکنیم.</p>
+
+      <p>StreamingService.java</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
+import org.springframework.http.*;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.stereotype.Service;
+
+import java.io.IOException;
+import java.io.RandomAccessFile;
+import java.nio.ByteBuffer;
+import java.nio.channels.FileChannel;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+@Service
+public class StreamingService {
+
+    private final HttpStatus status = HttpStatus.PARTIAL_CONTENT;
+
+    @Async
+    public ResponseEntity&lt;byte[]&gt; stream(String filePath, String requestedRange) {
+
+        byte[] bytes;
+        HttpHeaders headers = new HttpHeaders();
+
+        headers.setContentDisposition(
+                ContentDisposition
+                        .builder("inline")
+                        .filename(getFileName(filePath))
+                        .build());
+
+        headers.setContentType(
+                MediaTypeFactory
+                        .getMediaType(getFileName(filePath))
+                        .orElse(MediaType.APPLICATION_OCTET_STREAM));
+
+        try {
+
+            long fileSize = getFileSize(filePath);
+
+            //create Range instance
+            Range range = new Range("bytes", requestedRange, fileSize);
+
+            headers.setContentLength(range.rangeLength);
+
+            headers.add(HttpHeaders.CONTENT_RANGE,
+                    range.getContentRange());
+            headers.add(HttpHeaders.ACCEPT_RANGES, range.acceptRanges);
+
+            bytes = getPartialContent(filePath, range);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            return new ResponseEntity&lt;&gt;(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+        return new ResponseEntity&lt;&gt;(bytes, headers, status);
+    }
+
+    //read corresponding bytes with current range
+    private byte[] getPartialContent(String filePath, Range range) throws IOException {
+
+        Path path = Paths.get(filePath);
+
+        int length = (int) (range.arrayRange[1] - range.arrayRange[0]);
+
+        RandomAccessFile raf = new RandomAccessFile(path.toFile(), "r");
+
+        ByteBuffer buffer = ByteBuffer.allocate(length);
+        FileChannel channel = raf.getChannel();
+
+        channel.read(buffer, range.arrayRange[0]);
+
+        raf.close();
+
+        return buffer.array();
+    }
+
+    private long getFileSize(String filePath) throws IOException {
+        Path path = Paths.get(filePath);
+        return Files.size(path);
+    }
+
+    private String getFileName(String filePath) {
+        return Paths.get(filePath).getFileName().toString();
+    }
+
+
+    // Range class which splits requested range from the client and creates new range
+    private static class Range {
+        private final String acceptRanges;
+        private final long[] arrayRange;
+        private final long fileSize;
+        private long rangeLength = 2048;
+
+        public Range(String acceptRanges, String range, long fileSize) {
+            this.acceptRanges = acceptRanges;
+            this.fileSize = fileSize;
+
+            arrayRange = arrayRange(range);
+        }
+
+        public String getContentRange() {
+            return acceptRanges + " " + arrayRange[0] + "-" + arrayRange[1] + "/" + fileSize;
+        }
+
+        private long[] arrayRange(String range) {
+            long rangeStart, rangeEnd;
+
+            if (range == null) {
+                rangeStart = 0;
+                rangeEnd = rangeLength;
+            } else {
+                String[] ranges = range.split("[a-zA-Z=-]");
+
+                if (ranges.length &gt; 7) {
+                    rangeStart = Long.parseLong(ranges[6]);
+                    rangeEnd = Long.parseLong(ranges[8]);
+                } else {
+                    rangeEnd = Long.parseLong(ranges[6]) + rangeLength;
+                    rangeStart = rangeEnd - rangeLength;
+                }
+            }
+
+            rangeEnd = Math.min(rangeEnd, fileSize);
+            rangeLength = rangeEnd - rangeStart;
+
+            return new long[]{rangeStart, rangeEnd};
+        }
+    }
+}
+                        </pre>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h3>صدا زدن و استفاده از کلاس ساخته شده در Controller</h3>
+      <p>سپس از کلاس StreamingService در کلاس کنترلر استفاده میکنیم.</p>
+
+      <p><strong>StreamingController.java</strong></p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestMapping;
+import webcontent.service.StreamingService;
+
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+
+@Controller
+@RequestMapping("/data")
+public class StreamingController {
+
+    private final StreamingService service;
+
+    public StreamingController(StreamingService service) {
+        this.service = service;
+    }
+
+    @GetMapping("/stream/{name}")
+    public ResponseEntity&lt;byte[]&gt; streamMusic(
+            @RequestHeader(value = HttpHeaders.RANGE, required = false) String ranges,
+            @PathVariable("name") String name
+    ) throws InterruptedException, ExecutionException {
+
+        String absoluteName = name + ".mp3";
+        String absolutePath = "/PATH_TO_FILE_DIRECTORY/" + absoluteName;
+
+        //Compute stream method asynchronously
+        return CompletableFuture.completedFuture(service.stream(absolutePath, ranges)).get();
+    }
+
+
+}
+                        </pre>
+        </div>
+      </div>
+    </section>
+  </section>
+</article>
+
+{% capture links %}
+<li><a href="/learn/java.html">آموزش جاوا</a></li>
+<li><a href="/learn/kotlin.html">آموزش کاتلین</a></li>
+<li>
+  <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers">انواع هدر های http در
+    سایت موزیلا</a>
+</li>
+{% endcapture %}
+
+{% include article-foot.html relative_links = links %}

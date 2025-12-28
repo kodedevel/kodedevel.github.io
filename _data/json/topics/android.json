@@ -1,0 +1,38 @@
+{
+  "id": "android_chapters",
+  "name": "اندروید",
+  "metadata_list": [
+    {
+      "title": "دیتا بایندینگ در اندروید",
+      "description": "با استفاده از کتابخونه ی دیتابایندینگ (Data Binding) در اندروید میتونیم UI رو به داده ها وصل کنید و به سادگی و با حداقل کد، ویو رو آپدیت کنیم در این مطلب به فعال سازی و پیاده سازی دیتابایندینگ در اندروید می پردازیم.",
+      "datePublished": "2025-09-12",
+      "lastModified": "2025-12-28",
+      "imgCover": "/resources/image/android/cover_data_binding.png",
+      "link": "/post/android/data-binding.html"
+    },
+    {
+      "title": "نویگیشن در اندروید",
+      "description": "اموزش ایجاد navigation در اندروید به همراه استفاده از کتابخانه های navigation در این مقاله یاد میگیرید با استفاده از نویگیشن بین فرگمنت ها در اندروید جابه جا بشید",
+      "datePublished": "2025-09-12",
+      "lastModified": "2025-12-28",
+      "imgCover": "/resources/image/android/cover_navigation.png",
+      "link": "/post/android/navigation.html"
+    },
+    {
+      "title": "پروژه ی عملی از دیتابایندینگ و نویگیشن در اندروید",
+      "description": "در این مطلب به طور عملی در یک پروژه ی اندروید دیتا بایندینگ و نویگیشن رو فعال و ازشون استفاده میکنیم.",
+      "datePublished": "2025-09-12",
+      "lastModified": "",
+      "imgCover": "/resources/image/android/data_binding_navigation_sample.html",
+      "link": "/post/android/data-binding-navigation-sample.html"
+    },
+    {
+      "title": "چرخه ی حیات اکتیویتی در اندروید",
+      "description": "بررسی چرخه ی حیات اکتیویتی و متد های مرتبط با هر چرخه در اندروید.",
+      "datePublished": "2025-09-12",
+      "lastModified": "",
+      "imgCover": "/resources/image/android/cover_activity_lifecycle.png",
+      "link": "/post/android/activity-lifecycle.html"
+    }
+  ]
+}

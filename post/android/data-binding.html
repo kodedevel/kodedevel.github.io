@@ -1,75 +1,50 @@
-<!DOCTYPE html>
-<html lang="fa">
-<head>
-    <meta content="ie=edge" http-equiv="x-ua-compatible"/>
-    <meta content="آموزش افزودن و استفاده از کتابخانه ی data binding اندروید" name="description"/>
-    <meta charset="UTF-8"/>
-    <meta content="width:device-width, initial-scale=1" name="viewport"/>
+---
+layout: default
+---
 
-    <title>استفاده از Data Binding در اندروید</title>
+<article>
+  <nav class="toc">
+    <div>دسترسی سریع</div>
+    <ul>
+      <li>
+        <a href="#p0">توضیحات</a>
+      </li>
+      <li>
+        <a href="#p1">فعال سازی دیتابایندینگ</a>
+      </li>
+      <li>
+        <a href="#p2">پیاده سازی دیتابایندینگ</a>
+      </li>
+    </ul>
+  </nav>
 
-    <meta content="استفاده از Data Binding در اندروید" property="og:title"/>
-    <meta content="آموزش افزودن و استفاده از کتابخانه ی data binding در اندروید" property="og:description"/>
-    <meta content="https://kodedevel.github.io/resources/favicon.png" property="og:image"/>
-    <meta content="https://kodedevel.github.io/article/android/data-binding.html" property="og:url"/>
-    <meta content="article" property="og:type">
+  <section id="p0">
+    <h2>توضیحات</h2>
+    <blockquote>
+      یک کتابخونه که با استفاده ازش میتونید UI رو به داده های برنامه وصل کنید و view ها رو بدون
+      نیاز به کد نویسی اپدیت کنید
+    </blockquote>
+    <p>با استفاده از کتابخونه ی دیتابایندینگ (Data Binding) در اندروید میتونیم UI رو به داده ها وصل کنید و به سادگی و با
+      حداقل کد، ویو رو آپدیت کنیم در این مطلب به فعال سازی و پیاده سازی دیتابایندینگ در اندروید می پردازیم.</p>
+    <div class="note">
+      <p class="note-head">توجه</p>
+      <p>با اومدن جت پک کامپوز در اندروید، دیتابایندینگ یک کتابخونه ی قدیمی تر به حساب میاد؛ کسایی که دنبال شروع یادگیری
+        برنامه نویسی اندروید هستن، بهتره شروع به یادگیری جت پک کامپوز (jetpack compose) در اندروید کنن.</p>
+    </div>
+  </section>
 
-    <link href="/resources/css/main.css" rel="stylesheet">
-    <link href="/resources/favicon.png" rel="icon" type="image/x-icon">
-    <script src="/resources/js/main.js" type="module"></script>
+  <section id="p1">
+    <h2>
+      فعال سازی دیتابایندینگ
+    </h2>
 
+    <p>درون پوشه ی app داخل فایل build.gradle داخل android بنویسید:</p>
 
-</head>
-<body>
+    <p>Root Project -&gt; app -&gt; build.gradle</p>
 
-<header></header>
-
-<main>
-
-    <div class="page-wrap">
-        <div class="article-head">
-            <h1>
-                استفاده از Data Binding در اندروید
-            </h1>
-
-            <address>
-                <a class="author text-muted text-decoration-none" rel="author">یونس سلیمانی</a>
-            </address>
-
-            <figure class="figure figure-wrapper">
-                <img alt="data binding"
-                     class="rounded figure-img"
-                     src="/resources/image/android/cover_data_binding.png"/>
-            </figure>
-
-            <div class="toc">
-                <p class="p-2 mx-2 h5">دسترسی سریع</p>
-                <div class="list-group">
-                    <a class="list-group-item list-group-item-action" href="#sub0">فعال سازی Data Binding</a>
-                    <a class="list-group-item list-group-item-action" href="#sub1">استفاده از Data Binding</a>
-                </div>
-            </div>
-
-        </div>
-
-        <article>
-            <blockquote>
-                 یک کتابخونه که با استفاده ازش میتونید UI رو به داده های برنامه وصل کنید و view ها رو بدون
-                نیاز به کد نویسی اپدیت کنید
-            </blockquote>
-
-            <div class="subsection" id="sub0">
-                <p class="title">
-                    فعال سازی Data Binding در اندروید
-                </p>
-
-                <p>درون پوشه ی app داخل فایل build.gradle داخل android بنویسید:</p>
-
-                <p>Root Project -&gt; app -&gt; build.gradle</p>
-
-                <div class="sample">
-                    <div class="snippet-container">
-                        <div class="snippet Gradle">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Gradle">
 android{
 
     ...
@@ -79,49 +54,49 @@ android{
     }
 
 }
-                        </div>
-                    </div>
-                </div>
+                        </pre>
+      </div>
+    </div>
 
-            </div>
+  </section>
 
-            <div class="subsection" id="sub1">
-                <p class="title">استفاده از Data Binding</p>
+  <section id="p2">
+    <h2>پیاده سازی دیتابایندینگ</h2>
 
-                <p>مثال:</p>
+    <p>مثال:</p>
 
-                <p>
-                    فرض کنید یک کلاس داریم به اسم
-                    <strong>TestFragment</strong>
-                    و یک فایل xml به اسم
-                    <strong>fragment_test</strong>
-                    برای استفاده از دیتا بایندینگ سه مرحله رو باید انجام بدیم
-                </p>
+    <p>
+      فرض کنید یک کلاس داریم به اسم
+      <strong>TestFragment</strong>
+      و یک فایل xml به اسم
+      <strong>fragment_test</strong>
+      برای استفاده از دیتا بایندینگ سه مرحله رو باید انجام بدیم
+    </p>
 
-                <figure class="figure figure-wrapper">
-                    <img alt="مراحل استفاده از data binding در فایل xml"
-                         class="rounded figure-img"
-                         src="/resources/image/android/data_binding_using.png">
-                </figure>
+    <figure>
+      <img alt="مراحل استفاده از data binding در فایل xml" src="/resources/image/android/data_binding_using.png">
+    </figure>
 
 
-                <p>۱- ایجاد تگ layout: 
-                <br>
-                این تگو باید قبل از هر تگ دیگه ای ایجاد کنیم.
-                </p>
+    <section>
+      <h3>۱- ایجاد تگ layout:</h3>
 
+      <p>
+        این تگو باید قبل از هر تگ دیگه ای ایجاد کنیم.
+      </p>
+    </section>
 
-                <p>۲- ایجاد و مقداردهی داده هایی که میخوایم view ها رو بهشون وصل کنیم :
-                </p>
+    <section>
+      <h3>۲- ایجاد و مقداردهی داده هایی که میخوایم view ها رو بهشون وصل کنیم</h3>
 
-                <p>
-                    ابتدا متغیر(ها) رو مانند شکل بالا داخل تگ data تعریف میکنیم
-                    سپس داخل متد onCreateView مربوط به کلاس Fragment مانند زیر اونا رو مقدار دهی میکنیم:
-                </p>
+      <p>
+        ابتدا متغیر(ها) رو مانند شکل بالا داخل تگ data تعریف میکنیم
+        سپس داخل متد onCreateView مربوط به کلاس Fragment مانند زیر اونا رو مقدار دهی میکنیم:
+      </p>
 
-                <div class="sample">
-                    <div class="snippet-container">
-                        <div class="snippet Kotlin">
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Kotlin">
 override fun onCreateView(
 inflater: LayoutInflater,
 container: ViewGroup?,
@@ -134,81 +109,58 @@ savedInstanceState: Bundle?
 
     return binding.root
 }
-                        </div>
-                    </div>
-                </div>
+                        </pre>
+        </div>
+      </div>
 
-                <p>
-                    در قطعه کد بالا ابتدا با استفاده از کلاس FragmentTestBinding که خودکار ساخته شده فایل
-                    fragment_test.xml رو inflate کردیم
-                    سپس متغیر viewmodel رو که در فایل xml تعریف کرده بودیم صدا و مقداردهی کردیم
-                    در نهایت root که در اینجا LinearLayout هست رو برگردوندیم.
-                </p>
+      <p>
+        در قطعه کد بالا ابتدا با استفاده از کلاس FragmentTestBinding که خودکار ساخته شده فایل
+        fragment_test.xml رو inflate کردیم
+        سپس متغیر viewmodel رو که در فایل xml تعریف کرده بودیم صدا و مقداردهی کردیم
+        در نهایت root که در اینجا LinearLayout هست رو برگردوندیم.
+      </p>
+    </section>
 
-                <p><strong>۳- وصل کردن view به داده ها:</strong></p>
+    <section>
+      <h3>۳- وصل کردن view به داده ها</h3>
 
-                <p>
-                    با استفاده از syntax
-                    <strong>&#x200e;@{...}</strong>
-                    ویو رو به داده ها وصل میکنیم
-                </p>
-            </div>
+      <p>
+        با استفاده از syntax
+        <strong>&#x200e;@{...}</strong>
+        ویو رو به داده ها وصل میکنیم
+      </p>
+    </section>
+
+  </section>
+
+  <p>
+    تا اینجای کار با Data Binding آشنا شدیم یاد گرفتیم چطور باید فعالش کنیم و چطور ازش استفاده کنیم
+    یه موضوع دیگه از Data Binding به اسم BindingAdapter هست که بعدا سر یه فرصت مناسب بهش میپردازیم
+    🌸🌸🌸
+  </p>
+</article>
+
+{% capture links %}
+<li>
+  <a href="/post/kotlin/introduction.html">شروع کاتلین</a>
+</li>
+
+<li>
+  <a href="/post/android/activity-lifecycle.html">چرخه ی حیات یک اکتیویتی در اندروید</a>
+</li>
+<li>
+  <a href="/post/android/navigation.html">نویگیشن در اندروید</a>
+</li>
+
+<li>
+  <a href="/post/android/data-binding-navigation-sample.html">پروژه ی عملی از نویگیشن و دیتابایندینگ</a>
+</li>
+
+<li>
+  <a target="_blank" href="https://developer.android.com/topic/libraries/data-binding">مطالعه در وبسایت رسمی اندروید</a>
+</li>
+
+{% endcapture %}
 
 
-            <p>
-                تا اینجای کار با Data Binding آشنا شدیم یاد گرفتیم چطور باید فعالش کنیم و چطور ازش استفاده کنیم
-                یه موضوع دیگه از Data Binding به اسم BindingAdapter هست که بعدا سر یه فرصت مناسب بهش میپردازیم
-                🌸🌸🌸
-            </p>
-        </article>
-       <div class="article-foot">
-          <div class="navigator-container">
-
-          </div>
-            <div class="relative-articles-container">
-              <p>مطالب مرتبط</p>
-
-              <div>
-
-                <div>
-                  <a href="/post/kotlin/introduction.html">شروع کاتلین</a>
-                </div>
-
-                <div>
-                  <a href="/post/android/activity-lifecycle.html">چرخه ی حیات یک اکتیویتی در اندروید</a>
-                </div>
-                <div>
-                  <a href="/post/android/navigation.html">نویگیشن در اندروید</a>
-                </div>
-
-                <div>
-                  <a href="/post/android/data-binding-navigation-sample.html">پروژه ی عملی از نویگیشن و دیتابایندینگ</a>
-                </div>
-
-                <div>
-                  <a href="https://developer.android.com/topic/libraries/data-binding">مطالعه در وبسایت رسمی اندروید</a>
-                </div>
-
-              </div>
-            </div>
-          </div>
-    </div>
-</main>
-
-<div class="scroll-top-container">
-    <a class="text-decoration-none link-dark material-icons" href="#">
-        arrow_drop_up
-    </a>
-</div>
-
-<footer></footer>
-
-<div class="dialog hide"></div>
-
-<div class="copy-message">
-    <span class="copy-message-text">کپی شد!</span>
-</div>
-
-</body>
-
-</html>
+{% include article-foot.html relative_links = links %}

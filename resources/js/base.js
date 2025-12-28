@@ -1,170 +1,178 @@
-import {createCourseListView} from './ui.js';
-
-const courseDataRepo = [
-  "/resources/json/java-links.json",
-  "/resources/json/kotlin-links.json",
-  "/resources/json/android-links.json",
-  "/resources/json/linux-links.json",
-  "/resources/json/web-links.json",
-  "/resources/json/blog-links.json"
-]
-
-const header = document.querySelector('header');
-const footer = document.querySelector("footer");
-const dialog = document.querySelector('.dialog');
-
-class CourseData {
-  isExpanded = false;
-  constructor(id, title, urls) {
-    this.id = id;
-    this.title = title;
-    this.urls = urls;
-  }
-
-  reverseExpandStatus() {
-    this.isExpanded = !this.isExpanded;
-  }
-}
-
-
 //loads Ui Components into documents
-function loadAllUiComponents() {
+function initUiComponents() {
+  var path = window.location.pathname;
 
-  loadComponent("/ui-components/header-contents.html", header, () => {
+  //check if the file path origins from learn
+  if (path.startsWith("/learn")) initSubjectItems();
 
-    //container is already loaded
-    const container = document.getElementById("article_container");
-
-    prepareSidebarAnim();
-
-    loadJsonUrls((result) => {
-      const data = new CourseData(
-        result.id, result.title, result.links
-      );
-
-      const listView = createCourseListView(data);
-
-      container.appendChild(listView);
-
-    });
-
-  });
-
-  loadComponent("/ui-components/footer-contents.html", footer);
-
-  loadComponent("/ui-components/dialog-contents.html", dialog, () => {
-        initDialog();
-  });
-
+  initDialog();
+  initSidebar();
 }
 
-function prepareSidebarAnim() {
-  const sidebar = document.getElementById('sidebar');
+let subjectItemHeads = document.querySelectorAll(".subject-item-head");
 
-  if (sidebar != null) {
-    sidebar.addEventListener('show.bs.offcanvas', function () {
-      $("#brand").hide('slow');
-    });
-    sidebar.addEventListener('hide.bs.offcanvas', function () {
-      $("#brand").show('slow');
+function initSubjectItems() {
+  for (var i = 0; i < subjectItemHeads.length; i++) {
+    var itemHead = subjectItemHeads[i];
+    itemHead.firstChild.innerHTML = "arrow_left";
+
+    itemHead.addEventListener("click", function () {
+      var content = this.nextElementSibling;
+      var itemHeadIcon = this.firstElementChild;
+
+      var isExpanded = this.classList.contains("expanded");
+
+      if (!isExpanded) {
+        removeExpand();
+        this.classList.add("expanded");
+        content.style.maxHeight = content.scrollHeight + "px";
+        itemHeadIcon.classList.add("expand");
+      } else {
+        removeExpand();
+      }
     });
   }
 }
 
+function removeExpand() {
+  subjectItemHeads.forEach((el) => {
+    el.classList.remove("expanded");
+    var itemHeadIcon = el.firstElementChild;
 
-async function loadComponent(path, parent, callback) {
-
-  callback = callback || 0;
-  const req = await fetch(path);
-
-  await req.text().then(
-    (text) => {
-      parent.insertAdjacentHTML('beforeend', text);
-      if (callback != 0)
-        callback();
-
-    }).catch((e) => console.log(e));
+    itemHeadIcon.classList.remove("expand");
+    let content = el.nextElementSibling;
+    content.style.maxHeight = 0;
+  });
 }
 
-//retrieve data stored in json files inside path: /resources/json
-async function loadJsonUrls(onRetrieveJSONListener) {
+const header = document.querySelector("header");
+const dialog = document.querySelector(".dialog");
 
-  for (var i = 0; i < courseDataRepo.length; i++) {
+function initSidebar() {
+  toggleSidebar();
 
-    const url = courseDataRepo[i];
+  const courseContainer = document.querySelector(".list-container");
 
-    const req = await fetch(url)
-    await req.json().then(
-      (result) =>
-        onRetrieveJSONListener(result)
-    ).catch(e => console.log(e));
+  //structure: <div><button></button><div class="subject-list-container"></div></div>
+  const topicList = courseContainer.children;
+
+  for (var i = 0; i < topicList.length; i++) {
+    const btExpand = topicList[i].querySelector("button");
+    const btExpandIcon = btExpand.firstElementChild;
+
+    const topic = document.getElementById(btExpand.dataset.target);
+
+    console.log(topic);
+
+    btExpand.addEventListener("click", function () {
+      switchExpandState(btExpand);
+      topic.style.maxHeight = isExpanded(btExpand)
+        ? topic.scrollHeight + "px"
+        : 0;
+      btExpandIcon.classList.toggle("expand");
+    });
   }
 }
 
+function switchExpandState(element) {
+  if (!isExpanded(element)) {
+    element.classList.add("expanded");
+  } else {
+    element.classList.remove("expanded");
+  }
+}
 
-const scrollButtonContainer = document.querySelector('.scroll-top-container')
+function isExpanded(element) {
+  return element.classList.contains("expanded");
+}
+
+function showNavbarBrand() {
+  const sidebarNavBrand = document.querySelector(".navbar-brand");
+  sidebarNavBrand.style.opacity = 1;
+}
+
+function hideNavbarBrand() {
+  const sidebarNavBrand = document.querySelector(".navbar-brand");
+  sidebarNavBrand.style.opacity = 0;
+}
+
+function toggleSidebar() {
+  const sidebar = document.getElementById("sidebar");
+  const btShowSidebar = document.getElementById("bt_show_sidebar");
+  const btHideSidebar = document.getElementById("bt_hide_sidebar");
+
+  btShowSidebar.addEventListener("click", function () {
+    sidebar.classList.remove("hide");
+    sidebar.classList.add("show");
+    hideNavbarBrand();
+  });
+
+  btHideSidebar.addEventListener("click", function () {
+    sidebar.classList.remove("show");
+    sidebar.classList.add("hide");
+    showNavbarBrand();
+  });
+}
+
+const scrollButtonContainer = document.querySelector(".scroll-top-container");
 
 let currentScrollY = 0;
 
 var scrollTopVisibility = function () {
-
   if (window.scrollY == 0) {
     scrollButtonContainer.style.visibility = "hidden";
   } else {
-
     if (window.scrollY < currentScrollY) {
-
       if (document.documentElement.scrollTop > header.offsetHeight)
         scrollButtonContainer.style.visibility = "visible";
-
     } else {
       scrollButtonContainer.style.visibility = "hidden";
     }
   }
 
   currentScrollY = window.scrollY;
+};
+
+//codes for dialog
+const KEY_VISIBILITY_STATUS = "dialog-visibility-status-key";
+
+function hideDialog() {
+  dialog.classList.remove("show");
+  dialog.classList.add("hide");
 }
 
-const KEY_VISIBILITY_STATUS = 'dialog-visibility-status-key';
-
-function hideDialog(){
-    dialog.classList.remove('show');
-    dialog.classList.add('hide');
+function showDialog() {
+  dialog.classList.remove("hide");
+  dialog.classList.add("show");
 }
 
-function showDialog(){
-    dialog.classList.remove('hide');
-    dialog.classList.add('show');
-}
+function initDialog() {
+  //localStorage.removeItem(KEY_VISIBILITY_STATUS);
+  var keepHidden = JSON.parse(localStorage.getItem(KEY_VISIBILITY_STATUS));
 
-function initDialog(){
-    //localStorage.removeItem(KEY_VISIBILITY_STATUS);
-    var keepHidden = JSON.parse(localStorage.getItem(KEY_VISIBILITY_STATUS));
-
-    if(keepHidden != null){
-        if(keepHidden) {
-            return;
-        }
+  if (keepHidden != null) {
+    if (keepHidden) {
+      return;
     }
+  }
 
-    showDialog();
+  showDialog();
 
-    var btClose = document.getElementById('bt-close-dialog');
+  var btClose = document.getElementById("bt-close-dialog");
 
-    btClose.onclick = function(){ hideDialog(); }
+  btClose.onclick = function () {
+    hideDialog();
+  };
 
-    var checkboxStatus = document.getElementById('status');
+  var checkboxStatus = document.getElementById("status");
 
-    var btConfirm = document.getElementById('bt-confirm');
-    btConfirm.onclick = function(){
+  var btConfirm = document.getElementById("bt-confirm");
+  btConfirm.onclick = function () {
+    keepHidden = checkboxStatus.checked;
 
-        keepHidden = checkboxStatus.checked;
-
-        localStorage.setItem(KEY_VISIBILITY_STATUS, JSON.stringify(keepHidden));
-        hideDialog();
-
-    }
-
+    localStorage.setItem(KEY_VISIBILITY_STATUS, JSON.stringify(keepHidden));
+    hideDialog();
+  };
 }
 
-export {loadAllUiComponents, scrollTopVisibility};
+export { initUiComponents, scrollTopVisibility };

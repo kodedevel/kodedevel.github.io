@@ -1,101 +1,88 @@
-<!DOCTYPE html>
+---
+layout: default
+---
 
-<html lang="fa">
+<article>
+  <nav class="toc">
+    <div>دسترسی سریع</div>
+    <ul>
+      <li>
+        <a href="#p0">توضیحات</a>
+      </li>
+      <li>
+        <a href="#p1">بررسی کاربرد ها و ویژگی ها</a>
+      </li>
+      <li>
+        <a href="#p2">خلاصه</a>
+      </li>
+    </ul>
+  </nav>
 
-<head>
+  <section id="p0">
+    <h2>توضیحات</h2>
 
-    <meta content="IE=7" http-equiv="X-UA-Compatible">
-    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <p>
+      کلاس های sealed در کاتلین به منظور جلوگیری از ارث بری در خارج از پکیج یا
+      ماژول طراحی شدن؛ کلمه ی sealed به معنی مهر و موم شده است.
+    </p>
+    <p>
+      به عبارت دیگه هیچ
+      <a class="text-decoration-none" href="inheritance.html">subclass</a>
+      مستقیمی برای این کلاس ها در خارج از پکیج یا ماژول قابل تعریف نیست.
+    </p>
 
-    <meta content="معنی اسم sealed یعنی مهر و موم شده، در این مطلب کلاس های sealed رو بررسی کردیم و به کاربرد و ویژگی کلاس های sealed در کاتلین پرداختیم." name="description">
+    <p>
+      ابتدای این کلاس ها کلیدواژه ی <strong>sealed</strong> میزاریم و بقیشو مثل
+      کلاس معمولی تعریف می کنیم:
+    </p>
 
-    <meta content="text/html;charset=UTF-8" http-equiv="Content-Type">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
-    <title>کلاس های sealed در کاتلین</title>
-
-    <meta content="کلاس های sealed در کاتلین" name="og:title">
-    <meta content="معنی اسم sealed یعنی مهر و موم شده، در این مطلب کلاس های sealed رو بررسی کردیم و به کاربرد و ویژگی کلاس های sealed در کاتلین پرداختیم."
-          name="og:description">
-
-    <meta content="https://kodedevel.github.io/resources/favicon.png" property="og:image">
-    <meta content="https://kodedevel.github.io/post/kotlin/sealed-classes.html" property="og:url">
-
-    <meta content="article" property="og:type">
-
-    <link href="/resources/favicon.png" rel="shortcut icon" type="image/x-icon">
-
-    <link href="/resources/css/main.css" rel="stylesheet">
-    <script src="/resources/js/main.js" type="module"></script>
-
-</head>
-
-<body>
-<header></header>
-<main>
-    <div class="page-wrap">
-
-        <div class="article-head">
-            <h1>کلاس های sealed در کاتلین</h1>
-
-            <address>
-                <a class="author text-muted text-decoration-none" rel="author">یونس سلیمانی</a>
-            </address>
-
-            <figure class="figure figure-wrapper">
-                <img alt="کلاس های sealed در کاتلین" class="rounded figure-img" src="/resources/image/kotlin/cover_sealed_classes.png"/>
-            </figure>
-
-            <div class="toc">
-                <p class="p-2 mx-2 h5">دسترسی سریع</p>
-                <div class="list-group">
-
-                    <a class="list-group-item list-group-item-action" href="#sub0">توضیحات</a>
-
-                    <a class="list-group-item list-group-item-action" href="#sub1">بررسی کاربرد ها و ویژگی ها</a>
-
-                    <a class="list-group-item list-group-item-action" href="#sub2">خلاصه</a>
-                </div>
-            </div>
-        </div>
-
-        <article>
-
-            <div class="subsection" id="sub0">
-                <h2>توضیحات</h2>
-
-                <p>کلاس های sealed در کاتلین به منظور جلوگیری از ارث بری در خارج از پکیج یا ماژول طراحی شدن؛ کلمه ی sealed به معنی مهر و موم شده است.</p>
-                <p>به عبارت دیگه هیچ <a class="text-decoration-none" href="inheritance.html">subclass</a> مستقیمی برای این کلاس ها در خارج از پکیج یا ماژول قابل تعریف نیست.</p>
-
-                <p>ابتدای این کلاس ها کلیدواژه ی <strong>sealed</strong> میزاریم و بقیشو مثل کلاس معمولی تعریف می کنیم: </p>
-
-                <div class="sample">
-                    <div class="snippet-container">
-                        <div class="snippet Kotlin">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Kotlin">
 sealed class MyClass {
     ...
 }
-                        </div>
-                    </div>
-                </div>
+                        </pre
+        >
+      </div>
+    </div>
+  </section>
 
-            </div>
+  <section id="p1">
+    <h2>بررسی کاربرد ها و ویژگی ها</h2>
 
-            <div class="subsection" id="sub1">
-                <h2>بررسی کاربرد ها و ویژگی ها</h2>
+    <p>
+      همینطور که گفتیم sealed دسترسی به کلاس رو محدود به یک پکیج در برنامه می
+      کنه. با این کار علاوه بر اینکه کد های برنامه منظم و خواناتر میشه فرض کنید
+      میخوایم یک api عمومی از برنامه بدیم بیرون کلاس هایی که با sealed تعریف می
+      کنیم به طور مستقیم برای توسعه دهنده قابل دسترسی نیستند.
+    </p>
 
-                <p>همینطور که گفتیم sealed دسترسی به کلاس رو محدود به یک پکیج در برنامه می کنه. با این کار علاوه بر اینکه کد های برنامه منظم و خواناتر میشه فرض کنید میخوایم یک api عمومی از برنامه بدیم بیرون کلاس هایی که با sealed تعریف می کنیم به طور مستقیم برای توسعه دهنده قابل دسترسی نیستند.</p>
+    <p>
+      کلاس های sealed
+      <a class="text-decoration-none" href="abstract-classes.html">ابستراکت</a>
+      هستند بنابراین به طور مستقیم نمیتونیم ازشون آبجکت ایجاد کنیم.
+    </p>
+    <p>
+      باید
+      <a class="text-decoration-none" href="access-modifiers.html"
+        >سطح دسترسی</a
+      >
+      <a class="text-decoration-none" href="objects-and-classes.html"
+        >کانستراکتور</a
+      >
+      های کلاس سیلد protected یا private باشه.
+    </p>
 
+    <p>
+      فرض کنید حیوون خونگی داریم و میخوایم بهشون غذا بدیم اما نمیخوایم این غذا
+      رو به حیوونای دیگه این غذا رو بدیم بنابراین برای غذا کلاس sealed تعریف می
+      کنیم:
+    </p>
 
-                <p>کلاس های sealed <a class="text-decoration-none" href="abstract-classes.html">ابستراکت</a> هستند بنابراین به طور مستقیم نمیتونیم ازشون آبجکت ایجاد کنیم.</p>
-                <p>باید <a class="text-decoration-none" href="access-modifiers.html">سطح دسترسی</a> <a class="text-decoration-none" href="objects-and-classes.html">کانستراکتور</a> های کلاس سیلد protected یا private باشه.</p>
-
-
-                <p>فرض کنید حیوون خونگی داریم و میخوایم بهشون غذا بدیم اما نمیخوایم این غذا رو به حیوونای دیگه این غذا رو بدیم بنابراین برای غذا کلاس sealed تعریف می کنیم:</p>
-
-                <div class="sample">
-                    <div class="snippet-container">
-                        <div class="snippet Kotlin">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Kotlin">
 fun main() {
 
     val myCat = PetFood.MyCat()
@@ -120,18 +107,26 @@ sealed class PetFood private constructor(){
         }
     }
 }
-                        </div>
-                    </div>
-                </div>
+                        </pre
+        >
+      </div>
+    </div>
 
-                <p>در بالا سطح دسترسی کانستراکتور کلاس PetFood به صورت private تعریف شده بنابراین فقط کلاس های تودرتو میتونن از کلاس PetFood ارث بری داشته باشن که در مورد فوق دو کلاس MyDog و MyCat رو به صورت تو در تو تعریف کردیم.</p>
+    <p>
+      در بالا سطح دسترسی کانستراکتور کلاس PetFood به صورت private تعریف شده
+      بنابراین فقط کلاس های تودرتو میتونن از کلاس PetFood ارث بری داشته باشن که
+      در مورد فوق دو کلاس MyDog و MyCat رو به صورت تو در تو تعریف کردیم.
+    </p>
 
+    <p>
+      یکی از ویژگی کلاس های sealed کاربرد اونا در عبارت when است به این صورت
+      وقتی که ساب کلاس هاشونو در when بررسی می کنیم در آخر عبارت نیاز به استفاده
+      از else نداریم.
+    </p>
 
-                <p>یکی از ویژگی کلاس های sealed کاربرد اونا در عبارت when است به این صورت وقتی که ساب کلاس هاشونو در when بررسی می کنیم در آخر عبارت نیاز به استفاده از else نداریم.</p>
-
-                <div class="sample">
-                    <div class="snippet-container">
-                        <div class="snippet Kotlin">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Kotlin">
 fun main(){
     val myCat = PetFood.MyCat()
     val myDog = PetFood.MyDog()
@@ -145,88 +140,52 @@ fun main(){
 
 fun printHungryPetVoice(petFood: PetFood){
     when(petFood){
-        is PetFood.MyCat -> println("Meow")
-        is PetFood.MyDog -> println("Barking")
+        is PetFood.MyCat -&gt; println("Meow")
+        is PetFood.MyDog -&gt; println("Barking")
     }
 }
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="subsection" id="sub2">
-                <h2>خلاصه</h2>
-                <p>- کلاس های sealed در خارج از پکیج به طور مستقیم برای ارث بری در دسترس نیستند.</p>
-                <p>- کلاس های sealed در کاتلین ابسترکت هستند</p>
-                <p>- سطح دسترسی کانستراکتور های این کلاس ها یا protected باید باشه یا private.</p>
-                <p>- ساب کلاس های این کلاس ها کاملا با عبارت when برای بررسی سازگاری دارن و نیاز به else اخر شرط نداریم.</p>
-            </div>
-
-
-        </article>
-
-        <div class="article-foot">
-
-            <div class="navigator-container">
-
-                <a class="md-bt md-bt-light" href="/post/kotlin/data-classes.html">
-            <span class="material-icons">
-              navigate_next
-            </span>
-                    <span class="hint">
-              بعدی
-            </span>
-                </a>
-
-                <a class="md-bt md-bt-light" href="/post/kotlin/enum-classes.html">
-            <span class="hint">
-              قبلی
-            </span>
-                    <span class="material-icons">
-              navigate_before
-            </span>
-
-                </a>
-            </div>
-
-            <div class="relative-articles-container">
-                <p>مطالب مرتبط</p>
-                <div>
-                    <div>
-                        <a href="/post/kotlin/objects-and-classes.html">آبجکت و کلاس ها</a>
-                    </div>
-
-                    <div>
-                        <a href="/post/kotlin/inheritance.html">وراثت</a>
-                    </div>
-
-                    <div>
-                        <a href="/post/kotlin/abstract-classes.html">کلاس های ابسترکت</a>
-                    </div>
-
-                    <div>
-                        <a href="https://kotlinlang.org/docs/sealed-classes.html">مطالعه در وبسایت رسمی کاتلین</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+                        </pre
+        >
+      </div>
     </div>
-</main>
+  </section>
 
-<div class="scroll-top-container">
-    <a class="text-decoration-none link-dark material-icons" href="#">
-        arrow_drop_up
-    </a>
-</div>
+  <section id="p2">
+    <h2>خلاصه</h2>
+    <ul>
+      <li>
+        کلاس های sealed در خارج از پکیج به طور مستقیم برای ارث بری در دسترس
+        نیستند.
+      </li>
+      <li>کلاس های sealed در کاتلین ابسترکت هستند</li>
+      <li>
+        سطح دسترسی کانستراکتور های این کلاس ها یا protected باید باشه یا
+        private.
+      </li>
+      <li>
+        ساب کلاس های این کلاس ها کاملا با عبارت when برای بررسی سازگاری دارن و
+        نیاز به else اخر شرط نداریم.
+      </li>
+    </ul>
+  </section>
+</article>
 
-<footer></footer>
+{% capture links %}
+<li>
+  <a href="/post/kotlin/objects-and-classes.html">آبجکت و کلاس ها</a>
+</li>
 
-<div class="dialog hide"></div>
+<li>
+  <a href="/post/kotlin/inheritance.html">وراثت</a>
+</li>
 
-<div class="copy-message">
-    <span class="copy-message-text">کپی شد!</span>
-</div>
+<li>
+  <a href="/post/kotlin/abstract-classes.html">کلاس های ابسترکت</a>
+</li>
 
-</body>
+<li>
+  <a href="https://kotlinlang.org/docs/sealed-classes.html"
+    >مطالعه در وبسایت رسمی کاتلین</a
+  >
+</li>
+{% endcapture %} {% include article-foot.html relative_links = links %}

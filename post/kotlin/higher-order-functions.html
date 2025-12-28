@@ -1,94 +1,67 @@
-<!DOCTYPE html>
+---
+layout: default
+---
 
-<html lang="fa">
+<article>
+  <nav class="toc">
+    <div>دسترسی سریع</div>
+    <ul>
+      <li>
+        <a href="#p0">تابع مرتبه بالا</a>
+      </li>
+      <li>
+        <a href="#p1">خلاصه</a>
+      </li>
+    </ul>
+  </nav>
 
-<head>
-  <meta name="description"
-    content="در این مطلب به توابع مرتبه بالا و تعریف توابع تحت لفظی به عنوان پارامتر توابع مرتبه بالا می پردازیم.">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <section id="p0">
+    <h2>تابع مرتبه بالا</h2>
+    <p>
+      در کاتلین همه چیز <a href="objects-and-classes.html">آبجکت (Object)</a> و
+      دارای مقدار است حتی یک تابع.
+    </p>
+    <p>
+      توابع در کاتلین
+      <a
+        href="https://en.wikipedia.org/wiki/First-class_function"
+        class="text-decoration-none"
+        >first-class</a
+      >
+      هستند یعنی میتونیم به یک متغیر اختصاصشون بدیم، به عنوان پارامتر به یک تابع
+      دیگه پاس بدیم، به عنوان مقدار از یک تابع دیگه برشون گردونیم و در ساختار
+      داده مرتبشون کنیم.
+    </p>
+    <p>
+      تابع مرتبه بالا (<a
+        class="text-decoration-none"
+        href="https://en.wikipedia.org/wiki/Higher-order_function"
+        >Higher-order function</a
+      >) به تابعی گفته میشه که حداقل یک تابع به عنوان پارامتر بگیره یا یک تابع
+      به عنوان مقدار برگردونه.
+    </p>
 
-  <title>توابع مرتبه بالا در کاتلین</title>
+    <p>
+      برای تعریف توابع مرتبه بالا در کاتلین معمولا از
+      <a
+        class="text-decoration-none"
+        href="/post/kotlin/anonymous-function-and-lambda.html"
+        >توابع تحت لفظی</a
+      >
+      به عنوان پارامتر یا مقدار بازگشتی استفاده میکنیم.
+    </p>
 
-  <meta property="og:title" content="توابع مرتبه بالا در کاتلین">
-  <meta property="og:description"
-    content="در این مطلب به توابع مرتبه بالا و تعریف توابع تحت لفظی به عنوان پارامتر توابع مرتبه بالا می پردازیم.">
+    <p>میتونیم از توابع تحت لفظی در پارامتر به عنوان callback استفاده کنیم.</p>
 
-  <meta property="og:image" content="https://kodedevel.github.io/resources/favicon.png">
-  <meta property="og:url" content="https://kodedevel.github.io/post/kotlin/higher-order-functions.html">
-  <meta property="og:type" content="article">
+    <p>
+      تابع setOnClickListener در اپلیکیشن نویسی معروفه و در اندروید زیاد استفاده
+      میشه این تابع تقریبا مثل زیر تعریف شده و onclick یک callback برای
+      setOnClickListener است.
+    </p>
 
-  <link href="/resources/css/main.css" rel="stylesheet">
-  <link href="/resources/favicon.png" rel="icon" type="image/x-icon">
-  <script type="module" src="/resources/js/main.js"></script>
-
-</head>
-
-<body>
-
-  <header></header>
-
-  <main>
-
-    <h1>
-      توابع مرتبه بالا در کاتلین
-    </h1>
-    <div class="article-head">
-      <div class="article-meta">
-        <address class="author">
-          <span class="material-symbols-outlined" aria-hidden="true">person</span>
-          <a rel="author">یونس سلیمانی</a>
-        </address>
-
-        <div class="eta">
-          <span class="material-symbols-outlined" aria-hidden="true">schedule</span>
-          <span aria-live="polite"></span>
-        </div>
-
-        <time datetime="2025-12-16">
-          <span class="material-symbols-outlined" aria-hidden="true">cached</span>
-          <span>آخرین بروزرسانی: ۱۶ دسامبر ۲۰۲۵</span>
-        </time>
-      </div>
-
-      <figure class="figure figure-wrapper">
-        <img alt="توابع مرتبه بالا" class="rounded figure-img"
-          src="/resources/image/kotlin/cover_higher_order_functions.png">
-      </figure>
-
-      <div class="toc">
-        <p class="p-2 mx-2 h5">دسترسی سریع</p>
-        <div class="list-group">
-          <a class="list-group-item list-group-item-action" href="#p0">تابع مرتبه بالا</a>
-          <a class="list-group-item list-group-item-action" href="#p1">خلاصه</a>
-        </div>
-      </div>
-    </div>
-
-    <article>
-      <section id="p0">
-        <h2>تابع مرتبه بالا</h2>
-        <p>در کاتلین همه چیز object و دارای مقدار است حتی یک تابع.</p>
-        <p>توابع در کاتلین <a href="https://en.wikipedia.org/wiki/First-class_function"
-            class="text-decoration-none">first-class</a> هستند یعنی میتونیم به یک متغیر اختصاصشون بدیم، به عنوان پارامتر
-          به یک تابع دیگه پاس بدیم، به عنوان مقدار از یک تابع دیگه برشون گردونیم و در ساختار داده مرتبشون کنیم.</p>
-        <p>تابع مرتبه بالا (<a class="text-decoration-none"
-            href="https://en.wikipedia.org/wiki/Higher-order_function">Higher-order function</a>) به تابعی گفته میشه که
-          حداقل یک تابع به عنوان پارامتر بگیره یا یک تابع به عنوان مقدار برگردونه.</p>
-
-        <p>برای تعریف توابع مرتبه بالا در کاتلین معمولا از <a class="text-decoration-none"
-            href="/post/kotlin/anonymous-function-and-lambda.html">توابع تحت لفظی</a> به عنوان پارامتر یا مقدار بازگشتی
-          استفاده میکنیم.
-        </p>
-
-        <p>میتونیم از توابع تحت لفظی در پارامتر به عنوان callback استفاده کنیم.</p>
-
-        <p>تابع setOnClickListener در اپلیکیشن نویسی معروفه و در اندروید زیاد استفاده میشه این تابع تقریبا مثل زیر تعریف
-          شده و onclick یک callback برای setOnClickListener است.</p>
-
-        <div class="sample">
-          <div class="snippet-container">
-            <pre class="snippet Kotlin">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Kotlin">
 setOnClickListener(onClick: (view: View) -&gt; Unit){
   var view: View = ...
 
@@ -98,56 +71,70 @@ setOnClickListener(onClick: (view: View) -&gt; Unit){
 
   ...
 }
-                  </pre>
-          </div>
-        </div>
+                  </pre
+        >
+      </div>
+    </div>
 
-        <p>صدا زدن تابع:</p>
+    <p>صدا زدن تابع:</p>
 
-        <div class="sample">
-          <div class="snippet-container">
-            <pre class="snippet Kotlin">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Kotlin">
 setOnClickListener({ v -&gt; //Callback
   ...
 })
-                  </pre>
-          </div>
-        </div>
+                  </pre
+        >
+      </div>
+    </div>
 
-        <p>
-          در بالا
-          <strong>&#x200E;{ v -&gt; ...}</strong>
-          مقدار لامبداییه که به پارامتر اختصاص دادیم.
-        </p>
+    <p>
+      در بالا
+      <strong>&#x200E;{ v -&gt; ...}</strong>
+      مقدار لامبداییه که به پارامتر اختصاص دادیم.
+    </p>
 
-        <div class="note">
-          <p class="note-head">توجه:</p>
-          <p>هنگامی که عبارت لامبدا به عنوان اخرین پارامتر تابع تعریف شده باشه، در کاتلین موقع صدا زدن تابع میتونیم
-            لامبدا رو بیرون از پرانتز به پارامتر اختصاص بدیم.</p>
-        </div>
+    <div class="note">
+      <p class="note-head">توجه:</p>
+      <p>
+        هنگامی که عبارت لامبدا به عنوان اخرین پارامتر تابع تعریف شده باشه، در
+        کاتلین موقع صدا زدن تابع میتونیم لامبدا رو بیرون از پرانتز به پارامتر
+        اختصاص بدیم.
+      </p>
+    </div>
 
-        <p>مثال:</p>
+    <p>مثال:</p>
 
-        <p>در زیر تابع myForeach وظیفه ی خوندن اعضای یک ارایه رو به عهده داره myForeach یک <a
-            class="text-decoration-none" href="/post/kotlin/extension-function.html">تابع اکستنشن</a> نیز است. مشابه
-          تابع myForeach یک تابع به اسم foreach در api رسمی کاتلین وجود داره.</p>
+    <p>
+      در زیر تابع myForeach وظیفه ی خوندن اعضای یک ارایه رو به عهده داره
+      myForeach یک
+      <a
+        class="text-decoration-none"
+        href="/post/kotlin/extension-function.html"
+        >تابع اکستنشن</a
+      >
+      نیز است. مشابه تابع myForeach یک تابع به اسم foreach در api رسمی کاتلین
+      وجود داره.
+    </p>
 
-        <div class="sample">
-          <div class="snippet-container">
-            <pre class="snippet Kotlin">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Kotlin">
  fun &lt;E&gt; Array&lt;E&gt;.myForeach(accessor: (element: E) -&gt; Unit){
   for(e in this)
     accessor(e)
 }
-                  </pre>
-          </div>
-        </div>
+                  </pre
+        >
+      </div>
+    </div>
 
-        <p>صدا زدن تابع:</p>
+    <p>صدا زدن تابع:</p>
 
-        <div class="sample">
-          <div class="snippet-container">
-            <pre class="snippet Kotlin">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Kotlin">
 fun main(){
   
   val arr = arrayOf&lt;Int&gt;(9, 10, 8, 2, 1)
@@ -157,20 +144,23 @@ fun main(){
       print("$element ");
   }
 }
-                  </pre>
-          </div>
-        </div>
+                  </pre
+        >
+      </div>
+    </div>
 
+    <p>مثال:</p>
 
-        <p>مثال:</p>
+    <p>
+      در زیر یک تابع مرتبه بالا داریم که کارکتر های تصادفی درست میکنه و با
+      استفاده از accessible با هربار تولید کارکتر میتونیم به اون کارکتر به صورت
+      Callback توسط لامبدا دسترسی داشته باشیم و در پایان کار تابع همه ی کاراکتر
+      ها رو به صورت String بر میگردونه.
+    </p>
 
-        <p>در زیر یک تابع مرتبه بالا داریم که کارکتر های تصادفی درست میکنه و با استفاده از accessible با هربار تولید
-          کارکتر میتونیم به اون کارکتر به صورت Callback توسط لامبدا دسترسی داشته باشیم و در پایان کار تابع همه ی کاراکتر
-          ها رو به صورت String بر میگردونه.</p>
-
-        <div class="sample">
-          <div class="snippet-container">
-            <pre class="snippet Kotlin">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Kotlin">
 fun main(){
 
   val NUMBER_OF_CHARS_PER_LINE = 12
@@ -212,31 +202,44 @@ fun generateRandomChars(length: Int, startRange: Char, endRange: Char, accessibl
   return result
 
 }
-                  </pre>
-          </div>
-        </div>
+                  </pre
+        >
+      </div>
+    </div>
 
-        <h3>تعریف تابع تحت لفظی با receiver به عنوان پارامتر</h3>
+    <h3>تعریف تابع تحت لفظی با receiver به عنوان پارامتر</h3>
 
-        <div class="note">
-          <p class="note-head">توجه:</p>
-          <p>برای درک بهتر این قسمت خوبه که با شی گرایی و ساخت نمونه از کلاس اشنایی داشته باشید</p>
-        </div>
+    <div class="note">
+      <p class="note-head">توجه:</p>
+      <p>
+        برای درک بهتر این قسمت خوبه که با شی گرایی و ساخت نمونه از کلاس اشنایی
+        داشته باشید
+      </p>
+    </div>
 
-        <p>میتونیم <a href="/post/kotlin/anonymous-function-and-lambda.html" class="text-decoration-none">توابع تحت لفظی
-            با رسیور</a> رو به عنوان پارامتر برای تابع مرتبه بالا تعریف کنیم. مهم ترین کاربردشون در type-safe builder ها
-          است.</p>
+    <p>
+      میتونیم
+      <a
+        href="/post/kotlin/anonymous-function-and-lambda.html"
+        class="text-decoration-none"
+        >توابع تحت لفظی با رسیور</a
+      >
+      رو به عنوان پارامتر برای تابع مرتبه بالا تعریف کنیم. مهم ترین کاربردشون در
+      type-safe builder ها است.
+    </p>
 
-        <p>مثال:</p>
+    <p>مثال:</p>
 
-        <p>مثال زیر در وبسایت رسمی کاتلین قرار داره و نشون میده توابعی که در کاتلین برای ایجاد تگ های html وجود دارن
-          چطور تعریف شدن.</p>
+    <p>
+      مثال زیر در وبسایت رسمی کاتلین قرار داره و نشون میده توابعی که در کاتلین
+      برای ایجاد تگ های html وجود دارن چطور تعریف شدن.
+    </p>
 
-        <p>این مثال فقط برای تفهیم موضوعه و قابل اجرا نیست.</p>
+    <p>این مثال فقط برای تفهیم موضوعه و قابل اجرا نیست.</p>
 
-        <div class="sample">
-          <div class="snippet-container">
-            <pre class="snippet Kotlin">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Kotlin">
 class HTML {
     fun body() { ... }
 }
@@ -252,100 +255,66 @@ html {       // مقداردهی عبارت لامبدا با رسیور به ع
     body()   // صدا زدن اعضای رسیور
     ...
 }
-                  </pre>
-          </div>
-        </div>
-
-      </section>
-
-      <section id="p1">
-        <h2>خلاصه</h2>
-
-        <ul>
-          <li>در کاتلین توابع first-class هستند</li>
-          <li>تابع مرتبه بالا به تابعی گفته میشه که حداقل یک تابع به عنوان پارامتر دریافت کنه یا یک تابع به عنوان مقدار
-            برگردونه.</li>
-
-          <li>معمولا از توابع تحت اللفظی به عنوان پارامتر تابع مرتبه بالا استفاده میشه.</li>
-
-          <li>میتونیم از پارامتر هایی که با توابع تحت اللفطی تعریف میکنیم به عنوان Callback استفاده کنیم.</li>
-          <li>تابع setOnClickListener در api اپلیکیشن ها از جمله اندروید، توابع مرتبه بالا هستند.</li>
-
-          <li>میتونیم تابع با رسیور رو به عنوان پارامتر تابع مرتبه بالا تعریف کنیم.</li>
-
-          <li>با تعریف تابع با رسیور به عنوان پارامتر تابع مرتبه بالا میتونیم type-safe builder تعریف کنیم.</li>
-        </ul>
-
-      </section>
-
-    </article>
-
-
-    <div class="article-foot">
-      <aside>
-        <nav aria-label="Post navigation" class="post-navigation-container">
-
-          <a href="/post/kotlin/inline-functions.html" class="md-bt md-bt-light">
-
-            <span class="material-icons">
-              navigate_next
-            </span>
-            <span class="hint">
-              بعدی
-            </span>
-          </a>
-
-          <a href="/post/kotlin/anonymous-function-and-lambda.html" class="md-bt md-bt-light">
-            <span class="hint">
-              قبلی
-            </span>
-            <span class="material-icons">
-              navigate_before
-            </span>
-
-          </a>
-        </nav>
-        <section>
-          <h2>مطالب مرتبط</h2>
-
-          <ul>
-
-            <li>
-              <a href="/post/kotlin/functions.html">توابع در کاتلین</a>
-            </li>
-
-            <li>
-              <a href="/post/kotlin/extension-function.html">اکستنشن ها در کاتلین</a>
-            </li>
-
-            <li>
-              <a href="/post/kotlin/anonymous-function-and-lambda.html">توابع بی نام و عبارات لامبدا در کاتلین</a>
-            </li>
-
-            <li>
-              <a href="https://kotlinlang.org/docs/lambdas.html">سایت رسمی کاتلین برای مطالعه موضوع</a>
-            </li>
-          </ul>
-        </section>
-      </aside>
+                  </pre
+        >
+      </div>
     </div>
+  </section>
 
-  </main>
+  <section id="p1">
+    <h2>خلاصه</h2>
 
-  <div class="scroll-top-container">
-    <a class="text-decoration-none link-dark material-icons" href="#">
-      arrow_drop_up
-    </a>
-  </div>
+    <ul>
+      <li>در کاتلین توابع first-class هستند</li>
+      <li>
+        تابع مرتبه بالا به تابعی گفته میشه که حداقل یک تابع به عنوان پارامتر
+        دریافت کنه یا یک تابع به عنوان مقدار برگردونه.
+      </li>
 
-  <footer></footer>
+      <li>
+        معمولا از توابع تحت اللفظی به عنوان پارامتر تابع مرتبه بالا استفاده
+        میشه.
+      </li>
 
-  <div class="dialog hide"></div>
+      <li>
+        میتونیم از پارامتر هایی که با توابع تحت اللفطی تعریف میکنیم به عنوان
+        Callback استفاده کنیم.
+      </li>
+      <li>
+        تابع setOnClickListener در api اپلیکیشن ها از جمله اندروید، توابع مرتبه
+        بالا هستند.
+      </li>
 
-  <div class="copy-message">
-    <span class="copy-message-text">کپی شد!</span>
-  </div>
+      <li>
+        میتونیم تابع با رسیور رو به عنوان پارامتر تابع مرتبه بالا تعریف کنیم.
+      </li>
 
-</body>
+      <li>
+        با تعریف تابع با رسیور به عنوان پارامتر تابع مرتبه بالا میتونیم
+        type-safe builder تعریف کنیم.
+      </li>
+    </ul>
+  </section>
+</article>
 
-</html>
+{% capture links %}
+<li>
+  <a href="/post/kotlin/functions.html">توابع در کاتلین</a>
+</li>
+
+<li>
+  <a href="/post/kotlin/extension-function.html">اکستنشن ها در کاتلین</a>
+</li>
+
+<li>
+  <a href="/post/kotlin/anonymous-function-and-lambda.html"
+    >توابع بی نام و عبارات لامبدا در کاتلین</a
+  >
+</li>
+
+<li>
+  <a href="https://kotlinlang.org/docs/lambdas.html"
+    >سایت رسمی کاتلین برای مطالعه موضوع</a
+  >
+</li>
+{% endcapture %} {% include article-foot.html relative_links = links %}

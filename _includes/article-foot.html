@@ -1,0 +1,79 @@
+<!-- variables for previous and next page to auto set next and previous page links for anchor in article-foot.html -->
+{% assign prev_page = nil %}
+{% assign next_page = nil %}
+
+{% for data in site.data.json.topics %}
+
+{% assign metadata_list = data[1].metadata_list %}
+
+{% for entry in metadata_list %}
+
+
+{% if entry.link == page.url %}
+
+{% unless forloop.first %}
+{% assign prev_index = forloop.index0 | minus: 1 %}
+{% assign prev_page = metadata_list[prev_index].link %}
+{% endunless %}
+
+{% unless forloop.last %}
+{% assign next_index = forloop.index0 | plus: 1 %}
+{% assign next_page = metadata_list[next_index].link %}
+{% endunless %}
+
+
+{% break %}
+{% endif %}
+
+{% endfor %}
+
+{% endfor %}
+
+<div class="article-foot">
+  <aside>
+    <nav class="post-navigation-container">
+
+      {% unless page.notopics %}
+      <a href="{{ next_page | default: '#' }}" class="md-bt md-bt-light">
+
+        <span class="material-symbols-outlined">
+          navigate_next
+        </span>
+        <span class="hint">
+          بعدی
+        </span>
+      </a>
+
+      <a href="{{ prev_page | default: '#' }}" class="md-bt md-bt-light">
+        <span class="material-symbols-outlined">
+          navigate_before
+        </span>
+        <span class="hint">
+          قبلی
+        </span>
+      </a>
+      {% endunless %}
+    </nav>
+    <section>
+      <h2>مطالب مرتبط</h2>
+
+      <ul>
+        {{ include.relative_links }}
+      </ul>
+
+      {% unless page.notopics %}
+      <section>
+        <h3>موضوعات دیگر</h3>
+
+        <ul>
+          {% for topic in site.data.json.topic-links %}
+          <li><a href="{{ topic.link }}">{{ topic.title }}</a></li>
+          {% endfor %}
+        </ul>
+
+      </section>
+      {% endunless %}
+    </section>
+
+  </aside>
+</div>

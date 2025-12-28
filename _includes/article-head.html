@@ -1,0 +1,42 @@
+{% assign metadata = include.metadata %}
+
+<div class="article-head">
+  <div class="article-meta">
+
+    <address class="author">
+      <span class="material-symbols-outlined" aria-hidden="true">person</span>
+      <a href="{{ metadata.author.link | default: '/about' }}" rel="author">
+        {{ metadata.author.name | default: site.author.name }}
+      </a>
+    </address>
+
+    <div class="eta">
+      <span class="material-symbols-outlined" aria-hidden="true">schedule</span>
+      <span aria-live="polite"></span>
+    </div>
+
+    {% if metadata.datePublished %}
+    <div>
+      <span class="material-symbols-outlined" aria-hidden="true">line_end_circle</span>
+      <span>تاریخ انتشار:</span>
+      <time id="publish-date" datetime="{{ metadata.datePublished }}"></time>
+    </div>
+    {% endif %}
+
+    {% if metadata.lastModified and metadata.lastModified != "" %}
+    <div>
+      <span class="material-symbols-outlined" aria-hidden="true">cached</span>
+      <span>آخرین بروزرسانی:</span>
+      <time id="lastmod-date" datetime="{{ metadata.lastModified }}"></time>
+    </div>
+    {% endif %}
+
+  </div>
+
+  {% if metadata.imgCover %}
+  <figure>
+    <img src="{{ metadata.imgCover }}" alt="{{ metadata.title }}">
+  </figure>
+  {% endif %}
+
+</div>

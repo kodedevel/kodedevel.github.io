@@ -1,178 +1,153 @@
-<!DOCTYPE html>
+---
+layout: default
+---
 
-<html lang="fa">
+<article>
+  <nav class="toc">
+    <div>دسترسی سریع</div>
+    <ul>
+      <li>
+        <a href="#p0">توضیحات</a>
+      </li>
+      <li>
+        <a href="#p1">کلیدواژه ی var</a>
+      </li>
+      <li>
+        <a href="#p2">کلیدواژه ی val</a>
+      </li>
 
-<head>
+      <li>
+        <a href="#p3">کلیدواژه ی const</a>
+      </li>
+      <li>
+        <a href="#p4">خلاصه</a>
+      </li>
+    </ul>
+  </nav>
 
-  <meta charset="UTF-8">
-  <meta name="description"
-    content="در این مطلب به تعریف متغیر های تغییرپذیر و تغییرناپذیر با استفاده از کلیدواژه ی val، var و const در کاتلین می پردازیم.">
+  <section id="p0">
+    <h2>توضیحات</h2>
+    <p>
+      متغیر ها در کاتلین به دو دسته ی متغیر های تغییرپذیر و متغیر های
+      تغییرناپذیر تقسیم میشن وقتی یک متغیر تغییر پذیر مقداردهی میشه مقدارش در
+      طول اجرای برنامه قابل تغییره اما متغیر های تغییرناپذیر یک بار مقداردهی
+      میشن و در طول اجرای برنامه مقداری که بهشون اختصاص دادیم غیرقابل تغییر است.
+    </p>
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>متغیر های تغییرپذیر و تغییرناپذیر در کاتلین</title>
+    <p>
+      متغیر های تغییرپذیر رو با کلیدواژه ی var و متغیر های تغییر ناپذیر رو با
+      کلیدواژه های val و const در کاتلین تعریف میکنیم.
+    </p>
+  </section>
 
-  <meta name="og:title" content="متغیر های تغییر پذیر و تغییرناپذیر در کاتلین">
-  <meta name="og:description"
-    content="در این مطلب به تعریف متغیر های تغییر پذیر و تغییر ناپذیر با استفاده از کلیدواژه ی val، var و const در کاتلین می پردازیم.">
+  <section id="p1">
+    <h2>کلیدواژه ی var</h2>
+    <p>
+      با استفاده از کلیدواژه ی var متغیر های تغییرپذیر در کاتلین ایجاد میکنیم.
+    </p>
 
-  <meta property="og:image" content="https://kodedevel.github.io/resources/favicon.png">
-  <meta property="og:url" content="https://kodedevel.github.io/post/kotlin/variables_mutable_immutable.html">
-  <meta property="og:type" content="article">
+    <p>مثال:</p>
 
-  <link rel="shortcut icon" href="/resources/favicon.png" type="image/x-icon">
-
-  <link rel="stylesheet" href="/resources/css/main.css">
-  <script type="module" src="/resources/js/main.js"></script>
-</head>
-
-<body>
-
-  <header></header>
-
-  <main>
-    <h1>متغیر های تغییرپذیر و تغییرناپذیر</h1>
-
-    <div class="article-head">
-
-      <div class="article-meta">
-        <address class="author">
-          <span class="material-symbols-outlined" aria-hidden="true">person</span>
-          <a href="/about.html" rel="author">یونس سلیمانی</a>
-        </address>
-
-        <div class="eta">
-          <span class="material-symbols-outlined" aria-hidden="true">schedule</span>
-          <span aria-live="polite"></span>
-        </div>
-
-        <time datetime="2025-12-16">
-          <span class="material-symbols-outlined" aria-hidden="true">cached</span>
-          <span>آخرین بروزرسانی: ۱۶ دسامبر ۲۰۲۵</span>
-        </time>
-      </div>
-
-      <figure class="figure figure-wrapper">
-        <img alt="متغیر های تغییرپذیر و تغییرناپذیر در کاتلین" class="rounded figure-img"
-          src="/resources/image/kotlin/cover_mutable_immutable_variables.png" />
-      </figure>
-
-      <div class="toc">
-        <p class="p-2 mx-2 h5">دسترسی سریع</p>
-        <div class="list-group">
-          <a class="list-group-item list-group-item-action" href="#p0">توضیحات</a>
-
-          <a class="list-group-item list-group-item-action" href="#p1">کلیدواژه ی var</a>
-
-          <a class="list-group-item list-group-item-action" href="#p2">کلیدواژه ی val</a>
-
-          <a class="list-group-item list-group-item-action" href="#p3">کلیدواژه ی const</a>
-
-          <a class="list-group-item list-group-item-action" href="#p4">خلاصه</a>
-        </div>
-      </div>
-    </div>
-
-    <article>
-      <section id="p0">
-        <h2>توضیحات</h2>
-        <p>متغیر ها در کاتلین به دو دسته ی متغیر های تغییرپذیر و متغیر های تغییرناپذیر تقسیم میشن وقتی یک متغیر تغییر
-          پذیر مقداردهی میشه مقدارش در طول اجرای برنامه قابل تغییره اما متغیر های تغییرناپذیر یک بار مقداردهی میشن و در
-          طول اجرای برنامه مقداری که بهشون اختصاص دادیم غیرقابل تغییر است.</p>
-
-        <p>متغیر های تغییرپذیر رو با کلیدواژه ی var و متغیر های تغییر ناپذیر رو با کلیدواژه های val و const در کاتلین
-          تعریف میکنیم.</p>
-
-      </section>
-
-      <section id="p1">
-        <h2>کلیدواژه ی var</h2>
-        <p>با استفاده از کلیدواژه ی var متغیر های تغییرپذیر در کاتلین ایجاد میکنیم.</p>
-
-        <p>مثال:</p>
-
-        <p>چند مقدار مختلف به mutable اختصاص میدیم و mutable رو چاپ میکنیم:</p>
-        <div class="sample">
-          <div class="snippet-container">
-            <pre class="snippet Kotlin">
+    <p>چند مقدار مختلف به mutable اختصاص میدیم و mutable رو چاپ میکنیم:</p>
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Kotlin">
 var mutable = 44
 println(mutable)
 mutable = 56
 println(mutable)
 mutable = 100
 println(mutable)
-              </pre>
-          </div>
-        </div>
+              </pre
+        >
+      </div>
+    </div>
+  </section>
 
-      </section>
+  <section id="p2">
+    <h2>کلیدواژه ی val</h2>
+    <p>
+      با استفاده از کلیدواژه ی val متغیر های تغییرناپذیر در کاتلین ایجاد میکنیم،
+      متغیر هایی که با این کلیدواژه تعریف میکنیم یک بار
+      <strong>زمان اجرای برنامه</strong> مقداردهی میشن و مقدارشون در طول اجرای
+      برنامه غیرقابل تغییره و اگه بخوایم تو کد دوباره مقداردهیشون کنیم دچار خطای
+      کامپایل میشیم.
+    </p>
 
-      <section id="p2">
-        <h2>کلیدواژه ی val</h2>
-        <p>با استفاده از کلیدواژه ی val متغیر های تغییرناپذیر در کاتلین ایجاد میکنیم، متغیر هایی که با این کلیدواژه
-          تعریف میکنیم یک بار <strong>زمان اجرای برنامه</strong> مقداردهی میشن و مقدارشون در طول اجرای برنامه غیرقابل
-          تغییره و اگه بخوایم تو کد دوباره مقداردهیشون کنیم دچار خطای کامپایل میشیم.</p>
+    <p>مثال:</p>
 
-        <p>مثال:</p>
-
-        <div class="sample">
-          <div class="snippet-container">
-            <pre class="snippet Kotlin">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Kotlin">
 val immutable = 3.14
 immutable = 6.28 //خطای کامپایل
-              </pre>
-          </div>
-        </div>
-      </section>
+              </pre
+        >
+      </div>
+    </div>
+  </section>
 
-      <section id="p3">
-        <h2>کلیدواژه ی const</h2>
-        <p>کلیدواژه ی const در کاتلین رو کنار کلیدواژه ی val قرار میدیم. متغیر هایی که با const تعریف میکنیم،
-          <strong>زمان کامپایل</strong> مقداردهی میشن. اگه مطلب <a class="text-decoration-none"
-            href="/post/kotlin/inline-functions.html">توابع خطی</a> (inline functions) رو مطالعه کرده باشید این متغیر ها
-          چیزی شبیه به توابع خطی در کاتلین هستند.</p>
+  <section id="p3">
+    <h2>کلیدواژه ی const</h2>
+    <p>
+      کلیدواژه ی const در کاتلین رو کنار کلیدواژه ی val قرار میدیم. متغیر هایی
+      که با const تعریف میکنیم، <strong>زمان کامپایل</strong> مقداردهی میشن. اگه
+      مطلب
+      <a class="text-decoration-none" href="/post/kotlin/inline-functions.html"
+        >توابع خطی</a
+      >
+      (inline functions) رو مطالعه کرده باشید این متغیر ها چیزی شبیه به توابع
+      خطی در کاتلین هستند.
+    </p>
 
-        <p>این متغیر ها رو در سه جا میتونیم تعریف کنیم:</p>
+    <p>این متغیر ها رو در سه جا میتونیم تعریف کنیم:</p>
 
-        <p>۱- به عنوان top level در داخل فایل کاتلین</p>
-        <p>۲- به عنوان عضو آبجکت های اعلامی (object declarations)</p>
+    <p>۱- به عنوان top level در داخل فایل کاتلین</p>
+    <p>۲- به عنوان عضو آبجکت های اعلامی (object declarations)</p>
 
-        <p>۳- به عنوان یکی از اعضای companion object در کلاس کاتلین.</p>
+    <p>۳- به عنوان یکی از اعضای companion object در کلاس کاتلین.</p>
 
-        <div class="note">
-          <p class="note-head">نکته:</p>
+    <div class="note">
+      <p class="note-head">نکته:</p>
 
-          <p>برای تعریف متغیر با کلیدواژه ی const مقداری که به متغیر اختصاص میدیم باید نوع String یا Primitive باشه
-            (Int، Long، Double، Short، ...)</p>
-        </div>
+      <p>
+        برای تعریف متغیر با کلیدواژه ی const مقداری که به متغیر اختصاص میدیم
+        باید نوع String یا Primitive باشه (Int، Long، Double، Short، ...)
+      </p>
+    </div>
 
-        <p>چون این متغیر ها فقط زمان کامپایل مقداردهی میشن بنابراین نمیتونیم با توابع و پراپرتی هایی که زمان اجرا صدا
-          زده میشن مقداردهیشون کنیم:</p>
+    <p>
+      چون این متغیر ها فقط زمان کامپایل مقداردهی میشن بنابراین نمیتونیم با توابع
+      و پراپرتی هایی که زمان اجرا صدا زده میشن مقداردهیشون کنیم:
+    </p>
 
-        <div class="sample">
-          <div class="snippet-container">
-            <pre class="snippet Kotlin">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Kotlin">
 // صحیح            
 const val DOMAIN: String = "https://skybirdbits.github.io"
 val currentTime: Long = System.currentTimeMillis()
-              </pre>
-          </div>
-        </div>
+              </pre
+        >
+      </div>
+    </div>
 
-        <div class="sample">
-          <div class="snippet-container">
-            <pre class="snippet Kotlin">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Kotlin">
 //غلط            
 const val DOMAIN: String = "https://skybirdbits.github.io"
 const val CURRENT_TIME: Long = System.currentTimeMillis()
-              </pre>
-          </div>
-        </div>
+              </pre
+        >
+      </div>
+    </div>
 
-        <p>مثال</p>
+    <p>مثال</p>
 
-        <div class="sample">
-          <div class="snippet-container">
-            <pre class="snippet Kotlin">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Kotlin">
 const val LABEL_NAME: String = "Name:"
 const val LABEL_AGE: String = "Age:"
 const val LABEL_BIRTHDAY: String = "Birthday:"
@@ -188,99 +163,53 @@ fun main(){
   println("$LABEL_NAME $name $LABEL_AGE $age $LABEL_BIRTHDAY $birthday")
 
 }
-              </pre>
-          </div>
-        </div>
-
-
-      </section>
-
-      <section id="p4">
-        <h2>خلاصه</h2>
-        <ul>
-          <li>متغیر ها در کاتلین به دو دسته ی تغییر پذیر و تغییرناپذیر تقسیم میشن.</li>
-
-          <li>متغیر های تغییرپذیر رو با var و متغیر های تغییرناپذیر رو با val و const ایجاد میکنیم.</li>
-          <li>هنگام تعریف متغیر با کلیدواژه ی val متغیر مقدارش ثابت و زمان اجرا مقداردهی میشه.</li>
-
-          <li>هنگام تعریف متغیر با کلیدواژه ی const متغیر زمان کامپایل مقداردهی میشه.</li>
-
-          <li>متغیر های const رو میتونیم به عنوان تاپ لول، عضو object declaration و عضو companion object ایجاد کنیم.
-          </li>
-          <li>به متغیر هایی که با const ایجاد میکنیم فقط میتونیم مقادیر String و یا Primitive Type ها رو اختصاص بدیم.
-          </li>
-        </ul>
-
-      </section>
-
-    </article>
-
-
-    <div class="article-foot">
-
-      <aside>
-
-        <nav class="post-navigation-container">
-
-          <a href="/post/kotlin/mathematics.html" class="md-bt md-bt-light">
-
-            <span class="material-icons">
-              navigate_next
-            </span>
-            <span class="hint">
-              بعدی
-            </span>
-          </a>
-
-          <a href="/post/kotlin/inline-functions.html" class="md-bt md-bt-light">
-
-            <span class="hint">
-              قبلی
-            </span>
-            <span class="material-icons">
-              navigate_before
-            </span>
-          </a>
-
-        </nav>
-        <section>
-          <h2>مطالب مرتبط</h2>
-
-          <ul>
-            <li>
-              <a href="/post/kotlin/loops.html">حلقه ها در کاتلین</a>
-            </li>
-            <li>
-              <a href="/post/kotlin/selectors.html">دستورات شرطی در کاتلین</a>
-            </li>
-
-            <li>
-              <a href="/post/kotlin/mathematics.html">توابع ریاضی در کاتلین</a>
-            </li>
-          </ul>
-
-        </section>
-
-      </aside>
-
+              </pre
+        >
+      </div>
     </div>
-  </main>
+  </section>
 
+  <section id="p4">
+    <h2>خلاصه</h2>
+    <ul>
+      <li>
+        متغیر ها در کاتلین به دو دسته ی تغییر پذیر و تغییرناپذیر تقسیم میشن.
+      </li>
 
-  <div class="scroll-top-container">
-    <a class="text-decoration-none link-dark material-icons" href="#">
-      arrow_drop_up
-    </a>
-  </div>
+      <li>
+        متغیر های تغییرپذیر رو با var و متغیر های تغییرناپذیر رو با val و const
+        ایجاد میکنیم.
+      </li>
+      <li>
+        هنگام تعریف متغیر با کلیدواژه ی val متغیر مقدارش ثابت و زمان اجرا
+        مقداردهی میشه.
+      </li>
 
-  <footer></footer>
+      <li>
+        هنگام تعریف متغیر با کلیدواژه ی const متغیر زمان کامپایل مقداردهی میشه.
+      </li>
 
-  <div class="dialog hide"></div>
+      <li>
+        متغیر های const رو میتونیم به عنوان تاپ لول، عضو object declaration و
+        عضو companion object ایجاد کنیم.
+      </li>
+      <li>
+        به متغیر هایی که با const ایجاد میکنیم فقط میتونیم مقادیر String و یا
+        Primitive Type ها رو اختصاص بدیم.
+      </li>
+    </ul>
+  </section>
+</article>
 
-  <div class="copy-message">
-    <span class="copy-message-text">کپی شد!</span>
-  </div>
+{% capture links %}
+<li>
+  <a href="/post/kotlin/loops.html">حلقه ها در کاتلین</a>
+</li>
+<li>
+  <a href="/post/kotlin/selectors.html">دستورات شرطی در کاتلین</a>
+</li>
 
-</body>
-
-</html>
+<li>
+  <a href="/post/kotlin/mathematics.html">توابع ریاضی در کاتلین</a>
+</li>
+{% endcapture %} {% include article-foot.html relative_links = links %}

@@ -1,109 +1,104 @@
-<!DOCTYPE html>
+---
+layout: default
+---
 
-<html lang="fa">
+<article>
+  <nav class="toc">
+    <div>دسترسی سریع</div>
+    <ul>
+      <li>
+        <a href="#p0">تعریف وراثت</a>
+      </li>
+      <li>
+        <a href="#p1">نحوه ی ارث بری از یک کلاس</a>
+      </li>
+      <li>
+        <a href="#p2">بررسی کانستراکتور ها در ارث بری</a>
+      </li>
+      <li>
+        <a href="#p3">مفهوم بازنویسی (Overriding)</a>
+      </li>
+      <li>
+        <a href="#p4">کلاس Object</a>
+      </li>
+      <li>
+        <a href="#p5">مورد مطالعه (مثال) ها</a>
+      </li>
+      <li>
+        <a href="#p6">خلاصه</a>
+      </li>
+    </ul>
+  </nav>
 
-<head>
+  <section id="p0">
+    <h2>تعریف وراثت</h2>
+    <blockquote>
+      وراثت به شما این امکان رو میده تا دیتافیلد و متد های یک کلاس دیگه رو به
+      کلاس جدید منتقل کنید و از دوباره نویسی کدهای تکراری برای کلاس های مختلف
+      جلوگیری میکنه.
+    </blockquote>
 
-    <meta content="IE=7" http-equiv="X-UA-Compatible">
-    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <p>
+      گاهی اوقات نیاز داریم متد ها و فیلد های یک کلاس رو داخل کلاس دیگه
+      پیاده‌سازی کنیم به‌جای اینکه متد و فیلد ها رو دوباره بنویسیم از کلاسی که
+      مایحتاجمونو داره ارث بری میکنیم.
+    </p>
 
-    <meta content="گاهی اوقات نیاز داریم متد ها و فیلد های یک کلاس رو داخل کلاس دیگه پیاده‌سازی کنیم به‌جای اینکه متد و فیلد ها رو دوباره بنویسیم از کلاسی که مایحتاجمونو داره ارث بری میکنیم؛ در این مطلب به بررسی وراثت می پردازیم و در اخر یه نگاهی ام داریم به کلاس Object در جاوا"
-          name="description">
+    <p>
+      میتونیم یک کلاس از روی کلاس دیگه تعریف کنیم، در این صورت کلاس جدید علاوه
+      بر دیتافیلد و متد های کلاس قبلی، دیتافیلد و متد های اختصاصی خودش هم میتونه
+      داشته باشه؛ به این کار وراثت یا ارث بری (inheritance) در جاوا میگیم.
+    </p>
+    <p>
+      به کلاسی که دیتافیلد و متد های کلاس دیگه رو ارث می بره
+      <strong>ساب کلاس (subclass)</strong> و به کلاسی که ازش میخوایم ارث بری
+      کنیم، <strong>سوپرکلاس (superclass)</strong> میگیم.
+    </p>
 
-    <meta content="text/html;charset=UTF-8" http-equiv="Content-Type">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <p>
+      به کمک وراثت کلاس های دیگه میتونن دیتافیلد و متدهای سوپرکلاس رو به ارث
+      ببرن.
+    </p>
+    <p>
+      به عنوان مثال میدونیم Rectangle و Circle هردو یک شکل هندسی هستند و شکل های
+      هندسی یک سری ويژگی های مشترک بینشون وجود داره (مثل مساحت و محیط) بنابر این
+      میتونیم یک کلاس عمومی به اسم GeometricShape براشون تعریف کنیم.
+    </p>
 
-    <title>وراثت (inheritance) در جاوا</title>
+    <figure>
+      <img
+        alt="ارث بری دو کلاس Circle و Rectangle از GeometricShape در جاوا"
+        class="img-fluid rounded figure-img"
+        src="/resources/image/generic/inheritance_example_diagram.png"
+      />
+      <figcaption class="figure-caption text-end p-2 rtl">
+        ارث بری دو کلاس Circle و Rectangle از GeometricShape
+      </figcaption>
+    </figure>
 
-    <meta content="وراثت (inheritance) در جاوا" name="og:title">
-    <meta content="گاهی اوقات نیاز داریم متد ها و فیلد های یک کلاس رو داخل کلاس دیگه پیاده‌سازی کنیم به‌جای اینکه متد و فیلد ها رو دوباره بنویسیم از کلاسی که مایحتاجمونو داره ارث بری میکنیم؛ در این مطلب به بررسی وراثت می پردازیم و در اخر یه نگاهی ام داریم به کلاس Object در جاوا"
-          name="og:description">
+    <p>
+      در تصویر بالا GeometricShape سوپرکلاس <strong>(superclass)</strong> است،
+      Rectangle و Circle ساب کلاس <strong>(subclass)</strong> های GeometricShape
+      هستند.
+    </p>
+  </section>
 
-    <meta content="https://kodedevel.github.io/resources/favicon.png" property="og:image">
-    <meta content="https://kodedevel.github.io/post/java/inheritance.html" property="og:url">
+  <section id="p1">
+    <h2>نحوه ی ارث بری از یک کلاس</h2>
+    <blockquote>
+      با کلید واژه ی extends در جاوا میتونیم از یک کلاس ارث بری کنیم.
+    </blockquote>
 
-    <meta content="article" property="og:type">
+    <p>
+      اگه بخوایم دیتافیلد و متد های یک کلاس رو به ارث ببریم باید از کلیدواژه ی
+      extends در جاوا استفاده کنیم.
+    </p>
 
-    <link href="/resources/favicon.png" rel="shortcut icon" type="image/x-icon">
+    <p>فرم کلی:</p>
 
-    <link href="/resources/css/main.css" rel="stylesheet">
-    <script src="/resources/js/main.js" type="module"></script>
-
-</head>
-
-<body>
-<header></header>
-<main>
-    <div class="page-wrap">
-
-        <div class="article-head">
-            <h1>
-                وراثت (inheritance) در جاوا
-            </h1>
-
-            <address>
-                <a class="author text-muted text-decoration-none" rel="author">یونس سلیمانی</a>
-            </address>
-
-            <figure class="figure figure-wrapper">
-                <img alt="وراثت (inheritance) در جاوا" class="rounded figure-img" src="/resources/image/java/cover_inheritance.png"/>
-            </figure>
-
-            <div class="toc">
-                <p class="p-2 mx-2 h5">دسترسی سریع</p>
-                <div class="list-group">
-
-                    <a class="list-group-item list-group-item-action" href="#sub0">تعریف وراثت</a>
-
-                    <a class="list-group-item list-group-item-action" href="#sub1">نحوه ی ارث بری از یک کلاس</a>
-
-                    <a class="list-group-item list-group-item-action" href="#sub2">بررسی کانستراکتور ها در ارث بری</a>
-
-                    <a class="list-group-item list-group-item-action" href="#sub3">مفهوم بازنویسی (Overriding)</a>
-
-                    <a class="list-group-item list-group-item-action" href="#sub4">کلاس Object</a>
-                    <a class="list-group-item list-group-item-action" href="#sub5">مورد مطالعه (مثال) ها</a>
-
-                    <a class="list-group-item list-group-item-action" href="#sub6">خلاصه</a>
-                </div>
-            </div>
-        </div>
-
-        <article>
-
-            <div class="subsection" id="sub0">
-                <h2>تعریف وراثت</h2>
-                <blockquote>وراثت به شما این امکان رو میده تا دیتافیلد و متد های یک کلاس دیگه رو به کلاس جدید منتقل کنید و از دوباره نویسی کدهای تکراری برای کلاس های مختلف جلوگیری میکنه.</blockquote>
-
-                <p>گاهی اوقات نیاز داریم متد ها و فیلد های یک کلاس رو داخل کلاس دیگه پیاده‌سازی کنیم به‌جای اینکه متد و فیلد ها رو دوباره بنویسیم از کلاسی که مایحتاجمونو داره ارث بری میکنیم.</p>
-
-                <p>میتونیم یک کلاس از روی کلاس دیگه تعریف کنیم، در این صورت کلاس جدید علاوه بر دیتافیلد و متد های کلاس قبلی، دیتافیلد و متد های اختصاصی خودش هم میتونه داشته باشه؛ به این کار وراثت یا ارث بری (inheritance) در جاوا میگیم.</p>
-                <p>به کلاسی که دیتافیلد و متد های کلاس دیگه رو ارث می بره <strong>ساب کلاس (subclass)</strong> و به کلاسی که ازش میخوایم ارث بری کنیم، <strong>سوپرکلاس (superclass)</strong> میگیم.</p>
-
-                <p>به کمک وراثت کلاس های دیگه میتونن دیتافیلد و متدهای سوپرکلاس رو به ارث ببرن.</p>
-                <p>به عنوان مثال میدونیم Rectangle و Circle هردو یک شکل هندسی هستند و شکل های هندسی یک سری ويژگی های مشترک بینشون وجود داره (مثل مساحت و محیط) بنابر این میتونیم یک کلاس عمومی به اسم GeometricShape براشون تعریف کنیم.</p>
-
-                <figure>
-                    <img alt="ارث بری دو کلاس Circle و Rectangle از GeometricShape در جاوا" class="img-fluid rounded figure-img" src="/resources/image/generic/inheritance_example_diagram.png">
-                    <figcaption class="figure-caption text-end p-2 rtl">ارث بری دو کلاس Circle و Rectangle از GeometricShape</figcaption>
-                </figure>
-
-                <p>در تصویر بالا GeometricShape سوپرکلاس <strong>(superclass)</strong> است، Rectangle و Circle ساب کلاس <strong>(subclass)</strong> های GeometricShape هستند.</p>
-
-            </div>
-
-
-            <div class="subsection" id="sub1">
-                <h2>نحوه ی ارث بری از یک کلاس</h2>
-                <blockquote>با کلید واژه ی extends در جاوا میتونیم از یک کلاس ارث بری کنیم.</blockquote>
-
-                <p>اگه بخوایم دیتافیلد و متد های یک کلاس رو به ارث ببریم باید از کلیدواژه ی extends در جاوا استفاده کنیم.</p>
-
-                <p>فرم کلی:</p>
-
-                <div class="sample">
-                    <div class="snippet-container">
-                        <div class="snippet Java">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
 public class Parent {
     ...
 }
@@ -111,20 +106,24 @@ public class Parent {
 public class Child extends Parent{
     ...
 }
-                        </div>
-                    </div>
-                </div>
+                        </pre
+        >
+      </div>
+    </div>
 
-                <div class="note">
-                    <p class="note-head">توجه</p>
-                    <p>هر کلاسی بیشتر از یک کلاس نمیتونه به طور مستقیم ارث بری کنه.</p>
-                </div>
+    <div class="note">
+      <p class="note-head">توجه</p>
+      <p>هر کلاسی بیشتر از یک کلاس نمیتونه به طور مستقیم ارث بری کنه.</p>
+    </div>
 
-                <p>یک کلاس میتونه به صورت غیر مستقیم از کلاس های دیگه ارث بری داشته باشه در زیر کلاس Child به طور غیر مستقیم از GrandParent ارث بری کرده.</p>
+    <p>
+      یک کلاس میتونه به صورت غیر مستقیم از کلاس های دیگه ارث بری داشته باشه در
+      زیر کلاس Child به طور غیر مستقیم از GrandParent ارث بری کرده.
+    </p>
 
-                <div class="sample">
-                    <div class="snippet-container">
-                        <div class="snippet Java">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
 public class GrandParent{
     ...
 }
@@ -136,16 +135,20 @@ class Parent extends GrandParent{
 class Child extends Parent{
     ...
 }
-                        </div>
-                    </div>
-                </div>
+                        </pre
+        >
+      </div>
+    </div>
 
+    <p>
+      هنگام ایجاد آبجکت از ساب کلاس ابتدا فیلد های سوپر کلاس مقداردهی میشن و سپس
+      فیلد های ساب کلاس؛ به این موضوع با جزئیات بیشتر در ادامه و در بخش ویژگی
+      های کانستراکتور خواهیم پرداخت.
+    </p>
 
-                <p>هنگام ایجاد آبجکت از ساب کلاس ابتدا فیلد های سوپر کلاس مقداردهی میشن و سپس فیلد های ساب کلاس؛ به این موضوع با جزئیات بیشتر در ادامه و در بخش ویژگی های کانستراکتور خواهیم پرداخت.</p>
-
-                <div class="sample">
-                    <div class="snippet-container">
-                        <div class="snippet Java">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
 class Parent {
     Parent(){
         System.out.println("Initializing Parent");
@@ -157,27 +160,27 @@ class Child extends Parent{
         System.out.println("Initializing Child");
     }
 }
-                        </div>
-                    </div>
-                </div>
+                        </pre
+        >
+      </div>
+    </div>
 
-
-                <div class="sample">
-                    <div class="snippet-container">
-                        <div class="snippet Java">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
 public static void main(String[] args){
     Child child = new Child();
 }
-                        </div>
-                    </div>
-                </div>
+                        </pre
+        >
+      </div>
+    </div>
 
+    <p>بعد از ارث بری تمام فیلد ها و متد های سوپرکلاس به ساب کلاس میرسن.</p>
 
-                <p>بعد از ارث بری تمام فیلد ها و متد های سوپرکلاس به ساب کلاس میرسن.</p>
-
-                <div class="sample">
-                    <div class="snippet-container">
-                        <div class="snippet Java">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
 class Parent {
 
     public void printParentMessage(){
@@ -191,31 +194,37 @@ class Child extends Parent{
         System.out.println("A message from child");
     }
 }
-                        </div>
-                    </div>
-                </div>
+                        </pre
+        >
+      </div>
+    </div>
 
-                <div class="sample">
-                    <div class="snippet-container">
-                        <div class="snippet Java">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
 public static void main(String[] args){
     Child child = new Child();
     child.printParentMessage();
     child.printChildMessage();
 }
-                        </div>
-                    </div>
-                </div>
+                        </pre
+        >
+      </div>
+    </div>
 
+    <div class="note">
+      <p class="note-head">توجه:</p>
+      <p>
+        با اینکه تمام دیتافیلد و متدهای سوپرکلاس در ساب کلاس به ارث میرسن، ولی
+        اگه اعضای سوپر کلاس محدودیت دسترسی داشته باشند در ساب کلاس قابل صدا زدن
+        نیستند؛ مثلا اگه متد یا فیلدی در سوپرکلاس private باشه دیگه در ساب کلاس
+        نمیتونیم صداش بزنیم هرچند به ساب کلاس منتقل شده است.
+      </p>
+    </div>
 
-                <div class="note">
-                    <p class="note-head">توجه:</p>
-                    <p>با اینکه تمام دیتافیلد و متدهای سوپرکلاس در ساب کلاس به ارث میرسن، ولی اگه اعضای سوپر کلاس محدودیت دسترسی داشته باشند در ساب کلاس قابل صدا زدن نیستند؛ مثلا اگه متد یا فیلدی در سوپرکلاس private باشه دیگه در ساب کلاس نمیتونیم صداش بزنیم هرچند به ساب کلاس منتقل شده است.</p>
-                </div>
-
-                <div class="sample">
-                    <div class="snippet-container">
-                        <div class="snippet Java">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
 class Parent {
 
     //بخاطر سطح دسترسی که بهش دادیم، در ساب کلاس نمیتونیم صداش بزنیم
@@ -230,39 +239,56 @@ class Child extends Parent{
         System.out.println("A message from child");
     }
 }
-                        </div>
-                    </div>
-                </div>
+                        </pre
+        >
+      </div>
+    </div>
+  </section>
 
-            </div>
-            <div class="subsection" id="sub2">
-                <h2>بررسی کانستراکتور ها در وراثت</h2>
+  <section id="p2">
+    <h2>بررسی کانستراکتور ها در وراثت</h2>
 
-                <p>بر خلاف فیلد ها و متد ها، کانستراکتور های سوپرکلاس به ساب کلاس منتقل نمیشن و فقط میتونیم اونا رو داخل کانستراکتور های ساب کلاس صدا بزنیم.</p>
+    <p>
+      بر خلاف فیلد ها و متد ها، کانستراکتور های سوپرکلاس به ساب کلاس منتقل نمیشن
+      و فقط میتونیم اونا رو داخل کانستراکتور های ساب کلاس صدا بزنیم.
+    </p>
 
-                <p>هنگام تعریف کانستراکتور برای ساب کلاس حتما باید یکی از کانستراکتور های سوپر کلاس رو در کانستراکتور های ساب کلاس صدا بزنیم.</p>
-                <h3>۱- صدا زدن مستقیم کانستراکتور سوپر کلاس:</h3>
-                <p>با استفاده از کلیدواژه ی <strong>super</strong> میتونیم یکی از کانستراکتور های سوپر کلاس رو داخل کانستراکتور ساب کلاس صدا بزنیم.</p>
+    <p>
+      هنگام تعریف کانستراکتور برای ساب کلاس حتما باید یکی از کانستراکتور های
+      سوپر کلاس رو در کانستراکتور های ساب کلاس صدا بزنیم.
+    </p>
+    <h3>۱- صدا زدن مستقیم کانستراکتور سوپر کلاس:</h3>
+    <p>
+      با استفاده از کلیدواژه ی <strong>super</strong> میتونیم یکی از کانستراکتور
+      های سوپر کلاس رو داخل کانستراکتور ساب کلاس صدا بزنیم.
+    </p>
 
-                <div class="sample">
-                    <div class="snippet-container">
-                        <div class="snippet Java">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
 //اگه کانستراکتور در سوپر کلاس پارامتر داشت، پارامتر ها رو داخل پرانتز کلیدواژه پاس میدیم.
 super(p0, p1, ..., pn);
 
 //اگه کانستراکتور در سوپرکلاس بدون پارامتر بود.
 super();
-                        </div>
-                    </div>
-                </div>
+                        </pre
+        >
+      </div>
+    </div>
 
+    <section>
+      <h3>صدا زدن غیرمستقیم کانستراکتور های سوپر کلاس در ساب کلاس</h3>
+      <p>
+        با
+        <a class="text-decoration-none" href="objects-and-classes.html"
+          >کلیدواژه ی this</a
+        >
+        میتونیم کانستراکتوری که در ساب کلاس از super استفاده میکنه رو صدا بزنیم.
+      </p>
 
-                <h3>2- صدا زدن غیرمستقیم کانستراکتور های سوپر کلاس در ساب کلاس:</h3>
-                <p>با <a class="text-decoration-none" href="objects-and-classes.html">کلیدواژه ی this</a> میتونیم کانستراکتوری که در ساب کلاس از super استفاده میکنه رو صدا بزنیم.</p>
-
-                <div class="sample">
-                    <div class="snippet-container">
-                        <div class="snippet Java">
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
 class Child extends Parent{
 
     Child(...){
@@ -274,25 +300,34 @@ class Child extends Parent{
     }
 
 }
-                        </div>
-                    </div>
-                </div>
+                        </pre
+          >
+        </div>
+      </div>
 
-                <div class="note">
-                    <p class="note-head">توجه:</p>
-                    <p>تنها در حالتی که سوپرکلاس کانستراکتور بدون پارامتر وجود داشته باشه میتونیم برای کانستراکتور های ساب کلاس از super استفاده نکنیم، در این وضعیت کامپایلر به طور خودکار <strong>&#x200e;super()</strong> رو قبل از هر کدی در کانستراکتور هایی که از super استفاده نکردیم قرار میده.</p>
-                </div>
+      <div class="note">
+        <p class="note-head">توجه:</p>
+        <p>
+          تنها در حالتی که سوپرکلاس کانستراکتور بدون پارامتر وجود داشته باشه
+          میتونیم برای کانستراکتور های ساب کلاس از super استفاده نکنیم، در این
+          وضعیت کامپایلر به طور خودکار <strong>&#x200e;super()</strong> رو قبل
+          از هر کدی در کانستراکتور هایی که از super استفاده نکردیم قرار میده.
+        </p>
+      </div>
 
-                <div class="note">
-                    <p class="note-head">توجه:</p>
-                    <p>کلیدواژه های super یا this باید داخل کانستراکتوری که داریم تعریف میکنیم قبل از هر کدی قرار بگیرند.</p>
-                </div>
+      <div class="note">
+        <p class="note-head">توجه:</p>
+        <p>
+          کلیدواژه های super یا this باید داخل کانستراکتوری که داریم تعریف
+          میکنیم قبل از هر کدی قرار بگیرند.
+        </p>
+      </div>
 
-                <p>مثال</p>
+      <p>مثال</p>
 
-                <div class="sample">
-                    <div class="snippet-container">
-                        <div class="snippet Java">
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
 class GeometricShape{
     private String color;
     private boolean filled;
@@ -316,20 +351,30 @@ class Circle extends GeometricShape{
         this(1.0, "White" , false);
     }
 }
-                        </div>
-                    </div>
-                </div>
+                        </pre
+          >
+        </div>
+      </div>
+    </section>
 
+    <section>
+      <h3>زنجیره ی کانستراکتور ها</h3>
+      <p>
+        میدونیم که با صدا زدن کانستراکتور یک نمونه از کلاس تولید میکنیم؛ هنگام
+        صدا زدن یکی از کانستراکتور های ساب کلاس برای تولید یک نمونه از ساب کلاس،
+        ابتدا کانستراکتور سوپر کلاس صدا زده میشه و اگه خود سوپرکلاس، ساب کلاس یک
+        سوپر کلاس دیگه باشه قبل از اجرای کد های کانستراکتور سوپرکلاس،
+        کانستراکتور قبلی صدا زده میشه و به همین ترتیب تا به آخرین سوپرکلاس
+        برسیم؛ سپس کد های داخل کانستراکتور اخرین سوپر کلاس اجرا میشن و به همین
+        ترتیب تا برسه به کلاسی که ساب کلاس ماست. به این موضوع زنجیره ی
+        کانستراکتور ها میگیم.
+      </p>
 
-                <h3>زنجیره ی کانستراکتور ها</h3>
-                <p>میدونیم که با صدا زدن کانستراکتور یک نمونه از کلاس تولید میکنیم؛ هنگام صدا زدن یکی از کانستراکتور های ساب کلاس برای تولید یک نمونه از ساب کلاس، ابتدا کانستراکتور سوپر کلاس صدا زده میشه و اگه خود سوپرکلاس، ساب کلاس یک سوپر کلاس دیگه باشه قبل از اجرای کد های کانستراکتور سوپرکلاس، کانستراکتور قبلی صدا زده میشه و به همین ترتیب تا به آخرین سوپرکلاس برسیم؛ سپس کد های داخل کانستراکتور اخرین سوپر کلاس اجرا میشن و به همین ترتیب تا برسه به کلاسی که ساب کلاس ماست. به این موضوع زنجیره ی کانستراکتور ها میگیم.</p>
+      <p>مثال:</p>
 
-                <p>مثال:</p>
-
-
-                <div class="sample">
-                    <div class="snippet-container">
-                        <div class="snippet Java">
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
 public class Faculty extends Employee {
     public static void main(String[] args) {
         new Faculty();
@@ -355,27 +400,38 @@ class Person {
         System.out.println("(1) Performs Person's tasks");
     }
 }
-                        </div>
-                    </div>
-                </div>
+                        </pre
+          >
+        </div>
+      </div>
 
-                <p>در زیر Person سوپرکلاس همه ی کلاس هاست ابتدا کانستراکتور Person اجرا میشه و چون در Employee با this کانستراکتور پارامتر دارشو داخل کانستراکتور بدون پارامترش صدا زدیم کانستراکتور پارامتر دار اجرا میشه و سپس بقیه کد های کنستراکتور بدون پارامترش و در نهایت کد های داخل کانستراکتور Faculty اجرا میشن.</p>
+      <p>
+        در زیر Person سوپرکلاس همه ی کلاس هاست ابتدا کانستراکتور Person اجرا
+        میشه و چون در Employee با this کانستراکتور پارامتر دارشو داخل
+        کانستراکتور بدون پارامترش صدا زدیم کانستراکتور پارامتر دار اجرا میشه و
+        سپس بقیه کد های کنستراکتور بدون پارامترش و در نهایت کد های داخل
+        کانستراکتور Faculty اجرا میشن.
+      </p>
+    </section>
+  </section>
 
-            </div>
+  <section id="p3">
+    <h2>مفهوم باز نویسی (Overriding)</h2>
 
+    <blockquote>
+      بازنویسی متد به شما این امکان را می دهد تا کدهای داخل متد در سوپر کلاس رو
+      تغییر بدید.
+    </blockquote>
 
-            <div class="subsection" id="sub3">
-                <h2>مفهوم باز نویسی (Overriding)</h2>
+    <p>
+      میتونیم متد های سوپر کلاس رو داخل ساب کلاس بازنویسی کنیم. برای این کار
+      کافیه تا متد با اسم و پارامتر هایی که در سوپرکلاس تعریف شده رو در ساب کلاس
+      دوباره بنویسیم. به این کار باز نویسی (Override کردن) متد میگن.
+    </p>
 
-                <blockquote>بازنویسی متد به شما این امکان را می دهد تا کدهای داخل متد در سوپر کلاس رو تغییر بدید.</blockquote>
-
-
-                <p>میتونیم متد های سوپر کلاس رو داخل ساب کلاس بازنویسی کنیم. برای این کار کافیه تا متد با اسم و پارامتر هایی که در سوپرکلاس تعریف شده رو در ساب کلاس دوباره بنویسیم. به این کار باز نویسی (Override کردن) متد میگن.</p>
-
-
-                <div class="sample">
-                    <div class="snippet-container">
-                        <div class="snippet Java">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
 public class Main{
     public static void main(String[] args){
         Child child = new Child();
@@ -395,16 +451,20 @@ class Child extends Parent{
         System.out.println(s + " message from child");
     }
 }
-                        </div>
-                    </div>
-                </div>
+                        </pre
+        >
+      </div>
+    </div>
 
-                <p>شاید در برنامه خیلی مشخص نباشه که متد بازنویسی شده برای همین به لحاظ خوانایی کد میتونیم قبل از بازنویسی متد از برچسب <strong>&#x200e;@Override</strong> استفاده کنیم.</p>
+    <p>
+      شاید در برنامه خیلی مشخص نباشه که متد بازنویسی شده برای همین به لحاظ
+      خوانایی کد میتونیم قبل از بازنویسی متد از برچسب
+      <strong>&#x200e;@Override</strong> استفاده کنیم.
+    </p>
 
-
-                <div class="sample">
-                    <div class="snippet-container">
-                        <div class="snippet Java">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
 public class Main{
     public static void main(String[] args){
         Child child = new Child();
@@ -424,18 +484,22 @@ class Child extends Parent{
         System.out.println(s + " message from child");
     }
 }
-                        </div>
-                    </div>
-                </div>
+                        </pre
+        >
+      </div>
+    </div>
 
+    <section>
+      <h3>استفاده از کلیدواژه ی super داخل متد های بازنویسی شده</h3>
 
-                <h3>استفاده از کلیدواژه ی super داخل متد های بازنویسی شده</h3>
+      <p>
+        هنگام بازنویسی متد، میتونیم با کلیدواژه ی super کدهای متد در سوپرکلاس رو
+        صدا بزنیم.
+      </p>
 
-                <p>هنگام بازنویسی متد، میتونیم با کلیدواژه ی super کدهای متد در سوپرکلاس رو صدا بزنیم.</p>
-
-                <div class="sample">
-                    <div class="snippet-container">
-                        <div class="snippet Java">
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
 public class Main{
     public static void main(String[] args){
         Child child = new Child();
@@ -456,16 +520,21 @@ class Child extends Parent{
         System.out.println(s + " message from child");
     }
 }
-                        </div>
-                    </div>
-                </div>
+                        </pre
+          >
+        </div>
+      </div>
 
+      <p>
+        بر خلاف کانستراکتور ها که super باید قبل از هر کدی داخلشون پیاده میشد در
+        متد ها فرقی نداره در کجای متد از super استفاده کنیم و همینطور دفعات
+        استفاده از super نیز مهم نیست و با هربار صدا زدن super در متد بازنویسی
+        شده، کد های متد در سوپرکلاس اجرا میشن.
+      </p>
 
-                <p>بر خلاف کانستراکتور ها که super باید قبل از هر کدی داخلشون پیاده میشد در متد ها فرقی نداره در کجای متد از super استفاده کنیم و همینطور دفعات استفاده از super نیز مهم نیست و با هربار صدا زدن super در متد بازنویسی شده، کد های متد در سوپرکلاس اجرا میشن.</p>
-
-                <div class="sample">
-                    <div class="snippet-container">
-                        <div class="snippet Java">
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
 public class Main{
     public static void main(String[] args){
         Child child = new Child();
@@ -487,23 +556,33 @@ class Child extends Parent{
         super.printMessage("Second");
     }
 }
-                        </div>
-                    </div>
-                </div>
-            </div>
+                        </pre
+          >
+        </div>
+      </div>
+    </section>
+  </section>
 
+  <section id="p4">
+    <h2>کلاس Object</h2>
+    <blockquote>
+      کلاس Object سوپرکلاس مستقیم یا غیر مستقیم تمام کلاس های جاواست.
+    </blockquote>
+    <p>
+      هنگامی که یک کلاس تعریف میکنیم کلاسمون به طور پیشفرض از Object ارث بری
+      میکنه.
+    </p>
+    <p>
+      داخل کلاس Object متد های
+      <strong>hashCode، toString و equals</strong> تعریف شده که این متد ها در
+      کلاس های مختلف بنابر نیاز توسعه دهنده بازنویسی میشن.
+    </p>
 
-            <div class="subsection" id="sub4">
-                <h2>کلاس Object</h2>
-                <blockquote>کلاس Object سوپرکلاس مستقیم یا غیر مستقیم تمام کلاس های جاواست.</blockquote>
-                <p>هنگامی که یک کلاس تعریف میکنیم کلاسمون به طور پیشفرض از Object ارث بری میکنه.</p>
-                <p>داخل کلاس Object متد های <strong>hashCode، toString و equals</strong> تعریف شده که این متد ها در کلاس های مختلف بنابر نیاز توسعه دهنده بازنویسی میشن.</p>
+    <p>مثال</p>
 
-                <p>مثال</p>
-
-                <div class="sample">
-                    <div class="snippet-container">
-                        <div class="snippet Java">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
 public class Point2D {
 
     private double x, y;
@@ -543,14 +622,14 @@ public class Point2D {
         return false;
     }
 }
-                        </div>
-                    </div>
-                </div>
+                        </pre
+        >
+      </div>
+    </div>
 
-
-                <div class="sample">
-                    <div class="snippet-container">
-                        <div class="snippet Java">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
 public static void main(String[] args){
     Point2D p0 = new Point2D(3, 5);
     Point2D p1 = new Point2D(6, 7);
@@ -564,21 +643,22 @@ public static void main(String[] args){
     System.out.println("Are p0 and p2 equal? " + p0.equals(p2));
 
 }
-                        </div>
-                    </div>
-                </div>
+                        </pre
+        >
+      </div>
+    </div>
+  </section>
 
-            </div>
+  <section id="p5">
+    <h2>مورد مطالعه (مثال ها)</h2>
 
+    <p>
+      در زیر کلاس های Circle و Rectangle از کلاس GeometricShape ارث برده اند.
+    </p>
 
-            <div class="subsection" id="sub5">
-                <h2>مورد مطالعه (مثال ها)</h2>
-
-                <p>در زیر کلاس های Circle و Rectangle از کلاس GeometricShape ارث برده اند.</p>
-
-                <div class="sample">
-                    <div class="snippet-container">
-                        <div class="snippet Java">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
 public class GeometricShape {
 
     private final Date dateCreated = new Date();
@@ -692,17 +772,16 @@ class Rectangle extends GeometricShape{
             "width: " + getWidth() + " height: " + getHeight() + " area: " + getArea() + " perimeter: " + getPerimeter();
     }
 }
-                        </div>
-                    </div>
-                </div>
+                        </pre
+        >
+      </div>
+    </div>
 
+    <p>استفاده از کلاس های Rectangle و Circle.</p>
 
-                <p>استفاده از کلاس های Rectangle و Circle.</p>
-
-
-                <div class="sample">
-                    <div class="snippet-container">
-                        <div class="snippet">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
 public static void main(String[] args){
     Rectangle rectangle = new Rectangle(2,4, "Red", true);
     System.out.println(rectangle.toString());
@@ -712,94 +791,78 @@ public static void main(String[] args){
     Circle circle = new Circle(4, "Blue", true);
     System.out.println(circle.toString());
 }
-                        </div>
-                    </div>
-                </div>
-
-                <div class="subsection" id="sub6">
-                <h2>خلاصه</h2>
-                    <p>- از ارث بری برای انتقال فیلد ها و متد ها از یک کلاس به کلاس دیگه بدون دوباره نویسی اونا استفاده میکنیم.</p>
-                    <p>- به کلاسی که ازش ارث بری میکنیم سوپرکلاس و به کلاسی که ارث میبره ساب کلاس میگیم.</p>
-                    <p>- در جاوا فقط از یک کلاس میتونیم ارث بری کنیم.</p>
-                    <p>- با کلیدواژه ی extends از یک کلاس ارث بری میکنیم.</p>
-                    <p>- در ارث بری کانستراکتور های سوپرکلاس به ساب کلاس منتقل نمیشن.</p>
-                    <p>- هنگام ارث بری هر کانستراکتور در ساب کلاس باید حداقل یکی از کانستراکتور های سوپرکلاس رو داخل خودش صدا بزنه.</p>
-                    <p>- برای صدا زدن کانستراکتور های سوپرکلاس در ساب کلاس دو راه وجود داره: ۱- مستقیم با استفاده از کلیدواژه ی super؛ ۲- صدا زدن غیر مستقیم یکی از کانستراکتور های داخل کلاس که یکی از کانستراکتور های سوپر کلاس رو صدا زده باشه.</p>
-                    <p>- اگه یکی از کانستراکتور های سوپرکلاس بدون پارامتر باشه نیاز به صدا زدنش نیست و کامپایلر به طور خودکار کانستراکتور بدون پارامتر رو برای کانستراکتور هایی که در ساب کلاس از super استفاده نکردیم در نظر میگیره.</p>
-                    <p>- کلیدواژه ی super در کانستراکتور ها باید قبل از هر کد دیگه ای در کانستراکتور تعریف بشه.</p>
-                    <p>- هنگام ایجاد آبجکت از یک ساب کلاس به طور خودکار کانستراکتور کلاسی که ازش ارث بری کردیم قبل از کانستراکتور خود کلاس اجرا میشه و علت این موضوع صدا زدن اجباری کانستراکتور سوپرکلاس قبل از کد های داخل کانستراکتور ساب کلاس است.</p>
-                    <p>- میتونیم یک متد از سوپرکلاس رو در ساب کلاس بازنویسی کنیم. و همینطور با کلیدواژه ی super کد های داخل متد در سوپرکلاس رو صدا بزنیم.</p>
-                    <p>- کلاس Object سوپرکلاس مستقیم یا غیر مستقیم تمام کلاس هاست.</p>
-                    <p>- در کلاس آبجکت سه متد hashCode، toString و equals تعریف شده که میتونیم به طور اختصاصی در هر کلاسی که تعریف میکنیم بازنویسیشون کنیم.</p>
-                </div>
-
-            </div>
-
-
-        </article>
-
-        <div class="article-foot">
-
-            <div class="navigator-container">
-
-                <a class="md-bt md-bt-light" href="polymorphism.html">
-            <span class="material-icons">
-              navigate_next
-            </span>
-                    <span class="hint">
-              بعدی
-            </span>
-                </a>
-
-                <a class="md-bt md-bt-light" href="nested-classes.html">
-            <span class="hint">
-              قبلی
-            </span>
-                    <span class="material-icons">
-              navigate_before
-            </span>
-
-                </a>
-            </div>
-
-            <div class="relative-articles-container">
-                <p>مطالب مرتبط</p>
-                <div>
-                    <div>
-                        <a href="polymorphism.html">چندریختی و کست کردن در جاوا</a>
-                    </div>
-
-                    <div>
-                        <a href="objects-and-classes.html">آبجکت و کلاس ها در جاوا</a>
-                    </div>
-
-                    <div>
-                        <a href="nested-classes.html">کلاس های تو در تو</a>
-                    </div>
-
-                    <div>
-                        <a href="exceptions.html">اکسپشن ها در جاوا</a>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
+                        </pre
+        >
+      </div>
     </div>
-</main>
+  </section>
 
-<div class="scroll-top-container">
-    <a class="text-decoration-none link-dark material-icons" href="#">
-        arrow_drop_up
-    </a>
-</div>
+  <section id="p6">
+    <h2>خلاصه</h2>
+    <ul>
+      <li>
+        از ارث بری برای انتقال فیلد ها و متد ها از یک کلاس به کلاس دیگه بدون
+        دوباره نویسی اونا استفاده میکنیم.
+      </li>
+      <li>
+        به کلاسی که ازش ارث بری میکنیم سوپرکلاس و به کلاسی که ارث میبره ساب کلاس
+        میگیم.
+      </li>
+      <li>در جاوا فقط از یک کلاس میتونیم ارث بری کنیم.</li>
+      <li>با کلیدواژه ی extends از یک کلاس ارث بری میکنیم.</li>
+      <li>در ارث بری کانستراکتور های سوپرکلاس به ساب کلاس منتقل نمیشن.</li>
+      <li>
+        هنگام ارث بری هر کانستراکتور در ساب کلاس باید حداقل یکی از کانستراکتور
+        های سوپرکلاس رو داخل خودش صدا بزنه.
+      </li>
+      <li>
+        برای صدا زدن کانستراکتور های سوپرکلاس در ساب کلاس دو راه وجود داره: ۱-
+        مستقیم با استفاده از کلیدواژه ی super؛ ۲- صدا زدن غیر مستقیم یکی از
+        کانستراکتور های داخل کلاس که یکی از کانستراکتور های سوپر کلاس رو صدا زده
+        باشه.
+      </li>
+      <li>
+        اگه یکی از کانستراکتور های سوپرکلاس بدون پارامتر باشه نیاز به صدا زدنش
+        نیست و کامپایلر به طور خودکار کانستراکتور بدون پارامتر رو برای
+        کانستراکتور هایی که در ساب کلاس از super استفاده نکردیم در نظر میگیره.
+      </li>
+      <li>
+        کلیدواژه ی super در کانستراکتور ها باید قبل از هر کد دیگه ای در
+        کانستراکتور تعریف بشه.
+      </li>
+      <li>
+        هنگام ایجاد آبجکت از یک ساب کلاس به طور خودکار کانستراکتور کلاسی که ازش
+        ارث بری کردیم قبل از کانستراکتور خود کلاس اجرا میشه و علت این موضوع صدا
+        زدن اجباری کانستراکتور سوپرکلاس قبل از کد های داخل کانستراکتور ساب کلاس
+        است.
+      </li>
+      <li>
+        میتونیم یک متد از سوپرکلاس رو در ساب کلاس بازنویسی کنیم. و همینطور با
+        کلیدواژه ی super کد های داخل متد در سوپرکلاس رو صدا بزنیم.
+      </li>
+      <li>کلاس Object سوپرکلاس مستقیم یا غیر مستقیم تمام کلاس هاست.</li>
+      <li>
+        در کلاس آبجکت سه متد hashCode، toString و equals تعریف شده که میتونیم به
+        طور اختصاصی در هر کلاسی که تعریف میکنیم بازنویسیشون کنیم.
+      </li>
+    </ul>
+  </section>
+</article>
 
-<footer></footer>
+{% capture links %}
+<li>
+  <a href="polymorphism.html">چندریختی و کست کردن در جاوا</a>
+</li>
 
-<div class="dialog hide"></div>
+<li>
+  <a href="objects-and-classes.html">آبجکت و کلاس ها در جاوا</a>
+</li>
 
-<div class="copy-message">
-    <span class="copy-message-text">کپی شد!</span>
-</div>
+<li>
+  <a href="nested-classes.html">کلاس های تو در تو</a>
+</li>
 
-</body>
+<li>
+  <a href="exceptions.html">اکسپشن ها در جاوا</a>
+</li>
+{% endcapture %} {% include article-foot.html relative_links = links %}

@@ -1,96 +1,61 @@
-<!DOCTYPE html>
+---
+layout: default
+---
 
-<html lang="fa">
+<article>
+  <nav class="toc">
+    <div>دسترسی سریع</div>
+    <ul class="list-group">
+      <li>
+        <a href="#p0">آشنایی با اکسپشن ها در جاوا</a>
+      </li>
+      <li>
+        <a href="#p1">کنترل کردن اکسپشن</a>
+      </li>
+      <li>
+        <a href="#p2">کلیدواژه ی throw</a>
+      </li>
+      <li>
+        <a href="#p3">بررسی کلاس های اکسپشن</a>
+      </li>
+      <li>
+        <a href="#p4">تعریف کلاس اختصاصی اکسپشن</a>
+      </li>
+      <li>
+        <a href="#p5">کلیدواژه ی throws</a>
+      </li>
+      <li>
+        <a href="#p6">خلاصه</a>
+      </li>
+    </ul>
+  </nav>
 
-<head>
+  <section id="p0">
+    <h2>آشنایی با اکسپشن ها در جاوا</h2>
 
-    <meta content="IE=7" http-equiv="X-UA-Compatible">
-    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <p>
+      به خطاهای برنامه در جاوا اکسپشن میگیم؛ اکسپشن (exception) ها در جاوا برای
+      اعلام باگ های برنامه مورد استفاده قرار میگیرن.
+    </p>
 
-    <meta content="به خطاهای برنامه در جاوا اکسپشن میگیم؛ اکسپشن (exception) ها در جاوا برای اعلام باگ های برنامه مورد استفاده قرار میگیرن در این مطلب با عملکرد و نحوه ی استفاده از اکسپشن ها در جاوا اشنا میشیم."
-          name="description">
+    <p>
+      اکسپشن ها انواع مختلفی دارن که در ادامه با عملکرد و نحوه ی استفاده ازشون
+      آشنا میشیم.
+    </p>
 
-    <meta content="text/html;charset=UTF-8" http-equiv="Content-Type">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <div class="note">
+      <p class="note-head">توجه</p>
+      <p>این مطلب برای کسایی که با کاتلین سروکار دارند نیز قابل مطالعه است.</p>
+    </div>
 
-    <title>اکسپشن (exception) ها در جاوا</title>
+    <p>
+      در زیر یک آرایه به طول ۶ تعریف کردیم؛ برنامه از کاربر میخواد شماره ی یکی
+      از خونه های ارایه رو وارد کنه تا برنامه مقدار اون خونه رو نمایش بده.
+    </p>
 
-    <meta content="اکسپشن (exception) ها در جاوا" name="og:title">
-    <meta content="به خطاهای برنامه در جاوا اکسپشن میگیم؛ اکسپشن (exception) ها در جاوا برای اعلام باگ های برنامه مورد استفاده قرار میگیرن در این مطلب با عملکرد و نحوه ی استفاده از اکسپشن ها در جاوا آشنا میشیم."
-          name="og:description">
-
-    <meta content="https://kodedevel.github.io/resources/favicon.png" property="og:image">
-    <meta content="https://kodedevel.github.io/post/java/exceptions.html" property="og:url">
-
-    <meta content="article" property="og:type">
-
-    <link href="/resources/favicon.png" rel="shortcut icon" type="image/x-icon">
-
-    <link href="/resources/css/main.css" rel="stylesheet">
-    <script src="/resources/js/main.js" type="module"></script>
-
-</head>
-
-<body>
-<header></header>
-<main>
-    <div class="page-wrap">
-
-        <div class="article-head">
-            <h1>
-                اکسپشن (exception) ها در جاوا
-            </h1>
-
-            <address>
-                <a class="author text-muted text-decoration-none" rel="author">یونس سلیمانی</a>
-            </address>
-
-            <figure class="figure figure-wrapper">
-                <img alt="اکسپشن ها در جاوا" class="rounded figure-img" src="/resources/image/java/cover_exceptions.png"/>
-            </figure>
-
-            <div class="toc">
-                <p class="p-2 mx-2 h5">دسترسی سریع</p>
-                <div class="list-group">
-
-                    <a class="list-group-item list-group-item-action" href="#sub0">آشنایی با اکسپشن ها در جاوا</a>
-
-                    <a class="list-group-item list-group-item-action" href="#sub1">کنترل کردن اکسپشن</a>
-
-                    <a class="list-group-item list-group-item-action" href="#sub2">کلیدواژه ی throw</a>
-
-                    <a class="list-group-item list-group-item-action" href="#sub3">بررسی کلاس های اکسپشن</a>
-
-                    <a class="list-group-item list-group-item-action" href="#sub4">تعریف کلاس اختصاصی اکسپشن</a>
-
-                    <a class="list-group-item list-group-item-action" href="#sub5">کلیدواژه ی throws</a>
-
-                    <a class="list-group-item list-group-item-action" href="#sub6">خلاصه</a>
-
-                </div>
-            </div>
-        </div>
-
-        <article>
-
-            <div class="subsection" id="sub0">
-                <h2>آشنایی با اکسپشن ها در جاوا</h2>
-
-                <p>به خطاهای برنامه در جاوا اکسپشن میگیم؛ اکسپشن (exception) ها در جاوا برای اعلام باگ های برنامه مورد استفاده قرار میگیرن.</p>
-
-                <p>اکسپشن ها انواع مختلفی دارن که در ادامه با عملکرد و نحوه ی استفاده ازشون آشنا میشیم.</p>
-
-                <div class="note">
-                    <p class="note-head">توجه</p>
-                    <p>این مطلب برای کسایی که با کاتلین سروکار دارند نیز قابل مطالعه است.</p>
-                </div>
-
-
-                <p>در زیر یک آرایه به طول ۶ تعریف کردیم؛ برنامه از کاربر میخواد شماره ی یکی از خونه های ارایه رو وارد کنه تا برنامه مقدار اون خونه رو نمایش بده.</p>
-
-                <div class="sample">
-                    <div class="snippet-container">
-                    <div class="snippet Java">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
 public static void main(String[] args){
     Scanner input = new Scanner(System.in);
 
@@ -104,9 +69,10 @@ public static void main(String[] args){
 
     }
 }
-                    </div>
+                    </pre
+        >
 
-                        <div class="Kotlin snippet">
+        <pre class="Kotlin snippet">
 fun main() {
     val randomNumbers = Array&lt;Int&gt;(6){
         (0 until 100).random()
@@ -119,18 +85,21 @@ fun main() {
 
     println("The value of corresponding index is ${randomNumbers[index]}")
 }
-                        </div>
-                    </div>
-                </div>
+                        </pre
+        >
+      </div>
+    </div>
 
-                <p>اگه شماره خارج از تعداد خونه های ارایه باشه برنامه دچار خطای IndexOutOfBoundsException شده و متوقف میشه.</p>
+    <p>
+      اگه شماره خارج از تعداد خونه های ارایه باشه برنامه دچار خطای
+      IndexOutOfBoundsException شده و متوقف میشه.
+    </p>
 
-                <p>فرض کنید میخوایم یک عدد رو به عدد دیگه تقسیم کنیم:</p>
+    <p>فرض کنید میخوایم یک عدد رو به عدد دیگه تقسیم کنیم:</p>
 
-
-                <div class="sample">
-                    <div class="snippet-container">
-                        <div class="snippet Java">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
 public static void main(String[] args){
     Scanner input = new Scanner(System.in);
 
@@ -145,9 +114,10 @@ public static void main(String[] args){
 public static int quotient(number0, number1){
     return number0 / number1;
 }
-                        </div>
+                        </pre
+        >
 
-                        <div class="snippet Kotlin">
+        <pre class="snippet Kotlin">
 fun main() {
     val input = Scanner(System.`in`)
 
@@ -163,17 +133,26 @@ fun main() {
 fun quotient(number0: Int, number1: Int): Int{
     return number0 / number1
 }
-                        </div>
-                    </div>
-                </div>
+                        </pre
+        >
+      </div>
+    </div>
 
-                <p>اگه در مثال بالا هنگام اجرای برنامه برای number1 عدد 0 رو وارد کنیم متد quotient یه اکسپشن میندازه بیرون، برنامه متوقف شده و پیغام ArithmeticException در کنسول نمایش داده میشه.</p>
+    <p>
+      اگه در مثال بالا هنگام اجرای برنامه برای number1 عدد 0 رو وارد کنیم متد
+      quotient یه اکسپشن میندازه بیرون، برنامه متوقف شده و پیغام
+      ArithmeticException در کنسول نمایش داده میشه.
+    </p>
 
-                <p>اگه عمل بالا رو داخل حلقه بزاریم و هر زمان به number1 مقدار 0 بدیم باز هم یه اکسپشن میوفته بیرون و با پیغام ArithmeticException از برنامه خارج میشیم.</p>
+    <p>
+      اگه عمل بالا رو داخل حلقه بزاریم و هر زمان به number1 مقدار 0 بدیم باز هم
+      یه اکسپشن میوفته بیرون و با پیغام ArithmeticException از برنامه خارج
+      میشیم.
+    </p>
 
-                <div class="sample">
-                    <div class="snippet-container">
-                        <div class="snippet Java">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
 public static void main(String[] args){
 Scanner input = new Scanner(System.in);
 
@@ -189,8 +168,9 @@ Scanner input = new Scanner(System.in);
 public static int quotient(number0, number1){
     return number0 / number1;
 }
-                        </div>
-                        <div class="snippet Kotlin">
+                        </pre
+        >
+        <pre class="snippet Kotlin">
 fun main() {
 
     val input = Scanner(System.`in`)
@@ -210,16 +190,19 @@ fun main() {
 fun quotient(number0: Int, number1: Int): Int{
     return number0 / number1
 }
-                        </div>
-                    </div>
-                </div>
+                        </pre
+        >
+      </div>
+    </div>
 
+    <p>
+      برای حل مشکل بالا یکی از راه حل ها اضافه کردن شرط بررسی صفر نبودن number1
+      است؛ این شرط از بیرون افتادن اکسپشن جلوگیری میکنه.
+    </p>
 
-                <p>برای حل مشکل بالا یکی از راه حل ها اضافه کردن شرط بررسی صفر نبودن number1 است؛ این شرط از بیرون افتادن اکسپشن جلوگیری میکنه.</p>
-
-                <div class="sample">
-                    <div class="snippet-container">
-                        <div class="snippet Java">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
 public static void main(String[] args){
     Scanner input = new Scanner(System.in);
     boolean continueLoop = true;
@@ -238,8 +221,9 @@ public static int quotient(number0, number1){
     if(number1 != 0) return number0 / number1;
     return Integer.MIN_VALUE;
 }
-                        </div>
-                        <div class="snippet Kotlin">
+                        </pre
+        >
+        <pre class="snippet Kotlin">
 fun main() {
 
     val input = Scanner(System.`in`)
@@ -260,25 +244,32 @@ fun quotient(number0: Int, number1: Int): Int{
     if(number1 != 0) return number0 / number1;
     return Int.MIN_VALUE
 }
-                        </div>
-                    </div>
-                </div>
+                        </pre
+        >
+      </div>
+    </div>
 
-                <p>حالا اگه اکسپشن بیوفته بیرون باید چکار کنیم تا برنامه متوقف نشه؟</p>
+    <p>حالا اگه اکسپشن بیوفته بیرون باید چکار کنیم تا برنامه متوقف نشه؟</p>
+  </section>
 
-            </div>
+  <section id="p1">
+    <h2>کنترل کردن اکسپشن</h2>
+    <blockquote>
+      با استفاده از بلوک try-catch میتونیم یک اکسپشن رو کنترل و از متوقف شدن
+      برنامه جلو گیری کنیم.
+    </blockquote>
 
-            <div class="subsection" id="sub1">
-                <h2>کنترل کردن اکسپشن</h2>
-                <blockquote>با استفاده از بلوک try-catch میتونیم یک اکسپشن رو کنترل و از متوقف شدن برنامه جلو گیری کنیم.</blockquote>
+    <p>
+      اگه جایی از کد های برنامه یه اکسپشن بیوفته بیرون؛ میتونیم اونو داخل بلوک
+      try-catch قرار بدیم با این کار اکسپشن رو میگیریم و برنامه ادامه پیدا
+      میکنه.
+    </p>
 
-                <p>اگه جایی از کد های برنامه یه اکسپشن بیوفته بیرون؛ میتونیم اونو داخل بلوک try-catch قرار بدیم با این کار اکسپشن رو میگیریم و برنامه ادامه پیدا میکنه.</p>
+    <p>فرم کلی</p>
 
-                <h3>فرم کلی</h3>
-
-                <div class="sample">
-                    <div class="snippet-container">
-                        <div class="snippet Java">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
 
 try{
 
@@ -289,20 +280,29 @@ try{
     ...
 
 }
-                        </div>
-                    </div>
-                </div>
+                        </pre
+        >
+      </div>
+    </div>
 
-                <p>بلوک catch شبیه متد (تابع) عمل می کنه؛ کلاس های اکسپشن داخل پرانتز catch همون پارامتر های catch است که هنگام بیرون افتادن اکسپشن در try بلوک catch صدا زده میشه و اکسپشن انداخته شده در try توسط catch به عنوان مقدار پارامتر گرفته میشه.</p>
+    <p>
+      بلوک catch شبیه متد (تابع) عمل می کنه؛ کلاس های اکسپشن داخل پرانتز catch
+      همون پارامتر های catch است که هنگام بیرون افتادن اکسپشن در try بلوک catch
+      صدا زده میشه و اکسپشن انداخته شده در try توسط catch به عنوان مقدار پارامتر
+      گرفته میشه.
+    </p>
 
-                <p>اگه داخل بلوک try توسط متد یا کدی اکسپشن بیرون انداخته بشه؛ بلوک catch صدا زده میشه، اکسپشن رو میگیره و داخل بلوک میتونیم اکسپشن رو کنترل کنیم و بعد از اجرا شدن کد های داخل بلوک catch کد های بعد از بلوک به اجرا در میاد.</p>
+    <p>
+      اگه داخل بلوک try توسط متد یا کدی اکسپشن بیرون انداخته بشه؛ بلوک catch صدا
+      زده میشه، اکسپشن رو میگیره و داخل بلوک میتونیم اکسپشن رو کنترل کنیم و بعد
+      از اجرا شدن کد های داخل بلوک catch کد های بعد از بلوک به اجرا در میاد.
+    </p>
 
-                <p>در مثال قبل میخوایم برنامه رو بعد از انداختن اکسپشن کنترل کنیم:</p>
+    <p>در مثال قبل میخوایم برنامه رو بعد از انداختن اکسپشن کنترل کنیم:</p>
 
-
-                <div class="sample">
-                    <div class="snippet-container">
-                        <div class="snippet Java">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
 public static void main(String[] args){
     Scanner input = new Scanner(System.in);
     boolean continueLoop = true;
@@ -328,8 +328,9 @@ public static int quotient(number0, number1){
         //if(number1 != 0) return number0 / number1;
         return number0 / number1;
 }
-                        </div>
-                        <div class="snippet Kotlin">
+                        </pre
+        >
+        <pre class="snippet Kotlin">
 fun main() {
 
     val input = Scanner(System.`in`)
@@ -354,15 +355,19 @@ fun quotient(number0: Int, number1: Int): Int{
     if(number1 != 0) return number0 / number1;
     return Int.MIN_VALUE
 }
-                        </div>
-                    </div>
-                </div>
+                        </pre
+        >
+      </div>
+    </div>
 
-                <p>بعد از بلوک catch یک بلوک دیگه داریم به اسم finally؛ استفاده از این بلوک اختیاریه؛ این بلوک ضمانت می کنه کد های داخلش بعد از try-catch اجرا بشه.</p>
+    <p>
+      بعد از بلوک catch یک بلوک دیگه داریم به اسم finally؛ استفاده از این بلوک
+      اختیاریه؛ این بلوک ضمانت می کنه کد های داخلش بعد از try-catch اجرا بشه.
+    </p>
 
-                <div class="sample">
-                    <div class="snippet-container">
-                        <div class="snippet Java">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
 try{
 
     ...
@@ -377,8 +382,9 @@ try{
 
 }
     //اجرای بقیه ی کد های برنامه...
-                        </div>
-                        <div class="snippet Kotlin">
+                        </pre
+        >
+        <pre class="snippet Kotlin">
 try{
 
 ...
@@ -394,41 +400,51 @@ try{
 }
 
 //اجرای بقیه ی کد های برنامه...
-                        </div>
-                    </div>
-                </div>
+                        </pre
+        >
+      </div>
+    </div>
+  </section>
 
-            </div>
+  <section id="p2">
+    <h2>کلیدواژه ی throw</h2>
 
+    <blockquote>
+      اکسپشن ها یه کلاسن؛ هنگامی که یک آبجکت از این کلاس ها با کلیدواژه ی throw
+      ایجاد میشه برنامه رو از اجرای عادی خارج کرده و اصطلاحا میگیم برنامه دچار
+      اکسپشن شده.
+    </blockquote>
 
-            <div class="subsection" id="sub2">
-                <h2>کلیدواژه ی throw</h2>
+    <p>
+      با استفاده از کلیدواژه ی throw در جاوا می تونیم یک اکسپشن داخل متد
+      بندازیم.
+    </p>
 
-                <blockquote>اکسپشن ها یه کلاسن؛ هنگامی که یک آبجکت از این کلاس ها با کلیدواژه ی throw ایجاد میشه برنامه رو از اجرای عادی خارج کرده و اصطلاحا میگیم برنامه دچار اکسپشن شده.</blockquote>
-
-
-                <p>با استفاده از کلیدواژه ی throw در جاوا می تونیم یک اکسپشن داخل متد بندازیم.</p>
-
-                <div class="sample">
-                    <div class="snippet-container">
-                        <div class="snippet Java">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
 public void myMethod(){
     throw new ArithmeticException();
 }
-                        </div>
-                        <div class="snippet Kotlin">
+                        </pre
+        >
+        <pre class="snippet Kotlin">
 fun myMethod(){
     throw ArithmeticException()
 }
-                        </div>
-                    </div>
-                </div>
+                        </pre
+        >
+      </div>
+    </div>
 
-                <p>در مثال quotient (خارج قسمت) میخوایم در صورت برقرار بودن شرط، یک اکسپشن داخل متد quotient بندازیم.</p>
+    <p>
+      در مثال quotient (خارج قسمت) میخوایم در صورت برقرار بودن شرط، یک اکسپشن
+      داخل متد quotient بندازیم.
+    </p>
 
-                <div class="sample">
-                    <div class="snippet-container">
-                        <div class="snippet Java">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
 public static void main(String[] args){
     Scanner input = new Scanner(System.in);
      boolean continueLoop = true;
@@ -455,8 +471,9 @@ public static int quotient(number0, number1){
 
     return number0 / number1;
 }
-                        </div>
-                        <div class="snippet Kotlin">
+                        </pre
+        >
+        <pre class="snippet Kotlin">
 fun main() {
 
 val input = Scanner(System.`in`)
@@ -480,74 +497,118 @@ fun quotient(number0: Int, number1: Int): Int{
     if(number1 == 0) throw ArithmeticException("Can not divide by Zero")
     return Int.MIN_VALUE
 }
-                        </div>
-                    </div>
-                </div>
+                        </pre
+        >
+      </div>
+    </div>
 
-                <p>در بالا پارامتر کنسراکتور کلاس ArithmeticException رو با "Can not divide by Zero" مقدار دهی کردیم.</p>
+    <p>
+      در بالا پارامتر کنسراکتور کلاس ArithmeticException رو با "Can not divide
+      by Zero" مقدار دهی کردیم.
+    </p>
 
-                <div class="note">
-                    <p class="note-head">توجه:</p>
-                    <p>در صورت امکان بهتره به‌جای کنترل کردن اکسپشن، با استفاده از if جلوی انداختنشو بگیریم؛ این کار، برنامه رو بهینه تر میکنه چون هر اکسپشن یک کلاس است و با هربار انداختنش، یک آبجکت جدید ایجاد میشه.</p>
-                </div>
+    <div class="note">
+      <p class="note-head">توجه:</p>
+      <p>
+        در صورت امکان بهتره به‌جای کنترل کردن اکسپشن، با استفاده از if جلوی
+        انداختنشو بگیریم؛ این کار، برنامه رو بهینه تر میکنه چون هر اکسپشن یک
+        کلاس است و با هربار انداختنش، یک آبجکت جدید ایجاد میشه.
+      </p>
+    </div>
+  </section>
 
-            </div>
+  <section id="p3">
+    <h2>بررسی کلاس های اکسپشن</h2>
 
-            <div class="subsection" id="sub3">
-                <h2>بررسی کلاس های اکسپشن</h2>
+    <p>شکل زیر مراتب ارث بری کلاس های اکسپشن رو نشون میده:</p>
 
-                <p>شکل زیر مراتب ارث بری کلاس های اکسپشن رو نشون میده:</p>
+    <figure>
+      <img
+        alt="سلسله مراتب ارث بری کلاس های اکسپشن در جاوا"
+        src="/resources/image/java/exception_classes_inheritance_hierarchy.png"
+      />
+      <figcaption>سلسله مراتب ارث بری کلاس های اکسپشن در جاوا</figcaption>
+    </figure>
 
-                <figure class="figure figure-wrapper">
-                    <img alt="سلسله مراتب ارث بری کلاس های اکسپشن در جاوا" src="/resources/image/java/exception_classes_inheritance_hierarchy.png" class="rounded figure-img"/>
-                    <figcaption class="figure-caption">سلسله مراتب ارث بری کلاس های اکسپشن در جاوا</figcaption>
-                </figure>
+    <p>
+      همانطور که در شکل مشخصه تمام کلاس های اکسپشن ساب کلاس Exception هستند و
+      کلاس Exception نیز ساب کلاس Throwable است.
+    </p>
 
-                <p>همانطور که در شکل مشخصه تمام کلاس های اکسپشن ساب کلاس Exception هستند و کلاس Exception نیز ساب کلاس Throwable است.</p>
+    <p>
+      تمام اکسپشن ها حداقل دوتا کانستراکتور دارن یکی کانستراکتور بدون پارامتر و
+      دیگری کانستراکتور با پارامتر از نوع String که هنگام ایجاد نمونه ی جدید
+      پیغام خطا رو نشون میده.
+    </p>
 
-                <p>تمام اکسپشن ها حداقل دوتا کانستراکتور دارن یکی کانستراکتور بدون پارامتر و دیگری کانستراکتور با پارامتر از نوع String که هنگام ایجاد نمونه ی جدید پیغام خطا رو نشون میده.</p>
+    <p>به طور کلی دو نوع کلاس اکسپشن داریم:</p>
 
-                <p>به طور کلی دو نوع کلاس اکسپشن داریم:</p>
+    <p>1- کلاس هایی که ساب کلاس Error هستند:</p>
+    <p>
+      این اکسپشن ها به خطا های JVM مربوط میشن و کم پیش میاد با این اکسپشن ها
+      مواجه بشیم.
+    </p>
 
-                <p>1- کلاس هایی که ساب کلاس Error هستند:</p>
-                <p>این اکسپشن ها به خطا های JVM مربوط میشن و کم پیش میاد با این اکسپشن ها مواجه بشیم.</p>
+    <p>2- کلاس هایی که ساب کلاس Exception هستند:</p>
+    <p>
+      این کلاس ها به طور کلی به ارور های برنامه، تعامل برنامه با ماشین (مثل
+      خوندن فایل ها، کامپایل کردن کلاس های جاوا، عملیات ریاضی و...) مربوط میشن.
+    </p>
 
-                <p>2- کلاس هایی که ساب کلاس Exception هستند:</p>
-                <p>این کلاس ها به طور کلی به ارور های برنامه، تعامل برنامه با ماشین (مثل خوندن فایل ها، کامپایل کردن کلاس های جاوا، عملیات ریاضی و...) مربوط میشن.</p>
+    <p>
+      ساب کلاس های کلاس Exception از نظر نوع اکسپشن به دو دسته ی کلی تقسیم میشن:
+    </p>
 
-                <p>ساب کلاس های کلاس Exception از نظر نوع اکسپشن به دو دسته ی کلی تقسیم میشن:</p>
+    <section>
+      <h3>1-اکسپشن های checked</h3>
 
-                <h3>1-اکسپشن های checked</h3>
+      <div class="note">
+        <p class="note-head">توجه</p>
+        <p>
+          در کاتلین چیزی به اسم checked-exception نداریم و تمام اکسپشن ها
+          unchecked هستند.
+        </p>
+      </div>
 
-                <div class="note">
-                    <p class="note-head">توجه</p>
-                    <p>در کاتلین چیزی به اسم checked-exception نداریم و تمام اکسپشن ها unchecked هستند.</p>
-                </div>
+      <p>
+        اگه نوع اکسپشن checked-exception باشه باید قبل از کامپایل؛ متد رو داخل
+        بلوک try-catch قرار بدیم.
+      </p>
 
-                <p>اگه نوع اکسپشن checked-exception باشه باید قبل از کامپایل؛ متد رو داخل بلوک try-catch قرار بدیم.</p>
+      <p>این نوع اکسپشن ها قبل از اجرای برنامه توسط کامپایلر چک میشن.</p>
+    </section>
 
-                <p>این نوع اکسپشن ها قبل از اجرای برنامه توسط کامپایلر چک میشن.</p>
+    <section>
+      <h3>2-اکسپشن های unchecked</h3>
+      <p>
+        کلاس های unchecked-exception توسط کامپایلر قابل شناسایی نیستند و زمان
+        اجرای برنامه در صورت بروز خطا اجرا میشن.
+      </p>
+      <p>
+        بر خلاف دسته ی اول، این کلاس ها به صورت آشکار نیازی به بلوک try-catch
+        ندارن مگه اینکه خودمون از قبل بدونیم خطایی در کار است.
+      </p>
+      <p>ساب کلاس های RuntimeException در این دسته قرار دارن.</p>
+    </section>
+  </section>
 
+  <section id="p4">
+    <h2>تعریف کلاس اختصاصی اکسپشن</h2>
+    <p>
+      میتونیم مانند سایر کلاس ها برای برنامه ی خود یک کلاس اکسپشن اختصاصی تعریف
+      کنیم.
+    </p>
 
+    <p>بزارید با یک مثال به کارمون در این قسمت خاتمه بدیم</p>
 
-                <h3>2-اکسپشن های unchecked</h3>
-                <p>کلاس های unchecked-exception توسط کامپایلر قابل شناسایی نیستند و زمان اجرای برنامه در صورت بروز خطا اجرا میشن.</p>
-                <p>بر خلاف دسته ی اول، این کلاس ها به صورت آشکار نیازی به بلوک try-catch ندارن مگه اینکه خودمون از قبل بدونیم خطایی در کار است.</p>
-                <p>ساب کلاس های RuntimeException در این دسته قرار دارن.</p>
+    <p>
+      میخوایم یک کلاس اکسپشن برای دایره تعریف کنیم، در صورت منفی بودن شعاع دایره
+      برنامه دچار خطا بشه و پیغام خطا بده
+    </p>
 
-            </div>
-
-            <div class="subsection" id="sub4">
-                <h2>تعریف کلاس اختصاصی اکسپشن</h2>
-                <p>میتونیم مانند سایر کلاس ها برای برنامه ی خود یک کلاس اکسپشن اختصاصی تعریف کنیم.</p>
-
-                <p>بزارید با یک مثال به کارمون در این قسمت خاتمه بدیم</p>
-
-                <p>میخوایم یک کلاس اکسپشن برای دایره تعریف کنیم، در صورت منفی بودن شعاع دایره برنامه دچار خطا بشه و پیغام خطا بده</p>
-
-                <div class="sample">
-                    <div class="snippet-container">
-                        <div class="snippet Java">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
 public class RadiusException extends IllegalArgumentException {
     private final double radius;
 
@@ -560,24 +621,26 @@ public class RadiusException extends IllegalArgumentException {
         return radius;
     }
 }
-                        </div>
-                        <div class="snippet Kotlin">
+                        </pre
+        >
+        <pre class="snippet Kotlin">
 class RadiusException(var radius: Double): IllegalArgumentException("Radius is $radius and it can not be Negative")
-                        </div>
-                    </div>
-                </div>
+                        </pre
+        >
+      </div>
+    </div>
 
-                <p>انداختن اکسپشن تعریف شده داخل متد و کنستراکتور های کلاس دایره:</p>
+    <p>انداختن اکسپشن تعریف شده داخل متد و کنستراکتور های کلاس دایره:</p>
 
-                <div class="sample">
-                    <div class="snippet-container">
-                        <div class="snippet Java">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
 public class CircleWithRadiusException {
     private double radius;
 
 
     public CircleWithRadiusException(double radius) {
-        if (radius < 0) throw new RadiusException(radius);
+        if (radius &lt; 0) throw new RadiusException(radius);
         this.radius = radius;
     }
 
@@ -587,7 +650,7 @@ public class CircleWithRadiusException {
 
 
     public void setRadius(double radius) {
-        if (radius < 0) throw new RadiusException(radius);
+        if (radius &lt; 0) throw new RadiusException(radius);
         this.radius = radius;
     }
 
@@ -604,18 +667,19 @@ public class CircleWithRadiusException {
     }
 
 }
-                        </div>
+                        </pre
+        >
 
-                        <div class="snippet Kotlin">
+        <pre class="snippet Kotlin">
 class CircleWithRadiusException {
     var radius: Double = 0.0
         set(value) {
-            if (value < 0) throw RadiusException(value)
+            if (value &lt; 0) throw RadiusException(value)
             field = value
         }
 
     constructor(radius: Double) {
-        if (radius < 0) throw RadiusException(radius)
+        if (radius &lt; 0) throw RadiusException(radius)
     }
 
     constructor() : this(radius = 1.0)
@@ -628,16 +692,16 @@ class CircleWithRadiusException {
         return 2 * PI * radius
     }
 }
-                        </div>
-                    </div>
-                </div>
+                        </pre
+        >
+      </div>
+    </div>
 
+    <p>استفاده از کلاس دایره در متد main:</p>
 
-                <p>استفاده از کلاس دایره در متد main:</p>
-
-                <div class="sample">
-                    <div class="snippet-container">
-                        <div class="snippet Java">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
 CircleWithRadiusException c0  = new CircleWithRadiusException(23);
 System.out.println("Radius of circle c0: " + c0.getRadius());
 System.out.println("Area of circle c0: " + c0.getArea());
@@ -650,8 +714,9 @@ CircleWithRadiusException c1 = new CircleWithRadiusException(-2);
 System.out.println("Radius of circle c1: " + c1.getRadius());
 System.out.println("Area of circle c1: " + c1.getArea());
 System.out.println("Perimeter of circle c1: " + c1.getPerimeter());
-                        </div>
-                        <div class="snippet Kotlin">
+                        </pre
+        >
+        <pre class="snippet Kotlin">
 val c0  = CircleWithRadiusException(23);
 println("Radius of circle c1: ${c0.getRadius()}");
 println("Area of circle c1: ${c0.getArea()}" + );
@@ -664,27 +729,37 @@ val c1 = new CircleWithRadiusException(-2);
 println("Radius of circle c1: ${c1.getRadius()}");
 println("Area of circle c1: ${c1.getArea()}" + );
 println("Perimeter of circle c1: ${c1.getPerimeter()}");
-                        </div>
-                    </div>
-                </div>
+                        </pre
+        >
+      </div>
+    </div>
+  </section>
 
-            </div>
+  <section id="p5">
+    <h2>استفاده از کلیدواژه ی throws</h2>
 
-            <div class="subsection" id="sub5">
-                <h2>استفاده از کلیدواژه ی throws</h2>
+    <blockquote>
+      از کلیدواژه ی throws معمولا زمانی که نوع اکسپشن checked است استفاده میشه.
+    </blockquote>
 
-                <blockquote>از کلیدواژه ی throws معمولا زمانی که نوع اکسپشن checked است استفاده میشه.</blockquote>
+    <p>
+      گفتیم هنگامی که نوع اکسپشن checked است مجبوریم قبل از کامپایل اکسپشن رو با
+      try-catch بگیریم.
+    </p>
 
-                <p>گفتیم هنگامی که نوع اکسپشن checked است مجبوریم قبل از کامپایل اکسپشن رو با try-catch بگیریم.</p>
+    <p>
+      گاهی به هر دلیلی نمیخوایم از try-catch استفاده کنیم مثلا کد های برنامه
+      زیاد و گیج کنندس یا متد یک متد نهایی برای اجرا نیست.
+    </p>
 
-                <p>گاهی به هر دلیلی نمیخوایم از try-catch استفاده کنیم مثلا کد های برنامه زیاد و گیج کنندس یا متد یک متد نهایی برای اجرا نیست.</p>
+    <p>
+      در این مواقع به‌جای استفاده از try-catch میتونیم با استفاده از کلید واژه ی
+      throws اکسپشن رو بندازیم جایی که قراره متد رو صدا بزنیم.
+    </p>
 
-                <p>در این مواقع به‌جای استفاده از try-catch میتونیم با استفاده از کلید واژه ی throws اکسپشن رو بندازیم جایی که قراره متد رو صدا بزنیم.</p>
-
-
-                <div class="sample">
-                    <div class="snippet-container">
-                        <div class="snippet Java">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
 public void firstMethod() throws IOException {
     FileInputStream fis = new FileInputStream("PATH");
         ...
@@ -697,122 +772,96 @@ public void secondMethod(){
         System.out.println(ioe.getMessage());
     }
 }
-                        </div>
-                    </div>
-                </div>
+                        </pre
+        >
+      </div>
+    </div>
 
-                <p>میتونیم چندتا اکسپشن رو با throws بندازیم به متد بعدی</p>
+    <p>میتونیم چندتا اکسپشن رو با throws بندازیم به متد بعدی</p>
 
-                <div class="sample">
-                    <div class="snippet-container">
-                        <div class="snippet Java">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
 public void readData() throws Exception0, Exception1, ... , ExceptionN{
     ...
 }
-                        </div>
-                    </div>
-                </div>
+                        </pre
+        >
+      </div>
+    </div>
 
-                <div class="note">
-                    <p class="note-head">توجه:</p>
-                    <p>در ارث بری؛ اگه متد سوپر کلاس از throws استفاده نکرده باشه نمی تونیم در ساب کلاس برای استفاده از throws متد رو بازنویسی کنیم.</p>
-                </div>
+    <div class="note">
+      <p class="note-head">توجه:</p>
+      <p>
+        در ارث بری؛ اگه متد سوپر کلاس از throws استفاده نکرده باشه نمی تونیم در
+        ساب کلاس برای استفاده از throws متد رو بازنویسی کنیم.
+      </p>
+    </div>
 
-                <p>
-                    در کاتلین checked-exception نداریم بنابراین این کلیدواژه وجود نداره و نیازی بهش نداریم اما Throws در کاتلین برای پر کردن جای خالیش وجود داره.
-                </p>
+    <p>
+      در کاتلین checked-exception نداریم بنابراین این کلیدواژه وجود نداره و
+      نیازی بهش نداریم اما Throws در کاتلین برای پر کردن جای خالیش وجود داره.
+    </p>
 
-
-                <div class="sample">
-                    <div class="snippet-container">
-                        <div class="snippet Kotlin">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Kotlin">
 @Throws(IOException::class)
 fun readData(){
     val fis = FileInputException("PathToFile")
     ...
 }
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="subsection" id="sub6">
-                <h2>خلاصه</h2>
-                <p>- تو جاوا به باگ های برنامه اکسپشن میگیم.</p>
-                <p>- کلاس های اکسپشن، برنامه رو از اجرای عادی خارج میکنن.</p>
-                <p>- به اجرای اکسپشن داخل متد، انداختن اکسپشن میگیم.</p>
-                <p>- با استفاده از کلیدواژه ی throw میتونیم یک اکسپشن رو داخل یک متد بندازیم.</p>
-                <p>- به طور کلی دو نوع اکسپشن داریم اکسپشن هایی که ساب کلاس Error هستند و اکسپشن هایی که ساب کلاس Exception هستند.</p>
-                <p>- ساب کلاس های کلاس Exception نیز به دو دسته ی checked-exception و unchecked-exception تقسیم میشن.</p>
-                <p>- تمام ساب کلاس های RuntimeException از نوع unchecked-exception هستند.</p>
-                <p>- اگه داخل متد checked-exception انداخته باشیم میتونیم با استفاده از کلیدواژه ی throws اکسپشن رو بندازیم جایی که متد صدا زده میشه.</p>
-            </div>
-
-        </article>
-
-        <div class="article-foot">
-
-            <div class="navigator-container">
-
-                <a class="md-bt md-bt-light" href="#">
-            <span class="material-icons">
-              navigate_next
-            </span>
-                    <span class="hint">
-              بعدی
-            </span>
-                </a>
-
-                <a class="md-bt md-bt-light" href="/post/java/static-keyword.html">
-            <span class="hint">
-              قبلی
-            </span>
-                    <span class="material-icons">
-              navigate_before
-            </span>
-
-                </a>
-            </div>
-
-            <div class="relative-articles-container">
-                <p>مطالب مرتبط</p>
-                <div>
-                    <div>
-                        <a href="/post/java/selectors.html">دستورات شرطی در جاوا (سلکتورها)</a>
-                    </div>
-                    <div>
-                        <a href="/post/java/loops.html">حلقه ها در جاوا</a>
-                    </div>
-
-                    <div>
-                        <a href="/post/kotlin/selectors.html">دستورات شرطی (سلکتور ها) در کاتلین</a>
-                    </div>
-                    <div>
-                        <a href="/post/kotlin/functions.html">توابع در کاتلین</a>
-                    </div>
-                    <div>
-                        <a href="https://kotlinlang.org/docs/exceptions.html">مطالعه ی اکسپشن ها در وبسایت کاتلین</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+                        </pre
+        >
+      </div>
     </div>
-</main>
+  </section>
 
-<div class="scroll-top-container">
-    <a class="text-decoration-none link-dark material-icons" href="#">
-        arrow_drop_up
-    </a>
-</div>
+  <section id="p6">
+    <h2>خلاصه</h2>
+    <ul>
+      <li>تو جاوا به باگ های برنامه اکسپشن میگیم.</li>
+      <li>کلاس های اکسپشن، برنامه رو از اجرای عادی خارج میکنن.</li>
+      <li>به اجرای اکسپشن داخل متد، انداختن اکسپشن میگیم.</li>
+      <li>
+        با استفاده از کلیدواژه ی throw میتونیم یک اکسپشن رو داخل یک متد بندازیم.
+      </li>
+      <li>
+        به طور کلی دو نوع اکسپشن داریم اکسپشن هایی که ساب کلاس Error هستند و
+        اکسپشن هایی که ساب کلاس Exception هستند.
+      </li>
+      <li>
+        ساب کلاس های کلاس Exception نیز به دو دسته ی checked-exception و
+        unchecked-exception تقسیم میشن.
+      </li>
+      <li>
+        تمام ساب کلاس های RuntimeException از نوع unchecked-exception هستند.
+      </li>
+      <li>
+        اگه داخل متد checked-exception انداخته باشیم میتونیم با استفاده از
+        کلیدواژه ی throws اکسپشن رو بندازیم جایی که متد صدا زده میشه.
+      </li>
+    </ul>
+  </section>
+</article>
 
-<footer></footer>
+{% capture links %}
+<li>
+  <a href="/post/java/selectors.html">دستورات شرطی در جاوا (سلکتورها)</a>
+</li>
+<li>
+  <a href="/post/java/loops.html">حلقه ها در جاوا</a>
+</li>
 
-<div class="dialog hide"></div>
-
-<div class="copy-message">
-    <span class="copy-message-text">کپی شد!</span>
-</div>
-
-</body>
+<li>
+  <a href="/post/kotlin/selectors.html">دستورات شرطی (سلکتور ها) در کاتلین</a>
+</li>
+<li>
+  <a href="/post/kotlin/functions.html">توابع در کاتلین</a>
+</li>
+<li>
+  <a href="https://kotlinlang.org/docs/exceptions.html"
+    >مطالعه ی اکسپشن ها در وبسایت کاتلین</a
+  >
+</li>
+{% endcapture %} {% include article-foot.html relative_links = links %}
