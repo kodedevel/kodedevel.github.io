@@ -1,2 +1,2 @@
 User-agent: *
-Disallow: /article/
+Sitemap: https://kodedevel.ir/sitemap.xml
