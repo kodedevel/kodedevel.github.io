@@ -1,3 +1,6 @@
+brand:
+  name: "KodeDevel"
+
 baseurl: ""
 url: "https://kodedevel.ir"
 logo: "/resources/image/favicon.png"
@@ -7,7 +10,7 @@ social:
   links:
     - "https://t.me/KodeDevel"
     - "https://t.me/KodeDevel_Chat"
-    - "https://github.io/KodeDevel"
+    - "https://github.com/KodeDevel"
 
 author:
   name: "یونس سلیمانی"

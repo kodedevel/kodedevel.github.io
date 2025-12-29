@@ -12,9 +12,9 @@
   <meta property="og:title" content="{{ metadata.title | default: site.title }}">
   <meta property="og:description" content="{{ metadata.description | default: site.description }}">
   <meta property="og:image" content="{{ site.url }}/resources/favicon.png">
+  <meta property="og:image:alt" content="{{ metadata.title }}">
   <meta property="og:url" content="{{ site.url }}{{ metadata.link }}">
   <meta property="og:locale" content="fa_IR">
-  <meta property="og:image:alt" content="{{ metadata.title }}">
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="{{ social.name }}" <link rel="canonical"
     href="{{ site.url }}{{ metadata.link }}">
@@ -29,43 +29,47 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="dns-prefetch" href="//www.google-analytics.com">
 
-
   <link href="/resources/css/main.css" rel="stylesheet">
   <link href="/resources/favicon.png" rel="icon" type="image/x-icon">
   <script type="module" src="/resources/js/main.js"></script>
 
   <script type="application/ld+json">
-    {
-    
+  {
     "@context": "https://schema.org",
-    "@type": "Article",
-    
+    "@type": "BlogPosting",
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "{{ site.url }}{{ metadata.link }}"
     },
+    
     "headline": "{{ metadata.title }}",
-    "description": "{{ metadata.description }},
+    "description": "{{ metadata.description }}",
+    "datePublished": "{{ metadata.datePublished | default: '' }}",
+    {% if metadata.lastModified and metadata.lastModified != "" %}
+      "dateModified": "{{ metadata.lastModified }}",
+    {% endif %}
+    "inLanguage": "fa-IR",
+
+    "image": {
+      "@type": "ImageObject",
+      "url": "{{ site.url }}{{ metadata.imgCover }}",
+      "width": 1920,
+      "height": 1080
+    },
     "author": {
       "@type": "Person",
       "name": "{{ metadata.author.name | default: site.author.name }}",
-      "url": "{{ metadata.author.link | default: 'kodedevel.ir/about.html' }}"
+      "url": "{{ metadata.author.link | default: 'https://kodedevel.ir/about.html' }}"
     },
-    
     "publisher": {
       "@type": "Organization",
-      "name": "KodeDevel",
+      "name": "{{ site.brand.name }}",
       "logo": {
         "@type": "ImageObject",
         "url": "{{ site.url }}/image/favicon.png"
       },
       "sameAs": {{ site.social.links | jsonify }} 
-    },
-
-    "datePublished": "{{ metadata.datePublished | default: '' }}",
-    "dateModified": "{{ metadata.lastModified | default: '' }}",
-    "inLanguage": "fa-IR"
-
-    }
+     }
+  }
   </script>
 </head>
