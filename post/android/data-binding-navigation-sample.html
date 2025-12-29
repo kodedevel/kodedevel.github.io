@@ -43,7 +43,7 @@ layout: default
     <p>خب دیگه شروع کنیم!</p>
 
     <p>ابتدا در اندروید استادیو یه پروژه ایجاد کنید به اسم LoginDemo اسم پکیج پروژه رو
-      com.kodedevel.logindemo بزارید </p>
+      ir.kodedevel.logindemo بزارید </p>
 
     <p>قبل از هر کاری فایل strings را به صورت زیر ویرایش کنید</p>
 
@@ -170,7 +170,7 @@ layout: default
       <strong>fragment_profile.xml</strong>
 
 
-      <div class="smaple">
+      <div class="sample">
         <div class="snippet-container">
           <pre class="snippet XML">
 &lt;?xml version="1.0" encoding="utf-8"?&gt;
@@ -296,15 +296,15 @@ layout: default
 
       <p> در مسیر زیر دو کلاس زیر رو ایجاد کنید:</p>
 
-      <p>RootProject -&gt; app -&gt; main -&gt; java -&gt; com.skybirdbits.logindemo </p>
+      <p>RootProject -&gt; app -&gt; main -&gt; java -&gt; ir.kodedevel.logindemo </p>
 
 
       <p><strong>LoginFragment.kt</strong></p>
 
-      <div class="smaple">
+      <div class="sample">
         <div class="snippet-container">
           <pre class="snippet Kotlin">
-package com.skybirdbits.logindemo
+package ir.kodedevel.logindemo
 
 import androidx.fragment.app.Fragment
 
@@ -320,7 +320,7 @@ class LoginFragment: Fragment() {
       <div class="sample">
         <div class="snippet-container">
           <pre class="snippet Kotlin">
-package com.skybirdbits.logindemo
+package ir.kodedevel.logindemo
 
 import androidx.fragment.app.Fragment
 
@@ -353,7 +353,7 @@ class ProfileFragment: Fragment() {
 
     &lt;fragment
         android:id="@+id/loginFragment"
-        android:name="com.skybirdbits.logindemo.LoginFragment"
+        android:name="ir.kodedevel.logindemo.LoginFragment"
         android:label="LoginFragment"
         tools:layout="@layout/fragment_login"&gt;
         &lt;action
@@ -377,7 +377,7 @@ class ProfileFragment: Fragment() {
 
     &lt;fragment
         android:id="@+id/profileFragment"
-        android:name="com.skybirdbits.logindemo.ProfileFragment"
+        android:name="ir.kodedevel.logindemo.ProfileFragment"
         android:label="ProfileFragment"
         tools:layout="@layout/fragment_profile" &gt;
 
@@ -411,7 +411,7 @@ class ProfileFragment: Fragment() {
 
       <p>فرض کنید به صورت زیر سه تا فرگمنت داریم و کاربر بینشون جا به جا شده</p>
 
-      <p><strong>A -> B -> C</strong></p>
+      <p><strong>A -&gt; B -&gt; C</strong></p>
 
       <p>میخوایم بعد از رفتن کاربر از B به C با زدن دکمه ی back بدون برگشتن به B به A برگرده به عبارتی
         فرگمنت B رو در Stack حذف کنیم در این صورت برای عنصر action مورد نظر که مسیر B به C رو تعریف کرده Id
@@ -479,7 +479,7 @@ class ProfileFragment: Fragment() {
       <div class="sample">
         <div class="snippet-container">
           <pre class="snippet Kotlin">
-package com.skybirdbits.logindemo
+package ir.kodedevel.logindemo
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -489,7 +489,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
-import com.skybirdbits.logindemo.databinding.FragmentLoginBinding
+import ir.kodedevel.logindemo.databinding.FragmentLoginBinding
 import kotlin.random.Random
 
 class LoginFragment: Fragment() {
@@ -511,7 +511,7 @@ class LoginFragment: Fragment() {
         val password = passwordInput.text.toString()
         val id = Random(1000)
 
-        if(password.isNotBlank() && username.isNotBlank()) {
+        if(password.isNotBlank() &amp;&amp; username.isNotBlank()) {
             Snackbar.make(binding.root, "Welcome $username" , Snackbar.LENGTH_SHORT).show()
             val action =
             LoginFragmentDirections.fromLoginFragmentToProfileFragment(username, id.nextLong().toString())
@@ -559,7 +559,7 @@ class LoginFragment: Fragment() {
       <div class="sample">
         <div class="snippet-container">
           <pre class="snippet Kotlin">
-package com.skybirdbits.logindemo
+package ir.kodedevel.logindemo
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -569,7 +569,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
-import com.skybirdbits.logindemo.databinding.FragmentProfileBinding
+import ir.kodedevel.logindemo.databinding.FragmentProfileBinding
 
 class ProfileFragment: Fragment() {
 

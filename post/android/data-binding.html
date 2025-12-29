@@ -73,13 +73,38 @@ android{
       برای استفاده از دیتا بایندینگ سه مرحله رو باید انجام بدیم
     </p>
 
-    <figure>
-      <img alt="مراحل استفاده از data binding در فایل xml" src="/resources/image/android/data_binding_using.png">
-    </figure>
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet XML">
+&lt;layout xmlns:android="http://schemas.android.com/apk/res/android"&gt;
+  &lt;data&gt;
+
+    &lt;variable 
+      name="viewmodel" 
+      type="ir.kodedevel.logindemo.ViewModel" /&gt;
+
+    &lt;/data&gt;
+
+    &lt;LinearLayout 
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:orientation="vertical" &gt;
+
+      &lt;TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@{viewmodel.username}" /&gt;
+
+    &lt;/LinearLayout &gt;
+
+&lt;/layout &gt;
+        </pre>
+      </div>
+    </div>
 
 
     <section>
-      <h3>۱- ایجاد تگ layout:</h3>
+      <h3>۱- ایجاد تگ layout</h3>
 
       <p>
         این تگو باید قبل از هر تگ دیگه ای ایجاد کنیم.
