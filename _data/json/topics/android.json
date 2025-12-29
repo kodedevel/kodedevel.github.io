@@ -6,7 +6,7 @@
       "title": "دیتا بایندینگ در اندروید",
       "description": "با استفاده از کتابخونه ی دیتابایندینگ (Data Binding) در اندروید میتونیم UI رو به داده ها وصل کنید و به سادگی و با حداقل کد، ویو رو آپدیت کنیم در این مطلب به فعال سازی و پیاده سازی دیتابایندینگ در اندروید می پردازیم.",
       "datePublished": "2025-09-12",
-      "lastModified": "2025-12-28",
+      "lastModified": "2025-12-29",
       "imgCover": "/resources/image/android/cover_data_binding.png",
       "link": "/post/android/data-binding.html"
     },

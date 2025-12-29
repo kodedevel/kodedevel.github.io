@@ -1,8 +1,10 @@
 html{
+  font-family: "Vazirmatn", sans-serif;
+  font-weight: normal;
+  
   direction: rtl;
   scroll-behavior: smooth;
 }
-
 
 body{
   margin: 0;
@@ -23,9 +25,6 @@ section {
   margin-bottom: 24px;
 }
 
-li{
-  padding: 6px;
-}
 
 footer {
   width: 100%;
@@ -51,14 +50,17 @@ figcaption{
   padding: 2px 8px;
 }
 
-
 pre{
-  font-size: 0.95rem;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.9em;
   margin: 0;
-  font-family: JetBrains Mono;
   border-right: 1px solid #bdbdbd;
 }
 
 table{
   border-collapse: collapse;
+}
+
+a, button, input, textarea, select, [role="button"], [onclick]{
+  -webkit-tap-highlight-color: transparent !important;
 }
