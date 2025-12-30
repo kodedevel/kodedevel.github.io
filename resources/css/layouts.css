@@ -94,34 +94,27 @@
     transition: max-height 200ms ease;
 }
 
-
-.footer-content{
-    display: flex;
-    width: 100%;
-    height: auto;
-    min-height: 80px;
-    justify-content: space-between;
-    align-items: center;
-    text-decoration: none;
-    color: #fafafa;
-    direction: rtl;
-    font-size: 1.1em;
-
-}
-
-.footer-content .footer-content-item{
-    display: flex;
+.footer-item{
+    display: block;
     padding: 8px;
-    align-items: center;
-    justify-content: center;
+    margin: auto;
 }
 
-.offcanvas-header a{
-  color: #fafafa !important;
+.footer-item .lbl-contact-us{
+  padding: 8px;
+  text-align: center;
 }
 
-.offcanvas-header a:hover{
-  color: #e0e0e0 !important;
+.footer-item .contact-us-telegram::before{
+  content: "person";
+}
+
+.footer-item .contact-us-email::before{
+  content: "email";
+}
+
+.footer-item .source-code-url::before{
+  content: "commit";
 }
 
 .navbar-brand{
@@ -135,7 +128,8 @@
 .dialog {
     width: 100%;
     height: 100%;
-    display: flex;
+    display: grid;
+    place-items: center;
     position: fixed;
     background-color: rgba(0,0,0, 0.6);
     justify-content: center;
@@ -157,17 +151,13 @@
 }
 
 .dialog .dialog-content{
-    width: auto;
-    min-width: 25%;
-    max-width: 720px;
-    height: auto;
     display: block;
+    width: auto;
+    max-width: 480px;
     visibility: hidden;
     background-color: #fafafa;
-    color: #212121;
     padding: 16px;
-    direction: rtl;
-    border: 1px solid #888;
+    margin: 0 8px;
     border-radius: 16px;
     transform: scale(0.9);
     transition: visibility 0.4s ease-in-out ,transform 0.4s ease-in-out;
@@ -178,7 +168,7 @@
 }
 
 .dialog-content .dialog-content-body{
-    padding: 8px 16px 32px 16px;
+    padding: 0 16px 32px 16px;
     margin: 8px 0;
 }
 
@@ -191,10 +181,6 @@
 .dialog-content-body .link-wrapper .md-bt.md-bt-dark-blue.bt-redirect {
   margin-right: 8px;
   padding: 8px;
-}
-
-.bt-redirect > :last-child{
-  margin-right: 8px;
 }
 
 .dialog-content .dialog-content-foot{
@@ -213,10 +199,3 @@
     transform: scale(1);
 }
 
-@media (max-width: 768px){
-    footer .footer-content{
-        display: block;
-        justify-content: center;
-        align-items: center;
-    }
-}

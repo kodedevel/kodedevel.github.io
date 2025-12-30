@@ -27,9 +27,13 @@ section {
 
 
 footer {
+  display: grid;
+  place-items: center;
   width: 100%;
   background-color: #212121;
+  color: #fafafa;
   flex-wrap: wrap;
+  padding: 4px 0;
 }
 
 figure {
@@ -63,4 +67,25 @@ table{
 
 a, button, input, textarea, select, [role="button"], [onclick]{
   -webkit-tap-highlight-color: transparent !important;
+}
+
+
+*::before, *::after{
+  font-family: "Material Symbols Outlined";
+  vertical-align: middle;
+  font-size: 24px;
+}
+
+<<<<<<< HEAD
+a[href^="http"]:not([href*="kodedeve.ir"]):not([href*="github.com/kodedevel"]):not([href*="t.me/skybirdbits"])::before,
+a[href^="https"]:not([href*="kodedevel.ir"]):not([href*="github.com/kodedevel"]):not([href*="t.me/skybirdbits"])::before
+=======
+a[href^="http"]:not([href*="kodedevel"]):not([href*="github.com/kodedevel"]):not([href*="t.me/skybirdbits"])::before,
+a[href^="https"]:not([href*="kodedevel"]):not([href*="github.com/kodedevel"]):not([href*="t.me/skybirdbits"])::before
+>>>>>>> 863ec74 (updated)
+{
+  content: "\e89e";
+  vertical-align: top;
+  font-size: 0.8em;
+  margin-left: 4px;
 }

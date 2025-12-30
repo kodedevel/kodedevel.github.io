@@ -1,8 +1,10 @@
-@import url("bt.css");
-
 .index-top-head{
   margin-top: 24px;
   margin-bottom: 32px;
+}
+
+.index-top-head::before{
+  content: "home";
 }
 
 .index-section-head{

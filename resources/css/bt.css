@@ -91,6 +91,14 @@
     background-color: #424242;
 }
 
+.md-bt.md-bt-light.bt-back-home{
+  display: block;
+  text-align: end;
+}
+
+.md-bt.md-bt-light.bt-back-home::after{
+  content: "arrow_back";
+}
 
 .snippet-toggler{
     position: relative;
