@@ -1,0 +1,27 @@
+{
+  "id": "categories",
+  "name": "دسته بندی اموزش ها",
+  "metadata_list": [
+    {
+      "title": "آموزش جاوا",
+      "description": "",
+      "datePublished": "",
+      "lastModified": "",
+      "link": "/learn/java.html"
+    },
+    {
+      "title": "آموزش کاتلین",
+      "description": "",
+      "datePublished": "",
+      "lastModified": "",
+      "link": "/learn/kotlin.html"
+    },
+    {
+      "title": "دستورات لینوکس",
+      "description": "",
+      "datePublished": "",
+      "lastModified": "",
+      "link": "/learn/linux.html"
+    }
+  ]
+}
