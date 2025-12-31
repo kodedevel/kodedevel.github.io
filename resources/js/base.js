@@ -3,7 +3,7 @@ function initUiComponents() {
   var path = window.location.pathname;
 
   //check if the file path origins from learn
-  if (path.startsWith("/learn")) initSubjectItems();
+  if (path.match(/post\/.*.html/g)) initSubjectItems();
 
   initDialog();
   initSidebar();
@@ -17,6 +17,7 @@ function initSubjectItems() {
     itemHead.firstChild.innerHTML = "arrow_left";
 
     itemHead.addEventListener("click", function () {
+      console.log("clicked");
       var content = this.nextElementSibling;
       var itemHeadIcon = this.firstElementChild;
 
@@ -61,8 +62,6 @@ function initSidebar() {
     const btExpandIcon = btExpand.firstElementChild;
 
     const topic = document.getElementById(btExpand.dataset.target);
-
-    console.log(topic);
 
     btExpand.addEventListener("click", function () {
       switchExpandState(btExpand);
@@ -175,4 +174,4 @@ function initDialog() {
   };
 }
 
-export { initUiComponents, scrollTopVisibility };
+export {initUiComponents, scrollTopVisibility};
