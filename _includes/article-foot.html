@@ -66,8 +66,8 @@
         <h3>موضوعات دیگر</h3>
 
         <ul>
-          {% for topic in site.data.json.topic-links %}
-          <li><a href="{{ topic.link }}">{{ topic.title }}</a></li>
+          {% for metadata in site.data.json.categories.metadata_list %}
+          <li><a href="{{ metadata.link }}">{{ metadata.title }}</a></li>
           {% endfor %}
         </ul>
 
