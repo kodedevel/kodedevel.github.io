@@ -46,6 +46,16 @@
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
 }
 
+.subject-item-content li {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.subject-item-content ul {
+  padding: 4px; 
+}
+
 .description{
   padding: 8px;
 }

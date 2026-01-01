@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fa">
+
+{% assign page_metadata = nil %}
+
+{% for metadata in site.data.json.categories.metadata_list %}
+
+{% if metadata.link == page.url %}
+{% assign page_metadata = metadata %}
+
+{% break %}
+{% endif %}
+
+{% endfor %}
+
+
+{% include head.html metadata = page_metadata %}
+
+<body>
+
+  {% include header.html %}
+  <div>
+
+    {% include sidebar.html %}
+
+    <main>
+
+      <h1>{{ page_metadata.title }}</h1>
+      {% include category-head.html metadata = page_metadata %}
+
+      {{ content }}
+
+      {% include category-foot.html %}
+
+    </main>
+
+  </div>
+
+
+  {% include footer.html %}
+
+  {% include dialog.html %}
+
+  <div class="scroll-top-container">
+    <a class="material-symbols-outlined" href="#">
+      arrow_drop_up
+    </a>
+  </div>
+
+</body>
+
+
+</html>

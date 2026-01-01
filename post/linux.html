@@ -1,17 +1,10 @@
 ---
-layout: default
-title: "لیست دستورات لینوکس"
-description: "گنو لینوکس یک سیستم عامل متن باز با قابلیت شخصی سازی بالاست، دستورات لینوکس در محیطی به نام shell اجرا
-میشه، در اینجا یک لیست از دستورات ترمینال لینوکس قرار داده ایم از اینجا میتونید به هر مطلبی که خواستید مراجعه کرده و آن
-را مطالعه کنید."
+layout: category
 ---
-<article>
-  <h1>
-    دستورات لینوکس
-  </h1>
 
-  <section>
-    <h2>لیست دستورات لینوکس</h2>
+<section>
+  <h2>لیست دستورات لینوکس</h2>
+  <article>
     <div class="description">
       <p>در این صفحه لیست دستورات لینوکس رو قرار داده ایم با کلیک بر روی هر کدوم، میتونید دستور مورد نظر رو مطالعه
         کنید.</p>
@@ -28,88 +21,25 @@ description: "گنو لینوکس یک سیستم عامل متن باز با ق
 
     </div>
 
-    <div class="subject-container">
-      <section class="subject-item">
+  </article>
 
-        <h3 class="md-bt-expandable subject-item-head">
-          <span class="material-symbols-outlined icon" aria-hidden="true">arrow_left</span>
-          <span>معرفی لینوکس</span>
-        </h3>
-
-        <div class="subject-item-content">
-          <ul>
-            <li>گنو لینوکس چیست؟</li>
-            <li>توزیع های لینوکسی</li>
-          </ul>
-          <a href="/post/linux/introduction.html">
-            مطالعه
-          </a>
-        </div>
-
-      </section>
-
-      <section class="subject-item">
-
-        <h3 class="md-bt-expandable subject-item-head">
-          <span class="material-symbols-outlined icon" aria-hidden="true">arrow_left</span>
-          <span>دستور ls در لینوکس</span>
-        </h3>
-
-        <div class="subject-item-content">
-          <ul>
-            <li>بررسی دستور ls در ترمینال لینوکس</li>
-          </ul>
-          <a href="/post/linux/list-directory-contents.html">
-            مطالعه
-          </a>
-        </div>
-
-      </section>
-
-      <section class="subject-item">
-
-        <h3 class="md-bt-expandable subject-item-head">
-          <span class="material-symbols-outlined icon" aria-hidden="true">arrow_left</span>
-          <span>دستور cd در لینوکس</span>
-        </h3>
-
-        <div class="subject-item-content">
-          <ul>
-            <li>بررسی دستور cd در ترمینال لینوکس</li>
-          </ul>
-          <a href="/post/linux/change-directory.html">
-            مطالعه
-          </a>
-        </div>
-
-      </section>
-
-    </div>
-
-  </section>
-
-</article>
-
-<div class="article-foot">
-
-  <aside>
-    <nav class="post-navigation-container" aria-label="Post navigation">
-      <a href="/" class="md-bt md-bt-light">
-        <span class="material-symbols-outlined" aria-hidden="true">home</span>
-        <span>بازگشت به صفحه ی اصلی</span>
-      </a>
-    </nav>
-
-    <section>
-      <div>موضوعات دیگر</div>
-      <ul>
-        <li>
-          <a href="/learn/kotlin.html">آموزش زبان برنامه نویسی کاتلین</a>
-        </li>
-        <li>
-          <a href="/learn/java.html">آموزش زبان برنامه نویسی جاوا </a>
-        </li>
-      </ul>
+  <div class="subject-container">
+    {% for metadata in site.data.json.topics.linux.metadata_list %}
+    <section class="subject-item">
+      <h3 class="md-bt-expandable subject-item-head">
+        <span class="material-symbols-outlined icon" aria-hidden="true">arrow_left</span>
+        <span>{{ metadata.title }}</span>
+      </h3>
+      <div class="subject-item-content">
+        <ul>
+          <li>
+            <p>{{ metadata.description }}</p>
+          </li>
+        </ul>
+        <a href="{{ metadata.link }}">مطالعه</a>
+      </div>
     </section>
-  </aside>
-</div>
+    {% endfor %}
+  </div>
+
+</section>

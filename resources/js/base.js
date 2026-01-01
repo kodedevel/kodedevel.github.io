@@ -3,7 +3,9 @@ function initUiComponents() {
   var path = window.location.pathname;
 
   //check if the file path origins from learn
-  if (path.match(/post\/.*.html/g)) initSubjectItems();
+  if (path.match(/post\/.+\.html$/g)) {
+    initSubjectItems();
+  }
 
   initDialog();
   initSidebar();

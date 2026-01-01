@@ -1,0 +1,19 @@
+<div class="article-foot">
+  <aside>
+    <nav class="post-navigation-container">
+    </nav>
+    <section>
+
+      <h2>موضوعات دیگر</h2>
+
+      <ul>
+        {% for metadata in site.data.json.categories.metadata_list %}
+        {% if page.url != metadata.link %}
+        <li><a href="{{ metadata.link }}">{{ metadata.title }}</a></li>
+        {% endif %}
+        {% endfor %}
+      </ul>
+
+    </section>
+  </aside>
+</div>

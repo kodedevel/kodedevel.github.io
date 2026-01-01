@@ -1,173 +1,120 @@
 ---
+layout: site
 ---
-<!DOCTYPE html>
-<html lang="fa">
 
-<head>
-  <meta charset="UTF-8">
+<div class="slider-container">
 
-  <meta content="width:device-width, initial-scale=1" name="viewport">
-  <meta content="آموزش های رایگان و قابل فهم کامپیوتر و زبان های برنامه نویسی جاوا، کاتلین، لینوکس و ..."
-    name="description" />
+  <div class="slider-wrapper">
 
-  <meta property="og:title" content="صفحه ی اصلی">
-  <meta property="og:description"
-    content="آموزش های رایگان و قابل فهم کامپیوتر و زبان های برنامه نویسی جاوا، کاتلین، لینوکس و ...">
-  <meta property="og:image" content="https://kodedevel.github.io/resources/favicon.png" />
-  <meta property="og:url" content="https://kodedevel.github.io" />
-  <meta property="og:type" content="website">
+    <figure class="figure figure-wrapper slide">
+      <a href="/post/java.html" class="slide-link">
+        <img class="slide-img" src="/resources/image/learn/java-cover.png">
+        <figcaption class="slide-caption">
+          آموزش رایگان جاوا از مبتدی تا پیشرفته
+        </figcaption>
+      </a>
+    </figure>
 
-  <link href="/resources/favicon.png" rel="icon" type="image/x-icon">
+    <figure class="figure figure-wrapper slide">
 
-  <link href="/resources/css/main.css" rel="stylesheet">
-  <link rel="stylesheet" href="/resources/css/index.css">
-
-  <script src="/resources/js/main.js" type="module"></script>
-
-
-  <title>آموزش های رایگان کامپیوتر و برنامه نویسی | KodeDevel</title>
-
-</head>
-
-<body>
-
-  {% include header.html %}
-
-  {% include sidebar.html %}
-  <main class="page-wrap">
-
-
-    <h1 class="index-top-head">
-      آموزش های رایگان کامپیوتر و برنامه نویسی | KodeDevel
-    </h1>
-
-    <div class="slider-container">
-
-      <div class="slider-wrapper">
-
-        <figure class="figure figure-wrapper slide">
-          <a href="/post/java.html" class="slide-link">
-            <img class="slide-img" src="/resources/image/learn/java-cover.png">
-            <figcaption class="slide-caption">
-              آموزش رایگان جاوا از مبتدی تا پیشرفته
-            </figcaption>
-          </a>
-        </figure>
-
-        <figure class="figure figure-wrapper slide">
-
-          <a href="/post/kotlin.html" class="slide-link">
-            <img class="slide-img" src="/resources/image/learn/kotlin-cover.png">
-            <figcaption class="slide-caption">
-              آموزش رایگان کاتلین از مبتدی تا پیشرفته
-            </figcaption>
-          </a>
-        </figure>
-        <figure class="figure figure-wrapper slide">
-          <a href="/post/linux.html" class="slide-link">
-            <img class="slide-img" src="/resources/image/learn/linux-commands-cover.png">
-            <figcaption class="slide-caption">
-              دستورات لینوکس
-            </figcaption>
-          </a>
-        </figure>
-      </div>
-
-      <div>
-        <a class="md-bt md-bt-dark slide-navigator next">
-          <span class="material-symbols-outlined">navigate_next</span>
-        </a>
-        <a class="md-bt md-bt-dark slide-navigator prev">
-          <span class="material-symbols-outlined">navigate_before</span>
-        </a>
-      </div>
-
-      <div class="slider-dots-wrapper"> </div>
-
-    </div>
-
-    <section>
-      <h2 class="index-section-head">
-        <span class="material-symbols-outlined icon">local_library</span>
-        <span>آموزش ها</span>
-      </h2>
-
-      <div class="category-redirect-link-container">
-        <div>
-          <a href="/post/java.html" class="category-redirect-link java">آموزش جاوا</a>
-          <p class="category-redirect-link-description">جاوا یک زبان کراس پلتفرم است که در سه پلتفرم دسکتاپ، وب و
-            اندروید
-            مورد استفاده قرار میگیره؛ در حال حاضر با حمایت بیشتر گوگل از کاتلین، نقش جاوا در توسعه اندروید نسبت به قبل
-            کمرنگ تر شده است. </p>
-        </div>
-        <div>
-          <a href="/post/kotlin.html" class="category-redirect-link kotlin">آموزش کاتلین</a>
-          <p class="category-redirect-link-description">کاتلین یک زبان کراس پلتفرم و قابل استفاده برای، موبایل، وب و
-            دسکتاپ
-            است؛ این زبان در حال حاضر بیشترین کاربرد رو در توسعه ی اندروید داره.
-          </p>
-        </div>
-        <div>
-          <a href="/post/linux.html" class="category-redirect-link linux">دستورات لینوکس</a>
-          <p class="category-redirect-link-description">لینوکس یک سیستم عامل متن باز با قابلیت شخصی سازی بالاست، این
-            سیستم
-            عامل دارای محیطی به نام shell است که دستورات لینوکس در این محیط نوشته و اجرا میشن.</p>
-        </div>
-      </div>
-
-    </section>
-
-
-    <section>
-
-      <h2 class="index-section-head">
-        <span class="material-symbols-outlined icon" aria-hidden="true">bolt</span>
-        <span>شروع سریع</span>
-      </h2>
-
-      <aside class="redirect-link-container">
-
-        <div>
-          <a class="redirect-link" href="post/java/introduction.html">معرفی زبان برنامه نویسی جاوا</a>
-        </div>
-
-        <div>
-          <a class="redirect-link" href="post/kotlin/introduction.html">معرفی زبان برنامه نویسی کاتلین</a>
-        </div>
-
-        <div>
-          <a class="redirect-link" href="post/linux/introduction.html">معرفی سیستم عامل گنو لینوکس</a>
-        </div>
-
-      </aside>
-    </section>
-    <section>
-      <h2 class="index-section-head">
-        <span class="material-symbols-outlined icon" aria-hidden="true">rss_feed</span>
-        <span>بلاگ</span>
-      </h2>
-      <aside class="redirect-link-container">
-        <div>
-          <a class="redirect-link" href="post/blog/programming-languages.html">انواع زبان های برنامه نویسی</a>
-        </div>
-
-        <div>
-          <a class="redirect-link" href="post/blog/switch-statement-jdk-17.html">تغییرات سوییچ تا جاوا ۱۷</a>
-        </div>
-
-      </aside>
-    </section>
-
-
-  </main>
-
-  {% include footer.html %}
-  {% include dialog.html %}
-  <div class="scroll-top-container">
-    <a class="text-decoration-none link-dark material-icons" href="#">arrow_drop_up</a>
+      <a href="/post/kotlin.html" class="slide-link">
+        <img class="slide-img" src="/resources/image/learn/kotlin-cover.png">
+        <figcaption class="slide-caption">
+          آموزش رایگان کاتلین از مبتدی تا پیشرفته
+        </figcaption>
+      </a>
+    </figure>
+    <figure class="figure figure-wrapper slide">
+      <a href="/post/linux.html" class="slide-link">
+        <img class="slide-img" src="/resources/image/learn/linux-commands-cover.png">
+        <figcaption class="slide-caption">
+          دستورات لینوکس
+        </figcaption>
+      </a>
+    </figure>
   </div>
 
+  <div>
+    <a class="md-bt md-bt-dark slide-navigator next">
+      <span class="material-symbols-outlined">navigate_next</span>
+    </a>
+    <a class="md-bt md-bt-dark slide-navigator prev">
+      <span class="material-symbols-outlined">navigate_before</span>
+    </a>
+  </div>
 
-</body>
+  <div class="slider-dots-wrapper"> </div>
 
-</html>
+</div>
+
+<section>
+  <h2 class="index-section-head">
+    <span class="material-symbols-outlined icon">local_library</span>
+    <span>آموزش ها</span>
+  </h2>
+
+  <div class="category-redirect-link-container">
+    <div>
+      <a href="/post/java.html" class="category-redirect-link java">آموزش جاوا</a>
+      <p class="category-redirect-link-description">جاوا یک زبان کراس پلتفرم است که در سه پلتفرم دسکتاپ، وب و
+        اندروید
+        مورد استفاده قرار میگیره؛ در حال حاضر با حمایت بیشتر گوگل از کاتلین، نقش جاوا در توسعه اندروید نسبت به قبل
+        کمرنگ تر شده است. </p>
+    </div>
+    <div>
+      <a href="/post/kotlin.html" class="category-redirect-link kotlin">آموزش کاتلین</a>
+      <p class="category-redirect-link-description">کاتلین یک زبان کراس پلتفرم و قابل استفاده برای، موبایل، وب و
+        دسکتاپ
+        است؛ این زبان در حال حاضر بیشترین کاربرد رو در توسعه ی اندروید داره.
+      </p>
+    </div>
+    <div>
+      <a href="/post/linux.html" class="category-redirect-link linux">دستورات لینوکس</a>
+      <p class="category-redirect-link-description">لینوکس یک سیستم عامل متن باز با قابلیت شخصی سازی بالاست، این
+        سیستم
+        عامل دارای محیطی به نام shell است که دستورات لینوکس در این محیط نوشته و اجرا میشن.</p>
+    </div>
+  </div>
+
+</section>
+
+
+<section>
+
+  <h2 class="index-section-head">
+    <span class="material-symbols-outlined icon" aria-hidden="true">bolt</span>
+    <span>شروع سریع</span>
+  </h2>
+
+  <aside class="redirect-link-container">
+
+    <div>
+      <a class="redirect-link" href="post/java/introduction.html">معرفی زبان برنامه نویسی جاوا</a>
+    </div>
+
+    <div>
+      <a class="redirect-link" href="post/kotlin/introduction.html">معرفی زبان برنامه نویسی کاتلین</a>
+    </div>
+
+    <div>
+      <a class="redirect-link" href="post/linux/introduction.html">معرفی سیستم عامل گنو لینوکس</a>
+    </div>
+
+  </aside>
+</section>
+<section>
+  <h2 class="index-section-head">
+    <span class="material-symbols-outlined icon" aria-hidden="true">rss_feed</span>
+    <span>بلاگ</span>
+  </h2>
+  <aside class="redirect-link-container">
+    <div>
+      <a class="redirect-link" href="post/blog/programming-languages.html">انواع زبان های برنامه نویسی</a>
+    </div>
+
+    <div>
+      <a class="redirect-link" href="post/blog/switch-statement-jdk-17.html">تغییرات سوییچ تا جاوا ۱۷</a>
+    </div>
+
+  </aside>
+</section>

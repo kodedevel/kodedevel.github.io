@@ -31,9 +31,19 @@
 
 <div class="article-foot">
   <aside>
-    <nav class="post-navigation-container">
 
-      {% unless page.notopics %}
+    {% if page.url contains "/blog/" %}
+
+    <nav class="post-navigation-container">
+    </nav>
+    <section>
+      <h2>مطالب مرتبط</h2>
+      <ul>
+        {{ include.relative_links }}
+      </ul>
+    </section>
+    {% else %}
+    <nav class="post-navigation-container">
       <a href="{{ next_page | default: '#' }}" class="md-bt md-bt-light">
 
         <span class="material-symbols-outlined">
@@ -52,7 +62,6 @@
           قبلی
         </span>
       </a>
-      {% endunless %}
     </nav>
     <section>
       <h2>مطالب مرتبط</h2>
@@ -60,8 +69,6 @@
       <ul>
         {{ include.relative_links }}
       </ul>
-
-      {% unless page.notopics %}
       <section>
         <h3>موضوعات دیگر</h3>
 
@@ -72,8 +79,8 @@
         </ul>
 
       </section>
-      {% endunless %}
     </section>
+    {% endif %}
 
   </aside>
 </div>
