@@ -1,9 +1,9 @@
 <head>
 
   {% assign metadata = include.metadata %}
-  <meta content="{{ metadata.description | default: site.description }}" name="description" />
-  <meta charset="UTF-8" />
-  <meta content="width:device-width, initial-scale=1" name="viewport" />
+  <meta content="{{ metadata.description | default: site.description }}" name="description">
+  <meta charset="UTF-8">
+  <meta content="width:device-width, initial-scale=1" name="viewport">
 
   <title>{{ metadata.title | default: site.title }}</title>
 
@@ -16,12 +16,12 @@
   <meta property="og:url" content="{{ site.url }}{{ metadata.link }}">
   <meta property="og:locale" content="fa_IR">
   <meta property="og:type" content="article">
-  <meta property="og:site_name" content="{{ social.name }}" <link rel="canonical"
-    href="{{ site.url }}{{ metadata.link }}">
+  <meta property="og:site_name" content="{{ site.brand.name }}">
 
   <meta name="twitter:title" content="{{ metadata.title }}">
   <meta name="twitter:description" content="{{ metadata.description }}">
 
+  <link rel="canonical" href="{{ site.url }}{{ metadata.link }}">
   <link rel="icon" type="image/png" sizes="512x512" href="/resources/favicon.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/resources/apple-touch-icon.png">
 
