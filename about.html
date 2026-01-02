@@ -1,45 +1,6 @@
 ---
-layout: site
+layout: root
 ---
-
-{% assign metadata = nil %}
-
-{% for entry in site.data.json.root.metadata_list %}
-{% if entry.link == page.url %}
-{% assign metadata = entry %}
-{% break %}
-{% endif %}
-{% endfor %}
-
-<div class="article-head">
-  <div class="article-meta">
-
-    <address class="author">
-      <span class="material-symbols-outlined" aria-hidden="true">person</span>
-      <a href="{{ metadata.author.link | default: '/about' }}" rel="author">
-        {{ metadata.author.name | default: site.author.name }}
-      </a>
-    </address>
-
-    <div class="eta">
-      <span class="material-symbols-outlined" aria-hidden="true">schedule</span>
-      <span aria-live="polite"></span>
-    </div>
-
-    <div>
-      <span class="material-symbols-outlined" aria-hidden="true">line_end_circle</span>
-      <span>تاریخ انتشار:</span>
-      <time id="publish-date" datetime="{{ metadata.datePublished }}"></time>
-    </div>
-
-    <div>
-      <span class="material-symbols-outlined" aria-hidden="true">cached</span>
-      <span>آخرین بروزرسانی:</span>
-      <time id="lastmod-date" datetime="{{ metadata.lastModified }}"></time>
-    </div>
-
-  </div>
-</div>
 
 <article>
   <p>در سال ۲۰۲۲ تصمیم گرفتم یک سری مطالب درباره ی زبان برنامه نویسی جاوا بزارم که این مطالب رایگان باشه و بدرد

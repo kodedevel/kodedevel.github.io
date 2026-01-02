@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fa">
+
+{% assign page_metadata = nil %}
+
+{% for metadata in site.data.json.root.metadata_list %}
+
+{% if metadata.link == page.url %}
+{% assign page_metadata = metadata %}
+
+{% break %}
+{% endif %}
+
+{% endfor %}
+
+
+{% include head.html metadata = page_metadata %}
+
+<body>
+
+  {% include header.html %}
+  <div>
+
+    {% include sidebar.html %}
+
+    <main>
+
+      <h1>{{ page_metadata.title }}</h1>
+
+      {% if page_metadata.link != "/" %}
+      <div class="article-head">
+        <div class="article-meta">
+
+          <address class="author">
+            <span class="material-symbols-outlined" aria-hidden="true">person</span>
+            <a href="{{ metadata.author.link | default: '/about' }}" rel="author">
+              {{ metadata.author.name | default: site.author.name }}
+            </a>
+          </address>
+
+          <div class="eta">
+            <span class="material-symbols-outlined" aria-hidden="true">schedule</span>
+            <span aria-live="polite"></span>
+          </div>
+
+          <div>
+            <span class="material-symbols-outlined" aria-hidden="true">line_end_circle</span>
+            <span>تاریخ انتشار:</span>
+            <time id="publish-date" datetime="{{ metadata.datePublished }}"></time>
+          </div>
+
+          <div>
+            <span class="material-symbols-outlined" aria-hidden="true">cached</span>
+            <span>آخرین بروزرسانی:</span>
+            <time id="lastmod-date" datetime="{{ metadata.lastModified }}"></time>
+          </div>
+
+        </div>
+      </div>
+      {% endif %}
+
+
+      {{ content }}
+
+    </main>
+
+  </div>
+
+
+  {% include footer.html %}
+
+  {% include dialog.html %}
+
+  <div class="scroll-top-container">
+    <a class="material-symbols-outlined" href="#">
+      arrow_drop_up
+    </a>
+  </div>
+
+</body>
+
+
+</html>
