@@ -7,12 +7,12 @@ sitemap: false
 <?xml version="1.0" encoding="UTF-8"?>
 
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-{% for data in site.data.json.topics %}
+{% for data in site.data.json.posts %}
   {% for entry in data[1].metadata_list %}
   <url>
     <loc>{{ site.url }}{{ entry.link }}</loc>
     <lastmod>{{ entry.lastModified | default: entry.datePublished }}</lastmod>
   </url>
   {% endfor %}
-{% endfor %}
+  {% endfor %}
 </urlset>
