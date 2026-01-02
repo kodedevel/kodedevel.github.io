@@ -14,5 +14,20 @@ sitemap: false
     <lastmod>{{ entry.lastModified | default: entry.datePublished }}</lastmod>
   </url>
   {% endfor %}
+
+{% for entry in site.data.json.root.metadata_list %}
+  <url>
+  <loc>{{ site.url }}{{ entry.link }}</loc>
+  <lastmod>{{ entry.lastModified | default: entry.datePublished }}</lastmod>
+  </url>
+  {% endfor %}
+
+  {% for entry in site.data.json.categories.metadata_list %}
+  <url>
+    <loc>{{ site.url }}{{ entry.link }}</loc>
+    <lastmod>{{ entry.lastModified | default: entry.datePublished }}</lastmod>
+  </url>
+  {% endfor %}
+
   {% endfor %}
 </urlset>
