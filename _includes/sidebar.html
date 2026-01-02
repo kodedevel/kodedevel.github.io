@@ -16,19 +16,19 @@
 
   <div>
     <div class="list-container" id="article_container">
-      {% for data in site.data.json.topics %}
+      {% for data in site.data.json.posts %}
 
-      {% assign topic = data[1] %}
+      {% assign category = data[1] %}
 
       <div>
 
-        <button class="md-bt-expandable" data-target="{{ topic.id }}">
+        <button class="md-bt-expandable" data-target="{{ category.id }}">
           <span class="material-symbols-outlined icon">arrow_left</span>
-          <span>{{ topic.name }}</span>
+          <span>{{ category.name }}</span>
         </button>
 
-        <div class="subject-list-container" id="{{ topic.id }}">
-          {% assign metadata_list = topic.metadata_list %}
+        <div class="subject-list-container" id="{{ category.id }}">
+          {% assign metadata_list = category.metadata_list %}
           <ul>
             {% for metadata in metadata_list %}
             <li><a href="{{metadata.link}}">{{ metadata.title }}</a></li>
