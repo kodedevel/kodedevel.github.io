@@ -96,15 +96,23 @@
     position: fixed;
     justify-content: end;
     display: flex;
-    bottom: -128px;
+    bottom: 0px;
     left: 0;
     right: 0;
     z-index: 2;
+    transform: translateY(128px);
+    transition: all 500ms ease-in-out;
+}
+
+.copy-message.showMessage{
+  transform: translateY(0px);
 }
 
 .copy-message .copy-message-text{
     color: #fafafa;
+    margin-left: 24px;
 }
+
 
 
 .toc{

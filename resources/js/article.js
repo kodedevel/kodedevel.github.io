@@ -28,6 +28,7 @@ function createCodeViews() {
     let header = createSampleHeader();
     let copyButton = header.firstChild;
 
+
     let snippetContainer = codeContainer.querySelector(".snippet-container");
 
     //intented to wrap codes for every languages.
@@ -57,10 +58,7 @@ function createCodeViews() {
                 copyButton.onclick = function () {
                   let text = collectTextCodes(snippet.firstChild);
                   navigator.clipboard.writeText(text);
-                  $(".copy-message").animate({ bottom: "0px" }, 512);
-                  $(".copy-message")
-                    .delay(3000)
-                    .animate({ bottom: "-128px" }, 512);
+                  toggleCopyMessage();
                 };
               }
             });
@@ -93,8 +91,7 @@ function createCodeViews() {
           copyButton.onclick = function () {
             let text = collectTextCodes(snippet.firstChild);
             navigator.clipboard.writeText(text);
-            $(".copy-message").animate({ bottom: "0px" }, 512);
-            $(".copy-message").delay(3000).animate({ bottom: "-128px" }, 512);
+            toggleCopyMessage();
           };
         }
       }
@@ -104,6 +101,15 @@ function createCodeViews() {
 
     codeContainer.insertBefore(header, snippetToggler);
   }
+}
+
+function toggleCopyMessage() {
+
+  let copyMessage = document.querySelector(".copy-message");
+  copyMessage.classList.toggle("showMessage");
+  setTimeout(() => {
+    copyMessage.classList.toggle("showMessage");
+  }, 3000);
 }
 
 function findSnippetLanguage(snippet) {
@@ -195,4 +201,4 @@ function collectTextCodes(codeViewContents) {
   return text;
 }
 
-export { createCodeViews };
+export {createCodeViews};
