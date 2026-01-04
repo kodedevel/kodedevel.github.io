@@ -1,6 +1,6 @@
 <head>
 
-  {% assign metadata = include.metadata %}
+  {%- assign metadata = include.metadata -%}
   <meta content="{{ metadata.description | default: site.description }}" name="description">
   <meta charset="UTF-8">
   <meta content="width:device-width, initial-scale=1" name="viewport">
@@ -20,6 +20,10 @@
 
   <meta name="twitter:title" content="{{ metadata.title }}">
   <meta name="twitter:description" content="{{ metadata.description }}">
+  {%- if metadata.imgCover -%}
+  <meta name="twitter:image" content="{{ site.url }}{{ metadata.imgCover }}">
+  <meta name="twitter:card" content="summary_large_image">
+  {%- endif -%}
 
   <link rel="canonical" href="{{ site.url }}{{ metadata.link }}">
   <link rel="icon" type="image/png" sizes="512x512" href="/resources/favicon.png">
@@ -45,9 +49,9 @@
     "headline": "{{ metadata.title }}",
     "description": "{{ metadata.description }}",
     "datePublished": "{{ metadata.datePublished | default: '' }}",
-    {% if metadata.lastModified and metadata.lastModified != "" %}
+    {%- if metadata.lastModified and metadata.lastModified != "" -%}
       "dateModified": "{{ metadata.lastModified }}",
-    {% endif %}
+    {%- endif -%}
     "inLanguage": "fa-IR",
 
     "image": {
@@ -72,4 +76,99 @@
      }
   }
   </script>
+
+  <script type="application/ld+json">
+
+    {%- assign url_parts = metadata.link | split: '/' -%}
+
+    {%- assign parent = url_parts | pop | join: '/' -%}
+    {%- assign parent_file = parent | append: '.html' -%}
+    {%- assign parent_metadata = nil -%}
+
+    {%- for entry in site.data.json.categories.metadata_list -%}
+        
+      {%- if entry.link == parent_file -%}
+       {%- assign parent_metadata = entry -%} 
+       {%- break -%}
+      {%- endif -%}
+
+    {%- endfor -%}
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+
+      {%- if parent == '' -%}
+      
+        {%- if metadata.link == "/" -%}
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "خانه",
+            "item": "{{ site.url }}/"
+          }
+        {%- else -%}
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "خانه",
+            "item": "{{ site.url }}/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "{{ metadata.title }}",
+            "item": "{{ site.url }}{{ metadata.link }}"
+          }
+        {%- endif -%}
+
+       {%- elsif parent == "/post" -%}
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "خانه",
+            "item": "{{ site.url }}/"
+          },
+          {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "{{ metadata.title }},
+          "item": "{{ site.url }}{{ metadata.link }}
+          } 
+        
+        {%- else -%}
+
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "خانه",
+            "item": "{{ site.url }}/"
+          },
+          {%- if parent_metadata -%}
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "{{ parent_metadata.title }}",
+              "item": "{{ site.url }}{{ parent_metadata.link }}"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "{{ metadata.title }}",
+              "item": "{{ site.url }}{{ metadata.link }}"
+            }
+          {%- else -%}
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "{{ metadata.title }}",
+              "item": "{{ site.url }}{{ metadata.link }}"
+            }
+          {%- endif -%}
+
+        {%- endif -%}
+      ]
+  }
+  </script>
+
 </head>
