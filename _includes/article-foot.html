@@ -1,8 +1,7 @@
-<!-- variables for previous and next page to auto set next and previous page links for anchor in article-foot.html -->
 {% assign prev_page = nil %}
 {% assign next_page = nil %}
 
-{% for data in site.data.json.topics %}
+{% for data in site.data.json.posts %}
 
 {% assign metadata_list = data[1].metadata_list %}
 

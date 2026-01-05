@@ -20,9 +20,9 @@
     },
     {
       "title": "دستورات شرطی در جاوا",
-      "description": "در این مطلب به بررسی دستورات شرطی if-else ، switch ، عملگر های منطقی و عبارت شرطی در جاوا به همراه مثال می پردازیم.",
+      "description": "بررسی دستورات شرطی، if-else، if های زنجیره ای و تو در تو، عملگر های منطقی و دستور شرطی سوییچ (switch) در جاوا.",
       "datePublished": "2025-09-12",
-      "lastModified": "",
+      "lastModified": "2026-01-05",
       "imgCover": "/resources/image/java/cover_selectors.png",
       "link": "/post/java/selectors.html"
     },

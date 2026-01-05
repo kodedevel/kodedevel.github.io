@@ -21,6 +21,10 @@ layout: default
       <li>
         <a href="#p4">عبارت شرطی</a>
       </li>
+      <li>
+        <a href="#p5">خلاصه</a>
+      </li>
+
     </ul>
   </div>
 
@@ -42,8 +46,7 @@ layout: default
         <pre class="snippet Java">
 boolean v0 = true;
 boolean v1 = false;
-                        </pre
-        >
+                        </pre>
       </div>
     </div>
   </section>
@@ -51,7 +54,7 @@ boolean v1 = false;
   <section id="p1">
     <h2>دستور شرطی if–else در جاوا</h2>
     <blockquote>
-      تعریف: با دستور شرطی if-else در جاوا به بررسی true یا false بودن یک عبارت
+      با دستور شرطی if-else در جاوا به بررسی true یا false بودن یک عبارت
       می پردازیم if به زبان فارسی یعنی اگر.
     </blockquote>
 
@@ -69,8 +72,7 @@ if(condition == true){
     ...
 
 }
-                        </pre
-        >
+                        </pre>
       </div>
     </div>
 
@@ -98,16 +100,21 @@ if(condition){
     ...
 
 }
-                        </pre
-        >
+                        </pre>
       </div>
     </div>
 
-    <p>هچنین میتونیم چند شرط رو بررسی کنیم:</p>
+    <section>
+      <h3>if های زنجیره ای</h3>
+      <p>میتونیم به طور زنجیره ای چند if رو به هم وصل کنیم.
+      </p>
 
-    <div class="sample">
-      <div class="snippet-container">
-        <pre class="snippet Java">
+      <p>در این حالت برنامه به ترتیب از اولین if شروع میکنه به بررسی شرط و با درست بودن یکی از if ها کد های داخل بدنه ی
+        if مورد نظر رو اجرا و از بررسی if های باقی مونده صرف نظر میکنه. اصطلاحا میشه گفت از زنجیره خارج میشه.</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
 if(condition0){
 
     ...
@@ -129,20 +136,19 @@ if(condition0){
     ...
 
 }
-                        </pre
-        >
+                        </pre>
+        </div>
       </div>
-    </div>
 
-    <p>مثال:</p>
-    <p>
-      در این مثال میخوایم نسبت قد به وزن رو حساب کنیم و بررسی کنیم که کاربر
-      اضافه وزن داره یا کاهش وزن یا وزنش متعادله
-    </p>
+      <p>مثال</p>
+      <p>
+        در این مثال میخوایم نسبت قد به وزن رو حساب کنیم و بررسی کنیم که کاربر
+        اضافه وزن داره یا کاهش وزن یا وزنش متعادله
+      </p>
 
-    <div class="sample">
-      <div class="snippet-container">
-        <pre class="snippet Java">
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
 Scanner input = new Scanner(System.in);
 
 System.out.println("Enter a weight: ");
@@ -165,10 +171,11 @@ if (bmi &lt; 18.5){
 }else {
     System.out.println("Obese");
 }
-                        </pre
-        >
+                        </pre>
+        </div>
       </div>
-    </div>
+
+    </section>
 
     <section>
       <h3>if های تو در تو</h3>
@@ -188,8 +195,7 @@ if(condition0){
 }else {
   ...
 }
-                        </pre
-          >
+                        </pre>
         </div>
       </div>
     </section>
@@ -197,10 +203,12 @@ if(condition0){
 
   <section id="p2">
     <h2>عملگر های منطقی در جاوا</h2>
-    <p>عملگر های منطقی برای تغییر مقدار boolean است</p>
+    <p>عملگر های منطقی برای تغییر مقدار boolean است عملگر های منطقی در جاوا از قوانین <a
+        href="https://en.wikipedia.org/wiki/Boolean_algebra">جبر بول</a> پیروی میکنن.</p>
+
 
     <section>
-      <h3>عملگر ! :</h3>
+      <h3>عملگر !</h3>
       <p>
         مقدار عبارت boolean رو معکوس میکنه مثلا اگ مقدار یک عبارت true باشه با
         این عملگر false میشه
@@ -214,14 +222,13 @@ boolean condition0 = true;
 if(!condition0){
     ...
 }
-                        </pre
-          >
+                        </pre>
         </div>
       </div>
     </section>
 
     <section>
-      <h3>عملگر && :</h3>
+      <h3>عملگر &&</h3>
       <p>
         معنی and (و) میده، فرض کنید چندتا شرط داریم میخوایم بررسی کنیم اگه همه
         true بودن عبارت داخل بدنه ی if اجرا بشه به صورت زیر عمل میکنیم:
@@ -233,18 +240,17 @@ if(!condition0){
 if(condition0 &amp;&amp; condition1 &amp;&amp; ... &amp;&amp; conditionN) {
           ...
 }
-                        </pre
-          >
+                        </pre>
         </div>
       </div>
     </section>
 
     <section>
-      <h3>۳- عملگر || :</h3>
+      <h3>عملگر ||</h3>
       <p>
         معنی or (یا) میده، فرض کنید چندتا شرط داریم میخوایم بررسی کنیم اگه
         یکیشون true بود کد های داخل {} مربوط به if اجرا بشه به صورت زیر عمل
-        میکنیم:
+        میکنیم
       </p>
 
       <div class="sample">
@@ -253,27 +259,24 @@ if(condition0 &amp;&amp; condition1 &amp;&amp; ... &amp;&amp; conditionN) {
 if(condition0 || condition1 || ... || conditionN){
       ...
 }
-                        </pre
-          >
+                        </pre>
         </div>
       </div>
     </section>
 
     <section>
-      <h3>۴- عملگر ^ :</h3>
+      <h3>عملگر ^</h3>
       <p>
-        معنی or اختصاصی (exclusive or) میده فرض کنید دو عبارت شرطی داریم میخوایم
-        بررسی کنیم فقط یکیش درست باشه و هردو نباید درست باشه :
+        معنی or اختصاصی (exclusive or) میده هنگام بررسی دو عبارت شرطی فقط باید یکیشون true باشه.
       </p>
 
-      <div class="piece">
+      <div class="sample">
         <div class="snippet-container">
           <pre class="snippet Java">
 if(condition0 ^ condition1){
     ...
 }
-                        </pre
-          >
+                        </pre>
         </div>
       </div>
 
@@ -294,8 +297,7 @@ if (num % 2 == 0 || num % 3 == 0)
 
 if (num % 2 == 0 ^ num % 3 == 0)
         System.out.println("Number is divisible by 2 or 3 but not both");
-                        </pre
-          >
+                        </pre>
         </div>
       </div>
     </section>
@@ -303,10 +305,18 @@ if (num % 2 == 0 ^ num % 3 == 0)
 
   <section id="p3">
     <h2>دستور switch در جاوا</h2>
+
     <p>
-      اگه چندین مورد برای بررسی داشته باشیم بهجای استفاده از چندین if-else
-      میتونیم از کلید واژه ی سوییچ (switch) در جاوا استفاده کنیم
+      اگه چندین مورد برای بررسی داشته باشیم میتونیم به جای استفاده از if های زنجیره ای از دستور سوییچ (switch) در
+      جاوا استفاده کنیم.
     </p>
+
+    <div class="note">
+      <p class="note-head">توجه</p>
+      <p>از جاوا ۸ به بعد ویژگی های جدیدی به سوییچ اضافه شده؛ در اینجا کاربرد پایه ای این دستور رو بررسی میکنیم؛ میتونید
+        برای مطالعه ی بیشتر به <a href="/post/blog/switch-statement-jdk-17.html">تغییرات سوییچ تا jdk 17</a>
+        مراجعه کنید.</p>
+    </div>
 
     <p>مثال:</p>
     <div class="sample">
@@ -327,8 +337,7 @@ switch (dayNumber){
     default:
     System.out.println("Day is not in range");
 }
-                        </pre
-        >
+                        </pre>
       </div>
     </div>
 
@@ -346,7 +355,7 @@ switch (dayNumber){
 
   <section id="p4">
     <h2>عبارت شرطی</h2>
-    <p>مثال:</p>
+    <p>مثال</p>
 
     <div class="sample">
       <div class="snippet-container">
@@ -361,8 +370,7 @@ int num2 = input.nextInt();
 int max = (num1 &gt; num2) ? num1 : num2;
 
 System.out.println("number 1 is " + num1 + " number 2 is " + num2 + " maximum is " + max);
-                        </pre
-        >
+                        </pre>
       </div>
     </div>
 
@@ -372,15 +380,13 @@ System.out.println("number 1 is " + num1 + " number 2 is " + num2 + " maximum is
     </p>
   </section>
 
-  <section>
+  <section id="p5">
     <h2>خلاصه</h2>
-
     <ul>
-      <li>
-        در این مقاله با دستور شرطی if-else, switch و عبارت شرطی در جاوا اشنا
-        شدیم اینکه از کدوم باید کجا استفاده کنید بستگی به نیاز و تشخیص خودتون
-        داره امیدوارم براتون مفید واقع شده باشه
-      </li>
+      <li>از دستورات شرطی برای بررسی true یا false بودن یک یا چند عبارت شرطی استفاده میکنیم.</li>
+      <li>دستور شرطی if-else رو میتونیم به صورت تکی، زنجیره ای و یا تودرتو بنویسیم.</li>
+      <li>از عملگر های منطقی برای تغییر مقدار boolean استفاده میکنیم.</li>
+      <li>اگه چندین مورد برای بررسی داشتیم میتونیم بجای if های زنجیره ای از دستور switch در جاوا استفاده کنیم.</li>
     </ul>
   </section>
 </article>
@@ -391,12 +397,11 @@ System.out.println("number 1 is " + num1 + " number 2 is " + num2 + " maximum is
 </li>
 
 <li>
-  <a href="/post/java/selectors.html">حلقه ها در جاوا</a>
+  <a href="/post/java/loops.html">حلقه ها در جاوا</a>
 </li>
 
 <li>
-  <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/flow.html"
-    >مطالعه در وبسایت رسمی جاوا</a
-  >
+  <a target="_blank" href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/flow.html">مطالعه در وبسایت رسمی
+    جاوا</a>
 </li>
 {% endcapture %} {% include article-foot.html relative_links = links %}
