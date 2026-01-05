@@ -151,17 +151,14 @@
     display: block;
     width: 100%;
     height: wrap-content;
-    padding: 8px;
-    border-radius: 8px;
-    border: 1px solid black;
-    margin-bottom: 16px;
+    margin-bottom: 24px;
+    direction: ltr;
 }
 
 .tb .tRow{
     width: 100%;
     display: flex;
     justify-content: space-between;
-    padding: 8px;
     background-color: #e1f5fe;
 }
 
@@ -170,23 +167,20 @@
     font-weight: bold;
     font-size: 1.25em;
     text-align: center;
-    padding: 8px;
     background-color: #80d8ff;
     border-radius: 8px;
+    padding: 8px 0;
 }
 
 .tRow .tDataLTR{
     direction: ltr;
     font-weight:bold;
-    margin-left: 8px;
-    margin-right: 8px;
-
+    padding: 16px 8px;
 }
 
 .tRow .tDataRTL{
     direction: rtl;
-    margin-left: 8px;
-    margin-right: 8px;
+    padding: 16px 8px;
 }
 
 .course-category{
