@@ -3,8 +3,8 @@ layout: default
 ---
 
 <article>
-  <nav class="toc">
-    <p>دسترسی سریع</p>
+  <nav class="toc" aria-label="Page contents">
+    <div>دسترسی سریع</div>
     <ul>
       <li>
         <a href="#p0">مقایسه ی کلاس های Text-IO با Binary-IO</a>
@@ -72,8 +72,7 @@ char ch = 'A';
 int code = (int) ch;
 
 System.out.println("The code for character A is " + code);
-            </pre
-        >
+            </pre>
       </div>
     </div>
 
@@ -96,8 +95,7 @@ System.out.println("The code for character A is " + code);
 int code = 66;
 char ch = (char) code;
 System.out.println("The character for code  " + code + " is " + ch);
-            </pre
-        >
+            </pre>
       </div>
     </div>
 
@@ -125,10 +123,8 @@ System.out.println("The character for code  " + code + " is " + ch);
     </p>
 
     <figure>
-      <img
-        src="/resources/image/java/java_io_inheritance_hierarchy.png"
-        alt="سلسله مراتب ارث بری کلاس های Binary IO در جاوا"
-      />
+      <img src="/resources/image/java/java_io_inheritance_hierarchy.png"
+        alt="سلسله مراتب ارث بری کلاس های Binary IO در جاوا" />
       <figcaption>سلسله مراتب ارث بری کلاس های Binary-IO در جاوا</figcaption>
     </figure>
 
@@ -316,9 +312,7 @@ System.out.println("The character for code  " + code + " is " + ch);
       <p class="note-head">نکته</p>
       <p>
         تمام کلاس های io-stream در جاوا حامل
-        <a class="text-decoration-none" href="exceptions.html"
-          >checked-exception</a
-        >
+        <a class="text-decoration-none" href="exceptions.html">checked-exception</a>
         هستند یعنی باید حتما اکسپشن هاشون رو هندل کنیم اما در کاتلین
         checked-exception وجود نداره.
       </p>
@@ -341,8 +335,7 @@ public static void main(String[] args) throws IOException{
         }
     }
 }
-                    </pre
-        >
+                    </pre>
         <pre class="snippet Kotlin">
 fun main() {
 
@@ -362,8 +355,7 @@ fun main() {
     }while (b != -1)
     output.close()
 }
-                    </pre
-        >
+                    </pre>
       </div>
     </div>
     <p>
@@ -399,10 +391,8 @@ fun main() {
     </p>
 
     <figure>
-      <img
-        src="/resources/image/java/java_data_io_stream_inheritance.png"
-        alt="ارث بری دو کلاس DataInputStream و DataOutputStream در جاوا"
-      />
+      <img src="/resources/image/java/java_data_io_stream_inheritance.png"
+        alt="ارث بری دو کلاس DataInputStream و DataOutputStream در جاوا" />
       <figcaption>
         ارث بری دو کلاس DataInputStream و DataOutputStream در جاوا
       </figcaption>
@@ -564,8 +554,7 @@ public static void main(String[] args) throws IOException{
         }
     }
 }
-                    </pre
-        >
+                    </pre>
         <pre class="snippet Kotlin">
 fun main() {
 
@@ -594,8 +583,7 @@ val file = File("temp.dat")
 
     output.close()
 }
-                    </pre
-        >
+                    </pre>
       </div>
     </div>
   </section>
@@ -616,10 +604,8 @@ val file = File("temp.dat")
     <p>تصویر زیر نحوه ی ارث بری این دو کلاس رو نشون میده.</p>
 
     <figure class="figure figure-wrapper">
-      <img
-        src="/resources/image/java/java_object_io_stream_inheritance.png"
-        alt="نمودار uml نحوه ی ارث بری دو کلاس ObjectInputStream و ObjectOutputStream در جاوا"
-      />
+      <img src="/resources/image/java/java_object_io_stream_inheritance.png"
+        alt="نمودار uml نحوه ی ارث بری دو کلاس ObjectInputStream و ObjectOutputStream در جاوا" />
       <figcaption>
         ارث بری دو کلاس ObjectInputStream و ObjectOutputStream در جاوا
       </figcaption>
@@ -712,12 +698,11 @@ public static void main(String[] args) throws IOException, ClassNotFoundExceptio
 
     //خوندن داده ها
     try(ObjectInputStream input = new ObjectInputStream(new FileInputStream("temp.dat"))){
-        while (input.available() > 0) {
+        while (input.available() &gt; 0) {
             System.out.println("Name: " + input.readUTF() + " Score: " + input.readDouble() + " Date: " + input.readObject());
         }
 }
-                    </pre
-        >
+                    </pre>
         <pre class="snippet Kotlin">
 fun main() {
 
@@ -750,8 +735,7 @@ fun main() {
 
     objectInput.close()
 }
-                    </pre
-        >
+                    </pre>
       </div>
     </div>
   </section>
@@ -857,8 +841,7 @@ public static void main(String[] args) throws IOException {
         }
     }
 }
-                    </pre
-        >
+                    </pre>
         <pre class="snippet Kotlin">
 fun main() {
 
@@ -887,8 +870,7 @@ fun main() {
 
     bufferedInput.close()
 }
-                    </pre
-        >
+                    </pre>
       </div>
     </div>
   </section>
@@ -940,8 +922,7 @@ public static void main(String[] args) {
         System.out.println("Copy ok!" + numberOfBytesCopied + " bytes copied");
     }
 }
-                    </pre
-        >
+                    </pre>
         <pre class="snippet Kotlin">
 fun main(args: Array&lt;String&gt;) {
 
@@ -981,8 +962,7 @@ fun main(args: Array&lt;String&gt;) {
     println("Copy ok!$numberOfBytesCopied bytes copied")
 
 }
-                    </pre
-        >
+                    </pre>
       </div>
     </div>
   </section>
@@ -1050,8 +1030,7 @@ fun main(args: Array&lt;String&gt;) {
 </li>
 
 <li>
-  <a href="https://docs.oracle.com/javase/tutorial/essential/io/streams.html"
-    >مطالعه در وبسایت رسمی اوراکل</a
-  >
+  <a target="_blank" href="https://docs.oracle.com/javase/tutorial/essential/io/streams.html">مطالعه در وبسایت رسمی
+    اوراکل</a>
 </li>
 {% endcapture %} {% include article-foot.html relative_links = links %}
