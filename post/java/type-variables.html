@@ -45,7 +45,7 @@ layout: default
 
     <p>
       در این قسمت به بررسی متغیر های primitive می پردازیم و در قسمت آبجکت و کلاس
-      ها به متغیر های آبجکتی در جاوا خواهیم پرداخت.
+      ها به <a href="/post/java/objects-and-classes.html">متغیر های آبجکتی</a> در جاوا خواهیم پرداخت.
     </p>
   </section>
 
@@ -55,10 +55,10 @@ layout: default
     <blockquote>متغیر های Primitive مستقیم رو حافظه ایجاد میشن.</blockquote>
 
     <p>
-      هنگام ایجاد متغیر های primitive قسمتی از حافظه رو به این متغیر ها اختصاص
-      میدیم.
+      متغیر های نوع اول (primitive types) هنگام ایجاد یک قسمتی از حافظه رو به خودشون اختصاص میدن.
     </p>
-    <p>این متغیر ها مقداری که بهشون میدیم رو در خودشون ذخیره میکنن.</p>
+
+    <p>مقداری که به این متغیر ها میدیم مستقیم در فضایی که در حافظه بهشون اختصاص داده شده ذخیره میکنن.</p>
 
     <p>فرم کلی:</p>
 
@@ -88,8 +88,7 @@ layout: default
           <pre class="snippet Java">
 boolean v0 = true;
 boolean v0 = false;
-                        </pre
-          >
+                        </pre>
         </div>
       </div>
     </section>
@@ -103,8 +102,7 @@ boolean v0 = false;
         <div class="snippet-container">
           <pre class="snippet Java">
 char v = 'a';
-                        </pre
-          >
+                        </pre>
         </div>
       </div>
     </section>
@@ -129,8 +127,7 @@ char v = 'a';
         <div class="snippet-container">
           <pre class="snippet Java">
 byte v =  64;
-                        </pre
-          >
+                        </pre>
         </div>
       </div>
     </section>
@@ -143,8 +140,7 @@ byte v =  64;
         <div class="snippet-container">
           <pre class="snippet Java">
 short v = 16234;
-        </pre
-          >
+        </pre>
         </div>
       </div>
     </section>
@@ -160,8 +156,7 @@ short v = 16234;
         <div class="snippet-container">
           <pre class="snippet Java">
 int v = 3448284532;
-                        </pre
-          >
+                        </pre>
         </div>
       </div>
     </section>
@@ -174,8 +169,7 @@ int v = 3448284532;
         <div class="snippet-container">
           <pre class="snippet Java">
 float v = 483848.232;
-                        </pre
-          >
+                        </pre>
         </div>
       </div>
     </section>
@@ -191,8 +185,7 @@ float v = 483848.232;
         <div class="snippet-container">
           <pre class="snippet Java">
 long v = 3843874872324;
-                        </pre
-          >
+                        </pre>
         </div>
       </div>
     </section>
@@ -208,8 +201,7 @@ long v = 3843874872324;
         <div class="snippet-container">
           <pre class="snippet Java">
 double v = 37488935322.3853875;
-        </pre
-          >
+        </pre>
         </div>
       </div>
     </section>
@@ -236,8 +228,7 @@ int number0 = 4;
 int number1 = 7;
 int result = n0 * n1;
 System.out.println("multiplication of " + number0 + " and " number1 is " + result);
-                        </pre
-        >
+                        </pre>
       </div>
     </div>
 
@@ -251,8 +242,7 @@ float number0 = 632;
 float number1 = 4241;
 float result = number0 / number1;
 System.out.println(number0 + " / " + number1  + " = "  result);
-                        </pre
-          >
+                        </pre>
         </div>
       </div>
     </section>
@@ -269,8 +259,7 @@ int number0 = 42;
 int number1 = 75;
 int result = number0 + number1;
 System.out.println(number0 + " + " number1 + " = " + result);
-                        </pre
-          >
+                        </pre>
         </div>
       </div>
     </section>
@@ -286,8 +275,7 @@ int number0 = 32;
 int number1 = 5;
 int reminder = 32 % 5;
 System.out.println("reminder of " + number0 + " / " + number1 + " is " + reminder);
-                        </pre
-          >
+                        </pre>
         </div>
       </div>
 
@@ -310,8 +298,7 @@ double celsius = (5 / 9.0) * (fahrenheit - 32);
 
 System.out.println("Degree in fahrenheit " + fahrenheit + " is " + celsius + " in celsius");
 }
-                        </pre
-          >
+                        </pre>
         </div>
       </div>
 
@@ -337,8 +324,7 @@ public static void main(String[] args){
 
     System.out.println("Current time is " + currentHour + ":" + currentMinute + ":" + currentSecond);
 }
-                        </pre
-          >
+                        </pre>
         </div>
       </div>
     </section>
@@ -363,8 +349,7 @@ public static void main(String[] args){
 int i = 1;
 //i = i + 4;
 i += 4
-                        </pre
-          >
+                        </pre>
         </div>
       </div>
     </section>
@@ -382,8 +367,7 @@ i += 4
 int i = 7;
 //i = i - 4;
 i -= 4;
-                        </pre
-          >
+                        </pre>
         </div>
       </div>
     </section>
@@ -402,8 +386,7 @@ i -= 4;
 int i = 5;
 //i = i / 2;
 i /= 2;
-                        </pre
-          >
+                        </pre>
         </div>
       </div>
     </section>
@@ -422,8 +405,7 @@ i /= 2;
 int m = 3;
 //m = m * 5;
 m *= 5;
-                        </pre
-          >
+                        </pre>
         </div>
       </div>
     </section>
@@ -442,8 +424,7 @@ m *= 5;
 int i = 8;
 //i = i % 7;
 i %= 7;
-                        </pre
-          >
+                        </pre>
         </div>
       </div>
     </section>
@@ -462,8 +443,7 @@ i %= 7;
           <pre class="snippet Java">
 int i = 1;
 int j = i++; //j = 1 , i = 2
-                        </pre
-          >
+                        </pre>
         </div>
       </div>
 
@@ -476,8 +456,7 @@ int j = i++; //j = 1 , i = 2
           <pre class="snippet Java">
 int i = 1;
 int j = ++i; //j = 2, i = 2;
-                        </pre
-          >
+                        </pre>
         </div>
       </div>
     </section>
@@ -496,8 +475,7 @@ int j = ++i; //j = 2, i = 2;
           <pre class="snippet Java">
 int i = 1;
 int j = i--;
-                        </pre
-          >
+                        </pre>
         </div>
       </div>
 
@@ -511,8 +489,7 @@ int j = i--;
           <pre class="snippet Java">
 int i = 1;
 int j = --i;
-                        </pre
-          >
+                        </pre>
         </div>
       </div>
     </section>
@@ -533,12 +510,10 @@ int j = --i;
         <pre class="snippet Java">
 String name = "David"
 System.out.println("What's your name? " + name);
-                        </pre
-        >
+                        </pre>
       </div>
     </div>
 
-    <p>در قسمت شی گرایی با متغیر های آبجکتی بیشتر آشنا خواهیم شد.</p>
   </section>
 
   <section id="p5">
@@ -567,5 +542,8 @@ System.out.println("What's your name? " + name);
 </li>
 <li>
   <a href="loops.html">حلقه ها در جاوا</a>
+</li>
+<li>
+  <a href="objects-and-classes.html">آبجکت و کلاس ها در جاوا</a>
 </li>
 {% endcapture %} {% include article-foot.html relative_links = links %}

@@ -12,7 +12,7 @@
     },
     {
       "title": "انواع متغیر در جاوا",
-      "description": "متغیر ها در جاوا به دو دسته ی کلی تقسیم میشن؛ متغیر های نوع اول (primitive types) و متغیر های آبجکتی (Object Types) در این مطلب با انواع متغیر ها در جاوا آشنا میشیم؛ به بررسی متغیر های primitive ، عملگر های ریاضی می پردازیم و نگاه کوتاهی به متغیر های آبجکتی نیز خواهیم داشت.",
+      "description": "انواع متغیر ها در جاوا؛ متغیر های نوع اول (Primitive Types)، بررسی ویژگی متغیر های نوع اول،‌ عملگرهای ریاضی در جاوا.",
       "datePublished": "2025-09-12",
       "lastModified": "",
       "imgCover": "/resources/image/java/cover_type_variables.png",
@@ -28,9 +28,9 @@
     },
     {
       "title": "حلقه (loop) ها در جاوا",
-      "description": "حلقه ها برای تکرار یک عمل در زبان برنامه نویسی مورد استفاده قرار می گیرند در این مطلب به بررسی حلقه ی while ، foreach ، for و do-while در زبان برنامه نویسی جاوا به همراه مثال می پردازیم.",
+      "description": "تعریف حلقه، تعریف حلقه ی for، while و do-while و استفاده از کلیدواژه های break و continue داخل حلقه در جاوا.",
       "datePublished": "2025-09-12",
-      "lastModified": "",
+      "lastModified": "2026-01-06",
       "imgCover": "/resources/image/java/cover_loops.png",
       "link": "/post/java/loops.html"
     },
