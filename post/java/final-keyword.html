@@ -19,29 +19,71 @@ layout: default
     <h2>بررسی کلیدواژه ی final</h2>
 
     <p>
-      به طور کلی کلیدواژه ی <strong>final</strong> یک
-      <strong>کلاس، متد یا متغیر</strong> رو برامون نهایی میکنه مثلا اگه کلاس
-      باشه نمیتونیم ازش ارث ببریم اگه متد باشه نمیتونیم بازنویسیش کنیم و اگه
-      متغیر باشه مقدارش ثابته و تغییر نمیکنه. در ادامه با جزئیات بیشتر همین حرفا
-      رو میخوایم تکرار کنیم.
+      کلیدواژه ی <strong>final</strong> یک
+      <strong>کلاس، متد یا متغیر</strong> رو برامون نهایی میکنه؛ اگه کلاس رو با final تعریف کنیم،
+      نمیتونیم از کلاس ارث بری کنیم، اگه متد رو با final تعریف کنیم، نمیتونیم متد رو بازنویسی (Override) کنیم و اگه
+      یک متغیر رو با final تعریف کنیم، مقدارش ثابته و تغییر نمیکنه.
     </p>
 
-    <p>
-      اگه یک متغیر یا دیتافیلد رو با کلیدواژه ی final تعریف کنیم مقدار متغیر در
-      طی زمان اجرای برنامه تغییر نمیکنه.
-    </p>
 
-    <div class="note">
-      <p class="note-head">راهنمایی</p>
+    <section>
+      <h3>تعریف کلاس final</h3>
+      <p>در مثال زیر یک کلاس رو با کلیدواژه ی final تعریف کردیم</p>
+
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
+public final class MyFinalClass{
+
+}
+                        </pre>
+        </div>
+      </div>
+      <div class="note">
+        <p class="note-head">توجه</p>
+        <p>
+          کلاس های <strong>abstract و اینترفیس ها</strong> رو نمیتونیم با final
+          تعریف کنیم.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <h3>تعریف متد final</h3>
+
+      <p>در مثال زیر یک متد رو با کلیدواژه ی final تعریف کردیم.</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
+public class MyClass{
+
+    public final void myFinalMethod(){
+        
+    }
+
+}
+          </pre>
+        </div>
+      </div>
+
+      <div class="note">
+        <p class="note-head">توجه</p>
+        <p>متد های ابستراکت رو نمیشه با final تعریف کنیم.</p>
+      </div>
+
+    </section>
+
+    <section>
+      <h3>تعریف متغیر final</h3>
       <p>
-        به طور قرارداد فیلد های ثابت یک کلاس رو با final و static تعریف میکنیم و
-        اسمشونو با حروف بزرگ مینویسیم.
+        در مثال زیر متغیر ها رو با کلیدواژه ی final تعریف کردیم.
       </p>
-    </div>
 
-    <div class="sample">
-      <div class="snippet-container">
-        <pre class="snippet Java">
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
 public class MyClass{
 
     public static final String MY_STATIC_CONSTANT = "x";
@@ -55,77 +97,42 @@ public class MyClass{
     }
 
 }
-                        </pre
-        >
+         </pre>
+        </div>
       </div>
-    </div>
 
-    <p>
-      اگه یک متد رو با کلیدواژه ی final تعریف کنیم متد هنگام ارث بری
-      <a class="text-decoration-none" href="inheritance.html"
-        >قابل بازنویسی (Override)</a
-      >
-      نیست.
-    </p>
-
-    <div class="sample">
-      <div class="snippet-container">
-        <pre class="snippet Java">
-public class MyClass{
-
-    public final void m(){
-        ...
-    }
-
-}
-                        </pre
-        >
+      <div class="note">
+        <p class="note-head">راهنمایی</p>
+        <p>
+          معمولا فیلد های ثابت یک کلاس رو با final و static تعریف میکنیم و
+          اسمشونو با حروف بزرگ مینویسیم.
+        </p>
       </div>
-    </div>
+    </section>
 
-    <p>
-      اگه یک کلاس رو با کلیدواژه ی final تعریف کنیم، از کلاس نمیتونیم
-      <a class="text-decoration-none" href="inheritance.html">ارث بری</a> کنیم.
-    </p>
-
-    <div class="note">
-      <p class="note-head">توجه</p>
-      <p>
-        کلاس های <strong>abstract و اینترفیس ها</strong> رو نمیتونیم با final
-        تعریف کنیم.
-      </p>
-    </div>
-
-    <div class="sample">
-      <div class="snippet-container">
-        <pre class="snippet Java">
-public final class MyClass{
-    ...
-}
-                        </pre
-        >
-      </div>
-    </div>
   </section>
 
   <section id="p1">
     <h2>خلاصه</h2>
     <ul>
       <li>کلیدواژه ی final یک کلاس، متد یا متغیر رو برامون نهایی میکنه.</li>
-      <li>اگه یک متغیر رو با final تعریف کنیم مقدارش ثابت میمونه.</li>
-      <li>
-        اگه یک متد رو با final تعریف کنیم متد در وراثت قابل بازنویسی نیست.
-      </li>
       <li>
         اگه کلاس رو با final تعریف کنیم دیگه نمیتونیم از کلاس ارث بری کنیم.
       </li>
+      <li>
+        اگه یک متد رو با final تعریف کنیم متد در وراثت قابل بازنویسی نیست.
+      </li>
+      <li>اگه یک متغیر رو با final تعریف کنیم مقدارش ثابت میمونه.</li>
     </ul>
   </section>
 </article>
 
 {% capture links %}
 <li>
-  <a href="inheritance.html">وراث</a>
+  <a href="objects-and-classes.html">آبجکت و کلاس ها در جاوا</a>
+</li>
+<li>
+  <a href="inheritance.html">وراثت در جاوا</a>
 </li>
 <li>
   <a href="methods.html">متد ها در جاوا</a>
@@ -134,10 +141,6 @@ public final class MyClass{
   <a href="type-variables.html">انواع متغیر ها در جاوا</a>
 </li>
 <li>
-  <a
-    target="_blank"
-    href="https://docs.oracle.com/javase/tutorial/java/IandI/final.html"
-    >مطالعه در اوراکل</a
-  >
+  <a target="_blank" href="https://docs.oracle.com/javase/tutorial/java/IandI/final.html">مطالعه در اوراکل</a>
 </li>
 {% endcapture %} {% include article-foot.html relative_links = links %}

@@ -7,7 +7,7 @@ layout: default
     <div>دسترسی سریع</div>
     <ul>
       <li>
-        <a href="#p0">تعریف استاتیک</a>
+        <a href="#p0">تعریف استاتیک و کلیدواژه ی static</a>
       </li>
       <li>
         <a href="#p1">متغیر (فیلد) های استاتیک</a>
@@ -28,21 +28,19 @@ layout: default
   </nav>
 
   <section id="p0">
-    <h2>تعریف استاتیک</h2>
+    <h2>تعریف استاتیک و کلیدواژه ی static</h2>
     <blockquote>
-      از کلید واژه static در جاوا میشه برای تعریف فیلد، متد و کلاس های داخلی
-      (Inner class) استاتیک استفاده کرد.
+      با استفاده از کلیدواژه ی static در جاوا میتونیم فیلد، متد و کلاس های داخلی (Inner Class) استاتیک تعریف کنیم.
     </blockquote>
 
     <p>
       هنگامی که از کلید واژه ی <strong>static</strong> در جاوا برای یک عضو از
-      کلاس استفاده بشه عضو مورد نظر وابسته به کلاس میشه و ربطی به نمونه (آبجکت)
-      های ایجاد شده از کلاس نداره و در طی زمان اجرای برنامه بدون نیاز به نمونه
-      سازی در دسترسه.
+      کلاس استفاده بشه عضو مورد نظر وابسته به کلاس و مستقل از آبجکت (نمونه) های ایجاد شده از کلاس میشه
+      و در طی زمان اجرای برنامه بدون نیاز به ایجاد آبجکت از کلاس مستقیم در دسترس است.
     </p>
 
     <p>
-      مقدار عضو استاتیک یک کلاس در جاوا، بین تمام آبجکت های ایجاد شده از کلاس
+      مقدار متغیر استاتیک در جاوا، بین تمام آبجکت های ایجاد شده از کلاس
       مشترک است. و متغیر تا پایان زمان اجرای برنامه وجود دارد.
     </p>
 
@@ -52,7 +50,7 @@ layout: default
     </p>
 
     <div class="note">
-      <p class="note-head">نکته:</p>
+      <p class="note-head">نکته</p>
       <p>تمام اعضای کلاس Math در جاوا استاتیک هستند.</p>
     </div>
   </section>
@@ -61,18 +59,14 @@ layout: default
     <h2>فیلد های استاتیک</h2>
     <p>
       این متغیر ها وابسته به کلاس هستند و مقدار آنها تا پایان زمان اجرای برنامه
-      میتونه بین تمام آبجکت های ایجاد شده از کلاس به اشتراک گذاشته بشه
+      بین تمام آبجکت های ایجاد شده از کلاس مشترک است.
     </p>
 
     <p>
-      زمانی که در کلاس میخوایم یک داده با مقدار یکسان و مشترک بین تمام اعضای
-      کلاس تعریف کنیم، برای بهینه‌سازی در حافظه ی برنامه دیتا فیلد رو استاتیک
-      (static) تعریف میکنیم.
-    </p>
-    <p>
-      اینطوری با هربار ایجاد آبجکت از یک کلاس متغیر جدید با مقدار جدید ساخته
-      نمیشه که بخواد حافظه رو اشغال کنه بنابراین تنها یک متغیر داریم که مقدار
-      متغیر بین تمام آبجکت های ایجاد شده از کلاس مشترک است.
+      زمانی که در کلاس بخوایم یک متغیر با مقدار یکسان و مشترک بین تمام آبجکت ها
+      تعریف کنیم، برای بهینه‌سازی در حافظه ی برنامه دیتا فیلد رو استاتیک
+      (static) تعریف می کنیم.
+      اینطوری تنها یک متغیر داریم که مقدار متغیر بین تمام آبجکت های ایجاد شده از کلاس مشترک است.
     </p>
     <p>
       به عنوان مثال میتونیم فیلد <strong>PI</strong> رو در کلاس
@@ -82,21 +76,17 @@ layout: default
     </p>
 
     <section>
-      <h3>تعریف دیتافیلد استاتیک در کلاس</h3>
+      <h3>تعریف فیلد</h3>
 
       <div class="sample">
         <div class="snippet-container">
           <pre class="snippet Java">
 public class MyClass{
 
-    ...
+  static Type myStaticField = ...;
 
-    public static Type myStaticField = ...;
-
-    ...
 }
-                        </pre
-          >
+          </pre>
         </div>
       </div>
     </section>
@@ -108,8 +98,7 @@ public class MyClass{
         <div class="snippet-container">
           <pre class="snippet Java">
 Type type = MyClass.myStaticField;
-                        </pre
-          >
+                        </pre>
         </div>
       </div>
     </section>
@@ -121,11 +110,10 @@ Type type = MyClass.myStaticField;
         <pre class="snippet Java">
 public class Log{
 
-    public static String label = "Log";
+  public static String label = "Log";
 
 }
-                        </pre
-        >
+        </pre>
       </div>
     </div>
 
@@ -144,7 +132,7 @@ public static void main(String[] args){
     <h2>متد های استاتیک</h2>
 
     <blockquote>
-      متد main که کد های جاوا رو داخلش اجرا میکنیم استاتیک (static) است.
+      متد main در جاوا استاتیک (static) است.
     </blockquote>
 
     <p>
@@ -152,38 +140,47 @@ public static void main(String[] args){
       نیاز به نمونه سازی با استفاده از اسم کلاس صداشون می زنیم.
     </p>
 
-    <p>فرم کلی:</p>
+    <section>
+      <h3>تعریف متد</h3>
 
-    <div class="sample">
-      <div class="snippet-container">
-        <pre class="snippet Java">
+      <p>فرض کنیم میخوایم یک متد استاتیک با نام myStaticMethod تعریف کنیم، مانند زیر عمل میکنیم:</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
 public class MyClass {
 
-    public static void myStaticMethod(Type0 p0, Type1 p1, …, TypeN pN){
-        ...
-    }
+  public static void myStaticMethod(Type0 p0, Type1 p1, …, TypeN pN){
+      ...
+  }
 
 }
-                        </pre
-        >
+        </pre>
+        </div>
       </div>
-    </div>
+
+    </section>
 
     <section>
-      <h3>صدا زدن متد:</h3>
+      <h3>صدا زدن متد</h3>
+
+      <p>برای صدا زدن متد استاتیک نام کلاسی که متد داخلش تعریف شده رو مینویسیم، نقطه میزاریم و سپس مانند زیر متد رو صدا
+        میزنیم.</p>
 
       <div class="sample">
         <div class="snippet-container">
           <pre class="snippet Java">
 Type0 type0 = new Type0();
 Type1 type1 = new Type1();
-...
+         ...
 TypeN typeN = new TypeN();
-MyClass.myStaticMethodName(type0, type1, … , typeN)
-                        </pre
-          >
+
+MyClass.myStaticMethodName(type0, type1, ... , typeN)
+          </pre>
         </div>
       </div>
+
+      <p>در بالا type0-typeN متغیر هایی هستند که به عنوان پارامتر به متد پاس میدیم.</p>
 
       <p>مثال</p>
 
@@ -202,8 +199,7 @@ public class Log{
     }
 
 }
-                       </pre
-          >
+                       </pre>
         </div>
       </div>
 
@@ -217,16 +213,14 @@ public static void main(String[] args){
     if(radius &lt; 0) Log.e("Radius must not be negative");
     else Log.d("Radius is " + radius);
 }
-                        </pre
-          >
+                        </pre>
         </div>
       </div>
     </section>
 
     <p>
-      داخل کلاس یک متد استاتیک رو میتونیم داخل متد معمولی صدا بزنیم اما متد و
-      فیلد های معمولی رو نمیتونیم داخل متد استاتیک صدا بزنیم؛ فیلد و متد هایی که
-      میخوایم داخل متد استاتیک صدا بزنیم خودشون باید استاتیک باشن.
+      یک متد یا فیلد استاتیک رو میتونیم مستقیم داخل متد معمولی صدا بزنیم اما متد و
+      فیلد های معمولی رو نمیتونیم مستقیم داخل متد استاتیک صدا بزنیم و باید استاتیک باشن.
     </p>
 
     <div class="sample">
@@ -239,7 +233,7 @@ class MyClass{
     private Type1 myStaticField;
 
     public myMemberMethod(){
-        //...
+        ...
     }
 
     public static myStaticSecondMethod(){
@@ -261,8 +255,7 @@ class MyClass{
     }
 
 }
-                        </pre
-        >
+                        </pre>
       </div>
     </div>
   </section>
@@ -302,8 +295,7 @@ public class Circle {
     }
 
 }
-                        </pre
-        >
+                        </pre>
       </div>
     </div>
 
@@ -328,8 +320,7 @@ public class TestCircle {
         + " number of objects are " + Circle.getNumberOfObjects());
     }
 }
-                        </pre
-        >
+                        </pre>
       </div>
     </div>
 
@@ -428,8 +419,7 @@ public class TV {
     }
 
 }
-                        </pre
-        >
+                        </pre>
       </div>
     </div>
 
@@ -457,8 +447,7 @@ public static void main(String[] args){
     System.out.println("tv2's channel is " + tv2.getChannel() + " and volume level is " + tv2.getVolume());
 
 }
-                        </pre
-        >
+                        </pre>
       </div>
     </div>
   </section>
@@ -472,7 +461,7 @@ public static void main(String[] args){
     </p>
 
     <div class="note">
-      <p class="note-head">نکته:</p>
+      <p class="note-head">نکته</p>
       <p>
         فقط کلاس های داخلی در جاوا یا همون Inner Class ها رو میشه به صورت
         استاتیک تعریف کرد
@@ -492,8 +481,7 @@ public class MyOuterClass {
     }
 
 }
-                        </pre
-        >
+        </pre>
       </div>
     </div>
 
@@ -506,16 +494,13 @@ public class MyOuterClass {
       <div class="snippet-container">
         <pre class="snippet Java">
 MyOuterClass.MyInnerClass inner = new MyOuterClass.MyInnerClass();
-                        </pre
-        >
+                        </pre>
       </div>
     </div>
 
     <p>
       در مورد کلاس های داخلی استاتیک در قسمت
-      <a class="text-decoration-none" href="nested-classes.html"
-        >کلاس های تو در تو</a
-      >
+      <a class="text-decoration-none" href="nested-classes.html">کلاس های تو در تو</a>
       بیشتر توضیح دادیم.
     </p>
   </section>
@@ -524,32 +509,32 @@ MyOuterClass.MyInnerClass inner = new MyOuterClass.MyInnerClass();
     <h2>خلاصه</h2>
     <ul>
       <li>کلید واژه ی استاتیک در جاوا برای اعضای داخل کلاس استفاده میشه</li>
+
+      <li>
+        اعضای استاتیک وابسته به نمونه های ساخته شده از کلاس نیستن و در طول زمان
+        اجرای برنامه در دسترسن
+      </li>
+
+      <li>
+        فیلدها ، متد ها و کلاس های داخل کلاس رو میتونیم به صورت استاتیک تعریف کنیم
+      </li>
+
+      <li>
+        مقدار یک فیلد استاتیک میتونه بین تمام کلاس های پروژه تا زمان اجرای برنامه
+        به اشتراک گذاشته بشه
+      </li>
+
+      <li>
+        برای صدا زدن فیلد ها و متد های کلاس نام کلاس رو مینویسیم ، نقطه میزاریم و
+        اسم متد یا فیلد رو می نویسیم
+      </li>
+
+      <li>
+        برای نمونه سازی از کلاس های استاتیک new رو می نویسیم نام کلاس اصلی رو می
+        نویسیم نقطه میزاریم و نام کلاس استاتیک داخل کلاس اصلی رو مینویسیم و مانند
+        سایر کلاس ها نمونه سازی یا همون شی سازی می کنیم
+      </li>
     </ul>
-
-    <li>
-      اعضای استاتیک وابسته به نمونه های ساخته شده از کلاس نیستن و در طول زمان
-      اجرای برنامه در دسترسن
-    </li>
-
-    <li>
-      فیلدها ، متد ها و کلاس های داخل کلاس رو میتونیم به صورت استاتیک تعریف کنیم
-    </li>
-
-    <li>
-      مقدار یک فیلد استاتیک میتونه بین تمام کلاس های پروژه تا زمان اجرای برنامه
-      به اشتراک گذاشته بشه
-    </li>
-
-    <li>
-      برای صدا زدن فیلد ها و متد های کلاس نام کلاس رو مینویسیم ، نقطه میزاریم و
-      اسم متد یا فیلد رو می نویسیم
-    </li>
-
-    <li>
-      برای نمونه سازی از کلاس های استاتیک new رو می نویسیم نام کلاس اصلی رو می
-      نویسیم نقطه میزاریم و نام کلاس استاتیک داخل کلاس اصلی رو مینویسیم و مانند
-      سایر کلاس ها نمونه سازی یا همون شی سازی می کنیم
-    </li>
   </section>
 </article>
 
@@ -575,8 +560,6 @@ MyOuterClass.MyInnerClass inner = new MyOuterClass.MyInnerClass();
 </li>
 
 <li>
-  <a href="https://docs.oracle.com/javase/tutorial/java/javaOO/classvars.html"
-    >مطالعه در وبسایت رسمی جاوا</a
-  >
+  <a href="https://docs.oracle.com/javase/tutorial/java/javaOO/classvars.html">مطالعه در وبسایت رسمی جاوا</a>
 </li>
 {% endcapture %} {% include article-foot.html relative_links = links %}

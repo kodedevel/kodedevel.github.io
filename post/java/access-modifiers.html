@@ -20,7 +20,7 @@ layout: default
 
     <blockquote>
       با کلیدواژه های سطح دسترسی در جاوا میتونیم مشخص کنیم یک دیتافیلد، متد،
-      کانستراکتور یا کلاس کجا در پروژه قابل دسترس باشه.
+      کانستراکتور یا کلاس در کجای پروژه در دسترس باشه.
     </blockquote>
 
     <p>
@@ -61,11 +61,11 @@ class MyClass{
     </section>
 
     <section>
-      <h3>سطح دسترسی default</h3>
-      <p>اگه کلیدواژه ای تعریف نکنیم سطح دسترسی default میشه.</p>
+      <h3>سطح دسترسی default (پیشفرض)</h3>
+      <p>اگه کلیدواژه ای تعریف نکنیم سطح دسترسی در جاوا default (پیشفرض) است.</p>
       <p>
         اگه کلاس، متغیر، متد یا کانستراکتور سطح دسترسیشون default باشه فقط داخل
-        پکیج قابل دسترسی هستند، سطح دسترسی default معروف به package-private است.
+        پکیج قابل دسترسی هستند، سطح دسترسی default (پیشفرض) معروف به package-private است.
       </p>
 
       <div class="sample">
@@ -99,7 +99,10 @@ class MyClass{
         میکنه؛ با این تفاوت اعضایی که با این کلیدواژه تعریف میشن در کلاس هایی که
         از کلاسمون در خارج از پکیج ارث بری میکنند هم قابل دسترسی هستند.
       </p>
-      <p>این کلیدواژه برای کلاس های بیرونی قابل تعریف نیست.</p>
+      <div class="note">
+        <p class="note-head">توجه</p>
+        <p>این کلیدواژه برای کلاس های بیرونی قابل تعریف نیست.</p>
+      </div>
 
       <div class="sample">
         <div class="snippet-container">
@@ -186,15 +189,15 @@ public MyClass{
 
 {% capture links %}
 <li>
-  <a href="methods.html">متد ها</a>
+  <a href="methods.html">متد ها در جاوا</a>
 </li>
 <li>
   <a href="objects-and-classes.html">آبجکت و کلاس ها</a>
 </li>
 <li>
-  <a href="static-keyword.html">کلیدواژه ی استاتیک</a>
+  <a href="static-keyword.html">کلیدواژه ی استاتیک در جاوا</a>
 </li>
 <li>
-  <a href="/post/kotlin/functions.html">توابع در کاتلین</a>
+  <a href="nested-classes.html">کلاس های تو در تو در جاوا</a>
 </li>
 {% endcapture %} {% include article-foot.html relative_links = links %}

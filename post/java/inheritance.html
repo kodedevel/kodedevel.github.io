@@ -13,7 +13,7 @@ layout: default
         <a href="#p1">نحوه ی ارث بری از یک کلاس</a>
       </li>
       <li>
-        <a href="#p2">بررسی کانستراکتور ها در ارث بری</a>
+        <a href="#p2">صدا زدن کانستراکتور های سوپرکلاس در ساب کلاس</a>
       </li>
       <li>
         <a href="#p3">مفهوم بازنویسی (Overriding)</a>
@@ -33,9 +33,8 @@ layout: default
   <section id="p0">
     <h2>تعریف وراثت</h2>
     <blockquote>
-      وراثت به شما این امکان رو میده تا دیتافیلد و متد های یک کلاس دیگه رو به
-      کلاس جدید منتقل کنید و از دوباره نویسی کدهای تکراری برای کلاس های مختلف
-      جلوگیری میکنه.
+      وراثت به شما این امکان رو میده تا دیتافیلد و متد های یک کلاس رو بدون نیاز به دوباره نویسی، به
+      کلاس جدید منتقل کنید.
     </blockquote>
 
     <p>
@@ -50,7 +49,7 @@ layout: default
       داشته باشه؛ به این کار وراثت یا ارث بری (inheritance) در جاوا میگیم.
     </p>
     <p>
-      به کلاسی که دیتافیلد و متد های کلاس دیگه رو ارث می بره
+      به کلاسی که دیتافیلد و متد های کلاس دیگه رو به ارث می بره
       <strong>ساب کلاس (subclass)</strong> و به کلاسی که ازش میخوایم ارث بری
       کنیم، <strong>سوپرکلاس (superclass)</strong> میگیم.
     </p>
@@ -61,17 +60,14 @@ layout: default
     </p>
     <p>
       به عنوان مثال میدونیم Rectangle و Circle هردو یک شکل هندسی هستند و شکل های
-      هندسی یک سری ويژگی های مشترک بینشون وجود داره (مثل مساحت و محیط) بنابر این
+      هندسی یک سری ويژگی های مشترک بینشون وجود داره (مثل مساحت و محیط) بنابراین
       میتونیم یک کلاس عمومی به اسم GeometricShape براشون تعریف کنیم.
     </p>
 
     <figure>
-      <img
-        alt="ارث بری دو کلاس Circle و Rectangle از GeometricShape در جاوا"
-        class="img-fluid rounded figure-img"
-        src="/resources/image/generic/inheritance_example_diagram.png"
-      />
-      <figcaption class="figure-caption text-end p-2 rtl">
+      <img alt="ارث بری دو کلاس Circle و Rectangle از GeometricShape در جاوا"
+        src="/resources/image/generic/inheritance_example_diagram.png" />
+      <figcaption>
         ارث بری دو کلاس Circle و Rectangle از GeometricShape
       </figcaption>
     </figure>
@@ -86,13 +82,16 @@ layout: default
   <section id="p1">
     <h2>نحوه ی ارث بری از یک کلاس</h2>
     <blockquote>
-      با کلید واژه ی extends در جاوا میتونیم از یک کلاس ارث بری کنیم.
+      با کلیدواژه ی extends در جاوا میتونیم از یک کلاس ارث بری کنیم.
     </blockquote>
 
     <p>
       اگه بخوایم دیتافیلد و متد های یک کلاس رو به ارث ببریم باید از کلیدواژه ی
       extends در جاوا استفاده کنیم.
     </p>
+    <p>برای ارث بری در جاوا، سوپرکلاس نباید با کلیدواژه ی <a href="final-keyword.html">final</a> تعریف شده باشه و
+      هر کلاسی فقط از یک کلاس میتونه
+      ارث بری کنه.</p>
 
     <p>فرم کلی:</p>
 
@@ -106,14 +105,8 @@ public class Parent {
 public class Child extends Parent{
     ...
 }
-                        </pre
-        >
+                        </pre>
       </div>
-    </div>
-
-    <div class="note">
-      <p class="note-head">توجه</p>
-      <p>هر کلاسی بیشتر از یک کلاس نمیتونه به طور مستقیم ارث بری کنه.</p>
     </div>
 
     <p>
@@ -135,8 +128,7 @@ class Parent extends GrandParent{
 class Child extends Parent{
     ...
 }
-                        </pre
-        >
+                        </pre>
       </div>
     </div>
 
@@ -160,8 +152,7 @@ class Child extends Parent{
         System.out.println("Initializing Child");
     }
 }
-                        </pre
-        >
+                        </pre>
       </div>
     </div>
 
@@ -171,12 +162,11 @@ class Child extends Parent{
 public static void main(String[] args){
     Child child = new Child();
 }
-                        </pre
-        >
+                        </pre>
       </div>
     </div>
 
-    <p>بعد از ارث بری تمام فیلد ها و متد های سوپرکلاس به ساب کلاس میرسن.</p>
+    <p>بعد از ارث بری؛ تمام فیلد ها و متد های سوپرکلاس به ساب کلاس میرسن.</p>
 
     <div class="sample">
       <div class="snippet-container">
@@ -194,8 +184,7 @@ class Child extends Parent{
         System.out.println("A message from child");
     }
 }
-                        </pre
-        >
+                        </pre>
       </div>
     </div>
 
@@ -207,20 +196,15 @@ public static void main(String[] args){
     child.printParentMessage();
     child.printChildMessage();
 }
-                        </pre
-        >
+                        </pre>
       </div>
     </div>
 
-    <div class="note">
-      <p class="note-head">توجه:</p>
-      <p>
-        با اینکه تمام دیتافیلد و متدهای سوپرکلاس در ساب کلاس به ارث میرسن، ولی
-        اگه اعضای سوپر کلاس محدودیت دسترسی داشته باشند در ساب کلاس قابل صدا زدن
-        نیستند؛ مثلا اگه متد یا فیلدی در سوپرکلاس private باشه دیگه در ساب کلاس
-        نمیتونیم صداش بزنیم هرچند به ساب کلاس منتقل شده است.
-      </p>
-    </div>
+    <p>
+      اگه اعضای سوپر کلاس محدودیت دسترسی داشته باشند در ساب کلاس قابل صدا زدن
+      نیستند؛ مثلا اگه متد یا فیلدی در سوپرکلاس private باشه دیگه در ساب کلاس
+      نمیتونیم صداش بزنیم هرچند به ساب کلاس منتقل شده است.
+    </p>
 
     <div class="sample">
       <div class="snippet-container">
@@ -239,14 +223,13 @@ class Child extends Parent{
         System.out.println("A message from child");
     }
 }
-                        </pre
-        >
+                        </pre>
       </div>
     </div>
   </section>
 
   <section id="p2">
-    <h2>بررسی کانستراکتور ها در وراثت</h2>
+    <h2>صدا زدن کانستراکتور های سوپرکلاس در ساب کلاس</h2>
 
     <p>
       بر خلاف فیلد ها و متد ها، کانستراکتور های سوپرکلاس به ساب کلاس منتقل نمیشن
@@ -257,7 +240,17 @@ class Child extends Parent{
       هنگام تعریف کانستراکتور برای ساب کلاس حتما باید یکی از کانستراکتور های
       سوپر کلاس رو در کانستراکتور های ساب کلاس صدا بزنیم.
     </p>
-    <h3>۱- صدا زدن مستقیم کانستراکتور سوپر کلاس:</h3>
+
+    <div class="note">
+      <p class="note-head">توجه</p>
+      <p>در صورتی که یکی از کانستراکتور های سوپرکلاس بدون پارامتر باشه میتونیم از کلیدواژه ی super در کانستراکتور های
+        ساب کلاس استفاده نکنیم؛ در این حالت کامپایلر جاوا به طور خودکار <strong dir="ltr">&#x200e;super()</strong> رو
+        برای تمام
+        کانستراکتور هایی که در ساب
+        کلاس به طور مستقیم یا غیر مستقیم از super استفاده نکرده اند اعمال میکنه.</p>
+    </div>
+
+    <h3>صدا زدن مستقیم کانستراکتور سوپر کلاس</h3>
     <p>
       با استفاده از کلیدواژه ی <strong>super</strong> میتونیم یکی از کانستراکتور
       های سوپر کلاس رو داخل کانستراکتور ساب کلاس صدا بزنیم.
@@ -271,8 +264,7 @@ super(p0, p1, ..., pn);
 
 //اگه کانستراکتور در سوپرکلاس بدون پارامتر بود.
 super();
-                        </pre
-        >
+                        </pre>
       </div>
     </div>
 
@@ -280,9 +272,7 @@ super();
       <h3>صدا زدن غیرمستقیم کانستراکتور های سوپر کلاس در ساب کلاس</h3>
       <p>
         با
-        <a class="text-decoration-none" href="objects-and-classes.html"
-          >کلیدواژه ی this</a
-        >
+        کلیدواژه ی <a href="objects-and-classes.html">this</a>
         میتونیم کانستراکتوری که در ساب کلاس از super استفاده میکنه رو صدا بزنیم.
       </p>
 
@@ -300,23 +290,12 @@ class Child extends Parent{
     }
 
 }
-                        </pre
-          >
+                        </pre>
         </div>
       </div>
 
       <div class="note">
-        <p class="note-head">توجه:</p>
-        <p>
-          تنها در حالتی که سوپرکلاس کانستراکتور بدون پارامتر وجود داشته باشه
-          میتونیم برای کانستراکتور های ساب کلاس از super استفاده نکنیم، در این
-          وضعیت کامپایلر به طور خودکار <strong>&#x200e;super()</strong> رو قبل
-          از هر کدی در کانستراکتور هایی که از super استفاده نکردیم قرار میده.
-        </p>
-      </div>
-
-      <div class="note">
-        <p class="note-head">توجه:</p>
+        <p class="note-head">توجه</p>
         <p>
           کلیدواژه های super یا this باید داخل کانستراکتوری که داریم تعریف
           میکنیم قبل از هر کدی قرار بگیرند.
@@ -351,8 +330,7 @@ class Circle extends GeometricShape{
         this(1.0, "White" , false);
     }
 }
-                        </pre
-          >
+                        </pre>
         </div>
       </div>
     </section>
@@ -400,8 +378,7 @@ class Person {
         System.out.println("(1) Performs Person's tasks");
     }
 }
-                        </pre
-          >
+          </pre>
         </div>
       </div>
 
@@ -419,13 +396,13 @@ class Person {
     <h2>مفهوم باز نویسی (Overriding)</h2>
 
     <blockquote>
-      بازنویسی متد به شما این امکان را می دهد تا کدهای داخل متد در سوپر کلاس رو
+      بازنویسی متد به شما این امکان را می دهد تا کد های متد در سوپر کلاس رو داخل ساب کلاس
       تغییر بدید.
     </blockquote>
 
     <p>
       میتونیم متد های سوپر کلاس رو داخل ساب کلاس بازنویسی کنیم. برای این کار
-      کافیه تا متد با اسم و پارامتر هایی که در سوپرکلاس تعریف شده رو در ساب کلاس
+      کافیه، متد با اسم و پارامتر هایی که در سوپرکلاس تعریف شده رو در ساب کلاس
       دوباره بنویسیم. به این کار باز نویسی (Override کردن) متد میگن.
     </p>
 
@@ -451,8 +428,7 @@ class Child extends Parent{
         System.out.println(s + " message from child");
     }
 }
-                        </pre
-        >
+        </pre>
       </div>
     </div>
 
@@ -484,8 +460,7 @@ class Child extends Parent{
         System.out.println(s + " message from child");
     }
 }
-                        </pre
-        >
+                        </pre>
       </div>
     </div>
 
@@ -520,8 +495,7 @@ class Child extends Parent{
         System.out.println(s + " message from child");
     }
 }
-                        </pre
-          >
+          </pre>
         </div>
       </div>
 
@@ -556,8 +530,7 @@ class Child extends Parent{
         super.printMessage("Second");
     }
 }
-                        </pre
-          >
+                        </pre>
         </div>
       </div>
     </section>
@@ -622,8 +595,7 @@ public class Point2D {
         return false;
     }
 }
-                        </pre
-        >
+                        </pre>
       </div>
     </div>
 
@@ -643,8 +615,7 @@ public static void main(String[] args){
     System.out.println("Are p0 and p2 equal? " + p0.equals(p2));
 
 }
-                        </pre
-        >
+                        </pre>
       </div>
     </div>
   </section>
@@ -772,8 +743,7 @@ class Rectangle extends GeometricShape{
             "width: " + getWidth() + " height: " + getHeight() + " area: " + getArea() + " perimeter: " + getPerimeter();
     }
 }
-                        </pre
-        >
+                        </pre>
       </div>
     </div>
 
@@ -791,8 +761,7 @@ public static void main(String[] args){
     Circle circle = new Circle(4, "Blue", true);
     System.out.println(circle.toString());
 }
-                        </pre
-        >
+                        </pre>
       </div>
     </div>
   </section>

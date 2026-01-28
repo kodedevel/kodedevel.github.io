@@ -16,7 +16,7 @@ layout: default
         <a href="#p2">متد void</a>
       </li>
       <li>
-        <a href="#p3">بررسی پارامتر های متد</a>
+        <a href="#p3">پارامتر های متد</a>
       </li>
       <li>
         <a href="#p4">مفهوم overloading</a>
@@ -38,8 +38,10 @@ layout: default
 
     <p>
       به مجموعه ی دستورات داخل <strong>یک بدنه ی دارای نام</strong> که برای
-      انجام یک عملیات، هنگام صدا زدن بدنه اجرا میشن، متد میگیم.
+      انجام یک عملیات، هنگام صدا زدن نام بدنه اجرا میشن، متد میگیم.
     </p>
+
+    <p>اسم دیگه ی متد، تابع است؛ اما در جاوا به متد معروف است.</p>
 
     <p>
       به طور کلی متد (تابع) یه سری کد ها رو به عنوان پارامتر از ورودی میگیره و
@@ -47,10 +49,6 @@ layout: default
       درک تر و ساده‌تر میکنن و از دوباره نویسی کد های تکراری جلوگیری میکنن.
     </p>
 
-    <p>
-      در بعضی از زبونا به متد تابع گفته میشه اگه با این اسم مواجه شدید همون
-      متده.
-    </p>
   </section>
 
   <section id="p1">
@@ -60,18 +58,14 @@ layout: default
     <p>تصویر زیر نمایانگر فرم کلی ساختار یک متد در جاواست.</p>
 
     <figure>
-      <img
-        src="/resources/image/java/method_structure.png"
-        alt="ساختار متد در جاوا"
-        class="rounded figure-img img-fluid"
-      />
-      <figcaption class="figure-caption text-end p-2">
+      <img src="/resources/image/java/method_structure.png" alt="ساختار متد در جاوا" />
+      <figcaption>
         ساختار متد در جاوا
       </figcaption>
     </figure>
 
     <section>
-      <h3>1- کلیدواژه ی سطح دسترسی:</h3>
+      <h3>1- کلیدواژه ی سطح دسترسی</h3>
       <p>
         بیان کننده ی سطح دسترسی به متد در پروژه است؛ سطح دسترسی میتونه public,
         private, protected یا default باشه.
@@ -79,29 +73,29 @@ layout: default
     </section>
 
     <section>
-      <h3>2- کلیدواژه ی استاتیک:</h3>
+      <h3>2- کلیدواژه ی استاتیک</h3>
       <p>
-        با
-        <a class="text-decoration-none" href="static-keyword.html"
-          >کلیدواژه ی استاتیک</a
-        >
-        متد استاتیک تعریف میکنیم.
+        اگه هنگام تعریف متد از کلیدواژه ی استاتیک استفاده کنیم میگیم یک متد استاتیک تعریف کرده ایم.
+        تعریف متد ملزم به استفاده از کلیدواژه ی استاتیک نیست.
       </p>
+      <p>معروف ترین متد استاتیک، متد main است که محل اجرای کد های برنامه های استاندارد جاوا است.</p>
     </section>
 
     <section>
-      <h3>3- نوعی که توسط متد برگردونده میشه:</h3>
-      <p>میتونه از نوع Primitive یا Object باشه.</p>
+      <h3>3- نوعی که توسط متد برگردونده میشه</h3>
+      <p>نوع R میتونه Primitive, Object یا void (تهی) باشه. اگه R از نوع void باشه، به این معنیه که هیچ مقداری توسط متد
+        برگردونده نمیشه و فقط کد های
+        داخل متد اجرا میشن.</p>
     </section>
     <section>
-      <h3>4- نام متد:</h3>
+      <h3>4- نام متد</h3>
       <p>نام دلخواهیه که برای متد درنظر میگیریم.</p>
     </section>
 
     <section>
-      <h3>5- پارامتر های متد:</h3>
+      <h3>5- پارامتر های متد</h3>
       <p>
-        هنگام صدا زدن متد با کمک پارامتر میتونیم مقادیری رو داخلش پاس بدیم. بعد
+        با تعریف پارامتر برای متد، میتونیم مقادیری رو هنگام صدا زدن متد داخلش پاس بدیم. بعد
         از تعریف هر پارامتر با یک ویرگول میتونیم پارامتر بعدی رو برای متد تعریف
         کنیم؛ در تصویر t0، t1 ... tn پارامتر های متد هستند، میتونیم یک یا چند
         پارامتر برای متد تعریف کنیم.
@@ -109,7 +103,7 @@ layout: default
     </section>
 
     <section>
-      <h3>6- مقداری که متد بر میگردونه:</h3>
+      <h3>6- مقداری که متد بر میگردونه</h3>
       <p>با کلیدواژه ی return میتونیم مقداری از جنس R رو برگردونیم.</p>
 
       <div class="note">
@@ -122,52 +116,47 @@ layout: default
 
       <div class="note">
         <p class="note-head">توجه</p>
-        <p>اگه R تهی (void) بود متد چیزی رو بر نمیگردونه.</p>
-      </div>
-
-      <div class="note">
-        <p class="note-head">توجه:</p>
         <p>
           میتونیم از return هرجای متد که خواستیم استفاده کنیم، در اینصورت بعد از
-          اجرای return متد متوقف شده و کد های بعد از return اجرا نمیشه.
+          اجرای return کد های بعد از return اجرا نمیشه.
         </p>
       </div>
     </section>
     <section>
-      <h3>صدا زدن متد:</h3>
+      <h3>صدا زدن متد</h3>
 
       <p>دو حالت میتونیم متد رو صدا کنیم.</p>
-      <h3>۱- صدا زدن متد داخل کلاسی که تعریفش کردیم:</h3>
-      <p>
-        اگه متد رو بخوایم داخل کلاسی که تعریفش کردیم صدا کنیم کافیه اسم متد رو
-        مانند زیر نوشته و پارامتر های لازم رو بهش پاس بدیم.
-      </p>
-      <div class="sample">
-        <div class="snippet-container">
-          <pre class="snippet Java">
+
+      <section>
+        <h4>صدا زدن متد داخل کلاسی که متد تعریف شده</h4>
+        <p>
+          اگه متد رو بخوایم داخل کلاسی که تعریفش کردیم صدا کنیم کافیه اسم متد رو
+          مانند زیر نوشته و پارامتر های لازم رو بهش پاس بدیم.
+        </p>
+        <div class="sample">
+          <div class="snippet-container">
+            <pre class="snippet Java">
 Type0 t0 = ...;
 Type1 t1 = ...;
 ...
 TypeN tn = ...;
 
 R returnedValue = myMethod(t0, t1, ..., tn);
-                            </pre
-          >
+                            </pre>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section>
-      <h3>صدا زدن متد در خارج از کلاس</h3>
+      <section>
+        <h4>صدا زدن متد در خارج از کلاسی که متد تعریف شده</h4>
+        <p>
+          اگه متد رو بخوایم در خارج از کلاس صدا بزنیم باید اسم متغیر آبجکت رو
+          نوشته، نقطه بزاریم و متد مورد نظر داخل کلاس رو صدا کنیم.
+        </p>
 
-      <p>
-        اگه متد رو بخوایم در خارج از کلاس صدا بزنیم باید اسم متغیر آبجکت رو
-        بنویسیم، نقطه بزاریم و متد مورد نظر داخل کلاس رو صدا کنیم.
-      </p>
-
-      <div class="sample">
-        <div class="snippet-container">
-          <pre class="snippet Java">
+        <div class="sample">
+          <div class="snippet-container">
+            <pre class="snippet Java">
 Type0 t0 = ...;
 Type1 t1 = ...;
 ...
@@ -177,27 +166,24 @@ MyObject obj = new MyObject(...);
 
 //صدا زدن متد و پاس دادن پارامتر ها
 R returnedValue = obj.myMethod(t0, t1, ..., tn);
-                            </pre
-          >
+                            </pre>
+          </div>
         </div>
-      </div>
 
-      <div class="note">
-        <p class="note-head">راهنمایی</p>
-        <p>
-          میتونیم
-          <a class="text-decoration-none" href="static-keyword.html"
-            >متد های استاتیک</a
-          >
-          رو در خارج از کلاس به‌جای نوشتن اسم متغیر آبجکتی و نقطه، با اسم کلاس و
-          نقطه صدا بزنیم؛ این کار به لحاظ تفکیک متد های آبجکتی از استاتیک در
-          ظاهر کد ها توصیه میشه.
-        </p>
-      </div>
+        <div class="note">
+          <p class="note-head">راهنمایی</p>
+          <p>
+            میتونیم
+            <a class="text-decoration-none" href="static-keyword.html">متد های استاتیک</a>
+            رو در خارج از کلاس با نوشتن اسم کلاس و
+            نقطه صدا بزنیم؛ این کار به لحاظ تفکیک متد های آبجکتی از استاتیک در
+            ظاهر کد ها توصیه میشه.
+          </p>
+        </div>
 
-      <div class="sample">
-        <div class="snippet-container">
-          <pre class="snippet Java">
+        <div class="sample">
+          <div class="snippet-container">
+            <pre class="snippet Java">
 Type0 t0 = ...;
 Type1 t1 = ...;
 ...
@@ -205,18 +191,17 @@ TypeN Tn = ...;
 
 //صدا زدن متد و پاس دادن پارامتر ها
 R returnedValue = MyClass.myStaticMethod(t0, t1, ..., tn);
-                            </pre
-          >
+                            </pre>
+          </div>
         </div>
-      </div>
 
-      <p>مثال:</p>
+        <p>مثال:</p>
 
-      <p>میخوایم یک متد تعریف کنیم تا maximum بین دو عدد رو برگردونه.</p>
+        <p>میخوایم یک متد تعریف کنیم تا maximum بین دو عدد رو برگردونه.</p>
 
-      <div class="sample">
-        <div class="snippet-container">
-          <pre class="snippet Java">
+        <div class="sample">
+          <div class="snippet-container">
+            <pre class="snippet Java">
 public static void main(String[] args) {
     int i = 5;
     int j = 2;
@@ -233,28 +218,27 @@ public static int max(int num1, int num2) {
 
     return result;
 }
-                            </pre
-          >
+                            </pre>
+          </div>
         </div>
-      </div>
 
-      <p>
-        میتونیم از <strong>return</strong> داخل شرط هم استفاده کنیم در این صورت
-        با اجرا شدن return مقدار برگردونده میشه و از اجرای بقیه ی کد در داخل متد
-        جلوگیری میشه.
-      </p>
+        <p>
+          میتونیم از <strong>return</strong> داخل شرط هم استفاده کنیم در این صورت
+          با اجرا شدن return مقدار برگردونده میشه و از اجرای بقیه ی کد در داخل متد
+          جلوگیری میشه.
+        </p>
 
-      <p>مثال</p>
-      <p>
-        در زیر یک متد
-        <a class="text-decoration-none" href="static-keyword.html">استاتیک</a>
-        با سطح دسترسی public تعریف کردیم؛ داخل متد بررسی میکنه اگه عدد زوج باشه
-        مربع اون عدد رو برگردونه در غیر اینصورت 1- رو بر میگردونه.
-      </p>
+        <p>مثال</p>
+        <p>
+          در زیر یک متد
+          <a class="text-decoration-none" href="static-keyword.html">استاتیک</a>
+          با سطح دسترسی public تعریف کردیم؛ داخل متد بررسی میکنه اگه عدد زوج باشه
+          مربع اون عدد رو برگردونه در غیر اینصورت 1- رو بر میگردونه.
+        </p>
 
-      <div class="sample">
-        <div class="snippet-container">
-          <pre class="snippet Java">
+        <div class="sample">
+          <div class="snippet-container">
+            <pre class="snippet Java">
 public  static void main(String[] args){
     int square1  = squareEven(14);
     int square2 = squareEven(43);
@@ -268,20 +252,19 @@ public static int squareEven(int number){
 
     return number * number;
 }
-                            </pre
-          >
+                            </pre>
+          </div>
         </div>
-      </div>
 
-      <p>
-        اگه از return داخل دستور شرطی استفاده کنیم که else داشته باشه return در
-        else به عنوان آخرین قسمت کد در متد توسط کامپایلر شناخته میشه و دیگه نیاز
-        نیست return در پایین متد بنویسیم.
-      </p>
+        <p>
+          اگه از return داخل دستور شرطی استفاده کنیم که else داشته باشه return در
+          else به عنوان آخرین قسمت کد در متد توسط کامپایلر شناخته میشه و دیگه نیاز
+          نیست return در پایین متد بنویسیم.
+        </p>
 
-      <div class="sample">
-        <div class="snippet-container">
-          <pre class="snippet Java">
+        <div class="sample">
+          <div class="snippet-container">
+            <pre class="snippet Java">
 public R myMethod(...){
     ...
     if(condition0){
@@ -299,14 +282,13 @@ public R myMethod(...){
     }
 
 }
-                            </pre
-          >
+                            </pre>
+          </div>
         </div>
-      </div>
 
-      <div class="sample">
-        <div class="snippet-container">
-          <pre class="snippet Java">
+        <div class="sample">
+          <div class="snippet-container">
+            <pre class="snippet Java">
 public static int max(int num1, int num2){
     if(num1 &gt; num2) {
         return num1;
@@ -315,51 +297,49 @@ public static int max(int num1, int num2){
         return num2;
     }
 }
-                            </pre
-          >
+                            </pre>
+          </div>
         </div>
-      </div>
+      </section>
     </section>
-  </section>
 
-  <section id="p2">
-    <h2>متد تهی (void)</h2>
-    <blockquote>به متدی که هیچ مقداری رو بر نگردونه متد void میگیم.</blockquote>
+    <section id="p2">
+      <h2>متد تهی (void)</h2>
+      <blockquote>به متدی که هیچ مقداری رو بر نگردونه متد void میگیم.</blockquote>
 
-    <p>
-      کلمه ی void یعنی پوچ و تهی؛ چون این متد ها مقداری رو بر نمیگردونن برای
-      همین بهشون متد void میگیم.
-    </p>
-    <p>
-      برای تعریف متد void، به‌جای نوشتن نوعی که میخوایم برگردونیم از کلیدواژه ی
-      void در جاوا استفاده میکنیم.
-    </p>
+      <p>
+        کلمه ی void یعنی پوچ و تهی؛ چون این متد ها مقداری رو بر نمیگردونن برای
+        همین بهشون متد void میگیم.
+      </p>
+      <p>
+        برای تعریف متد void، به‌جای نوشتن نوعی که میخوایم برگردونیم از کلیدواژه ی
+        void در جاوا استفاده میکنیم.
+      </p>
 
-    <p>مثال</p>
+      <p>مثال</p>
 
-    <div class="sample">
-      <div class="snippet-container">
-        <pre class="snippet Java">
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
 public static void main(String[] args){
     printMessage("You can call me anytime u wish");
 }
 private static void printMessage(String message){
     System.out.println("Message: " + message);
 }
-                        </pre
-        >
+                        </pre>
+        </div>
       </div>
-    </div>
 
-    <p>
-      در متد void میتونیم از کلیدواژه ی return برای جلوگیری از اجرای بقیه ی کد
-      های داخل متد استفاده کنیم.
-    </p>
-    <p>مثال</p>
+      <p>
+        در متد void میتونیم از کلیدواژه ی return برای جلوگیری از اجرای بقیه ی کد
+        های داخل متد استفاده کنیم.
+      </p>
+      <p>مثال</p>
 
-    <div class="sample">
-      <div class="snippet-container">
-        <pre class="snippet Java">
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
 public static void main(String[] args){
     printSquareEven(13);
     printSquareEven(24);
@@ -375,59 +355,68 @@ private static void printSquareEven(int n){
     System.out.println("Square of " + n + " is " + square);
 
 }
-                        </pre
-        >
+                        </pre>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="p3">
-    <h2>بررسی پارامتر های متد</h2>
-    <p>
-      پارامتر های متد،
-      <a class="text-decoration-none" href="type-variables.html">متغیر</a> هستند
-      و مقداری که به عنوان پارامتر به متد پاس میدیم در واقع یک کپی از مقدار اصلی
-      است که توسط <strong>JVM</strong> کپی میشه.
-    </p>
+    <section id="p3">
+      <h2>پارامتر های متد</h2>
 
-    <p>
-      در مثال زیر ابتدا مقدار x رو قبل از صدا زدن متد increment نمایش میدیم و
-      سپس مقدار x رو داخل متد بعد اضافه کردن یک واحد بهش نمایش میدیم و در نهایت
-      مقدار x رو بعد از صدا زدن increment نمایش میدیم.
-    </p>
-    <div class="sample">
-      <div class="snippet-container">
-        <pre class="snippet Java">
+      <p>میتونیم مقادیر یا متغیر های primary و آبجکتی رو به عنوان پارامتر داخل متد پاس بدیم.</p>
+
+      <p>
+        پارامتر های متد
+        <a class="text-decoration-none" href="type-variables.html">متغیر</a> هستند،
+        مقدار متغیری که به عنوان پارامتر به متد پاس داده میشه در واقع یک کپی از مقدار اصلی متغیر
+        است که توسط <strong>JVM</strong> کپی میشه.
+      </p>
+
+      <section>
+        <h3>پاس دادن متغیر های primary به عنوان پارامتر</h3>
+        <p>
+          در مثال زیر یک متد به نام increment تعریف میکنیم و سپس مقدار x رو قبل از متد، داخل متد و بعد از متد نمایش
+          میدیم.
+        </p>
+        <div class="sample">
+          <div class="snippet-container">
+            <pre class="snippet Java">
 public static void main(String[] args) {
     int x = 1;
     System.out.println("Before the call, x is " + x);
     increment(x);
     System.out.println("After the call, x is " + x);
 }
-public static void increment(int x) {
-    x++;
-    System.out.println("Inside the method x is " + x);
+
+public static void increment(int c) {
+    c++;
+    System.out.println("Inside the method x is " + c);
 }
-                        </pre
-        >
-      </div>
-    </div>
+                        </pre>
+          </div>
+        </div>
 
-    <p>
-      وقتی یک متغیر آبجکتی رو به عنوان پارامتر داخل متد پاس میدیم JVM یک کپی از
-      ادرس متغیر رو به عنوان مقدار پارامتر قرار میده و از اونجایی که ادرس آبجکت
-      در حافظه تغییری نکرده تغییرات روی آبجکت داخل متد باعث تغییر در متغیر خارج
-      از متد میشه.
-    </p>
+      </section>
 
-    <p>مثال</p>
-    <p>
-      ابتدا میخوایم بدون اختصاص آبجکت جدید به innerText در داخل متد، "Test" رو
-      به innerText اضافه کنیم.
-    </p>
-    <div class="sample">
-      <div class="snippet-container">
-        <pre class="snippet Java">
+      <section>
+        <h3>پاس دادن متغیر های آبجکتی به عنوان پارامتر</h3>
+        <p>
+          متغیر های آبجکتی به خودی خود نگهدارنده ی مقادیر نیستند و فقط اشاره به آبجکت ساخته شده در حافظه میکنن؛
+          وقتی یک متغیر آبجکتی رو به عنوان پارامتر داخل متد پاس میدیم، JVM یک کپی از
+          ادرس آبجکت رو به عنوان مقدار پارامتر قرار میده و از اونجایی که هردو آدرس به یک آبجکت مشترک در حافظه اشاره
+          میکنن
+          پس
+          تغییراتی که روی آبجکت در داخل متد اتفاق میوفته با خارج از متد یکیه.
+        </p>
+
+        <p>مثال</p>
+        <p>
+          ابتدا میخوایم بدون اختصاص آبجکت جدید به innerText در داخل متد، "Test" رو
+          به innerText اضافه کنیم.
+        </p>
+        <div class="sample">
+          <div class="snippet-container">
+            <pre class="snippet Java">
 public static void main(String[] args){
     StringBuilder outerText = new StringBuilder("Hello ");
 
@@ -440,23 +429,22 @@ private static void test(StringBuilder innerText){
     innerText.append("Test");
     System.out.println("on calling method: " + innerText);
 }
-                        </pre
-        >
-      </div>
-    </div>
+                        </pre>
+          </div>
+        </div>
 
-    <p>
-      در بالا با افزودن مقدار Test به innerText متن outerText هم تغییر میکنه چون
-      هردو به یک آبجکت در حافظه دارن اشاره میکنن.
-    </p>
+        <p>
+          در بالا با افزودن مقدار Test به innerText متن outerText هم تغییر میکنه چون
+          هردو به یک آبجکت در حافظه دارن اشاره میکنن.
+        </p>
 
-    <p>
-      حالا اگه innerText در داخل متد به یک آبجکت جدید در حافظه اشاره کنه، با
-      تغییرات در آبجکت توسط innerText، محتوای آبجکت در outerText تغییری نمیکنه.
-    </p>
-    <div class="sample">
-      <div class="snippet-container">
-        <pre class="snippet Java">
+        <p>
+          حالا اگه innerText در داخل متد به یک آبجکت جدید در حافظه اشاره کنه، با
+          تغییرات در آبجکت توسط innerText، محتوای آبجکت در outerText تغییری نمیکنه.
+        </p>
+        <div class="sample">
+          <div class="snippet-container">
+            <pre class="snippet Java">
 public static void main(String[] args){
     StringBuilder outerText = new StringBuilder("Hello ");
 
@@ -469,22 +457,24 @@ private static void test(StringBuilder innerText){
     innerText = new StringBuilder("Test");
     System.out.println("on calling method: " + innerText);
 }
-                        </pre
-        >
-      </div>
-    </div>
-  </section>
+                        </pre>
+          </div>
+        </div>
 
-  <section id="p4">
-    <h2>مفهوم overloading</h2>
-    <p>
-      در یک کلاس میتونیم یک متد رو با همون اسم با پارامتر های مختلف تعریف کنیم
-      که بهش overloading در جاوا میگیم.
-    </p>
+      </section>
 
-    <div class="sample">
-      <div class="snippet-container">
-        <pre class="snippet Java">
+    </section>
+
+    <section id="p4">
+      <h2>مفهوم overloading</h2>
+      <p>
+        در یک کلاس میتونیم یک متد رو با همون اسم با پارامتر های مختلف تعریف کنیم
+        که بهش overloading در جاوا میگیم.
+      </p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
 public static void main(String[] args){
 
     System.out.println("The maximum of 3 and 4 is " + max(3, 4));
@@ -506,27 +496,26 @@ private static double max(double n1, double n2){
 private static double max(double n1, double n2, double n3){
     return max(max(n1, n2), n3);
 }
-                        </pre
-        >
+                        </pre>
+        </div>
       </div>
-    </div>
 
-    <p>
-      در مثال بالا شاید عجیب به نظر بیاد، هنگامی که متد های max رو تعریف و صدا
-      زدیم از کجا بدونیم کدوم متد صدا زده میشه؟ جواب این سؤال با کامپایلر است؛
-      هنگامی که مقداریو به عنوان پارامتر به متد پاس میدیم کامپایلر به طور خودکار
-      مناسب ترین متد رو انتخاب میکنه.
-    </p>
-  </section>
+      <p>
+        در مثال بالا شاید عجیب به نظر بیاد، هنگامی که متد های max رو تعریف و صدا
+        زدیم از کجا بدونیم کدوم متد صدا زده میشه؟ جواب این سؤال با کامپایلر است؛
+        هنگامی که مقداریو به عنوان پارامتر به متد پاس میدیم کامپایلر به طور خودکار
+        مناسب ترین متد رو انتخاب میکنه.
+      </p>
+    </section>
 
-  <section id="p5">
-    <h2>مورد مطالعه (مثال ها)</h2>
+    <section id="p5">
+      <h2>مورد مطالعه (مثال ها)</h2>
 
-    <p>در مثال زیر متد getGrade با دریافت امتیاز رتبه ی افراد رو برمیگردونه.</p>
+      <p>در مثال زیر متد getGrade با دریافت امتیاز رتبه ی افراد رو برمیگردونه.</p>
 
-    <div class="sample">
-      <div class="snippet-container">
-        <pre class="snippet Java">
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
 public static void main(String[] args) {
     System.out.print("The grade is " + getGrade(78.5));
     System.out.print("\nThe grade is " + getGrade(59.5));
@@ -543,18 +532,17 @@ public static char getGrade(double score) {
     else
         return 'F';
 }
-                        </pre
-        >
+                        </pre>
+        </div>
       </div>
-    </div>
 
-    <p>
-      در مثال زیر متد gcd بزرگترین مخرج مشترک (ب.م.م) بین دو عدد رو بر میگردونه.
-    </p>
+      <p>
+        در مثال زیر متد gcd بزرگترین مخرج مشترک (ب.م.م) بین دو عدد رو بر میگردونه.
+      </p>
 
-    <div class="sample">
-      <div class="snippet-container">
-        <pre class="snippet Java">
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
 public static void main(String[] args) {
     Scanner input = new Scanner(System.in);
 
@@ -577,16 +565,15 @@ private static int gcd(int n0, int n1){
 
     return gcd;
 }
-                        </pre
-        >
+                        </pre>
+        </div>
       </div>
-    </div>
 
-    <p>در مثال زیر میخوایم صد تا عدد اول رو پیدا کنیم:</p>
+      <p>در مثال زیر میخوایم صد تا عدد اول رو پیدا کنیم:</p>
 
-    <div class="sample">
-      <div class="snippet-container">
-        <pre class="snippet Java">
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
 public static void main(String[] args) {
     System.out.println("The first 100 Prime numbers are: ");
     printPrimeNumbers(100);
@@ -619,19 +606,18 @@ private static boolean isPrime(int number){
 
     return true;
 }
-                        </pre
-        >
+                        </pre>
+        </div>
       </div>
-    </div>
 
-    <p>
-      در مثال زیر برنامه یک عدد hexadecimal رو از ورودی میگیره و مقدار decimal
-      عدد رو بر میگردونه.
-    </p>
+      <p>
+        در مثال زیر برنامه یک عدد hexadecimal رو از ورودی میگیره و مقدار decimal
+        عدد رو بر میگردونه.
+      </p>
 
-    <div class="sample">
-      <div class="snippet-container">
-        <pre class="snippet Java">
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
 public static void main(String[] args) {
     Scanner input = new Scanner(System.in);
 
@@ -658,31 +644,30 @@ private static int hexCharToDecimal(char ch){
     if (ch &gt;= 'A' && ch &lt;= 'F') return 10 + ch - 'A';
     else return ch - '0';
 }
-                        </pre
-        >
+                        </pre>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="p6">
-    <h2>خلاصه</h2>
-    <ul>
-      <li>یک متد شامل نام، نوعی که برمیگردونه، پارامتر و بدنه است.</li>
-      <li>
-        از متد برای مرتب شدن کد ها، جلوگیری از دوباره نویسی و قابل درک تر کردن
-        کد های برنامه استفاده میکنیم.
-      </li>
-      <li>
-        پارامتر های متد، متغیر های جدید هستند و مقدار متغیری که در بیرون از متد،
-        به متد پاس میدیم، توسط JVM براشون کپی میشه.
-      </li>
-      <li>به متدی که هیچ مقداری رو بر نمیگردونه متد void در جاوا میگیم.</li>
-      <li>
-        وقتی چند متد با یک نام و پارامتر های متفاوت داشته باشیم بهش overloading
-        میگیم.
-      </li>
-    </ul>
-  </section>
+    <section id="p6">
+      <h2>خلاصه</h2>
+      <ul>
+        <li>یک متد شامل نام، نوعی که برمیگردونه، پارامتر و بدنه است.</li>
+        <li>
+          از متد برای مرتب شدن کد ها، جلوگیری از دوباره نویسی و قابل درک تر کردن
+          کد های برنامه استفاده میکنیم.
+        </li>
+        <li>
+          پارامتر های متد، متغیر های جدید هستند و مقدار متغیری که در بیرون از متد،
+          به متد پاس میدیم، توسط JVM براشون کپی میشه.
+        </li>
+        <li>به متدی که هیچ مقداری رو بر نمیگردونه متد void در جاوا میگیم.</li>
+        <li>
+          وقتی چند متد با یک نام و پارامتر های متفاوت داشته باشیم بهش overloading
+          میگیم.
+        </li>
+      </ul>
+    </section>
 </article>
 
 {% capture links %}
@@ -706,8 +691,6 @@ private static int hexCharToDecimal(char ch){
 </li>
 
 <li>
-  <a href="https://docs.oracle.com/javase/tutorial/java/javaOO/methods.html"
-    >مطالعه در اوراکل</a
-  >
+  <a href="https://docs.oracle.com/javase/tutorial/java/javaOO/methods.html">مطالعه در اوراکل</a>
 </li>
 {% endcapture %} {% include article-foot.html relative_links = links %}

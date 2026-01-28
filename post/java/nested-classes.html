@@ -37,9 +37,7 @@ layout: default
 
     <p>
       در جاوا
-      <a class="text-decoration-none" href="access-modifiers.html"
-        >سطح دسترسی</a
-      >
+      <a class="text-decoration-none" href="access-modifiers.html">سطح دسترسی</a>
       کلاس های داخلی میتونه
       <strong>&#x200e;private, default, protected, public</strong> باشه.
     </p>
@@ -50,10 +48,9 @@ layout: default
       الگو هایی مثل builder نقش Factory رو بازی کنن.
     </p>
 
-    <p>
-      کلاس های داخلی به صورت Outer$Inner.class کامپایل میشن (در اینجا Outer اسم
-      کلاس بیرونی و Inner اسم کلاس داخلی است).
-    </p>
+    <p>در اینجا به طور قرارداد اسم کلاس بیرونی رو MyOuterClass میزاریم و
+      اسم کلاس داخلی رو MyInnerClass میزاریم</p>
+
   </section>
 
   <section id="p1">
@@ -82,8 +79,7 @@ public class MyOuterClass{
     }
 
 }
-                        </pre
-        >
+                        </pre>
       </div>
     </div>
 
@@ -100,8 +96,7 @@ public static void main(String[] args){
     //A new instance of inner class by an object of outer class.
     MyInnerClass inner = outer.new MyInnerClass();
 }
-                        </pre
-        >
+                        </pre>
       </div>
     </div>
 
@@ -120,8 +115,7 @@ public class MyOuterClass{
         }
     }
 }
-                        </pre
-        >
+                        </pre>
       </div>
     </div>
 
@@ -133,8 +127,7 @@ public static void main(String[] args){
     MyInnerClass inner = outer.new MyInnerClass();
     inner.displayOuterDataField();
 }
-                        </pre
-        >
+                        </pre>
       </div>
     </div>
 
@@ -174,8 +167,7 @@ public class StringArray {
         }
     }
 }
-                        </pre
-        >
+                        </pre>
       </div>
     </div>
 
@@ -195,8 +187,7 @@ public static void main(String[] args){
         System.out.print(iterator.next() + " ");
 
 }
-                        </pre
-        >
+                        </pre>
       </div>
     </div>
   </section>
@@ -220,8 +211,7 @@ public class MyOuterClass{
     }   
 
 }
-                        </pre
-        >
+                        </pre>
       </div>
     </div>
 
@@ -243,8 +233,7 @@ public class MyOuterClass{
         }
     }
 }
-                        </pre
-        >
+                        </pre>
       </div>
     </div>
 
@@ -256,8 +245,7 @@ public class MyOuterClass{
       <div class="snippet-container">
         <pre class="snippet Java">
 MyOuterClass.MyInnerClass myInnerObject = new MyOuterClass.MyInnerClass();
-                        </pre
-        >
+                        </pre>
       </div>
     </div>
 
@@ -355,8 +343,7 @@ public class TV {
         }
     }
 }
-                        </pre
-        >
+                        </pre>
       </div>
     </div>
 
@@ -382,8 +369,7 @@ public static void main(String[] args) {
     System.out.println("tv2 has been built by " + tv2.getPanel() + " panel");
     System.out.println("tv2's channel is " + tv2.channel + " and volume level is " + tv2.volumeLevel);
 }
-                        </pre
-        >
+                        </pre>
       </div>
     </div>
   </section>

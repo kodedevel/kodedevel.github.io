@@ -53,10 +53,8 @@ layout: default
     </p>
 
     <p>
-      به نمونه هایی که از یک کلاس ایجاد میکنیم؛ <strong>آبجکت</strong> میگیم.
+      به نمونه هایی که از یک کلاس ایجاد میکنیم، <strong>آبجکت</strong> میگیم.
     </p>
-
-    <p>به آبجکت ها، اشیا نیز گفته میشه اما کلمه ی آبجکت شناخته شده تر است.</p>
 
     <p>هر آبجکت از کلاس اطلاعات مختص به خودشو داره.</p>
 
@@ -68,8 +66,7 @@ StringBuilder sb1 = new StringBuilder("This is information of the second Object"
 
 System.out.println(sb0);
 System.out.println(sb1);
-                        </pre
-        >
+                        </pre>
       </div>
     </div>
 
@@ -82,8 +79,7 @@ System.out.println(sb1);
       <div class="snippet-container">
         <pre class="snippet Java">
 StringBuilder sb = new StringBuilder("Hello StringBuilder!");
-                        </pre
-        >
+                        </pre>
       </div>
     </div>
 
@@ -96,7 +92,7 @@ StringBuilder sb = new StringBuilder("Hello StringBuilder!");
   <section id="p1">
     <h2>ساختار کلاس در جاوا</h2>
 
-    <blockquote>آبجکت از روی کلاس ایجاد میشه.</blockquote>
+    <blockquote>آبجکت ها از روی کلاس ایجاد میشن.</blockquote>
 
     <p>
       یک کلاس رو در جاوا با کلیدواژه ی سطح دسترسی، کلیدواژه ی class، اسم کلاس و
@@ -110,8 +106,7 @@ StringBuilder sb = new StringBuilder("Hello StringBuilder!");
 public class Name{
     ...
 }
-                        </pre
-        >
+                        </pre>
       </div>
     </div>
 
@@ -121,11 +116,8 @@ public class Name{
     </p>
 
     <figure>
-      <img
-        alt="ساختار یک کلاس در جاوا"
-        src="/resources/image/java/class_structure.png"
-        class="rounded figure-img img-fluid"
-      />
+      <img alt="ساختار یک کلاس در جاوا" src="/resources/image/java/class_structure.png"
+        class="rounded figure-img img-fluid" />
       <figcaption class="figure-caption text-end p-2">
         ساختار یک کلاس در جاوا
       </figcaption>
@@ -149,7 +141,6 @@ public class Name{
         در تصویر <strong>&#x200e;t0, t1, ..., tn</strong> پارامتر های
         کانستراکتور هستند.
       </p>
-      \
     </section>
     <section>
       <h3>3- متد (method) ها</h3>
@@ -167,8 +158,8 @@ public class Name{
   <section id="p2">
     <h2>دیتا فیلد (data field) ها</h2>
     <blockquote>
-      اطلاعات آبجکت در دیتافیلد ها ذخیره میشه. به دیتافیلد ها، پراپرتی
-      (property) هم میگیم.
+      فیلد ها اطلاعات آبجکت رو در خودشون نگهداری میکنن؛ به دیتافیلد ها، پراپرتی
+      (property) نیز گفته میشه.
     </blockquote>
 
     <p>
@@ -179,14 +170,14 @@ public class Name{
     <p>
       به طور کلی دو نوع فیلد
       <a class="text-decoration-none" href="static-keyword.html">استاتیک</a> و
-      غیر استاتیک (member) میتونیم داخل یک کلاس تعریف کنیم.
+      غیر استاتیک (member) میتونیم داخل یک کلاس جاوا تعریف کنیم؛
+      <a href="/post/java/access-modifiers.html">سطح دسترسی</a> یک فیلد میتونه
+      <strong>&#x200e;private, public, protected یا default</strong> باشه؛ داخل کلاس میتونیم یک یا چند فیلد تعریف کنیم.
     </p>
     <p>
-      فیلد های <strong>غیر استاتیک</strong> اطلاعات آبجکت رو در خودشون ذخیره
-      میکنن.
+      فیلد های استاتیک وابسته به کلاس و فیلد های <strong>غیر استاتیک</strong> وابسته به آبجکت هستند.
     </p>
     <p>به فیلد های غیر استاتیک، فیلد های عضو (member) هم میگن.</p>
-    <p>داخل کلاس میتونیم یک یا چند فیلد تعریف کنیم.</p>
 
     <section>
       <h3>تعریف فیلد در کلاس</h3>
@@ -199,8 +190,7 @@ public class Name{
 public class MyClass{
     String myField = "This is a field";
 }
-                        </pre
-          >
+                        </pre>
         </div>
       </div>
 
@@ -217,13 +207,13 @@ public class Rectangle{
     //height = null
     double height;
 }
-                        </pre
-          >
+                        </pre>
         </div>
       </div>
 
       <p>
-        میتونیم با گذاشتن نقطه بعد از اسم متغیر آبجکتی، فیلد موردنظر رو صدا
+        در صورت در دسترس بودن فیلد، مانند <a href="/post/java/methods.html">متد ها</a> میتونیم با گذاشتن نقطه بعد از اسم
+        متغیر آبجکتی، فیلد ها رو صدا
         بزنیم.
       </p>
 
@@ -241,27 +231,19 @@ public static void main(String[] args){
     System.out.println("area :" + (rect.width * rect.height));
 
 }
-                        </pre
-          >
+                        </pre>
         </div>
       </div>
 
-      <div class="note">
-        <p class="note-head">توجه</p>
-        <p>
-          سطح دسترسی یک فیلد میتونه
-          <strong>&#x200e;private, public, protected یا default</strong> باشه.
-        </p>
-      </div>
     </section>
 
     <section>
       <h3>استفاده از کلیدواژه ی this برای فیلد ها</h3>
 
       <p>
-        اگه یک فیلد رو بخوایم داخل کلاس خودش صدا بزنیم و اسم فیلد با اسم پارامتر
-        یا متغیر های داخل متد یکی باشه، با this مشخص میکنیم متغیری که داریم صدا
-        میزنیم مربوط به فیلد است.
+        اگه یک فیلد رو بخوایم داخل کلاس خودش صدا بزنیم میتونیم از کلیدواژه ی this استفاده کنیم؛ با کلیدواژه ی
+        this مشخص میکنیم متغیر مورد نظر فیلد است و از this زمانی که نام فیلد با نام پارامتر یا متغیر های داخل متد یکی
+        باشه استفاده میکنیم.
       </p>
 
       <div class="sample">
@@ -279,8 +261,7 @@ public class Rectangle{
         this.height = height;
     }
 }
-                        </pre
-          >
+                        </pre>
         </div>
       </div>
     </section>
@@ -295,7 +276,7 @@ public class Rectangle{
     </blockquote>
 
     <p>
-      با استفاده از کانستراکتور (constructor) در جاوا میتونیم یک آبجکت از کلاس
+      با استفاده از کانستراکتور (constructor) در جاوا میتونیم یک آبجکت (نمونه) از کلاس
       ایجاد کنیم.
     </p>
     <p>داده های هر آبجکت مختص به خودشه و در فیلد ها ذخیره میشن.</p>
@@ -312,8 +293,7 @@ public class MyClass{
 
     }
 }
-                        </pre
-        >
+                        </pre>
       </div>
     </div>
 
@@ -330,8 +310,24 @@ public class MyClass{
         ...
     }
 }
-                        </pre
-        >
+                        </pre>
+      </div>
+    </div>
+
+
+    <p>هر کلاسی یک کانستراکتور پیشفرض پنهان با سطح دسترسی public داره که بدون پارامتر است و اگه برای کلاس کانستراکتور
+      تعریف
+      نکرده باشیم، کامپایلر جاوا این کانستراکتور رو به صورت خودکار ایجاد میکنه و مشابه زیر است.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+public class MyClass{
+  public MyClass(){
+
+  }
+}
+        </pre>
       </div>
     </div>
 
@@ -356,8 +352,7 @@ public class Rectangle{
     }
 
 }
-                        </pre
-        >
+                        </pre>
       </div>
     </div>
 
@@ -387,13 +382,12 @@ public class Rectangle{
     }
 
 }
-                        </pre
-        >
+                        </pre>
       </div>
     </div>
 
     <section>
-      <h3>استفاده از کلیدواژه ی this برای کانستراکتور.</h3>
+      <h3>استفاده از کلیدواژه ی this برای کانستراکتور</h3>
 
       <p>
         میتونیم با کلیدواژه ی this در کلاس یک کانستراکتور رو داخل کانستراکتور
@@ -420,8 +414,7 @@ public class Rectangle{
     }
 
 }
-                        </pre
-          >
+                        </pre>
         </div>
       </div>
     </section>
@@ -441,11 +434,12 @@ public class Rectangle{
 
     <div class="sample">
       <div class="snippet-container">
-        <div class="snippet Java">
-          public static void main(String[] args){ // width = 1.0, height = 1.0
-          Rectangle rect0 = new Rectangle(); // width = 4.0 , height = 4.0
-          Rectangle rect1 = new Rectangle(4, 3); }
-        </div>
+        <pre class="snippet Java">
+public static void main(String[] args){ // width = 1.0, height = 1.0
+  Rectangle rect0 = new Rectangle(); // width = 4.0 , height = 4.0
+  Rectangle rect1 = new Rectangle(4, 3); 
+}
+        </pre>
       </div>
     </div>
   </section>
@@ -523,8 +517,7 @@ public class Rectangle {
         return dateCreated;
     }
 }
-                        </pre
-          >
+                        </pre>
         </div>
       </div>
     </section>
@@ -540,9 +533,7 @@ public class Rectangle {
     <p>
       کلمه ی null یعنی تهی؛ اگه از متغیر هایی که به null اشاره میکنن استفاده
       کنیم، زمان اجرای برنامه دچار
-      <a class="text-decoration-none" href="exceptions.html"
-        >NullPointerException</a
-      >
+      <a class="text-decoration-none" href="exceptions.html">NullPointerException</a>
       میشه.
     </p>
     <p>
@@ -563,8 +554,7 @@ public R myMethod(...){
     //خطای کامپایل
     String name = input.next();
 }
-                        </pre
-        >
+                        </pre>
       </div>
     </div>
 
@@ -581,8 +571,7 @@ public R myMethod(...){
     //خطای زمان اجرا
     String name = input.next();
 }
-                        </pre
-        >
+                        </pre>
       </div>
     </div>
 
@@ -606,8 +595,7 @@ public R myMethod(...){
         ...
     }
 }
-                        </pre
-        >
+                        </pre>
       </div>
     </div>
   </section>
@@ -671,8 +659,7 @@ public class Rectangle {
         return 2 * (width + height);
     }
 }
-                        </pre
-        >
+                        </pre>
       </div>
     </div>
 
@@ -700,8 +687,7 @@ public class Main{
 
     }
 }
-                        </pre
-        >
+                        </pre>
       </div>
     </div>
 
@@ -752,8 +738,7 @@ public class Circle {
         return 2 * Math.PI * radius;
     }
 }
-                        </pre
-        >
+                        </pre>
       </div>
     </div>
 
@@ -777,8 +762,7 @@ public class Main{
         System.out.println("Perimeter " + c1.getPerimeter());
     }
 }
-                        </pre
-        >
+                        </pre>
       </div>
     </div>
 
@@ -857,8 +841,7 @@ public class TV {
         return volume == 0;
     }
 }
-                        </pre
-        >
+                        </pre>
       </div>
     </div>
 
@@ -886,8 +869,7 @@ public static void main(String[] args){
     System.out.println("tv2's channel is " + tv2.getChannel() + " and volume level is " + tv2.getVolume());
 
 }
-                        </pre
-        >
+                        </pre>
       </div>
     </div>
   </section>

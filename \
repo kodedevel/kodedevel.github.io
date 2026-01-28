@@ -13,7 +13,7 @@ layout: default
         <a href="#p1">پیوندپویا (Dynamic Binding)</a>
       </li>
       <li>
-        <a href="#p2">کست کردن (Type Casting)</a>
+        <a href="#p2">کست کردن (Casting)</a>
       </li>
       <li>
         <a href="#p3">خلاصه</a>
@@ -223,18 +223,16 @@ class Person extends Object {
   </section>
 
   <section id="p2">
-    <h2>کست کردن (Type Casting)</h2>
-    <p>کست کردن یعنی تبدیل یک نوع به نوع دیگه؛ در جاوا دو نوع کست کردن پنهانی و آشکار داریم و برای هرکدوم قوانینی وجود
-      داره.</p>
+    <h2>کست کردن (Casting)</h2>
+    <p>کست کردن یعنی تبدیل یک نوع به نوع دیگه؛ هنگامی که یک متغیر از نوع سوپرکلاس به یک آبجکت از ساب کلاس اشاره میکنه،
+      تنها متد و فیلد های متغیر یا به عبارتی همون declared type در دسترس هستند و به این نوع تبدیل، <strong>کست کردن
+        پنهانی (implicit casting)</strong> میگیم.</p>
+
+    <p>در کست کردن پنهانی نوع واقعی (actual type) باید ساب کلاس نوع بیان شده (declared type) باشه.</p>
 
     <section>
       <h3>کست کردن پنهانی</h3>
-      <p>
-        هنگامی که یک متغیر از نوع سوپرکلاس به یک آبجکت از ساب کلاس اشاره میکنه،
-        تنها متد و فیلد های متغیر یا به عبارتی همون declared type در دسترس هستند و به این نوع تبدیل، <strong>کست کردن
-          پنهانی (implicit casting)</strong> میگیم.</p>
 
-      <p>در کست کردن پنهانی نوع واقعی (actual type) باید ساب کلاس نوع بیان شده (declared type) باشه.</p>
 
       <div class="sample">
         <div class="snippet-container">
@@ -249,19 +247,20 @@ Object declared = new Student();
     <section>
       <h3>کست کردن آشکار</h3>
 
-      <p>اگه acutal type ساب کلاس declared type باشه، میتونیم declared type رو به یکی از ساب کلاس هایی که در مسیر ارث
-        بری acutal type قرار دارند تبدیل کنیم
-        به این مدل کست کردن، <strong>کست کردن آشکار (explicit casting)</strong>
-        میگیم.
+      <p>
+        یک متغیر از نوع سوپرکلاس رو میتونیم به ساب کلاس تبدیل کنیم به شرطی که ساب کلاس از نوع actual type یا در سلسله
+        ارث بری actual type باشه.
+        در تبدیل سوپرکلاس به ساب کلاس باید به طور آشکار نوع ساب کلاس رو مشخص کنیم زیرا در تبدیل سوپرکلاس به ساب کلاس،
+        actual type برای کامپایلر جاوا مشخص نیست.
+        به این نوع تبدیل
+        <strong>کست کردن آشکار (explicit casting)</strong> میگیم.
       </p>
 
       <div class="sample">
         <div class="snippet-container">
           <pre class="snippet Java">
-Object declared = new Person();          
 Student student = (Student) declared;
-Person person = (Person) declared;
-          </pre>
+                        </pre>
         </div>
       </div>
 

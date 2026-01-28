@@ -13,13 +13,13 @@ layout: default
         <a href="#p1">پیاده‌سازی اینترفیس ها در کلاس</a>
       </li>
       <li>
-        <a href="#p2">بررسی Comparable</a>
+        <a href="#p2">اینترفیس Comparable</a>
       </li>
       <li>
         <a href="#p3">اینترفیس های تابعی</a>
       </li>
       <li>
-        <a href="#p4">مورد مطالعه (مثال ها)</a>
+        <a href="#p4">مورد مطالعه</a>
       </li>
       <li>
         <a href="#p5">خلاصه</a>
@@ -40,7 +40,7 @@ layout: default
       بین کلاس ها و یا مقادیر ثابت استاتیک مورد استفاده قرار میگیرند.
     </p>
     <p>
-      در اینترفیس ها نمیتونیم کانستراکتور تعریف کنیم و ازشون نمونه (آبجکت) ایجاد
+      برای اینترفیس ها نمیتونیم کانستراکتور تعریف کنیم و نمیتونیم از یک اینترفیس نمونه (آبجکت) ایجاد
       کنیم.
     </p>
 
@@ -49,16 +49,15 @@ layout: default
     <div class="sample">
       <div class="snippet-container">
         <pre class="snippet Java">
-interface Foo{
+interface Foo {
     ...
 }
-                        </pre
-        >
+                        </pre>
       </div>
     </div>
 
     <p>
-      برای ارث بردن از اینترفیس ها از کلیدواژه <strong>extends</strong> بعد از
+      برای ارث بردن یک اینترفیس از اینترفیس دیگه از کلیدواژه <strong>extends</strong> بعد از
       اسم اینترفیس استفاده میکنیم.
     </p>
 
@@ -72,8 +71,7 @@ interface Foo extends Bar{
 interface Bar{
     ...
 }
-                        </pre
-        >
+                        </pre>
       </div>
     </div>
 
@@ -82,23 +80,22 @@ interface Bar{
     <div class="sample">
       <div class="snippet-container">
         <pre class="snippet Java">
-interface Foo extends Bar, Baz, Qux{
+interface Foo extends Bar, Baz, Qux {
     ...
 }
 
-interface Bar{
+interface Bar {
     ...
 }
 
-interface Baz{
+interface Baz {
     ...
 }
 
-interface Qux{
+interface Qux {
     ...
 }
-                        </pre
-        >
+                        </pre>
       </div>
     </div>
 
@@ -110,25 +107,24 @@ interface Qux{
     <div class="sample">
       <div class="snippet-container">
         <pre class="snippet Java">
-interface Foo{
+interface Foo {
     public static final int MY_STATIC_CONSTANT = 1;
 }
-                        </pre
-        >
+                        </pre>
       </div>
     </div>
 
     <p>
-      در اینترفیس ها متد های وابسته به آبجکت رو فقط میتونیم به صورت ابستراکت
-      تعریف کنیم و اگه بخوایم یک متد کامل داخل اینترفیس تعریف کنیم باید
-      <strong>متد استاتیک و با سطح دسترسی private یا public</strong> باشه. یا
-      متد <strong>default</strong> با <strong>سطح دسترسی public</strong>.
+      در اینترفیس ها متد های وابسته به آبجکت رو فقط میتونیم به صورت ابستراکت و با سطح دسترسی public
+      تعریف کنیم؛ اگه بخوایم یک متد کامل داخل اینترفیس تعریف کنیم باید
+      <a href="/post/java/static-keyword.html">متد استاتیک</a> و با <a href="/post/java/access-modifiers.html">سطح
+        دسترسی</a> public یا private باشه.
     </p>
 
     <div class="sample">
       <div class="snippet-container">
         <pre class="snippet Java">
-interface Foo{
+interface Foo {
 
     //متد ابستراکت
     public void bee();
@@ -138,8 +134,7 @@ interface Foo{
         System.out.println("Hello Foo!");
     }
 }
-                        </pre
-        >
+                        </pre>
       </div>
     </div>
 
@@ -163,8 +158,7 @@ interface Foo{
       <div class="snippet-container">
         <pre class="snippet Java">
 MyInterface obj = new MyClass();
-                        </pre
-        >
+                        </pre>
       </div>
     </div>
   </section>
@@ -184,14 +178,14 @@ MyInterface obj = new MyClass();
       باشه نیاز نداریم متد های اینترفیس رو بازنویسی کنیم.
     </p>
     <p>
-      با استفاده از کلید واژه ی <strong>implements</strong> میتونیم یک یا چند
+      با استفاده از کلیدواژه ی <strong>implements</strong> میتونیم یک یا چند
       اینترفیس رو در کلاس پیاده‌سازی کنیم.
     </p>
 
     <div class="sample">
       <div class="snippet-container">
         <pre class="snippet Java">
-public class Foo extends Bar implements Baz, Qux{
+public class Foo extends Bar implements Baz, Qux {
     ...
 }
 
@@ -202,8 +196,7 @@ class Bar{
 interface Baz {
     ...
 }
-                        </pre
-        >
+                        </pre>
       </div>
     </div>
 
@@ -250,8 +243,7 @@ interface Player{
     void next();
 
 }
-                        </pre
-        >
+                        </pre>
       </div>
     </div>
 
@@ -264,14 +256,13 @@ public static void main(String[] args){
     player.play();
 
 }
-                        </pre
-        >
+                        </pre>
       </div>
     </div>
   </section>
 
   <section id="p2">
-    <h2>بررسی Comparable</h2>
+    <h2>اینترفیس Comparable</h2>
 
     <blockquote>
       اینترفیس Comparable دارای یک متد به اسم compareTo است که دو آبجکت رو با
@@ -279,14 +270,14 @@ public static void main(String[] args){
     </blockquote>
 
     <p>
-      اینترفیس Comparable یکی از اینترفیس های تعریف شده در
+      اینترفیس Comparable یکی از اینترفیس های تعریف شده در پکیج
       <strong>java.lang</strong> است؛ از Comparable برای مقایسه ی دوتا آبجکت
       استفاده میکنیم.
     </p>
 
     <p>
-      متد <strong>compareTo(T)</strong> بری بررسی دو نوع از جنس همدیگه مورد
-      استفاده قرار میگیره اگه ویژگی هایی که هردو آبجکت دارن یکسان بود طبق
+      متد <strong>compareTo(T)</strong> برای بررسی دو آبجکت از جنس همدیگه مورد
+      استفاده قرار میگیره اگه ویژگی هایی که هردو آبجکت دارن یکسان باشه طبق
       قرارداد مقدار 0 رو بر میگردونیم؛ اگه آبجکتی که متد داخلش پیاده شده ویژگیش
       به لحاظ عددی بزرگتر بود مقدار 1 و اگه کوچیکتر بود مقدار -1 رو برمیگردونیم.
     </p>
@@ -448,8 +439,7 @@ class Rectangle extends GeometricShape{
         return false;
     }
 }
-                        </pre
-        >
+                        </pre>
       </div>
     </div>
 
@@ -467,8 +457,7 @@ System.out.println(circle.compareTo(rectangle1));
 System.out.println(rectangle.compareTo(rectangle1));
 
 }
-                        </pre
-        >
+                        </pre>
       </div>
     </div>
   </section>
@@ -477,8 +466,8 @@ System.out.println(rectangle.compareTo(rectangle1));
     <h2>اینترفیس های تابعی</h2>
 
     <p>
-      اینترفیس هایی که فقط یک متد دارند و به عنوان پارامتر یک متد تعریف شده
-      باشند رو میتونیم به صورت <strong>عبارت لامبدا</strong> پیاده سازیشون کنیم.
+      اینترفیس هایی که فقط یک متد دارند و به عنوان پارامتر یک متد دیگه تعریف شده
+      باشند رو میتونیم به صورت <strong>عبارت لامبدا</strong> در جاوا پیاده سازیشون کنیم.
     </p>
     <p>
       یکی از موارد معروف از این مورد متد setOnClickListener در کلاس View اندروید
@@ -498,12 +487,11 @@ public class View {
         void onClick(View view);
     }
 }
-                        </pre
-        >
+                        </pre>
       </div>
     </div>
 
-    <p>استفاده از اینترفیس به عنوان پارامتر متد.</p>
+    <p>پیاده سازی اینترفیس در پارامتر متد به صورت لامبدا.</p>
 
     <div class="sample">
       <div class="snippet-container">
@@ -512,8 +500,7 @@ public static void main(String[] args){
     View v = new View();
     v.setOnClickListener(v -&gt; System.out.println("clicked!"))
 }
-                        </pre
-        >
+                        </pre>
       </div>
     </div>
 
@@ -524,7 +511,7 @@ public static void main(String[] args){
   </section>
 
   <section id="p4">
-    <h2>مورد مطالعه (مثال ها)</h2>
+    <h2>مورد مطالعه</h2>
 
     <p>
       فرض کنید میخوایم برای گوشت و میوه اینترفیسی طراحی کنیم که در میوه ها
@@ -588,8 +575,7 @@ class Orange extends Fruit {
         return "Orange: Make orange juice";
     }
 }
-                        </pre
-        >
+                        </pre>
       </div>
     </div>
 
@@ -606,8 +592,7 @@ public static void main(String[] args) {
         }
     }
 }
-                        </pre
-        >
+                        </pre>
       </div>
     </div>
   </section>
@@ -663,10 +648,6 @@ public static void main(String[] args) {
 </li>
 
 <li>
-  <a
-    target="_blank"
-    href="https://docs.oracle.com/javase/tutorial/java/concepts/interface.html"
-    >مطالعه در اوراکل</a
-  >
+  <a target="_blank" href="https://docs.oracle.com/javase/tutorial/java/concepts/interface.html">مطالعه در اوراکل</a>
 </li>
 {% endcapture %} {% include article-foot.html relative_links = links %}

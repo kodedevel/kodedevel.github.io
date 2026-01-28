@@ -13,27 +13,34 @@ layout: default
         <a href="#p1">ویژگی کلاس های ابستراکت</a>
       </li>
       <li>
-        <a href="#p2">خلاصه</a>
+        <a href="#p2">مورد مطالعه</a>
+      </li>
+      <li>
+        <a href="#p3">خلاصه</a>
       </li>
     </ul>
   </nav>
 
   <section id="p0">
-    <h2>بررسی کلاس های ابستراکت</h2>
+    <h2>بررسی کلاس های ابستراکت (انتزاعی)</h2>
 
     <p>
-      کلاس هایی که به طور معمول و تا اینجا باهاشون سر و کار داشتیم معروف هستند
-      به کلاس های <strong>concrete</strong>.
+      کلاس هایی که به طور معمول در جاوا تعریف میکنیم معروف
+      به کلاس های <strong>concrete</strong> هستند.
     </p>
     <p>
-      کلاس های <strong>ابستراکت (abstract)</strong> کلاس هایی هستند که میتونیم
-      داخلشون متد های ابستراکت <strong>(بدون بدنه و کوتاه)</strong> تعریف کنیم.
-    </p>
-
-    <p>
-      کلاس های ابسترکت رو در جاوا با کلیدواژه ی <strong>abstract</strong> قبل از
+      کلاس های ابستراکت رو در جاوا با کلیدواژه ی <strong>abstract</strong> قبل از
       کلیدواژه ی <strong>class</strong> تعریف میکنیم.
     </p>
+    <p>
+      در کلاس های ابستراکت میتونیم کانستراکتور تعریف کنیم اما نمیتونیم از این کلاس ها آبجکت (نمونه) ایجاد کنیم، همینطور
+      داخل کلاس
+      های ابستراکت میتونیم متد های ابستراکت (بدون بدنه و کوتاه) تعریف کنیم.
+    </p>
+
+    <p>ابستراکت به معنی کوتاه و خلاصه و این کلاس ها به سبب ویژگی هایی که گفته شد به ابستراکت نام گذاری شدند همینطور در
+      فارسی به کلاس های ابستراکت، <strong>انتزاعی</strong> نیز گفته میشه اما در این وبسایت از کلمه ی ابستراکت
+      استفاده میکنیم.</p>
 
     <div class="sample">
       <div class="snippet-container">
@@ -41,8 +48,7 @@ layout: default
 public abstract class MyAbstractClass{
 ...
 }
-                        </pre
-        >
+                        </pre>
       </div>
     </div>
 
@@ -55,16 +61,8 @@ public abstract class MyAbstractClass{
         ارث بری بتونیم تو کلاس concrete کامل پیاده سازیشون کنیم.
       </p>
 
-      <div class="note">
-        <p class="note-head">توجه</p>
-        <p>
-          متد های ابسترکت در کلاس های ابستراکت جاوا نمیتونن
-          <a class="text-decoration-none" href="access-modifiers.html"
-            >سطح دسترسی</a
-          >
-          private داشته باشن.
-        </p>
-      </div>
+      <p><a href="/post/java/access-modifiers.html">سطح دسترسی</a> متد های ابستراکت در جاوا باید protected یا public
+        باشه.</p>
 
       <div class="sample">
         <div class="snippet-container">
@@ -73,54 +71,83 @@ public abstract class MyAbstractClass{
 
 ...
 
-public abstract myAbstractMethod();
+public abstract myAbstractMethod0(...);
+
+protected abstract myAbstractMethod1(...);
 
 ...
 
 }
-                        </pre
-          >
+                        </pre>
         </div>
       </div>
     </section>
   </section>
 
   <section id="p1">
-    <h2>ویژگی کلاس های ابسترکت</h2>
+    <h2>ویژگی کلاس های ابستراکت</h2>
 
-    <p>
-      در کلاس های ابستراکت در جاوا میتونیم کانستراکتور تعریف کنیم اما نمیتونیم
-      یک آبجکت از این کلاس ها ایجاد کنیم.
-    </p>
+    <ol>
+      <li>
+        در کلاس های ابستراکت (انتزاعی) در جاوا میتونیم کانستراکتور تعریف کنیم اما نمیتونیم
+        یک آبجکت از این کلاس ها ایجاد کنیم.
+      </li>
 
-    <p>
-      کلاس concrete یا کلاس ابستراکت میتونه از یک کلاس ابستراکت ارث بری کنه.
-    </p>
+      <li>
+        کلاس concrete یا کلاس ابستراکت میتونه از یک کلاس ابستراکت ارث بری کنه.
+      </li>
 
-    <p>کلاس های ابستراکت میتونن از یک کلاس concrete ارث بری کنن.</p>
+      <li>کلاس های ابستراکت میتونن از یک کلاس concrete ارث بری کنن.</li>
 
-    <p>
-      کلاسی که دارای متد های ابستراکت است باید خودش ابستراکت باشه؛ اگه یک کلاس
-      concrete بخواد از کلاس ابسترکت ارث بری کنه باید تمام متد های ابسترکت، داخل
-      کلاس concrete به طور کامل پیاده‌سازی بشن.
-    </p>
+      <li>
+        اگه یک کلاس
+        concrete بخواد از کلاس ابسترکت ارث بری کنه باید تمام متد های ابستراکت، داخل
+        کلاس concrete بازنویسی و پیاده‌سازی بشن.
+      </li>
 
-    <p>
-      میتونیم یک کلاس ابستراکت رو بدون متد ابستراکت تعریف کنیم. معمولا این کارو
-      زمانی که بخوایم در پروژه کلاس Base تعریف کنیم انجام میدیم.
-    </p>
+      <li>
+        میتونیم یک کلاس ابستراکت رو بدون متد ابستراکت تعریف کنیم. معمولا این کارو
+        زمانی که بخوایم در پروژه کلاس Base تعریف کنیم انجام میدیم.
+      </li>
 
-    <p>
-      معمولا ویژگی ها و متد های رایج در ساب کلاس ها رو در کلاس ابسترکت تعریف
-      میکنیم.
-    </p>
+      <li>
+        معمولا فیلد ها و متد های رایج بین ساب کلاس ها رو در کلاس ابستراکت تعریف
+        میکنیم.
+      </li>
 
-    <p>مثال</p>
+      <li>با اینکه نمیتونیم از کلاس ابستراکت ابجکت (نمونه) ایجاد کنیم اما میتونیم با متغیری از نوع کلاس ابستراکت به یک
+        آبجکت از نوع ساب کلاس اشاره کنیم.
+      </li>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
+public class Main {
+
+    public static void main(String[] args){
+        MyAbstractClass c = new MyConcreteClass();
+    }
+}
+
+abstract class MyAbstractClass{
+}
+
+class MyConcreteClass extends MyAbstractClass{
+}
+        </pre>
+        </div>
+      </div>
+
+    </ol>
+
+  </section>
+
+  <section id="p2">
+
+    <h2>مورد مطالعه</h2>
     <p>
       میتونیم در
-      <a class="text-decoration-none" href="inheritance.html"
-        >مورد مطالعه ی مطلب ارث بری</a
-      >
+      <a class="text-decoration-none" href="inheritance.html">مورد مطالعه ی مطلب ارث بری</a>
       کلاس GeometricShape رو به صورت ابستراکت تعریف کنیم و متد های getArea و
       getPerimeter رو به صورت ابستراکت داخل GeometricShape تعریف کرده و در کلاس
       های Circle و Rectangle به طور کامل پیاده سازیشون کنیم.
@@ -134,7 +161,6 @@ public abstract class GeometricShape {
     private final Date dateCreated = new Date();
     private String color;
     private boolean filled;
-
 
     public GeometricShape(String color, boolean filled){
         this.color = color;
@@ -177,7 +203,7 @@ public abstract class GeometricShape {
             + " perimeter: " + getPerimeter();
     }
 
-    }
+  }
 
 class Circle extends GeometricShape{
     private double radius;
@@ -274,20 +300,18 @@ class Rectangle extends GeometricShape{
     public boolean equals(Object obj) {
         if (obj instanceof Rectangle){
             Rectangle r = (Rectangle) obj;
-            return r.width == this.width && r.height == this.height;
+            return r.width == this.width &amp;&amp; r.height == this.height;
         }
 
         return false;
     }
 }
-                        </pre
-        >
+                        </pre>
       </div>
     </div>
 
     <p>
-      با اینکه نمیتونیم از کلاس ابستراکت ابجکت ایجاد کنیم اما میتونیم از کلاس
-      ابستراکت به عنوان نوع متغیر استفاده کنیم.
+      ایجاد نمونه از کلاس های Circle و Rectangle
     </p>
 
     <div class="sample">
@@ -302,13 +326,12 @@ public static void main(String[] args){
     System.out.println(rectangle.toString());
 
 }
-                        </pre
-        >
+                        </pre>
       </div>
     </div>
   </section>
 
-  <section id="p2">
+  <section id="p3">
     <h2>خلاصه</h2>
     <ul>
       <li>
@@ -340,6 +363,7 @@ public static void main(String[] args){
 </article>
 
 {% capture links %}
+
 <li>
   <a href="polymorphism.html">چند ریختی و کست کردن در جاوا</a>
 </li>
@@ -357,10 +381,6 @@ public static void main(String[] args){
 </li>
 
 <li>
-  <a
-    target="_blank"
-    href="https://docs.oracle.com/javase/tutorial/java/IandI/abstract.html"
-    >مطالعه در اوراکل</a
-  >
+  <a target="_blank" href="https://docs.oracle.com/javase/tutorial/java/IandI/abstract.html">مطالعه در اوراکل</a>
 </li>
 {% endcapture %} {% include article-foot.html relative_links = links %}
