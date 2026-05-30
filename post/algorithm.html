@@ -1,0 +1,51 @@
+---
+layout: category
+---
+
+
+<section>
+  <article>
+    <div class="description">
+      <p>
+        از الگوریتم ها برای بهینه تر کردن برنامه ها و گاهی مرتب تر نوشتن کد های برنامه استفاده میکنیم؛ به سرعت اجرای یک
+        برنامه پیچیدگی زمان (time complexity) و به روند استفاده از منابع حافظه توسط برنامه پیچیدگی فضا (space
+        complexity) میگیم.</p>
+
+      <p>در زیر فهرست مطالب مربوط به الگوریتم های معروف در برنامه نویسی رو قرار داده ایم، مثال های مطالب با جاوا
+        و کاتلین اورده شده اما نحوه ی پیاده سازیشون در تمام زبان های برنامه نویسی مشابه است.</p>
+    </div>
+  </article>
+
+  <div class="subject">
+
+    <div class="subject-container">
+      {% for metadata in site.data.json.posts.algorithm.metadata_list %}
+
+      <section class="subject-item">
+
+        <div class="subject-item-content">
+          <div class="subject-item-head md-bt-expandable">
+            <span class="material-synmbols-outlined icon" aria-hidden="true">arrow_left</span>
+            <h3 class="subject-item-head-title">
+              <span>{{ metadata.title }}</span>
+            </h3>
+          </div>
+
+          <div class="subject-item-body">
+            <ul>
+              <li>
+                <p>{{ metadata.description }}</p>
+              </li>
+            </ul>
+
+            <a href="{{ metadata.link }}">مطالعه</a>
+          </div>
+
+        </div>
+      </section>
+      {% endfor %}
+
+    </div>
+  </div>
+
+</section>
