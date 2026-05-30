@@ -78,14 +78,10 @@ function createCodeViews() {
               showSnippet(snippet);
               snippetToggleButton.checked = true;
             }
-          },
+          }
         );
 
-        let codeLines = snippet.innerHTML.split("\n");
-        let codeViewContents = createCodeViewContents(codeLines);
-
-        snippet.innerHTML = "";
-        snippet.appendChild(codeViewContents);
+        styleSnippet(snippet, snippetLang == "Text" ? true : false);
 
         if (j === 0) {
           copyButton.onclick = function () {
@@ -116,7 +112,7 @@ function findSnippetLanguage(snippet) {
   let snippetClassNames = snippet.className.split(" ");
   let languageIndex = snippetClassNames.findIndex((el) => el.match(languages));
 
-  return snippetClassNames[languageIndex];
+  return snippetClassNames[languageIndex] ? snippetClassNames[languageIndex] : "Text";
 }
 
 function showSnippet(syntaxWrapper) {
@@ -129,20 +125,48 @@ function hideAllSnippets(syntaxWrapperList) {
   }
 }
 
-function createCodeViewContents(codeLines) {
+function styleSnippet(snippet, isSimpleText) {
+
+  let codeLines = snippet.innerHTML.split("\n");
+  let codeViewContents = createCodeViewContents(codeLines, isSimpleText);
+
+  snippet.innerHTML = "";
+  snippet.appendChild(codeViewContents);
+
+}
+
+function createCodeViewContents(codeLines, isSimpleText) {
   var codeWrap = createCodeWrap();
 
   createCodeTableView(codeWrap, (table, tBody) => {
-    for (var lineIndex = 0; lineIndex < codeLines.length; lineIndex++) {
-      let line = codeLines[lineIndex];
-      line = styleAllSensitiveWords(line);
-      insertLine(tBody, line, lineIndex);
+
+    if (!isSimpleText) {
+
+      for (var lineIndex = 0; lineIndex < codeLines.length; lineIndex++) {
+        let line = codeLines[lineIndex];
+        line = styleAllSensitiveWords(line);
+        insertLine(tBody, line, lineIndex);
+      }
+
+    } else {
+
+      for (var lineIndex = 0; lineIndex < codeLines.length; lineIndex++) {
+        let line = codeLines[lineIndex];
+        line = styleAsText(line);
+        insertLine(tBody, line, lineIndex);
+      }
+
     }
 
     table.appendChild(tBody);
   });
 
   return codeWrap;
+}
+
+function styleAsText(textLine) {
+  textLine = styleSensitiveWords(textLine, "*", "text");
+  return textLine;
 }
 
 function styleAllSensitiveWords(textLine) {
