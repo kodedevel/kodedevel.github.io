@@ -1,0 +1,634 @@
+---
+layout: default
+---
+
+<article>
+
+  <nav class="toc">
+    <div>دسترسی سریع</div>
+    <ul>
+      <li>
+        <a href="#p0">تعریف recursion (بازگشت)</a>
+      </li>
+      <li>
+        <a href="#p1">تابع بازگشتی</a>
+      </li>
+      <li>
+        <a href="#p2">تعریف تابع کمکی برای تابع بازگشتی</a>
+      </li>
+      <li>
+        <a href="#p3">تابع tail-recursive</a>
+      </li>
+      <li>
+        <a href="#p4">مورد مطالعه (مثال ها)</a>
+      </li>
+      <li>
+        <a href="#p5">خلاصه</a>
+      </li>
+    </ul>
+  </nav>
+
+
+  <section id="p0">
+    <h2>تعریف recursion (بازگشتی)</h2>
+    <blockquote>بعضی از مسائل با روش بازگشتی راحت تر از حلقه ها حل میشن</blockquote>
+
+    <p>به طور معمول هنگامی که اجرای کد های یک تابع تموم بشه از تابع خارج شده و بقیه ی کد های برنامه بعد از تابع
+      اجرا میشن؛ اما با صدا زدن تابع داخل خودش بجای خارج شدن از تابع، همون تابع (احتمالا با مقادیر جدید) داخل
+      خودش اجرا میشه و بعد از اجرای تابع داخلش به تابع اصلی بر میگردیم؛ به این نوع
+      توابع (متد ها)، بازگشتی میگیم.</p>
+
+    <p>بازگشتی در برنامه نویسی یعنی صدا زدن تابع (متد) داخل خودش؛ این کار میتونه جایگزین استفاده از حلقه (loop) ها بشه.
+    </p>
+
+    <p>گاهی حل مسائل برنامه نویسی از طریق تعریف توابع بازگشتی
+      ساده تر از حل آنها توسط حلقه هاست.</p>
+
+    <p>بیشتر مسائلی که با بازگشتی حل میشن، با حلقه ها نیز قابل حل هستند و برعکس.</p>
+
+    <p>استفاده از حلقه ها برای حل مسائل نسبت به استفاده از روش بازگشتی بهینه تره چون با هربار صدا زدن تابع، کد های داخل
+      تابع از دوباره اجرا میشن و متغیر هایی که داخل تابع تعریف شدن، دوباره ایجاد میشن.</p>
+
+    <p>داخل یک متد ممکنه متغیر های مختلفی وجود داشته باشه که
+      هرکدوم یک بخشی از حافظه رو اشغال میکنن، با هر بار صدا زدن متد داخل خودش این متغیر ها دوباره ایجاد شده و باعث
+      افزایش
+      منابع مصرفی سیستم میشه؛ بنابراین استفاده از روش های بازگشتی برای حل مسائل میتونه منابع بیشتری رو درگیر کنه.</p>
+  </section>
+
+  <section id="p1">
+    <h2>تابع بازگشتی</h2>
+    <blockquote>تابع (متد) بازگشتی به تابعی گفته میشه که داخل خودش دوباره صداش بزنیم.</blockquote>
+
+    <p>هنگامی که یک تابع رو داخل خودش صدا بزنیم میگیم تابع بازگشتی است.</p>
+    <p>یک تابع میتونه بی نهایت داخل خودش صدا زده بشه بنابراین توابع بازگشتی رو با دستورات شرطی (selector ها) کنترل
+      میکنیم.</p>
+
+    <p>به جایی که روند صدا زدن تابع متوقف بشه
+      <strong>base-case</strong> میگیم.
+    </p>
+
+    <p>
+      فرض کنید میخوایم یک کیک رو بخوریم؛ تا زمانی که کیک وجود داره میتونیم یک تیکه از کیک رو برداریم و بخوریم؛ وجود کیک
+      base-case مساله است.
+    </p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet">
+eat(Cake cake){
+ if(cake.exists()){
+     cake.takeOneSlice();
+     eat(cake);
+  }
+}
+        </pre>
+      </div>
+    </div>
+
+    <p>مثال</p>
+
+    <p>در مثال زیر ابتدا برنامه مقدار count رو بررسی میکنه اگه کوچک تر یا مساوی صفر باشه یک پیغام نمایش میده و
+      از تابع خارج میشه ولی اگه بزرگتر از صفر باشه، داخل بدنه ی <strong>else</strong> قبل از نمایش پیغام یک بار تابع
+      خودشو صدا میزنه و کد های داخل تابع جدید به اجرا در میاد؛ در تابع جدید مقدار
+      count یک واحد کمتر از مقدار قبلی خواهد بود و همین عمل تکرار میشه تا به base-case برسیم و سپس پیغام Hello from...
+      به ترتیب از آخرین باری که تابع رو صدا زدیم (یعنی count &lt;= 0) نمایش داده میشه تا به اولین اجرای تابع
+      برسیم و در نهایت برنامه از تابع اصلی
+      نیز خارج میشه.</p>
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+static void myFunction(int count){
+ if(count &lt;= 0){ //base-case
+   System.out.println("Base-case reached");
+   System.out.println("Hello from " + count);
+ }else{
+   myFunction(count - 1);
+   System.out.println("Hello from " + count);
+ }
+}
+        </pre>
+        <pre class="snippet Kotlin">
+fun myFunction(count: Int){
+  if(count &lt;= 0){ //base-case
+    println("Base-case reached")
+    println("Hello from $count")
+  }else{
+    myFunction(count - 1)
+    println("Hello from " + count)
+  }
+}
+        </pre>
+      </div>
+    </div>
+
+    <p>در مثال زیر میخوایم فاکتوریل یک عدد رو به روش بازگشتی حساب کنیم.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+static long fact(int n){
+  if(n == 0) return 1;
+  else return n * fact(n-1);
+}
+        </pre>
+        <pre class="snippet Kotlin">
+fun fact(n: Int): Long{
+  if(n == 0) return 1;
+  else return n * fact(n-1);
+}
+        </pre>
+      </div>
+    </div>
+
+    <p>در مثال بالا با هربار صدا زدن تابع fact یک واحد از مقدار پارامتر n کم میشه تا به base-case برسیم و سپس از
+      base-case
+      برنامه شروع میکنه به برگردوندن نتیجه به تابع قبلی</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet">
+fact(0) = 1 //base-case
+fact(1) = 1 * fact(0) // 1*1=1
+fact(2) = 2 * fact(1) // 2*1=2
+fact(3) = 3 * fact(2) // 3*2=6
+fact(4) = 4 * fact(3) // 4*6=24
+        ...
+fact(n-1) = n-1 * fact(n-2)
+fact(n) = n * fact(n-1)
+        </pre>
+      </div>
+    </div>
+
+    <p>مثال</p>
+    <p>در مثال زیر میخوایم دنباله ی فیبوناچی رو به روش بازگشتی حل کنیم.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+static int fib(int index){
+  if(index == 1 || index == 2) return 1;
+  else return fib(index-1) + fib(index-2);
+}
+        </pre>
+        <pre class="snippet Kotlin">
+fun fib(index: Int): Int{
+  if(index == 1 or index == 2) return 1
+  else return fib(index - 1) + fib(index - 2)
+}
+        </pre>
+      </div>
+    </div>
+
+
+    <p>مثال</p>
+    <p>در مثال زیر میخوایم ببینیم یک کلمه متقارن است یا خیر.</p>
+
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+static boolean isPalindrome(String word){
+  if(s.length() &lt;= 1){
+    return true;
+  } else if(s.charAt(0) != s.charAt(s.length - 1)){
+      return false;
+  } else{
+     return isPalindrome(word.substring(1, word.length -1);
+  }
+}
+        </pre>
+        <pre class="snippet Kotlin">
+fun isPalindrome(String word): Boolean{
+  if(s.length &lt;= 1) return true
+  else if(s.charAt(0) != s.charAt(s.length - 1)){
+    return false
+  }else {
+    return isPalindrome(word.substring(1, word.length - 1))
+  }
+}
+        </pre>
+      </div>
+    </div>
+
+  </section>
+
+  <section id="p2">
+    <h2>تعریف تابع (متد) کمکی برای تابع بازگشتی</h2>
+    <blockquote>با تعریف تابع کمکی (helper function) برای یک تابع بازگشتی، میتونیم پارامتر های تابع اصلی رو خلاصه کنیم.
+    </blockquote>
+
+    <p>مثال پیدا کردن کلمه ی متقارن میتونه بهینه تر بشه؛‌ در مثالی که زده شد با هربار صدا کردن تابع isPalindrome یک
+      String جدید توسط متد substring ایجاد میشه.</p>
+
+    <p>میتونیم بجای ایجاد substring برای هر بار صدا زدن isPalindrome از index استفاده کنیم اینطوری الگوریتم بهینه تر
+      میشه.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+static boolean isPalindrome(String word, int low, int hight){
+  if(low &lt;= high) return true;
+  else if(s.charAt(low) != s.charAt(high)) return false;
+  else return isPalindrome(word, low + 1, high - 1);
+}
+        </pre>
+        <pre class="snippet Kotlin">
+fun isPalindrome(word: String, low: Int, high: Int): Boolean{
+  if(low &lt;= high) return true
+  else if(s.charAt(low) != s.charAt(high)) return false;
+  else return isPalindrome(word, low -1, high - 1)
+}
+        </pre>
+      </div>
+    </div>
+
+    <p>میتونیم برای isPalindrome یک تابع کمکی (helper function) تعریف کنیم.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+static boolean isPalindrome(String word){
+  int low = 0;
+  int high = word.length() - 1;
+  isPalindrome(word, low, high);
+}
+        </pre>
+        <pre class="snippet Kotlin">
+fun isPalindrome(word: String){
+  val low = 0;
+  val hight = word.length - 1;
+  isPalindrome(word, low, high)
+}
+        </pre>
+      </div>
+    </div>
+
+    <p>مثال</p>
+
+    <p>در مثال زیر میخوایم مرتب سازی (selection sort) رو به روش بازگشتی پیاده سازی کنیم.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+fun sort(double[] list){
+  int low =0;
+  int high = list.length - 1;
+
+  sort(list, low, high);
+}
+
+static void sort(double[] list, int low, int high){
+
+  if(low &lt; high){
+
+    int indexOfMin = low;
+    double min = list[low];
+
+    for(int i= low + 1; i&lt;= high; i++){
+      if(list[i] &lt; min){
+        min = list[i];
+        indexOfMin = i;
+      }
+    }
+
+    list[indexOfMin] = list[low];
+    list[low] = min;
+
+    sort(list, low + 1, high);
+
+  }
+}
+        </pre>
+        <pre class="snippet Kotlin">
+fun sort(list: Array&lt;Double&gt;){
+  val low = 0
+  val high = list.size
+
+  sort(list, low, high)
+}
+        
+fun sort(list: Array&lt;Double&gt;, low: Int, high: Int){
+
+  if(low &lt; high){
+   
+    var indexOfMin = low;
+    var min = list[low];
+
+    for(i in low + 1 to high){
+      if(list[i] &lt; min){
+        min = list[i]
+        indexOfMin = i
+      }
+    }
+
+    list[indexOfMin] = list[low]
+    list[low] = min
+
+    sort(list, low + 1, high)
+  }
+}
+        </pre>
+      </div>
+    </div>
+
+
+    <p>در مثال زیر میخوایم جستجوی دودویی (binary search) رو با بازگشتی پیاده کنیم.</p>
+
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+static int binarySearch(double[] list, int key){
+  int low = 0;
+  int high = list.length - 1;
+  return binarySearch(list, key, low, high)
+}
+
+static int binarySearch(double[] list, int key, int low, int high)
+  if(low &gt; high) return -low-high;
+
+  int mid = (low + high)/2;
+  
+  if(key &lt; list[mid]){
+    return binarySearch(list, key, low, mid - 1);
+  }else if(key &gt; list[mid]{
+    return binarySearch(list, key, mid + 1, high);
+  }else{
+    return mid;
+  }
+}
+        </pre>
+        <pre class="snippet Kotlin">
+fun binarySearch(list: Array&lt;Double&gt;, key: Double){
+  val low = 0
+  val high = list.size() - 1
+  return binarySearch(list, key, low, high)
+}
+
+fun binarySearch(list: Array&lt;Double&gt;, key: Double, low: Int, high: Int): Int {
+  if(low &lt; high) return -low-high
+
+  var mid = (low + high)/2
+
+  if(key &lt; list[mid]){
+    return binarySearch(list, key, low, mid-1)
+  }else if(key &gt; list[mid]){
+    return binarySearch(list, key, mid + 1, high)
+  }else {
+    return mid
+  }
+
+}
+        </pre>
+      </div>
+    </div>
+
+  </section>
+
+  <section id="p3">
+    <h2>تابع tail-recursive</h2>
+    <blockquote>تابع tail-recursive بهینه تر از تابع recursive معمولی است.</blockquote>
+
+
+    <p>تابع (متد) tail recursive به تابعی گفته میشه که بعد از اجرای همه ی کد های داخلش، صدا زده میشه.</p>
+
+    <p>در واقع در این توابع اخرین کدی که اجرا میشه صدا زدن تابع داخل خودشه.</p>
+
+    <p>فرم کلی:</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet">
+Type myTailRecursiveFunction(...){
+
+  //do some operations
+  
+         ...
+
+  myTailRecursiveFunction(...);
+
+}
+        </pre>
+      </div>
+    </div>
+
+    <p>در توابع tail recursive، همه ی کد های داخل تابع اجرا شده و سپس تابع صدا زده میشه؛ چون عملیاتی برای اجرا بجز صدا
+      زدن تابع باقی نمی مونه این نوع پیاده سازی بهینه تر از recursive معمولی است.</p>
+
+    <p>هنگام صدا زدن دوباره ی تابع در این روش، کد های داخل تابع قبلی اجرا شده بنابراین متغیر ها و عملیات در تابع قبلی
+      باقی نمی مونه و حافظه ی کمتری مصرف میشه.</p>
+
+
+    <div class="note">
+      <p class="note-head">توجه</p>
+      <p>در کاتلین tail recursive به صورت native پشتیبانی میشه؛ هنگام تعریف تابع کافیه از کلیدواژه ی tailrec قبل از
+        کلیدواژه ی fun استفاده کنیم.</p>
+    </div>
+
+    <p>مثال</p>
+
+    <p>میخوایم تابع فاکتوریل رو به صورت tail recursive پیاده کنیم.</p>
+
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+static long fact(int n){
+ return fact(n, 1)
+}
+
+static long fact(int n, int result){
+  if(n == 0) return result;
+  else return fact(n - 1 , n * result)
+}
+
+        </pre>
+        <pre class="snippet Kotlin">
+tailrec fact(n: Int, result: Int = 1): Long = if(n == 0) return result else return fact(n-1, result * n);
+        </pre>
+      </div>
+    </div>
+
+  </section>
+
+
+  <section id="p4">
+    <h2>مورد مطالعه (مثال ها)</h2>
+
+    <p>در این قسمت میخوایم مسأله ی directory size و tower of hanoi رو با بازگشتی حل کنیم.</p>
+
+    <section>
+      <h3>directory size</h3>
+
+      <p>با استفاده از روش بازگشتی میخوایم اندازه ی کل پوشه (اندازه ی تمام فایل ها و پوشه های داخلش) رو حساب کنیم.
+      </p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
+static long getSize(File file){
+  long size = 0;
+  if(file.isDirectory()){
+    File[] files = file.listFiles();
+    if(files != null){
+      for(File f : files){
+        if(f.isDirectory()){
+          size += getSize(f);
+        }else {
+          size += f.length();
+        }
+      }
+    }
+  }else {
+    size += file.length();
+  }
+
+  return size;
+}
+        </pre>
+          <pre class="snippet Kotlin">
+fun getSize(file: File): Long{
+  var size: Long = 0;
+  if(file.isDirectory()){
+    val files = file.listFiles()
+    if(files != null){
+      for(f in files){
+        if(f.isDirectory()){
+          size+= getSize(f);
+        }else{
+          size += f.length();
+        }
+      }
+    }
+  }
+}
+        </pre>
+        </div>
+      </div>
+
+    </section>
+
+    <section>
+      <h3>tower of hanoi</h3>
+
+      <p>tower of hanoi یک مسأله ی ذاتا بازگشتیه و ساده ترین راه حل برای حل این مسأله استفاده از روش بازگشتی
+        است.
+      </p>
+      <p>شرح مساله به این صورته سه تا خونه داریم به نام های A, B, C و n تا دیسک فرضی به ترتیب بزرگیشون توی خونه ی A قرار
+        داره و میخوایم با همین ترتیب و بدون اینکه دیسک های پایینی روی دیسک های بالایی قرار بگیرن از A به B
+        انتقالشون بدیم.</p>
+
+      <p>در زیر عملکرد برنامه رو به صورت تصویری برای سه تا دیسک نشون دادیم.</p>
+
+      <figure>
+        <img src="/resources/image/algorithm/tower_of_hanoi.png" alt="مسأله ی tower of hanoi در برنامه نویسی">
+        <caption>مسأله ی tower of hanoi در برنامه نویسی</caption>
+      </figure>
+
+      <section>
+
+        <h4>الگوی حل tower of hanoi</h4>
+        <p>برای حل tower of hanoi:</p>
+        <p>I- ابتدا باید n-1 دیسک رو با کمک B از A به C ببریم.</p>
+        <p>II- سپس آخرین دیسک (دیسک n ام) رو از A به B ببریم.</p>
+        <p>III- در نهایت n-1 دیسک رو که به C بردیم، اکنون به کمک A از C به B ببریم.</p>
+
+        <div class="sample">
+          <div class="snippet-container">
+            <pre class="snippet Java">
+static void moveDisks(int n){
+  moveDisks(n, 'A', 'B', 'C');
+}
+
+static void moveDisks(int n, char fromTower, char toTower, char auxTower){
+  if(n == 1){
+    System.out.println("Move disk " + n + " from " + fromTower + " to " + toTower);
+  }else{
+
+    moveDisks(n - 1, fromTower, auxTower, toTower);
+
+    System.out.println("Move disk " + n + " from " + fromTower + " to " + toTower);
+
+    moveDisks(n - 1, auxTower, toTower, fromTower);
+
+  }
+}
+        </pre>
+            <pre class="snippet Kotlin">
+fun moveDisks(n: Int){
+  moveDisks(n, 'A', 'B', 'C')
+}
+
+fun moveDisks(n: Int, fromTower: Char, toTower: Char, auxTower: Char){
+  if(n == 1){
+    // Move last disk from A to B
+    println("Move disk " + n + " from " + fromTower + " to " + toTower)
+  }else{
+
+    moveDisks(n - 1, fromTower, auxTower, toTower)
+
+    println("Move disk " + n + " from " + fromTower + " to " + toTower)
+
+    moveDisks(n - 1, auxTower, toTower, fromTower)
+
+  }
+}
+        </pre>
+          </div>
+        </div>
+      </section>
+    </section>
+  </section>
+
+  <section id="p5">
+    <h2>خلاصه</h2>
+    <ul>
+      <li>
+        بعضی از مسائل با روش بازگشتی راحت تر از حلقه ها حل میشن.
+      </li>
+      <li>
+        بازگشتی (recursion) میتونه جایگزین استفاده از حلقه ها بشه.
+      </li>
+      <li>
+        بسیاری از مسائلی که با روش بازگشتی حل میشن توسط حلقه ها نیز قابل حل هستند و برعکس.
+      </li>
+      <li>
+        به تابعی که داخلش خودشو صدا میزنیم تابع بازگشتی میگیم.
+      </li>
+      <li>
+        توابع بازگشتی رو با شرط کنترل می کنیم.
+      </li>
+      <li>
+        هنگامی که بخوایم یک تابع داخل خودش صدا زده نشه از شرط استفاده میکنیم و این حالت پایه (base-case) مسأله است.
+      </li>
+      <li>
+        به تابعی که بعد از اجرای همه ی کد هاش داخل خودش صداش میزنیم، توابع tail-recursive میگیم.
+      </li>
+      <li>تابع tail recursive بهینه تر از تابع recursive است.</li>
+    </ul>
+  </section>
+
+</article>
+
+
+{% capture links %}
+<li>
+  <a href="/post/java/methods.html">متد (تابع) در جاوا</a>
+</li>
+
+<li>
+  <a href="/post/java/selectors.html">دستورات شرطی در جاوا</a>
+</li>
+<li>
+  <a href="/post/java/file.html">کلاس فایل در جاوا</a>
+</li>
+<li>
+  <a href="/post/kotlin/functions.html">توابع در کاتلین</a>
+</li>
+<li>
+  <a href="/post/kotlin/selectors.html">دستورات شرطی در کاتلین</a>
+</li>
+{% endcapture %}
+
+
+{% include article-foot.html relative_links = links %}
