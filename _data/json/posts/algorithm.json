@@ -1,0 +1,14 @@
+{
+  "id": "algorithm_chapters",
+  "name": "الگوریتم ها",
+  "metadata_list": [
+    {
+      "title": "بازگشتی (recursion) در برنامه نویسی",
+      "description": "از بازگشتی به عنوان جایگزین حلقه ها استفاده میکنیم گاهی اوقات حل مسائل برنامه نویسی از طریق تعریف توابع بازگشتی ساده تر از استفاده از حلقه هاست؛ در این مطلب به پیاده سازی و استفاده از توابع بازگشتی می پردایم.",
+      "datePublished": "2026-05-30",
+      "lastModified": "",
+      "imgCover": "/resources/image/algorithm/cover_recursion.png",
+      "link": "/post/algorithm/recursion.html"
+    }
+  ]
+}
