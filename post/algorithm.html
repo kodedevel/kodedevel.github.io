@@ -16,36 +16,24 @@ layout: category
     </div>
   </article>
 
-  <div class="subject">
+  <div class="subject-container">
 
-    <div class="subject-container">
-      {% for metadata in site.data.json.posts.algorithm.metadata_list %}
-
-      <section class="subject-item">
-
-        <div class="subject-item-content">
-          <div class="subject-item-head md-bt-expandable">
-            <span class="material-synmbols-outlined icon" aria-hidden="true">arrow_left</span>
-            <h3 class="subject-item-head-title">
-              <span>{{ metadata.title }}</span>
-            </h3>
-          </div>
-
-          <div class="subject-item-body">
-            <ul>
-              <li>
-                <p>{{ metadata.description }}</p>
-              </li>
-            </ul>
-
-            <a href="{{ metadata.link }}">مطالعه</a>
-          </div>
-
-        </div>
-      </section>
-      {% endfor %}
-
-    </div>
+    {% for metadata in site.data.json.posts.algorithm.metadata_list %}
+    <section class="subject-item">
+      <h3 class="md-bt-expandable subject-item-head">
+        <span class="material-symbols-outlined icon" aria-hidden="true">arrow_left</span>
+        <span>{{ metadata.title }}</span>
+      </h3>
+      <div class="subject-item-content">
+        <ul>
+          <li>
+            <p>{{ metadata.description }}</p>
+          </li>
+        </ul>
+        <a href="{{ metadata.link }}">مطالعه</a>
+      </div>
+    </section>
+    {% endfor %}
   </div>
 
 </section>

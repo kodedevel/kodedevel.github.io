@@ -160,6 +160,10 @@
   background-color: #212121;
 }
 
+.category-redirect-link.algorithm{
+  background-color: #01579B;
+}
+
 .category-redirect-link-container{
   display: flex;
   flex-wrap: wrap;
