@@ -236,7 +236,7 @@ static boolean isPalindrome(String word, int low, int hight){
 fun isPalindrome(word: String, low: Int, high: Int): Boolean{
   if(low &lt;= high) return true
   else if(s.charAt(low) != s.charAt(high)) return false;
-  else return isPalindrome(word, low -1, high - 1)
+  else return isPalindrome(word, low + 1, high - 1)
 }
         </pre>
       </div>
@@ -401,7 +401,7 @@ fun binarySearch(list: Array&lt;Double&gt;, key: Double, low: Int, high: Int): I
         <pre class="snippet">
 Type myTailRecursiveFunction(...){
 
-  //do some operations
+  do some operations
   
          ...
 

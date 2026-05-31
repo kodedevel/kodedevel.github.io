@@ -5,7 +5,7 @@
     {
       "title": "بازگشتی (recursion) در برنامه نویسی",
       "description": "از بازگشتی به عنوان جایگزین حلقه ها استفاده میکنیم گاهی حل مسائل برنامه نویسی از طریق تعریف توابع بازگشتی ساده تر از استفاده از حلقه هاست؛ در این مطلب به پیاده سازی و استفاده از توابع بازگشتی می پردایم.",
-      "datePublished": "2026-05-30",
+      "datePublished": "2026-05-31",
       "lastModified": "",
       "imgCover": "/resources/image/algorithm/cover_recursion.png",
       "link": "/post/algorithm/recursion.html"
