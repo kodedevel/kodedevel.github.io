@@ -1,0 +1,124 @@
+---
+layout: default
+---
+
+<article>
+  <nav class="toc">
+    <div>دسترسی سریع</div>
+    <ul>
+      <li>
+        <a href="#p0">بررسی دستور mv</a>
+      </li>
+      <li>
+        <a href="#p1">خلاصه</a>
+      </li>
+    </ul>
+  </nav>
+
+  <section id="p0">
+    <h2>بررسی دستور mv</h2>
+
+    <p>از دستور mv در لینوکس برای انتقال فایل ها توسط ترمینال استفاده می کنیم؛ mv مخفف <strong>move</strong> است.</p>
+
+    <p>فرم کلی:</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Shell">
+mv "path_to_source_file" "path_to_destination_file"
+        </pre>
+      </div>
+    </div>
+
+    <p>در بالا آرگومان اول مسیر فایلیه که میخوایم انتقال بدیم و آرگومان دوم مسیر مقصد.</p>
+
+    <div class="note">
+      <p class="note-head">توجه</p>
+      <p>برای انتقال کردن فایل های موجود در روت یا انتقال فایل ها به مسیر های روت توسط mv، هنگام استفاده از mv باید به
+        روت دسترسی داشته باشیم.</p>
+    </div>
+
+    <p>با دستور mv در لینوکس میتونیم نام یک فایل رو تغییر بدیم، کافیه مسیر فایل مبدا رو با نام جدید فایل بنویسیم.</p>
+
+    <p>فرض کنید یک فایل به نام <strong>myFile.extension</strong> در مسیر <strong
+        dir="ltr">/home/username/myDir/myFile.extension</strong> داریم و میخوایم فایل رو
+      به
+      <strong>myRenamedFile.extension</strong> تغییر نام بدیم.
+    </p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Shell">
+mv "/home/username/myDir/myFile.extension" "/home/username/myDir/myRenamedFile.extension"
+      </pre>
+      </div>
+    </div>
+
+
+    <p>اگه مقصد پوشه باشه با آرگومان <strong>t</strong> میتونیم مسیر مقصد رو به طور آشکار تعیین کنیم و جایی که آرگومان t
+      نوشته شده باشه همونجا مسیر پوشه ی مقصد رو تعریف می کنیم.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Shell">
+mv -t "path_to_destination_directory" "path_to_source_file0" "path_to_source_file1" "path_to_source_file2"
+        </pre>
+      </div>
+    </div>
+
+
+    <p>هنگامی که یک فایل هم نام در مقصد وجود داشته باشه دستور mv به صورت پیشفرض از کاربر می پرسه که آیا مایل به جایگذاری
+      با فایلی که در پوشه ی مقصد قرار داره است یا خیر، با استفاده از آرگومان <strong>f</strong> میتونیم تعیین کنیم در
+      صورت وجود فایل با نام یکسان در مقصد بدون پرسیدن از کاربر، فایل مبدا رو با فایل مقصد جایگذاری کنه.</p>
+
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Shell">
+mv -f "path_to_source_file" "path_to_destination_file"
+        </pre>
+      </div>
+    </div>
+
+
+    <p>دستور mv از regex پشتیبانی میکنه؛ فرض کنید میخوایم تمام فایل ها با پسوند <strong>.extension</strong> در مسیر
+      <strong>/home/username/myDir</strong> انتقال بدیم.
+    </p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Shell">
+mv "/home/username/myDir/*.extension" -t "path_to_destination_directory"
+        </pre>
+      </div>
+    </div>
+
+  </section>
+
+  <section id="p1">
+    <h2>خلاصه</h2>
+    <ul>
+      <li>از دستور mv برای انتفال فایل ها توسط ترمینال استفاده می کنیم و این دستور مخفف move است.</li>
+    </ul>
+  </section>
+</article>
+
+{% capture links %}
+<li>
+  <a href="/post/linux/introduction.html">معرفی لینوکس</a>
+</li>
+<li>
+  <a href="/post/linux/copy.html">دستور cp در لینوکس</a>
+</li>
+
+<li>
+  <a href="/post/linux/remove.html">دستور remove در لینوکس</a>
+</li>
+
+<li>
+  <a href="/post/linux/list-directory-contents.html">دستور ls در لینوکس</a>
+</li>
+
+{% endcapture %}
+
+{% include article-foot.html relative_links = links %}

@@ -1,0 +1,107 @@
+---
+layout: default
+---
+
+<article>
+  <nav class="toc">
+    <div>دسترسی سریع</div>
+    <ul>
+      <li>
+        <a href="#p0">بررسی دستور echo</a>
+      </li>
+      <li>
+        <a href="#p1">خلاصه</a>
+      </li>
+    </ul>
+  </nav>
+
+  <section id="p0">
+    <h2>بررسی دستور echo</h2>
+
+    <p>از دستور echo در لینوکس برای چاپ متن در ترمینال یا اضافه کردن متن به یک فایل متنی استفاده می کنیم.</p>
+
+    <section>
+      <h3>چاپ متن در ترمینال</h3>
+      <p>برای چاپ متن در ترمینال مانند زیر عمل می کنیم:</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Shell">
+echo "Hello Shell!"
+          </pre>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h3>افزودن متن به فایل متنی</h3>
+      <p>اگه بخوایم متن جایگزین محتوای فایل بشه مانند زیر از یک <strong>&gt;</strong> استفاده می کنیم.</p>
+
+      <p>در مثال های زیر <strong>path_to_text_file</strong> مسیر فایل متنی است.</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Shell">
+echo "Hello from echo" &gt; path_to_text_file
+          </pre>
+        </div>
+      </div>
+
+      <p>اگه بخوایم متن به انتهای محتوای فایل اضافه بشه از دوتا <strong>&gt;&gt;</strong> استفاده می کنیم.</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Shell">
+echo "Hello from echo" &gt;&gt; path_to_text_file
+          </pre>
+        </div>
+      </div>
+
+    </section>
+
+    <section>
+      <h3>پشتیبانی از حروف خاص</h3>
+
+      <p>دستور echo با آرگومان e قابلیت پشتیبانی از حروف خاص با بک اسلش رو خواهد داشت.</p>
+
+      <p>در مثال زیر ادامه ی متن در خط جدید نمایش داده میشه.</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Shell">
+echo -e "Hello shell! \nThis is a test"
+        </pre>
+        </div>
+      </div>
+      <div>
+
+      </div>
+
+    </section>
+
+  </section>
+
+  <section id="p1">
+    <h2>خلاصه</h2>
+    <ul>
+      <li>
+        از echo برای چاپ متن در ترمینال و یا افزودن متن به یک فایل متنی استفاده می کنیم.
+      </li>
+    </ul>
+  </section>
+
+</article>
+
+{% capture links %}
+<li>
+  <a href="/post/linux/introduction.html">معرفی لینوکس</a>
+</li>
+<li>
+  <a href="/post/linux/change-directory.html">دستور cd در لینوکس</a>
+</li>
+<li>
+  <a href="/post/linux/list-directory-contents.html">دستور ls در لینوکس</a>
+</li>
+{% endcapture %}
+
+{% include article-foot.html relative_links = links %}

@@ -1,0 +1,129 @@
+---
+layout: default
+---
+
+<article>
+  <nav class="toc">
+    <div>دسترسی سریع</div>
+    <ul>
+      <li>
+        <a href="#p0">بررسی دستور cp</a>
+      </li>
+      <li>
+        <a href="#p1">خلاصه</a>
+      </li>
+    </ul>
+  </nav>
+
+  <section id="p0">
+    <h2>بررسی دستور cp</h2>
+    <p>از دستور cp در لینوکس برای کپی کردن یک فایل از طریق ترمینال استفاده می کنیم؛ cp مخفف کلمه ی <strong>copy</strong>
+      است.</p>
+
+
+    <p>فرم کلی:</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Shell">
+cp "path_to_source_file" "path_to_destination_file"
+        </pre>
+      </div>
+    </div>
+
+    <p>در بالا آرگومان اول مسیر فایل مبدا است و آرگومان دوم مسیر فایل مقصد.</p>
+
+    <div class="note">
+      <p class="note-head">توجه</p>
+      <p>برای کپی کردن فایل های موجود در روت یا کپی کردن فایل ها به مسیر های روت توسط cp، هنگام استفاده از cp باید به
+        روت دسترسی داشته باشیم.</p>
+    </div>
+
+    <p>با استفاده از پارامتر <strong>t</strong> میتونیم مسیر یک پوشه رو آشکارا به عنوان مقصد تعیین کنیم.</p>
+
+    <p>فرض کنید میخوایم چندتا فایل رو به یک پوشه کپی کنیم:</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Shell">
+cp "path_to_file0" "path_to_file1"  "path_to_file2" -t "path_to_destination_directory"
+        </pre>
+      </div>
+    </div>
+
+    <p>میتونیم مسیر پوشه ی مقصد رو هر جا که t رو تعریف کردیم، تعریف کنیم.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Shell">
+cp -t "path_to_destination_directory" "path_to_file0" "path_to_file1"  "path_to_file2" 
+        </pre>
+      </div>
+    </div>
+
+    <p>اگه بخوایم یک پوشه رو با تمام محتوای داخلش به به یک پوشه ی دیگه کپی کنیم از آرگومان <strong>r</strong> استفاده می
+      کنیم.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Shell">
+cp -r "path_to_source_directory" "path_to_destination_directory"
+        </pre>
+      </div>
+    </div>
+
+    <p>میتونیم هنگام کپی کردن یک پوشه به پوشه ی دیگه میتونیم مسیر پوشه ی مقصد رو به صورت آشکارا تعریف کنیم:</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Shell">
+cp -rt "path_to_destination_directory" "path_to_source_directory" 
+        </pre>
+      </div>
+    </div>
+
+    <p>دستور mv از regex پشتیبانی میکنه؛ فرض کنید میخوایم تمام فایل ها با پسوند <strong>.extension</strong> در مسیر
+      <strong>/home/username/myDir</strong> کپی کنیم.
+    </p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Shell">
+cp "/home/username/myDir/*.extension" -t "path_to_destination_directory"
+        </pre>
+      </div>
+    </div>
+  </section>
+
+  <section id="p1">
+    <h2>خلاصه</h2>
+    <ul>
+      <li>
+        دستور cp در لینوکس مخفف copy است و ازش برای کپی کردن فایل ها توسط ترمینال استفاده می کنیم.
+      </li>
+      <li>
+        برای کپی کردن یک پوشه به پوشه ی دیگه با cp از پارامتر r استفاده می کنیم.
+      </li>
+    </ul>
+  </section>
+
+</article>
+
+{% capture links %}
+<li>
+  <a href="/post/linux/introduction.html">معرفی لینوکس</a>
+</li>
+<li>
+  <a href="/post/linux/remove.html">دستور rm در لینوکس</a>
+</li>
+
+<li>
+  <a href="/post/linux/move.html">دستور mv در لینوکس</a>
+</li>
+<li>
+  <a href="/post/linux/list-directory-contents.html">دستور ls در لینوکس</a>
+</li>
+
+{% endcapture %}
+
+{% include article-foot.html relative_links = links %}
