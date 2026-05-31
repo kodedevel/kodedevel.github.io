@@ -79,3 +79,26 @@ mkdir -m "ugo=r" "/home/username/myDir0/myDir1"
   </section>
 
 </article>
+
+
+{% capture links %}
+<li>
+  <a href="/post/linux/introduction.html">معرفی لینوکس</a>
+</li>
+<li>
+  <a href="/post/linux/copy.html">دستور cp در لینوکس</a>
+</li>
+
+<li>
+  <a href="/post/linux/remove.html">دستور rm در لینوکس</a>
+</li>
+<li>
+  <a href="/post/linux/move.html">دستور mv در لینوکس</a>
+</li>
+<li>
+  <a href="/post/linux/list-directory-contents.html">دستور ls در لینوکس</a>
+</li>
+
+{% endcapture %}
+
+{% include article-foot.html relative_links = links %}
