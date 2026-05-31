@@ -15,7 +15,7 @@
       "description": "با استفاده از دستور echo در لینوکس قادر به چاپ متن در ترمینال یا افزودن متن به یک فایل متنی خواهیم بود.",
       "datePublished": "2026-05-31",
       "lastModified": "",
-      "imgCoveer": "/resources/image/linux/cover_echo.png",
+      "imgCover": "/resources/image/linux/cover_echo.png",
       "link": "/post/linux/echo.html"
     },
     {
@@ -39,7 +39,7 @@
       "description": "از دستور rm در لینوکس برای پاک کردن فایل ها از طریق ترمینال استفاده می کنیم و مخفف remove است.",
       "datePublished": "2026-05-31",
       "lastModified": "",
-      "imgCoveer": "/resources/image/linux/cover_rm.png",
+      "imgCover": "/resources/image/linux/cover_rm.png",
       "link": "/post/linux/remove.html"
     },
     {
