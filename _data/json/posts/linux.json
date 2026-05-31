@@ -57,6 +57,14 @@
       "lastModified": "",
       "imgCover": "/resources/image/linux/cover_mv.png",
       "link": "/post/linux/move.html"
+    },
+    {
+      "title": "دستور mkdir در لینوکس",
+      "description": "از دستور mkdir در لینوکس برای ساخت پوشه توسط ترمینال استفاده می کنیم؛ mkdir مخفف make directory است.",
+      "datePublished": "2026-05-31",
+      "lastModified": "",
+      "imgCover": "/resources/image/linux/cover_mkdir.png",
+      "link": "/post/linux/make-directory.html"
     }
   ]
 }
