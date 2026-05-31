@@ -1,0 +1,81 @@
+---
+layout: default
+---
+
+<article>
+  <nav class="toc">
+    <div>دسترسی سریع</div>
+    <ul>
+      <li>
+        <a href="#p0">بررسی دستور mkdir</a>
+      </li>
+      <li>
+        <a href="#p1">خلاصه</a>
+      </li>
+    </ul>
+  </nav>
+
+  <section id="p0">
+    <h2>بررسی دستور mkdir</h2>
+
+    <p>از دستور mkdir در لینوکس برای ساخت پوشه توسط ترمینال استفاده می کنیم؛ mkdir مخفف make directory است.</p>
+
+    <p>فرم کلی:</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Shell">
+mkdir "directory_name"
+        </pre>
+      </div>
+    </div>
+
+
+    <p>اگه بخوایم تو یک مسیر متفاوت از مسیری که در ترمینال هستیم پوشه ایجاد کنیم باید مسیر رو کامل نوشته و سپس نام پوشه
+      ای که میخوایم بسازیم رو بنویسیم.</p>
+
+    <p>فرض کنید میخوایم یک پوشه به نام <strong>myDir‍1</strong> در مسیر <strong>/home/username/myDir0</strong> ایجاد
+      کنیم.</p>
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Shell">
+mkdir "/home/username/myDir0/myDir1"
+        </pre>
+      </div>
+    </div>
+
+    <p>میتونیم از آرگومان <strong>p</strong> استفاده کنیم تا پوشه هایی که در مسیر وجود ندارن هم ایجاد بشن؛در مثال قبل
+      فرض کنید پوشه ی <strong>myDir0</strong> نیز وجود نداره.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Shell">
+mkdir -p "/home/username/myDir0/myDir1"
+        </pre>
+      </div>
+    </div>
+
+    <p>میتونیم هنگام ساخت پوشه سه حالت خوندن، نوشتن و اجرا شدن رو برای پوشه ای که ساخته میشه تعیین کنیم.</p>
+
+    <p>در زیر سطح دسترسی پوشه ای که میسازیم رو برای سه گروه user, group و other به read محدود کردیم.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Shell">
+mkdir -m "ugo=r" "/home/username/myDir0/myDir1"
+        </pre>
+      </div>
+    </div>
+
+  </section>
+
+  <section id="p1">
+    <h2>خلاصه</h2>
+    <ul>
+      <li>
+        از دستور mkdir در لینوکس برای ساخت پوشه ی جدید توسط ترمینال استفاده میکنیم؛ mkdir مخفف make directory است.
+      </li>
+    </ul>
+  </section>
+
+</article>
