@@ -19,7 +19,6 @@ function initSubjectItems() {
     itemHead.firstChild.innerHTML = "arrow_left";
 
     itemHead.addEventListener("click", function () {
-      console.log("clicked");
       var content = this.nextElementSibling;
       var itemHeadIcon = this.firstElementChild;
 
