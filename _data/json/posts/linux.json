@@ -65,6 +65,14 @@
       "lastModified": "",
       "imgCover": "/resources/image/linux/cover_mkdir.png",
       "link": "/post/linux/make-directory.html"
+    },
+    {
+      "title": "دستور dd در لینوکس",
+      "description": "با استفاده از دستور dd در لینوکس میتونیم یک فایل رو کپی کنیم، فرمت فایل رو تغییر بدیم، یا فایل های سیستمی رو فرمت کنیم.",
+      "datePublished": "2026-06-02",
+      "lastModified": "",
+      "imgCover": "/resources/image/linux/cover_dd.png",
+      "link": "/post/linux/data-definition.html"
     }
   ]
 }
