@@ -1,0 +1,154 @@
+---
+layout: default
+---
+
+<article>
+  <nav class="toc">
+    <div>دسترسی سریع</div>
+    <ul>
+      <li>
+        <a href="#p0">بررسی دستور dd</a>
+      </li>
+      <li>
+        <a href="#p1">خلاصه</a>
+      </li>
+    </ul>
+  </nav>
+
+  <section id="p0">
+    <h2>بررسی دستور dd</h2>
+
+    <p>با استفاده از dd میتونیم یک فایل رو کپی کنیم، به یک فرمت دیگه تبدیل کنیم، فایل های سیستمی (پارتیشن
+      های
+      فلش مموری، هارد دیسک و...) رو فرمت کنیم؛ دستور dd در لینوکس مخفف <strong>data definition</strong> است.</p>
+
+    <p></p>
+
+    <p>فرم کلی:</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Shell">
+dd if="path_to_source_file" of="path_to_destination_file"
+        </pre>
+      </div>
+    </div>
+
+    <p>در بالا مقدار <strong>if</strong> مسیر فایل مبدأ است و مقدار <strong>of</strong> مسیر مقصد یعنی جاییه که فایل
+      میخوایم کپی بشه یا اصطلاحا مسیر خروجیمونه.</p>
+
+    <p>آرگومان if مخفف <strong>input file</strong> و آرگومان of مخفف <strong>output file</strong> است.</p>
+
+
+    <p>اگه اندازه ی فایل بزرگ باشه میتونیم از آرگومان <strong>bs</strong> استفاده کنیم که مخفف <strong>buffered
+        size</strong> است؛ این آرگومان، مقداری که در حین انجام عملیات هر سری از فایل مبدأ میخونه و در فایل مبدأ می نویسه
+      رو مشخص می کنه. (مقدار پیشفرض 512 بایت است). </p>
+
+    <p>در مثال زیر مقدار bs رو برابر 2 مگابایت قرار دادیم.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Shell">
+dd if="path_to_source_file" of="path_to_destination_file" bs=2M
+        </pre>
+      </div>
+    </div>
+
+    <p>با آرگومان status میتونیم از روند کپی با خبر بشیم.</p>
+
+    <p>آرگومان status دارای سه مقدار <strong>none</strong>، <strong>noxfer</strong> و <strong>progress</strong> است که
+      none فقط پیغام های خطا رو نمایش میده، noxfer وضعیت کپی بعد از پایان کار رو نمایش میده و progress روند کپی حین
+      انجام کپی رو نمایش میده.</p>
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Shell">
+dd if="path_to_source_file" of="path_to_destination_file" bs=1M status=progress
+        </pre>
+      </div>
+    </div>
+
+    <p>با استفاده از آرگومان <strong>iflag</strong> و آرگومان <strong>oflag</strong> میتونیم مقادیر ثابتی رو که در dd
+      وجود دارن رو به ترتیب برای if (input file) و of (output file) تعریف کنیم.</p>
+
+    <p>در مثال زیر مقادیر nonblock و sync رو برای iflag و oflag تعریف کردیم.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Shell">
+dd if="path_to_source_file" of="path_to_destination_file" bs=4M status=progress iflag=nonblock,sync oflag=nonblock,sync
+        </pre>
+      </div>
+    </div>
+
+    <p>مقادیر ثابت مختلفی برای oflag و iflag وجود دارن که در مثال قبل به دوتا از اونا پرداختیم.</p>
+
+
+    <section>
+      <h3>تغییر فرمت یک فایل</h3>
+      <p>برای تغییر فرمت یک فایل با دستور dd کافیه پسوند فایل رو در مسیر مقصد تغییر بدیم.</p>
+
+      <p>فرض کنید یک فایل ویدیویی با پسوند mp4 در مسیر <strong dir="ltr">/home/username/myVideo.mp4</strong> داریم و
+        فرمتشو به mkv
+        تغییر بدیم.</p>
+
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Shell">
+dd if="/home/username/myVideo.mp4" of="/home/username/myVideo.mkv" bs=4096 status=progress iflag=sync,nonblock oflag=sync,nonblock
+        </pre>
+        </div>
+      </div>
+
+    </section>
+
+
+    <section>
+      <h3>فرمت فایل های سیستمی</h3>
+      <p>برای فرمت فایل های سیستمی (پارتیشن های فلش مموری، هارد دیسک و...) با استفاده از dd در لینوکس یک مسیر پیش فرض
+        <strong dir="ltr">/dev/zero</strong> در لینوکس وجود داره که
+        به عنوان مقدار آرگومان if قرار میدیم و مسیر پارتیشن مورد نظر رو به عنوان مقدار of قرار میدیم.
+      </p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Shell">
+dd if="/dev/zero" of="path_to_partition" bs=2M status=progress iflag=sync oflag=sync
+          </pre>
+        </div>
+      </div>
+    </section>
+
+  </section>
+
+  <section id="p1">
+    <h2>خلاصه</h2>
+    <ul>
+      <li>با استفاده از دستور dd در لینوکس میتونیم یک فایل رو کپی کنیم، فرمت فایل رو تغییر بدیم و یا فایل های سیستمی رو
+        فرمت کنیم؛ دستور dd مخفف data definition است.</li>
+      <li>با استفاده از آرگومان bs میتونیم مقداری که هرسری از فایل میخونه و در فایل مینویسه رو تعیین کنیم.
+      </li>
+      <li>با استفاه از آرگومان status میتونیم روند پیشرفت عملیات رو ببینیم.</li>
+    </ul>
+  </section>
+
+</article>
+
+{% capture links %}
+<li>
+  <a href="/post/linux/introduction.html">معرفی لینوکس</a>
+</li>
+<li>
+  <a href="/post/linux/remove.html">دستور rm در لینوکس</a>
+</li>
+
+<li>
+  <a href="/post/linux/copy.html">دستور cp در لینوکس</a>
+</li>
+<li>
+  <a href="/post/linux/list-directory-contents.html">دستور ls در لینوکس</a>
+</li>
+
+{% endcapture %}
+
+{% include article-foot.html relative_links = links %}
