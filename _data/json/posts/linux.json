@@ -73,6 +73,14 @@
       "lastModified": "",
       "imgCover": "/resources/image/linux/cover_dd.png",
       "link": "/post/linux/data-definition.html"
+    },
+    {
+      "title": "دستور fdisk در لینوکس",
+      "description": "با استفاده از دستور fdisk در لینوکس می تونیم حافظه ها و پارتیشن های شناسایی شده توسط سیستم عامل رو ببینیم و همچنین میتونیم یک حافظه ی دائمی رو پارتیشن بندی کنیم؛ fdisk مخفف fixed disk است.",
+      "datePublished": "2026-06-03",
+      "lastModified": "",
+      "imgCover": "/resources/image/linux/cover_fdisk.png",
+      "link": "/post/linux/fixed-disk.html"
     }
   ]
 }

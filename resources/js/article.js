@@ -15,7 +15,7 @@ const digit = /(?<![^\s,(]|(\w\s))\d+(?![\w\d]|[^\s),;]{1})/g;
 const annotation = /(?<![^\s]{1})@[A-Z]{1}[a-zA-Z\d]*/g;
 const comment = /(?<!(http{1}.*))\/\/.*/g;
 const shellCommands =
-  /(?<!([^\s,(}]{1}|\/\/.*))(echo|ls|cd|rm|cp|mv|mkdir|dd|chmod|mount|umount|mkfs|mk2fs|mkfs.ext4|mkfs.ntfs)(?![\w\d]|[^\s)\{\(;]{1})/g;
+  /(?<!([^\s,(}]{1}|\/\/.*))(echo|ls|cd|rm|cp|mv|mkdir|dd|fdisk|chmod|mount|umount|mkfs|mk2fs|mkfs.ext4|mkfs.ntfs)(?![\w\d]|[^\s)\{\(;]{1})/g;
 
 const codeContainerList = document.querySelectorAll(".sample");
 
