@@ -1,0 +1,206 @@
+---
+layout: default
+---
+
+<article>
+  <nav class="toc">
+    <div>دسترسی سریع</div>
+    <ul>
+      <li>
+        <a href="#p0">بررسی دستور fdisk</a>
+      </li>
+      <li>
+        <a href="#p1">کار در محیط fdisk</a>
+      </li>
+      <li>
+        <a href="#p2">خلاصه</a>
+      </li>
+    </ul>
+  </nav>
+
+  <section id="p0">
+    <h2>بررسی دستور fdisk</h2>
+
+    <p>حافظه های دائمی مثل فلش مموری، هارد و ... میتونن به چند قسمت تقسیم بشن و هر قسمت بخشی از حجم حافظه رو در بر
+      میگیره؛ به هرکدوم از این قسمت ها پارتیشن میگیم.</p>
+    <p>با استفاده از دستور <strong>fdisk</strong> در لینوکس میتونیم حافظه های دائمی با پارتیشن هاشون که توسط سیستم عامل
+      شناسایی شدن رو ببینم و همچنین یک حافظه ی دائمی رو پارتیشن بندی کنیم؛ fidks مخفف <strong>fixed disk</strong> است.
+    </p>
+
+    <div class="note">
+      <p class="note-head">توجه</p>
+      <p>برای اجرای دستور fdisk در لینوکس نیاز به دسترسی روت داریم.</p>
+    </div>
+
+    <p>برای دیدن لیست حافظه ها و پارتیشن های موجود در سیستم عامل از پارامتر <strong>l</strong> استفاده می کنیم.
+    </p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Shell">
+sudo fisk -l
+        </pre>
+      </div>
+    </div>
+
+    <p>برای باز کردن یک حافظه ی دائمی با fdisk کافیه مسیر حافظه ی دائمی رو به عنوان آرگومان fdisk بنویسیم؛ معمولا حافظه
+      های دائمی شناسایی شده توسط لینوکس در مسیر <strong dir="ltr">/dev/</strong> قرار داده میشن.</p>
+
+    <p>فرض کنید حافظه ای که میخوایم با fdisk پارتیشن بندی کنیم در مسیر <strong dir="ltr">/dev/sdb</strong> قرار داره.
+    </p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Shell">
+sudo fdisk "/dev/sdb"
+        </pre>
+      </div>
+    </div>
+
+  </section>
+  <section id="p1">
+    <h2>کار در محیط fdisk</h2>
+
+    <p>در محیط fdisk میتونیم یک لیست از پارتیشن های مربوط به حافظه بگیریم، پارتیشن های ایجاد شده برای حافظه رو حذف کنیم،
+      پارتیشن جدید ایجاد کنیم و نوع پارتیشن های ایجاد شده رو تعیین کنیم.</p>
+
+    <div class="note">
+      <p class="note-head">توجه</p>
+      <p>برای کار در محیط fdisk، بهتره پارتیشن های حافظه رو umount کنیم.</p>
+    </div>
+
+
+    <p>در مثال های پیش رو از یک فلش مموری 4 گیگابایتی استفاده کرده ایم.</p>
+
+    <section>
+      <h3>چاپ یک لیست از پارتیشن های حافظه در محیط fdisk</h3>
+      <p>هنگامی که وارد محیط fdisk شدیم با نوشتن کلمه ی <strong>p</strong> و اینتر میتونیم یک لیست از پارتیشن های مرتبط
+        با
+        حافظه رو بگیریم.</p>
+
+      <figure>
+        <img src="/resources/image/linux/fdisk_print_list_partition_tables.png"
+          alt="لیست پارتیشن های مربوط به یک حافظه در محیط fdisk">
+        <figcaption>لیست پارتیشن های مربوط به یک حافظه در محیط fdisk</figcaption>
+      </figure>
+
+    </section>
+
+
+    <section>
+      <h3>حذف پارتیشن های حافظه در محیط fdisk</h3>
+      <p>برای حذف یک پارتیشن حرف <strong>d</strong> رو نوشته و اینتر میزنیم سپس شماره ی مربوط به پارتیشنی که میخوایم حذف
+        بشه رو نوشته و
+        دوباره اینتر میزنیم.</p>
+
+      <figure>
+        <img src="/resources/image/linux/fdisk_delete_partitions.png" alt="حذف پارتیشن های حافظه در محیط fdisk">
+        <figcaption>حذف پارتیشن های حافظه در محیط fdisk</figcaption>
+      </figure>
+
+    </section>
+
+    <section>
+      <h3>ایجاد پارتیشن جدید در محیط fdisk</h3>
+
+      <p>برای ایجاد یک پارتیشن در محیط fdisk حرف <strong>n</strong> رو نوشته و اینتر میزنیم، سپس سکتور
+        <strong>(sector)</strong> شروع حافظه رو
+        نوشته
+        (از کجای حافظه پارتیشن شروع بشه) که معمولا مقدار پیش فرض رو قبول میکنیم و فقط اینتر میزنیم و در نهایت sector
+        پایانی رو می نویسیم یا مقداری از حافظه که پارتیشن قراره اشغال کنه رو بجای سکتور پایانی مستقیم نوشته و اینتر
+        میزنیم.
+      </p>
+
+      <p>اگه بخوایم بجای سکتور طول پارتیشن رو مستقیم با مقداری مشخص تعیین کنیم، مقداری ک پارتیشن قراره از حافظه رو اشغال
+        کنه با <strong dir="ltr">+nG</strong> می نویسیم.</p>
+
+      <p>طول پارتیشن برابره با <strong dir="ltr">(second sector) - (first sector)</strong> یا مقداری که به عنوان فضا به
+        پارتیشن
+        اختصاص دادیم مثلا <strong>+2G</strong> و علامت + حتما باید نوشته بشه.</p>
+
+      <div class="note">
+        <p class="note-head">
+          توجه
+        </p>
+        <p>طول پارتیشن نباید از اخرین سکتور حافظه بیشتر باشه یا از فضای باقی مونده ی حافظه بیشتر باشه.</p>
+
+      </div>
+
+      <p>در نهایت اگه قبلا پارتیشن با فرمت به خصوصی وجود داشته باشه ازمون میپرسه که آیا مایلید امضا رو حذف کنید که باید
+        Y
+        بنویسیم و اینتر بزنیم.</p>
+
+      <figure>
+        <img src="/resources/image/linux/fdisk_create_new_partition.png" alt="ایجاد پارتیشن جدید در محیط fdsik">
+        <figcaption>ایجاد پارتیشن جدید در محیط fdsik</figcaption>
+      </figure>
+
+    </section>
+
+
+    <section>
+      <h3>تعیین نوع پارتیشن در محیط fdisk</h3>
+      <p>میتونیم با نوشتن <strong>t</strong> نوع پارتیشن هایی که ایجاد کردیم رو مشخص کنیم (ext4, ntfs, fat-32, ...).</p>
+
+      <p>ابتدا حرف t رو می نویسیم و اینتر می زنیم سپس شماره ی پارتیشن مورد نظر رو نوشته و در نهایت عدد (هگزادسیمال)
+        مربوط به نوعی که میخوایم پارتیشن باشه رو می نویسیم.</p>
+
+      <p>برای فهمیدن شماره ی نوع مورد نظر بعد از نوشتن t حرف <strong>L</strong> رو می نویسیم.</p>
+
+
+      <figure>
+        <img src="/resources/image/linux/fdisk_change_partition_type.png"
+          alt="تغییر نوع پارتیشن ایجاد شده در محیط fdisk">
+        <figcaption>تغییر نوع پارتیشن ایجاد شده در محیط fdisk</figcaption>
+      </figure>
+
+    </section>
+
+
+    <section>
+      <h3>خروج از محیط fdisk</h3>
+
+      <p>بعد از انجام تغییرات برای اینکه روی حافظه اعمال بشه با نوشتن <strong>w</strong> و زدن اینتر از محیط خارج میشیم.
+      </p>
+      <p>اگه نخوایم تغییرات اعمال بشه با <strong>q</strong> از محیط خارج میشیم.</p>
+
+      <figure>
+        <img src="/resources/image/linux/fdisk_save_and_quit.png" alt="ذخیره ی تغییرات و خروج از محیط fdisk">
+        <figcaption>ذخیره ی تغییرات و خروج از محیط fdisk</figcaption>
+      </figure>
+
+    </section>
+  </section>
+
+
+  <section id="p2">
+    <h2>خلاصه</h2>
+    <ul>
+      <li>
+        از دستور fdisk برای دیدن لیستی از حافظه های شناسایی شده توسط سیستم عامل و یا پارتیشن بندی یک حافظه ی دائمی
+        استفاده می کنیم؛ fdisk مخفف fixed disk است.
+      </li>
+      <li>
+        از آرگومان l برای دیدن یک لیست از حافظه ها و پارتیشن های شناسایی شده توسط سیستم عامل استفاده می کنیم.
+      </li>
+      <li>
+        برای ورود به محیط fdisk نام fdisk رو نوشته و مسیر حافظه ای که میخوایم پارتیشن بندی کنیم رو به عنوان آرگومان می
+        نویسیم.
+      </li>
+      <li>هنگام پارتیشن بندی یک حافظه توسط fdisk، اون حافظه باید umount (خارج) شده باشه.</li>
+    </ul>
+  </section>
+
+</article>
+
+{% capture links %}
+<li>
+  <a href="/post/linux/introduction.html">معرفی لینوکس</a>
+</li>
+<li>
+  <a href="/post/linux/data-definition.html">دستور data definition در لینوکس</a>
+</li>
+
+{% endcapture %}
+
+{% include article-foot.html relative_links = links %}
