@@ -51,8 +51,9 @@ layout: default
   <section id="p1">
     <h2>ساخت فایل های سیستمی</h2>
 
-    <p>فایل های سیستمی انواع مختلفی دارن، برای ساخت فایل های سیستمی در لینوکس، از <strong dir="ltr">mkfs.+</strong>
-      استفاده می کنیم و بجای + نوع فایل سیستمی که
+    <p>فایل های سیستمی انواع مختلفی دارن، برای ساخت فایل های سیستمی در لینوکس، از <strong
+        dir="ltr">mkfs.&lt;type&gt;</strong>
+      استفاده می کنیم و بجای type نوع فایل سیستمی که
       میخوایم بسازیم
       رو می نویسیم و سپس از آرگومان <strong>L</strong> برای تعریف لیبل فایل سیستمی استفاده کرده و در نهایت مسیر پارتیشن
       مورد
@@ -63,12 +64,17 @@ layout: default
       <p>برای ساخت فایل های سیستمی در لینوکس نیاز به دسترسی روت داریم.</p>
     </div>
 
+    <div class="note">
+      <p class="note-head">توجه</p>
+      <p>ساخت فایل های سیستمی باعث از دست رفتن داده های فعلی در پارتیشن میشه.</p>
+    </div>
+
     <p>فرم کلی:</p>
 
     <div class="sample">
       <div class="snippet-container">
         <pre class="snippet Shell">
-sudo mkfs.+ -L "My volume" "path_to_partition"
+sudo mkfs.&lt;type&gt; -L "My volume" "path_to_partition"
         </pre>
       </div>
     </div>
@@ -80,7 +86,7 @@ sudo mkfs.+ -L "My volume" "path_to_partition"
     <div class="sample">
       <div class="snippet-container">
         <pre class="snippet Shell">
-sudo mkfs.ext4 -L "My ext4 volume" path_to_partition
+sudo mkfs.ext4 -L "My ext4 volume" "path_to_partition"
           </pre>
       </div>
     </div>
@@ -92,7 +98,7 @@ sudo mkfs.ext4 -L "My ext4 volume" path_to_partition
     <div class="sample">
       <div class="snippet-container">
         <pre class="snippet Shell">
-sudo mkfs.ext3 -L "My ext3 volume" path_to_partition
+sudo mkfs.ext3 -L "My ext3 volume" "path_to_partition"
           </pre>
       </div>
     </div>
@@ -104,7 +110,7 @@ sudo mkfs.ext3 -L "My ext3 volume" path_to_partition
     <div class="sample">
       <div class="snippet-container">
         <pre class="snippet Shell">
-sudo mkfs.ntfs -L "My ntfs volume" path_to_partition
+sudo mkfs.ntfs -L "My ntfs volume" "path_to_partition"
           </pre>
       </div>
     </div>
@@ -116,7 +122,7 @@ sudo mkfs.ntfs -L "My ntfs volume" path_to_partition
     <div class="sample">
       <div class="snippet-container">
         <pre class="snippet Shell">
-sudo mkfs.vfat -L "My ntfs volume" path_to_partition
+sudo mkfs.vfat -L "My fat volume" "path_to_partition"
           </pre>
       </div>
     </div>
