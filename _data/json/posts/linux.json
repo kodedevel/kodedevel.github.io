@@ -81,6 +81,14 @@
       "lastModified": "",
       "imgCover": "/resources/image/linux/cover_fdisk.png",
       "link": "/post/linux/fixed-disk.html"
+    },
+    {
+      "title": "ساخت فایل های سیستمی در لینوکس",
+      "description": "فایل های سیستمی امکان دسترسی برنامه های سیستم عامل رو به محتوای داخل حافظه های دائمی داده و محتوای داخل حافظه های دائمی رو مدیریت و سازماندهی میکنن؛ در این مطلب به تعریف فایل های سیستمی و ساخت این فایل ها در لینوکس می  پردازیم.",
+      "datePublished": "2026-06-03",
+      "lastModified": "",
+      "imgCover": "/resources/image/linux/cover_mkfs.png",
+      "link": "/post/linux/make-filesystem.html"
     }
   ]
 }
