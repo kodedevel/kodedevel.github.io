@@ -1,0 +1,152 @@
+---
+layout: default
+---
+
+<article>
+  <nav class="toc">
+    <div>دسترسی سریع</div>
+    <ul>
+      <li>
+        <a href="#p0">تعریف فایل های سیستمی</a>
+      </li>
+      <li>
+        <a href="#p1">ساخت فایل های سیستمی</a>
+      </li>
+      <li>
+        <a href="#p2">خلاصه</a>
+      </li>
+    </ul>
+  </nav>
+
+  <section id="p0">
+    <h2>تعریف فایل های سیستمی</h2>
+
+    <p>فایل های سیستمی <strong>(filesystems)</strong> امکان دسترسی برنامه های سیستم عامل به محتوای حافظه های دائمی رو
+      داده
+      و محتوای داخل حافظه های
+      دائمی رو مدیریت و سازماندهی میکنن.</p>
+    <p>علاوه بر این فایل های سیستمی اطلاعات فایل های ذخیره شده در حافظه رو به صورت <strong>metadata</strong> و به طور
+      جداگونه مدیریت.</p>
+    <p>اطلاعاتی از قبیل:</p>
+    <ul>
+      <li>اندازه ی فایل</li>
+      <li>زمان ایجاد</li>
+      <li>زمان اخرین تغییرات</li>
+      <li>زمان اخرین دسترسی به فایل</li>
+      <li>سطح دسترسی به فایل (خوندن، نوشتن و اجرا کردن)</li>
+      <li>مالک فایل (کاربر یا گروه)</li>
+    </ul>
+
+    <p>هنگامی که یک فایل سیستمی ساخته بشه کافیه داخل سیستم عامل mount بشه، تا توسط برنامه های سیستم عامل مثل فایل منیجیر
+      ها در دسترس کاربر قرار بگیره.</p>
+
+    <p>به طور معمول از <a href="fixed-disk.html#p1">پارتیشن</a> های ایجاد شده در حافظه های دائمی، فایل های سیستمی رو می
+      سازیم.</p>
+
+  </section>
+
+  <section id="p1">
+    <h2>ساخت فایل های سیستمی</h2>
+
+    <p>فایل های سیستمی انواع مختلفی دارن، برای ساخت فایل های سیستمی در لینوکس، از <strong dir="ltr">mkfs.+</strong>
+      استفاده می کنیم و بجای + نوع فایل سیستمی که
+      میخوایم بسازیم
+      رو می نویسیم و سپس از آرگومان <strong>L</strong> برای تعریف لیبل فایل سیستمی استفاده کرده و در نهایت مسیر پارتیشن
+      مورد
+      نظر رو به عنوان آرگومان دوم تعریف می کنیم.</p>
+
+
+    <p>فرم کلی:</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Shell">
+sudo mkfs.+ -L "My volume" "path_to_partition"
+        </pre>
+      </div>
+    </div>
+
+
+    <p>مثال</p>
+
+    <p>میخوایم یک فایل سیستمی از نوع ext4 ایجاد کنیم.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Shell">
+sudo mkfs.ext4 -L "My ext4 volume" path_to_partition
+          </pre>
+      </div>
+    </div>
+
+    <p>مثال</p>
+
+    <p>میخوایم یک فایل سیستمی از نوع ext3 ایجاد کنیم.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Shell">
+sudo mkfs.ext3 -L "My ext3 volume" path_to_partition
+          </pre>
+      </div>
+    </div>
+
+    <p>مثال</p>
+
+    <p>میخوایم یک فایل سیستمی ntfs ایجاد کنیم.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Shell">
+sudo mkfs.ntfs -L "My ntfs volume" path_to_partition
+          </pre>
+      </div>
+    </div>
+
+    <p>مثال</p>
+
+    <p>میخوایم یک فایل سیستمی vfat ایجاد کنیم.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Shell">
+sudo mkfs.vfat -L "My ntfs volume" path_to_partition
+          </pre>
+      </div>
+    </div>
+
+  </section>
+
+  <section id="p2">
+    <h2>خلاصه</h2>
+    <ul>
+      <li>
+        فایل های سیستمی امکان دسترسی برنامه های سیستم عامل به محتوای حافظه های دائمی رو میدن.
+      </li>
+      <li>
+        فایل های سیستمی قابلیت مدیریت metadata هر فایل رو به صورت جداگونه
+        دارن.
+      </li>
+      <li>
+        انواع فایل های سیستمی داریم از جمله ext4, ext3, ext2, ntfs, fat و ... .
+      </li>
+    </ul>
+  </section>
+</article>
+
+{% capture links %}
+<li>
+  <a href="/post/linux/introduction.html">معرفی لینوکس</a>
+</li>
+<li>
+  <a href="/post/linux/fixed-disk.html">دستور fdisk در لینوکس</a>
+</li>
+<li>
+  <a href="/post/linux/data-definition.html">دستور dd در لینوکس</a>
+</li>
+<li>
+  <a href="https://en.wikipedia.org/wiki/File_system">مطالعه در ویکی پدیا انگلیسی</a>
+</li>
+{% endcapture %}
+
+{% include article-foot.html relative_links = links %}
