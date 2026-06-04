@@ -89,6 +89,22 @@
       "lastModified": "",
       "imgCover": "/resources/image/linux/cover_mkfs.png",
       "link": "/post/linux/make-filesystems.html"
+    },
+    {
+      "title": "دستور mount در لینوکس",
+      "description": "با استفاده از دستور mount در لینوکس میتونیم فایل های سیستمی (پارتیشن ها، فایل های iso و ...) رو داخل یک پوشه وارد کنیم، در این مطلب به دستور mount و بعضی از ویژگی های آن پرداخته ایم.",
+      "datePublished": "2026-06-04",
+      "lastModified": "",
+      "imgCover": "/resources/image/linux/cover_mount.png",
+      "link": "/post/linux/mount.html"
+    },
+    {
+      "title": "دستور umount در لینوکس",
+      "description": "با استفاده از دستور umount در لینوکس میتونیم فایل های سیستمی وارد (mount) شده رو خارج (umount) کنیم.",
+      "datePublished": "2026-06-04",
+      "lastModified": "",
+      "imgCover": "/resources/image/linux/cover_umount.png",
+      "link": "/post/linux/umount.html"
     }
   ]
 }
