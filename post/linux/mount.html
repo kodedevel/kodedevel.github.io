@@ -1,0 +1,161 @@
+---
+layout: default
+---
+
+<article>
+  <nav class="toc">
+    <div>دسترسی سریع</div>
+    <ul>
+      <li>
+        <a href="#p0">بررسی دستور mount</a>
+      </li>
+      <li>
+        <a href="#p1">خلاصه</a>
+      </li>
+    </ul>
+  </nav>
+
+  <section id="p0">
+    <h2>بررسی دستور mount</h2>
+    <p>با استفاده از دستور <strong>mount</strong> در لینوکس میتونیم <a href="make-filesystems.html">فایل های سیستمی</a>
+      (<a href="fixed-disk.html#p1">پارتیشن ها</a>، فایل های <strong>iso</strong> و ...)
+      رو
+      داخل یک پوشه وارد (mount) کنیم.</p>
+
+    <p>فرم کلی:</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Shell">
+mount -t &lt;filesystem_type&gt; "path_to_filesystem" "path_to_mount_point_directory"
+        </pre>
+      </div>
+    </div>
+
+    <p>در بالا با استفاده از آرگومان <strong>t</strong> نوع فایل سیستمی که میخوایم mount کنیم رو مشخص می کنیم؛
+      <strong>path_to_filesystem</strong> مسیر فایل سیستمی مورد نظر است و <strong>path_to_mount_point_directory</strong>
+      مسیر
+      پوشه ای است
+      که میخوایم پارتیشن mount بشه.
+    </p>
+
+    <div class="note">
+      <p class="note-head">توجه</p>
+      <p> برای mount کردن پارتیشن ها معمولا نیاز به دسترسی روت داریم.</p>
+    </div>
+
+    <p>به پوشه ای که فایل سیستمی رو داخلش mount میکنیم، <strong>mount point</strong> میگیم.</p>
+
+    <p>اطلاعات فایل های mount شده در <strong dir="ltr">/proc/self/mountinfo</strong> ایجاد میشن.</p>
+
+    <section>
+
+      <h3>آرگومان o</h3>
+
+      <p>با استفاده از آرگومان <strong>o</strong> می تونیم یک سری ویژگی ها رو برای mount point تعریف کنیم؛ این آرگومان
+        ابتدای کلمه ی <strong>options</strong> است.</p>
+
+      <p>اگه بخوایم فایلمون در جایی که mount میشه قابل خوندن و نوشتن باشه از <strong>rw</strong> استفاده می کنیم.</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Shell">
+mount -t &lt;filesystem_type&gt; -o rw "path_to_filesystem" "path_to_mount_point_directory"
+        </pre>
+        </div>
+      </div>
+
+      <p>اگه بخوایم فایل فقط قابل خوندن <strong>(read-only)</strong> باشه از <strong>ro</strong> استفاده میکنیم.</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Shell">
+mount -t &lt;filesystem_type&gt; -o ro "path_to_filesystem" "path_to_mount_point_directory"
+        </pre>
+        </div>
+      </div>
+
+      <p>با استفاده از <strong>noexec</strong> میتونیم جلوی اجرای فایل های باینری داخل فایل سیستمی mount شده رو بگیریم.
+      </p>
+
+      <p>در مثال زیر میخوایم یک فایل سیستمی رو به صورت read-only وارد کنیم و همینطور فایل های باینری داخلش قابل اجرا
+        نباشن.</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Shell">
+mount -t &lt;filesystem_type&gt; -o ro,noexec "path_to_filesystem" "path_to_mount_point_directory"
+          </pre>
+        </div>
+      </div>
+      <p>اگه بخوایم فایلی که در حال حاضر mount شده رو بدون umount کردن در جای دیگه mount کنیم، از <strong>bind</strong>
+        استفاده می
+        کنیم.</p>
+
+      <p>برای این کار مسیر پوشه ای که فایل رو داخلش mount کردیم نوشته و مسیر پوشه ی جدید رو هم می نویسیم.</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Shell">
+mount -t &lt;filesystem_type&gt; -o bind "path_to_mount_point_directory"  "path_to_new_mount_point_directory"
+          </pre>
+        </div>
+      </div>
+
+      <p>اگه بخوایم ویژگی های تعریف شده برای mount point رو بدون umount کردن تغییر بدیم از <strong>remount</strong>
+        استفاده می کنیم.</p>
+
+      <p>فرض کنید فایل رو با rw (قابل خوندن و قابل نوشتن)، mount کردیم حالا میخوایم پوشه ای که فایل داخلش mount شده رو
+        فقط
+        قابل
+        خوندن کنیم.</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Shell">
+mount -t &lt;filesystem_type&gt; -o remount,ro "path_to_mount_point_directory"
+          </pre>
+        </div>
+      </div>
+
+    </section>
+
+  </section>
+
+  <section>
+    <h2>خلاصه</h2>
+    <ul>
+      <li>
+        با استفاده از دستور mount در لینوکس میتونیم فایل های سیستمی رو داخل یک پوشه mount کنیم.
+      </li>
+      <li>
+        به پوشه ای که فایل رو داخلش mount میکنیم، mount point میگیم.
+      </li>
+      <li>
+        با استفاده از آرگومان o میتونیم یک سری ویژگی ها برای mount point تعریف کنیم.
+      </li>
+    </ul>
+  </section>
+
+</article>
+
+
+{% capture links %}
+<li>
+  <a href="/post/linux/introduction.html">معرفی لینوکس</a>
+</li>
+<li>
+  <a href="/post/linux/umount.html">دستور umount در لینوکس</a>
+</li>
+<li>
+  <a href="/post/linux/make-filesystems.html">ساخت فایل های سیستمی در لینوکس</a>
+</li>
+<li>
+  <a href="/post/linux/fixed-disk.html">دستور fdisk در لینوکس</a>
+</li>
+<li>
+  <a href="/post/linux/data-definition.html">دستور dd در لینوکس</a>
+</li>
+{% endcapture %}
+
+{% include article-foot.html relative_links = links %}

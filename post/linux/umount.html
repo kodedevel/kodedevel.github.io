@@ -1,0 +1,107 @@
+---
+layout: default
+---
+
+<article>
+  <nav class="toc">
+    <div>دسترسی سریع</div>
+    <ul>
+      <li>
+        <a href="#p0">بررسی دستور umount</a>
+      </li>
+      <li>
+        <a href="#p1">خلاصه</a>
+      </li>
+    </ul>
+  </nav>
+
+  <section id="p0">
+    <h2>بررسی دستور umount</h2>
+
+    <p>با استفاده از دستور umount در لینوکس میتونیم فایل های سیستمی <a href="mount.html">وارد (mount)</a> شده رو خارج
+      (umount) کنیم.</p>
+
+
+    <p>فرم کلی:</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Shell">
+umount "path_to_mount_point_directory"
+        </pre>
+      </div>
+    </div>
+
+    <p>با استفاده از آرگومان <strong>r</strong> میتونیم تعیین کنیم اگه به هر دلیلی فایل سیستمی قابل خارج شدن نبود دوباره
+      به
+      صورت <strong>read-only</strong> واردش کنه.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Shell">
+umount -r "path_to_mount_point_directory"
+        </pre>
+      </div>
+    </div>
+
+    <p>با استفاده از آرگومان <strong>l</strong> میتونیم دسترسی به فایل سیستمی رو قطع کنیم اما منابع فایل تا زمانی که
+      فایل سیستمی مشغوله قطع نمیشه؛ حرف l ابتدای کلمه ی <strong>lazy</strong> است.</p>
+
+    <p>مثلا یک پارتیشن mount شده و داریم یک فایل رو داخلش کپی می کنیم میتونیم از l استفاده کنیم تا بعد از پایان کپی
+      پارتیشن کاملا خارج بشه.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Shell">
+umount -l "path_to_mount_point_directory"
+        </pre>
+      </div>
+    </div>
+
+    <p>با استفاده از آرگومان <strong>a</strong> میتونیم تمام فایل های سیستمی mount شده که در <strong
+        dir="ltr">/proc/self/mountinfo</strong> بیان شده اند (بجز فایل های سیستمی proc, devfs, devpts, sysfs, rpc_pipfs
+      و nfsd) رو خارج کنیم.</p>
+
+    <p>فایل mountinfo اطلاعات فایل های mount شده رو در بر داره.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Shell">
+sudo umount -a 
+        </pre>
+      </div>
+    </div>
+
+  </section>
+
+  <section>
+    <h2>خلاصه</h2>
+    <ul>
+      <li>
+        از دستور umount در لینوکس برای خارج کردن فایل های سیستمی mount شده استفاده می کنیم.
+      </li>
+    </ul>
+  </section>
+
+</article>
+
+{% capture links %}
+<li>
+  <a href="/post/linux/introduction.html">معرفی لینوکس</a>
+</li>
+<li>
+  <a href="/post/linux/mount.html">دستور mount در لینوکس</a>
+</li>
+<li>
+  <a href="/post/linux/make-filesystems.html">ساخت فایل های سیستمی در لینوکس</a>
+</li>
+<li>
+  <a href="/post/linux/fixed-disk.html">دستور fdisk در لینوکس</a>
+</li>
+<li>
+  <a href="/post/linux/data-definition.html">دستور dd در لینوکس</a>
+</li>
+
+{% endcapture %}
+
+{% include article-foot.html relative_links = links %}
