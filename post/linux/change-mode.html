@@ -1,0 +1,402 @@
+---
+layout: default
+---
+
+<article>
+  <nav class="toc">
+    <div>دسترسی سریع</div>
+    <ul>
+      <li>
+        <a href="#p0">حالت های مختلف فایل</a>
+      </li>
+      <li>
+        <a href="#p1">تغییر دسترسی به فایل با حروف در chmod</a>
+      </li>
+      <li>
+        <a href="#p2">تغییر دسترسی به فایل با اعداد در chmod</a>
+      </li>
+      <li>
+        <a href="#p1">خلاصه</a>
+      </li>
+    </ul>
+  </nav>
+
+  <section id="p0">
+    <h2>حالت های مختلف فایل</h2>
+
+    <p>برای یک فایل سه حالت <strong>خوندن (read)</strong>، <strong>نوشتن (write)</strong> و <strong>اجرا شدن
+        (execute)</strong> وجود داره.</p>
+
+    <section>
+      <h3>خوندن فایل</h3>
+      <p>در این حالت فایل قابل خوندن (readable) توسط برنامه هاست؛ به فایل هایی که فقط قابل خوندن باشن و قابل نوشته شدن
+        یا اجرا شدن نباشن، فایل های
+        <strong>read-only</strong> میگیم.
+      </p>
+    </section>
+
+    <section>
+      <h3>نوشتن در فایل</h3>
+      <p>در این حالت محتوای فایل میتونه توسط برنامه ها تغییر کنه؛ به فایل هایی که این حالت براشون وجود داره فایل های
+        <strong>writable</strong> میگیم.
+      </p>
+    </section>
+
+    <section>
+      <h3>اجرا کردن فایل</h3>
+      <p>در این حالت فایل اگه برنامه باشه، قابل اجرا در سیستم عامل است؛ به فایل هایی که این حالت براشون وجود داره
+        فایل های <strong>executable</strong> میگیم.</p>
+    </section>
+
+    <br>
+    <p>برای هر فایل ممکنه یک، دو یا هر سه حالت گفته شده وجود داشته باشه.</p>
+
+  </section>
+
+
+  <section id="p1">
+    <h2>تغییر دسترسی به فایل با حروف در chmod</h2>
+
+    <p>با استفاده از دستور <strong>chmod</strong> در لینوکس میتونیم دسترسی خوندن نوشتن یا اجرا کردن فایل
+      رو
+      برای <strong>user</strong>، <strong>group</strong> یا <strong>other</strong> تغییر بدیم؛ chmod مخفف <strong>change
+        mode</strong> است.</p>
+
+    <p>فرم کلی:</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Shell">
+chmod "&lt;agent&gt;&lt;op&gt;&lt;mod&gt;" "path_to_file"
+        </pre>
+      </div>
+    </div>
+
+    <p>در بالا بجای <strong>&lt;agent&gt;</strong> یکی از حروف <strong>u</strong>, <strong>g</strong>,
+      <strong>o</strong> یا
+      <strong>a</strong>، بجای <strong>&lt;mode&gt;</strong> یک، دو یا هر سه حرف <strong>r</strong>, <strong>w</strong>
+      و <strong>x</strong> و بجای <strong>&lt;op&gt;</strong> یکی از علامت های <strong>+</strong>, <strong>-</strong> یا
+      <strong>=</strong>.
+    </p>
+
+    <section>
+      <h3>حروف u, g, o و a در chmod</h3>
+
+      <section>
+        <h4>حرف u</h4>
+        <p>حرف u ابتدای کلمه ی user است یعنی میخوایم دسترسی به فایل رو برای کاربر (user) تغییر بدیم.</p>
+      </section>
+
+      <section>
+        <h4>حرف g</h4>
+        <p>حرف g ابتدای کلمه ی group است؛ یعنی میخوایم دسترسی به فایل رو برای گروه (group) تغییر بدیم.</p>
+      </section>
+
+      <section>
+        <h4>حرف o</h4>
+        <p>حرف o ابتدای کلمه ی other است؛ یعنی میخوایم دسترسی به فایل رو برای کسایی که نه تو دسته ی user هستند و نه تو
+          دسته ی group تغییر بدیم.</p>
+      </section>
+
+      <section>
+        <h4>حرف a</h4>
+        <p>از حرف a زمانی استفاده می کنیم که بخوایم دسترسی به فایل رو برای هر سه user, group و other تغییر بدیم.</p>
+      </section>
+
+    </section>
+
+    <section>
+      <h3>حروف r, w و x در chmod</h3>
+
+      <section>
+        <h4>حرف x</h4>
+        <p>حرف x در chmod یکی از حروف execute است؛ با این حرف تعیین می کنیم فایل برای دسته ی مشخص شده قابل اجرا باشه.
+        </p>
+
+        <p>میخوایم به user فقط دسترسی اجرا کردن فایل رو بدیم.</p>
+        <div class="sample">
+          <div class="snippet-container">
+            <pre class="snippet Shell">
+chmod "u=x" "path_to_file"
+            </pre>
+          </div>
+        </div>
+
+      </section>
+      <section>
+        <h4>حرف w</h4>
+        <p>حرف w در chmod ابتدای کلمه ی write است؛ با w باهاش دسترسی نوشتن در فایل رو به user, group یا other میدیم.</p>
+
+        <p>میخوایم به group فقط دسترسی نوشتن در فایل رو بدیم.</p>
+        <div class="sample">
+          <div class="snippet-container">
+            <pre class="snippet Shell">
+chmod "g=w" "path_to_file"
+            </pre>
+          </div>
+        </div>
+      </section>
+      <section>
+        <h4>حرف r</h4>
+        <p>این حرف ابتدای کلمه ی read است؛ باهاش دسترسی خوندن فایل رو به user, group یا other میدیم.</p>
+
+        <p>میخوایم به other فقط دسترسی خوندن فایل رو بدیم.</p>
+        <div class="sample">
+          <div class="snippet-container">
+            <pre class="snippet Shell">
+chmod "o=r" "path_to_file"
+            </pre>
+          </div>
+        </div>
+      </section>
+
+      <p>در مثال زیر میخوایم دسترسی خوندن و نوشتن در فایل رو به کاربر (user) بدیم و به گروه (group) و دیگران (other)
+        تنها
+        دسترسی خوندن فایل رو بدیم.</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Shell">
+chmod "u=rw" "path_to_file"
+chmod "g=r" "path_to_file"
+chmod "o=r" "path_to_file"
+        </pre>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h3>علامت های =, + و - در chmod</h3>
+
+      <section>
+        <h4>علامت =</h4>
+        <p>اگه بخوایم بجای دسترسی هایی که برای فایل وجود داره دسترسی های جدید تعریف کنیم از <strong>=</strong> استفاده
+          می کنیم.</p>
+
+        <p>در مثال زیر میخوایم user دسترسی خوندن و اجرا کردن فایل رو داشته باشه.</p>
+
+        <div class="sample">
+          <div class="snippet-container">
+            <pre class="snippet Shell">
+chmod "u=xr" "path_to_file" 
+        </pre>
+          </div>
+        </div>
+
+      </section>
+
+      <section>
+        <h4>علامت +</h4>
+        <p>اگه بخوایم بدون تغییر سایر دسترسی های تعریف شده برای user, group یا other یک دسترسی جدید به فایل اضافه کنیم،
+          از
+          <strong>+</strong> استفاده می کنیم.
+        </p>
+
+        <p>در مثال زیر دسترسی write رو به group اضافه کردیم.</p>
+
+        <div class="sample">
+          <div class="snippet-container">
+            <pre class="snippet Shell">
+chmod "g+w" "path_to_file"
+        </pre>
+          </div>
+        </div>
+
+      </section>
+
+      <section>
+        <h4>علامت -</h4>
+        <p>اگه بخوایم بدون تغییر سایر دسترسی های تعریف شده برای user، group، یا other یک دسترسی رو از فایل بگیریم از
+          <strong>-</strong> استفاده می کنیم.
+        </p>
+
+        <p>در مثال زیر دسترسی write به فایل رو از user حذف کردیم.</p>
+
+        <div class="sample">
+          <div class="snippet-container">
+            <pre class="snippet Shell">
+chmod "u-w" "path_to_file"
+        </pre>
+          </div>
+        </div>
+
+      </section>
+
+    </section>
+
+  </section>
+
+  <section id="p2">
+    <h2>تغییر دسترسی به فایل با اعداد در chmod</h2>
+
+    <p>علاوه بر حروف در chmod، میتونیم دسترسی به فایل رو با اعداد نیز تغییر بدیم.</p>
+
+    <p>فرم کلی:</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Shell">
+chmod nnn "path_to_file"
+        </pre>
+      </div>
+    </div>
+
+    <p>در بالا سه تا n وجود داره، بجای هر n یک عدد بین <strong>0 تا 7</strong> باید بزاریم، به ترتیب از چپ n اول مربوط
+      میشه به دسترسی به
+      فایل برای user ، دومین n دسترسی به فایل برای group است و اخرین n دسترسی به فایل برای other است.</p>
+
+    <p>در زیر سطح دسترسی هر عددی که به فایل میده رو برای user, group و other بیان میکنه.</p>
+
+    <figure>
+      <img src="/resources/image/linux/chmod_numberic_file_modes.png"
+        alt="تغییر دسترسی به فایل با استفاده از اعداد در chmod">
+      <figcaption>تغییر دسترسی به فایل با استفاده از اعداد در chmod</figcaption>
+    </figure>
+
+    <section>
+      <h3>چهار عدد اصلی در chmod</h3>
+
+      <p>چهار عدد اصلی بین 0 تا 7 وجود داره و سایر اعداد از جمع این چهار عدد به دست میان.</p>
+
+      <section>
+        <h4>عدد 0</h4>
+        <p>اگه بخوایم هیچ دسترسی به فایل وجود نداشته باشه از عدد <strong>0</strong> استفاده می کنیم.</p>
+
+        <p>میخوایم هیچ دسترسی به فایل برای user, group و other وجود نداشته باشه.</p>
+        <div class="sample">
+          <div class="snippet-container">
+            <pre class="snippet Shell">
+chmod 000 "path_to_file"
+          </pre>
+          </div>
+        </div>
+
+      </section>
+
+      <section>
+        <h4>عدد 1</h4>
+        <p>عدد <strong>1</strong> در chmod دسترسی اجرای فایل رو به user, group یا other میده.</p>
+
+        <p>میخوایم دسترسی اجرای فایل رو به user بدیم</p>
+        <div class="sample">
+          <div class="snippet-container">
+            <pre class="snippet Shell">
+chmod 100 "path_to_file"
+          </pre>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h4>عدد 2</h4>
+        <p>عدد <strong>2</strong> در chmod دسترسی به نوشتن در فایل رو به user, group یا other میده.</p>
+
+        <p>میخوایم به user دسترسی اجرای فایل رو بدیم و به group دسترسی نوشتن در فایل.</p>
+        <div class="sample">
+          <div class="snippet-container">
+            <pre class="snippet Shell">
+chmod 120 "path_to_file"
+            </pre>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h4>عدد 4</h4>
+        <p>عدد <strong>4</strong> در chmod دسترسی خوندن فایل رو به user, group یا other میده.</p>
+
+        <p>میخوایم به user دسترسی اجرای فایل رو بدیم، به group دسترسی نوشتن در فایل و به other دسترسی خوندن فایل رو
+          بدیم.</p>
+
+        <div class="sample">
+          <div class="snippet-container">
+            <pre class="snippet Shell">
+chmod 124 "path_to_file"
+            </pre>
+          </div>
+        </div>
+      </section>
+
+
+    </section>
+    <h3>جمع اعداد اصلی در chmod</h3>
+
+    <p>همه ی اعداد بین 0 تا 7 در chmod از جمع چهار عدد اصلی 1, 2, 4 به دست میان.</p>
+
+    <p>فرض کنید میخوایم دسترسی خوندن و اجرا کردن فایل رو به user بدیم و به group فقط دسترسی خوندن داده و به other هیچ
+      دسترسی به فایل ندیم.</p>
+
+    <p>گفتیم عدد 1 برای اجرا کردن فایل و عدد 4 برای خوندن فایل است، برای اینکه یک فایل قابل خوندن و قابل اجرا شدن باشه
+      جمع 1 و 4 میشه 5؛ پس عدد پنج دسترسی خوندن واجرا کردن فایل رو میده.</p>
+
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Shell">
+chmod 540 "path_to_file"
+        </pre>
+      </div>
+    </div>
+
+    <p>فرض کنید میخوایم دسترسی خوندن فایل و نوشتن در فایل رو به user, group و other بدیم؛ عدد 2 برای نوشتن در فایل است و
+      عدد 4 برای خوندن در فایل.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Shell">
+chmod 666 "path_to_file"
+        </pre>
+      </div>
+    </div>
+
+    <section>
+
+
+    </section>
+
+  </section>
+
+  <section id="p3">
+    <h2>خلاصه</h2>
+
+    <ul>
+      <li>
+        با استفاده از دستور chmod در لینوکس میتونیم دسترسی به فایل رو برای user, group و other تغییر بدیم.
+      </li>
+      <li>
+        با استفاده از chmod در لینوکس به دو روش میتونیم دسترسی به فایل رو تغییر بدیم <br>۱- استفاده از حروف و علام
+        <br>۲- استفاده از اعداد
+      </li>
+
+      <li>
+        برای تغییر دسترسی به فایل در chmod با استفاده از اعداد، ۳ رقم وجود داره که هر رقم به ترتیب از چپ به راست برای
+        user, group و other است و برای هر رقم میتونیم یک عدد بین 0 تا 7 رو انتخاب کنیم.
+      </li>
+      <li>
+        هنگام استفاده از اعداد برای تغییر دسترسی به فایل در chmod چهار عدد اصلی وجود داره که سایر اعداد از جمع این چهار
+        عدد به دست میاد.
+      </li>
+    </ul>
+  </section>
+
+</article>
+{% capture links %}
+<li>
+  <a href="introduction.html">معرفی لینوکس</a>
+</li>
+<li>
+  <a href="/post/linux/list-directory-contents.html">دستور ls در لینوکس</a>
+</li>
+<li>
+  <a href="/post/linux/copy.html">دستور cp در لینوکس</a>
+</li>
+<li>
+  <a href="/post/linux/data-definition.html">دستور dd در لینوکس</a>
+</li>
+<li>
+  <a href="/post/linux/move.html">دستور mv در لینوکس</a>
+</li>
+<li>
+  <a href="/post/linux/remove.html">دستور rm در لینوکس</a>
+</li>
+{% endcapture %} {% include article-foot.html relative_links = links %}
