@@ -105,6 +105,14 @@
       "lastModified": "",
       "imgCover": "/resources/image/linux/cover_umount.png",
       "link": "/post/linux/umount.html"
+    },
+    {
+      "title": "تغییر دسترسی به فایل در لینوکس با chmod",
+      "description": "با استفاده از دستور chmod میتونیم دسترسی به فایل (خوندن، نوشتن و اجرا) رو به دو روش تغییر بدیم ۱-تغییر دسترسی به فایل با استفاده از حروف، ۲- تغییر دسترسی به فایل با استفاده از اعداد؛ در این مطلب هردو روش رو بررسی میکنیم.",
+      "datePublished": "2026-06-06",
+      "lastModified": "",
+      "imgCover": "/resources/image/linux/cover_chmod.png",
+      "link": "/post/linux/change-mode.html"
     }
   ]
 }
