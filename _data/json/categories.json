@@ -29,6 +29,13 @@
       "datePublished": "2026-05-31",
       "lastModified": "",
       "link": "/post/algorithm.html"
+    },
+    {
+      "title": "ساختمان داده",
+      "description": "با استفاده از ساختمان داده (data structure) میتونیم در طی زمان اجرای برنامه، داده هایی از نوع یکسان رو به ترتیب خاصی، حذف، اضافه یا ازشون استفاده کنیم؛ استفاده از ساختمان داده به مرتب کردن کد ها و بهبود عملکرد برنامه کمک می کنه.",
+      "datePublished": "2026-06-10",
+      "lastModified": "",
+      "link": "/post/data-structure.html"
     }
   ]
 }
