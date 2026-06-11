@@ -1,0 +1,43 @@
+---
+layout: category
+---
+
+
+<section>
+  <article>
+    <div class="description">
+      <p>
+        با استفاده از <strong>ساختمان داده (data structure)</strong> میتونیم در طی زمان اجرای برنامه، داده هایی از نوع
+        یکسان رو به ترتیب
+        خاصی، حذف، اضافه یا ازشون استفاده کنیم؛
+        استفاده از ساختمان داده به مرتب کردن کد ها و بهبود عملکرد برنامه کمک می کنه.
+        برخلاف آرایه ها که طول ثابتی دارن، در ساختمان داده طول ثابتی نداریم و میتونیم داده ها رو در طی زمان اجرای
+        برنامه، حذف یا اضافه کنیم، بنابراین طول ساختمان داده نیز بر اساس داده های ذخیره شده ی داخلش تغییر
+        میکنه.
+      </p>
+
+      <p>در زیر فهرست مطالب ساختمان داده ها آورده شده</p>
+    </div>
+  </article>
+
+  <div class="subject-container">
+
+    {% for metadata in site.data.json.posts.data-structure.metadata_list %}
+    <section class="subject-item">
+      <h3 class="md-bt-expandable subject-item-head">
+        <span class="material-symbols-outlined icon" aria-hidden="true">arrow_left</span>
+        <span>{{ metadata.title }}</span>
+      </h3>
+      <div class="subject-item-content">
+        <ul>
+          <li>
+            <p>{{ metadata.description }}</p>
+          </li>
+        </ul>
+        <a href="{{ metadata.link }}">مطالعه</a>
+      </div>
+    </section>
+    {% endfor %}
+  </div>
+
+</section>
