@@ -1,0 +1,14 @@
+{
+  "id": "data-structure_chapters",
+  "name": "ساختمان داده",
+  "metadata_list": [
+    {
+      "title": "نگاهی به list در ساختمان داده",
+      "description": "از list در برنامه نویسی برای نگهداری عناصری با نوع یکسان استفاده می کنیم، لیست مشابه آرایه است با این تفاوت برخلاف آرایه طول ثابتی نداره و میتونیم عناصر رو بهش اضافه یا ازش حذف کنیم.",
+      "datePublished": "2026-06-12",
+      "lastModified": "",
+      "imgCover": "/resources/image/data-structure/cover_list.png",
+      "link": "/post/data-structure/list.html"
+    }
+  ]
+}
