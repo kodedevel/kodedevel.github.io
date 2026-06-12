@@ -79,7 +79,7 @@ layout: default
   <section id="p1">
     <h2>افزودن عناصر به list</h2>
     <p>عناصر در List مانند آرایه ها نگهداری میشن با این تفاوت، هر عنصری که اضافه می کنیم، اندازه ی List افزایش پیدا
-      میکنه؛ پیچیدگی زمان (time complexity) برای افزودن عنصر به list O(n) است.</p>
+      میکنه؛ پیچیدگی زمان (time complexity) در list برای افزودن عنصر O(n) است.</p>
 
 
     <p>به طور عمومی در زبان های برنامه نویسی با تابعی مشابه <strong>add(e: E)</strong> یک عنصر رو به List
@@ -163,9 +163,8 @@ endloop;
     <h2>حذف عناصر از list</h2>
 
     <p>با حذف هر عنصر از list، اندازه ی list یک واحد کاهش پیدا می کنه؛ هنگامی که تمامی عناصر از list حذف بشن اندازه ی
-      list صفر میشه و اصطلاحا میگیم list خالی شده؛ پیچیدگی زمان (time complexity) برای حذف کردن یک عنصر از list O(n)
+      list صفر میشه و اصطلاحا میگیم list خالی شده؛ پیچیدگی زمان (time complexity) در list برای حذف کردن یک عنصر O(n)
       است.</p>
-
 
     <p>به طور کلی در زبان های برنامه نویسی با استفاده از تابعی به نام <strong>remove(index: Int)</strong> می تونیم یک
       عنصر رو از لیست حذف کنیم و بجای index شماره ی خونه ی عنصر مورد نظر رو می نویسیم.</p>
@@ -180,7 +179,6 @@ endloop;
       <img src="/resources/image/data-structure/list_remove_elements.png" alt="حذف عناصر از list">
       <figcaption>حذف عناصر از list</figcaption>
     </figure>
-
 
     <p>در مثال قبل فرض کنید میخوایم e1, e2, e4 رو حذف کنیم.</p>
 
@@ -198,12 +196,18 @@ list.remove(2)
 
   <section id="p4">
     <h2>مورد مطالعه (مثال ها)</h2>
-    <p>میخوایم یک list از نوع String ایجاد کنیم و چندتا اسم بهش اضافه کنیم؛ اسامی رو صدا زده و چاپ کنیم و در اخر چندتا
-      اسم رو ازش حذف کنیم.</p>
 
-    <div class="sample">
-      <div class="snippet-container">
-        <pre class="snippet Java">
+    <p>در این قسمت میخوایم دوتا مثال بیاریم، اولین مثال مربوط به استفاده ی از list است مثل افزودن، صدا زدن و حذف کردن
+      عناصر است؛ در مثال دوم میخوایم Stack رو با استفاده از list پیاده سازی کنیم.</p>
+
+    <section>
+      <h3>استفاده از list</h3>
+      <p>میخوایم یک list از نوع String ایجاد کنیم و چندتا اسم بهش اضافه کنیم؛ اسامی رو صدا زده و چاپ کنیم و در اخر چندتا
+        اسم رو ازش حذف کنیم.</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
 ArrayList&lt;String&gt; list = new ArrayList();
 list.add("Lee");
 list.add("Rose");
@@ -233,7 +237,7 @@ System.out.println("Name " + removedName + " has been removed");
 
 println("The size of list after removing 3 elements is " + list.size())
         </pre>
-        <pre class="snippet Kotlin">
+          <pre class="snippet Kotlin">
 val list: ArrayList&lt;String&gt; = ArrayList();
 list.add("Lee")
 list.add("Rose")
@@ -263,41 +267,49 @@ println("Name $removedName has been removed");
 
 println("The size of list after removing 3 elements is ${list.size}")
         </pre>
+        </div>
       </div>
-    </div>
 
-    <p>میخوایم با استفاده از list یک Stack درست کنیم؛ Stack یک بخشی از ساختمان داده است اخرین عنصری که بهش اضافه میشه،
-      اولین عنصریه که ازش حذف میشه یا میتونیم صدا کنیم.
-      یه جورایی نگهداری عناصر در استک مثل همین اصطلاح خودمونه که میگه دیر اومدی زود میخوای بری؟
-    </p>
+    </section>
 
-    <div class="note">
-      <p class="note-head">توجه</p>
-      <p>به طور عمومی در اکثر زبان های برنامه نویسی، Stack با کمک linkedlist پیاده سازی میشه و در زبان های شی گرا مانند
-        جاوا Stack یک
-        کلاسه که از LinkedList ارث بری میکنه و علت این کار بهینه تر بودن linkedlist برای صدا زدن و حذف کردن عناصر اول و
-        اخر است. اما در اینجا میخوایم با استفاده از list یک stack پیاده کنیم تا با stack اشنا بشید.</p>
-    </div>
 
-    <p>Stack که میخوایم پیاده سازی کنیم با List یک رابطه ی <strong>aggregation</strong> داره؛ سه کانستراکتور و چهار
-      تابع <strong dir="ltr">push(e: E)</strong>, <strong dir="ltr">pop():E</strong> و <strong
-        dir="ltr">isEmpty()</strong> رو براش تعریف میکنیم.</p>
+    <section>
+      <h3>پیاده سازی Stack با کمک List</h3>
+      <p>میخوایم با استفاده از list یک Stack درست کنیم؛ Stack یک بخشی از ساختمان داده است اخرین عنصری که بهش اضافه میشه،
+        اولین عنصریه که ازش حذف میشه یا میتونیم صدا کنیم.
+        یه جورایی نگهداری عناصر در استک مثل همین اصطلاح خودمونه که میگه دیر اومدی زود میخوای بری؟
+      </p>
 
-    <p>در Stack برای افزودن یک عنصر از تابع push, برای حذف اخرین عنصر از pop و برای صدا زدن عنصر (یعنی اخرین
-      عنصری که با push اضافه شده) از تابع peek
-      استفاده
-      میکنیم و با تابع isEmpty بررسی میکنیم آیا Stack خالی است یا خیر.</p>
+      <div class="note">
+        <p class="note-head">توجه</p>
+        <p>به طور عمومی در اکثر زبان های برنامه نویسی، Stack با کمک linkedlist پیاده سازی میشه و در زبان های شی گرا
+          مانند
+          جاوا Stack یک
+          کلاسه که از LinkedList ارث بری میکنه و علت این کار بهینه تر بودن linkedlist برای صدا زدن و حذف کردن عناصر اول
+          و
+          اخر است. اما در اینجا میخوایم با استفاده از list یک stack پیاده کنیم تا با stack اشنا بشید.</p>
+      </div>
 
-    <p>نمودار uml پیاده سازی که میخوایم با list انجام بدیم در زیر اورده شده است.</p>
+      <p>Stack که میخوایم پیاده سازی کنیم با List یک رابطه ی <strong>aggregation</strong> داره؛ سه کانستراکتور و چهار
+        تابع <strong dir="ltr">push(e: E)</strong>, <strong dir="ltr">pop():E</strong> و <strong
+          dir="ltr">isEmpty()</strong> رو براش تعریف میکنیم.</p>
 
-    <figure>
-      <img src="/resources/image/data-structure/design_stack_by_list_uml.png" alt="نمودار uml پیاده سازی Stack با List">
-      <figcaption>نمودار uml پیاده سازی Stack با List</figcaption>
-    </figure>
+      <p>در Stack برای افزودن یک عنصر از تابع push, برای حذف اخرین عنصر از pop و برای صدا زدن عنصر (یعنی اخرین
+        عنصری که با push اضافه شده) از تابع peek
+        استفاده
+        میکنیم و با تابع isEmpty بررسی میکنیم آیا Stack خالی است یا خیر.</p>
 
-    <div class="sample">
-      <div class="snippet-container">
-        <pre class="snippet Java">
+      <p>نمودار uml پیاده سازی که میخوایم با list انجام بدیم در زیر اورده شده است.</p>
+
+      <figure>
+        <img src="/resources/image/data-structure/design_stack_by_list_uml.png"
+          alt="نمودار uml پیاده سازی Stack با List">
+        <figcaption>نمودار uml پیاده سازی Stack با List</figcaption>
+      </figure>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -340,7 +352,7 @@ public class MyStack&lt;E&gt; {
     }
 }
         </pre>
-        <pre class="snippet Kotlin">
+          <pre class="snippet Kotlin">
 class MyStack&lt;E&gt; {
 
     private val list: MutableList&lt;E?&gt; = ArrayList&lt;E?&gt;()
@@ -376,8 +388,10 @@ class MyStack&lt;E&gt; {
 
 }
         </pre>
+        </div>
       </div>
-    </div>
+
+    </section>
 
   </section>
 
