@@ -110,8 +110,7 @@ layout: default
     </figure>
 
 
-    <p>اگه بخوایم به صورت برنامه نویسی این موضوع رو پیاده کنیم، به طور عمومی چیزی مشابه زیر
-      خواهد بود.</p>
+    <p>اگه بخوایم به صورت برنامه نویسی پنج عنصر e1, e2, e3, e4, e5 رو به یک لیست اضافه کنیم چیزی شبیه زیر میشه.</p>
 
     <div class="sample">
       <div class="snippet-container">
@@ -121,6 +120,7 @@ list.add(e1);
 list.add(e2);
 list.add(e3);
 list.add(e4);
+list.add(e5)
         </pre>
       </div>
     </div>
@@ -130,9 +130,11 @@ list.add(e4);
 
   <section id="p2">
     <h2>صدا زدن عناصر از list</h2>
-
+    <p>در list مانند آرایه میتونیم هر عنصری رو که نیاز داشتیم، بدون رعایت ترتیب و به صورت تصادفی با وارد کردن شماره
+      index عنصر صداش کنیم.</p>
     <p>به طور عمومی در اکثر زبونا برای صدا زدن عناصر داخل list از تابعی مشابه <strong>get(int: index)</strong> استفاده
-      میکنیم، که index شماره ی خونه ی عنصر مورد نظر است؛ پیچیدگی زمان برای صدا زدن عناصر با list O(1) است.</p>
+      میکنیم، که index شماره ی خونه ی عنصر مورد نظر است؛ پیچیدگی زمان (time complexity) برای list هنگام صدا زدن عناصر،
+      O(1) است.</p>
 
 
     <p>فرض کنید در مثال قبل میخوایم e2 و e3 رو صدا بزنیم.</p>
@@ -173,20 +175,20 @@ endloop;
       کم میشه.</p>
 
 
-    <p>در زیر به صورت تصویری شرح داده شده هنگام حذف عناصر e1 و e2 از یک list به اندازه ی n، چه اتفاقی برای خونه های بعد
+    <p>در زیر به صورت تصویری شرح داده شده هنگام حذف عناصر e2 و e3 از یک list به اندازه ی n، چه اتفاقی برای خونه های بعد
       و اندازه ی list می افته.</p>
     <figure>
       <img src="/resources/image/data-structure/list_remove_elements.png" alt="حذف عناصر از list">
       <figcaption>حذف عناصر از list</figcaption>
     </figure>
 
-    <p>در مثال قبل فرض کنید میخوایم e1, e2, e4 رو حذف کنیم.</p>
+    <p>در مثال قبل فرض کنید میخوایم e2, e3, e5 رو حذف کنیم.</p>
 
     <div class="sample">
       <div class="snippet-container">
         <pre class="snippet">
-list.remove(0)
-list.remove(0)
+list.remove(1)
+list.remove(1)
 list.remove(2)
         </pre>
       </div>
@@ -197,7 +199,7 @@ list.remove(2)
   <section id="p4">
     <h2>مورد مطالعه (مثال ها)</h2>
 
-    <p>در این قسمت میخوایم دوتا مثال بیاریم، اولین مثال مربوط به استفاده ی از list است مثل افزودن، صدا زدن و حذف کردن
+    <p>در این قسمت میخوایم دوتا مثال بیاریم، اولین مثال مربوط به استفاده از list است مثل افزودن، صدا زدن و حذف کردن
       عناصر است؛ در مثال دوم میخوایم Stack رو با استفاده از list پیاده سازی کنیم.</p>
 
     <section>
@@ -275,7 +277,8 @@ println("The size of list after removing 3 elements is ${list.size}")
 
     <section>
       <h3>پیاده سازی Stack با کمک List</h3>
-      <p>میخوایم با استفاده از list یک Stack درست کنیم؛ Stack یک بخشی از ساختمان داده است در Stack اخرین عنصری که اضافه
+      <p>میخوایم با کمک list یک Stack پیاده سازی کنیم؛ Stack مانند List یک بخشی از ساختمان داده است؛ در Stack اخرین
+        عنصری که اضافه
         میشه،
         اولین عنصریه که میتونیم صدا کنیم یا از Stack حذفش کنیم؛ بهش میگن <strong dir="ltr">last-in-first-out</strong> به
         زبون
@@ -284,17 +287,17 @@ println("The size of list after removing 3 elements is ${list.size}")
 
       <div class="note">
         <p class="note-head">توجه</p>
-        <p>به طور عمومی در اکثر زبان های برنامه نویسی، Stack با کمک linkedlist پیاده سازی میشه و در زبان های شی گرا
+        <p>به طور عمومی در اکثر زبان های برنامه نویسی، Stack با کمک LinkedList پیاده سازی میشه و در زبان های شی گرا
           مانند
           جاوا Stack یک
-          کلاسه که از LinkedList ارث بری میکنه و علت این کار بهینه تر بودن linkedlist برای صدا زدن و حذف کردن عناصر اول
+          کلاسه که از LinkedList ارث بری میکنه و علت این کار بهینه تر بودن LinkedList در حذف کردن عناصر اول
           و
-          اخر است. اما در اینجا میخوایم با استفاده از list یک stack پیاده کنیم تا با stack اشنا بشید.</p>
+          اخر است. اما در اینجا میخوایم با استفاده از List یک Stack پیاده کنیم تا با Stack اشنا بشید.</p>
       </div>
 
-      <p>Stack که میخوایم پیاده سازی کنیم با List یک رابطه ی <strong>aggregation</strong> داره؛ سه کانستراکتور و چهار
+      <p>در پیاده سازیمون یک رابطه ی <strong>aggregation</strong> با List ایجاد میکنیم، سپس سه کانستراکتور و چهار
         تابع <strong dir="ltr">push(e: E)</strong>, <strong dir="ltr">pop():E</strong> و <strong
-          dir="ltr">isEmpty()</strong> رو براش تعریف میکنیم.</p>
+          dir="ltr">isEmpty()</strong> رو برای MyStack تعریف میکنیم.</p>
 
       <p>در Stack برای افزودن یک عنصر از تابع push, برای حذف اخرین عنصر از pop و برای صدا زدن عنصر (یعنی اخرین
         عنصری که با push اضافه شده) از تابع peek
@@ -393,6 +396,44 @@ class MyStack&lt;E&gt; {
         </div>
       </div>
 
+      <p>حالا نوبت به استفاده از Stack پیاده سازی شده میرسه، چندتا عدد بهش اضافه میکنیم و اعداد رو با pop حذف کرده و
+        نمایش میدیم.</p>
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
+public static void main(String[] args){
+  
+  MyStack&lt;Integer&gt; stack = new MyStack();
+  stack.add(23);
+  stack.add(12);
+  stack.add(42);
+  stack.add(50);
+  stack.add(126);
+
+  while(!stack.isEmpty()){
+     int number = stack.pop();
+     System.out.println(number);
+  }
+
+}
+        </pre>
+          <pre class="snippet Kotlin">
+fun main(){
+
+  val stack: MyStack&lt;Int&gt; = MyStack()
+  stack.add(23)
+  stack.add(12)
+  stack.add(42)
+  stack.add(50)
+  stack.add(126)
+
+  while(!stack.isEmpty){
+    val number = stack.pop();
+    println(number);
+  }
+        </pre>
+        </div>
+      </div>
     </section>
 
   </section>
@@ -402,7 +443,7 @@ class MyStack&lt;E&gt; {
 
     <ul>
       <li>
-        برای نگهداری تعداد نامعلومی از عناصر با نوع یکسان از list استفاده میکنیم.
+        برای نگهداری تعداد نامعلومی از عناصر هم نوع، از list استفاده میکنیم.
       </li>
       <li>
         میتونیم هر عنصر داخل list رو که خواستیم به صورت تصادفی صدا بزنیم.
