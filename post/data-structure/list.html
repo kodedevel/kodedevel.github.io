@@ -19,7 +19,10 @@ layout: default
         <a href="#p3">حذف عناصر از list</a>
       </li>
       <li>
-        <a href="#p4">خلاصه</a>
+        <a href="#p4">مورد مطالعه (مثال ها)</a>
+      </li>
+      <li>
+        <a href="#p5">خلاصه</a>
       </li>
     </ul>
   </nav>
@@ -28,11 +31,12 @@ layout: default
     <h2>بررسی list</h2>
 
     <p>از <strong>list</strong> در <a href="/post/data-structure.html">برنامه نویسی</a> برای نگهداری
-      عناصری که نوعشون یکسانه
-      استفاده میکنیم.</p>
+      عناصری از نوع یکسان استفاده می کنیم؛ از list به عنوان آرایه ی دینامیکی نیز یاد میشه، یعنی یک آرایه با طول
+      <strong>متغیر‌ (dynamic)</strong> که میتونیم عناصری که نگهداری میکنه رو ازش حذف کنیم یا عنصر جدیدی رو بهش اضافه
+      کنیم.
+    </p>
 
-    <p>از list به عنوان آرایه ی دینامیکی نیز یاد میشه، یعنی یک آرایه با طول متغیر و قابلیت حذف عناصر ازش و اضافه کردن
-      عناصر بهش.</p>
+    <p></p>
     <div class="note">
       <p class="note-head">توجه</p>
       <p>list در زبان های مختلف با نام های مختلفی پیاده سازی شده مثلا در جاوا و کاتلین به عنوان
@@ -49,18 +53,20 @@ layout: default
       <p>در تصویر زیر n تا عنصر داخل list نگهداری شده:</p>
 
       <figure>
-        <img src="/resources/image/data-structure/data_structure.png" alt="ساختار list با اندازه ی n">
-        <figcaption>ساختار list با اندازه ی n</figcaption>
+        <img src="/resources/image/data-structure/data_structure.png"
+          alt="ساختار یک list به اندازه ی n و ظرفیت (n + k)">
+        <figcaption>ساختار یک list به اندازه ی n و ظرفیت (n + k)</figcaption>
       </figure>
-
-      <p>به تعداد عناصری که list داخل خودش نگهداری میکنه، <strong>size (اندازه)</strong> list میگیم.</p>
-      <p>اندازه ی list برابر با تعداد عناصریه که نگهداری میکنه در تصویر اندازه ی list برابر با n است.</p>
-      <p>ساختار لیست مشابه ساختار آرایه است هر عنصر داخل یک خونه نگهداری میشه.</p>
-      <p>به شماره خونه ی هر عنصر index میگیم.</p>
-      <p>شماره خونه ی اولین عنصر 0 و شماره خونه ی اخرین عنصر <strong>n-1</strong> است.</p>
-
+      <p>ساختار لیست مشابه ساختار آرایه است هر عنصر داخل یک خونه نگهداری میشه و به شماره خونه ی هر عنصر index میگیم.</p>
+      <p>شماره خونه ی اولین عنصر 0 و شماره خونه ی n امین عنصر <strong>n-1</strong> است.</p>
       <p>با افزودن یک عنصر به list اندازه ی list یک واحد افزایش پیدا میکنه و با حذف یک عنصر، size (اندازه) list یک واحد
         کاهش پیدا میکنه.</p>
+      <p>ظرفیت (capacity) یک list تعداد خونه هاییه که عناصر رو داخلشون نگهداری میکنه، هنگامی که ظرفیت پر بشه، با افزودن
+        عنصر جدید به list ظرفیت به طور خودکار دوبرابر میشه.</p>
+      <p>به تعداد عناصری که list داخل خودش نگهداری میکنه، <strong>اندازه (size)</strong> list میگیم.</p>
+      <p>اندازه ی list برابر با تعداد عناصریه که نگهداری میکنه در تصویر اندازه ی list برابر با n است.</p>
+      <p>به طور معمول اندازه (size) یک list کمتر یا مساوی ظرفیت (capacity) آن است.</p>
+      <p>در تصویر ظرفیت (capacity) برابر <strong>n+k</strong> است ولی اندازه (size) آن <strong>n</strong> است.</p>
 
       <p>اگه تعداد عناصری که میخوایم استفاده کنیم ثابت باشه، استفاده از آرایه بهینه تره اما اگه تعداد عناصر متغیر باشه
         یعنی قصد حذف یا اضافه کردن عناصر رو داشته باشیم
@@ -68,13 +74,13 @@ layout: default
     </section>
 
 
-
   </section>
 
   <section id="p1">
     <h2>افزودن عناصر به list</h2>
     <p>عناصر در List مانند آرایه ها نگهداری میشن با این تفاوت، هر عنصری که اضافه می کنیم، اندازه ی List افزایش پیدا
-      میکنه.</p>
+      میکنه؛ پیچیدگی زمان (time complexity) برای افزودن عنصر به list O(n) است.</p>
+
 
     <p>به طور عمومی در زبان های برنامه نویسی با تابعی مشابه <strong>add(e: E)</strong> یک عنصر رو به List
       اضافه می کنیم.</p>
@@ -91,54 +97,30 @@ layout: default
     </p>
 
 
-
-    <p>فرض کنید یک list داریم که عناصر e0 و e1 رو نگهداری میکنه و میخوایم دو عنصر e2 و e3 رو بهش اضافه کنیم، با افزودن
-      هر عنصر یک واحد به اندازه ی list اضافه میشه؛ در زیر به صورت تصویری بیان شده.</p>
+    <p>فرض کنید ظرفیت (capacity) یک list سه است و عناصر <strong>e1, e2, e3</strong> رو داخل خودش نگهداری میکنه، در این
+      وضعیت ظرفیت
+      list پر شده و با افزودن عنصر <strong>e4</strong> ظرفیت list دو برابر میشه و اندازه (size) آن نیز یک واحد افزایش
+      پیدا میکنه؛ و هنگام افزودن عنصر <strong>e5</strong> چون ظرفیت (capacity) جدید پر نشده تنها یک واحد دیگه به اندازه
+      (size) آن اضافه میشه.</p>
 
     <figure>
       <img src="/resources/image/data-structure/list_add_elements.png"
-        alt="افزایش اندازه ی list هنگام افزودن عناصر جدید">
-      <figcaption>افزایش اندازه ی list هنگام افزودن عناصر جدید.</figcaption>
+        alt="افزایش size و ظرفیت list هنگام اضافه کردن عنصر جدید.">
+      <figcaption>افزایش size و ظرفیت list هنگام اضافه کردن عنصر جدید.</figcaption>
     </figure>
 
-    <div class="note">
-      <p class="note-head">توجه</p>
-      <p>به طور عمومی هنگام ایجاد یک List، اندازه ی اولیه ای براش وجود داره به عنوان مثال در زبون جاوا اندازه ی
-        اولیه ی
-        List برابر 5 است و این اندازه هنگامی که تعداد عناصر از 5 بیشتر میشه به طور خودکار
-        افزایش پیدا میکنه.
-      </p>
-    </div>
 
-    <p>مثال</p>
-
-    <p>میخوایم یک List تعریف کنیم و عناصری از نوع String رو بهش اضافه کنیم.</p>
+    <p>اگه بخوایم به صورت برنامه نویسی این موضوع رو پیاده کنیم، به طور عمومی چیزی مشابه زیر
+      خواهد بود.</p>
 
     <div class="sample">
       <div class="snippet-container">
-        <pre class="snippet Java">
-ArrayList&lt;Integer&gt; list = new ArrayList();
-list.add("Lee");
-list.add("Rose");
-list.add("Joe");
-list.add("Billy");
-list.add("Susan");
-list.add("Emilly");
-list.add("Nick");
-
-System.out.println("Size of list after adding elements is " + list.size());
-        </pre>
-        <pre class="snippet Kotlin">
-val list: ArrayList&lt;Int&gt; = ArrayList();
-list.add("Lee")
-list.add("Rose")
-list.add("Joe")
-list.add("Billy")
-list.add("Susan")
-list.add("Emilly")
-list.add("Nick")
-
-println("Size of list after adding elements is ${list.size}")
+        <pre class="snippet">
+variable list = List();
+list.add(e1);
+list.add(e2);
+list.add(e3);
+list.add(e4);
         </pre>
       </div>
     </div>
@@ -150,19 +132,15 @@ println("Size of list after adding elements is ${list.size}")
     <h2>صدا زدن عناصر از list</h2>
 
     <p>به طور عمومی در اکثر زبونا برای صدا زدن عناصر داخل list از تابعی مشابه <strong>get(int: index)</strong> استفاده
-      میکنیم، که index شماره ی خونه ی عنصر مورد نظر است.</p>
+      میکنیم، که index شماره ی خونه ی عنصر مورد نظر است؛ پیچیدگی زمان برای صدا زدن عناصر با list O(1) است.</p>
 
 
-    <p>فرض کنید در مثال قبل میخوایم Joe و Susan رو صدا بزنیم.</p>
+    <p>فرض کنید در مثال قبل میخوایم e2 و e3 رو صدا بزنیم.</p>
     <div class="sample">
       <div class="snippet-container">
-        <pre class="snippet Java">
-String name = list.get(2);
-String name1 = list.get(4);
-        </pre>
-        <pre class="snippet Kotlin">
-val name = list.get(2)
-val name1 = list.get(4)
+        <pre class="snippet">
+variable v0 = list.get(1);
+variable v1 = list.get(2);
         </pre>
       </div>
     </div>
@@ -170,17 +148,11 @@ val name1 = list.get(4)
     <p>میتونیم تمام عناصر رو با استفاده از حلقه ها صدا بزنیم.</p>
     <div class="sample">
       <div class="snippet-container">
-        <pre class="snippet Java">
-for(int i=0; i&lt;list.size(); i++){
-  String name = list.get(i);
-  System.out.print(name + " ");
-}
-        </pre>
-        <pre class="snippet Kotlin">
-for(i in 0 until list.size ){
-  val name = list.get(i)
-  print("$name ");
-}
+        <pre class="snippet">
+for: i from 0 until list.size i++
+  variable e = list.get(i);
+  print(e);
+endloop;
         </pre>
       </div>
     </div>
@@ -191,7 +163,9 @@ for(i in 0 until list.size ){
     <h2>حذف عناصر از list</h2>
 
     <p>با حذف هر عنصر از list، اندازه ی list یک واحد کاهش پیدا می کنه؛ هنگامی که تمامی عناصر از list حذف بشن اندازه ی
-      list صفر میشه و اصطلاحا میگیم list خالی شده است.</p>
+      list صفر میشه و اصطلاحا میگیم list خالی شده؛ پیچیدگی زمان (time complexity) برای حذف کردن یک عنصر از list O(n)
+      است.</p>
+
 
     <p>به طور کلی در زبان های برنامه نویسی با استفاده از تابعی به نام <strong>remove(index: Int)</strong> می تونیم یک
       عنصر رو از لیست حذف کنیم و بجای index شماره ی خونه ی عنصر مورد نظر رو می نویسیم.</p>
@@ -208,19 +182,14 @@ for(i in 0 until list.size ){
     </figure>
 
 
-    <p>در مثال قسمت قبل فرض کنید میخوایم Lee, Rose و Nick رو حذف کنیم.</p>
+    <p>در مثال قبل فرض کنید میخوایم e1, e2, e4 رو حذف کنیم.</p>
 
     <div class="sample">
       <div class="snippet-container">
-        <pre class="snippet Java">
-list.remove(0);
-list.remove(0);
-list.remove(4);
-        </pre>
-        <pre class="snippet Kotlin">
+        <pre class="snippet">
 list.remove(0)
 list.remove(0)
-list.remove(4)
+list.remove(2)
         </pre>
       </div>
     </div>
@@ -228,17 +197,209 @@ list.remove(4)
   </section>
 
   <section id="p4">
+    <h2>مورد مطالعه (مثال ها)</h2>
+    <p>میخوایم یک list از نوع String ایجاد کنیم و چندتا اسم بهش اضافه کنیم؛ اسامی رو صدا زده و چاپ کنیم و در اخر چندتا
+      اسم رو ازش حذف کنیم.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+ArrayList&lt;String&gt; list = new ArrayList();
+list.add("Lee");
+list.add("Rose");
+list.add("Joe");
+list.add("Billy");
+list.add("Susan");
+list.add("Emilly");
+list.add("Nick");
+
+System.out.println("Size of list after adding elements is " + list.size());
+
+for(int i=0; i&lt;list.size(); i++){
+  String name = list.get(i);
+  System.out.print(name + " ");
+}
+
+String trash = null;
+
+removedName = list.remove(0);
+System.out.println("Name " + removedName + " has been removed");
+
+removedName = list.remove(0);
+System.out.println("Name " + removedName + " has been removed");
+
+removedName = list.remove(4);
+System.out.println("Name " + removedName + " has been removed");
+
+println("The size of list after removing 3 elements is " + list.size())
+        </pre>
+        <pre class="snippet Kotlin">
+val list: ArrayList&lt;String&gt; = ArrayList();
+list.add("Lee")
+list.add("Rose")
+list.add("Joe")
+list.add("Billy")
+list.add("Susan")
+list.add("Emilly")
+list.add("Nick")
+
+println("Size of list after adding elements is ${list.size}")
+
+for(i in 0 until list.size ){
+  val name = list.get(i)
+  print("$name ");
+}
+
+var removedName: String? = null;
+
+removedName = list.remove(0);
+println("Name $removedName has been removed");
+
+removedName = list.remove(0);
+println("Name $removedName has been removed");
+
+removedName = list.remove(4);
+println("Name $removedName has been removed");
+
+println("The size of list after removing 3 elements is ${list.size}")
+        </pre>
+      </div>
+    </div>
+
+    <p>میخوایم با استفاده از list یک Stack درست کنیم؛ Stack یک بخشی از ساختمان داده است اخرین عنصری که بهش اضافه میشه،
+      اولین عنصریه که ازش حذف میشه یا میتونیم صدا کنیم.
+      یه جورایی نگهداری عناصر در استک مثل همین اصطلاح خودمونه که میگه دیر اومدی زود میخوای بری؟
+    </p>
+
+    <div class="note">
+      <p class="note-head">توجه</p>
+      <p>به طور عمومی در اکثر زبان های برنامه نویسی، Stack با کمک linkedlist پیاده سازی میشه و در زبان های شی گرا مانند
+        جاوا Stack یک
+        کلاسه که از LinkedList ارث بری میکنه و علت این کار بهینه تر بودن linkedlist برای صدا زدن و حذف کردن عناصر اول و
+        اخر است. اما در اینجا میخوایم با استفاده از list یک stack پیاده کنیم تا با stack اشنا بشید.</p>
+    </div>
+
+    <p>Stack که میخوایم پیاده سازی کنیم با List یک رابطه ی <strong>aggregation</strong> داره؛ سه کانستراکتور و چهار
+      تابع <strong dir="ltr">push(e: E)</strong>, <strong dir="ltr">pop():E</strong> و <strong
+        dir="ltr">isEmpty()</strong> رو براش تعریف میکنیم.</p>
+
+    <p>در Stack برای افزودن یک عنصر از تابع push, برای حذف اخرین عنصر از pop و برای صدا زدن عنصر (یعنی اخرین
+      عنصری که با push اضافه شده) از تابع peek
+      استفاده
+      میکنیم و با تابع isEmpty بررسی میکنیم آیا Stack خالی است یا خیر.</p>
+
+    <p>نمودار uml پیاده سازی که میخوایم با list انجام بدیم در زیر اورده شده است.</p>
+
+    <figure>
+      <img src="/resources/image/data-structure/design_stack_by_list_uml.png" alt="نمودار uml پیاده سازی Stack با List">
+      <figcaption>نمودار uml پیاده سازی Stack با List</figcaption>
+    </figure>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
+public class MyStack&lt;E&gt; {
+    
+    private final List&lt;E&gt; list = new ArrayList&lt;&gt;();
+    
+    public MyStack(E[] elements){
+        for (int i=0; i&lt;elements.length; i++){
+            list.add(elements[i]);
+        }
+    }
+    
+    public MyStack(Collection&lt;;E&gt; c){
+        list.addAll(c);
+    }
+    
+    public MyStack(){
+        
+    }
+    
+    public boolean push(E e){
+        return list.add(e);
+    }
+    
+    public E peek(){
+        if (list.isEmpty()) return null;
+        return list.get(list.size() - 1);
+    }
+    
+    public E pop(){
+        if (list.isEmpty()) return null;
+        return list.remove(list.size() - 1);
+    } 
+
+
+    public boolean isEmpty(){
+        return list.size() == 0;
+    }
+}
+        </pre>
+        <pre class="snippet Kotlin">
+class MyStack&lt;E&gt; {
+
+    private val list: MutableList&lt;E?&gt; = ArrayList&lt;E?&gt;()
+    
+    val isEmpty: Boolean
+        get() = list.size == 0
+    
+    constructor(elements: Array&lt;E?&gt;) {
+        for (i in elements.indices) {
+            list.add(elements[i])
+        }
+    }
+
+    constructor(c: MutableCollection&lt;E?&gt;) {
+        list.addAll(c)
+    }
+
+    constructor()
+    
+    fun push(e: E): Boolean {
+        return list.add(e)
+    }
+
+    fun peek(): E? {
+        if (list.isEmpty()) return null
+        return list.get(list.size - 1)
+    }
+
+    fun pop(): E? {
+        if (list.isEmpty()) return null
+        return list.removeAt(list.size - 1)
+    }
+
+}
+        </pre>
+      </div>
+    </div>
+
+  </section>
+
+  <section id="p5">
     <h2>خلاصه</h2>
 
     <ul>
       <li>
-        از list برای نگهداری عناصری با نوع یکسان استفاده میکنیم.
+        برای نگهداری تعداد نامعلومی از عناصر با نوع یکسان از list استفاده میکنیم.
       </li>
       <li>
         میتونیم هر عنصر داخل list رو که خواستیم به صورت تصادفی صدا بزنیم.
       </li>
       <li>
         بر خلاف آرایه ها طول list ثابت نیست و بعد از ایجاد یک لیست میتونیم عناصر رو بهش اضافه کنیم یا ازش حذف کنیم.
+      </li>
+      <li>
+        ظرفیت (capacity) یک list تعداد خونه هاییه که عناصر رو داخلشون نگهداری میکنه و اندازه (size) یک list تعداد
+        عناصریه که نگهداری میکنه.
+      </li>
+      <li>
+        اندازه ی list معمولا کمتر یا برابر با ظرفیت (capacity) آن است.
       </li>
     </ul>
   </section>
