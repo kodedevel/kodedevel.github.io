@@ -25,10 +25,13 @@ layout: default
         <a href="#p5">حذف عنصر از لیست پیوندی</a>
       </li>
       <li>
-        <a href="#p6">استفاده از لیست پیوندی در زبان های برنامه نویسی</a>
+        <a href="#p6">پیاده سازی لیست پیوندی در زبان های برنامه نویسی</a>
       </li>
       <li>
-        <a href="#p7">خلاصه</a>
+        <a href="#p7">استفاده از لیست پیوندی در زبان های برنامه نویسی</a>
+      </li>
+      <li>
+        <a href="#p8">خلاصه</a>
       </li>
     </ul>
   </nav>
@@ -417,6 +420,259 @@ function remove(index: int): E {
 
 
   <section id="p6">
+    <h2>پیاده سازی لیست پیوندی در زبان های برنامه نویسی</h2>
+
+    <p>میخوایم لیست پیوندی (LinkedList) رو به صورت عملی با استفاده از زبان های برنامه نویسی (جاوا و کاتلین) پیاده سازی
+      کنیم.</p>
+
+    <p>در این پیاده سازی توابع <strong dir="ltr">addFirst(element: E)</strong>, <strong dir="ltr">addLast(element:
+        E)</strong>, <strong dir="ltr">get(index: int): E</strong>, <strong dir="ltr">removeFirst(): E</strong> به صورت
+      کامل نوشته شده و توابع <strong dir="ltr">remove(index: int)</strong>, <strong dir="ltr">add(index: int, element:
+        E)</strong>, <strong dir="ltr">removeLast(): E</strong> به عنوان تمرین رها شده تا خودتون انجامش
+      بدید.</p>
+
+
+    <div class="sample">
+      <div class="snippet-container">
+
+        <pre class="snippet Java">
+import java.util.NoSuchElementException;
+
+public class MyLinkedList&lt;E&gt; {
+
+    private Node&lt;E&gt; firstNode;
+    private Node&lt;E&gt; lastNode;
+
+    private int size;
+
+
+    public boolean isEmpty(){
+        return size == 0;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+
+    public void addFirst(E element){
+
+        Node&lt;E&gt; newNode = new Node&lt;&gt;(element, null, null);
+
+        if (isEmpty()){
+            firstNode = newNode;
+            lastNode = newNode;
+        }else{
+            firstNode.prev = newNode;
+            newNode.next = firstNode;
+            firstNode = newNode;
+        }
+
+        size++;
+    }
+
+    public void addLast(E element){
+        Node&lt;E&gt; newNode = new Node&lt;&gt;(element, null, null);
+
+        if (isEmpty()){
+            firstNode = newNode;
+            lastNode = newNode;
+        }else {
+            lastNode.next = newNode;
+            newNode.prev = lastNode;
+            lastNode = newNode;
+        }
+
+        size++;
+    }
+
+
+    public E get(int index){
+        if (index &lt; 0 || index &gt; size - 1)
+            throw new IndexOutOfBoundsException("The index should be between 0 and " + (size -1));
+
+        Node&lt;E&gt; node;
+
+        if (size == 1){
+            node = firstNode;
+        }else {
+            int count = 0;
+            Node&lt;E&gt; currentNode = firstNode;
+            while (count != index){
+                currentNode = currentNode.next;
+                count++;
+            }
+
+            node = currentNode;
+        }
+
+        return node.element;
+    }
+
+    public E removeFirst(){
+
+        if (isEmpty())
+            throw new NoSuchElementException("The list is empty");
+
+        Node&lt;E&gt; removedNode;
+
+        if (size == 1){
+            removedNode = firstNode;
+            firstNode = null;
+            lastNode = null;
+        }else {
+            removedNode = firstNode;
+            firstNode = firstNode.next;
+            firstNode.prev = null;
+        }
+
+        size--;
+        return removedNode.element;
+    }
+
+
+    public E add(int index, E element){
+        //TODO Left as an exercise
+
+        return null;
+    }
+
+    public E remove(int index){
+        //TODO Left as an exercise
+
+        return null;
+    }
+
+    public E removeLast(){
+        //TODO Left as an exercise
+
+        return null;
+    }
+
+    private static final class Node&lt;E&gt; {
+        private final E element;
+        private Node&lt;E&gt; next;
+        private Node&lt;E&gt; prev;
+
+        Node(E element, Node&lt;E&gt; next, Node&lt;E&gt; prev) {
+            this.element = element;
+            this.next = next;
+            this.prev = prev;
+        }
+
+    }
+}
+        </pre>
+
+        <pre class="snippet Kotlin">
+class MyLinkedList&lt;E&gt; {
+
+    private var firstNode: Node&lt;E&gt;? = null
+    private var lastNode: Node&lt;E&gt;? = null
+    var size = 0
+
+    val  empty get() = size == 0
+
+    fun addFirst(element: E){
+
+        val newNode: Node&lt;E&gt; = Node(element)
+
+        if (size == 0) {
+            firstNode = newNode
+            lastNode = newNode
+        }else{
+            newNode.next = firstNode
+            firstNode!!.prev = newNode
+            firstNode = newNode
+        }
+
+        size++
+    }
+
+
+    fun addLast(element: E){
+        if (size == 0){
+            firstNode = Node(element)
+            lastNode = Node(element)
+        }else{
+            val node = Node(element)
+            node.prev = lastNode
+            lastNode!!.next = node
+            lastNode = node
+        }
+
+        size++
+    }
+
+    fun get(index: Int): E? {
+
+        if (index !in 0..&lt;size)
+            throw IndexOutOfBoundsException("index should be between 0 to ${size - 1}")
+
+        if (empty)
+            throw NoSuchElementException("The List is empty")
+
+        var node: Node&lt;E&gt;?
+
+        var count = 0
+
+        var currentNode = firstNode
+
+        while (count != index ){
+            currentNode = currentNode?.next
+            count++
+        }
+
+        node = currentNode
+
+        return node?.element
+    }
+
+    fun removeFirst(): E {
+
+        if (empty)
+            throw NoSuchElementException("There's no element in list")
+
+        val node: Node&lt;E&gt;
+
+        if (size == 1) {
+            node = firstNode!!
+            firstNode = null
+            lastNode = null
+        } else{
+            node = firstNode!!
+            firstNode = firstNode!!.next
+            firstNode!!.prev = null
+        }
+
+        size--
+
+        return node.element
+    }
+
+    fun add(index: Int, element: E){
+        //TODO left as an exercise
+    }
+
+    fun removeLast(): E? {
+        //TODO left as an exercise
+        return null
+    }
+
+    fun remove(index: Int): E?{
+        //TODO left as an exercise
+        return null
+    }
+    
+   private data class Node&lt;E&gt;(val element: E, var next: Node&lt;E&gt;? = null, var prev: Node&lt;E&gt;? = null)
+}
+        </pre>
+      </div>
+    </div>
+
+  </section>
+
+  <section id="p7">
     <h2>استفاده از لیست پیوندی در زبان های برنامه نویسی</h2>
     <p>در بسیاری از زبان های برنامه نویسی لیست پیوندی (LinkedList) به عنوان یک کتابخونه ی استاندارد پیاده سازی شده و در
       اینجا میخوایم
@@ -477,7 +733,7 @@ while(!colors.isEmpty()){
     </div>
   </section>
 
-  <section id="p7">
+  <section id="p8">
     <h2>خلاصه</h2>
 
     <ul>
