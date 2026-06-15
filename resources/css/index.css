@@ -132,8 +132,8 @@
   width: 320px;
   height: 320px;
   text-align: center;
-  color: #fafafa !important;
-  font-size: 1.2rem;
+  color: #f5f5f5;
+  font-size: 1.32rem;
   font-weight: bold;
   align-content: center;
   text-decoration: none;
@@ -145,7 +145,7 @@
 
 .category-redirect-link:hover{
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
-  color: #e5e5e5 !important;
+  color: #e5e5e5;
 }
 
 .category-redirect-link.java{
@@ -166,6 +166,11 @@
 
 .category-redirect-link.data-structure{
   background-color: #fdd835;
+  color: #000000;
+}
+
+.category-redirect-link.data-structure:hover{
+  color: #212121;
 }
 
 .category-redirect-link-container{
