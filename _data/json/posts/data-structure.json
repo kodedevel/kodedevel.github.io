@@ -9,6 +9,14 @@
       "lastModified": "2026-06-13",
       "imgCover": "/resources/image/data-structure/cover_list.png",
       "link": "/post/data-structure/list.html"
+    },
+    {
+      "title": "LinkedList در ساختمان داده",
+      "description": "عناصر در LinkedList بر خلاف List بجای اینکه مستقیم در حافظه ذخیره بشن داخل Node ها ذخیره میشن، LinkedList برای حذف و اضافه کردن عناصر به ابتدا و انتهای list بهینه است اما برای دسترسی به صورت تصادفی به عناصر با index گزینه ی مناسبی جهت استفاده نیست.",
+      "datePublished": "2026-06-15",
+      "lastModified": "",
+      "imgCover": "/resources/image/data-structure/cover_linkedlist.png",
+      "link": "/post/data-structure/linkedlist.html"
     }
   ]
 }
