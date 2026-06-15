@@ -177,6 +177,7 @@ function addFirst(e: E){
     firstNode := newNode
   else
     newNode.next := firstNode
+    firstNode.prev := newNode
     firstNode := newNode
 
   size++
@@ -207,6 +208,7 @@ function addLast(e: E){
     firstNode := newNode
   else
     lastNode.next := newNode
+    newNode.prev := lastNode
     lastNode := newNode
 
   size++
