@@ -1,0 +1,517 @@
+---
+layout: default
+---
+
+<article>
+  <nav class="toc">
+    <div>دسترسی سریع</div>
+    <ul>
+      <li>
+        <a href="#p0">بررسی LinkedList</a>
+      </li>
+      <li>
+        <a href="#p1">انواع LinkedList</a>
+      </li>
+      <li>
+        <a href="#p2">بررسی node در LinkedList</a>
+      </li>
+      <li>
+        <a href="#p3">افزودن عنصر به LinkedList</a>
+      </li>
+      <li>
+        <a href="#p4">صدا زدن عنصر با index در LinkedList</a>
+      </li>
+      <li>
+        <a href="#p5">حذف عنصر در LinkedList</a>
+      </li>
+      <li>
+        <a href="#p6">استفاده از LinkedList در زبان های برنامه نویسی</a>
+      </li>
+      <li>
+        <a href="#p7">خلاصه</a>
+      </li>
+    </ul>
+  </nav>
+
+  <section id="p0">
+    <h2>بررسی LinkedList</h2>
+
+    <p> بر خلاف <a href="list.html">list</a> که عناصر آرایه وار مستقیم روی حافظه ذخیره میشن، در
+      <strong>LinkedList</strong> عناصر در
+      <strong>node</strong> ها
+      ذخیره میشن.
+    </p>
+    <p>در LinkedList هر عنصر داخل یک node ذخیره میشه و هر node به node بعدی اشاره میکنه و آخرین node در حالت استاندارد
+      به <strong>null</strong> اشاره میکنه؛ به عبارتی هر node به node بعدی <strong>زنجیر (link)</strong> میشه.</p>
+
+    <p>زمانی که LinkedList خالی باشه تنها یک node داخلش وجود داره، مقدار عنصری که داخل node نگهداری میشه null و node
+      بعدی که بهش اشاره میکنه null است.</p>
+
+    <p>زمانی که بخوایم عناصر رو از ابتدا یا انتها حذف یا اضافه کنیم، استفاده از LinkedList بهینه تر از استفاده از list
+      است؛ اما اگه بخوایم به عناصر با index به صورت تصادفی دسترسی داشته باشیم استفاده از list بهینه تر از LinkedList
+      است.</p>
+
+    <section>
+      <h3>ساختار LinkedList</h3>
+      <p>هر عنصر داخل یک node نگهداری میشه و هر node به node بعد از خودش node (در صورتی که اخرین node نباشه) و به node
+        قبل از خودش (در صورتی که اولین node نباشه) اشاره میکنه (Doubly LinkedList).</p>
+      <p>در زیر به صورت تصویری شرح داده شده که چطور عناصر در LinkedList نگهداری میشن.</p>
+
+      <figure>
+        <img src="/resources/image/data-structure/doubly_linkedlist_structure.png"
+          alt="نحوه ی نگهداری عناصر در LinkedList">
+        <figcaption>نحوه ی نگهداری عناصر در LinkedList</figcaption>
+      </figure>
+
+    </section>
+
+
+
+    <section id="p1">
+      <h2>انواع LinkedList</h2>
+
+      <p>انواع مختلفی از پیاده سازی LinkedList داریم که در ادامه سه تا از پیاده سازی های معروف رو بیان میکنیم.</p>
+
+      <div class="note">
+        <p class="note-head">توجه</p>
+        <p>در این مطلب فقط به جزییات Doubly LinkedList می پردازیم، نحوه ی پیاده سازی سایر LinkedList ها تقریبا مشابه
+          است.</p>
+      </div>
+
+      <section>
+        <h3>Singly LinkedList</h3>
+        <p>در این نوع LinkedList هر node به node بعد خودش اشاره میکنه تا آخرین node که node بعدش null است.</p>
+        <p>جستجو در این نوع LinkedList یک طرفه است یعنی برای پیدا کردن یک عنصر، جستجو از اولین node شروع میشه تا به node
+          مورد نظر برسیم.</p>
+
+        <figure>
+          <img src="/resources/image/data-structure/singly_linkedlist_structure.png" alt="ساختار یک Singly LinkedList">
+          <figcaption>ساختار یک Singly LinkedList</figcaption>
+        </figure>
+      </section>
+
+
+      <section>
+        <h3>Doubly LinkedList</h3>
+        <p>در این نوع LinkedList هر node به node بعد از خودش و node قبل از خودش اشاره (point) میکنه و اولین node به null
+          به عنوان node قبل از خودش اشاره میکنه و اخرین node به null به عنوان node بعد از خودش اشاره میکنه.</p>
+        <p>جستجو در این نوع LinkedList دو طرفه است، یعنی جستجو برای پیدا کردن یک عنصر، هم از اولین node به آخرین node
+          امکان پذیر است هم از اخرین node به اولین node</p>
+
+        <figure>
+          <img src="/resources/image/data-structure/doubly_linkedlist_structure.png" alt="ساختار یک Doubly LinkedList">
+          <figcaption>ساختار یک Doubly LinkedList</figcaption>
+        </figure>
+
+      </section>
+
+
+      <section>
+        <h3>Circular LinkedList</h3>
+
+        <p>در این نوع LinkedList اخرین node بجای اشاره به null به عنوان node بعد خودش به اولین node در LinkedList اشاره
+          می کنه.</p>
+
+        <figure>
+          <img src="/resources/image/data-structure/circular_linkedlist_structure.png"
+            alt="ساختار یک Circular LinkedList">
+          <figcaption>ساختار یک Circular LinkedList</figcaption>
+        </figure>
+
+      </section>
+
+    </section>
+
+    <section id="p2">
+      <h2>بررسی node در LinkedList</h2>
+
+      <p>با افزودن هر عنصر یک node برای عنصر ایجاد میشه و عنصر داخل node نگهداری میشه؛ node علاوه بر نگهداری عنصر، به
+        node بعدی خودش اشاره میکنه و اینجوری یک زنجیره بین node ها در LinkedList ایجاد میشه.</p>
+
+      <p>فرم کلی node:</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet">
+record node{
+  Node next
+  Node prev
+  E element
+}
+          </pre>
+        </div>
+      </div>
+
+    </section>
+
+    <section id="p3">
+      <h2>افزودن عنصر به LinkedList</h2>
+
+      <p>با افزودن هر عنصر به LinkedList یک node برای نگهداری عنصر ایجاد میشه، در LinkedList میتونیم node ها رو به
+        ابتدا، انتها یا وسط سایر node ها اضافه کنیم.</p>
+
+
+      <section>
+        <h3>افزودن node به ابتدای LinkedList</h3>
+        <p>اگه بخوایم node رو به <strong>ابتدای</strong> LinkedList اضافه کنیم، node
+          ایجاد شده به اولین node موجود در LinkedList اشاره میکنه. پیچیدگی زمان (time complexity) در این حالت O(1) است.
+        </p>
+
+        <div class="sample">
+          <div class="snippet-container">
+            <pre class="snippet">
+function addFirst(e: E){
+
+  newNode := Node(e)
+
+  if size = 0 
+    lastNode := newNode
+    firstNode := newNode
+  else
+    newNode.next := firstNode
+    firstNode := newNode
+
+    size++
+
+}
+            </pre>
+          </div>
+        </div>
+
+      </section>
+
+      <section>
+        <h3>افزودن node به انتهای LinkedList</h3>
+        <p> اگه بخوایم node رو به
+          انتهای LinkedList اضافه کنیم، اخرین node در LinkedList به node جدید اشاره میکنه؛ پیچیدگی زمان
+          در این حالت O(1) است.
+        </p>
+
+        <div class="sample">
+          <div class="snippet-container">
+            <pre class="snippet">
+function addLast(e: E){
+  
+  newNode := Node(e)
+
+  if size = 0
+    lastNode := newNode
+    firstNode := newNode
+  else
+    lastNode.next := newNode
+    newNode := lastNode
+
+    size++
+}
+            </pre>
+          </div>
+        </div>
+
+      </section>
+
+
+      <section>
+        <h3>افزودن node به وسط LinkedList</h3>
+        <p>اگه بخوایم node رو وسط node ها اضافه کنیم، node قبلی به node جدید اشاره میکنه و node جدید به node بعد؛
+          پیچیدگی زمان در این حالت O(n) است.</p>
+
+        <div class="sample">
+          <div class="snippet-container">
+            <pre class="snippet">
+function add(index: int, e: E){
+
+  if index &lt; 0 or index &gt; size - 1
+     throw IndexOutOfBoundException
+
+  newNode := Node(e)
+
+  if firstNode = null
+     firstNode := newNode
+     lastNode := newNode
+     size++
+  else
+      count := 0
+      currentNode := firstNode
+
+      while count != index
+
+        if count = index
+           newNode.next = currentNode.next
+           currentNode.next = newNode
+           size++
+           break
+
+        count++
+        currentNode := currentNode.next
+  
+}
+            </pre>
+          </div>
+        </div>
+      </section>
+
+    </section>
+
+  </section>
+
+  <section id="p4">
+    <h2>صدا زدن عنصر با index در LinkedList</h2>
+    <p>برای صدا زدن یک عنصر با index در LinkedList باید node مربوط به index مورد نظر رو پیدا کنیم؛ صدا زدن یک عنصر در
+      LinkedList دارای پیچیدگی زمان O(n) است.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet">
+function get(index: int): E {
+  
+  if index &lt; 0 or index &gt; size - 1
+     throw IndexOutOfBoundException
+
+     count := 0
+     node := firstNode
+
+     while count != index
+         if count = index
+           break
+         node := node.next
+
+    return node.element
+}
+        </pre>
+      </div>
+    </div>
+
+  </section>
+
+  <section id="p5">
+    <h2>حذف عنصر از LinkedList</h2>
+    <p>برای حذف یک عنصر از LinkedList باید node که عنصر مورد نظر رو نگهداری میکنه از زنجیره خارج کنیم؛ میتونیم یک عنصر
+      رو از ابتدا، انتها یا وسط یک LinkedList حذف کنیم.</p>
+
+    <section>
+      <h3>حذف عنصر از ابتدای LinkedList</h3>
+      <p>برای حذف اولین عنصر از LinkedList، باید اولین node در LinkedList رو از زنجیره خارج کنیم.</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet">
+function removeFirst(): E {
+  
+  Node removedNode := null
+
+  if size = 0
+     throw NoSuchElementException
+
+  if size = 1
+    removedNode := firstNode
+    firstNode := null
+    lastNode := null
+
+  else 
+     removedNode := firstNode
+     firstNode.next := firstNode.next.next
+     firstNode := firstNode.next
+
+  return removedNode.element
+}
+
+          </pre>
+        </div>
+      </div>
+
+    </section>
+
+
+    <section>
+      <h3>حذف یک عنصر از انتهای LinkedList</h3>
+      <p>برای حذف کردن آخرین عنصر از LinkedList، آخرین node رو از زنجیره خارج کنیم.</p>
+
+      <div class="note">
+        <p class="note-head">توجه</p>
+        <p>حذف اخرین node در Singly LinkedList دارای پیچیدگی زمان O(n) و در Doubly LinkedList دارای پیچیدگی زمان O(1)
+          است؛ اما همانطور که گفتیم در این مطلب به Doubly LinkedList می پردازیم.</p>
+      </div>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet">
+function removeLast(): E{
+  Node removedNode := null
+
+  if size = 0
+    throw NoSuchElementException
+  
+  if size = 1
+    removedNode := firstNode
+    firstNode := null
+    lastNode := null
+  else  
+    
+    prevNode = lastNode.prev
+    prevNode.next = null
+    lastNode := prevNode
+
+  return removedNode.element
+}
+          </pre>
+        </div>
+      </div>
+
+    </section>
+
+
+    <section>
+      <h3>حذف کردن یک عنصر با استفاده از index</h3>
+
+      <p>با استفاده از index در LinkedList میتونیم یک عنصر رو در ابتدا، وسط یا انتهای LinkedList حذف کنیم، برای این کار
+        کافیه node مربوط به index رو پیدا کرده و از زنجیره حذفش کنیم.</p>
+
+      <figure>
+        <img src="/resources/image/data-structure/remove_node_from_doubly_linkedlist.png"
+          alt="حذف یک node با استفاده از index در doubly linkedlist">
+        <figcaption>حذف یک node با استفاده از index در doubly linkedlist</figcaption>
+      </figure>
+
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet">
+function remove(index: int): E {
+
+  Node removedNode := null
+
+  if size = 0 
+    throw NoSuchElementException
+
+  if index &lt; 0 or index &gt; size - 1 
+    throw IndexOutOfBoundException
+
+
+  if size = 1
+    removedNode := firstNode
+    firstNode := null
+    lastNode := null
+  else 
+    count := 0
+    Node node := firstNode
+  
+    while count != index
+      count++
+      node := node.next
+
+    prevNode := node.prev
+    prevNode.next := node.next
+
+
+    return node.element
+}
+          </pre>
+        </div>
+      </div>
+
+    </section>
+
+  </section>
+
+
+  <section id="p6">
+    <h2>استفاده از LinkedList در زبان های برنامه نویسی</h2>
+    <p>در بسیاری از زبان های برنامه نویسی LinkedList به عنوان یک کتابخونه ی استاندارد پیاده سازی شده و در اینجا میخوایم
+      استفاده از LinkedList رو بررسی کنیم.</p>
+
+
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+LinkedList&lt;String&gt; colors = new LinkedList&lt;&gt;();
+colors.add("Blue");
+colors.add("Pink");
+colors.add("Purple");
+colors.addFirst("Cyan");
+colors.add(1, "Red");
+colors.removeLast();
+colors.addLast("Yellow");
+
+System.out.println("Display colors ");
+for(int i =0; i&lt;colors.size(); i++){
+  String c = colors.get(i);
+  System.out.print(c + " ");
+}
+
+System.out.println("Remove and Display colors backward: ");
+
+while(!colors.isEmpty()){
+  String c = colors.removeLast();
+  System.out.println(c);
+  
+}
+        </pre>
+        <pre class="snippet Kotlin">
+val colors: LinkedList&lt;String&gt; = LinkedList&lt;&gt;();
+colors.add("Blue")
+colors.add("Pink")
+colors.add("Purple")
+colors.addFirst("Cyan")
+colors.add(1, "Red")
+colors.removeLast()
+colors.addLast("Yellow")
+
+System.out.println("Display colors ");
+for(i in 0 until colors.size ){
+  val c = colors.get(i)
+  print("$c ")
+}
+
+println("Remove and Display colors backward: ")
+
+while(!colors.isEmpty()){
+  val c = colors.removeLast()
+  println(c)
+}
+        </pre>
+      </div>
+    </div>
+  </section>
+
+  <section id="p7">
+    <h2>خلاصه</h2>
+
+    <ul>
+      <li>در LinkedList عناصر داخل node ها ذخیره میشن.</li>
+      <li>هر node در LinkedList به node بعدی اشاره میکنه.</li>
+      <li>انواع پیاده سازی LinkedList وجود داره از جمله: Singly LinkedList, Doubly LinkedList و Circular LinkedList</li>
+      <li>در Singly LinkedList، یک node به node بعدی اشاره میکنه</li>
+      <li>در Doubly LinkedList یک node به node بعد و node قبل از خودش اشاره میکنه (Doubly LinkedList).</li>
+      <li>پیچیدگی زمان هنگام افزودن یک عنصر به ابتدا یا انتهای یک LinkedList O(1) و هنگام افزودن یک عنصر با index برابر
+        با O(n) است.</li>
+      <li>پیچیدگی زمان برای صدا زدن یک عنصر در LinkedList با index برابر با O(n) است.</li>
+      <li>پیچیدگی زمان (time complexity) برای حذف کردن یک عنصر از ابتدا یا انتهای یک LinkedList برابر با O(1) و برای حذف
+        کردن یک عنصر وسط LinkedList برابر با O(n) است.</li>
+
+
+    </ul>
+  </section>
+
+</article>
+{% capture links %}
+<li>
+  <a href="/post/java/arrays.html">آرایه ها در جاوا</a>
+</li>
+<li>
+  <a href="/post/kotlin/arrays.html">آرایه ها در کاتلین</a>
+</li>
+
+<li>
+  <a href="/post/data-structure/list.html">نگاهی به list در برنامه نویسی</a>
+</li>
+<li>
+  <a href="/post/algorithm/recursion.html">بازگشتی (recursion) در برنامه نویسی</a>
+</li>
+<li>
+  <a href="/post/linux/list-directory-contents.html">مطالعه در ویکی پدیا انگلیسی</a>
+</li>
+
+{% endcapture %}
+
+{% include article-foot.html relative_links = links %}
