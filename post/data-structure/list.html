@@ -133,7 +133,7 @@ function add(element: E){
      
      array := new E[(capacity *= 2)]
      
-     for 0 &lt;= i &lt; capacity i++
+     for 0 &lt;= i &lt; elements.length i++
        array[i] := elements[i]
 
      array[size++] = element
@@ -185,7 +185,7 @@ function get(index: int): E {
       <div class="snippet-container">
         <pre class="snippet">
 for 0 &lt;= i &lt; list.size i++
-  variable e = list.get(i);
+  e := list.get(i);
   print(e);
         </pre>
       </div>
