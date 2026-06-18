@@ -425,9 +425,7 @@ function remove(index: int): E {
     <p>میخوایم لیست پیوندی (LinkedList) رو به صورت عملی با استفاده از زبان های برنامه نویسی (جاوا و کاتلین) پیاده سازی
       کنیم.</p>
 
-    <p>در این پیاده سازی توابع <strong dir="ltr">addFirst(element: E)</strong>, <strong dir="ltr">addLast(element:
-        E)</strong>, <strong dir="ltr">get(index: int): E</strong>, <strong dir="ltr">removeFirst(): E</strong> به صورت
-      کامل نوشته شده و توابع <strong dir="ltr">remove(index: int)</strong>, <strong dir="ltr">add(index: int, element:
+    <p>در این پیاده سازی توابع <strong dir="ltr">remove(index: int)</strong>, <strong dir="ltr">add(index: int, element:
         E)</strong>, <strong dir="ltr">removeLast(): E</strong> به عنوان تمرین رها شده تا خودتون انجامش
       بدید.</p>
 
@@ -436,8 +434,6 @@ function remove(index: int): E {
       <div class="snippet-container">
 
         <pre class="snippet Java">
-import java.util.NoSuchElementException;
-
 public class MyLinkedList&lt;E&gt; {
 
     private Node&lt;E&gt; firstNode;
@@ -453,7 +449,6 @@ public class MyLinkedList&lt;E&gt; {
     public int getSize() {
         return size;
     }
-
 
     public void addFirst(E element){
 
@@ -486,6 +481,17 @@ public class MyLinkedList&lt;E&gt; {
         size++;
     }
 
+    public E getFirst(){
+        if(isEmpty()) throw NoSuchElementException("The LinkedList is empty");
+
+        return firstNode.element;
+    }
+
+    public E getLast(){
+        if(isEmpty()) throw NoSuchElementException("The LinkedList is empty");
+
+        return lastNode.element;
+    }
 
     public E get(int index){
         if (index &lt; 0 || index &gt; size - 1)
@@ -603,6 +609,16 @@ class MyLinkedList&lt;E&gt; {
 
         size++
     }
+
+    fun getFirst(): E?{
+        return firstNode?.element
+    }
+
+
+    fun getLast(): E?{
+        return lastNode?.element
+    }
+
 
     fun get(index: Int): E? {
 

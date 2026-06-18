@@ -89,7 +89,7 @@ function push(e: E){
       <div class="snippet-container">
         <pre class="snippet">
 function pop(): E{
-  return linkedList.removeLast();
+  return linkedList.removeLast()
 }
         </pre>
       </div>
@@ -107,15 +107,13 @@ function pop(): E{
       <div class="snippet-container">
         <pre class="snippet">
 function peek(): E{
-  return linkedList.get(linkedlist.size -1);
+  return linkedList.getLast()
 }
         </pre>
       </div>
     </div>
 
   </section>
-
-
 
   <section>
     <h2>پیاده سازی استک در زبان های برنامه نویسی</h2>
@@ -160,14 +158,14 @@ public class MyStack&lt;E&gt; {
 
     public E peek(){
         if (list.isEmpty()) return null;
-        return list.get(list.getSize() - 1);
+        return list.getLast();
     }
 
     public boolean isEmpty(){
-        return list.getSize() == 0;
+        return list.isEmpty();
     }
 
-    public boolean getSize(){
+    public int getSize(){
         return list.getSize();
     }
 }
@@ -201,7 +199,7 @@ class MyStack&lt;E&gt;() {
 
     fun peek(): E? {
         if (list.empty) return null
-        return list.get(list.size - 1)
+        return list.getLast()
     }
     
 }
@@ -396,7 +394,8 @@ private fun insertBlanks(s: String): String {
     <h2>خلاصه</h2>
     <ul>
       <li>استک یک ساختار داده ی یک طرفه است.</li>
-      <li>در پشته (Stack) آخرین عنصری که وارد میکنیم اولین عنصریه که میتونیم صدا بزنیم یا حذف کنیم.</li>
+      <li>در پشته (Stack) آخرین عنصری که وارد میکنیم اولین عنصریه که میتونیم صدا بزنیم یا حذف کنیم و به
+        last-in-first-out شناخته شده است.</li>
       <li>در پشته (Stack) به فقط به آخرین عنصری که اضافه کردیم دسترسی داریم و تا زمانی که حذف نشده به عناصر بعدی دسترسی
         نخواهیم داشت.</li>
       <li>با استفاده از آرایه ها میتونیم یک استک با اندازه ی ثابت و با استفاده از لیست پیوندی میتونیم یک استک با اندازه

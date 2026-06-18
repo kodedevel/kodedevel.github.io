@@ -64,7 +64,6 @@ layout: default
     <p>در این مطلب با استفاده از لیست پیوندی و رابطه ی aggregation به پیاده سازی صف (Queue) می پردازیم.</p>
   </section>
 
-
   <section id="p1">
     <h2>افزودن عنصر به صف (Queue)</h2>
 
@@ -84,7 +83,6 @@ function enqueue(e: E){
     </div>
 
   </section>
-
 
   <section id="p2">
     <h2>حذف یک عنصر از صف (Queue)</h2>
@@ -116,7 +114,7 @@ function dequeue(): E{
       <div class="snippet-container">
         <pre class="snippet">
 function peek(): E{
-  return linkedList.get(0);
+  return linkedList.getFirst();
 }
         </pre>
       </div>
@@ -159,17 +157,16 @@ public class MyQueue&lt;E&gt; {
     }
 
     public E dequeue(){
-       if(isEmpty())
-         return null
+       
+       if(isEmpty()) return null
 
        return list.removeFirst();
     }
     
     public E peek(){
-
         if(isEmpty()) return null
 
-        return list.get(0);
+        return list.getFirst();
     }
     
     public int getSize(){
@@ -208,7 +205,8 @@ class MyQueue&lt;E&gt;() {
     }
 
     fun peek(): E? {
-        return list.get(0)
+        if(empty) return null
+        return list.getFirst()
     }
 }
         </pre>
@@ -297,7 +295,7 @@ fun getSize(file: File): Long {
     <h2>خلاصه</h2>
     <ul>
       <li>در صف فقط دسترسی یک طرفه به عناصر داریم.</li>
-      <li>اولین عنصری که به صف وارد میشه اولین عنصریه که صدا زده میشه و یا حذف میشه.</li>
+      <li>اولین عنصری که به صف وارد میشه اولین عنصریه که صدا زده میشه و یا حذف میشه؛ و معروفه به first-in-first-out</li>
       <li>در صف تا زمانی که اولین عنصر وارد شده حذف نشه به عنصر بعدی دسترسی نداریم.</li>
       <li>صف رو میتونیم با آرایه ها یا لیست پیوندی پیاده سازی کنیم.</li>
       <li>پیچیدگی زمان افزودن، حذف کردن و صدا زدن یک عنصر در صف O(1) است.</li>
