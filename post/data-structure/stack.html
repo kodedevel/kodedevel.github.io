@@ -1,0 +1,432 @@
+---
+layout: default
+---
+
+
+<article>
+
+  <nav class="toc">
+    <div>دسترسی سریع</div>
+    <ul>
+      <li>
+        <a href="#p0">بررسی پشته (Stack)</a>
+      </li>
+      <li>
+        <a href="#p1">افزودن عنصر به پشته (Stack)</a>
+      </li>
+
+      <li>
+        <a href="#p2">حذف عنصر از پشته (Stack)</a>
+      </li>
+      <li>
+        <a href="#p3">صدا زدن یک عنصر از پشته (Stack)</a>
+      </li>
+      <li>
+        <a href="#p4">پیاده سازی پشته (Stack) در زبان های برنامه نویسی</a>
+      </li>
+      <li>
+        <a href="#p5">استفاده از پشته (Stack) در زبان های برنامه نویسی</a>
+      </li>
+      <li>
+        <a href="#p6">خلاصه</a>
+      </li>
+    </ul>
+  </nav>
+
+  <section id="p0">
+    <h2>بررسی پشته (Stack)</h2>
+    <p>پشته (Stack) یکی از پیاده سازی ها در ساختار داده است، در پشته (Stack) دسترسی به عناصر یک طرفه است و بر خلاف لیست
+      که میتونیم به عناصر با index دسترسی داشته باشیم در پشته فقط میتونیم آخرین عنصری که اضافه کردیم رو صدا بزنیم و برای
+      دسترسی به عنصر بعدی باید آخرین عنصر از Stack خارج (حذف) بشه و پشته (Stack) معروفه به
+      <strong>last-in-first-out</strong> به زبون خودمونی دیر اومدی میخوای زود بری :)
+    </p>
+
+    <p> یک لیوان رو در نظر بگیرید که داخلش میخوایم چندتا توپ بندازیم، برای دسترسی به اولین توپی که انداختیم، باید توپ
+      های
+      بعدی رو بیاریم بیرون؛ نگهداری، دسترسی و حذف عناصر در استک (Stack) شبیه همینه.</p>
+
+    <figure>
+      <img src="/resources/image/data-structure/stack_structure.png" alt="ساختار داده ها در پشته (Stack)">
+      <figcaption>ساختار داده ها در پشته (Stack)</figcaption>
+    </figure>
+
+    <p>پشته (Stack) رو میتونیم با استفاده از آرایه ها با سایز ثابت یا با <a href="linkedlist.html">لیست پیوندی
+        (LinkedList)</a> پیاده سازی کنیم؛ در این مطلب به پیاده سازی استک با لیست پیوندی می پردازیم.</p>
+    <p>میتونیم یک پشته (Stack) رو با رابطه ی <strong>aggregation</strong> یا <strong>inheritance</strong> توسط لیست
+      پیوندی پیاده سازی کنیم؛ که در اینجا به پیاده سازی استک با لیست پیوندی با روش aggregation می پردازیم.</p>
+
+  </section>
+
+  <section id="p1">
+
+    <h2>افزودن عنصر به پشته (Stack)</h2>
+
+    <p>به طور عمومی با تابع <strong>push(e: E)</strong> میتونیم یک عنصر رو به استک اضافه کنیم، ولی ممکنه در زبان های
+      برنامه نویسی مختلف این اسم فرق کنه؛ پیچیدگی زمان برای اضافه کردن یک عنصر به استک O(1) است.</p>
+
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet">
+function push(e: E){
+  linkedList.addLast(e);
+}
+        </pre>
+      </div>
+    </div>
+
+  </section>
+
+  <section id="p2">
+    <h2>حذف عنصر از پشته (Stack)</h2>
+
+    <p>به طور عمومی برای حذف یک عنصر از تابع <strong>pop(): E</strong> در استک استفاده می کنیم، ممکنه اسم
+      pop():E در زبان های مختلف فرق کنه؛ آخرین عنصری که به استک اضافه می کنیم، اولین عنصری خواهد بود که از استک حذف میشه
+      و تا زمانی که این عنصر از پشته (Stack) حذف نشه به عنصر بعدی دسترسی نخواهیم داشت. </p>
+    <p>پیچیدگی زمان
+      برای حذف یک عنصر از استک O(1) است.</p>
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet">
+function pop(): E{
+  return linkedList.removeLast();
+}
+        </pre>
+      </div>
+    </div>
+  </section>
+  <section id="p3">
+    <h2>صدا زدن عنصر از پشته (Stack)</h2>
+
+    <p>به طور عمومی با تابع <strong>peek(): E</strong> برای صدا زدن یک عنصر از پشته (Stack) استفاده می کنیم، نام این
+      تابع ممکنه در زبان های برنامه نویسی مختلف فرق کنه؛ با تابع peek میتونیم به آخرین عنصری که به استک اضافه کردیم
+      دسترسی داشته باشیم و برای دسترسی به عنصر بعدی با peek باید عنصر فعلی حذف بشه.</p>
+
+    <p>پیچیدگی زمان برای صدا زدن عنصر از استک O(1) است</p>
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet">
+function peek(): E{
+  return linkedList.get(linkedlist.size -1);
+}
+        </pre>
+      </div>
+    </div>
+
+  </section>
+
+
+
+  <section>
+    <h2>پیاده سازی استک در زبان های برنامه نویسی</h2>
+
+    <p>در اینجا میخوایم با استفاده از <a href="linkedlist.html">لیست پیوندی</a> که پیاده کردیم، استک رو در زبان های
+      برنامه نویسی (جاوا و کاتلین) پیاده سازی کنیم.
+    </p>
+
+    <p>در زیر پیاده سازی پشته (Stack) به صورت <strong>uml</strong> آورده شده است.</p>
+
+    <figure>
+      <img src="/resources/image/data-structure/stack_with_linkedlist_uml_diagram.png"
+        alt="پیاده سازی استک با لیست پیوندی در uml">
+      <figcaption>پیاده سازی استک با لیست پیوندی در uml</figcaption>
+    </figure>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+public class MyStack&lt;E&gt; {
+
+    private final MyLinkedList&lt;E&gt; list = new MyLinkedList&lt;&gt;();
+
+    public MyStack(E[] elements){
+        for (int i=0; i&lt;elements.length; i++){
+            list.addLast(elements[i]);
+        }
+    }
+
+    public MyStack(){
+
+    }
+
+    public E pop(){
+        if (list.isEmpty()) return null;
+        return list.removeLast();
+    }
+
+    public void push(E e){
+        list.addLast(e);
+    }
+
+    public E peek(){
+        if (list.isEmpty()) return null;
+        return list.get(list.getSize() - 1);
+    }
+
+    public boolean isEmpty(){
+        return list.getSize() == 0;
+    }
+
+    public boolean getSize(){
+        return list.getSize();
+    }
+}
+        </pre>
+        <pre class="snippet Kotlin">
+class MyStack&lt;E&gt;() {
+    
+    private val list: MyLinkedList&lt;E&gt; = MyLinkedList()
+
+    val isEmpty: Boolean
+        get() = list.size == 0
+    
+    val size: Int 
+        get() = list.size
+    
+    constructor(elements: Array&lt;E&gt;): this() {
+        for (i in elements.indices) {
+            list.addLast(elements[i])
+        }
+    }
+
+    fun pop(): E? {
+        if (list.empty) return null
+        return list.removeLast()
+    }
+
+
+    fun push(e: E) {
+        list.addLast(e)
+    }
+
+    fun peek(): E? {
+        if (list.empty) return null
+        return list.get(list.size - 1)
+    }
+    
+}
+        </pre>
+      </div>
+    </div>
+
+  </section>
+
+  <section>
+    <h2>استفاده از پشته (Stack) در زبان های برنامه نویسی</h2>
+
+    <p>میخوایم با استفاده از پشته (Stack) یک پروژه ی ماشین حساب بنویسیم، در این پروژه یک عبارت مثل <strong
+        dir="ltr">2*5+(4/2)-32</strong> حساب کنه.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+public class EvaluateExpression {
+
+     public double evaluateExpression(String expression) {
+
+        Stack&lt;Double&gt; operands = new Stack&lt;&gt;();
+        Stack&lt;Character&gt; operators = new Stack&lt;&gt;();
+
+        expression = expression.trim(); //remove every space in expression
+        expression = insertBlanks(expression);
+
+        String[] tokens = expression.split("\\s");
+
+        for (String token : tokens) {
+
+            if (!token.isEmpty()) {
+
+                if (token.charAt(0) == '+' || token.charAt(0) == '-') {
+
+                    while (
+                            !operators.isEmpty() && (operators.peek() == '*' || operators.peek() == '-' || operators.peek() == '*' || operators.peek() == '/' || operators.peek() == '^')
+                    ) {
+                        processAnOperation(operators, operands);
+                    }
+
+                    operators.push(token.charAt(0));
+
+                } else if (token.charAt(0) == '*' || token.charAt(0) == '/' || token.charAt(0) == '^') {
+
+                    while (!operators.isEmpty() && (operators.peek() == '*' || operators.peek() == '/' || operators.peek() == '^')) {
+                        processAnOperation(operators, operands);
+                    }
+
+                    operators.push(token.charAt(0));
+
+                } else if (token.charAt(0) == '(') {
+
+                    operators.push('(');
+
+                } else if (token.charAt(0) == ')') {
+
+                    while (operators.peek() != '(') {
+                        processAnOperation(operators, operands);
+                    }
+                    operators.pop();
+
+                } else {
+                    operands.push(Double.parseDouble(token));
+                }
+            }
+        }
+
+        while (!operators.isEmpty())
+            processAnOperation(operators, operands);
+
+        return operands.pop();
+    }
+
+
+    private static void processAnOperation(Stack&lt;Character&gt; operators, Stack&lt;Double&gt; operands) {
+        char op = operators.pop();
+        double operand0 = operands.pop();
+        double operand1 = operands.pop();
+
+        switch (op) {
+            case '*' -&gt; operands.push(operand1 * operand0);
+            case '/' -&gt; operands.push(operand1 / operand0);
+            case '-' -&gt; operands.push(operand1 - operand0);
+            case '+' -&gt; operands.push(operand1 + operand0);
+            case '^' -&gt; operands.push(Math.pow(operand1, operand0));
+        }
+    }
+
+    private static String insertBlanks(String s) {
+        StringBuilder result = new StringBuilder();
+
+        for (int i = 0; i &lt; s.length(); i++) {
+            char ch = s.charAt(i);
+            if (ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '(' || ch == ')')
+                result.append(" ").append(ch).append(" ");
+            else result.append(ch);
+        }
+
+        return result.toString();
+    }
+}
+        </pre>
+        <pre class="snippet Kotlin">
+fun evaluateExpression(expression: String): Double {
+    var expression = expression
+    val operands = Stack&lt;Double&gt;()
+
+    val operators = Stack&lt;Char&gt;()
+
+    expression = expression.trim()   //remove every space in expression
+    expression = insertBlanks(expression)
+
+
+    val tokens = expression.split(Regex("\\s"))
+
+    for (token in tokens) {
+
+        if (!token.isEmpty()) {
+
+            if (token[0] == '+' || token[0] == '-') {
+                while (!operators.isEmpty() && (operators.peek() == '*' || operators.peek() == '-' || operators.peek() == '*' || operators.peek() == '/' || operators.peek() == '^')
+                ) {
+                    processAnOperation(operators, operands)
+                }
+
+                operators.push(token[0])
+            } else if (token[0] == '*' || token[0] == '/' || token[0] == '^') {
+
+                while (!operators.isEmpty() && (operators.peek() == '*' || operators.peek() == '/' || operators.peek() == '^')) {
+                    processAnOperation(operators, operands)
+                }
+
+                operators.push(token[0])
+
+            } else if (token[0] == '(') {
+                operators.push('(')
+            } else if (token[0] == ')') {
+
+                while (operators.peek() != '(') {
+                    processAnOperation(operators, operands)
+                }
+
+                operators.pop()
+
+            } else {
+                operands.push(token.toDouble())
+            }
+        }
+    }
+
+    while (!operators.isEmpty()) processAnOperation(operators, operands)
+
+    return operands.pop()
+}
+
+private fun processAnOperation(operators: Stack&lt;Char&gt;, operands: Stack&lt;Double&gt;) {
+    val op: Char = operators.pop()
+    val operand0: Double = operands.pop()
+    val operand1: Double = operands.pop()
+
+    when (op) {
+        '*' -&gt; operands.push(operand1 * operand0)
+        '/' -&gt; operands.push(operand1 / operand0)
+        '-' -&gt; operands.push(operand1 - operand0)
+        '+' -&gt; operands.push(operand1 + operand0)
+        '^' -&gt; operands.push(operand1.pow(operand0))
+    }
+}
+
+private fun insertBlanks(s: String): String {
+    val result = StringBuilder()
+
+    for (i in s.indices) {
+        val ch = s[i]
+        if (ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '(' || ch == ')') result.append(" ")
+            .append(ch).append(" ")
+        else result.append(ch)
+    }
+
+    return result.toString()
+}
+        </pre>
+      </div>
+    </div>
+
+  </section>
+
+
+  <section>
+    <h2>خلاصه</h2>
+    <ul>
+      <li>استک یک ساختار داده ی یک طرفه است.</li>
+      <li>در پشته (Stack) آخرین عنصری که وارد میکنیم اولین عنصریه که میتونیم صدا بزنیم یا حذف کنیم.</li>
+      <li>در پشته (Stack) به فقط به آخرین عنصری که اضافه کردیم دسترسی داریم و تا زمانی که حذف نشده به عناصر بعدی دسترسی
+        نخواهیم داشت.</li>
+      <li>با استفاده از آرایه ها میتونیم یک استک با اندازه ی ثابت و با استفاده از لیست پیوندی میتونیم یک استک با اندازه
+        ی متغیر پیاده سازی کنیم.</li>
+      <li>پیچیدگی زمان برای اضافه و حذف کردن و صدا زدن عنصر در استک O(1) است.</li>
+    </ul>
+  </section>
+
+</article>
+
+
+{% capture links %}
+<li>
+  <a href="linkedlist.html">لیست پیوندی (LinkedList) در برنامه نویسی</a>
+</li>
+<li>
+  <a href="list.html">لیست (آرایه دینامیکی) در برنامه نویسی</a>
+</li>
+<li>
+  <a href="queue.html">صف (Queue) در برنامه نویسی</a>
+</li>
+<li>
+  <a href="/post/java/arrays.html">آرایه ها در جاوا</a>
+</li>
+<li>
+  <a href="/post/kotlin/arrays.html">آرایه ها در کاتلین</a>
+</li>
+<li>
+  <a href="https://">مطالعه در ویکی پدیا انگلیسی</a>
+</li>
+{% endcapture %}
+
+{% include article-foot.html relative_links = links %}

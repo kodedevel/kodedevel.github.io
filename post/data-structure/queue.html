@@ -143,11 +143,11 @@ function peek(): E{
         <pre class="snippet Java">
 public class MyQueue&lt;E&gt; {
 
-    private final MyLinkedList&lt;E&gt; myLinkedList = new MyLinkedList&lt;&gt;();
+    private final MyLinkedList&lt;E&gt; list = new MyLinkedList&lt;&gt;();
 
     public MyQueue(E[] elements){
         for (int i=0; i&lt;elements.length; i++)
-            myLinkedList.addLast(elements[i]);
+            enqueue(elements[i]);
     }
     
     public MyQueue(){
@@ -155,51 +155,60 @@ public class MyQueue&lt;E&gt; {
     }
 
     public void enqueue(E e){
-        myLinkedList.addLast(e);
+        list.addLast(e);
     }
 
     public E dequeue(){
-       return myLinkedList.removeFirst();
+       if(isEmpty())
+         return null
+
+       return list.removeFirst();
     }
     
     public E peek(){
-        return myLinkedList.get(0);
+
+        if(isEmpty()) return null
+
+        return list.get(0);
     }
     
     public int getSize(){
-        return myLinkedList.getSize();
+        return list.getSize();
     }
     
     public boolean isEmpty(){
-        return myLinkedList.isEmpty();
+        return list.isEmpty();
     }
 }
         </pre>
         <pre class="snippet Kotlin">
 class MyQueue&lt;E&gt;() {
-    private val myLinkedList: MyLinkedList&lt;E&gt; = MyLinkedList()
+    private val list: MyLinkedList&lt;E&gt; = MyLinkedList()
     
     val size: Int
-        get() = myLinkedList.size
+        get() = list.size
 
-    val isEmpty: Boolean
-        get() = myLinkedList.empty
+    val empty: Boolean
+        get() = list.empty
 
     constructor(elements: Array&lt;E&gt;): this(){
         for (i in elements.indices)
-            myLinkedList.addLast(elements[i])
+            enqueue(elements[i])
     }
 
     fun enqueue(e: E) {
-        myLinkedList.addLast(e)
+        list.addLast(e)
     }
 
-    fun dequeue(): E {
-       return myLinkedList.removeFirst()
+    fun dequeue(): E? {
+
+       if(empty) return null
+
+       return list.removeFirst()
     }
 
     fun peek(): E? {
-        return myLinkedList.get(0)
+        return list.get(0)
     }
 }
         </pre>
