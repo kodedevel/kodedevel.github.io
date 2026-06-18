@@ -17,6 +17,14 @@
       "lastModified": "",
       "imgCover": "/resources/image/data-structure/cover_linkedlist.png",
       "link": "/post/data-structure/linkedlist.html"
+    },
+    {
+      "title": "صف (Queue) در برنامه نویسی",
+      "description": "صف (Queue) چیست؟ صف یکی از پیاده سازی های ساختار داده است که دسترسی به عناصر آن یک طرفه است و اولین عنصری که اضافه میشه اولین عنصری است که صدا زده میشه و تا زمانی که اولین عنصر حذف نشده باشه به سایر عناصر دسترسی نداریم، در این مطلب به بررسی صف به همراه مثال های عملی می پردازیم.",
+      "datePublished": "2026-06-18",
+      "lastModified": "",
+      "imgCover": "/resources/image/data-structure/cover_queue.png",
+      "link": "/post/data-structure/queue.html"
     }
   ]
 }
