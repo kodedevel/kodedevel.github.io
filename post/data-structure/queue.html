@@ -1,0 +1,318 @@
+---
+layout: default
+---
+
+<article>
+  <nav class="toc">
+    <div>دسترسی سریع</div>
+    <ul>
+      <li>
+        <a href="#p0">بررسی صف (Queue)</a>
+      </li>
+      <li>
+        <a href="#p1">افزودن عنصر به صف (Queue)</a>
+      </li>
+
+      <li>
+        <a href="#p2">حذف عنصر از صف (Queue)</a>
+      </li>
+      <li>
+        <a href="#p3">صدا زدن یک عنصر از صف (Queue)</a>
+      </li>
+      <li>
+        <a href="#p4">پیاده سازی صف (Queue) در زبان های برنامه نویسی</a>
+      </li>
+      <li>
+        <a href="#p5">استفاده از صف (Queue) در زبان های برنامه نویسی</a>
+      </li>
+      <li>
+        <a href="#p6">خلاصه</a>
+      </li>
+    </ul>
+  </nav>
+
+  <section id="p0">
+    <h2>بررسی صف (Queue)</h2>
+
+    <p>وقتی میرید نونوایی به اولین چیزی که برخورد میکنید صف نونواییه، بهت میگن اقا دیر اومدی باید وایسی ته صف! اولین
+      کسی که نوبتشه همونیه زود تر از بقیه اومده و به همین ترتیب تا نوبت به اخرین نفری برسه که تو صف نونه</p>
+    <p>صف (Queue) یکی از پیاده سازی های ساختار داده است؛ در صف (Queue) اولین عنصری که اضافه میشه، اولین عنصریه که
+      میتونیم صدا بزنیم یا حذفش کنیم مثل همین قضیه ی صف نونوایی؛ و معروفه به
+      <strong>first-in-first-out</strong>
+    </p>
+
+    <p>صف (Queue) یک ساختار داده ی یک طرفه است، در صف چیزی به اسم وسط
+      صف نداریم یعنی برخلاف <a href="list.html">آرایه های دینامیکی (list)</a> که به
+      عناصر با
+      index به صورت تصادفی
+      دسترسی داشتیم، در صف تنها به عنصر سر صف (یعنی اولین عنصری که وارد کردیم) دسترسی داریم و هنگامی که این عنصر حذف
+      بشه، نوبت به عنصر وارد شده ی بعدی میرسه.</p>
+
+
+    <figure>
+      <img src="/resources/image/data-structure/queue_structure.png" alt="ساختار صف (Queue) در برنامه نویسی">
+      <figcaption>ساختار صف (Queue) در برنامه نویسی</figcaption>
+    </figure>
+
+    <p>صف (Queue) رو میتونیم به دو روش پیاده سازی کنیم، اولین روش پیاده سازی صف با استفاده از آرایه است که در این حالت
+      اندازه ی
+      صف ثابته؛ دومین روش پیاده سازی صف، پیاده سازی آن با <a href="linkedlist.html">لیست پیوندی دو طرفه (LinkedList)</a>
+      است.</p>
+
+    <p>میتونیم با رابطه ی <strong>aggregation</strong> یا <strong>inheritance</strong> صف رو پیاده سازی کنیم.</p>
+
+    <p>در این مطلب با استفاده از لیست پیوندی و رابطه ی aggregation به پیاده سازی صف (Queue) می پردازیم.</p>
+  </section>
+
+
+  <section id="p1">
+    <h2>افزودن عنصر به صف (Queue)</h2>
+
+    <p>به طور عمومی با تابع <strong>enqueue(e: E)</strong> یک عنصر رو به صف (Queue) اضافه میکنن اما در زبان های مختلف
+      ممکنه اسم این تابع فرق کنه، مثلا در جاوا از تابع <strong>offer(e: E)</strong> استفاده میشه.</p>
+
+    <p>پیچیدگی زمان هنگام افزودن یک عنصر به صف (Queue) برابر با O(1) است.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet">
+function enqueue(e: E){
+  linkedList.addLast(e);
+}
+        </pre>
+      </div>
+    </div>
+
+  </section>
+
+
+  <section id="p2">
+    <h2>حذف یک عنصر از صف (Queue)</h2>
+    <p>به طور عمومی از تابع <strong>dequeue(): E</strong> برای حذف یک عنصر از صف استفاده میشه اما این تابع ممکنه در زبان
+      های مختلف اسم متفاوتی داشته باشه، مثلا در زبان جاوا از <strong>poll(): E</strong> استفاده میشه.</p>
+
+    <p>اولین عنصری که به صف اضافه میکنیم اولین عنصری خواهد بود که حذف میکنیم و تا زمانی که عنصر اول حذف نشه به عنصر بعد
+      دسترسی نداریم؛‍ پیچیدگی زمان هنگام حذف یک عنصر از صف O(1) است.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet">
+function dequeue(): E{
+   return linkedList.removeFirst();
+}
+        </pre>
+      </div>
+    </div>
+
+  </section>
+
+  <section id="p3">
+    <h2>صدا زدن عنصر از صف (Queue)</h2>
+    <p>به طور عمومی با تابعی به نام <strong>peek(): E</strong> میتونیم اولین عنصر در صف رو صدا بزنیم و تا زمانی که این
+      عنصر حذف نشده باشه به عنصر بعد دسترسی نداریم؛ پیچیدگی زمان هنگام صدا زدن یک عنصر از صف O(1) است.</p>
+
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet">
+function peek(): E{
+  return linkedList.get(0);
+}
+        </pre>
+      </div>
+    </div>
+
+  </section>
+
+
+  <section id="p4">
+    <h2>پیاده سازی صف (Queue) در زبان های برنامه نویسی</h2>
+
+    <p>میخوایم با استفاده از رابطه ی aggregation یک صف رو با لیست پیوندی که در <a href="linkedlist.html">مطلب قبل</a>
+      پیاده کردیم، پیاده سازی کنیم.</p>
+
+    <p>در زیر نمودار uml پیاده سازی صف (Queue) اورده شده است.</p>
+
+    <figure>
+      <img src="/resources/image/data-structure/queue_uml_diagram.png" alt="نمودار uml پیاده سازی صف (Queue)">
+      <figcaption>نمودار uml پیاده سازی صف (Queue)</figcaption>
+    </figure>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+public class MyQueue&lt;E&gt; {
+
+    private final MyLinkedList&lt;E&gt; myLinkedList = new MyLinkedList&lt;&gt;();
+
+    public MyQueue(E[] elements){
+        for (int i=0; i&lt;elements.length; i++)
+            myLinkedList.addLast(elements[i]);
+    }
+    
+    public MyQueue(){
+        
+    }
+
+    public void enqueue(E e){
+        myLinkedList.addLast(e);
+    }
+
+    public void dequeue(E e){
+        myLinkedList.removeFirst();
+    }
+    
+    public E peek(){
+        return myLinkedList.get(0);
+    }
+    
+    public int getSize(){
+        return myLinkedList.getSize();
+    }
+    
+    public boolean isEmpty(){
+        return myLinkedList.isEmpty();
+    }
+}
+        </pre>
+        <pre class="snippet Kotlin">
+class MyQueue&lt;E&gt;() {
+    private val myLinkedList: MyLinkedList&lt;E&gt; = MyLinkedList()
+    
+    val size: Int
+        get() = myLinkedList.size
+
+    val isEmpty: Boolean
+        get() = myLinkedList.empty
+
+    constructor(elements: Array&lt;E&gt;): this(){
+        for (i in elements.indices)
+            myLinkedList.addLast(elements[i])
+    }
+
+    fun enqueue(e: E) {
+        myLinkedList.addLast(e)
+    }
+
+    fun dequeue() {
+        myLinkedList.removeFirst()
+    }
+
+    fun peek(): E? {
+        return myLinkedList.get(0)
+    }
+}
+        </pre>
+      </div>
+    </div>
+
+  </section>
+
+  <section id="p5">
+    <h2>استفاده از صف (Queue) در زبان های برنامه نویسی</h2>
+
+
+    <p> مثل خیلی از پیاده سازی های ساختار داده صف (Queue) در کتابخونه های استاندارد زبان های برنامه نویسی پیاده سازی
+      شده است، در اینجا میخوایم به طور عملی از صف (Queue) استفاده کنیم.</p>
+
+    <p>میخوایم با استفاده از صف (Queue) یک برنامه بنویسیم که اندازه ی کل یک پوشه (پوشه با فایل و پوشه های داخلش) رو حساب
+      کرده و نشون بده.</p>
+
+    <p> این برنامه رو با استفاده از <a href="/post/algorithm/recursion.html">بازگشتی</a> نوشتیم و حالا
+      میخوایم با استفاده از صف (Queue) بدون روش بازگشتی انجام بدیم.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+static long getSize(File file){
+        Queue&lt;File&gt; directories = new LinkedList&lt;&gt;();
+
+        long size =0;
+        if (file.isDirectory()) {
+            directories.offer(file);
+
+            while (!directories.isEmpty()) {
+
+                File directory = directories.remove();
+                File[] files = directory.listFiles();
+
+                for (int i = 0; files != null && i &lt; files.length; i++) {
+                    File f = files[i];
+                    if (f.isDirectory())
+                        directories.offer(f);
+                    else size += f.length();
+                }
+            }
+        }else {
+            size += file.length();
+        }
+
+        return size;
+    }
+        </pre>
+        <pre class="snippet Kotlin">
+fun getSize(file: File): Long {
+    val directories: Queue&lt;File&gt; = LinkedList()
+
+    var size: Long = 0
+    if (file.isDirectory()) {
+        
+        directories.offer(file)
+
+        while (!directories.isEmpty()) {
+            val directory = directories.remove()
+            val files = directory.listFiles()
+
+            var i = 0
+            while (files != null && i &lt; files.size) {
+                val f = files[i]
+                if (f.isDirectory()) directories.offer(f)
+                else size += f.length()
+                i++
+            }
+        }
+    } else {
+        size += file.length()
+    }
+
+    return size
+}
+        </pre>
+      </div>
+    </div>
+
+  </section>
+
+
+  <section id="p6">
+    <h2>خلاصه</h2>
+    <ul>
+      <li>در صف فقط دسترسی یک طرفه به عناصر داریم.</li>
+      <li>اولین عنصری که به صف وارد میشه اولین عنصریه که صدا زده میشه و یا حذف میشه.</li>
+      <li>در صف تا زمانی که اولین عنصر وارد شده حذف نشه به عنصر بعدی دسترسی نداریم.</li>
+      <li>صف رو میتونیم با آرایه ها یا لیست پیوندی پیاده سازی کنیم.</li>
+      <li>پیچیدگی زمان افزودن، حذف کردن و صدا زدن یک عنصر در صف O(1) است.</li>
+    </ul>
+  </section>
+
+</article>
+
+{% capture links %}
+<li>
+  <a href="linkedlist.html">لیست پیوندی (LinkedList) در برنامه نویسی</a>
+</li>
+<li>
+  <a href="list.html">لیست (آرایه دینامیکی) در برنامه نویسی</a>
+</li>
+<li>
+  <a href="/post/java/arrays.html">آرایه ها در جاوا</a>
+</li>
+<li>
+  <a href="/post/kotlin/arrays.html">آرایه ها در کاتلین</a>
+</li>
+<li>
+  <a href="https://">مطالعه در ویکی پدیا انگلیسی</a>
+</li>
+{% endcapture %}
+
+{% include article-foot.html relative_links = links %}
