@@ -158,8 +158,8 @@ public class MyQueue&lt;E&gt; {
         myLinkedList.addLast(e);
     }
 
-    public void dequeue(E e){
-        myLinkedList.removeFirst();
+    public E dequeue(){
+       return myLinkedList.removeFirst();
     }
     
     public E peek(){
@@ -194,8 +194,8 @@ class MyQueue&lt;E&gt;() {
         myLinkedList.addLast(e)
     }
 
-    fun dequeue() {
-        myLinkedList.removeFirst()
+    fun dequeue(): E {
+       return myLinkedList.removeFirst()
     }
 
     fun peek(): E? {
