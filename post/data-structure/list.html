@@ -504,9 +504,7 @@ println("The size of list after removing 3 elements is ${list.size}")
       <p>میخوایم با کمک list یک Stack پیاده سازی کنیم؛ Stack مانند List یک بخشی از ساختمان داده است؛ در Stack اخرین
         عنصری که اضافه
         میشه،
-        اولین عنصریه که میتونیم صدا کنیم یا از Stack حذفش کنیم؛ بهش میگن <strong dir="ltr">last-in-first-out</strong> به
-        زبون
-        خودمون دیر اومدی زود میخوای بری :)
+        اولین عنصریه که میتونیم صدا کنیم یا از Stack حذفش کنیم؛ بهش میگن <strong dir="ltr">last-in-first-out</strong>.
       </p>
 
       <div class="note">
@@ -593,10 +591,6 @@ class MyStack&lt;E&gt; {
         for (i in elements.indices) {
             list.add(elements[i])
         }
-    }
-
-    constructor(c: MutableCollection&lt;E?&gt;) {
-        list.addAll(c)
     }
 
     constructor()
