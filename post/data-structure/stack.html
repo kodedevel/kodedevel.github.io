@@ -239,7 +239,7 @@ public class EvaluateExpression {
                 if (token.charAt(0) == '+' || token.charAt(0) == '-') {
 
                     while (
-                            !operators.isEmpty() && (operators.peek() == '*' || operators.peek() == '-' || operators.peek() == '*' || operators.peek() == '/' || operators.peek() == '^')
+                            !operators.isEmpty() &amp;&amp; (operators.peek() == '*' || operators.peek() == '-' || operators.peek() == '*' || operators.peek() == '/' || operators.peek() == '^')
                     ) {
                         processAnOperation(operators, operands);
                     }
@@ -248,7 +248,7 @@ public class EvaluateExpression {
 
                 } else if (token.charAt(0) == '*' || token.charAt(0) == '/' || token.charAt(0) == '^') {
 
-                    while (!operators.isEmpty() && (operators.peek() == '*' || operators.peek() == '/' || operators.peek() == '^')) {
+                    while (!operators.isEmpty() &amp;&amp; (operators.peek() == '*' || operators.peek() == '/' || operators.peek() == '^')) {
                         processAnOperation(operators, operands);
                     }
 
@@ -324,7 +324,7 @@ fun evaluateExpression(expression: String): Double {
         if (!token.isEmpty()) {
 
             if (token[0] == '+' || token[0] == '-') {
-                while (!operators.isEmpty() && (operators.peek() == '*' || operators.peek() == '-' || operators.peek() == '*' || operators.peek() == '/' || operators.peek() == '^')
+                while (!operators.isEmpty() &amp;&amp; (operators.peek() == '*' || operators.peek() == '-' || operators.peek() == '*' || operators.peek() == '/' || operators.peek() == '^')
                 ) {
                     processAnOperation(operators, operands)
                 }
@@ -332,7 +332,7 @@ fun evaluateExpression(expression: String): Double {
                 operators.push(token[0])
             } else if (token[0] == '*' || token[0] == '/' || token[0] == '^') {
 
-                while (!operators.isEmpty() && (operators.peek() == '*' || operators.peek() == '/' || operators.peek() == '^')) {
+                while (!operators.isEmpty() &amp;&amp; (operators.peek() == '*' || operators.peek() == '/' || operators.peek() == '^')) {
                     processAnOperation(operators, operands)
                 }
 

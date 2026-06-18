@@ -245,7 +245,7 @@ static long getSize(File file){
                 File directory = directories.remove();
                 File[] files = directory.listFiles();
 
-                for (int i = 0; files != null && i &lt; files.length; i++) {
+                for (int i = 0; files != null &amp;&amp; i &lt; files.length; i++) {
                     File f = files[i];
                     if (f.isDirectory())
                         directories.offer(f);
