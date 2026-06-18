@@ -25,6 +25,14 @@
       "lastModified": "",
       "imgCover": "/resources/image/data-structure/cover_queue.png",
       "link": "/post/data-structure/queue.html"
+    },
+    {
+      "title": "پشته (Stack) در برنامه نویسی",
+      "description": "پشته (Stack) چیست؟ استک یک پیاده سازی یک طرفه در ساختار داده است، در استک مانند لیست به عناصر با index دسترسی نداریم و تنها به آخرین عنصری که بهش اضافه کردیم میتونیم دسترسی داشته باشیم؛ در این مطلب به بررسی عمیق، پیاده سازی و استفاده از استک می پردازیم.",
+      "datePublished": "2026-06-18",
+      "lastModified": "",
+      "imgCover": "/resources/image/data-structure/cover_stack.png",
+      "link": "/post/data-structure/stack.html"
     }
   ]
 }
