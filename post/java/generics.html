@@ -24,10 +24,10 @@ layout: default
         <a href="#p4">پارامتر های نوع محدود شده (Bounded Type)</a>
       </li>
       <li>
-        <a href="#p5">تولید کننده (Producer) ها و مصرف کننده (Consumer) ها</a>
+        <a href="#p5">تولید کننده (Producer) و مصرف کننده (Consumer)</a>
       </li>
       <li>
-        <a href="#p6">محدودیت های موجود برای فیلد ها و متغیر های جنریک داخل کلاس</a>
+        <a href="#p6">محدودیت های موجود در جنریک (Generic) ها</a>
       </li>
       <li><a href="#p7">خلاصه</a></li>
     </ul>
@@ -352,7 +352,7 @@ static &lt;T extends Number&gt; T max(T t0, T t1){
 
 
   <section id="p5">
-    <h2>تولید کننده (Producer) ها و مصرف کننده (Consumer) ها</h2>
+    <h2>تولید کننده (Producer) و مصرف کننده (Consumer)</h2>
 
 
     <p>هنگامی که بخوایم از یک کلاس جنریک به عنوان متغیر استفاده کنیم، میتونیم نوع جنریک کلاس رو به صورت
@@ -471,7 +471,9 @@ private static void copy(List&lt;? extends Number&gt; producer, List&lt;? super 
 
 
   <section id="p6">
-    <h2>محدودیت های موجود برای فیلد ها و متغیر های جنریک داخل کلاس</h2>
+    <h2>محدودیت های موجود در جنریک (Generic) ها</h2>
+
+    <p>برای استفاده از متغیر و فیلد های جنریک داخل کلاس یک سری محدودیت ها وجود داره میخوایم اونا رو بررسی کنیم.</p>
 
     <ol>
 
