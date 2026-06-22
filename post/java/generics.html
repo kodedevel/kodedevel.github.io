@@ -87,6 +87,10 @@ File f = (File) mc.getMyField(); //ClassCastException
     <p>در واقع با Generic میتونیم نوعی که داخل کلاس یا متد (تابع) داریم استفاده میکنیم رو عمومی نگه داریم و زمان استفاده
       از کلاس یا متد نوعی (Type) که لازم داریم رو مشخص کنیم.</p>
 
+    <p>استفاده از جنریک (Generic) کد رو از خطاهای زمان اجرا ایمن میکنه و فقط زمان کامپایل مصرف داره، بعد از کامپایل کد
+      توسط کامپایلر جاوا، جنریک ها پاک
+      میشن و جای خودشونو به نوعی که برای کلاس مشخص کردیم میدن اصطلاحا بهش <strong>Type Ereasure</strong> میگیم.</p>
+
     <p> مثالی که با Object نوشتیم رو میخوایم با Generic بنویسیم.</p>
 
     <div class="sample">
@@ -423,6 +427,11 @@ public static void main(String[] args){
       <p>اگه نوع جنریک کلاس رو هر نوعی که ساب تایپ <strong>Object</strong> است (<strong>&lt;? extends
           Object&gt;</strong>) تعیین کرده باشیم، میتونیم به صورت خلاصه از <strong>&lt;?&gt;</strong> استفاده کنیم.</p>
 
+
+      <p>به طور خلاصه اگه از <strong>extends</strong> استفاده کنیم متغیری که به آبجکت اشاره می کنه
+        <strong>Read-Only</strong> است.
+      </p>
+
     </section>
 
     <section>
@@ -447,6 +456,10 @@ public static void main(String[] args){
           </pre>
         </div>
       </div>
+
+      <p>به طور خلاصه اگه از <strong>super</strong> استفاده کنیم، متغیری که به آبجکت اشاره میکنه
+        <strong>Write-Only</strong> است.
+      </p>
 
     </section>
 
