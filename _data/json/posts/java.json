@@ -161,6 +161,14 @@
       "lastModified": "",
       "imgCover": "/resources/image/java/cover_binary_io.png",
       "link": "/post/java/binary-io.html"
+    },
+    {
+      "title": "جنریک (Generic) ها در جاوا",
+      "description": "اگه بخوایم نوع متغیر و فیلد های داخل کلاس رو هنگام استفاده از کلاس تعیین کنیم، از جنریک (Generic) ها استفاده می کنیم؛‌ جنریک ها جایگزین استفاده از Object شدن، و استفاده ازشون کد ها رو مرتب تر میکنه و خطاهایی که هنگام استفاده از آبجکت در زمان اجرای برنامه وجود داشت رو به زمان کامپایل میاره. در این مطلب به بررسی مفصل جنریک ها در جاوا می پردازیم.",
+      "datePublished": "2026-06-22",
+      "lastModified": "",
+      "imgCover": "/resources/image/java/cover_generics.png",
+      "link": "/post/java/generics.html"
     }
   ]
 }
