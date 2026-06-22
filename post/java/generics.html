@@ -1,0 +1,642 @@
+---
+layout: default
+---
+
+
+<article>
+
+  <nav class="toc">
+    <div>دسترسی سریع</div>
+    <ul>
+      <li>
+        <a href="#p0">تعریف جنریک (Generic)</a>
+      </li>
+      <li>
+        <a href="#p1">کلاس های جنریک (Generic)</a>
+      </li>
+      <li>
+        <a href="#p2">اینترفیس های جنریک (Generic)</a>
+      </li>
+      <li>
+        <a href="#p3">متد (تابع) استاتیک جنریک (Generic)</a>
+      </li>
+      <li>
+        <a href="#p4">پارامتر های نوع محدود شده (Bounded Type)</a>
+      </li>
+      <li>
+        <a href="#p5">تولید کننده (Producer) ها و مصرف کننده (Consumer) ها</a>
+      </li>
+      <li>
+        <a href="#p6">محدودیت های موجود برای فیلد ها و متغیر های جنریک داخل کلاس</a>
+      </li>
+      <li><a href="#p7">خلاصه</a></li>
+    </ul>
+  </nav>
+
+  <section id="p0">
+    <h2>تعریف جنریک (Generic)</h2>
+    <blockquote>جنریک (Generic) ها باعث میشن خطا ها بجای زمان اجرا در زمان کامپایل دیده بشن.</blockquote>
+    <p>فرض کنید یک فیلد میخوایم برای کلاس تعریف کنیم و بستگی به جایی که میخوایم از کلاس استفاده کنیم، گاهی این فیلد باید
+      Integer باشه گاهی String و گاهی یک کلاس دیگه.</p>
+    <p>میتونیم کلاسمونو برای <strong>نوع (type)</strong> های مختلفی که نیاز داریم، چند بار باز طراحی کنیم، اما این کار
+      کاملا وقت گیر، تکراری و خسته کننده میشه.</p>
+
+    <p>میتونیم فیلد رو به صورت Object تعریف کرده و بعدا بر اساس نیاز فیلد رو <a href="polymorphism.html">کست (cast)</a>
+      کنیم.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+public class MyClass {
+
+  private Object myField;
+
+  public MyClass(Object myField){
+
+    this.myField = myField;
+
+  }
+
+  public Object getMyField(){
+    return this.myField();
+  }
+
+}
+        </pre>
+      </div>
+    </div>
+
+    <p>استفاده از آبجکت به عنوان فیلد فکر خوبیه ولی یه مشکل جود داره! اگه فیلد رو اشتباه به یک نوع دیگه cast کنیم، زمان
+      اجرا دچار خطای
+      <strong>ClassCastException</strong> میشم.
+    </p>
+
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+MyClass mc = new MyClass("This is a string field");
+String v0 = (String) mc.getMyField();  //Correct
+File f = (File) mc.getMyField(); //ClassCastException
+        </pre>
+      </div>
+    </div>
+
+    <p>هنگام استفاده از جنریک دیگه نیازی به کست کردن نداریم و خطاها زمان کامپایل مشخص میشن.</p>
+    <p>جنریک مثل یک قالب میمونه که میتونیم انواع مایعات رو داخلش بریزیم بدون اینکه فرم قالب تغییر کنه.</p>
+    <p>در واقع با Generic میتونیم نوعی که داخل کلاس یا متد (تابع) داریم استفاده میکنیم رو عمومی نگه داریم و زمان استفاده
+      از کلاس یا متد نوعی (Type) که لازم داریم رو مشخص کنیم.</p>
+
+    <p> مثالی که با Object نوشتیم رو میخوایم با Generic بنویسیم.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+public class MyClass&lt;E&gt; {
+
+  private E myField;
+
+  public MyClass(E myField){
+
+    this.myField = myField;
+
+  }
+
+  public E getMyField(){
+    return this.myField();
+  }
+
+}
+        </pre>
+      </div>
+    </div>
+
+
+    <p>حالا میخوایم از کلاسمون استفاده کنیم.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+MyClass&lt;String&gt; mc = new MyClass&lt;&gt;("This is a string field");
+String v0 = mc.getMyField();  //Correct
+File f =  mc.getMyField(); //Compile Error
+        </pre>
+      </div>
+    </div>
+
+    <p>همونطور که مشخصه دیگه نیازی به کست کردن نداریم و هنگام استفاده از کلاس وقتی که نوع Generic رو مشخص کردیم اگه
+      مقداری که بر میگردونه رو اشتباهی به یک متغیر دیگه اختصاص بدیم، دچار خطای کامپایل میشیم.</p>
+
+
+    <p>هنگام استفاده از کلاس Generic در جاوا، نوعی که میخوایم برای جنریک تعیین کنیم باید آبجکت (Object Type) باشه و
+      نوع Primitive نمیشه.
+    </p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+MyClass&lt;int&gt; mc = new MyClass&lt;&gt;(89); //Error
+MyClass&lt;Integer&gt; mc1 = new MyClass&lt;&gt;(89) //Correct
+        </pre>
+      </div>
+    </div>
+
+  </section>
+
+  <section id="p1">
+    <h2>کلاس های جنریک (Generic)</h2>
+
+    <p>میتونیم یک کلاس رو به صورت جنریک تعریف کنیم. برای این کار کافیه بعد از نام کلاس یک حرف لاتین معمولا بزرگ رو به
+      صورت <strong dir="ltr">&lt;T&gt;</strong> بنویسیم؛ سپس میتونیم فیلد ها، متغیر های داخل متد (تابع)
+      ها، نوع مقداری که متد (تابع) بر میگردونه، پارامتر متدها و کانستراکتور ها رو از نوع T تعریف کنیم.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+public class MyClass&lt;T&gt; {
+  T myField;
+
+  public MyClass(T t){
+
+  }
+
+  void myFirstMethod(T t){
+
+    T myLocalVariable;
+
+  }
+
+  T mySecondMethod(T t){
+
+    T myLocalVariable;
+
+  }
+
+}
+        </pre>
+      </div>
+    </div>
+
+
+    <p>بسیاری از کلاس ها در کتابخونه های استاندارد جاوا به صورت Generic تعریف شدن، مثل ArrayList که یکی از کلاس های
+      پیاده سازی شده ی <a href="/post/data-structure.html">ساختار داده</a> در جاواست.</p>
+
+    <p>در ArrayList چون نوع عناصر تا زمان استفاده از کلاس معلوم نیست، بنابراین با Generic پیاده سازی شده است.</p>
+    <p>در زیر دو کلاس ArrayList تعریف کردیم یکی برای File و یکی برای String.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+ArrayList&lt;String&gt; strings = new ArrayList&lt;&gt;();
+ArrayList&lt;File&gt; files = new ArrayList&lt;&gt;();
+        </pre>
+      </div>
+    </div>
+
+
+    <section>
+      <h3>جنریک های نوع خام (Raw Types)</h3>
+
+      <p>هنگام استفاده از کلاس جنریک اگه نوع جنریک رو مشخص نکنیم، کامپایلر جاوا به طور پیشفرض نوع جنریک رو Object در نظر
+        میگیره؛ که بهشون جنریک های نوع خام (Raw Type) میگیم.</p>
+
+      <p>در زیر هردو ArrayList یکسان هستند.</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
+ArrayList list = new ArrayList()
+ArrayList&lt;Object&gt; list = new ArrayList&lt;&gt;();
+          </pre>
+        </div>
+      </div>
+
+    </section>
+
+  </section>
+
+
+  <section id="p2">
+
+    <h2>اینترفیس های جنریک (Generic)</h2>
+
+    <p>میتونیم <a href="interfaces.html#p2">اینترفیس ها</a> رو به صورت جنریک (Generic) تعریف کنیم؛ مانند کلاس کافیه بعد
+      از
+      اسم اینترفیس یک حرف لاتین معمولا بزرگ رو به صورت &lt;T&gt; بزاریم؛ سپس میتونیم پارامتر و نوعی که متدهای (توابع)
+      داخل اینترفیس برمیگردونن رو از نوع T تعریف کنیم.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+public interface MyInterface&lt;T&gt; {
+  
+  void myFirstMethod(T t);
+
+  T mySecondMethod(T t);
+
+}
+        </pre>
+      </div>
+    </div>
+
+    <p>به عنوان مثال اینترفیس <a href="interfaces.html#p2">Comparable</a> به صورت Generic در جاوا تعریف شده است،
+      اینترفیس Comparable به
+      صورت پیشفرض در اکثر کلاس های استاندارد جاوا پیاده سازی شده و هدفش مقایسه کردن آبجکت ایجاد شده از کلاس با یه
+      آبجکت دیگه از
+      نوع خودشه؛ این مقایسه با متد <strong>compareTo</strong> تعریف شده داخل اینترفیس صورت میگیره.</p>
+
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+public interface Comparable&lt;T&gt; {
+
+  int compareTo(T t);
+
+}
+        </pre>
+      </div>
+    </div>
+
+  </section>
+
+
+  <section id="p3">
+    <h2>متد (تابع) استاتیک جنریک (Generic)</h2>
+
+    <p>میتونیم متد های استاتیک رو مستقل از کلاس به صورت جنریک تعریف کنیم، برای این کار یک حرف دلخواه از حروف بزرگ لاتین
+      رو بعد از کلیدواژه ی
+      static ، به صورت &lt;T&gt; تعریف میکنیم.</p>
+
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+public static &lt;T&gt; myStaticMethod(T t){
+  ...
+}
+        </pre>
+      </div>
+    </div>
+
+    <p>مثال</p>
+
+    <p>میخوایم یک متد (تابع) جنریک (Generic) تعریف کنیم که عناصر آرایه ها رو نمایش بده.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+public static void main(String[] args){
+  
+  Integer[] numbers = { 2, 5, 9, 4}
+
+  String[] colors = {"Red", "Green", "Blue", "Orange"}
+
+    System.out.println("Printing numbers...");
+    printArray(numbers);
+
+    System.out.println("Printing colors....");
+    printArray(colors);
+
+}
+        
+public static &lt;E&gt; void printArray(E[] elements){
+
+  for(int i=0; i&lt;elements.length; i++)
+    System.out.print(elements[i] + " ");
+
+    System.out.println();
+
+}
+        </pre>
+      </div>
+    </div>
+
+  </section>
+
+
+  <section id="p4">
+    <h2>نوع محدود شده (Bounded Type)</h2>
+
+    <p>به طور پیشفرض جنریک هایی که با &lt;T&gt; تعریف میکنیم در واقع <strong>&lt;T extends Object&gt;</strong> هستند،
+      یعنی
+      هر نوعی که از
+      Object ارث بری کنه رو میتونیم هنگام استفاده از کلاس یا متد براش تعیین کنیم.</p>
+
+    <p>میتونیم نوعمون رو محدود به یک کلاس خاص
+      و ساب
+      کلاس های اون کلاس کنیم تا هنگام استفاده از کلاس یا متد جنریک، به صورت مشخص شده تری بدونیم چه نوع هایی رو
+      میتونیم
+      به عنوان نوع
+      جنریک (Generic) تعیین کنیم.</p>
+
+    <p>میخوایم یک تابع جنریک تعریف کنیم که max بین دو عدد رو نمایش بده؛ در مثال زیر کامپایلر میدونه که
+      <strong>Number</strong> قراره سوپر کلاس تمام نوع هایی باشه که میخوایم در متد max استفاده کنیم، بنابراین متد های
+      Number رو
+      در دسترس قرار میده.
+    </p>
+
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+static &lt;T extends Number&gt; T max(T t0, T t1){
+  
+  return t0.doubleValue() &gt; t1.doubleValue() ? t0 : t1;
+}
+        </pre>
+      </div>
+    </div>
+
+  </section>
+
+
+  <section id="p5">
+    <h2>تولید کننده (Producer) ها و مصرف کننده (Consumer) ها</h2>
+
+
+    <p>هنگامی که بخوایم از یک کلاس جنریک به عنوان متغیر استفاده کنیم، میتونیم نوع جنریک کلاس رو به صورت
+      <strong>WildCard</strong> مشخص کنیم. با استفاده از WildCard ها میتونیم از کلاس های جنریک متغیر های
+      <strong>مصرف کننده (Consumer)</strong> و <strong>تولید کننده (Producer)</strong> تعریف کنیم.
+    </p>
+
+    <p>کلاس جنریک زیر رو برای ادامه ی مطلب در نظر بگیرید.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+public class MyClass&lt;T&gt;{
+
+  private T t;
+
+  public void setT(T t){
+    this.t = t;
+  }
+
+  public T getT(){
+    return t;
+  }
+
+}
+          </pre>
+      </div>
+    </div>
+    <section>
+      <h3>تعریف متغیر تولید کننده (Producer) با کلاس جنریک</h3>
+
+      <p>هنگام ایجاد متغیر از کلاس، با تعیین نوع جنریک کلاس به صورت <strong dir="ltr">&lt;? extends
+          Type&gt;</strong>، به متغیر
+        های جنریک تعریف شده در کلاس نمیتونیم مقداری رو اختصاص بدیم اما میتونیم متغیر ها رو به عنوان
+        ساب تایپی از Type صدا بزنیم و نوع متغیر های تعریف شده در داخل کلاس باید ساب تایپی (ساب کلاس) از Type باشن؛ به
+        این
+        متغیر ها <strong>Producer</strong> میگیم. </p>
+
+      <p>چون کامپایلر نمیتونه تشخیص بده متغیری که به کلاس اضافه میکنیم چه تایپی است، بنابراین هنگام استفاده از این
+        نوع WildCard کامپایلر اختصاص دادن مقدار به این فیلد ها رو مسدود میکنه و تنها میتونیم فیلد های
+        مقداردهی
+        شده ی داخل کلاس رو صدا بزنیم.</p>
+
+      <p>در زیر میتونیم با متغیر <strong>mc0</strong> فیلد t رو مقداردهی کنیم، چون در mc به طور واضح برای کامپایل مشخص
+        کردیم نوع مورد نظرمون Integer است و کامپایلر هر عدد از نوع Integer رو به عنوان مقدار t قبول می کنه.</p>
+      <p>اما هنگام مقداردهی فیلد t با متغیر <strong>mc1</strong> دچار خطای کامپایل میشیم چون کامپایلر نمیتونه تشخیص بده
+        فیلد از چه نوعی است و فقط میدونه که فیلد یک ساب تایپ (ساب کلاس) از Number است.</p>
+
+      <p>با این WildCard میتونیم مقادیر رو از کلاس بخونیم و مقدار رو به نوع واقعی خودش کست کنیم.</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
+public static void main(String[] args){
+
+  MyClass&lt;Integer&gt; mc0 = new MyClass&lt;&gt;();
+  mc0.setT(5); //Correct
+
+  MyClass&lt;? extends Number&gt; mc = new MyClass&lt;&gt;();
+  mc.setT(2); //Compile Error
+  int t = (int) mc.t; //Correct
+
+}
+          </pre>
+        </div>
+      </div>
+
+      <p>اگه نوع جنریک کلاس رو هر نوعی که ساب تایپ <strong>Object</strong> است (<strong>&lt;? extends
+          Object&gt;</strong>) تعیین کرده باشیم، میتونیم به صورت خلاصه از <strong>&lt;?&gt;</strong> استفاده کنیم.</p>
+
+    </section>
+
+    <section>
+      <h3>تعریف متغیر مصرف کننده (Consumer) با کلاس جنریک</h3>
+      <p>هنگام ایجاد متغیر از کلاس، با تعیین نوع جنریک به صورت <strong dir="ltr">&lt;? super Type&gt;</strong> میتونیم
+        فیلد های
+        داخل کلاس رو مقداردهی کنیم و آبجکت ایجاد شده از کلاس باید از نوع Type یا یکی از سوپرتایپ (سوپرکلاس) های Type
+        باشه و برای مقداردهی فیلد های داخل این کلاس ها، نوع مقدار فیلد باید یکی از ساب تایپ (ساب کلاس) های Type باشه. به
+        این نوع
+        متغیر ها <strong>مصرف کننده (Consumer)</strong> گفته میشه.</p>
+
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
+public static void main(String[] args){
+  
+  MyClass&lt;? super Number&gt; mc = new MyClass&lt;&gt;();
+  mc.setT(Double.valueOf(5.2));
+  mc.setT(Integer.valueOf(2));
+
+          </pre>
+        </div>
+      </div>
+
+    </section>
+
+    <p>در زیر میخوایم یک متد کپی با دو پارامتر تولید کننده (Producer) و مصرف کننده (Consumer) برای کپی کردن اعداد تعریف
+      کنیم.</p>
+
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+private static void copy(List&lt;? extends Number&gt; producer, List&lt;? super Number&gt; consumer){
+        for (int i=0; i&lt;producer.size(); i++)
+            consumer.add(producer.get(i));
+    }
+        </pre>
+      </div>
+    </div>
+
+
+
+  </section>
+
+
+  <section id="p6">
+    <h2>محدودیت های موجود برای فیلد ها و متغیر های جنریک داخل کلاس</h2>
+
+    <ol>
+
+      <li>
+        <p>از فیلد ها و متغیر های جنریک داخل کلاس نمیتونیم نمونه ایجاد کنیم، چون نوع متغیر ها مشخص نیست و کامپایلر
+          نمیتونه
+          تشخیص بده آبجکت ایجاد شده از چه کلاسی است.</p>
+
+        <div class="sample">
+          <div class="snippet-container">
+            <pre class="snippet Java">
+public class MyClass&lt;E&gt;{
+  
+  E myGenericField = new E(); //خطای کامپایل
+
+  public void myMethod(){
+    E myGenericVar = new E(); //خطای کامپایل
+  }
+
+}
+            </pre>
+          </div>
+        </div>
+
+      </li>
+
+      <li>
+
+        <p>
+          اگه فیلد یا متغیر جنریک به صورت آرایه تعریف شده باشه نمیتونیم یک <a href="arrays.html#p1">آرایه با مقادیر پیش
+            فرض</a>
+          ازشون ایجاد کنیم.
+        </p>
+        <div class="sample">
+          <div class="snippet-container">
+            <pre class="snippet Java">
+public class MyClass&lt;E&gt;{
+
+  E[] myGenericArrayField; 
+
+  public MyClass(){
+    myGenericArrayField = new E[10]; //خطای کامپایل
+  }
+
+  public void myMethod(){
+    E[] myGenericArrayVar = new E[15]; //خطای کامپایل
+  }
+
+}
+        </pre>
+          </div>
+        </div>
+
+      </li>
+
+
+      <li>
+        <p>اگه فیلد یا متغیر جنریک به صورت آرایه تعریف شده باشه برای ایجاد آرایه با مقادیر پیشفرض باید آرایه رو با
+          Object ایجاد کنیم و سپس به نوع جنریک کست کنیم.</p>
+
+        <div class="sample">
+          <div class="snippet-container">
+            <pre class="snippet Java">
+public class MyClass&lt;E&gt;{
+
+  E[] myGenericArrayField; 
+
+  public MyClass(){
+    myGenericArrayField = (E[]) new Object[10]; //صحیح
+  }
+
+  public void myMethod(){
+    E[] myGenericArrayVar =(E[]) new Object[15]; //صحیح
+  }
+
+}
+            </pre>
+          </div>
+        </div>
+      </li>
+
+      <li>
+        <p>پارامتر های تعریف شده برای کلاس جنریک قابل استفاده در استاتیک ها نیستن.</p>
+
+        <div class="sample">
+          <div class="snippet-container">
+            <pre class="snippet Java">
+public  class MyClass&lt;E&gt; {
+
+   public static E e0; //خطای کامپایل
+
+   static {
+     E e1; //خطای کامپایل
+   }
+
+   public  static void myStaticMethod(E e2){ //خطای کامپایل
+         ...
+   }
+
+
+            </pre>
+          </div>
+        </div>
+      </li>
+
+      <li>
+        <p>کلاس های اکسپشن نمیتونن جنریک باشن</p>
+      </li>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
+public class MyException&lt;T&gt; extends Exception{ //خطای کامپایل
+        ....
+}
+          </pre>
+        </div>
+      </div>
+
+    </ol>
+  </section>
+
+  <section id="p7">
+    <h2>خلاصه</h2>
+    <ul>
+      <li>هنگام تعریف یک کلاس، تا زمان استفاده از کلاس نخوایم نوع فیلد و متغیر های داخل کلاس مشخص باشه از جنریک
+        (Generic) به عنوان پارامتر کلاس استفاده می کنیم.</li>
+      <li>به کلاس های دارای پارامتر جنریک کلاس جنریک میگیم.</li>
+      <li>میتونیم کلاس، اینترفیس و متد های استاتیک رو با یک یا چند پارامتر جنریک تعریف کنیم.</li>
+      <li>هنگام تعریف پارامتر جنریک برای کلاس، میتونیم پارمتر کلاس رو محدود به یک کلاس خاص و ساب کلاس های اون کنیم که به
+        نوع پارامتر ها Bounded Type میگیم.</li>
+      <li>با استفاده از WildCard ها میتونیم تولید کننده (Producer) و مصرف کننده (Consumer) تعریف کنیم.</li>
+    </ul>
+  </section>
+</article>
+
+{% capture links %}
+<li>
+  <a href="/post/java/introduction.html">معرفی جاوا</a>
+</li>
+<li>
+  <a href="/post/java/arrays.html">آرایه ها در جاوا</a>
+</li>
+<li>
+  <a href="/post/java/objects-and-classes.html">آبجکت (Object) و کلاس (class) ها در جاوا</a>
+</li>
+<li>
+  <a href="/post/java/interfaces.html">اینترفیس ها در جاوا</a>
+</li>
+<li>
+  <a href="/post/java/abstract-classes.html">کلاس های ابستراکت در جاوا</a>
+</li>
+<li>
+  <a href="/post/data-structure/list.html">لیست در برنامه نویسی</a>
+</li>
+<li>
+  <a href="/post/data-structure.html">ساختار داده در برنامه نویسی</a>
+</li>
+<li>
+  <a href="https://en.wikipedia.org/wiki/Generics_in_Java">مطالعه در ویکی پدیا انگلیسی</a>
+</li>
+<li>
+  <a href="https://docs.oracle.com/javase/tutorial/java/generics/types.html">مطالعه در وبسایت اوراکل</a>
+</li>
+
+{% endcapture %}
+
+{% include article-foot.html relative_links = links %}
