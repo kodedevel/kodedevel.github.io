@@ -8,13 +8,13 @@ layout: default
     <div>دسترسی سریع</div>
     <ul>
       <li>
-        <a href="#p0">تعریف recursion (بازگشت)</a>
+        <a href="#p0">تابع بازگشتی</a>
       </li>
       <li>
-        <a href="#p1">تابع بازگشتی</a>
+        <a href="#p1">مقایسه ی بازگشتی (recursion) با حلقه ها</a>
       </li>
       <li>
-        <a href="#p2">تعریف تابع کمکی برای تابع بازگشتی</a>
+        <a href="#p2">تابع بازگشتی کمکی (Recursive Helper Function)</a>
       </li>
       <li>
         <a href="#p3">تابع tail-recursive</a>
@@ -29,71 +29,28 @@ layout: default
   </nav>
 
 
+
   <section id="p0">
-    <h2>تعریف recursion (بازگشتی)</h2>
-    <blockquote>بعضی از مسائل با روش بازگشتی راحت تر از حلقه ها حل میشن</blockquote>
-
-    <p>به طور معمول هنگامی که اجرای کد های یک تابع تموم بشه از تابع خارج شده و بقیه ی کد های برنامه بعد از تابع
-      اجرا میشن؛ اما با صدا زدن تابع داخل خودش بجای خارج شدن از تابع، همون تابع (احتمالا با مقادیر جدید) داخل
-      خودش اجرا میشه و بعد از اجرای تابع داخلش به تابع اصلی بر میگردیم؛ به این نوع
-      توابع (متد ها)، بازگشتی میگیم.</p>
-
-    <p>بازگشتی در برنامه نویسی یعنی صدا زدن تابع (متد) داخل خودش؛ این کار میتونه جایگزین استفاده از حلقه (loop) ها بشه.
-    </p>
-
-    <p>گاهی حل مسائل برنامه نویسی از طریق تعریف توابع بازگشتی
-      ساده تر از حل آنها توسط حلقه هاست.</p>
-
-    <p>بیشتر مسائلی که با بازگشتی حل میشن، با حلقه ها نیز قابل حل هستند و برعکس.</p>
-
-    <p>استفاده از حلقه ها برای حل مسائل نسبت به استفاده از روش بازگشتی بهینه تره چون با هربار صدا زدن تابع، کد های داخل
-      تابع از دوباره اجرا میشن و متغیر هایی که داخل تابع تعریف شدن، دوباره ایجاد میشن.</p>
-
-    <p>داخل یک متد ممکنه متغیر های مختلفی وجود داشته باشه که
-      هرکدوم یک بخشی از حافظه رو اشغال میکنن، با هر بار صدا زدن متد داخل خودش این متغیر ها دوباره ایجاد شده و باعث
-      افزایش
-      منابع مصرفی سیستم میشه؛ بنابراین استفاده از روش های بازگشتی برای حل مسائل میتونه منابع بیشتری رو درگیر کنه.</p>
-  </section>
-
-  <section id="p1">
     <h2>تابع بازگشتی</h2>
     <blockquote>تابع (متد) بازگشتی به تابعی گفته میشه که داخل خودش دوباره صداش بزنیم.</blockquote>
 
-    <p>هنگامی که یک تابع رو داخل خودش صدا بزنیم میگیم تابع بازگشتی است.</p>
-    <p>یک تابع میتونه بی نهایت داخل خودش صدا زده بشه بنابراین توابع بازگشتی رو با دستورات شرطی (selector ها) کنترل
-      میکنیم.</p>
+    <p>به طور معمول هنگامی که اجرای کد های یک تابع تموم بشه از تابع خارج میشیم و بقیه ی کد های برنامه
+      اجرا میشن؛ اما با صدا زدن تابع داخل خودش بجای خارج شدن از تابع، همون تابع (احتمالا با مقادیر جدید) داخل
+      خودش اجرا میشه و بعد از پایان اجرای تابع، به تابع قبلی بر میگردیم؛ به این نوع
+      توابع (متد ها)، بازگشتی میگیم.</p>
+
+    <p>یک تابع میتونه بی نهایت داخل خودش صدا زده بشه، اگه این روند متوقف نشه در اثر مصرف منابع سیستمی برنامه دچار
+      <strong>StackOverFlow</strong> میشه؛ بنابراین توابع بازگشتی رو با دستورات شرطی (selector ها) کنترل
+      میکنیم.
+    </p>
 
     <p>به جایی که روند صدا زدن تابع متوقف بشه
       <strong>base-case</strong> میگیم.
     </p>
 
-    <p>
-      فرض کنید میخوایم یک کیک رو بخوریم؛ تا زمانی که کیک وجود داره میتونیم یک تیکه از کیک رو برداریم و بخوریم؛ وجود کیک
-      base-case مساله است.
-    </p>
-
-    <div class="sample">
-      <div class="snippet-container">
-        <pre class="snippet">
-eat(Cake cake){
- if(cake.exists()){
-     cake.takeOneSlice();
-     eat(cake);
-  }
-}
-        </pre>
-      </div>
-    </div>
 
     <p>مثال</p>
 
-    <p>در مثال زیر ابتدا برنامه مقدار count رو بررسی میکنه اگه کوچک تر یا مساوی صفر باشه یک پیغام نمایش میده و
-      از تابع خارج میشه ولی اگه بزرگتر از صفر باشه، داخل بدنه ی <strong>else</strong> قبل از نمایش پیغام یک بار تابع
-      خودشو صدا میزنه و کد های داخل تابع جدید به اجرا در میاد؛ در تابع جدید مقدار
-      count یک واحد کمتر از مقدار قبلی خواهد بود و همین عمل تکرار میشه تا به base-case برسیم و سپس پیغام Hello from...
-      به ترتیب از آخرین باری که تابع رو صدا زدیم (یعنی count &lt;= 0) نمایش داده میشه تا به اولین اجرای تابع
-      برسیم و در نهایت برنامه از تابع اصلی
-      نیز خارج میشه.</p>
     <div class="sample">
       <div class="snippet-container">
         <pre class="snippet Java">
@@ -121,7 +78,16 @@ fun myFunction(count: Int){
       </div>
     </div>
 
-    <p>در مثال زیر میخوایم فاکتوریل یک عدد رو به روش بازگشتی حساب کنیم.</p>
+    <p>در مثال بالا ابتدا برنامه مقدار count رو بررسی میکنه اگه کوچک تر یا مساوی صفر باشه یک پیغام نمایش میده و
+      از تابع خارج میشه ولی اگه بزرگتر از صفر باشه، داخل بدنه ی <strong>else</strong> قبل از نمایش پیغام یک بار تابع
+      خودشو صدا میزنه و کد های داخل تابع جدید به اجرا در میاد؛ در تابع جدید مقدار
+      count یک واحد کمتر از مقدار قبلی خواهد بود و همین عمل تکرار میشه تا به base-case برسیم و سپس پیغام Hello from...
+      به ترتیب از آخرین باری که تابع رو صدا زدیم (یعنی count &lt;= 0) نمایش داده میشه تا به اولین اجرای تابع
+      برسیم و در نهایت برنامه از تابع اصلی
+      نیز خارج میشه.</p>
+    <p>مثال</p>
+
+    <p>میخوایم فاکتوریل یک عدد رو به روش بازگشتی حساب کنیم</p>
 
     <div class="sample">
       <div class="snippet-container">
@@ -132,10 +98,7 @@ static long fact(int n){
 }
         </pre>
         <pre class="snippet Kotlin">
-fun fact(n: Int): Long{
-  if(n == 0) return 1;
-  else return n * fact(n-1);
-}
+fun fact(n: Int): Long = if(n == 0) 1 else n * fact(n-1);
         </pre>
       </div>
     </div>
@@ -143,6 +106,17 @@ fun fact(n: Int): Long{
     <p>در مثال بالا با هربار صدا زدن تابع fact یک واحد از مقدار پارامتر n کم میشه تا به base-case برسیم و سپس از
       base-case
       برنامه شروع میکنه به برگردوندن نتیجه به تابع قبلی</p>
+
+
+    <p>در زیر نحوه ی عمل کردن تابع بازگشتی fact برای 4 فاکتوریل به صورت تصویری بیان شده.</p>
+
+    <figure>
+      <img src="/resources/image/algorithm/factorial_recursive_calls_diagram.png"
+        alt="نحوه ی عملکرد تابع بازگشتی fact برای 4 فاکتوریل.">
+      <figcaption>نحوه ی عملکرد تابع بازگشتی fact برای 4 فاکتوریل.</figcaption>
+    </figure>
+
+    <p>در زیر نحوه ی عمل کردن تابع بازگشتی fact برای 4 فاکتوریل به صورت جبری بیان شده.</p>
 
     <div class="sample">
       <div class="snippet-container">
@@ -152,15 +126,12 @@ fact(1) = 1 * fact(0) // 1*1=1
 fact(2) = 2 * fact(1) // 2*1=2
 fact(3) = 3 * fact(2) // 3*2=6
 fact(4) = 4 * fact(3) // 4*6=24
-        ...
-fact(n-1) = n-1 * fact(n-2)
-fact(n) = n * fact(n-1)
         </pre>
       </div>
     </div>
 
     <p>مثال</p>
-    <p>در مثال زیر میخوایم دنباله ی فیبوناچی رو به روش بازگشتی حل کنیم.</p>
+    <p>میخوایم دنباله ی فیبوناچی رو به روش بازگشتی حل کنیم.</p>
 
     <div class="sample">
       <div class="snippet-container">
@@ -181,16 +152,16 @@ fun fib(index: Int): Int{
 
 
     <p>مثال</p>
-    <p>در مثال زیر میخوایم ببینیم یک کلمه متقارن است یا خیر.</p>
+    <p>میخوایم ببینیم یک کلمه متقارن (Palindrome) است یا خیر.</p>
 
 
     <div class="sample">
       <div class="snippet-container">
         <pre class="snippet Java">
 static boolean isPalindrome(String word){
-  if(s.length() &lt;= 1){
+  if(word.length() &lt;= 1){
     return true;
-  } else if(s.charAt(0) != s.charAt(s.length - 1)){
+  } else if(word.charAt(0) != word.charAt(s.length - 1)){
       return false;
   } else{
      return isPalindrome(word.substring(1, word.length -1);
@@ -199,8 +170,8 @@ static boolean isPalindrome(String word){
         </pre>
         <pre class="snippet Kotlin">
 fun isPalindrome(String word): Boolean{
-  if(s.length &lt;= 1) return true
-  else if(s.charAt(0) != s.charAt(s.length - 1)){
+  if(word.length &lt;= 1) return true
+  else if(word[0] != word[word.length - 1]){
     return false
   }else {
     return isPalindrome(word.substring(1, word.length - 1))
@@ -212,16 +183,72 @@ fun isPalindrome(String word): Boolean{
 
   </section>
 
+  <section id="p1">
+    <h2>مقایسه ی بازگشتی (Recursion) با حلقه ها</h2>
+    <blockquote>بعضی از مسائل با بازگشتی راحت تر از حلقه ها حل میشن</blockquote>
+
+
+    <p>بازگشتی در برنامه نویسی یعنی صدا زدن تابع (متد) داخل خودش؛ این کار میتونه جایگزین استفاده از حلقه (loop) ها بشه.
+    </p>
+
+    <p>گاهی حل مسائل برنامه نویسی از طریق تعریف توابع بازگشتی
+      ساده تر از حل آنها توسط حلقه هاست.</p>
+
+    <p>بیشتر مسائلی که با بازگشتی حل میشن، با حلقه ها نیز قابل حل هستند و برعکس.</p>
+
+    <p>استفاده از حلقه ها برای حل مسائل نسبت به استفاده از توابع بازگشتی بهینه تره، در حلقه ها یک متغیر تعریف می کنیم و
+      تا پایان کار ازش استفاده میکنیم اما در توابع بازگشتی با هربار صدا زدن تابع، کد های داخل
+      تابع دوباره اجرا میشن و متغیر های جدیدی ایجاد میشه که افزایش متغیر ها باعث افزایش منابع مصرفی سیستم میشه.</p>
+
+    <p>
+      فرض کنید میخوایم یک کیک رو بخوریم؛ تا زمانی که کیک وجود داره میتونیم یک تیکه از کیک رو برداریم و بخوریم؛ وجود کیک
+      base-case مساله است.
+    </p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet">
+eat(Cake cake){
+ if cake.exists()
+     cake.takeOneSlice()
+     eat(cake)
+}
+        </pre>
+      </div>
+    </div>
+
+
+    <p>به طور کلی (تجربه ی شخصی) اگه بخوایم از حلقه ها به عنوان جایگزین توابع بازگشتی استفاده کنیم از حلقه ی
+      <strong>while</strong> به عنوان base-case مسأله استفاده می کنیم.
+    </p>
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet">
+eatCake(Cake cake){
+ 
+ while cake.exists
+   cake.takeOneSlice()
+     
+}
+        </pre>
+      </div>
+    </div>
+  </section>
+
   <section id="p2">
-    <h2>تعریف تابع (متد) کمکی برای تابع بازگشتی</h2>
-    <blockquote>با تعریف تابع کمکی (helper function) برای یک تابع بازگشتی، میتونیم پارامتر های تابع اصلی رو خلاصه کنیم.
+    <h2>تابع بازگشتی کمکی (Recursive Helper Function)</h2>
+    <blockquote>با تابع بازگشتی کمکی (Recursive Helper Function) میتونیم مقادیری که قراره به تابع بازگشتی اصلی پاس بدیم
+      رو خلاصه کنیم.
     </blockquote>
 
-    <p>مثال پیدا کردن کلمه ی متقارن میتونه بهینه تر بشه؛‌ در مثالی که زده شد با هربار صدا کردن تابع isPalindrome یک
-      String جدید توسط متد substring ایجاد میشه.</p>
+    <p>میتونیم یک تابع برای تابع بازگشتی (recursive) تعریف کنیم تا مقادیری که قراره به عنوان پارامتر تابع بازگشتی پاس
+      بدیم
+      رو باهاش خلاصه کنیم، به این تابع <strong>تابع بازگشتی کمکی (Recursive Helper Function)</strong> میگیم.</p>
 
-    <p>میتونیم بجای ایجاد substring برای هر بار صدا زدن isPalindrome از index استفاده کنیم اینطوری الگوریتم بهینه تر
-      میشه.</p>
+    <p>مثال پیدا کردن کلمه ی متقارن میتونه بهینه تر بشه؛‌ در مثالی که زده شد با هربار صدا کردن تابع isPalindrome یک
+      String جدید توسط تابع substring ایجاد میشه؛ میتونیم بجای ایجاد substring برای هر بار صدا زدن isPalindrome از index
+      استفاده کنیم با این کار منابع سیستمی کمتری درگیر و الگوریتم بهینه تر میشه.</p>
+
 
     <div class="sample">
       <div class="snippet-container">
@@ -256,7 +283,7 @@ static boolean isPalindrome(String word){
         <pre class="snippet Kotlin">
 fun isPalindrome(word: String){
   val low = 0;
-  val hight = word.length - 1;
+  val hight = word.length - 1
   isPalindrome(word, low, high)
 }
         </pre>
@@ -366,7 +393,7 @@ fun binarySearch(list: Array&lt;Double&gt;, key: Double){
 }
 
 fun binarySearch(list: Array&lt;Double&gt;, key: Double, low: Int, high: Int): Int {
-  if(low &lt; high) return -low-high
+  if(low &gt; high) return -low-high
 
   var mid = (low + high)/2
 
@@ -399,13 +426,11 @@ fun binarySearch(list: Array&lt;Double&gt;, key: Double, low: Int, high: Int): I
     <div class="sample">
       <div class="snippet-container">
         <pre class="snippet">
-Type myTailRecursiveFunction(...){
+Type myTailRecFunction(...){
 
   do some operations
-  
-         ...
 
-  myTailRecursiveFunction(...);
+  myTailRecFunction(...)
 
 }
         </pre>
