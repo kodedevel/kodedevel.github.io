@@ -116,7 +116,7 @@ fun fact(n: Int): Long = if(n == 0) 1 else n * fact(n-1);
       <figcaption>نحوه ی عملکرد تابع بازگشتی fact برای 4 فاکتوریل.</figcaption>
     </figure>
 
-    <p>در زیر نحوه ی عمل کردن تابع بازگشتی fact برای 4 فاکتوریل به صورت جبری بیان شده.</p>
+    <p>در زیر بعد از رسیدن به base-case به صورت جبری عملکرد تابع fact برای 4 فاکتوریل بیان شده.</p>
 
     <div class="sample">
       <div class="snippet-container">
@@ -255,14 +255,14 @@ eatCake(Cake cake){
         <pre class="snippet Java">
 static boolean isPalindrome(String word, int low, int hight){
   if(low &lt;= high) return true;
-  else if(s.charAt(low) != s.charAt(high)) return false;
+  else if(s.charAt(low) != word.charAt(high)) return false;
   else return isPalindrome(word, low + 1, high - 1);
 }
         </pre>
         <pre class="snippet Kotlin">
 fun isPalindrome(word: String, low: Int, high: Int): Boolean{
   if(low &lt;= high) return true
-  else if(s.charAt(low) != s.charAt(high)) return false;
+  else if(s.charAt(low) != word.charAt(high)) return false;
   else return isPalindrome(word, low + 1, high - 1)
 }
         </pre>
