@@ -156,7 +156,7 @@ function initDialog() {
     }
   }
 
-  showDialog();
+  setTimeout(showDialog, 4000);
 
   var btClose = document.getElementById("bt-close-dialog");
 
