@@ -18,10 +18,11 @@ layout: default
   <section id="p0">
     <h2>بررسی دستور umount</h2>
 
-    <p>با استفاده از دستور <strong>umount</strong> در لینوکس میتونیم فایل های سیستمی <a href="mount.html">وارد
+    <p>با استفاده از دستور <strong>umount</strong> در لینوکس میتونیم <a href="make-filesystems.html">سیستم فایل</a>های
+      <a href="mount.html">وارد
         (mount)</a> شده رو خارج
-      (umount) کنیم.</p>
-
+      (umount) کنیم.
+    </p>
 
     <p>فرم کلی:</p>
 
@@ -37,12 +38,14 @@ umount "path_to_mount_point_directory"
 
     <div class="note">
       <p class="note-head">توجه</p>
-      <p>میتونیم بجای مسیر پوشه ی mount point مسیر فایل سیستمی رو بنویسیم، اما این کار توصیه نمیشه چون ممکنه فایل در چند
+      <p>میتونیم بجای مسیر پوشه ی mount point مسیر سیستمِ فایل ها رو بنویسیم، اما این کار توصیه نمیشه چون ممکنه فایل در
+        چند
         جا mount
         شده باشه و با این کار معلوم نیست کدوم پوشه اول umount میشه.</p>
     </div>
 
-    <p>با استفاده از آرگومان <strong>r</strong> میتونیم تعیین کنیم اگه به هر دلیلی فایل سیستمی قابل خارج شدن نبود دوباره
+    <p>با استفاده از آرگومان <strong>r</strong> میتونیم تعیین کنیم اگه به هر دلیلی سیستمِ فایل ها قابل خارج شدن نبود
+      دوباره
       به
       صورت <strong>read-only</strong> واردش کنه.</p>
 
@@ -54,8 +57,8 @@ umount -r "path_to_mount_point_directory"
       </div>
     </div>
 
-    <p>با استفاده از آرگومان <strong>l</strong> میتونیم دسترسی به فایل سیستمی رو قطع کنیم اما منابع فایل تا زمانی که
-      فایل سیستمی مشغوله قطع نمیشه؛ حرف l ابتدای کلمه ی <strong>lazy</strong> است.</p>
+    <p>با استفاده از آرگومان <strong>l</strong> میتونیم دسترسی به سیستمِ فایل ها رو قطع کنیم اما منابع فایل تا زمانی که
+      سیستمِ فایل ها مشغوله قطع نمیشه؛ حرف l ابتدای کلمه ی <strong>lazy</strong> است.</p>
 
     <p>مثلا یک پارتیشن mount شده داریم، یک فایل رو داخلش کپی می کنیم، میتونیم از l استفاده کنیم تا بعد از پایان کپی
       پارتیشن کاملا خارج بشه.</p>
@@ -68,8 +71,8 @@ umount -l "path_to_mount_point_directory"
       </div>
     </div>
 
-    <p>با استفاده از آرگومان <strong>a</strong> میتونیم تمام فایل های سیستمی mount شده که در <strong
-        dir="ltr">/proc/self/mountinfo</strong> بیان شده اند (بجز فایل های سیستمی proc, devfs, devpts, sysfs, rpc_pipfs
+    <p>با استفاده از آرگومان <strong>a</strong> میتونیم تمام سیستمِ فایل ها mount شده که در <strong
+        dir="ltr">/proc/self/mountinfo</strong> بیان شده اند (بجز سیستمِ فایل ها proc, devfs, devpts, sysfs, rpc_pipfs
       و nfsd) رو خارج کنیم.</p>
 
     <p>فایل mountinfo اطلاعات فایل های mount شده رو در بر داره.</p>
@@ -88,7 +91,7 @@ sudo umount -a
     <h2>خلاصه</h2>
     <ul>
       <li>
-        از دستور umount در لینوکس برای خارج کردن فایل های سیستمی mount شده استفاده می کنیم.
+        از دستور umount در لینوکس برای خارج کردن سیستمِ فایل ها mount شده استفاده می کنیم.
       </li>
     </ul>
   </section>
@@ -103,7 +106,7 @@ sudo umount -a
   <a href="/post/linux/mount.html">دستور mount در لینوکس</a>
 </li>
 <li>
-  <a href="/post/linux/make-filesystems.html">ساخت فایل های سیستمی در لینوکس</a>
+  <a href="/post/linux/make-filesystems.html">ساخت سیستمِ فایل ها در لینوکس</a>
 </li>
 <li>
   <a href="/post/linux/fixed-disk.html">دستور fdisk در لینوکس</a>
