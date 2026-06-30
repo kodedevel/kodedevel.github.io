@@ -13,7 +13,7 @@ layout: default
         <a href="#p1">بررسی map</a>
       </li>
       <li>
-        <a href="#p2">وضوح برخورد (collision resolution)</a>
+        <a href="#p2">رفع تداخل index ها (collision resolution)</a>
       </li>
       <li>
         <a href="#p3">افزایش ظرفیت map</a>
@@ -63,11 +63,14 @@ layout: default
   <section id="p1">
     <h2>بررسی map</h2>
 
-    <p>با هش کد ها میتونیم یک <strong>map</strong> پیاده سازی کنیم،‌ هر map دارای <strong>کلید (Key)</strong> و
+    <blockquote>کلید (key) ها در map نمیتونن تکراری باشن ولی مقدار (value) ها میتونن تکراری باشن.</blockquote>
+
+    <p>به map <strong>دیکشنری
+        (Dictionary)</strong> هم میگن، با هش کد ها میتونیم یک <strong>map</strong> پیاده سازی کنیم،‌ هر map دارای
+      <strong>کلید (key)</strong> و
       <strong>مقدار
-        (Value)</strong> است؛ هر Key و Value به صورت جفت داخل یک
-      آرایه نگهداری میشه، به map <strong>دیکشنری
-        (Dictionary)</strong> هم میگن.
+        (value)</strong> است؛ هر key و value به صورت جفت داخل یک
+      آرایه نگهداری میشه، به map که با روش hash table (هش کد ها) پیاده سازی بشه هش مپ (HashMap) میگیم.
     </p>
 
     <p>به جفت key و value در مپ <strong>entry</strong> میگیم و برای نگهداریشون یک کلاس تعریف
@@ -89,7 +92,7 @@ class Entry{
     return value
   }
 
-  functinon setValue(newValue: V): V{
+  function setValue(newValue: V): V{
     oldValue := value
     value := newValue
     return oldValue
@@ -134,19 +137,19 @@ function hash(K key): int{
 
 
   <section id="p2">
-    <h2>وضوح برخورد (collision resolution)</h2>
+    <h2>رفع تداخل index ها (collision resolution)</h2>
 
     <p>دو کلید مختلف، هش کد های مختلفی دارن ولی گاهی هنگام محاسبه ی index با تابع hash ممکنه index های دو کلید یکسان در
-      بیاد به این وضعیت <strong>وضوح برخورد (collision resolution)</strong> میگیم.</p>
+      بیاد به این وضعیت <strong>رفع تداخل (collision resolution)</strong> میگیم.</p>
 
-    <p>برای حل این مشکل میتونیم از راه حل
-      <strong>زنجیره کردن جدا (separate chaining)</strong> یا <strong>جستجو کردن خطی (linear probing)</strong> در پیاده
+    <p>برای رفع تداخل index ها میتونیم از
+      <strong>زنجیره سازی مجزا (separate chaining)</strong> یا <strong>جستجو کردن خطی (linear probing)</strong> در پیاده
       سازی
       map استفاده کنیم.
     </p>
 
     <section>
-      <h3>زنجیره کردن جدا (separate chaining)</h3>
+      <h3>زنجیره سازی مجزا (separate chaining)</h3>
 
       <p>در این روش یک آرایه از <a href="linkedlist.html">linkedlist</a> ایجاد می کنیم و دو entry با index یکسان رو به
         linkedlist همون index اضافه می کنیم.</p>
@@ -161,8 +164,8 @@ entries := new LinkedList[capacity]
 
       <figure>
         <img src="/resources/image/data-structure/map_separate_chaining.png"
-          alt="حل وضوح برخورد (collision resolution) به روش زنجیره کردن جدا (separate chaining)">
-        <figcaption>حل وضوح برخورد (collision resolution) به روش زنجیره کردن جدا (separate chaining)</figcaption>
+          alt="رفع تداخل index ها (collision resolution) به روش زنجیره سازی مجزا (separate chaining)">
+        <figcaption>رفع تداخل index ها (collision resolution) به روش زنجیره سازی مجزا (separate chaining)</figcaption>
       </figure>
 
     </section>
@@ -186,13 +189,14 @@ entries = new Entry[capacity]
 
       <figure>
         <img src="/resources/image/data-structure/map_linear_probing.png"
-          alt="حل وضوح برخورد (collision resolution) به روش جستجوی خطی (linear probing)">
-        <figcaption>حل وضوح برخورد (collision resolution) به روش جستجوی خطی (linear probing)</figcaption>
+          alt="رفع تداخل index ها (collision resolution) به روش جستجوی خطی (linear probing)">
+        <figcaption>رفع تداخل index ها (collision resolution) به روش جستجوی خطی (linear probing)</figcaption>
       </figure>
 
     </section>
 
-    <p> حل وضوح برخورد (collision resolution) در روش separate chaining بهینه تره، در این مطلب به پیاده سازی map با روش
+    <p> رفع تداخل index ها (collision resolution) در روش separate chaining بهینه تره، در این مطلب به پیاده سازی map با
+      روش
       separate chaining می پردازیم.</p>
 
   </section>
@@ -205,25 +209,17 @@ entries = new Entry[capacity]
       کنیم.
     </p>
 
-
     <div class="sample">
       <div class="snippet-container">
         <pre class="snippet">
 class MyHashMap{
 
-  mLoadFactor := 0.75
-  mCapacity := 16
-  mSize := 0
+  loadFactor := 0.75
+  capacity := 16
+  size := 0
 
-  buckets := null
+  buckets := new LinkedList[capacity]
 
-  MyHashMap(capacity: Int, loadFactor: Float){
-    
-    mCapacity := capacity
-    mLoadFactor := loadFactor
-    buckets := new LinkedList[capacity]
-
-  }
 
   function resize(){
     oldBuckets := buckets
@@ -254,6 +250,16 @@ class MyHashMap{
       بیشتر از این مقدار بشه capacity باید افزایش پیدا کنه.</p>
 
 
+    <div class="note">
+      <p class="note-head">
+        توجه
+      </p>
+      <p>در بالا برای loadFactor و capacity از مقادیر پیشفرض استفاده کردیم ولی در پیاده سازی واقعی میتونیم loadFactor و
+        capacity رو داخل کانستراکتور مقداردهی کنیم.</p>
+    </div>
+
+
+
   </section>
 
   <section id="p4">
@@ -270,7 +276,7 @@ function get(key: K): V{
   
   index := hash(key)
 
-  bucket = buckets[index]
+  bucket := buckets[index]
 
   if bucket != null
     for 0 &lt;= i &lt; bucket.size
@@ -340,7 +346,7 @@ function put(key: K, value: V): V{
       resize()
 
     if buckets[index] = null
-      buckets[index] = new LinkedList()
+      buckets[index] := new LinkedList()
 
 
     buckets[index].add(new Entry(key, value))
@@ -807,7 +813,7 @@ MyHashMap&lt;String, Integer&gt; map = new MyHashMap();
   <a href="/post/java/arrays.html">آرایه ها در جاوا</a>
 </li>
 <li>
-  <a href="https://en.wikipedia.org/wiki/Dynamic_array">مطالعه در ویکی پدیا انگلیسی</a>
+  <a href="https://en.wikipedia.org/wiki/Hash_table">مطالعه در ویکی پدیا انگلیسی</a>
 </li>
 
 {% endcapture %}
