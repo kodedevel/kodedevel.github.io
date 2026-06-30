@@ -33,6 +33,14 @@
       "lastModified": "",
       "imgCover": "/resources/image/data-structure/cover_stack.png",
       "link": "/post/data-structure/stack.html"
+    },
+    {
+      "title": "نگاهی عمیق به map در برنامه نویسی",
+      "description": "map در برنامه نویسی چیست؟ map یک ساختار داده است که با استفاده از هش کد پیاده میشه، در جستجو کردن عناصر map بسیار سریع تر از بسیاری از پیاده سازی های ساختار داده از جمله لیست و لیست پیوندی است، map با استفاده از هش کد (hash code) ها پیاده سازی میشه؛ در این مطلب به بررسی و پیاده سازی کامل و عمیق map در برنامه نویسی می پردازیم.",
+      "datePublished": "2026-06-30",
+      "lastModified": "",
+      "imgCover": "/resources/image/data-structure/cover_map.png",
+      "link": "/post/data-structure/map.html"
     }
   ]
 }
