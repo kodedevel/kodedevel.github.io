@@ -42,6 +42,9 @@ layout: default
   <section id="p0">
     <h2>مفهوم هش کد</h2>
 
+    <blockquote>هش کد هر عنصر مختص به خودشه و فقط با عنصری که باهاش برابره یکسانه
+    </blockquote>
+
     <p>فرض کنید یک کتاب داریم و میخوایم موضوع به خصوصی از کتاب رو باز و مطالعه کنیم، برای پیدا کردن صفحه ی مربوط به
       موضوع مورد نظر میتونیم صفحات کتاب رو دونه دونه ورق بزنیم تا موضوع مورد نظر رو پیدا کنیم ، ولی این کار وقت گیره،
       برای پیدا کردن موضوع مورد نظر داخل کتاب بهترین کار مراجعه کردن به فهرست مطالب کتابه و از طریق فهرست مطالب کتاب
@@ -52,8 +55,21 @@ layout: default
       به عنصر مورد نظر برسیم ولی تو هش کردن، هر عنصر یک آدرس منحصر به فرد داره که و با استفاده از آدرس عنصر، بدون اینکه
       برنامه وقتشو برای جستجوی تمام عناصر تلف کنه.</p>
 
-    <p>در زبان های برنامه نویسی هر عنصر یک کد ثابتی داره که بهش <strong>هش کد (hash code)</strong> میگیم، مقدار هش کد
-      (hash code) هر عنصر با بقیه ی عناصر هم نوع خودش فرق می کنه.</p>
+    <p>در زبان های برنامه نویسی هر عنصر یک کد ثابتی داره که بهش <strong>هش کد (hash code)</strong> میگیم، هش کد مثل اثر
+      انگشت میمونه و هش کد
+      (hash code) هر عنصر فقط با عنصر برابر با خودش یکسانه.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet">
+a := 24
+b := 24
+c := 52
+
+(a = b) != c  -&gt; (a.hashcode = b.hashcode) != c.hashcode
+        </pre>
+      </div>
+    </div>
 
     <p>از هش کد ها مثل فهرست مطالب کتاب که گفته شد برای پیدا کردن جایگاه عنصر در map استفاده می کنیم.</p>
 
@@ -140,7 +156,7 @@ function hash(K key): int{
     <h2>رفع تداخل index ها (collision resolution)</h2>
 
     <p>دو کلید مختلف، هش کد های مختلفی دارن ولی گاهی هنگام محاسبه ی index با تابع hash ممکنه index های دو کلید یکسان در
-      بیاد به این وضعیت <strong>رفع تداخل (collision resolution)</strong> میگیم.</p>
+      بیاد، به این وضعیت <strong>تداخل (collision)</strong> میگیم.</p>
 
     <p>برای رفع تداخل index ها میتونیم از
       <strong>زنجیره سازی مجزا (separate chaining)</strong> یا <strong>جستجو کردن خطی (linear probing)</strong> در پیاده
@@ -180,7 +196,7 @@ entries := new LinkedList[capacity]
       <div class="sample">
         <div class="snippet-container">
           <pre class="snippet">
-entries = new Entry[capacity]
+entries := new Entry[capacity]
           </pre>
         </div>
       </div>
@@ -219,7 +235,6 @@ class MyHashMap{
   size := 0
 
   buckets := new LinkedList[capacity]
-
 
   function resize(){
     oldBuckets := buckets
