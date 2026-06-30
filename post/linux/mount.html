@@ -17,10 +17,11 @@ layout: default
 
   <section id="p0">
     <h2>بررسی دستور mount</h2>
-    <p>با استفاده از دستور <strong>mount</strong> در لینوکس میتونیم <a href="make-filesystems.html">سیستمِ فایل ها</a>
-      (<a href="fixed-disk.html#p1">پارتیشن ها</a>، فایل های <strong>iso</strong> و ...)
-      رو
-      داخل یک پوشه وارد (mount) کنیم.</p>
+    <p>با استفاده از دستور <strong>mount</strong> در لینوکس میتونیم درایو هایی که ازشون <a
+        href="make-filesystems.html">سیستم فایل (filesystem)</a> ایجاد کردیم
+      رو در سیستم عامل وارد کنیم تا کاربر بتونه به محتوا (فایل ها) ی داخل درایو دسترسی داشته باشه.</p>
+
+    <p>از mount به طور کلی در وارد کردن درایو های iso, حافظه های usb, هارد و ... استفاده می کنیم.</p>
 
     <p>فرم کلی:</p>
 
@@ -53,7 +54,7 @@ mount -t &lt;filesystem_type&gt; "path_to_filesystem" "path_to_mount_point_direc
 
       <h3>آرگومان o</h3>
 
-      <p>با استفاده از آرگومان <strong>o</strong> می تونیم یک سری ویژگی ها رو برای mount point تعریف کنیم؛ این آرگومان
+      <p>با استفاده از آرگومان <strong>o</strong> می تونیم یک سری آپشن ها رو برای mount point تعریف کنیم؛ این آرگومان
         ابتدای کلمه ی <strong>options</strong> است.</p>
 
       <p>اگه بخوایم فایلمون در جایی که mount میشه قابل خوندن و نوشتن باشه از <strong>rw</strong> استفاده می کنیم.</p>
@@ -75,12 +76,21 @@ mount -t &lt;filesystem_type&gt; -o ro "path_to_filesystem" "path_to_mount_point
         </pre>
         </div>
       </div>
+      <p>اگه بخوایم یک درایو مجازی مثل فایل iso رو mount کنیم از آپشن loop استفاده می کنیم؛ آپشن loop به mount میگه فایل
+        یک درایو واقعی نیست.</p>
 
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Shell">
+mount -o loop,ro "path_to_file.iso" "path_to_mount_point_directory"
+          </pre>
+        </div>
+      </div>
       <p>با استفاده از <strong>noexec</strong> میتونیم جلوی اجرای فایل های باینری داخل سیستمِ فایل ها mount شده رو
         بگیریم.
       </p>
 
-      <p>در مثال زیر میخوایم یک سیستمِ فایل ها رو به صورت read-only وارد کنیم و همینطور فایل های باینری داخلش قابل اجرا
+      <p>در مثال زیر میخوایم یک درایو رو به صورت read-only وارد کنیم و همینطور فایل های باینری داخلش قابل اجرا
         نباشن.</p>
 
       <div class="sample">
@@ -90,7 +100,7 @@ mount -t &lt;filesystem_type&gt; -o ro,noexec "path_to_filesystem" "path_to_moun
           </pre>
         </div>
       </div>
-      <p>اگه بخوایم فایلی که در حال حاضر mount شده رو بدون umount کردن در جای دیگه mount کنیم، از <strong>bind</strong>
+      <p>اگه بخوایم درایوی که در حال حاضر mount شده رو بدون umount کردن در جای دیگه mount کنیم، از <strong>bind</strong>
         استفاده می
         کنیم.</p>
 
@@ -104,10 +114,10 @@ mount -t &lt;filesystem_type&gt; -o bind "path_to_mount_point_directory"  "path_
         </div>
       </div>
 
-      <p>اگه بخوایم ویژگی های تعریف شده برای mount point رو بدون umount کردن تغییر بدیم از <strong>remount</strong>
+      <p>اگه بخوایم آپشن های تعریف شده برای mount point رو بدون umount کردن تغییر بدیم از <strong>remount</strong>
         استفاده می کنیم.</p>
 
-      <p>فرض کنید فایل رو با rw (قابل خوندن و قابل نوشتن)، mount کردیم حالا میخوایم پوشه ای که فایل داخلش mount شده رو
+      <p>فرض کنید درایو رو با rw (قابل خوندن و قابل نوشتن)، mount کردیم حالا میخوایم پوشه ای که فایل داخلش mount شده رو
         فقط
         قابل
         خوندن کنیم.</p>
@@ -124,7 +134,7 @@ mount -t &lt;filesystem_type&gt; -o remount,ro "path_to_mount_point_directory"
 
   </section>
 
-  <section>
+  <section id="p1">
     <h2>خلاصه</h2>
     <ul>
       <li>
@@ -134,7 +144,7 @@ mount -t &lt;filesystem_type&gt; -o remount,ro "path_to_mount_point_directory"
         به پوشه ای که فایل رو داخلش mount میکنیم، mount point میگیم.
       </li>
       <li>
-        با استفاده از آرگومان o میتونیم یک سری ویژگی ها برای mount point تعریف کنیم.
+        با استفاده از آرگومان o میتونیم یک سری آپشن ها برای mount point تعریف کنیم.
       </li>
     </ul>
   </section>
