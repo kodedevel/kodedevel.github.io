@@ -1,0 +1,815 @@
+---
+layout: default
+---
+
+<article>
+  <nav class="toc">
+    <div>دسترسی سریع</div>
+    <ul>
+      <li>
+        <a href="#p0">مفهوم هش کد (hash code)</a>
+      </li>
+      <li>
+        <a href="#p1">بررسی map</a>
+      </li>
+      <li>
+        <a href="#p2">وضوح برخورد (collision resolution)</a>
+      </li>
+      <li>
+        <a href="#p3">افزایش ظرفیت map</a>
+      </li>
+      <li>
+        <a href="#p4">صدا زدن مقدار با استفاده از کلید در map</a>
+      </li>
+      <li>
+        <a href="#p5">بررسی وجود کلید در map</a>
+      </li>
+      <li>
+        <a href="#p6">اضافه کردن جفت کلید و مقدار جدید به map</a>
+      </li>
+      <li>
+        <a href="#p7">حذف جفت کلید و مقدار از map</a>
+      </li>
+      <li>
+        <a href="#p8">پیاده سازی map در زبان های برنامه نویسی</a>
+      </li>
+      <li>
+        <a href="#p9">خلاصه</a>
+      </li>
+    </ul>
+  </nav>
+
+  <section id="p0">
+    <h2>مفهوم هش کد</h2>
+
+    <p>فرض کنید یک کتاب داریم و میخوایم موضوع به خصوصی از کتاب رو باز و مطالعه کنیم، برای پیدا کردن صفحه ی مربوط به
+      موضوع مورد نظر میتونیم صفحات کتاب رو دونه دونه ورق بزنیم تا موضوع مورد نظر رو پیدا کنیم ، ولی این کار وقت گیره،
+      برای پیدا کردن موضوع مورد نظر داخل کتاب بهترین کار مراجعه کردن به فهرست مطالب کتابه و از طریق فهرست مطالب کتاب
+      میتونیم صفحه ی مربوط به موضوع مورد نظر رو پیدا کرده و بدون اینکه بخوایم صفحات کتاب رو دونه دونه ورق بزنیم مستقیم
+      بریم سراغ صفحه ی مربوط به موضوع مورد نظر.</p>
+
+    <p>با استفاده از لیست، لیست پیوندی، صف، پشته و... برای پیدا کردن یک عنصر از تمام عناصر رو دونه دونه بررسی میکنیم تا
+      به عنصر مورد نظر برسیم ولی تو هش کردن، هر عنصر یک آدرس منحصر به فرد داره که و با استفاده از آدرس عنصر، بدون اینکه
+      برنامه وقتشو برای جستجوی تمام عناصر تلف کنه.</p>
+
+    <p>در زبان های برنامه نویسی هر عنصر یک کد ثابتی داره که بهش <strong>هش کد (hash code)</strong> میگیم، مقدار هش کد
+      (hash code) هر عنصر با بقیه ی عناصر هم نوع خودش فرق می کنه.</p>
+
+    <p>از هش کد ها مثل فهرست مطالب کتاب که گفته شد برای پیدا کردن جایگاه عنصر در map استفاده می کنیم.</p>
+
+  </section>
+
+
+  <section id="p1">
+    <h2>بررسی map</h2>
+
+    <p>با هش کد ها میتونیم یک <strong>map</strong> پیاده سازی کنیم،‌ هر map دارای <strong>کلید (Key)</strong> و
+      <strong>مقدار
+        (Value)</strong> است؛ هر Key و Value به صورت جفت داخل یک
+      آرایه نگهداری میشه، به map <strong>دیکشنری
+        (Dictionary)</strong> هم میگن.
+    </p>
+
+    <p>به جفت key و value در مپ <strong>entry</strong> میگیم و برای نگهداریشون یک کلاس تعریف
+      میکنیم.
+    </p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet">
+class Entry{
+  K key
+  V value
+
+  function getKey(): K{
+    return key
+  }
+
+  function getValue(): V{
+    return value
+  }
+
+  functinon setValue(newValue: V): V{
+    oldValue := value
+    value := newValue
+    return oldValue
+  }
+
+}
+        </pre>
+      </div>
+    </div>
+
+    <p> هر
+      value کلید مختص به خودشو داره key ها در map نمیتونن تکراری باشن، برای پیدا کردن key و value مورد نظر از
+      هش کد کلید استفاده میکنیم، در map زمانی که دو کلید یکی باشن و هش کد های یکسانی داشته باشن
+      میگیم دو کلید باهم برابرن.</p>
+
+    <p>به آرایه ای که entry ها رو نگهداری می کنه <strong>buckets</strong> میگیم، bucket میتونه مستقیم entry ها رو
+      نگهداری کنه یا یک آرایه باشه از linkedlist که هر linkedlist یک یا چند entry رو نگهداری می کنه.</p>
+    <p>برای پیدا کردن شماره خونه ی entry مورد نظر در map مانند زیر عمل می کنیم.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet">
+function hash(K key): int{
+  
+  int h = key.hashcode
+  h = h ^ (h &gt;&gt;&gt; 16)
+
+  return h &amp; (buckets.length - 1)
+}
+        </pre>
+      </div>
+    </div>
+
+    <p>در بالا با <strong dir="ltr">h ^ (h &gt;&gt;&gt; 16)</strong> مطمئن میشیم هنگام گرفتن index از هش کد ها به تکرار
+      کمتر می
+      خوریم و همینطور با <strong>&amp;</strong> فقط bit های مشترک بین هش کد و <strong>bucktes.length - 1</strong> رو
+      نگهداری می کنیم که
+      نتیجش میشه یک عدد بین 0 تا buckets.length - 1 میتونستیم برای این کار بجای &amp; از <strong>%</strong> استفاده کنیم
+      اما سرعت محاسبه ی &amp; بیشتره.</p>
+
+  </section>
+
+
+  <section id="p2">
+    <h2>وضوح برخورد (collision resolution)</h2>
+
+    <p>دو کلید مختلف، هش کد های مختلفی دارن ولی گاهی هنگام محاسبه ی index با تابع hash ممکنه index های دو کلید یکسان در
+      بیاد به این وضعیت <strong>وضوح برخورد (collision resolution)</strong> میگیم.</p>
+
+    <p>برای حل این مشکل میتونیم از راه حل
+      <strong>زنجیره کردن جدا (separate chaining)</strong> یا <strong>جستجو کردن خطی (linear probing)</strong> در پیاده
+      سازی
+      map استفاده کنیم.
+    </p>
+
+    <section>
+      <h3>زنجیره کردن جدا (separate chaining)</h3>
+
+      <p>در این روش یک آرایه از <a href="linkedlist.html">linkedlist</a> ایجاد می کنیم و دو entry با index یکسان رو به
+        linkedlist همون index اضافه می کنیم.</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet">
+entries := new LinkedList[capacity]
+          </pre>
+        </div>
+      </div>
+
+      <figure>
+        <img src="/resources/image/data-structure/map_separate_chaining.png"
+          alt="حل وضوح برخورد (collision resolution) به روش زنجیره کردن جدا (separate chaining)">
+        <figcaption>حل وضوح برخورد (collision resolution) به روش زنجیره کردن جدا (separate chaining)</figcaption>
+      </figure>
+
+    </section>
+
+
+    <section>
+      <h3>جستجو کردن خطی (linear probing)</h3>
+      <p>در این روش هر خونه ای در آرایه فقط یک entry رو نگهداری میکنه، زمانی که بخوایم یک entry رو به آرایه اضافه کنیم
+        اگه index توسط یک entry دیگه پر شده باشه شروع به جستجو از index بعدی میکنیم تا یک خونه ی خالی در آرایه برای
+        اضافه کردن entry جدید پیدا کنیم؛</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet">
+entries = new Entry[capacity]
+          </pre>
+        </div>
+      </div>
+
+      <p>در زیر به صورت تصویری عملکرد روش linear probing بیان شده است.</p>
+
+      <figure>
+        <img src="/resources/image/data-structure/map_linear_probing.png"
+          alt="حل وضوح برخورد (collision resolution) به روش جستجوی خطی (linear probing)">
+        <figcaption>حل وضوح برخورد (collision resolution) به روش جستجوی خطی (linear probing)</figcaption>
+      </figure>
+
+    </section>
+
+    <p> حل وضوح برخورد (collision resolution) در روش separate chaining بهینه تره، در این مطلب به پیاده سازی map با روش
+      separate chaining می پردازیم.</p>
+
+  </section>
+
+
+  <section id="p3">
+    <h2>افزایش ظرفیت map</h2>
+
+    <p>هنگامی که آرایه ی داخل map به یک حدی برسه باید ظرفیت آرایه افزایش پیدا کنه تا بتونیم عناصر جدید رو به map اضافه
+      کنیم.
+    </p>
+
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet">
+class MyHashMap{
+
+  mLoadFactor := 0.75
+  mCapacity := 16
+  mSize := 0
+
+  buckets := null
+
+  MyHashMap(capacity: Int, loadFactor: Float){
+    
+    mCapacity := capacity
+    mLoadFactor := loadFactor
+    buckets := new LinkedList[capacity]
+
+  }
+
+  function resize(){
+    oldBuckets := buckets
+
+    mSize := 0
+    mCapacity := mCapacity * 2
+
+    buckets := new LinkedList[mSize]
+
+    for 0 &lt;= i &lt; oldBuckets.length
+      
+      bucket := oldBuckets[i]
+
+      if bucket != null
+        for 0 &lt;= j &lt; bucket.size
+          put(bucket.key, bucket.value)
+
+  }
+        </pre>
+      </div>
+    </div>
+
+    <p><strong>capacity</strong> طول آرایه ی تعریف شده در map رو نمایش می ده و <strong>size</strong> هم تعداد عناصر
+      موجود در map رو نمایش میده.</p>
+    <p>با استفاده از <strong>loadFactor</strong> میتونیم آستانه ی افزایش ظرفیت آرایه رو مشخص کنیم، مقدار loadFactor باید
+      بین
+      0 تا 1 باشه و آستانه ی ظرفیت برابر است با <strong dir="ltr">loadFactor * capacity</strong> زمانی که size مساوی یا
+      بیشتر از این مقدار بشه capacity باید افزایش پیدا کنه.</p>
+
+
+  </section>
+
+  <section id="p4">
+    <h2>صدا زدن مقدار با استفاده از کلید در map</h2>
+
+    <p>با استفاده از key در map میتونیم یک value رو پیدا کنیم و value رو برگردونیم، پیچیدگی زمان برای پیدا کردن value
+      برابر O(1) است.</p>
+
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet">
+function get(key: K): V{
+  
+  index := hash(key)
+
+  bucket = buckets[index]
+
+  if bucket != null
+    for 0 &lt;= i &lt; bucket.size
+      
+      entry := bucket.get(i)
+      
+      if entry.key = key
+        return entry.value
+
+  return null
+}
+        </pre>
+      </div>
+    </div>
+
+  </section>
+
+  <section id="p5">
+    <h2>بررسی وجود کلید در map</h2>
+
+    <p>اگه یک value وجود داشته باشه معلوم میشه کلید هم تو map وجود داره پیچیدگی زمان برای جستجوی key در map برابر صدا
+      زدن value یعنی O(1) است.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet">
+function contains(key: K): boolean{
+  
+  return get(key) != null
+}
+        </pre>
+      </div>
+    </div>
+
+  </section>
+
+
+  <section id="p6">
+    <h2>اضافه کردن جفت کلید و مقدار جدید به map</h2>
+
+    <p>با استفاده از تابع put میتونیم یک جفت key و value رو به map اضافه کنیم، اگه key و value از قبل وجود داشتن مقدار
+      value رو بروزرسانی می کنیم. پیچیدگی زمان این کار O(1) است.</p>
+
+    <p>برای اضافه کردن جفت key و value ابتدا بررسی می کنیم آیا کلید از قبل وجود داره یا خیر اگه کلید وجود داشت فقط مقدار
+      value رو بروزرسانی می کنیم در غیر اینصورت بررسی میکنیم آیا به ظرفیت آرایه به استانه ی افزایش ظرفیت رسیده یا خیر
+      اگه رسیده باشه برنامه با تابع resize که تعریف کردیم ظرفیت آرایه رو دو برابر می کنه و سپس key و value رو به عنوان
+      مقادیر جدید به آرایه اضافه می کنه.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet">
+function put(key: K, value: V): V{
+
+  index := hash(key)
+
+  if index &lt; 0 
+    return null
+
+  if contains(key)
+    for 0&lt;= i &lt; buckets[index].size
+      entry := buckets[index].get(i)
+      if entry.key = key
+        return entry.setValue(value)
+  else
+  
+    if size &gt;= loadFactor * capacity
+      resize()
+
+    if buckets[index] = null
+      buckets[index] = new LinkedList()
+
+
+    buckets[index].add(new Entry(key, value))
+
+    size++
+
+}
+        </pre>
+      </div>
+    </div>
+
+  </section>
+
+  <section id="p7">
+    <h2>حذف جفت کلید و مقدار از map</h2>
+
+    <p>برای حذف جفت key و value از map با کلید جستجو می کنیم اگه کلید و مقدار وجود داشتن، حذفشون می کنیم؛ پیچیدگی زمان
+      برای حدف کردن جفت کلید و مقدار O(1) است.</p>
+
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet">
+function remove(key: K): V{
+
+  if contains(key)
+    
+    index := hash(key)
+
+    bucket := buckets[index]
+
+    for 0&lt;= i &lt; bucket.size
+      if bucket.get(i).key = key
+        return bucket.remove(i)
+        
+    size--
+
+  return null
+}
+        </pre>
+      </div>
+    </div>
+
+  </section>
+
+  <section id="p8">
+    <h2>پیاده سازی map در زبان های برنامه نویسی</h2>
+
+    <p>در این قسمت میخوایم چیزایی که گفته شد رو به عنوان کلاس <strong>HashMap</strong> در زبان های برنامه نویسی (جاوا و
+      کاتلین) به طور عملی پیاده کنیم.
+    </p>
+
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+import java.util.LinkedList;
+
+public class MyHashMap&lt;K, V&gt; {
+
+    private static final int DEFAULT_CAPACITY = 16;
+    private static final float DEFAULT_LOAD_FACTOR = 0.75f;
+
+    private int capacity;
+    private float loadFactor;
+
+    private int size = 0;
+
+    private LinkedList&lt;Entry&lt;K, V&gt;&gt;[] buckets;
+
+    public MyHashMap(int capacity, float loadFactor) {
+        if (loadFactor &lt;= 0 || loadFactor &gt; 1)
+            throw new IllegalArgumentException("load factor should be greater than 0 and less than or equal 1");
+        if (capacity &lt;= 0) throw new IllegalArgumentException("Capacity can not be zero or less");
+        this.loadFactor = loadFactor;
+        this.capacity = capacity;
+
+        buckets = (LinkedList&lt;Entry&lt;K, V&gt;&gt;[]) new LinkedList[capacity];
+    }
+
+    public MyHashMap(int capacity) {
+        this(capacity, DEFAULT_LOAD_FACTOR);
+    }
+
+    public MyHashMap() {
+        this(DEFAULT_CAPACITY, DEFAULT_LOAD_FACTOR);
+    }
+
+    public int hash(K key) {
+        if (key == null) return -1;
+
+        int h = key.hashCode();
+        h = h ^ (h &gt;&gt;&gt; 16);
+
+        return h &amp; (capacity - 1);
+    }
+
+    public V get(K key) {
+
+        int index = hash(key);
+        LinkedList&lt;Entry&lt;K, V&gt;&gt; bucket = buckets[index];
+
+        if (bucket != null) {
+            for (Entry&lt;K, V&gt; entry : bucket)
+                if (entry.getKey().equals(key))
+                    return entry.getValue();
+        }
+
+        return null;
+    }
+
+    public boolean containsKey(K key) {
+        return get(key) != null;
+    }
+
+    public V put(K key, V value) {
+
+        int index = hash(key);
+
+        if (index &lt; 0) return null;
+
+        if (size &gt;= capacity * loadFactor) resize();
+
+        LinkedList&lt;Entry&lt;K, V&gt;&gt; bucket = buckets[index];
+
+        if (containsKey(key)) {
+
+            for (Entry&lt;K, V&gt; entry : bucket) {
+                if (entry.getKey().equals(key)) {
+                    return entry.setValue(value);
+                }
+            }
+
+        } else {
+
+            if (bucket == null)  buckets[index] = new LinkedList&lt;&gt;();
+
+            buckets[index].add(new Entry&lt;&gt;(key, value));
+
+            size++;
+        }
+
+        return value;
+    }
+
+    public V remove(K key) {
+
+        if (containsKey(key)){
+
+            int index = hash(key);
+            LinkedList&lt;Entry&lt;K, V&gt;&gt; bucket = buckets[index];
+
+            for (int i=0; i&lt;bucket.size(); i++){
+                if (bucket.get(i).getKey().equals(key))
+                    return bucket.remove(i).getValue();
+            }
+
+            size--;
+        }
+
+        return null;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    @SuppressWarnings("unchecked")
+    private void resize() {
+        LinkedList&lt;Entry&lt;K, V&gt;&gt;[] oldBuckets = buckets;
+        size = 0;
+        capacity *= 2;
+        buckets = (LinkedList&lt;Entry&lt;K, V&gt;&gt;[]) new LinkedList[capacity];
+
+        for (LinkedList&lt;Entry&lt;K, V&gt;&gt; bucket : oldBuckets) {
+            if (bucket != null) {
+                for (Entry&lt;K, V&gt; entry : bucket) {
+                    put(entry.getKey(), entry.getValue());
+                }
+            }
+        }
+    }
+
+    @Override
+    public String toString() {
+
+
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("[ ");
+
+                for(LinkedList&lt;Entry&lt;K, V&gt;&gt; bucket : buckets){
+                    if (bucket != null)
+                        for (Entry&lt;K, V&gt; entry : bucket)
+                            sb.append(entry).append(" ");
+                }
+
+                    sb.append(" ]");
+
+        return sb.toString();
+    }
+
+
+    public static class Entry&lt;K, V&gt; {
+        private final K key;
+        private V value;
+
+        public Entry(K key, V value) {
+            this.key = key;
+            this.value = value;
+        }
+
+        public K getKey() {
+            return key;
+        }
+
+        public V getValue() {
+            return value;
+        }
+
+        public V setValue(V value) {
+            V oldValue = this.value;
+            this.value = value;
+            return oldValue;
+        }
+
+        @Override
+        public String toString() {
+            return "{" + getKey() + " : " + getValue() + "}";
+        }
+    }
+}
+        </pre>
+
+        <pre class="snippet Kotlin">
+class MyHashMap&lt;K, V&gt; (var capacity: Int = DEFAULT_CAPACITY,val loadFactor: Float = DEFAULT_LOAD_FACTOR) {
+
+    var size: Int = 0
+        private set
+
+    private var buckets: Array&lt;LinkedList&lt;Entry&lt;K?, V?&gt;&gt;?&gt;
+
+    init {
+        require(!(loadFactor &lt;= 0 || loadFactor &gt; 1)) { "load factor should be greater than 0 and less than or equal 1" }
+        require(capacity &gt; 0) { "Capacity can not be zero or less" }
+
+        buckets = arrayOfNulls(capacity)
+    }
+
+    fun hash(key: K?): Int {
+        if (key == null) return -1
+
+        var h = key.hashCode()
+        h = h xor (h ushr  16)
+
+        return h and (capacity - 1)
+    }
+
+    fun get(key: K?): V? {
+        val index = hash(key)
+        val bucket: LinkedList&lt;Entry&lt;K?, V?&gt;&gt;? = buckets[index]
+
+        if (bucket != null) {
+            for (entry in bucket) if (entry.key == key) return entry.value
+        }
+
+        return null
+    }
+
+    fun containsKey(key: K?): Boolean {
+        return get(key) != null
+    }
+
+    fun put(key: K?, value: V?): V? {
+        val index = hash(key)
+
+        if (index &lt; 0) return null
+
+        if (size &gt;= capacity * loadFactor) resize()
+
+        val bucket: LinkedList&lt;Entry&lt;K?, V?&gt;&gt;? = buckets[index]
+
+        if (containsKey(key)) {
+            for (entry in bucket!!) {
+                if (entry.key == key) {
+                    return entry.setValue(value)
+                }
+            }
+        } else {
+
+            if (bucket == null) buckets[index] = LinkedList&lt;Entry&lt;K?, V?&gt;&gt;()
+
+            buckets[index]!!.add(Entry(key, value))
+
+            size++
+        }
+
+        return value
+    }
+
+    fun remove(key: K?): V? {
+        if (containsKey(key)) {
+            val index = hash(key)
+            val bucket: LinkedList&lt;Entry&lt;K?, V?&gt;&gt;? = buckets[index]
+
+            for (i in bucket!!.indices) {
+                if (bucket[i].key == key) return bucket.removeAt(i).value
+            }
+
+            size--
+        }
+
+        return null
+    }
+
+    private fun resize() {
+        val oldBuckets = buckets
+        size = 0
+        capacity *= 2
+        buckets = arrayOfNulls(capacity)
+
+        for (bucket in oldBuckets) {
+            if (bucket != null) {
+                for (entry in bucket) {
+                    put(entry.key, entry.value)
+                }
+            }
+        }
+    }
+
+    override fun toString(): String {
+        val sb = StringBuilder()
+
+        sb.append("[ ")
+
+        for (bucket in buckets) {
+            if (bucket != null) for (entry in bucket) sb.append(entry).append(" ")
+        }
+
+        sb.append(" ]")
+
+        return sb.toString()
+    }
+
+    data class Entry&lt;K, V&gt;(val key: K?, var value: V?) {
+        fun setValue(value: V): V? {
+            val oldValue = this.value
+            this.value = value
+            return oldValue
+        }
+
+        override fun toString(): String {
+            return "{" + this.key + " : " + this.value + "}"
+        }
+    }
+
+    companion object {
+        private const val DEFAULT_CAPACITY = 16
+        private const val DEFAULT_LOAD_FACTOR = 0.75f
+    }
+}
+
+        </pre>
+      </div>
+    </div>
+
+    <section>
+      <h3>استفاده از map پیاده سازی شده</h3>
+
+      <p>در زیر از Map پیاده سازی شده میخوایم استفاده کنیم.</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
+MyHashMap&lt;String, Integer&gt; map = new MyHashMap();
+        map.put("Black", 0x000000);
+        map.put("White", 0xffffff);
+        map.put("Red", 0xff0000);
+        map.put("Green", 0x00ff00);
+        map.put("Blue", 0x0000ff);
+
+        System.out.println("hex code for color red to integer is :" + map.get("Red"));
+
+        System.out.println(map);
+
+        System.out.println("removing red from map the color in integer is:" + map.remove("Red"));
+
+        System.out.println("removing black from map the color value in integer is:" + map.remove("Black"));
+
+        System.out.println("Entries after removing red and black:");
+
+        System.out.println(map);
+          </pre>
+          <pre class="snippet Kotlin">
+ val map: MyHashMap&lt;String, Int&gt; = MyHashMap()
+
+    map.put("Black", 0x000000)
+    map.put("White", 0xffffff)
+    map.put("Red", 0xff0000)
+    map.put("Green", 0x00ff00)
+    map.put("Blue", 0x0000ff)
+
+    println("hex code for color red to integer is : ${map.get("Red")}")
+
+    println(map)
+
+    println("removing red from map the color in integer is: ${map.remove("Red")}")
+    println("removing black from map the color value in integer is: ${map.remove("Black")}")
+
+    println("Entries after removing red and black:")
+    println(map)
+          </pre>
+        </div>
+      </div>
+
+    </section>
+
+  </section>
+
+
+  <section id="p9">
+    <h2>خلاصه</h2>
+
+    <ul>
+      <li>هر عنصر هش کد مختص به خودشو داره و مقدارش با بقیه ی عناصر هم نوع خودش یکی نیست.</li>
+
+      <li>
+        یک map نگهدارنده ی آرایه ای از جفت کلید و مقدار است.
+      </li>
+      <li>به جفت کلید و مقدار entry میگیم و به آرایه ای که entry ها رو نگهداری میکنه bucket میگیم.</li>
+      <li>
+        از هش کد کلید (key) برای پیدا کردن index یک entry در map استفاده می کنیم.
+      </li>
+      <li>
+        وقتی index دو کلید متفاوت با هم یکی شد میگیم دچار collision resolution شدیم.
+      </li>
+      <li>
+        میتونیم با روش separate chaining یا linear probing مساله ی collision resolution رو حل کنیم.
+      </li>
+      <li>
+        روش separate chaining بهینه تر از linear probing است.
+      </li>
+      <li>
+        پیچیدگی زمان صدا زدن، اضافه کردن و حذف entry در map برابر با O(1) است.
+      </li>
+    </ul>
+
+  </section>
+
+</article>
+
+{% capture links %}
+
+<li>
+  <a href="/post/data-structure/linkedlist.html">لیست پیوندی در برنامه نویسی</a>
+</li>
+<li>
+  <a href="/post/data-structure/list.html">لیست در برنامه نویسی</a>
+</li>
+<li>
+  <a href="/post/kotlin/arrays.html">آرایه ها در کاتلین</a>
+</li>
+<li>
+  <a href="/post/java/arrays.html">آرایه ها در جاوا</a>
+</li>
+<li>
+  <a href="https://en.wikipedia.org/wiki/Dynamic_array">مطالعه در ویکی پدیا انگلیسی</a>
+</li>
+
+{% endcapture %}
+
+{% include article-foot.html relative_links = links %}
