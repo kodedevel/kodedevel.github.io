@@ -39,10 +39,11 @@ layout: default
     </ul>
   </nav>
 
+
   <section id="p0">
     <h2>مفهوم هش کد</h2>
 
-    <blockquote>هش کد هر عنصر مختص به خودشه و فقط با عنصری که باهاش برابره یکسانه
+    <blockquote>هش کد هر عنصر مختص به خودشه و فقط با عنصری که باهاش برابره یکسانه.
     </blockquote>
 
     <p>فرض کنید یک کتاب داریم و میخوایم موضوع به خصوصی از کتاب رو باز و مطالعه کنیم، برای پیدا کردن صفحه ی مربوط به
@@ -66,7 +67,7 @@ a := 24
 b := 24
 c := 52
 
-(a = b) != c  -&gt; (a.hashcode = b.hashcode) != c.hashcode
+(a = b) != c  &therefore; (a.hashcode = b.hashcode) != c.hashcode
         </pre>
       </div>
     </div>
@@ -75,18 +76,20 @@ c := 52
 
   </section>
 
-
   <section id="p1">
     <h2>بررسی map</h2>
 
-    <blockquote>کلید (key) ها در map نمیتونن تکراری باشن ولی مقدار (value) ها میتونن تکراری باشن.</blockquote>
+    <blockquote>در map عناصر به صورت جفت کلید (key) و مقدار (value) نگهداری میشن.</blockquote>
 
-    <p>به map <strong>دیکشنری
-        (Dictionary)</strong> هم میگن، با هش کد ها میتونیم یک <strong>map</strong> پیاده سازی کنیم،‌ هر map دارای
-      <strong>کلید (key)</strong> و
+    <p><strong>map</strong> یک پیاده سازی در ساختار داده است که عناصر رو به صورت جفت <strong>کلید (key)</strong> و
       <strong>مقدار
-        (value)</strong> است؛ هر key و value به صورت جفت داخل یک
-      آرایه نگهداری میشه، به map که با روش hash table (هش کد ها) پیاده سازی بشه هش مپ (HashMap) میگیم.
+        (value)</strong> (یک عنصر به
+      عنوان کلید و یک عنصر به عنوان مقدار) داخل خودش نگهداری میکنه؛ در map کلید ها نمیتونن تکراری باشن ولی مقادیر میتونن
+      تکراری باشن، هر key و value به صورت جفت داخل یک
+      آرایه نگهداری میشه، با هش کد (hash code) ها میتونیم یک map پیاده سازی کنیم اگه با هش کد (hash code) ها یک map رو
+      پیاده سازی کنیم بهش HashMap میگیم،
+      به map <strong>دیکشنری
+        (Dictionary)</strong> هم میگن.
     </p>
 
     <p>به جفت key و value در مپ <strong>entry</strong> میگیم و برای نگهداریشون یک کلاس تعریف
