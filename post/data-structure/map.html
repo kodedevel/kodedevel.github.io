@@ -398,9 +398,8 @@ function remove(key: K): V{
 
     for 0&lt;= i &lt; bucket.size
       if bucket.get(i).key = key
+        size-- 
         return bucket.remove(i)
-        
-    size--
 
   return null
 }
@@ -518,11 +517,12 @@ public class MyHashMap&lt;K, V&gt; {
             LinkedList&lt;Entry&lt;K, V&gt;&gt; bucket = buckets[index];
 
             for (int i=0; i&lt;bucket.size(); i++){
-                if (bucket.get(i).getKey().equals(key))
+                if (bucket.get(i).getKey().equals(key)){
+                    size--;
                     return bucket.remove(i).getValue();
+                }
             }
 
-            size--;
         }
 
         return null;
@@ -530,6 +530,10 @@ public class MyHashMap&lt;K, V&gt; {
 
     public int getSize() {
         return size;
+    }
+
+    public boolean isEmpty(){
+        return size == 0;
     }
 
     @SuppressWarnings("unchecked")
@@ -822,6 +826,9 @@ MyHashMap&lt;String, Integer&gt; map = new MyHashMap();
   <a href="/post/data-structure/linkedlist.html">لیست پیوندی در برنامه نویسی</a>
 </li>
 <li>
+  <a href="/post/data-structure/set.html">set در برنامه نویسی</a>
+</li>
+<li>
   <a href="/post/data-structure/list.html">لیست در برنامه نویسی</a>
 </li>
 <li>
@@ -833,7 +840,6 @@ MyHashMap&lt;String, Integer&gt; map = new MyHashMap();
 <li>
   <a href="https://en.wikipedia.org/wiki/Hash_table">مطالعه در ویکی پدیا انگلیسی</a>
 </li>
-
 {% endcapture %}
 
 {% include article-foot.html relative_links = links %}
