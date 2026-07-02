@@ -1,0 +1,361 @@
+---
+layout: default
+---
+
+<article>
+
+  <nav class="toc">
+    <div>دسترسی سریع</div>
+    <ul>
+      <li>
+        <a href="#p0">تعریف set</a>
+      </li>
+      <li>
+        <a href="#p1">افزودن عنصر به set</a>
+      </li>
+      <li>
+        <a href="#p2">بررسی وجود عنصر در set</a>
+      </li>
+      <li>
+        <a href="#p3">حذف عنصر از set</a>
+      </li>
+      <li>
+        <a href="#p4">پیاده سازی set در زبان های برنامه نویسی</a>
+      </li>
+      <li>
+        <a href="#p5">استفاده از set در زبان های برنامه نویسی</a>
+      </li>
+      <li>
+        <a href="#p6">خلاصه</a>
+      </li>
+    </ul>
+  </nav>
+
+  <section id="p0">
+    <h2>تعریف set</h2>
+
+    <p>در برنامه نویسی <strong>set</strong> نوعی پیاده سازی در ساختار داده است و set عناصر تکراری رو نگهداری نمیکنه
+    </p>
+
+    <p>عنصر ها رو طبق ترتیبی که اضافه شدن نگهداری نمیکنه و بر خلاف لیست که با افزودن یک عنصر، عنصر بعد به طور خودکار تو
+      خونه ی شماره ی بعدی آرایه قرار میگیره، در set با افزودن عنصر جدید، یک index تصادفی براش ایجاد میشه و به صورت
+      تصادفی در خونه های موجود قرار می گیره.</p>
+
+    <figure>
+      <img src="/resources/image/data-structure/set_elements_arrangement.png"
+        alt="نحوه ی قرار گرفتن عناصر اضافه شده در set">
+      <figcaption>نحوه ی قرار گرفتن عناصر اضافه شده در set</figcaption>
+    </figure>
+
+    <p>در واقع set مشابه مجموعه ها در <strong>ریاضیاته</strong> یعنی یک مجموعه از عناصر که داخلش عنصر تکراری وجود نداشته
+      باشه.</p>
+
+    <p>به set هایی که با هش کد (hashcode) پیاده می کنیم، <strong>HashSet</strong> میگیم، میتونیم HashSet رو مستقیم با هش
+      کد یا از طریق یک رابطه ی <strong>aggregation</strong> با <a href="map.html">HashMap</a> پیاده کنیم.</p>
+
+    <p>در این مطلب به پیاده سازی set از طریق رابطه ی aggregation با HashMap می پردازیم.</p>
+  </section>
+
+  <section id="p1">
+    <h2>افزودن عنصر به set</h2>
+    <p>برای اضافه کردن یک عنصر به set از تابعی به اسم <strong>add</strong> یا <strong>insert</strong> استفاده می کنیم؛
+      پیچیدگی
+      زمان برای اضافه کردن یک عنصر به set برابر با O(1) است.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet">
+function add(E e): boolean{
+  
+  if !map.contains(e) 
+    return false
+  
+  map.put(e, null)
+  size++
+
+  return true
+}
+        </pre>
+      </div>
+    </div>
+
+  </section>
+
+  <section id="p2">
+    <h2>بررسی وجود عنصر در set</h2>
+
+    <p>برای بررسی یک عنصر در set از تابعی به نام <strong>contains</strong> استفاده می کنیم؛ در set پیچیدگی زمان برای
+      جستجو O(1) است.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet">
+function contains(e: E): boolean{
+  return map.containsKey(e)
+}
+        </pre>
+      </div>
+    </div>
+
+  </section>
+
+  <section id="p3">
+
+    <h2>حذف عنصر از set</h2>
+
+    <p>برای حذف یک عنصر در set از تابعی به نام <strong>remove</strong> یا <strong>delete</strong> استفاده می کنیم؛‌
+      پیچیدگی زمان در set برای حذف یک عنصر O(1) است.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet">
+function remove(e: E): boolean{
+  if !contains(e)
+    return false
+
+  map.remove(e)
+
+  return true
+}
+        </pre>
+      </div>
+    </div>
+
+  </section>
+
+  <section id="p4">
+    <h2>پیاده سازی set در زبان های برنامه نویسی</h2>
+
+    <p>میخوایم یک HashSet رو با رابطه ی aggregation با HashMap در زبان های برنامه نویسی (جاوا و کاتلین) پیاده کنیم.</p>
+
+    <p>در زیر نمودار uml پیاده سازی set آورده شده است.</p>
+
+    <figure>
+      <img src="/resources/image/data-structure/set_uml_diagram.png" alt="نمودار uml پیاده سازی set در برنامه نویسی">
+      <figcaption>نمودار uml پیاده سازی set در برنامه نویسی</figcaption>
+    </figure>
+
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+public class MyHashSet&lt;E&gt; {
+
+    private final MyHashMap&lt;E, Object&gt; map = new MyHashMap&lt;&gt;();
+
+    public boolean add(E e){
+
+        if (map.containsKey(e)) return false;
+
+        map.put(e, null);
+
+        return true;
+    }
+
+    public boolean contains(E e){
+        return map.containsKey(e);
+    }
+
+    public boolean remove(E e){
+
+        if (!contains(e)) return false;
+
+        map.remove(e);
+
+        return true;
+    }
+
+    public int getSize() {
+        return map.getSize();
+    }
+
+    public boolean isEmpty(){
+       return map.isEmpty();
+    }
+
+    public Object[] toArray(){
+
+        int size = map.getSize();
+        Object[] elements = new Object[size];
+
+        MyHashMap.Entry&lt;E, Object&gt;[] entries = map.toArray();
+
+        for (int i=0; i&lt;entries.length; i++){
+            elements[i] = entries[i].getKey();
+        }
+
+        return elements;
+    }
+
+    @Override
+    public String toString() {
+
+        StringBuilder sb = new StringBuilder("[");
+
+        Object[] array = toArray();
+
+       for (int i=0; i&lt;array.length; i++){
+           sb.append(array[i]);
+           if (i &lt; array.length - 1){
+               sb.append(", ");
+
+           }
+       }
+
+       sb.append("]");
+
+       return sb.toString();
+    }
+}
+        </pre>
+        <pre class="snippet Kotlin">
+class MyHashSet&lt;E&gt; {
+    private val map: MyHashMap&lt;E?, Any?&gt; = MyHashMap()
+
+    val size: Int
+        get() = map.size
+
+    val isEmpty: Boolean
+        get() = map.isEmpty
+
+    fun add(e: E?): Boolean {
+        if (map.containsKey(e)) return false
+
+        map.put(e, null)
+
+        return true
+    }
+
+    fun contains(e: E?): Boolean {
+        return map.containsKey(e)
+    }
+
+    fun remove(e: E?): Boolean {
+        if (!contains(e)) return false
+
+        map.remove(e)
+
+        return true
+    }
+
+    fun toArray(): Array&lt;Any?&gt; {
+        val size: Int = map.size
+        val elements = arrayOfNulls&lt;Any&gt;(size)
+
+        val entries: Array&lt;MyHashMap.Entry&lt;E?, Any?&gt;?&gt; = map.toArray()
+
+        for (i in entries.indices) {
+            elements[i] = entries[i]?.key
+        }
+
+        return elements
+    }
+
+    override fun toString(): String {
+        val sb = StringBuilder("[")
+
+        val array = toArray()
+
+        for (i in array.indices) {
+            sb.append(array[i])
+            if (i &lt; array.size - 1) {
+                sb.append(", ")
+            }
+        }
+
+        sb.append("]")
+
+        return sb.toString()
+    }
+}
+        </pre>
+      </div>
+    </div>
+
+  </section>
+
+  <section id="p5">
+    <h2>استفاده از set در زبان های برنامه نویسی</h2>
+
+    <p>در این قسمت میخوایم یک نمونه از set که پیاده کردیم ایجاد کنیم و اسم چند شهر رو بهش اضافه کنیم و (اسم یک شهر رو
+      دوبار بنویسیم) و سپس دو شهر رو حذف کنیم و در نهایت شهر های داخل set رو نمایش بدیم.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+MyHashSet&lt;String&gt; cities = new MyHashSet&lt;&gt;();
+
+    cities.add("Tehran");
+    cities.add("Arak");
+    cities.add("Qom");
+    cities.add("Hamadan");
+    cities.add("Mashhad");
+    cities.add("Tehran");
+
+    cities.remove("Hamadan");
+    cities.remove("Arak");
+
+    System.out.println(cities);
+        </pre>
+        <pre class="snippet Kotlin">
+val cities: MyHashSet&lt;String&gt; = MyHashSet()
+
+    cities.add("Tehran")
+    cities.add("Arak")
+    cities.add("Qom")
+    cities.add("Hamadan")
+    cities.add("Mashhad")
+    cities.add("Tehran")
+
+    cities.remove("Hamadan")
+    cities.remove("Arak")
+
+    println(cities)
+        </pre>
+      </div>
+    </div>
+
+  </section>
+
+  <section id="p6">
+    <h2>خلاصه</h2>
+    <ul>
+      <li>
+        از set در برنامه نویسی برای نگهداری عناصر غیر تکراری استفاده می کنیم.
+      </li>
+      <li>
+        اگه بخوایم set رو از طریق هش کد (hashcode) پیاده کنیم بهش HashSet میگیم.
+      </li>
+      <li>
+        میتونیم set رو مستقیم با هش کد یا از طریق رابطه ی aggregation با HashMap پیاده کنیم.
+      </li>
+      <li>
+        پیچیدگی زمان برای اضافه، حذف و جستجوی عنصر در set برابر با O(1) است.
+      </li>
+    </ul>
+  </section>
+
+</article>
+{% capture links %}
+
+<li>
+  <a href="/post/data-structure/map.html">map در برنامه نویسی</a>
+</li>
+<li>
+  <a href="/post/data-structure/linkedlist.html">لیست پیوندی در برنامه نویسی</a>
+</li>
+<li>
+  <a href="/post/data-structure/list.html">لیست در برنامه نویسی</a>
+</li>
+<li>
+  <a href="/post/kotlin/arrays.html">آرایه ها در کاتلین</a>
+</li>
+<li>
+  <a href="/post/java/arrays.html">آرایه ها در جاوا</a>
+</li>
+<li>
+  <a href="https://en.wikipedia.org/wiki/Hash_table">مطالعه در ویکی پدیا انگلیسی</a>
+</li>
+{% endcapture %}
+
+{% include article-foot.html relative_links = links %}
