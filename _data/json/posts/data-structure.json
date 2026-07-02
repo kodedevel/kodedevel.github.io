@@ -41,6 +41,14 @@
       "lastModified": "",
       "imgCover": "/resources/image/data-structure/cover_map.png",
       "link": "/post/data-structure/map.html"
+    },
+    {
+      "title": "پیاده سازی و استفاده از set در برنامه نویسی",
+      "description": "در برنامه نویسی، set یک پیاده سازی از ساختمان داده است که عناصر تکراری رو نگهداری نمیکنه، اگه یک ست از طریق هش کد ها پیاده شده باشه بهش HashSet میگیم، در این مطلب به بررسی، پیاده سازی و استفاده از set در زبان های برنامه نویسی می پردازیم.",
+      "datePublished": "2026-07-03",
+      "lastModified": "",
+      "imgCover": "/resources/image/data-structure/cover_set.png",
+      "link": "/post/data-structure/set.html"
     }
   ]
 }
