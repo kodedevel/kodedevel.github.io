@@ -31,10 +31,16 @@ layout: default
         <a href="#p7">حذف جفت کلید و مقدار از map</a>
       </li>
       <li>
-        <a href="#p8">پیاده سازی map در زبان های برنامه نویسی</a>
+        <a href="#p8">تبدیل map به آرایه برای جستجوی خطی بین عناصر</a>
       </li>
       <li>
-        <a href="#p9">خلاصه</a>
+        <a href="#p9">پیاده سازی map در زبان های برنامه نویسی</a>
+      </li>
+      <li>
+        <a href="#p10">استفاده از map در زبان های برنامه نویسی</a>
+      </li>
+      <li>
+        <a href="#p11">خلاصه</a>
       </li>
     </ul>
   </nav>
@@ -276,8 +282,6 @@ class MyHashMap{
         capacity رو داخل کانستراکتور مقداردهی کنیم.</p>
     </div>
 
-
-
   </section>
 
   <section id="p4">
@@ -324,6 +328,28 @@ function get(key: K): V{
 function contains(key: K): boolean{
   
   return get(key) != null
+}
+        </pre>
+      </div>
+    </div>
+
+    <p>ممکنه تو HashMap کلید وجود داشته باشه ولی مقدار برابر null باشه، کد بالا با وجود سادگی و خلاصه بودنش این وضعیت رو
+      نمیتونه تشخیص بده بنابراین برای پیاده سازی کامل تر شبه کد زیر رو پیاده سازی می کنیم.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet">
+function contains(key: K): boolean {
+  index := hash(key)
+  bucket := buckets[index]
+
+  if bucket != null
+     for 0 &lt;= i &lt; bucket.size
+         entry := bucket.get(i)
+         if entry.key = key
+            retrun true
+
+  return false
 }
         </pre>
       </div>
@@ -410,6 +436,38 @@ function remove(key: K): V{
   </section>
 
   <section id="p8">
+    <h2>تبدیل map به آرایه برای جستجوی خطی بین عناصر</h2>
+
+    <p>برای جستجوی خطی بین عناصر داخل map، میتونیم یک تابع به نام <strong>toArray</strong> تعریف کنیم و عناصر رو به صورت
+      آرایه باهاش برگردونیم؛ پیچیدگی زمان برای این کار O(n) است.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet">
+function toArray(): Entry&lt;K, V&gt;[]{
+  
+  entries := (Entry&lt;K, V&gt;[]) new Entry[size]
+
+  index := 0
+
+  for 0&lt;= i &lt; buckets.length
+     
+     linkedList := buckets[i]
+     
+     if linkedList != null
+        for 0&lt;= j &lt; linkedList.size
+            entries[index++] := linkedList.get(j)
+
+  return entries
+}
+
+        </pre>
+      </div>
+    </div>
+
+  </section>
+
+  <section id="p9">
     <h2>پیاده سازی map در زبان های برنامه نویسی</h2>
 
     <p>در این قسمت میخوایم چیزایی که گفته شد رو به عنوان کلاس <strong>HashMap</strong> در زبان های برنامه نویسی (جاوا و
@@ -476,7 +534,21 @@ public class MyHashMap&lt;K, V&gt; {
     }
 
     public boolean containsKey(K key) {
-        return get(key) != null;
+        if (containsKey(key)){
+
+            int index = hash(key);
+            LinkedList&lt;Entry&lt;K, V&gt;&gt; bucket = buckets[index];
+
+            for (int i=0; i&lt;bucket.size(); i++){
+                if (bucket.get(i).getKey().equals(key)) {
+                    size--;
+                    return bucket.remove(i).getValue();
+                }
+            }
+
+        }
+
+        return null;
     }
 
     public V put(K key, V value) {
@@ -528,6 +600,25 @@ public class MyHashMap&lt;K, V&gt; {
         return null;
     }
 
+    public Entry&lt;K, V&gt;[] toArray() {
+
+        Entry&lt;K, V&gt;[] entries = (Entry&lt;K, V&gt;[]) new Entry[size];
+
+        int index = 0;
+        for (LinkedList&lt;Entry&lt;K, V&gt;&gt; list : buckets) {
+            if (list != null) {
+                for (Entry&lt;K, V&gt; entry : list) {
+                    if (entry != null) {
+                        entries[index++] = entry;
+                    }
+                }
+            }
+        }
+
+        return entries;
+    
+    }
+
     public int getSize() {
         return size;
     }
@@ -536,7 +627,6 @@ public class MyHashMap&lt;K, V&gt; {
         return size == 0;
     }
 
-    @SuppressWarnings("unchecked")
     private void resize() {
         LinkedList&lt;Entry&lt;K, V&gt;&gt;[] oldBuckets = buckets;
         size = 0;
@@ -639,7 +729,13 @@ class MyHashMap&lt;K, V&gt; (var capacity: Int = DEFAULT_CAPACITY,val loadFactor
     }
 
     fun containsKey(key: K?): Boolean {
-        return get(key) != null
+        val index = hash(key)
+        val bucket: LinkedList&lt;Entry&lt;K?, V?&gt;&gt;? = buckets[index]
+
+        if (bucket != null)
+            for (entry in bucket) if (entry.key == key) return true
+
+        return false
     }
 
     fun put(key: K?, value: V?): V? {
@@ -682,6 +778,22 @@ class MyHashMap&lt;K, V&gt; (var capacity: Int = DEFAULT_CAPACITY,val loadFactor
         }
 
         return null
+    }
+
+    fun toArray(): Array&lt;Entry&lt;K?, V?&gt;?&gt; {
+
+        val entries: Array&lt;Entry&lt;K?, V?&gt;?&gt; = arrayOfNulls(size)
+
+        var index = 0
+        for (list in buckets) {
+            if (list != null) {
+                for (entry in list) {
+                    entries[index++] = entry
+                }
+            }
+        }
+
+        return entries
     }
 
     private fun resize() {
@@ -735,14 +847,14 @@ class MyHashMap&lt;K, V&gt; (var capacity: Int = DEFAULT_CAPACITY,val loadFactor
       </div>
     </div>
 
-    <section>
-      <h3>استفاده از map پیاده سازی شده</h3>
+  </section>
 
-      <p>در زیر از Map پیاده سازی شده میخوایم استفاده کنیم.</p>
-
-      <div class="sample">
-        <div class="snippet-container">
-          <pre class="snippet Java">
+  <section id="p10">
+    <h2>استفاده از map در برنامه نویسی</h2>
+    <p>میخوایم نام هر رنگ با کد <strong>hexadecimal</strong> رنگ رو داخل یک مپ ذخیره کنیم.</p>
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
 MyHashMap&lt;String, Integer&gt; map = new MyHashMap();
         map.put("Black", 0x000000);
         map.put("White", 0xffffff);
@@ -762,7 +874,7 @@ MyHashMap&lt;String, Integer&gt; map = new MyHashMap();
 
         System.out.println(map);
           </pre>
-          <pre class="snippet Kotlin">
+        <pre class="snippet Kotlin">
  val map: MyHashMap&lt;String, Int&gt; = MyHashMap()
 
     map.put("Black", 0x000000)
@@ -781,15 +893,13 @@ MyHashMap&lt;String, Integer&gt; map = new MyHashMap();
     println("Entries after removing red and black:")
     println(map)
           </pre>
-        </div>
       </div>
-
-    </section>
+    </div>
 
   </section>
 
 
-  <section id="p9">
+  <section id="p11">
     <h2>خلاصه</h2>
 
     <ul>

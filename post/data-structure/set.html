@@ -20,13 +20,16 @@ layout: default
         <a href="#p3">حذف عنصر از set</a>
       </li>
       <li>
-        <a href="#p4">پیاده سازی set در زبان های برنامه نویسی</a>
+        <a href="#p4">تبدیل set به آرایه برای جستجوی خطی</a>
       </li>
       <li>
-        <a href="#p5">استفاده از set در زبان های برنامه نویسی</a>
+        <a href="#p5">پیاده سازی set در زبان های برنامه نویسی</a>
       </li>
       <li>
-        <a href="#p6">خلاصه</a>
+        <a href="#p6">استفاده از set در زبان های برنامه نویسی</a>
+      </li>
+      <li>
+        <a href="#p7">خلاصه</a>
       </li>
     </ul>
   </nav>
@@ -124,6 +127,34 @@ function remove(e: E): boolean{
   </section>
 
   <section id="p4">
+    <h2>تبدیل set به آرایه برای جستجوی خطی بین عناصر</h2>
+
+    <p>میتونیم با استفاده از تابعی به نام <strong>toArray</strong> عناصر رو به صورت آرایه برگردونیم تا بتونیم به جستجوی
+      خطی بین عناصر بپردازیم، پیچیدگی زمان برای این کار O(n) است.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet">
+function toArray(): Object[] {
+
+  size := map.getSize()
+
+  elements := new Object[size]
+
+  entries := map.toArray()
+
+  for 0&lt;= i &lt; entries.length
+      elements[i] = entries[i]
+
+  return elements
+}
+        </pre>
+      </div>
+    </div>
+
+  </section>
+
+  <section id="p5">
     <h2>پیاده سازی set در زبان های برنامه نویسی</h2>
 
     <p>میخوایم یک HashSet رو با رابطه ی aggregation با HashMap در زبان های برنامه نویسی (جاوا و کاتلین) پیاده کنیم.</p>
@@ -274,7 +305,8 @@ class MyHashSet&lt;E&gt; {
 
   </section>
 
-  <section id="p5">
+
+  <section id="p6">
     <h2>استفاده از set در زبان های برنامه نویسی</h2>
 
     <p>در این قسمت میخوایم یک نمونه از set که پیاده کردیم ایجاد کنیم و اسم چند شهر رو بهش اضافه کنیم و (اسم یک شهر رو
@@ -317,7 +349,7 @@ val cities: MyHashSet&lt;String&gt; = MyHashSet()
 
   </section>
 
-  <section id="p6">
+  <section id="p7">
     <h2>خلاصه</h2>
     <ul>
       <li>
