@@ -16,32 +16,32 @@ let subjectItemHeads = document.querySelectorAll(".subject-item-head");
 function initSubjectItems() {
   for (var i = 0; i < subjectItemHeads.length; i++) {
     var itemHead = subjectItemHeads[i];
-    itemHead.firstChild.innerHTML = "arrow_left";
 
     itemHead.addEventListener("click", function () {
-      var content = this.nextElementSibling;
-      var itemHeadIcon = this.firstElementChild;
 
       var isExpanded = this.classList.contains("expanded");
 
       if (!isExpanded) {
-        removeExpand();
-        this.classList.add("expanded");
-        content.style.maxHeight = content.scrollHeight + "px";
-        itemHeadIcon.classList.add("expand");
+        expand(this);
       } else {
-        removeExpand();
+        collapseAll();
       }
     });
   }
 }
 
-function removeExpand() {
+function expand(element) {
+  collapseAll();
+  element.classList.add("expanded");
+  element.classList.add("expand");
+  var content = element.nextElementSibling;
+  content.style.maxHeight = content.scrollHeight + "px";
+}
+
+function collapseAll() {
   subjectItemHeads.forEach((el) => {
     el.classList.remove("expanded");
-    var itemHeadIcon = el.firstElementChild;
-
-    itemHeadIcon.classList.remove("expand");
+    el.classList.remove("expand");
     let content = el.nextElementSibling;
     content.style.maxHeight = 0;
   });
@@ -51,16 +51,17 @@ const header = document.querySelector("header");
 const dialog = document.querySelector(".dialog");
 
 function initSidebar() {
+
+  displaySidebarInfo();
   toggleSidebar();
+
 
   const courseContainer = document.querySelector(".list-container");
 
-  //structure: <div><button></button><div class="subject-list-container"></div></div>
   const topicList = courseContainer.children;
 
   for (var i = 0; i < topicList.length; i++) {
     const btExpand = topicList[i].querySelector("button");
-    const btExpandIcon = btExpand.firstElementChild;
 
     const topic = document.getElementById(btExpand.dataset.target);
 
@@ -69,9 +70,34 @@ function initSidebar() {
       topic.style.maxHeight = isExpanded(btExpand)
         ? topic.scrollHeight + "px"
         : 0;
-      btExpandIcon.classList.toggle("expand");
+      btExpand.classList.toggle("expand");
     });
   }
+}
+
+function displaySidebarInfo() {
+  fetch("https://kodedevel.ir/resources/json/list-posts.json", {
+    method: "GET"
+  }).then(response => response.json()).then(function (json) {
+
+    const sidebarInfo = document.querySelector(".sidebar-info");
+
+    const totalNumberOfSubjects = sidebarInfo.firstElementChild;
+    totalNumberOfSubjects.dataset.count = json.length;
+
+    const totalNumberOfPosts = sidebarInfo.lastElementChild;
+
+    var postCounter = 0;
+
+    for (var i = 0; i < json.length; i++) {
+      var metadata_list = json[i].metadata_list;
+      postCounter += metadata_list.length;
+    }
+
+
+    totalNumberOfPosts.dataset.count = postCounter;
+
+  }).catch(e => console.log(e));
 }
 
 function switchExpandState(element) {

@@ -62,20 +62,43 @@
     margin-bottom: 4px;
 }
 
-.md-bt-expandable .icon{
-  font-size: 1.5em;
-  transition: all 200ms ease-in;
-  padding-right: 4px;
+.md-bt-expandable.expanded{
+     background-color: #01579B;
+     color: #fafafa;
+     box-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
 }
 
-.md-bt-expandable .icon.expand{
+.md-bt-expandable.expanded::after{
+  background-color: #fafafa;
+  color: #212121;
+}
+
+.md-bt-expandable::before{
+  content: "arrow_left";
+  font-size: 1.2rem;
+  transition: all 200ms ease-in;
+  padding: 4px;
+  margin-left: 4px;
+}
+
+.md-bt-expandable.expand::before{
   transform: rotate(-90deg);
 }
 
-.md-bt-expandable.expanded{
-     background-color: #0D47A1;
-     color: #fafafa;
-     box-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
+.md-bt-expandable::after{
+  display: block;
+  content: attr(data-count);
+  width: 18px;
+  height: 18px;
+  text-align: center;
+  line-height: 18px;
+  border-radius: 50%;
+  background-color: #eeeeee;
+  font-size: 0.7rem;
+  font-family: Vazirmatn;
+  color: #212121;
+  margin-right: 8px;
+  padding: 4px;
 }
 
 .md-bt.md-bt-navbar-toggle{

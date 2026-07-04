@@ -4,6 +4,7 @@ import {initUiComponents, scrollTopVisibility} from "./base.js";
 import {applySEOConfigurations} from "./seo-config.js";
 
 function executeCodes() {
+
   window.onscroll = scrollTopVisibility;
   createCodeViews();
   initUiComponents();

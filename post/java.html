@@ -29,10 +29,9 @@ layout: category
 
     {% for metadata in site.data.json.posts.java.metadata_list %}
     <section class="subject-item">
-      <h3 class="md-bt-expandable subject-item-head">
-        <span class="material-symbols-outlined icon" aria-hidden="true">arrow_left</span>
-        <span>{{ metadata.title }}</span>
-      </h3>
+      <h2 class="md-bt-expandable subject-item-head">
+        {{ metadata.title }}
+      </h2>
       <div class="subject-item-content">
         <ul>
           <li>

@@ -84,14 +84,29 @@
   margin-right: 8px;
 }
 
+.sidebar-info{
+  display: block;
+  background-color: #424242;
+  color: #fafafa;
+  padding: 8px;
+}
+
+.sidebar-info .info::after{
+  content: attr(data-count);
+  color: #fafafa;
+  font-size: 0.9rem;
+  font-family: Vazirmatn;
+  margin-right: 8px;
+}
+
 .subject-list-container{
   position: relative;
-    width: 100%;
-    max-height: 0;
-    overflow: hidden;
-    background-color: transparent;
-    padding-bottom: 8px;
-    transition: max-height 200ms ease;
+  width: 100%;
+  max-height: 0;
+  overflow: hidden;
+  background-color: transparent;
+  padding-bottom: 8px;
+  transition: max-height 200ms ease;
 }
 
 .footer-item{

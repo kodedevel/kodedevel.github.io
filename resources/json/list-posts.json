@@ -1,0 +1,22 @@
+---
+---
+
+[
+  {% for data in site.data.json.posts %}
+    {% assign category = data[1] %}
+    {
+      "name": "{{ category.name }}",
+      "metadata_list":[
+	{% for metadata in category.metadata_list %}
+	  { 
+	    "title": "{{ metadata.title }}",
+	    "imgCover": "{{ metadata.imgCover }}",
+	    "link" : "{{ metadata.link }}"
+	  }{% if forloop.last == false %},{% endif %}
+	{% endfor %}
+      ]
+      
+    }{% if forloop.last == false %},{% endif %}
+    
+  {% endfor %}
+]

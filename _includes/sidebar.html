@@ -14,7 +14,14 @@
     </a>
   </div>
 
+
   <div>
+
+    <div class="sidebar-info">
+      <div class="info" data-count="0" aria-hidden="true" id="total_number_of_subjects">تعداد موضوع ها:</div>
+      <div class="info" data-count="0" aria-hidden="true" id="total_number_of_posts">کل پست ها:</div>
+    </div>
+
     <div class="list-container" id="article_container">
       {% for data in site.data.json.posts %}
 
@@ -22,8 +29,7 @@
 
       <div>
 
-        <button class="md-bt-expandable" data-target="{{ category.id }}">
-          <span class="material-symbols-outlined icon">arrow_left</span>
+        <button class="md-bt-expandable" data-count="{{ category.metadata_list.size }}" data-target="{{ category.id }}">
           <span>{{ category.name }}</span>
         </button>
 
