@@ -127,7 +127,7 @@ function toggleSidebar() {
 }
 
 function displaySidebarInfo() {
-  fetch("http://127.0.0.1:4000/resources/json/list-posts.json", {
+  fetch("https://kodedevel.ir/resources/json/list-posts.json", {
     method: "GET"
   }).then(response => response.json()).then(function (json) {
 
