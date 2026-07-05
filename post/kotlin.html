@@ -29,10 +29,10 @@ layout: category
   <div class="subject-container">
     {% for metadata in site.data.json.posts.kotlin.metadata_list %}
     <section class="subject-item">
-      <h2 class="md-bt-expandable subject-item-head">
+      <h2 class="md-bt-expandable subject-item-head" data-target="{{ metadata.title |replace: ' ', '_' }}">
         {{ metadata.title }}
       </h2>
-      <div class="subject-item-content">
+      <div id="{{ metadata.title |replace: ' ', '_' }}" class="subject-item-content">
         <ul>
           <li>
             <p>{{ metadata.description }}</p>

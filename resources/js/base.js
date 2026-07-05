@@ -11,42 +11,6 @@ function initUiComponents() {
   initSidebar();
 }
 
-let subjectItemHeads = document.querySelectorAll(".subject-item-head");
-
-function initSubjectItems() {
-  for (var i = 0; i < subjectItemHeads.length; i++) {
-    var itemHead = subjectItemHeads[i];
-
-    itemHead.addEventListener("click", function () {
-
-      var isExpanded = this.classList.contains("expanded");
-
-      if (!isExpanded) {
-        expand(this);
-      } else {
-        collapseAll();
-      }
-    });
-  }
-}
-
-function expand(element) {
-  collapseAll();
-  element.classList.add("expanded");
-  element.classList.add("expand");
-  var content = element.nextElementSibling;
-  content.style.maxHeight = content.scrollHeight + "px";
-}
-
-function collapseAll() {
-  subjectItemHeads.forEach((el) => {
-    el.classList.remove("expanded");
-    el.classList.remove("expand");
-    let content = el.nextElementSibling;
-    content.style.maxHeight = 0;
-  });
-}
-
 const header = document.querySelector("header");
 const dialog = document.querySelector(".dialog");
 
@@ -58,53 +22,75 @@ function initSidebar() {
 
   const courseContainer = document.querySelector(".list-container");
 
-  const topicList = courseContainer.children;
+  const listCourses = courseContainer.children;
 
-  for (var i = 0; i < topicList.length; i++) {
-    const btExpand = topicList[i].querySelector("button");
+  for (var i = 0; i < listCourses.length; i++) {
+    const btExpand = listCourses[i].querySelector(".md-bt-expandable");
 
-    const topic = document.getElementById(btExpand.dataset.target);
+    const posts = document.getElementById(btExpand.dataset.target);
 
     btExpand.addEventListener("click", function () {
-      switchExpandState(btExpand);
-      topic.style.maxHeight = isExpanded(btExpand)
-        ? topic.scrollHeight + "px"
-        : 0;
-      btExpand.classList.toggle("expand");
+
+      if (isExpanded(btExpand)) {
+        collapse(btExpand, posts);
+      } else {
+        collapseAll(listCourses);
+        expand(btExpand, posts);
+      }
     });
   }
 }
 
-function displaySidebarInfo() {
-  fetch("https://kodedevel.ir/resources/json/list-posts.json", {
-    method: "GET"
-  }).then(response => response.json()).then(function (json) {
 
-    const sidebarInfo = document.querySelector(".sidebar-info");
+function initSubjectItems() {
 
-    const totalNumberOfSubjects = sidebarInfo.firstElementChild;
-    totalNumberOfSubjects.dataset.count = json.length;
+  const subjectContainer = document.querySelector(".subject-container");
 
-    const totalNumberOfPosts = sidebarInfo.lastElementChild;
+  if (subjectContainer === null) return;
 
-    var postCounter = 0;
-
-    for (var i = 0; i < json.length; i++) {
-      var metadata_list = json[i].metadata_list;
-      postCounter += metadata_list.length;
-    }
+  const listItems = subjectContainer.children;
 
 
-    totalNumberOfPosts.dataset.count = postCounter;
+  for (var i = 0; i < listItems.length; i++) {
 
-  }).catch(e => console.log(e));
+    const itemHead = listItems[i].querySelector(".md-bt-expandable");
+    const itemContent = document.getElementById(itemHead.dataset.target);
+
+    itemHead.addEventListener("click", function () {
+
+      if (isExpanded(itemHead)) {
+        collapse(itemHead, itemContent);
+      } else {
+        collapseAll(listItems);
+        expand(itemHead, itemContent);
+      }
+
+    });
+  }
 }
 
-function switchExpandState(element) {
-  if (!isExpanded(element)) {
-    element.classList.add("expanded");
-  } else {
-    element.classList.remove("expanded");
+function expand(btExpand, content) {
+  btExpand.classList.add("expanded");
+  btExpand.classList.add("expand");
+  content.style.maxHeight = content.scrollHeight + "px";
+}
+
+function collapse(btExpand, content) {
+  btExpand.classList.remove("expanded");
+  btExpand.classList.remove("expand");
+  content.style.maxHeight = 0;
+}
+
+function collapseAll(list) {
+
+  for (var i = 0; i < list.length; i++) {
+
+    const btExpand = list[i].querySelector(".md-bt-expandable");
+    btExpand.classList.remove("expanded");
+    btExpand.classList.remove("expand");
+    const content = document.getElementById(btExpand.dataset.target);
+    content.style.maxHeight = 0;
+
   }
 }
 
@@ -139,6 +125,32 @@ function toggleSidebar() {
     showNavbarBrand();
   });
 }
+
+function displaySidebarInfo() {
+  fetch("http://127.0.0.1:4000/resources/json/list-posts.json", {
+    method: "GET"
+  }).then(response => response.json()).then(function (json) {
+
+    const sidebarInfo = document.querySelector(".sidebar-info");
+
+    const totalNumberOfSubjects = sidebarInfo.firstElementChild;
+    totalNumberOfSubjects.dataset.count = json.length;
+
+    const totalNumberOfPosts = sidebarInfo.lastElementChild;
+
+    var postCounter = 0;
+
+    for (var i = 0; i < json.length; i++) {
+      var metadata_list = json[i].metadata_list;
+      postCounter += metadata_list.length;
+    }
+
+
+    totalNumberOfPosts.dataset.count = postCounter;
+
+  }).catch(e => console.log(e));
+}
+
 
 const scrollButtonContainer = document.querySelector(".scroll-top-container");
 
