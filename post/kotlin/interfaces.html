@@ -49,8 +49,7 @@ interface Foo {
  fun myAbstractFunction()
 
 }
-                  </pre
-        >
+                  </pre>
       </div>
     </div>
 
@@ -70,8 +69,7 @@ interface Foo {
   val prop1: String get() = "Prop1"
 
 }
-                  </pre
-        >
+                  </pre>
       </div>
     </div>
 
@@ -91,8 +89,7 @@ interface B {
 interface C: A, B {
   ...
 }
-                  </pre
-        >
+                  </pre>
       </div>
     </div>
 
@@ -123,8 +120,7 @@ open class Foo {
 class Bar: Foo(), A, B{
   ...
 }
-                  </pre
-        >
+                  </pre>
       </div>
     </div>
   </section>
@@ -179,8 +175,7 @@ val player = object: Player{
 }
 
 }
-                  </pre
-          >
+                  </pre>
         </div>
       </div>
     </section>
@@ -231,36 +226,36 @@ fun main(){
   println("is 53 prime? ${prime.predict(53)"}
 
   println("is 53 even? ${even.predict(53)"}
-                  </pre
-        >
+                  </pre>
       </div>
     </div>
   </section>
 
   <section id="p3">
     <h2>خلاصه</h2>
+    <ul>
+      <li>
+        در اینترفیس ها در کاتلین مانند کلاس های ابستراکت هم تابع ابستراکت میتونیم
+        تعریف کنیم هم تابع کامل.
+      </li>
+      <li>در اینترفیس ها نمیتونیم کانستراکتور داشته باشیم.</li>
+      <li>
+        در اینترفیس ها نمیتونیم پراپرتی تعریف کنیم مگه پراپرتی نوع val با تابع
+        getter باشه.
+      </li>
 
-    <li>
-      در اینترفیس ها در کاتلین مانند کلاس های ابستراکت هم تابع ابستراکت میتونیم
-      تعریف کنیم هم تابع کامل.
-    </li>
-    <li>در اینترفیس ها نمیتونیم کانستراکتور داشته باشیم.</li>
-    <li>
-      در اینترفیس ها نمیتونیم پراپرتی تعریف کنیم مگه پراپرتی نوع val با تابع
-      getter باشه.
-    </li>
+      <li>هر اینترفیس میتونه از یک یا چند اینترفیس ارث ببره.</li>
 
-    <li>هر اینترفیس میتونه از یک یا چند اینترفیس ارث ببره.</li>
+      <li>هر کلاسی علاوه بر یک کلاس از یک یا چند اینترفیس میتونه ارث ببره.</li>
 
-    <li>هر کلاسی علاوه بر یک کلاس از یک یا چند اینترفیس میتونه ارث ببره.</li>
+      <li>علاوه بر ارث بری میتونیم اینترفیس ها رو داخل کد پیاده‌سازی کنیم.</li>
 
-    <li>علاوه بر ارث بری میتونیم اینترفیس ها رو داخل کد پیاده‌سازی کنیم.</li>
-
-    <li>
-      اینترفیس هایی که فقط یک تابع ابستراکت دارند رو میتونیم به صورت تابعی
-      پیاده‌سازی کنیم که بهشون اینترفیس های تابعی و یا Single Abstract Method
-      Interface (SAM) گفته میشه.
-    </li>
+      <li>
+        اینترفیس هایی که فقط یک تابع ابستراکت دارند رو میتونیم به صورت تابعی
+        پیاده‌سازی کنیم که بهشون اینترفیس های تابعی و یا Single Abstract Method
+        Interface (SAM) گفته میشه.
+      </li>
+    </ul>
   </section>
 </article>
 
@@ -282,8 +277,6 @@ fun main(){
 </li>
 
 <li>
-  <a href="https://kotlinlang.org/docs/interfaces.html"
-    >مطالعه در وبسایت رسمی کاتلین</a
-  >
+  <a href="https://kotlinlang.org/docs/interfaces.html">مطالعه در وبسایت رسمی کاتلین</a>
 </li>
 {% endcapture %} {% include article-foot.html relative_links = links %}
