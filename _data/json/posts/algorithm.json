@@ -9,6 +9,14 @@
       "lastModified": "2026-06-24",
       "imgCover": "/resources/image/algorithm/cover_recursion.png",
       "link": "/post/algorithm/recursion.html"
+    },
+    {
+      "title": "پیچیدگی زمان (Time Complexity)",
+      "description": "در این مطلب به بررسی پیچیدگی زمان الگوریتم ها، نحوه ی محاسبه ی پیچیدگی زمان هر الگوریتم و بهبود کیفیت یک الگوریتم با مثال می پردازیم.",
+      "datePublished": "2026-07-08",
+      "lastModified": "",
+      "imgCover": "/resources/image/algorithm/cover_time_complexity.png",
+      "link": "/post/algorithm/time-complexity.html"
     }
   ]
 }

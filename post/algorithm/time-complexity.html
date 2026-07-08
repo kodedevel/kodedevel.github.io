@@ -1,0 +1,628 @@
+---
+layout: default
+---
+
+<article>
+  <nav class="toc">
+    <div>دسترسی سریع</div>
+    <ul>
+      <li>
+        <a href="#p0">معرفی علامت O بزرگ</a>
+      </li>
+      <li>
+        <a href="#p1">نحوه ی محاسبه ی پیچیدگی زمان</a>
+      </li>
+      <li>
+        <a href="#p2">محاسبه ی پیچیدگی زمان بعضی از الگوریتم های معروف</a>
+      </li>
+      <li>
+        <a href="#p3">خلاصه</a>
+      </li>
+    </ul>
+  </nav>
+
+
+
+  <section id="p0">
+    <h2>معرفی علامت O بزرگ</h2>
+
+    <blockquote>به محاسبات ریاضی برای حل یک مساله طراحی الگوریتم و به بررسی کیفیت اجرای یک الگوریتم
+      آنالیز الگوریتم میگیم.
+    </blockquote>
+
+
+    <p>به الگوریتم جستجوی خطی توجه کنید: </p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet">
+function search(m: int, array: int[]): int {
+
+  for 0&lt;= i &lt; array.length
+    if m = array[i]
+      return i
+
+  return -1;
+}
+        </pre>
+      </div>
+    </div>
+
+    <p>در الگوریتم بالا اگه متغیر m داخل آرایه به طول n نباشه، n بار طول میکشه تا همه ی متغیر های داخل آرایه رو با m
+      مقایسه کنه و اگه وسط آرایه باشه n/2 بار و اگه ابتدای آرایه باشه 1 بار پس برای پیدا کردن m داخل آرایه سه حالت
+      وجود داره، زمانی که m داخل آرایه نباشه <strong>بدترین حالت (worst-case)</strong> اتفاق می افته، زمانی که m وسط
+      آرایه باشه <strong>حالت میانگین (average-case)</strong> پیش میاد و زمانی که m ابتدای آرایه باشه با اولین مقایسه
+      index خونه ای که m داخلش قرار داره رو پیدا می کنه و بر میگردونه که <strong>بهترین حالت (best-case)</strong> پیش
+      اومده.</p>
+
+    <p>در بدترین حالت (worst-case) برای یک آرایه به طول n، متغیر m با اعضای آرایه n بار مقایسه میشه، طول آرایه با زمان
+      اجرای
+      الگوریتم
+      رابطه ی مستقیم داره و الگوریتم با یک نرخ خطی در حال
+      رشده به عبارتی n بار داره یک کار رو تکرار میکنه که میگیم <strong>مرتبه ی بزرگی الگوریتم</strong> برابر با n است.
+    </p>
+
+    <p>مرتبه ی بزرگی هر الگوریتم بیانگر نرخ رشد الگوریتم با افزایش ورودی در طول زمان اجراست و بهش
+      <strong>پیچیدگی زمان (time complexity)</strong> الگوریتم
+      میگیم.
+    </p>
+    <p>برای نشون دادن مرتبه ی بزرگی هر الگوریتم، دانشمندان علوم کامپیوتر از علامت <strong>O بزرگ</strong> استفاده میکنن
+      و ابتدای <strong>Order of Magnitiude</strong> است؛ مرتبه ی بزرگی
+      الگوریتم در مثالی که زده شد برابر با O(n) است.</p>
+
+
+    <div class="note">
+      <p class="note-head">توجه</p>
+      <p>مرتبه ی بزرگی هر الگوریتم رو معمولا از روی بدترین حالت (worst-case) الگوریتم حساب می کنیم.</p>
+    </div>
+
+    <p>فرض کنید 7 تا الگوریتم داریم که مرتبه ی بزرگیشون به ترتیب برابر با O(1)، O(logn)، O(n)، O(n^2)، O(n^3) و O(2^n)
+      است؛ در زیر نمودار نرخ رشد هر کدوم اورده شده است:</p>
+
+    <figure>
+      <img src="/resources/image/algorithm/order_of_magnitude_growing_rate_diagram.png"
+        alt="نرخ رشد الگوریتم ها با بزرگ شدن ورودی (n)">
+      <figcaption>نرخ رشد الگوریتم ها با بزرگ شدن ورودی (n)</figcaption>
+    </figure>
+
+    <p>همونطور که در نمودار مشخصه با افزایش اندازه ی n بجز O(1) که ثابته سایر نمودار ها رشد به خصوص خودشونو دارن و
+      بیشترین نرخ
+      رشد برای O(2^n) و کمترین نرخ رشد برای O(logn) است.</p>
+
+  </section>
+
+  <section id="p1">
+    <h2>نحوه ی محاسبه ی پیچیدگی زمان</h2>
+
+    <p>معمولا پیچیدگی زمان یک الگوریتم رو با بدست اوردن مرتبه ی بزرگی الگوریتم از روی حلقه ها یا روند اجرای متد های
+      بازگشتی، حساب می کنیم؛ در مثال قبل گفتیم مرتبه ی بزرگی الگوریتم جستجوی خطی O(n) است، حلقه n بار تکرار میشه و در هر
+      تکرار یک بار مقدار m رو با اعضای آرایه مقایسه می کنه.</p>
+
+    <p>در محاسبه ی مرتبه ی بزرگی الگوریتم ها، تمام کار های محاسباتی مثل، ضرب، تقسیم، جمع، تفریق مقایسه و ... رو ثابت در
+      نظر
+      میگیریم که با علامت <strong>c</strong> یا <strong>O(1)</strong> نمایش می دیم؛ و ثابت ها و اعداد در تخمین مرتبه ی
+      بزرگی یک الگوریتم بی تاثیر هستن از این رو از نوشتنشون میتونیم صرف نظر کنیم؛ در مثال قسمت قبل مرتبه ی بزرگی
+      الگوریتم در واقع <strong>O(c * n)</strong> بود که از c صرف نظر کردیم.</p>
+
+    <p>در زیر چندتا جمع ریاضی پرکاربرد اورده شده که یاد گرفتنشون برای تخمین مرتبه ی بزرگی الگوریتم ها بدرد میخوره.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet">
+1 + 2 + 3 + ... + (n - 2) + (n -1) = n * ( n - 1) / 2 = O(n^2)
+
+1 + 2 + 3 + ... + (n - 1) + n = n * (n + 1) / 2 = O(n^2)
+
+a^0 + a^1 + a^2 + ... + a^(n-1) + a^(n) = (a^(n+1) - 1) / (a - 1) = O(a^n)
+
+2^0 + 2^1 + 2^2 + ... + 2^(n-1) + 2^(n) = 2^(n+1) - 1 = O(2^n)
+        </pre>
+      </div>
+    </div>
+
+    <p>مثال</p>
+    <p>میخوایم مرتبه ی بزرگی شبه کد زیر رو حساب کنیم.</p>
+
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet">
+for 1&lt;= i &lt;= n i++
+  k := k * 2
+        </pre>
+      </div>
+    </div>
+
+    <p>محاسبه ی k همون c الگوریتم است و حلقه n بار تکرار میشه، پس: </p>
+    <p dir="ltr"><strong dir="ltr">T(n) = O(c * n) = O(n)</strong></p>
+    <p>مثال</p>
+
+    <p>میخوایم مرتبه ی بزرگی دو حلقه ی تو در تو رو حساب کنیم.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet">
+for 1 &lt;= i &lt;=n i++
+  for 1 &lt;= j &lt;=n j++
+    k := k + 1
+        </pre>
+      </div>
+    </div>
+
+    <p>افزایش مقدار k همون c مساله است</p>
+    <p>حلقه ی اول n بار تکرار میشه و با هر بار تکرار حلقه ی دوم n بار تکرار میشه پس:</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet">
+T(n) = cn + cn + ... + cn 
+     = c * (n + n ... + n) 
+     = c * n ^ 2
+     = O(c * n ^ 2)
+     = O(n ^ 2)
+        </pre>
+      </div>
+    </div>
+
+    <p>مثال</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet">
+for 1 &lt;= i &lt;=n i++
+  for 1 &lt;= j &lt;= i j++
+    k := k + i + j
+        </pre>
+      </div>
+    </div>
+
+    <p>در مثال بالا دو تا حلقه ی تو در تو وجود داره، با هر بار تکرار حلقه ی اول، حلقه ی دوم از یک تا i تکرار میشه یعنی
+      حلقه ی دوم ابتدا ۱ بار بعد ۲ بار بعد ۳ بار ... و زمانی که i برابر با n شد، n بار تکرار میشه پس:
+    </p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet">
+T(n) = (c * 1) + (c * 2) + (c * 3) + ... + (c * n)
+     = c * (1 + 2 + 3 + ... + n)
+     = c * (n * (n + 1) / 2
+     = O(n * (n + 1) / 2)
+     = O(n ^ 2)
+        </pre>
+      </div>
+    </div>
+
+
+    <p>مثال</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet">
+for 1&lt;= i &lt;= 10 i++
+  for 1&lt;= j &lt;= n j++
+    k := k * 8
+        </pre>
+      </div>
+    </div>
+
+    <p>در مثال بالا حلقه ی اول 10 بار تکرار میشه و در هر بار تکرار حلقه ی دوم n بار تکرار میشه پس:</p>
+    <p dir="ltr"><strong>T(n)= cn + cn + (۱۰ بار) + cn = O(10cn) = O(n)</strong></p>
+
+
+    <p>مثال</p>
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet">
+for 1&lt;= i &lt;= 10 i++
+  v := v + i
+
+for 1&lt;= m &lt;= n m++
+  for 1&lt;= p &lt;=20 p++
+    k := k + i
+        </pre>
+      </div>
+    </div>
+
+    <p>در مثال بالا حلقه ی اول ۱۰ بار تکرار میشه و ثابت مساله محاسبه ی v است پس:</p>
+    <p dir="ltr"><strong>c * 10 = O(1)</strong></p>
+
+    <p>در دو حلقه ی تو در تو پایین، حلقه ی بیرونی n بار تکرار میشه و در هر بار تکرار حلقه ی درونی 20 بار تکرار میشه پس:
+    </p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet">
+T(n) = (c * 20) + (c * 20) + ... + (c * 20) //n بار
+     = (c * 20 * n)
+     = O(n)
+        </pre>
+      </div>
+    </div>
+
+    <p>پیچیدگی زمان مساله میشه:</p>
+
+    <p dir="ltr"><strong>T(n) = O(n) + O(1) = O(n)</strong></p>
+
+
+    <p>مثال</p>
+    <p>در زیر سه تا حلقه ی تو در تو وجود داره.</p>
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet">
+for 1&lt;= i &lt;= n i++
+  for 1&lt;= j &lt;= n j++
+    for 1&lt;= k &lt;= n k++
+      l := l * i + j + k
+        </pre>
+      </div>
+    </div>
+
+    <p>در مثال بالا حلقه ی اول n بار تکرار میشه و با هر بار تکرار حلقه ی اول، حلقه ی دوم n بار تکرار میشه و با هر بار
+      تکرار حلقه ی دوم، حلقه داخلی سوم n بار تکرار میشه پس:</p>
+
+    <p>ابتدا جواب دو تا حلقه ی داخلی رو پیدا میکنیم و بعد با حلقه ی خارجی جواب نهایی رو بدست میاریم:</p>
+
+    <p dir="ltr">
+      <strong>
+        (c * n) + (c * n) + (c * n) + ... + (c * n) = c * (n^2)</strong>
+    </p>
+
+    <p>جواب بالا با هر بار تکرار حلقه ی بیرونی یک بار تکرار میشه و حلقه ی بیرونی خودش n بار تکرار میشه.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet">
+T(n) = (c * (n ^ 2)) + (c * (n ^ 2)) + ... + (c * (n ^ 2)) 
+     = c * ((n ^ 2) + (n ^ 2) + ... + (n ^ 2))
+     = c * n * (n ^ 2)
+     = c * n ^ 3
+     = O(c * n ^ 3)
+     = O(n ^ 3)
+        </pre>
+      </div>
+    </div>
+
+  </section>
+
+
+  <section id="p2">
+    <h2>محاسبه ی پیچیدگی زمان بعضی از الگوریتم های معروف</h2>
+
+    <p>میخوایم پیچیدگی زمان چندتا از الگوریتم های پر کاربرد رو تخمین بزنیم.</p>
+
+    <section>
+      <h3>پیچیدگی زمان الگوریتم جستجوی دودویی (binary search)</h3>
+
+      <p>کار این الگوریتم جستجوی یک عنصر داخل یک آرایه با عناصر مرتب شده از کم به زیاد است، اگه عنصر داخل آرایه باشه،
+        index خونه ی مربوط به عنصر رو بر میگردونه.</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet">
+function search(int m, int[] array): int{
+  low := 0;
+  high := array.length;
+
+  while(low &lt; high){
+    mid := (low + high) / 2
+    if m &lt; array[mid]
+       high := mid
+    else if m &gt; array[mid]
+       low := mid + 1
+    else 
+       return mid
+
+     return -low -1;
+  }
+}
+          </pre>
+          <pre class="snippet Java">
+static int search(int m, int[] array){
+  int low =0;
+  int high = array.length - 1;
+
+  while (low &lt;= high){
+      int mid = (low + high) / 2;
+      if (m &lt; array[mid]){
+          high = mid;
+      }else if (m &gt; array[mid]){
+          low = mid + 1;
+      }else return mid;
+  }
+
+  return -low - 1;
+}
+          </pre>
+          <pre class="snippet Kotlin">
+fun search(m: Int, array: IntArray): Int {
+        var low = 0
+        var high = array.size - 1
+
+        while (low &lt;= high) {
+            val mid = (low + high) / 2
+            if (m &lt; array[mid]) {
+                high = mid
+            } else if (m &gt; array[mid]) {
+                low = mid + 1
+            } else return mid
+        }
+
+
+        return -low - 1
+    }
+          </pre>
+        </div>
+      </div>
+
+      <p> همینطور که در الگوریتم مشخصه با هر بار تکرار حلقه محدوده ی ارایه ای که داریم بررسی میکنیم نصف میشه فرض کنید
+        طول آرایه n است و n یک توان از 2، و k = log(n) است بنابراین:</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet">
+T(n) = T(n/2) + c 
+     = T(n/2^2) + c + c 
+     = T(n/2^3) + c + c + c 
+     = T(n/2^k) + kc 
+     = 1 + kc 
+     = O(1 + logn) 
+     = O(logn)
+          </pre>
+        </div>
+      </div>
+
+    </section>
+
+
+    <section>
+      <h3>محاسبه ی پیچیدگی زمان برای الگوریتم tower of hanoi</h3>
+      <p>در قسمت <a href="recursion.html">بازگشتی</a> این الگوریتم رو پیاده کردیم و حل الگوریتم به صورت زیر بود:</p>
+
+      <p>فرض کنید میخوایم n دیسک رو از A به B منتقل کنیم:</p>
+      <p>1- انتقال n-1 دیسک از A به C به کمک B</p>
+      <p>2- انتقال دیسک آخر از A به B</p>
+      <p>3- انتقال n-1 دیسک از C به B به کمک A</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet">
+function moveDisks(n: int){
+  moveDisks(n, 'A', 'B', 'C')
+}
+
+function moveDisks(n: int, fromTower: char, toTower: char, auxTower: char){
+  if n = 1
+    print("Move disk " + n + " from " + fromTower + " to " + toTower)
+  else
+    moveDisks(n - 1, fromTower, auxTower, toTower)
+    print("Move disk " + n + " from " + fromTower + " to " + toTower)
+    moveDisks(n - 1, auxTower, toTower, fromTower)
+
+}
+          </pre>
+          <pre class="snippet Java">
+static void moveDisks(int n){
+  moveDisks(n, 'A', 'B', 'C');
+}
+
+static void moveDisks(int n, char fromTower, char toTower, char auxTower){
+  if(n == 1){
+    System.out.println("Move disk " + n + " from " + fromTower + " to " + toTower);
+  }else{
+
+    moveDisks(n - 1, fromTower, auxTower, toTower);
+
+    System.out.println("Move disk " + n + " from " + fromTower + " to " + toTower);
+
+    moveDisks(n - 1, auxTower, toTower, fromTower);
+
+  }
+}
+          </pre>
+          <pre class="snippet Kotlin">
+fun moveDisks(n: Int){
+  moveDisks(n, 'A', 'B', 'C')
+}
+
+fun moveDisks(n: Int, fromTower: Char, toTower: Char, auxTower: Char){
+  if(n == 1){
+    // Move last disk from A to B
+    println("Move disk " + n + " from " + fromTower + " to " + toTower)
+  }else{
+
+    moveDisks(n - 1, fromTower, auxTower, toTower)
+
+    println("Move disk " + n + " from " + fromTower + " to " + toTower)
+
+    moveDisks(n - 1, auxTower, toTower, fromTower)
+
+  }
+}
+          </pre>
+        </div>
+      </div>
+
+      <p>پیچیدگی زمان برای انتقال n دیسک میشه: </p>
+
+      <p dir="ltr"><strong>T(n) = T(n -1) + 1 + T(n - 1)</strong></p>
+
+      <p>حالا فرض کنید بزرگی مسأله بجای n دیسک n - 1 دیسک بود:</p>
+      <p dir="ltr"><strong>T(n - 1) = T(n - 2) + 1 + T(n - 2)</strong></p>
+
+      <p>اگه بزرگی مسأله n - 2 دیسک بود چی؟</p>
+
+      <p dir="ltr"><strong>T(n - 2) = T(n - 3) + 1 + T(n - 3)</strong></p>
+      <p>پس پیچیدگی زمان حل مسأله با n دیسک میشه:</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet">
+T(n) = T(n - 1) + 1 + T(n - 1)
+     = 2 * T(n - 1) + 1
+     = 2 * (2 * T(n - 2) + 1) + 1
+     = 2 * (2 * (2 * (T(n - 3) + 1)  + 1) + 1) + 1
+     = 2 ^ (n - 1) * T(1) + 2 ^ (n - 2) + ... + (2 ^ 2) + (2 ^ 1) + 1
+     = 2 ^ (n - 1) + 2 ^ (n - 2) + ... + 2 ^ 2 + 2 ^ 1 + 1
+     = O(2 ^ n) + 1
+          </pre>
+        </div>
+
+      </div>
+    </section>
+
+    <section>
+      <h3>محاسبه ی پیچیدگی زمان الگوریتم فیبوناچی</h3>
+
+      <p>در قسمت بازگشتی تونستیم یک تابع بازگشتی تعریف کنیم که بتونه فیبوناچی رو حل کنه، الگوریتم به صورت زیر پیاده سازی
+        میشه:</p>
+
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet">
+function fib(index: long): long {
+  if index = 0
+    return 0
+  if index = 1 or index = 2 
+    return 1
+  else 
+    return fib(index - 1) + fib(index - 2)
+}
+          </pre>
+          <pre class="snippet Java">
+static long fib(long index){
+  if(index == 0)
+    return 0
+  else if(index == 1 || index == 2) 
+    return 1;
+  else 
+    return fib(index - 1) + fib(index - 2);
+}
+          </pre>
+          <pre class="snippet Kotlin">
+fun fib(index: Long): Long{
+  if(index == 0)
+    return 0
+  if(index == 1 or index == 2) 
+    return 1
+  else 
+    return fib(index - 1) + fib(index - 2)
+}
+          </pre>
+        </div>
+      </div>
+
+      <p>برای محاسبه ی پیچیدگی زمان این الگوریتم فرض می کنیم index برابر n است:</p>
+
+      <p><strong>T(n) = T(n - 1) + T(n - 2) + c</strong></p>
+
+      <p>در بالا برای راحتی کار T(n - 2) رو T(n - 1) فرض کنید:</p>
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet">
+T(n) = T(n - 1) + T(n - 2) + c
+     &lt;= 2 * T(n - 1) + c
+     &lt;= 2 * (2 * T(n - 2) + c) + c
+       ...
+     = (2 ^ n) + nc
+     = O(2 ^ n + nc)
+     = O(2 ^ n)
+          </pre>
+        </div>
+      </div>
+
+      <p>همینطور که مشخصه پیچیدگی زمان الگوریتم فیبوناچی با بازگشتی بالاست؛ حالا به نظرتون اگه الگوریتم رو مثل زیر پیاده
+        کنیم پیچیدگی زمانش چقدر میشه؟</p>
+
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet">
+function fib(n: long){
+  f0 := 0
+  f1 := 1
+  f2 := 2
+
+  for 0&lt;= i &lt;=n i++
+    f0 := f1
+    f1 := f2
+    f2 := f0 + f1
+
+  return f2
+}
+          </pre>
+          <pre class="snippet Java">
+static long fib(long n){
+  long f0 = 0;
+  long f1 = 1;
+  long f2 = 1;
+
+  for (int i= 3; i &lt;= n; i++){
+      f0 = f1;
+      f1 = f2;
+      f2 = (f1 + f0);
+  }
+
+  return f2;
+}
+          </pre>
+          <pre class="snippet Kotlin">
+fun fib(n: Long): Long {
+    var f0: Long = 0
+    var f1: Long = 1
+    var f2: Long = 1
+
+    for (i in 3..n) {
+      f0 = f1
+      f1 = f2
+      f2 = (f1 + f0)
+    }
+
+    return f2
+} 
+          </pre>
+        </div>
+      </div>
+
+      <p>همینطور که با چشم هم معلومه پیچیدگی زمان الگوریتم فیبوناچی با این روش به O(n) تغییر کرده و از تصاعدی به خطی
+        رسیده یعنی به شدت کاهش پیدا کرده و کیفیت الگوریتم به طرز چشمگیری بهبود پیدا کرده است!</p>
+
+    </section>
+
+  </section>
+
+  <section id="p3">
+    <h2>خلاصه</h2>
+    <ul>
+      <li>
+        مرتبه ی بزرگی الگوریتم نرخ رشد الگوریتم در طول زمان است.
+      </li>
+      <li>
+        مرتبه ی بزرگی یک الگوریتم بیان گر پیچیدگی زمان الگوریتم است.
+      </li>
+      <li>
+        مرتبه ی بزرگی الگوریتم رو با علامت O بزرگ نشون می دیم.
+      </li>
+      <li>
+        معمولا سه حالت رو برای یک الگوریتم در نظر میگیریم، بهترین حالت (best-case)، حالت میانگین (average-case) و بدترین
+        حالت (worst-case).
+      </li>
+      <li>
+        معمولا مرتبه ی بزرگی هر الگوریتم رو از روی بدترین حالت (worst-case) الگوریتم محاسبه می کنیم.
+      </li>
+    </ul>
+
+  </section>
+
+</article>
+
+{% capture links %}
+<li>
+  <a href="/post/algorithm/recursion.html">بازگشتی در برنامه نویسی</a>
+</li>
+<li>
+  <a href="https://en.wikipedia.org/wiki/Time_complexity">مطالعه در ویکی پدیا انگلیسی</a>
+</li>
+{% endcapture %}
+
+{% include article-foot.html relative_links = links %}
