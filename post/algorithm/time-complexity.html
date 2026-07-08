@@ -301,7 +301,7 @@ T(n) = (c * (n ^ 2)) + (c * (n ^ 2)) + ... + (c * (n ^ 2))
           <pre class="snippet">
 function search(int m, int[] array): int{
   low := 0;
-  high := array.length;
+  high := array.length - 1;
 
   while(low &lt; high){
     mid := (low + high) / 2
@@ -541,9 +541,9 @@ T(n) = T(n - 1) + T(n - 2) + c
 function fib(n: long){
   f0 := 0
   f1 := 1
-  f2 := 2
+  f2 := 1 
 
-  for 0&lt;= i &lt;=n i++
+  for 3&lt;= i &lt;=n i++
     f0 := f1
     f1 := f2
     f2 := f0 + f1
@@ -598,7 +598,7 @@ fun fib(n: Long): Long {
         مرتبه ی بزرگی الگوریتم نرخ رشد الگوریتم در طول زمان است.
       </li>
       <li>
-        مرتبه ی بزرگی یک الگوریتم بیان گر پیچیدگی زمان الگوریتم است.
+        مرتبه ی بزرگی یک الگوریتم بیان گر نرخ رشد الگوریتم با افزایش ورودی در طی زمان اجرای الگوریتم است.
       </li>
       <li>
         مرتبه ی بزرگی الگوریتم رو با علامت O بزرگ نشون می دیم.
