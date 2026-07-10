@@ -239,6 +239,11 @@
     font-weight: bold;
 }
 
+.note .note-head::after{
+  content: "priority_high";
+  font-size: 1rem;
+}
+
 .scroll-top-container{
     position: fixed;
     display: flex;
