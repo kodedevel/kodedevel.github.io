@@ -75,6 +75,26 @@ fun myFunction(count: Int){
   }
 }
         </pre>
+        <pre class="snippet JS">
+function myFunction(count) {
+  if (count &lt;= 0) { //base-case
+    console.log("Base-case reached");
+    console.log("Hello from " + count);
+  } else {
+    myFunction(count - 1);
+    console.log("Hello from " + count);
+  }
+}
+        </pre>
+        <pre class="snippet Python">
+def myFunction(count):
+    if count &lt;= 0: #base-case
+        print("Base-case reached")
+        print("Hello from " + str(count))
+    else:
+        myFunction(count - 1)
+        print("Hello from " + str(count))
+        </pre>
       </div>
     </div>
 
@@ -99,6 +119,19 @@ static long fact(int n){
         </pre>
         <pre class="snippet Kotlin">
 fun fact(n: Int): Long = if(n == 0) 1 else n * fact(n-1);
+        </pre>
+        <pre class="snippet JS">
+function fact(n) {
+  if (n === 0) return 1;
+  else return n * fact(n - 1);
+}
+        </pre>
+        <pre class="snippet Python">
+def fact(n):
+    if n == 0: 
+        return 1
+    else: 
+        return n * fact(n - 1)
         </pre>
       </div>
     </div>
@@ -147,6 +180,19 @@ fun fib(index: Int): Int{
   else return fib(index - 1) + fib(index - 2)
 }
         </pre>
+        <pre class="snippet JS">
+function fib(index) {
+  if (index === 1 || index === 2) return 1;
+  else return fib(index - 1) + fib(index - 2);
+}
+        </pre>
+        <pre class="snippet Python">
+def fib(index):
+    if index == 1 or index == 2: 
+        return 1
+    else: 
+        return fib(index - 1) + fib(index - 2)
+        </pre>
       </div>
     </div>
 
@@ -178,6 +224,26 @@ fun isPalindrome(String word): Boolean{
   }
 }
         </pre>
+        <pre class="snippet JS">
+function isPalindrome(word) {
+  if (word.length &lt;= 1) {
+    return true;
+  } else if (word.charAt(0) !== word.charAt(word.length - 1)) {
+    return false;
+  } else {
+    return isPalindrome(word.substring(1, word.length - 1));
+  }
+}
+        </pre>
+        <pre class="snippet Python">
+def isPalindrome(word):
+    if len(word) &lt;= 1:
+        return True
+    elif word[0] != word[-1]:
+        return False
+    else:
+        return isPalindrome(word[1:-1])
+        </pre>
       </div>
     </div>
 
@@ -207,7 +273,7 @@ fun isPalindrome(String word): Boolean{
 
     <div class="sample">
       <div class="snippet-container">
-        <pre class="snippet">
+        <pre class="snippet PseudoCode">
 eat(Cake cake){
  if cake.exists()
      cake.takeOneSlice()
@@ -223,7 +289,7 @@ eat(Cake cake){
     </p>
     <div class="sample">
       <div class="snippet-container">
-        <pre class="snippet">
+        <pre class="snippet PseudoCode">
 eatCake(Cake cake){
  
  while cake.exists
@@ -254,7 +320,7 @@ eatCake(Cake cake){
       <div class="snippet-container">
         <pre class="snippet Java">
 static boolean isPalindrome(String word, int low, int hight){
-  if(low &lt;= high) return true;
+  if(low &gt;= high) return true;
   else if(s.charAt(low) != word.charAt(high)) return false;
   else return isPalindrome(word, low + 1, high - 1);
 }
@@ -265,6 +331,28 @@ fun isPalindrome(word: String, low: Int, high: Int): Boolean{
   else if(s.charAt(low) != word.charAt(high)) return false;
   else return isPalindrome(word, low + 1, high - 1)
 }
+        </pre>
+        <pre class="snippet JS">
+function isPalindrome(word, low, high) {
+  if (low === undefined &amp;&amp; high === undefined) {
+    let low = 0;
+    let high = word.length - 1;
+    return isPalindrome(word, low, high);
+  }
+
+  if (low &gt;= high) return true;
+  else if (word.charAt(low) !== word.charAt(high)) return false;
+  else return isPalindrome(word, low + 1, high - 1);
+}
+        </pre>
+        <pre class="snippet Python">
+def isPalindrome(word, low, high):
+    if low &gt;= high:
+        return True
+    elif word[low] != word[high]:
+        return False
+    else:
+        return isPalindrome(word, low + 1, high - 1)
         </pre>
       </div>
     </div>
@@ -277,15 +365,28 @@ fun isPalindrome(word: String, low: Int, high: Int): Boolean{
 static boolean isPalindrome(String word){
   int low = 0;
   int high = word.length() - 1;
-  isPalindrome(word, low, high);
+  return isPalindrome(word, low, high);
 }
         </pre>
         <pre class="snippet Kotlin">
 fun isPalindrome(word: String){
   val low = 0;
-  val hight = word.length - 1
+  val high = word.length - 1
+  return isPalindrome(word, low, high)
+}
+        </pre>
+        <pre class="snippet JS">
+function isPalindrome(word){
+  const low = 0;
+  const high = word.length - 1
   isPalindrome(word, low, high)
 }
+        </pre>
+        <pre class="snippet Python">
+def isPalindrome(word):
+  low = 0
+  high = length(word) - 1
+  return isPalindrome(word, low, high)
         </pre>
       </div>
     </div>
@@ -355,6 +456,53 @@ fun sort(list: Array&lt;Double&gt;, low: Int, high: Int){
   }
 }
         </pre>
+        <pre class="snippet JS">
+function sort(list){
+  const low = 0
+  const high = list.length - 1
+  sort(list, low, high)
+}
+
+function sort(list, low, high) {
+
+  if (low &lt; high) {
+    let indexOfMin = low;
+    let min = list[low];
+
+    for (let i = low + 1; i &lt;= high; i++) {
+      if (list[i] &lt; min) {
+        min = list[i];
+        indexOfMin = i;
+      }
+    }
+
+    list[indexOfMin] = list[low];
+    list[low] = min;
+
+    sort(list, low + 1, high);
+  }
+}
+        </pre>
+        <pre class="snippet Python">
+def sort(list):
+  sort(list, 0, length(list) - 1)
+
+
+def sort(list, low=None, high=None):
+    if low &lt; high:
+        indexOfMin = low
+        min_val = list_array[low]
+
+        for i in range(low + 1, high + 1):
+            if list[i] &lt; min_val:
+                min_val = list[i]
+                indexOfMin = i
+
+        list[indexOfMin] = list[low]
+        list[low] = min_val
+
+        sort(list_array, low + 1, high)
+        </pre>
       </div>
     </div>
 
@@ -407,6 +555,49 @@ fun binarySearch(list: Array&lt;Double&gt;, key: Double, low: Int, high: Int): I
 
 }
         </pre>
+        <pre class="snippet JS">
+function binarySearch(list, key){
+  return binarySearch(list, 0, list.length - 1) 
+}
+
+function binarySearch(list, key, low, high) {
+  if (low &gt; high) return -low - high;
+
+  let mid = Math.floor((low + high) / 2);
+
+  if (key &lt; list[mid]) {
+    return binarySearch(list, key, low, mid - 1);
+  } else if (key &gt; list[mid]) {
+    return binarySearch(list, key, mid + 1, high);
+  } else {
+    return mid;
+  }
+}        </pre>
+        <pre class="snippet Python">
+def binarySearch(list_array, key):
+  return binarySearch(list_array, key, 0, length(list_array) - 1)
+
+
+
+def binarySearch(list_array, key, low, high):
+    if low is None and high is None:
+        low = 0
+        high = len(list_array) - 1
+        return binarySearch(list_array, key, low, high)
+
+    # 4-argument search logic
+    if low &gt; high:
+        return -low - high
+
+    mid = (low + high) // 2
+
+    if key &lt; list_array[mid]:
+        return binarySearch(list_array, key, low, mid - 1)
+    elif key &gt; list_array[mid]:
+        return binarySearch(list_array, key, mid + 1, high)
+    else:
+        return mid
+        </pre>
       </div>
     </div>
 
@@ -416,7 +607,6 @@ fun binarySearch(list: Array&lt;Double&gt;, key: Double, low: Int, high: Int): I
     <h2>تابع tail-recursive</h2>
     <blockquote>تابع tail-recursive بهینه تر از تابع recursive معمولی است.</blockquote>
 
-
     <p>تابع (متد) tail recursive به تابعی گفته میشه که بعد از اجرای همه ی کد های داخلش، صدا زده میشه.</p>
 
     <p>در واقع در این توابع اخرین کدی که اجرا میشه صدا زدن تابع داخل خودشه.</p>
@@ -425,7 +615,7 @@ fun binarySearch(list: Array&lt;Double&gt;, key: Double, low: Int, high: Int): I
 
     <div class="sample">
       <div class="snippet-container">
-        <pre class="snippet">
+        <pre class="snippet PseudoCode">
 Type myTailRecFunction(...){
 
   do some operations
@@ -470,6 +660,26 @@ static long fact(int n, int result){
         </pre>
         <pre class="snippet Kotlin">
 tailrec fact(n: Int, result: Int = 1): Long = if(n == 0) return result else return fact(n-1, result * n);
+        </pre>
+        <pre class="snippet JS">
+function fact(n, result) {
+  if (result === undefined) {
+    return fact(n, 1);
+  }
+
+  if (n === 0) return result;
+  else return fact(n - 1, n * result);
+}
+        </pre>
+        <pre class="snippet Python">
+def fact(n, result=None):
+    if result is None:
+        return fact(n, 1)
+
+    if n == 0:
+        return result
+    else:
+        return fact(n - 1, n * result)
         </pre>
       </div>
     </div>
@@ -527,6 +737,57 @@ fun getSize(file: File): Long{
     }
   }
 }
+        </pre>
+          <pre class="snippet JS">
+const fs = require('fs');
+const path = require('path');
+
+function getSize(filePath) {
+  let size = 0;
+  const stats = fs.statSync(filePath);
+
+  if (stats.isDirectory()) {
+    let files = fs.readdirSync(filePath);
+    if (files !== null) {
+      for (let file of files) {
+        const f = path.join(filePath, file);
+        const fStats = fs.statSync(f);
+        if (fStats.isDirectory()) {
+          size += getSize(f);
+        } else {
+          size += fStats.size;
+        }
+      }
+    }
+  } else {
+    size += stats.size;
+  }
+
+  return size;
+}
+        </pre>
+          <pre class="snippet Python">
+import os
+
+def getSize(file_path):
+    size = 0
+    if os.path.isdir(file_path):
+        try:
+            files = os.listdir(file_path)
+        except OSError:
+            files = None
+
+        if files is not None:
+            for file in files:
+                f = os.path.join(file_path, file)
+                if os.path.isdir(f):
+                    size += getSize(f)
+                else:
+                    size += os.path.getsize(f)
+    else:
+        size += os.path.getsize(file_path)
+
+    return size
         </pre>
         </div>
       </div>
@@ -598,6 +859,33 @@ fun moveDisks(n: Int, fromTower: Char, toTower: Char, auxTower: Char){
 
   }
 }
+        </pre>
+            <pre class="snippet JS">
+function moveDisks(n){
+  moveDisks(n, 'A', 'B', 'C')
+}
+
+function moveDisks(n, fromTower, toTower, auxTower) {
+
+  if (n === 1) {
+    console.log("Move disk " + n + " from " + fromTower + " to " + toTower);
+  } else {
+    moveDisks(n - 1, fromTower, auxTower, toTower);
+    console.log("Move disk " + n + " from " + fromTower + " to " + toTower);
+    moveDisks(n - 1, auxTower, toTower, fromTower);
+  }
+}        </pre>
+            <pre class="snippet Python">
+def moveDisks(n):
+    moveDisks(n, 'A', 'B', 'C')
+
+def moveDisks(n, fromTower, toTower, auxTower):
+    if n == 1:
+        print("Move disk " + str(n) + " from " + fromTower + " to " + toTower)
+    else:
+        moveDisks(n - 1, fromTower, auxTower, toTower)
+        print("Move disk " + str(n) + " from " + fromTower + " to " + toTower)
+        moveDisks(n - 1, auxTower, toTower, fromTower)        
         </pre>
           </div>
         </div>
