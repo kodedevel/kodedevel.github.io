@@ -385,7 +385,7 @@ function isPalindrome(word){
         <pre class="snippet Python">
 def isPalindrome(word):
   low = 0
-  high = length(word) - 1
+  high = len(word) - 1
   return isPalindrome(word, low, high)
         </pre>
       </div>
@@ -485,7 +485,7 @@ function sort(list, low, high) {
         </pre>
         <pre class="snippet Python">
 def sort(list):
-  sort(list, 0, length(list) - 1)
+  sort(list, 0, len(list) - 1)
 
 
 def sort(list, low=None, high=None):
@@ -576,8 +576,6 @@ function binarySearch(list, key, low, high) {
         <pre class="snippet Python">
 def binarySearch(list_array, key):
   return binarySearch(list_array, key, 0, length(list_array) - 1)
-
-
 
 def binarySearch(list_array, key, low, high):
     if low is None and high is None:

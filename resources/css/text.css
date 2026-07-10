@@ -99,3 +99,8 @@ footer a:hover{
 .text{
   color: #000000;
 }
+
+.pseudo{
+  color: #212121;
+  font-weight: bold;
+}

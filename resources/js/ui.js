@@ -84,7 +84,6 @@ function createSampleHeader() {
 
   var copyButton = document.createElement("button");
   copyButton.classList.add("md-bt", "md-bt-light", "material-symbols-outlined");
-  copyButton.style.cursor = "copy";
   copyButton.innerHTML = "content_copy";
 
   codeHead.appendChild(copyButton);
@@ -92,16 +91,16 @@ function createSampleHeader() {
   return codeHead;
 }
 
-function createSnippetToggler(buildToggleButtons) {
-  var snippetToggler = document.createElement("div");
-  snippetToggler.classList.add("snippet-toggler");
+function createDropMenu(create) {
+  var dropMenuContainer = document.createElement("div");
+  dropMenuContainer.classList.add("drop-menu-container");
 
-  buildToggleButtons(snippetToggler);
+  create(dropMenuContainer);
 
-  return snippetToggler;
+  return dropMenuContainer;
 }
 
-function createSnippetToggleButton(name, id, appendable) {
+function createSnippetSelector(name, id, appendable) {
   let snippetToggleButton = document.createElement("input");
   snippetToggleButton.classList.add("snippet-toggle-button");
   snippetToggleButton.type = "radio";
@@ -140,8 +139,8 @@ function createDot() {
 export {
   createCourseListView,
   createSampleHeader,
-  createSnippetToggler,
-  createSnippetToggleButton,
+  createDropMenu,
+  createSnippetSelector,
   createCodeWrap,
   createCodeTableView,
   createDot,

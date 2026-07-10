@@ -1,13 +1,13 @@
 import {
   createSampleHeader,
-  createSnippetToggler,
-  createSnippetToggleButton,
+  createDropMenu,
+  createSnippetSelector,
   createCodeWrap,
   createCodeTableView,
 } from "./ui.js";
 
 const keyword =
-  /(?<!([^\s,(}]{1}|\/\/.*))(public|private|protected|void|return|static|instanceof|for|while|do|if|else|switch|case|override|fun|var|val|companion|data|in|infix|tailrec|inline|noinline|crossinline|reified|false|true|null|class|short|byte|int|long|double|float|boolean|throw|throws|try|catch|finally|final|static|interface|enum|abstract|import|this|super|new|package|yield|default|extends|implements)(?![\w\d]|[^\s)\{\(;]{1})/g;
+  /(?<!([^\s,(}]{1}|\/\/.*))(public|private|protected|void|return|static|instanceof|for|while|do|if|else|switch|case|override|fun|var|val|companion|data|in|infix|tailrec|inline|noinline|crossinline|reified|false|true|null|class|short|byte|int|long|double|float|boolean|throw|throws|try|catch|finally|final|static|interface|enum|abstract|import|this|super|new|package|yield|default|extends|implements|def|elif|function)(?![\w\d]|[^\s)\{\(;]{1})/g;
 const string = /(?<!\/\/.*)(["']([^+]*)["'])|(["'](@\+.*)["'])/g;
 const className =
   /((?<![^\s./-<,(]|(\/\/.*))([A-Z]{1}[\w\d]*)(?!([^\s.,>:("]){1}))/g;
@@ -17,86 +17,127 @@ const comment = /(?<!(http{1}.*))\/\/.*/g;
 const shellCommands =
   /(?<!([^\s,(}]{1}|\/\/.*))(echo|ls|cd|rm|cp|mv|mkdir|dd|fdisk|chmod|mount|umount|mkfs|mk2fs|mkfs.ext4|mkfs.ntfs|mkfs.ext3|mkfs.vfat)(?![\w\d]|[^\s)\{\(;]{1})/g;
 
+const pseudo = /(?<!([^\s,(}]{1}|\/\/.*))(function|for|while|if|else|int|double|long|short|float|true|false|boolean|return|class)(?![\w\d]|[^\s)\{\(;]{1})/g;
+
 const codeContainerList = document.querySelectorAll(".sample");
 
-const languages = /(Java)|(Kotlin)|(Gradle)|(XML)|(Shell)/g;
+const languages = /(Java)|(Kotlin)|(Gradle)|(XML)|(Shell)|(PseudoCode)|(JS)|(Python)/g;
 
 function createCodeViews() {
+
   for (var i = 0; i < codeContainerList.length; i++) {
     let codeContainer = codeContainerList[i];
 
     let header = createSampleHeader();
     let copyButton = header.firstChild;
 
-
     let snippetContainer = codeContainer.querySelector(".snippet-container");
 
     //intented to wrap codes for every languages.
     let codeSnippetList = snippetContainer.querySelectorAll(".snippet");
 
-    hideAllSnippets(codeSnippetList);
+    updateActiveSnippet(codeSnippetList);
 
-    let snippetToggler = createSnippetToggler((snippetToggler) => {
+    let dropMenuContainer = createDropMenu(dropMenuContainer => {
+
+      const btDropMenu = document.createElement("button");
+      btDropMenu.classList.add("bt-drop-menu");
+
+      const dropMenu = document.createElement("div");
+      dropMenu.classList.add("drop-menu-options");
+
+      btDropMenu.addEventListener("click", e => {
+        e.stopPropagation();
+        dropMenu.classList.toggle("show");
+      });
+
+      if (codeSnippetList.length > 1) {
+        document.addEventListener("click", e => {
+          e.stopPropagation();
+          dropMenu.classList.remove("show");
+        });
+        dropMenuContainer.appendChild(dropMenu);
+        dropMenuContainer.appendChild(btDropMenu);
+      }
+
       //iterate through snippets to generate requirement code snippets for multiple languages.
       for (var j = 0; j < codeSnippetList.length; j++) {
+
         let snippet = codeSnippetList[j];
 
         let snippetLang = findSnippetLanguage(snippet);
 
         //Parameters: name, id, lambda expression
-        createSnippetToggleButton(
+        createSnippetSelector(
           i,
           snippetLang + i + "" + j,
-          (snippetToggleButton, snippetToggleLabel) => {
-            //listen when syntax of language changed.
-            snippetToggleButton.addEventListener("change", function () {
+          (inputSnippetSelector, lblSnippetSelector) => {
+            //listen when programming language changed.
+            inputSnippetSelector.addEventListener("change", function () {
+
               if (this.checked) {
-                hideAllSnippets(codeSnippetList);
-                //this.style.display = 'none';
-                showSnippet(snippet);
+
+                updateActiveSelector(dropMenu, lblSnippetSelector);
+                updateActiveSnippet(codeSnippetList, snippet);
 
                 copyButton.onclick = function () {
                   let text = collectTextCodes(snippet.firstChild);
                   navigator.clipboard.writeText(text);
                   toggleCopyMessage();
                 };
+
+                btDropMenu.innerHTML = snippetLang;
+                dropMenu.classList.remove("show");
+
               }
+
             });
 
-            if (codeSnippetList.length > 1)
-              snippetToggler.appendChild(snippetToggleButton);
+            if (codeSnippetList.length > 1) {
+              dropMenu.appendChild(inputSnippetSelector);
+              dropMenu.appendChild(lblSnippetSelector);
+            } else {
+              lblSnippetSelector.style.color = "#fafafa";
+              dropMenuContainer.appendChild(lblSnippetSelector);
+            }
 
-            if (codeSnippetList.length <= 1)
-              snippetToggleLabel.style.color = "#fafafa";
-
-            snippetToggleLabel.innerHTML = snippetLang;
-            snippetToggler.appendChild(snippetToggleLabel);
+            lblSnippetSelector.innerHTML = snippetLang;
 
             snippet.id = snippetLang + i;
 
             if (j === 0) {
-              showSnippet(snippet);
-              snippetToggleButton.checked = true;
+              updateActiveSelector(dropMenu, lblSnippetSelector);
+              updateActiveSnippet(codeSnippetList, snippet);
+              inputSnippetSelector.checked = true;
+              btDropMenu.innerHTML = snippetLang;
+              copyButton.onclick = function () {
+                const text = collectTextCodes(snippet.firstChild);
+                navigator.clipboard.writeText(text);
+                toggleCopyMessage();
+              }
             }
           }
         );
 
-        styleSnippet(snippet, snippetLang == "Text" ? true : false);
-
-        if (j === 0) {
-          copyButton.onclick = function () {
-            let text = collectTextCodes(snippet.firstChild);
-            navigator.clipboard.writeText(text);
-            toggleCopyMessage();
-          };
-        }
+        styleSnippet(snippet, snippetLang === "Text", snippetLang === "PseudoCode");
       }
     });
 
-    codeContainer.insertBefore(snippetToggler, snippetContainer);
+    codeContainer.insertBefore(dropMenuContainer, snippetContainer);
 
-    codeContainer.insertBefore(header, snippetToggler);
+    codeContainer.insertBefore(header, dropMenuContainer);
   }
+}
+
+function updateActiveSelector(dropMenu, current) {
+
+  const labels = dropMenu.querySelectorAll("label");
+
+  for (var i = 0; i < labels.length; i++) {
+    labels[i].style.display = "block";
+  }
+  if (dropMenu.children.length > 0)
+    current.style.display = "none";
 }
 
 function toggleCopyMessage() {
@@ -115,46 +156,42 @@ function findSnippetLanguage(snippet) {
   return snippetClassNames[languageIndex] ? snippetClassNames[languageIndex] : "Text";
 }
 
-function showSnippet(syntaxWrapper) {
-  syntaxWrapper.style.display = "block";
-}
-
-function hideAllSnippets(syntaxWrapperList) {
-  for (var i = 0; i < syntaxWrapperList.length; i++) {
-    syntaxWrapperList[i].style.display = "none";
+function updateActiveSnippet(codeSnippetList, currentSnippet) {
+  for (var i = 0; i < codeSnippetList.length; i++) {
+    codeSnippetList[i].style.display = "none";
   }
+  if (currentSnippet)
+    currentSnippet.style.display = "block";
 }
 
-function styleSnippet(snippet, isSimpleText) {
+function styleSnippet(snippet, isSimpleText, isPseudoCode) {
 
-  let codeLines = snippet.innerHTML.split("\n");
-  let codeViewContents = createCodeViewContents(codeLines, isSimpleText);
+  const codeLines = snippet.innerHTML.split("\n");
+  const codeViewContents = createCodeViewContents(codeLines, isSimpleText, isPseudoCode);
 
   snippet.innerHTML = "";
   snippet.appendChild(codeViewContents);
 
 }
 
-function createCodeViewContents(codeLines, isSimpleText) {
+function createCodeViewContents(codeLines, isSimpleText, isPseudoCode) {
   var codeWrap = createCodeWrap();
 
   createCodeTableView(codeWrap, (table, tBody) => {
 
-    if (!isSimpleText) {
+    for (var lineIndex = 0; lineIndex < codeLines.length; lineIndex++) {
 
-      for (var lineIndex = 0; lineIndex < codeLines.length; lineIndex++) {
-        let line = codeLines[lineIndex];
-        line = styleAllSensitiveWords(line);
-        insertLine(tBody, line, lineIndex);
-      }
+      let line = codeLines[lineIndex];
 
-    } else {
-
-      for (var lineIndex = 0; lineIndex < codeLines.length; lineIndex++) {
-        let line = codeLines[lineIndex];
+      if (isSimpleText) {
         line = styleAsText(line);
-        insertLine(tBody, line, lineIndex);
+      } else if (isPseudoCode) {
+        line = styleAsPseudo(line);
+      } else {
+        line = styleAsCode(line);
       }
+
+      insertLine(tBody, line, lineIndex);
 
     }
 
@@ -169,7 +206,12 @@ function styleAsText(textLine) {
   return textLine;
 }
 
-function styleAllSensitiveWords(textLine) {
+function styleAsPseudo(textLine) {
+  textLine = styleSensitiveWords(textLine, pseudo, "pseudo");
+  return textLine;
+}
+
+function styleAsCode(textLine) {
   textLine = styleSensitiveWords(textLine, string, "string");
   textLine = styleSensitiveWords(textLine, keyword, "keyword");
   textLine = styleSensitiveWords(textLine, className, "class-name");
