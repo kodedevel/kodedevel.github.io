@@ -6,7 +6,7 @@
       "title": "نگاهی به لیست (List) در برنامه نویسی",
       "description": "از لیست (List) در برنامه نویسی برای نگهداری عناصری از نوع یکسان استفاده می کنیم، در لیست بر خلاف آرایه ها که طول ثابتی دارن، میتونیم عناصر رو ازش حذف یا بهش اضافه کنیم که طول آن با حذف و اضافه کردن عناصر تغییر میکنه.",
       "datePublished": "2026-06-12",
-      "lastModified": "2026-06-17",
+      "lastModified": "2026-07-11",
       "imgCover": "/resources/image/data-structure/cover_list.png",
       "link": "/post/data-structure/list.html"
     },
@@ -14,7 +14,7 @@
       "title": "لیست پیوندی (LinkedList) در برنامه نویسی",
       "description": "لیست پیوندی (LinkedList) چیست؟‌ نگاهی کامل به لیست پیوندی در زبان های برنامه نویسی و پیاده سازی آن، به همراه مثال های عملی از لیست های پیوندی (LinkedList) پیاده سازی شده در زبان های برنامه نویسی.",
       "datePublished": "2026-06-15",
-      "lastModified": "",
+      "lastModified": "2026-07-11",
       "imgCover": "/resources/image/data-structure/cover_linkedlist.png",
       "link": "/post/data-structure/linkedlist.html"
     },
@@ -22,7 +22,7 @@
       "title": "صف (Queue) در برنامه نویسی",
       "description": "صف (Queue) چیست؟ صف یکی از پیاده سازی های ساختار داده است که دسترسی به عناصر آن یک طرفه است و اولین عنصری که اضافه میشه اولین عنصری است که صدا زده میشه و تا زمانی که اولین عنصر حذف نشده باشه به سایر عناصر دسترسی نداریم، در این مطلب به بررسی صف به همراه مثال های عملی می پردازیم.",
       "datePublished": "2026-06-18",
-      "lastModified": "",
+      "lastModified": "2026-07-11",
       "imgCover": "/resources/image/data-structure/cover_queue.png",
       "link": "/post/data-structure/queue.html"
     },
@@ -30,7 +30,7 @@
       "title": "پشته (Stack) در برنامه نویسی",
       "description": "پشته (Stack) چیست؟ استک یک پیاده سازی یک طرفه در ساختار داده است، در استک مانند لیست به عناصر با index دسترسی نداریم و تنها به آخرین عنصری که بهش اضافه کردیم میتونیم دسترسی داشته باشیم؛ در این مطلب به بررسی عمیق، پیاده سازی و استفاده از استک می پردازیم.",
       "datePublished": "2026-06-18",
-      "lastModified": "",
+      "lastModified": "2026-07-11",
       "imgCover": "/resources/image/data-structure/cover_stack.png",
       "link": "/post/data-structure/stack.html"
     },
@@ -38,15 +38,15 @@
       "title": "نگاهی عمیق به map در برنامه نویسی",
       "description": "map در برنامه نویسی چیست؟ map یک ساختار داده است که با استفاده از هش کد پیاده میشه، در جستجو کردن عناصر map بسیار سریع تر از بسیاری از پیاده سازی های ساختار داده از جمله لیست و لیست پیوندی است، map با استفاده از هش کد (hash code) ها پیاده سازی میشه؛ در این مطلب به بررسی و پیاده سازی کامل و عمیق map در برنامه نویسی می پردازیم.",
       "datePublished": "2026-06-30",
-      "lastModified": "2026-07-03",
+      "lastModified": "2026-07-11",
       "imgCover": "/resources/image/data-structure/cover_map.png",
       "link": "/post/data-structure/map.html"
     },
     {
       "title": "پیاده سازی و استفاده از set در برنامه نویسی",
       "description": "در برنامه نویسی، set یک پیاده سازی از ساختمان داده است که عناصر تکراری رو نگهداری نمیکنه، اگه یک ست از طریق هش کد ها پیاده شده باشه بهش HashSet میگیم، در این مطلب به بررسی، پیاده سازی و استفاده از set در زبان های برنامه نویسی می پردازیم.",
-      "datePublished": "2026-07-03",
-      "lastModified": "",
+      "datePublished": "2026-07-02",
+      "lastModified": "2026-07-11",
       "imgCover": "/resources/image/data-structure/cover_set.png",
       "link": "/post/data-structure/set.html"
     }

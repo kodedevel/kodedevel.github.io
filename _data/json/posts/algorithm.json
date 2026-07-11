@@ -14,7 +14,7 @@
       "title": "مرتبه ی بزرگی (O) و پیچیدگی زمان (Time Complexity)",
       "description": "چطور پیچیدگی زمان الگوریتم ها رو حساب کنیم؟ در این مطلب به نحوه ی محاسبه ی پیچیدگی زمان الگوریتم ها در برنامه نویسی و بهبود الگوریتم به طور جامع می پردازیم.",
       "datePublished": "2026-07-08",
-      "lastModified": "",
+      "lastModified": "2026-07-11",
       "imgCover": "/resources/image/algorithm/cover_time_complexity.png",
       "link": "/post/algorithm/time-complexity.html"
     }
