@@ -33,7 +33,13 @@ layout: default
       </li>
     </ul>
   </nav>
-
+  <aside class="note">
+    <p class="note-head">توجه</p>
+    <p>در حال حاضر تمرکز اصلی سایت روی زبان برنامه نویسی جاوا و کاتلین است، اما توضیح و منطق
+      مطلب فعلی وابسته به زبان برنامه نویسی خاصی نیست و بین زبان های برنامه نویسی، یکیه ، بنابراین مثال ها رو علاوه بر
+      جاوا و کاتلین با <strong>جاوااسکریپت</strong> و <strong>پایتون</strong> هم اوردم تا بدرد توسعه دهندگان جاوااسکریپت
+      و پایتون هم بخوره.</p>
+  </aside>
   <section id="p0">
     <h2>تعریف set</h2>
 
@@ -300,6 +306,119 @@ class MyHashSet&lt;E&gt; {
     }
 }
         </pre>
+        <pre class="snippet JavaScript">
+class MyHashSet {
+    constructor() {
+        this.map = new MyHashMap();
+    }
+
+    add(e) {
+        if (this.map.containsKey(e)) return false;
+
+        this.map.put(e, null);
+        return true;
+    }
+
+    contains(e) {
+        return this.map.containsKey(e);
+    }
+
+    remove(e) {
+        if (!this.contains(e)) return false;
+
+        this.map.remove(e);
+        return true;
+    }
+
+    getSize() {
+        return this.map.getSize();
+    }
+
+    isEmpty() {
+        return this.map.isEmpty();
+    }
+
+    toArray() {
+        const size = this.map.getSize();
+        const elements = new Array(size);
+
+        const entries = this.map.toArray();
+
+        for (let i = 0; i &lt; entries.length; i++) {
+            elements[i] = entries[i].getKey();
+        }
+
+        return elements;
+    }
+
+    toString() {
+        let sb = "[";
+        const array = this.toArray();
+
+        for (let i = 0; i &lt; array.length; i++) {
+            sb += array[i];
+            if (i &lt; array.length - 1) {
+                sb += ", ";
+            }
+        }
+
+        sb += "]";
+        return sb;
+    }
+}
+        </pre>
+        <pre class="snippet Python">
+class MyHashSet:
+
+    def __init__(self):
+        self.map = MyHashMap()
+
+    def add(self, e):
+        if self.map.containsKey(e): 
+            return False
+
+        self.map.put(e, None)
+        return True
+
+    def contains(self, e):
+        return self.map.containsKey(e)
+
+    def remove(self, e):
+        if not self.contains(e): 
+            return False
+
+        self.map.remove(e)
+        return True
+
+    def getSize(self):
+        return self.map.getSize()
+
+    def isEmpty(self):
+        return self.map.isEmpty()
+
+    def toArray(self):
+        size = self.map.getSize()
+        elements = [None] * size
+
+        entries = self.map.toArray()
+
+        for i in range(len(entries)):
+            elements[i] = entries[i].getKey()
+
+        return elements
+
+    def __str__(self):
+        sb = "["
+        array = self.toArray()
+
+        for i in range(len(array)):
+            sb += str(array[i])
+            if i &lt; len(array) - 1:
+                sb += ", "
+
+        sb += "]"
+        return sb
+        </pre>
       </div>
     </div>
 
@@ -343,6 +462,36 @@ val cities: MyHashSet&lt;String&gt; = MyHashSet()
     cities.remove("Arak")
 
     println(cities)
+        </pre>
+        <pre class="snippet JavaScript">
+let cities = new MyHashSet();
+
+cities.add("Tehran");
+cities.add("Arak");
+cities.add("Qom");
+cities.add("Hamadan");
+cities.add("Mashhad");
+cities.add("Tehran");
+
+cities.remove("Hamadan");
+cities.remove("Arak");
+
+console.log(cities.toString());
+        </pre>
+        <pre class="snippet Python">
+cities = MyHashSet()
+
+cities.add("Tehran")
+cities.add("Arak")
+cities.add("Qom")
+cities.add("Hamadan")
+cities.add("Mashhad")
+cities.add("Tehran")
+
+cities.remove("Hamadan")
+cities.remove("Arak")
+
+print(cities)
         </pre>
       </div>
     </div>

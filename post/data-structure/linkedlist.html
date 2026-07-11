@@ -36,6 +36,14 @@ layout: default
     </ul>
   </nav>
 
+  <aside class="note">
+    <p class="note-head">توجه</p>
+    <p>در حال حاضر تمرکز اصلی سایت روی زبان برنامه نویسی جاوا و کاتلین است، اما توضیح و منطق
+      مطلب فعلی وابسته به زبان برنامه نویسی خاصی نیست و بین زبان های برنامه نویسی، یکیه ، بنابراین مثال ها رو علاوه بر
+      جاوا و کاتلین با <strong>جاوااسکریپت</strong> و <strong>پایتون</strong> هم اوردم تا بدرد توسعه دهندگان جاوااسکریپت
+      و پایتون هم بخوره.</p>
+  </aside>
+
   <section id="p0">
     <h2>بررسی لیست پیوندی</h2>
 
@@ -683,6 +691,228 @@ class MyLinkedList&lt;E&gt; {
    private data class Node&lt;E&gt;(val element: E, var next: Node&lt;E&gt;? = null, var prev: Node&lt;E&gt;? = null)
 }
         </pre>
+        <pre class="snippet JavaScript">
+class MyLinkedList {
+
+    static Node = class {
+        constructor(element, next, prev) {
+            this.element = element;
+            this.next = next;
+            this.prev = prev;
+        }
+    };
+
+    constructor() {
+        this.firstNode = null;
+        this.lastNode = null;
+        this.size = 0;
+    }
+
+    isEmpty() {
+        return this.size === 0;
+    }
+
+    getSize() {
+        return this.size;
+    }
+
+    addFirst(element) {
+        const newNode = new MyLinkedList.Node(element, null, null);
+
+        if (this.isEmpty()) {
+            this.firstNode = newNode;
+            this.lastNode = newNode;
+        } else {
+            this.firstNode.prev = newNode;
+            newNode.next = this.firstNode;
+            this.firstNode = newNode;
+        }
+
+        this.size++;
+    }
+
+    addLast(element) {
+        const newNode = new MyLinkedList.Node(element, null, null);
+
+        if (this.isEmpty()) {
+            this.firstNode = newNode;
+            this.lastNode = newNode;
+        } else {
+            this.lastNode.next = newNode;
+            newNode.prev = this.lastNode;
+            this.lastNode = newNode;
+        }
+
+        this.size++;
+    }
+
+    getFirst() {
+        if (this.isEmpty()) throw new Error("The LinkedList is empty");
+        return this.firstNode.element;
+    }
+
+    getLast() {
+        if (this.isEmpty()) throw new Error("The LinkedList is empty");
+        return this.lastNode.element;
+    }
+
+    get(index) {
+        if (index &lt; 0 || index &gt; this.size - 1) {
+            throw new RangeError("The index should be between 0 and " + (this.size - 1));
+        }
+
+        let node;
+
+        if (this.size === 1) {
+            node = this.firstNode;
+        } else {
+            let count = 0;
+            let currentNode = this.firstNode;
+            while (count !== index) {
+                currentNode = currentNode.next;
+                count++;
+            }
+            node = currentNode;
+        }
+
+        return node.element;
+    }
+
+    removeFirst() {
+        if (this.isEmpty()) throw new Error("The list is empty");
+
+        let removedNode;
+
+        if (this.size === 1) {
+            removedNode = this.firstNode;
+            this.firstNode = null;
+            this.lastNode = null;
+        } else {
+            removedNode = this.firstNode;
+            this.firstNode = this.firstNode.next;
+            this.firstNode.prev = null;
+        }
+
+        this.size--;
+        return removedNode.element;
+    }
+
+    add(index, element) {
+        // TODO Left as an exercise
+        return null;
+    }
+
+    remove(index) {
+        // TODO Left as an exercise
+        return null;
+    }
+
+    removeLast() {
+        // TODO Left as an exercise
+        return null;
+    }
+}
+        </pre>
+        <pre class="snippet Python">
+class MyLinkedList:
+    # Inner Node class definition
+    class Node:
+        def __init__(self, element, next_node=None, prev_node=None):
+            self.element = element
+            self.next = next_node
+            self.prev = prev_node
+
+    def __init__(self):
+        self.firstNode = None
+        self.lastNode = None
+        self.size = 0
+
+    def isEmpty(self):
+        return self.size == 0
+
+    def getSize(self):
+        return self.size
+
+    def addFirst(self, element):
+        newNode = self.Node(element, None, None)
+
+        if self.isEmpty():
+            self.firstNode = newNode
+            self.lastNode = newNode
+        else:
+            self.firstNode.prev = newNode
+            newNode.next = self.firstNode
+            self.firstNode = newNode
+
+        self.size += 1
+
+    def addLast(self, element):
+        newNode = self.Node(element, None, None)
+
+        if self.isEmpty():
+            self.firstNode = newNode
+            self.lastNode = newNode
+        else:
+            self.lastNode.next = newNode
+            newNode.prev = self.lastNode
+            self.lastNode = newNode
+
+        self.size += 1
+
+    def getFirst(self):
+        if self.isEmpty(): 
+            raise ValueError("The LinkedList is empty")
+        return self.firstNode.element
+
+    def getLast(self):
+        if self.isEmpty(): 
+            raise ValueError("The LinkedList is empty")
+        return self.lastNode.element
+
+    def get(self, index):
+        if index &lt; 0 or index &gt; self.size - 1:
+            raise IndexError("The index should be between 0 and " + str(self.size - 1))
+
+        if self.size == 1:
+            node = self.firstNode
+        else:
+            count = 0
+            currentNode = self.firstNode
+            while count != index:
+                currentNode = currentNode.next
+                count += 1
+            node = currentNode
+
+        return node.element
+
+    def removeFirst(self):
+        if self.isEmpty(): 
+            raise ValueError("The list is empty")
+
+        if self.size == 1:
+            removedNode = self.firstNode
+            self.firstNode = None
+            self.lastNode = None
+        else:
+            removedNode = self.firstNode
+            self.firstNode = self.firstNode.next
+            self.firstNode.prev = None
+
+        self.size -= 1
+        return removedNode.element
+
+    def add(self, index, element):
+        # TODO Left as an exercise
+        return None
+
+    def remove(self, index):
+        # TODO Left as an exercise
+        return None
+
+    def removeLast(self):
+        # TODO Left as an exercise
+        return None
+        </pre>
       </div>
     </div>
 
@@ -744,6 +974,53 @@ while(!colors.isEmpty()){
   val c = colors.removeLast()
   println(c)
 }
+        </pre>
+        <pre class="snippet JavaScript">
+let colors = new MyLinkedList();
+colors.add(0, "Blue"); // Assuming add(index, element) implementation
+colors.add(1, "Pink");
+colors.add(2, "Purple");
+colors.addFirst("Cyan");
+colors.add(1, "Red");
+colors.removeLast();
+colors.addLast("Yellow");
+
+console.log("Display colors ");
+for (let i = 0; i &lt; colors.getSize(); i++) {
+    let c = colors.get(i);
+    process.stdout.write(c + " ");
+}
+console.log(); // New line
+
+console.log("Remove and Display colors backward: ");
+
+while (!colors.isEmpty()) {
+    let c = colors.removeLast();
+    console.log(c);
+}
+
+        </pre>
+        <pre class="snippet Python">
+colors = MyLinkedList()
+colors.add(0, "Blue")
+colors.add(1, "Pink")
+colors.add(2, "Purple")
+colors.addFirst("Cyan")
+colors.add(1, "Red")
+colors.removeLast()
+colors.addLast("Yellow")
+
+print("Display colors ")
+for i in range(0, colors.getSize()):
+    c = colors.get(i)
+    print(c + " ", end="")
+print()
+
+print("Remove and Display colors backward: ")
+
+while not colors.isEmpty():
+    c = colors.removeLast()
+    print(c)
         </pre>
       </div>
     </div>

@@ -210,6 +210,70 @@ class MyQueue&lt;E&gt;() {
     }
 }
         </pre>
+        <pre class="snippet JavaScript">
+class MyQueue {
+    constructor(elements = null) {
+        this.list = new MyLinkedList();
+        
+        if (elements !== null) {
+            for (let i = 0; i &lt; elements.length; i++) {
+                this.enqueue(elements[i]);
+            }
+        }
+    }
+
+    enqueue(e) {
+        this.list.addLast(e);
+    }
+
+    dequeue() {
+        if (this.isEmpty()) return null;
+        return this.list.removeFirst();
+    }
+
+    peek() {
+        if (this.isEmpty()) return null;
+        return this.list.getFirst();
+    }
+
+    getSize() {
+        return this.list.getSize();
+    }
+
+    isEmpty() {
+        return this.list.isEmpty();
+    }
+}
+        </pre>
+        <pre class="snippet Python">
+class MyQueue:
+
+    def __init__(self, elements=None):
+        self.list = MyLinkedList()
+        
+        if elements is not None:
+            for i in range(len(elements)):
+                self.enqueue(elements[i])
+
+    def enqueue(self, e):
+        self.list.addLast(e)
+
+    def dequeue(self):
+        if self.isEmpty(): 
+            return None
+        return self.list.removeFirst()
+
+    def peek(self):
+        if self.isEmpty(): 
+            return None
+        return self.list.getFirst()
+
+    def getSize(self):
+        return self.list.getSize()
+
+    def isEmpty(self):
+        return self.list.isEmpty()
+        </pre>
       </div>
     </div>
 
@@ -284,6 +348,84 @@ fun getSize(file: File): Long {
 
     return size
 }
+        </pre>
+
+        <pre class="snippet JavaScript">
+const fs = require('fs');
+const path = require('path');
+
+function getSize(file) {
+    let directories = new MyQueue();
+    let size = 0;
+
+    // Get file/directory stats
+    let stats = fs.statSync(file);
+
+    if (stats.isDirectory()) {
+        directories.enqueue(file);
+
+        while (!directories.isEmpty()) {
+            let directory = directories.dequeue();
+            let files = null;
+
+            try {
+                // Read all contents inside the directory
+                files = fs.readdirSync(directory);
+            } catch (err) {
+                // Handle restricted/permission-denied folders safely
+                files = null;
+            }
+
+            for (let i = 0; files !== null &amp;&amp; i &lt; files.length; i++) {
+                let fullPath = path.join(directory, files[i]);
+                let fStats = fs.statSync(fullPath);
+
+                if (fStats.isDirectory()) {
+                    directories.enqueue(fullPath);
+                } else {
+                    size += fStats.size;
+                }
+            }
+        }
+    } else {
+        size += stats.size;
+    }
+
+    return size;
+}
+
+        </pre>
+        <pre class="snippet Python">
+import os
+
+def getSize(file_path):
+    directories = MyQueue()
+    size = 0
+
+    if os.path.isdir(file_path):
+        directories.enqueue(file_path)
+
+        while not directories.isEmpty():
+            directory = directories.dequeue()
+            files = None
+
+            try:
+                # List items inside directory
+                files = os.listdir(directory)
+            } catch OSError:
+                files = None
+
+            for i in range(0, len(files) if files is not None else 0):
+                full_path = os.path.join(directory, files[i])
+                
+                if os.path.isdir(full_path):
+                    directories.enqueue(full_path)
+                else:
+                    size += os.path.getsize(full_path)
+    else:
+        size += os.path.getsize(file_path)
+
+    return size
         </pre>
       </div>
     </div>

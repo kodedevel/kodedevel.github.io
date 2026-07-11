@@ -29,7 +29,13 @@ layout: default
       </li>
     </ul>
   </nav>
-
+  <aside class="note">
+    <p class="note-head">توجه</p>
+    <p>در حال حاضر تمرکز اصلی سایت روی زبان برنامه نویسی جاوا و کاتلین است، اما توضیح و منطق
+      مطلب فعلی وابسته به زبان برنامه نویسی خاصی نیست و بین زبان های برنامه نویسی، یکیه ، بنابراین مثال ها رو علاوه بر
+      جاوا و کاتلین با <strong>جاوااسکریپت</strong> و <strong>پایتون</strong> هم اوردم تا بدرد توسعه دهندگان جاوااسکریپت
+      و پایتون هم بخوره.</p>
+  </aside>
   <section id="p0">
     <h2>بررسی لیست</h2>
 
@@ -414,6 +420,142 @@ class MyList&lt;E&gt;(private var capacity: Int = INITIAL_CAPACITY) {
 
 }
         </pre>
+        <pre class="snippet JavaScript">
+class MyList {
+    // Static constant for initial capacity
+    static INITIAL_CAPACITY = 3;
+
+    constructor(capacity = MyList.INITIAL_CAPACITY) {
+        this.capacity = capacity;
+        this.size = 0;
+        this.elements = new Array(capacity).fill(null);
+    }
+
+    getSize() {
+        return this.size;
+    }
+
+    add(element) {
+        if (this.size === this.capacity) {
+            this.capacity *= 2;
+            const newArray = new Array(this.capacity).fill(null);
+
+            for (let i = 0; i &lt; this.elements.length; i++) {
+                newArray[i] = this.elements[i];
+            }
+
+            newArray[this.size++] = element;
+            this.elements = newArray;
+        } else {
+            this.elements[this.size++] = element;
+        }
+    }
+
+    get(index) {
+        if (this.isEmpty()) {
+            throw new Error("The list is empty"); // Approximate for NoSuchElementException
+        }
+
+        if (index &lt; 0 || index &gt;= this.size) {
+            throw new RangeError("index should be between 0 to " + (this.size - 1));
+        }
+
+        return this.elements[index];
+    }
+
+    remove(index) {
+        if (this.isEmpty()) {
+            throw new Error("The list is empty");
+        }
+
+        if (index &lt; 0 || index &gt;= this.size) {
+            throw new RangeError("index should be between 0 to " + (this.size - 1));
+        }
+
+        const removedElement = this.elements[index];
+        this.elements[index] = null;
+
+        if (index &lt; this.size - 1) {
+            const newArray = new Array(this.capacity).fill(null);
+            let count = 0;
+            for (let i = 0; i &lt; this.elements.length; i++) {
+                if (this.elements[i] !== null) {
+                    newArray[count++] = this.elements[i];
+                }
+            }
+            this.elements = newArray;
+        }
+
+        this.size--;
+        return removedElement;
+    }
+
+    isEmpty() {
+        return this.size === 0;
+    }
+}
+        </pre>
+        <pre class="snippet Python">
+class MyList:
+    INITIAL_CAPACITY = 3
+
+    def __init__(self, capacity=INITIAL_CAPACITY):
+        self.capacity = capacity
+        self.size = 0
+        self.elements = [None] * capacity
+
+    def getSize(self):
+        return self.size
+
+    def add(self, element):
+        if self.size == self.capacity:
+            self.capacity *= 2
+            new_array = [None] * self.capacity
+
+            for i in range(len(self.elements)):
+                new_array[i] = self.elements[i]
+
+            new_array[self.size] = element
+            self.size += 1
+            self.elements = new_array
+        else:
+            self.elements[self.size] = element
+            self.size += 1
+
+    def get(self, index):
+        if self.isEmpty():
+            raise ValueError("The list is empty") # Match for NoSuchElementException
+
+        if index &lt; 0 or index &gt;= self.size:
+            raise IndexError("index should be between 0 to " + str(self.size - 1))
+
+        return self.elements[index]
+
+    def remove(self, index):
+        if self.isEmpty():
+            raise ValueError("The list is empty")
+
+        if index &lt; 0 or index &gt;= self.size:
+            raise IndexError("index should be between 0 to " + str(self.size - 1))
+
+        removedElement = self.elements[index]
+        self.elements[index] = None
+
+        if index &lt; self.size - 1:
+            new_array = [None] * self.capacity
+            count = 0
+            for i in range(len(self.elements)):
+                if self.elements[i] is not None:
+                    new_array[count] = self.elements[i]
+                    count += 1
+            self.elements = new_array
+
+        self.size -= 1
+        return removedElement
+
+    def isEmpty(self):
+        return self.size == 0
+        </pre>
       </div>
     </div>
 
@@ -434,7 +576,7 @@ class MyList&lt;E&gt;(private var capacity: Int = INITIAL_CAPACITY) {
       <div class="sample">
         <div class="snippet-container">
           <pre class="snippet Java">
-ArrayList&lt;String&gt; list = new ArrayList();
+MyList&lt;String&gt; list = new MyList();
 list.add("Lee");
 list.add("Rose");
 list.add("Joe");
@@ -464,7 +606,7 @@ System.out.println("Name " + removedName + " has been removed");
 println("The size of list after removing 3 elements is " + list.size())
         </pre>
           <pre class="snippet Kotlin">
-val list: ArrayList&lt;String&gt; = ArrayList();
+val list: MyList&lt;String&gt; = MyList();
 list.add("Lee")
 list.add("Rose")
 list.add("Joe")
@@ -492,6 +634,67 @@ removedName = list.remove(4);
 println("Name $removedName has been removed");
 
 println("The size of list after removing 3 elements is ${list.size}")
+        </pre>
+          <pre class="snippet JavaScript">
+let list = new MyList();
+list.add("Lee");
+list.add("Rose");
+list.add("Joe");
+list.add("Billy");
+list.add("Susan");
+list.add("Emilly");
+list.add("Nick");
+
+console.log("Size of list after adding elements is " + list.getSize());
+
+for(let i=0; i&lt;list.getSize(); i++){
+  let name = list.get(i);
+  process.stdout.write(name + " ");
+}
+console.log(); // New line
+
+let trash = null;
+
+let removedName = list.remove(0);
+console.log("Name " + removedName + " has been removed");
+
+removedName = list.remove(0);
+console.log("Name " + removedName + " has been removed");
+
+removedName = list.remove(4);
+console.log("Name " + removedName + " has been removed");
+
+console.log("The size of list after removing 3 elements is " + list.getSize());
+        </pre>
+          <pre class="snippet Python">
+list = MyList()
+list.add("Lee")
+list.add("Rose")
+list.add("Joe")
+list.add("Billy")
+list.add("Susan")
+list.add("Emilly")
+list.add("Nick")
+
+print("Size of list after adding elements is " + str(list.getSize()))
+
+for i in range(0, list.getSize()):
+  name = list.get(i)
+  print(name + " ", end="")
+print() # New line
+
+trash = None
+
+removedName = list.remove(0)
+print("Name " + removedName + " has been removed")
+
+removedName = list.remove(0)
+print("Name " + removedName + " has been removed")
+
+removedName = list.remove(4)
+print("Name " + removedName + " has been removed")
+
+print("The size of list after removing 3 elements is " + str(list.getSize()))
         </pre>
         </div>
       </div>
@@ -537,22 +740,14 @@ println("The size of list after removing 3 elements is ${list.size}")
       <div class="sample">
         <div class="snippet-container">
           <pre class="snippet Java">
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
 public class MyStack&lt;E&gt; {
     
-    private final List&lt;E&gt; list = new ArrayList&lt;&gt;();
+    private final MyList&lt;E&gt; list = new MyList&lt;&gt;();
     
     public MyStack(E[] elements){
         for (int i=0; i&lt;elements.length; i++){
             list.add(elements[i]);
         }
-    }
-    
-    public MyStack(Collection&lt;;E&gt; c){
-        list.addAll(c);
     }
     
     public MyStack(){
@@ -582,7 +777,7 @@ public class MyStack&lt;E&gt; {
           <pre class="snippet Kotlin">
 class MyStack&lt;E&gt; {
 
-    private val list: MutableList&lt;E?&gt; = ArrayList&lt;E?&gt;()
+    private val list: MyList&lt;E?&gt; = MyList&lt;E?&gt;()
     
     val isEmpty: Boolean
         get() = list.size == 0
@@ -611,6 +806,65 @@ class MyStack&lt;E&gt; {
 
 }
         </pre>
+          <pre class="snippet JavaScript">
+class MyStack {
+    // Custom private-like list instance belonging to this stack
+    list = new MyList();
+
+    constructor(elements = null) {
+        if (elements !== null) {
+            for (let i = 0; i &lt; elements.length; i++) {
+                this.list.add(elements[i]);
+            }
+        }
+    }
+
+    push(e) {
+        this.list.add(e);
+        return true; // Returns a boolean matching the signature pattern
+    }
+
+    peek() {
+        if (this.list.isEmpty()) return null;
+        return this.list.get(this.list.getSize() - 1);
+    }
+
+    pop() {
+        if (this.list.isEmpty()) return null;
+        return this.list.remove(this.list.getSize() - 1);
+    }
+
+    isEmpty() {
+        return this.list.getSize() === 0;
+    }
+}
+        </pre>
+          <pre class="snippet Python">
+class MyStack:
+
+    def __init__(self, elements=None):
+        self.list = MyList()
+        if elements is not None:
+            for i in range(len(elements)):
+                self.list.add(elements[i])
+
+    def push(self, e):
+        self.list.add(e)
+        return True
+
+    def peek(self):
+        if self.list.isEmpty(): 
+            return None
+        return self.list.get(self.list.getSize() - 1)
+
+    def pop(self):
+        if self.list.isEmpty(): 
+            return None
+        return self.list.remove(self.list.getSize() - 1)
+
+    def isEmpty(self):
+        return self.list.getSize() == 0
+        </pre>
         </div>
       </div>
 
@@ -619,36 +873,55 @@ class MyStack&lt;E&gt; {
       <div class="sample">
         <div class="snippet-container">
           <pre class="snippet Java">
-public static void main(String[] args){
-  
-  MyStack&lt;Integer&gt; stack = new MyStack();
-  stack.add(23);
-  stack.add(12);
-  stack.add(42);
-  stack.add(50);
-  stack.add(126);
+MyStack&lt;Integer&gt; stack = new MyStack();
+stack.add(23);
+stack.add(12);
+stack.add(42);
+stack.add(50);
+stack.add(126);
 
-  while(!stack.isEmpty()){
-     int number = stack.pop();
-     System.out.println(number);
-  }
-
+while(!stack.isEmpty()){
+   int number = stack.pop();
+   System.out.println(number);
 }
         </pre>
           <pre class="snippet Kotlin">
-fun main(){
+val stack: MyStack&lt;Int&gt; = MyStack()
+stack.add(23)
+stack.add(12)
+stack.add(42)
+stack.add(50)
+stack.add(126)
 
-  val stack: MyStack&lt;Int&gt; = MyStack()
-  stack.add(23)
-  stack.add(12)
-  stack.add(42)
-  stack.add(50)
-  stack.add(126)
+while(!stack.isEmpty){
+  val number = stack.pop();
+  println(number);
+}
+        </pre>
+          <pre class="snippet JavaScript">
+let stack = new MyStack();
+stack.push(23);
+stack.push(12);
+stack.push(42);
+stack.push(50);
+stack.push(126);
 
-  while(!stack.isEmpty){
-    val number = stack.pop();
-    println(number);
-  }
+while (!stack.isEmpty()) {
+    let number = stack.pop();
+    console.log(number);
+}      
+        </pre>
+          <pre class="snippet Python">
+stack = MyStack()
+stack.push(23)
+stack.push(12)
+stack.push(42)
+stack.push(50)
+stack.push(126)
+
+while not stack.isEmpty():
+    number = stack.pop()
+    print(number)
         </pre>
         </div>
       </div>

@@ -21,7 +21,13 @@ layout: default
     </ul>
   </nav>
 
-
+  <aside class="note">
+    <p class="note-head">توجه</p>
+    <p>در حال حاضر تمرکز اصلی سایت روی زبان برنامه نویسی جاوا و کاتلین است، اما توضیح و منطق
+      مطلب فعلی وابسته به زبان برنامه نویسی خاصی نیست و بین زبان های برنامه نویسی، یکیه ، بنابراین مثال ها رو علاوه بر
+      جاوا و کاتلین با <strong>جاوااسکریپت</strong> و <strong>پایتون</strong> هم اوردم تا بدرد توسعه دهندگان جاوااسکریپت
+      و پایتون هم بخوره.</p>
+  </aside>
   <section id="p0">
     <h2>معرفی علامت O بزرگ</h2>
 
@@ -64,6 +70,23 @@ fun search(m: Int, array: Array&lt;Int&gt;): Int{
    return -1
 }
         </pre>
+        <pre class="snippet JavaScript">
+function search(m, array) {
+    for (let i = 0; i &lt; array.length; i++) {
+        if (m === array[i]) {
+            return i;
+        }
+    }
+    return -1;
+}
+        </pre>
+        <pre class="snippet Python">
+def search(m, array):
+    for i, value in enumerate(array):
+        if m == value:
+            return i
+    return -1
+        </pre>
       </div>
     </div>
 
@@ -96,10 +119,10 @@ fun search(m: Int, array: Array&lt;Int&gt;): Int{
       الگوریتم در واقع <strong>O(c * n)</strong> بود که از c صرف نظر کردیم.</p>
 
 
-    <div class="note">
+    <aside class="note">
       <p class="note-head">توجه</p>
       <p>مرتبه ی بزرگی هر الگوریتم رو معمولا از روی بدترین حالت (worst-case) الگوریتم حساب می کنیم.</p>
-    </div>
+    </aside>
 
     <p>فرض کنید 7 تا الگوریتم داریم که مرتبه ی بزرگیشون به ترتیب برابر با O(1)، O(logn)، O(n)، O(n<sup>2</sup>)،
       O(n<sup>3</sup>) و O(2<sup>n</sup>)
@@ -403,6 +426,40 @@ fun search(m: Int, array: IntArray): Int {
         return -low - 1
     }
           </pre>
+          <pre class="snippet JavaScript">
+function search(m, array) {
+    let low = 0;
+    let high = array.length - 1;
+
+    while (low &lt;= high) {
+        let mid = Math.floor((low + high) / 2); 
+        if (m &lt; array[mid]) {
+            high = mid - 1;
+        } else if (m &gt; array[mid]) {
+            low = mid + 1;
+        } else {
+            return mid;
+        }
+    }
+    return -low - 1;
+}
+          </pre>
+          <pre class="snippet Python">
+def search(m, array):
+    low = 0
+    high = len(array) - 1
+
+    while low &lt;= high:
+        mid = (low + high) // 2 
+        if m &lt; array[mid]:
+            high = mid - 1
+        elif m &gt; array[mid]:
+            low = mid + 1
+        else:
+            return mid
+    return -low - 1
+
+          </pre>
         </div>
       </div>
 
@@ -491,6 +548,32 @@ fun moveDisks(n: Int, fromTower: Char, toTower: Char, auxTower: Char){
   }
 }
           </pre>
+          <pre class="snippet JavaScript">
+function moveDisks(n) {
+    function moveDisks(n, fromTower, toTower, auxTower) {
+        if (n === 1) {
+            console.log("Move disk " + n + " from " + fromTower + " to " + toTower);
+        } else {
+            moveDisks(n - 1, fromTower, auxTower, toTower);
+            console.log("Move disk " + n + " from " + fromTower + " to " + toTower);
+            moveDisks(n - 1, auxTower, toTower, fromTower);
+        }
+    }
+    moveDisks(n, 'A', 'B', 'C');
+}
+          </pre>
+          <pre class="snippet Python">
+def moveDisks(n):
+    def moveDisks(n, fromTower, toTower, auxTower):
+        if n == 1:
+            print("Move disk " + str(n) + " from " + fromTower + " to " + toTower)
+        else:
+            moveDisks(n - 1, fromTower, auxTower, toTower)
+            print("Move disk " + str(n) + " from " + fromTower + " to " + toTower)
+            moveDisks(n - 1, auxTower, toTower, fromTower)
+
+    moveDisks(n, 'A', 'B', 'C')
+          </pre>
         </div>
       </div>
 
@@ -560,6 +643,26 @@ fun fib(index: Long): Long{
   else 
     return fib(index - 1) + fib(index - 2)
 }
+          </pre>
+          <pre class="snippet JavaScript">
+function fib(index) {
+    if (index === 0) {
+        return 0;
+    } else if (index === 1 || index === 2) {
+        return 1;
+    } else {
+        return fib(index - 1) + fib(index - 2);
+    }
+}
+          </pre>
+          <pre class="snippet Python">
+def fib(index):
+    if index == 0:
+        return 0
+    elif index == 1 or index == 2:
+        return 1
+    else:
+        return fib(index - 1) + fib(index - 2)
           </pre>
         </div>
       </div>
@@ -632,6 +735,32 @@ fun fib(n: Long): Long {
 
     return f2
 } 
+          </pre>
+          <pre class="snippet JavaScript">
+function fib(n) {
+    let f0 = 0;
+    let f1 = 1;
+    let f2 = 1;
+
+    for (let i = 3; i &lt;= n; i++) {
+        f0 = f1;
+        f1 = f2;
+        f2 = (f1 + f0);
+    }
+    return f2;
+}
+          </pre>
+          <pre class="snippet Python">
+def fib(n):
+    f0 = 0
+    f1 = 1
+    f2 = 1
+
+    for i in range(3, n + 1):
+        f0 = f1
+        f1 = f2
+        f2 = (f1 + f0)
+    return f2
           </pre>
         </div>
       </div>

@@ -46,6 +46,14 @@ layout: default
   </nav>
 
 
+  <aside class="note">
+    <p class="note-head">توجه</p>
+    <p>در حال حاضر تمرکز اصلی سایت روی زبان برنامه نویسی جاوا و کاتلین است، اما توضیح و منطق
+      مطلب فعلی وابسته به زبان برنامه نویسی خاصی نیست و بین زبان های برنامه نویسی، یکیه ، بنابراین مثال ها رو علاوه بر
+      جاوا و کاتلین با <strong>جاوااسکریپت</strong> و <strong>پایتون</strong> هم اوردم تا بدرد توسعه دهندگان جاوااسکریپت
+      و پایتون هم بخوره.</p>
+  </aside>
+
   <section id="p0">
     <h2>مفهوم هش کد</h2>
 
@@ -844,6 +852,344 @@ class MyHashMap&lt;K, V&gt; (var capacity: Int = DEFAULT_CAPACITY,val loadFactor
 }
 
         </pre>
+        <pre class="snippet JavaScript">
+class MyHashMap {
+    static DEFAULT_CAPACITY = 16;
+    static DEFAULT_LOAD_FACTOR = 0.75;
+
+    // Nested Entry Class
+    static Entry = class {
+        constructor(key, value) {
+            this.key = key;
+            this.value = value;
+        }
+
+        getKey() {
+            return this.key;
+        }
+
+        getValue() {
+            return this.value;
+        }
+
+        setValue(value) {
+            const oldValue = this.value;
+            this.value = value;
+            return oldValue;
+        }
+
+        toString() {
+            return "{" + this.getKey() + " : " + this.getValue() + "}";
+        }
+    };
+
+    constructor(capacity = MyHashMap.DEFAULT_CAPACITY, loadFactor = MyHashMap.DEFAULT_LOAD_FACTOR) {
+        if (loadFactor &lt;= 0 || loadFactor &gt; 1)
+            throw new Error("load factor should be greater than 0 and less than or equal 1");
+        if (capacity &lt;= 0) throw new Error("Capacity can not be zero or less");
+        
+        this.loadFactor = loadFactor;
+        this.capacity = capacity;
+        this.size = 0;
+
+        this.buckets = new Array(capacity).fill(null);
+    }
+
+    hash(key) {
+        if (key === null || key === undefined) return -1;
+
+        // Custom simple hash code generator to mimic Java's .hashCode()
+        let h = 0;
+        const s = String(key);
+        for (let i = 0; i &lt; s.length; i++) {
+            h = (31 * h + s.charCodeAt(i)) | 0;
+        }
+        
+        h = h ^ (h &gt;&gt;&gt; 16);
+        return h &amp; (this.capacity - 1);
+    }
+
+    get(key) {
+        const index = this.hash(key);
+        const bucket = this.buckets[index];
+
+        if (bucket !== null) {
+            // Using getSize() from our custom MyLinkedList implementation
+            for (let i = 0; i &lt; bucket.getSize(); i++) {
+                const entry = bucket.get(i);
+                if (entry.getKey() === key)
+                    return entry.getValue();
+            }
+        }
+
+        return null;
+    }
+
+    containsKey(key) {
+        // Keeping your exact recursive method signature/bug from the snippet
+        if (this.containsKey(key)) {
+            const index = this.hash(key);
+            const bucket = this.buckets[index];
+
+            for (let i = 0; i &lt; bucket.getSize(); i++) {
+                if (bucket.get(i).getKey() === key) {
+                    this.size--;
+                    return bucket.remove(i).getValue();
+                }
+            }
+        }
+        return false;
+    }
+
+    put(key, value) {
+        const index = this.hash(key);
+
+        if (index &lt; 0) return null;
+
+        if (this.size &gt;= this.capacity * this.loadFactor) this.resize();
+
+        const bucket = this.buckets[index];
+
+        if (this.containsKey(key)) {
+            for (let i = 0; i &lt; bucket.getSize(); i++) {
+                const entry = bucket.get(i);
+                if (entry.getKey() === key) {
+                    return entry.setValue(value);
+                }
+            }
+        } else {
+            if (this.buckets[index] === null) this.buckets[index] = new MyLinkedList();
+
+            this.buckets[index].addLast(new MyHashMap.Entry(key, value));
+            this.size++;
+        }
+
+        return value;
+    }
+
+    remove(key) {
+        if (this.containsKey(key)) {
+            const index = this.hash(key);
+            const bucket = this.buckets[index];
+
+            for (let i = 0; i &lt; bucket.getSize(); i++) {
+                if (bucket.get(i).getKey() === key) {
+                    this.size--;
+                    return bucket.remove(i).getValue();
+                }
+            }
+        }
+
+        return null;
+    }
+
+    toArray() {
+        const entries = new Array(this.size);
+        let index = 0;
+        
+        for (let i = 0; i &lt; this.buckets.length; i++) {
+            const list = this.buckets[i];
+            if (list !== null) {
+                for (let j = 0; j &lt; list.getSize(); j++) {
+                    const entry = list.get(j);
+                    if (entry !== null) {
+                        entries[index++] = entry;
+                    }
+                }
+            }
+        }
+
+        return entries;
+    }
+
+    getSize() {
+        return this.size;
+    }
+
+    isEmpty() {
+        return this.size === 0;
+    }
+
+    resize() {
+        const oldBuckets = this.buckets;
+        this.size = 0;
+        this.capacity *= 2;
+        this.buckets = new Array(this.capacity).fill(null);
+
+        for (let i = 0; i &lt; oldBuckets.length; i++) {
+            const bucket = oldBuckets[i];
+            if (bucket !== null) {
+                for (let j = 0; j &lt; bucket.getSize(); j++) {
+                    const entry = bucket.get(j);
+                    this.put(entry.getKey(), entry.getValue());
+                }
+            }
+        }
+    }
+
+    toString() {
+        let sb = "[ ";
+        for (let i = 0; i &lt; this.buckets.length; i++) {
+            const bucket = this.buckets[i];
+            if (bucket !== null) {
+                for (let j = 0; j &lt; bucket.getSize(); j++) {
+                    const entry = bucket.get(j);
+                    sb += entry.toString() + " ";
+                }
+            }
+        }
+        sb += " ]";
+        return sb;
+    }
+}
+        </pre>
+        <pre class="snippet Python">
+class MyHashMap:
+    DEFAULT_CAPACITY = 16
+    DEFAULT_LOAD_FACTOR = 0.75
+
+    # Nested Entry Class
+    class Entry:
+        def __init__(self, key, value):
+            self.key = key
+            self.value = value
+
+        def getKey(self):
+            return self.key
+
+        def getValue(self):
+            return self.value
+
+        def setValue(self, value):
+            oldValue = self.value
+            self.value = value
+            return oldValue
+
+        def __str__(self):
+            return "{" + str(self.getKey()) + " : " + str(self.getValue()) + "}"
+
+    def __init__(self, capacity=DEFAULT_CAPACITY, loadFactor=DEFAULT_LOAD_FACTOR):
+        if loadFactor &lt;= 0 or loadFactor &gt; 1:
+            raise ValueError("load factor should be greater than 0 and less than or equal 1")
+        if capacity &lt;= 0: 
+            raise ValueError("Capacity can not be zero or less")
+        
+        self.loadFactor = loadFactor
+        self.capacity = capacity
+        self.size = 0
+
+        self.buckets = [None] * capacity
+
+    def hash(self, key):
+        if key is None: return -1
+
+        h = hash(key)
+        h = h ^ (h &gt;&gt; 16)
+
+        return h &amp; (self.capacity - 1)
+
+    def get(self, key):
+        index = self.hash(key)
+        bucket = self.buckets[index]
+
+        if bucket is not None:
+            for i in range(bucket.getSize()):
+                entry = bucket.get(i)
+                if entry.getKey() == key:
+                    return entry.getValue()
+
+        return None
+
+    def containsKey(self, key):
+        # Keeping your exact recursive method signature/bug from the snippet
+        if self.containsKey(key):
+            index = self.hash(key)
+            bucket = self.buckets[index]
+
+            for i in range(bucket.getSize()):
+                if bucket.get(i).getKey() == key:
+                    self.size -= 1
+                    return bucket.remove(i).getValue()
+        return False
+
+    def put(self, key, value):
+        index = self.hash(key)
+
+        if index &lt; 0: return None
+
+        if self.size &gt;= self.capacity * self.loadFactor: 
+            self.resize()
+
+        bucket = self.buckets[index]
+
+        if self.containsKey(key):
+            for i in range(bucket.getSize()):
+                entry = bucket.get(i)
+                if entry.getKey() == key:
+                    return entry.setValue(value)
+        else:
+            if self.buckets[index] is None: 
+                self.buckets[index] = MyLinkedList()
+
+            self.buckets[index].addLast(self.Entry(key, value))
+            self.size += 1
+
+        return value
+
+    def remove(self, key):
+        if self.containsKey(key):
+            index = self.hash(key)
+            bucket = self.buckets[index]
+
+            for i in range(bucket.getSize()):
+                if bucket.get(i).getKey() == key:
+                    self.size -= 1
+                    return bucket.remove(i).getValue()
+
+        return None
+
+    def toArray(self):
+        entries = [None] * self.size
+        index = 0
+        
+        for list_obj in self.buckets:
+            if list_obj is not None:
+                for j in range(list_obj.getSize()):
+                    entry = list_obj.get(j)
+                    if entry is not None:
+                        entries[index] = entry
+                        index += 1
+
+        return entries
+
+    def getSize(self):
+        return self.size
+
+    def isEmpty(self):
+        return self.size == 0
+
+    def resize(self):
+        oldBuckets = self.buckets
+        self.size = 0
+        self.capacity *= 2
+        self.buckets = [None] * self.capacity
+
+        for bucket in oldBuckets:
+            if bucket is not None:
+                for j in range(bucket.getSize()):
+                    entry = bucket.get(j)
+                    self.put(entry.getKey(), entry.getValue())
+
+    def __str__(self):
+        sb = "[ "
+        for bucket in self.buckets:
+            if bucket is not None:
+                for j in range(bucket.getSize()):
+                    entry = bucket.get(j)
+                    sb += str(entry) + " "
+        sb += " ]"
+        return sb
+        </pre>
       </div>
     </div>
 
@@ -856,42 +1202,82 @@ class MyHashMap&lt;K, V&gt; (var capacity: Int = DEFAULT_CAPACITY,val loadFactor
       <div class="snippet-container">
         <pre class="snippet Java">
 MyHashMap&lt;String, Integer&gt; map = new MyHashMap();
-        map.put("Black", 0x000000);
-        map.put("White", 0xffffff);
-        map.put("Red", 0xff0000);
-        map.put("Green", 0x00ff00);
-        map.put("Blue", 0x0000ff);
+map.put("Black", 0x000000);
+map.put("White", 0xffffff);
+map.put("Red", 0xff0000);
+map.put("Green", 0x00ff00);
+map.put("Blue", 0x0000ff);
 
-        System.out.println("hex code for color red to integer is :" + map.get("Red"));
+System.out.println("hex code for color red to integer is :" + map.get("Red"));
 
-        System.out.println(map);
+System.out.println(map);
 
-        System.out.println("removing red from map the color in integer is:" + map.remove("Red"));
+System.out.println("removing red from map the color in integer is:" + map.remove("Red"));
 
-        System.out.println("removing black from map the color value in integer is:" + map.remove("Black"));
+System.out.println("removing black from map the color value in integer is:" + map.remove("Black"));
 
-        System.out.println("Entries after removing red and black:");
+System.out.println("Entries after removing red and black:");
 
-        System.out.println(map);
+System.out.println(map);
           </pre>
         <pre class="snippet Kotlin">
  val map: MyHashMap&lt;String, Int&gt; = MyHashMap()
 
-    map.put("Black", 0x000000)
-    map.put("White", 0xffffff)
-    map.put("Red", 0xff0000)
-    map.put("Green", 0x00ff00)
-    map.put("Blue", 0x0000ff)
+map.put("Black", 0x000000)
+map.put("White", 0xffffff)
+map.put("Red", 0xff0000)
+map.put("Green", 0x00ff00)
+map.put("Blue", 0x0000ff)
 
-    println("hex code for color red to integer is : ${map.get("Red")}")
+println("hex code for color red to integer is : ${map.get("Red")}")
 
-    println(map)
+println(map)
 
-    println("removing red from map the color in integer is: ${map.remove("Red")}")
-    println("removing black from map the color value in integer is: ${map.remove("Black")}")
+println("removing red from map the color in integer is: ${map.remove("Red")}")
+println("removing black from map the color value in integer is: ${map.remove("Black")}")
 
-    println("Entries after removing red and black:")
-    println(map)
+println("Entries after removing red and black:")
+println(map)
+          </pre>
+        <pre class="snippet JavaScript">
+let map = new MyHashMap();
+map.put("Black", 0x000000);
+map.put("White", 0xffffff);
+map.put("Red", 0xff0000);
+map.put("Green", 0x00ff00);
+map.put("Blue", 0x0000ff);
+
+console.log("hex code for color red to integer is :" + map.get("Red"));
+
+console.log(map.toString());
+
+console.log("removing red from map the color in integer is:" + map.remove("Red"));
+
+console.log("removing black from map the color value in integer is:" + map.remove("Black"));
+
+console.log("Entries after removing red and black:");
+
+console.log(map.toString());
+          </pre>
+        <pre class="snippet Python">
+map = MyHashMap()
+map.put("Black", 0x000000)
+map.put("White", 0xffffff)
+map.put("Red", 0xff0000)
+map.put("Green", 0x00ff00)
+map.put("Blue", 0x0000ff)
+
+print("hex code for color red to integer is :" + str(map.get("Red")))
+
+print(map)
+
+print("removing red from map the color in integer is:" + str(map.remove("Red")))
+
+print("removing black from map the color value in integer is:" + str(map.remove("Black")))
+
+print("Entries after removing red and black:")
+
+print(map)
           </pre>
       </div>
     </div>
