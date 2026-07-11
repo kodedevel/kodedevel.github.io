@@ -46,16 +46,16 @@ layout: default
       اضافه کردن عنصر ها تغییر میکنه.
     </p>
 
-    <div class="note">
+    <p>list در زبان های مختلف با نام های مختلفی پیاده سازی شده مثلا در جاوا و کاتلین به عنوان
+      <strong>ArrayList</strong> پیاده سازی شده و در api قدیمی جاوا به نام <strong>vector</strong> پیاده سازی شده است.
+    </p>
+
+    <aside class="note">
       <p class="note-head">توجه</p>
-      <p>list در زبان های مختلف با نام های مختلفی پیاده سازی شده مثلا در جاوا و کاتلین به عنوان
-        <strong>ArrayList</strong> پیاده سازی شده و در api قدیمی جاوا به نام <strong>vector</strong> پیاده سازی شده است؛
-        همچنین در بعضی از زبان ها (مثل javascript و php) طول آرایه ثابت نیست و از آرایه به
-        عنوان
-        list
-        استفاده میشه.
-      </p>
-    </div>
+      <p>آرایه ها در جاوااسکریپت به طور پیشفرض دینامیکی هستن، یعنی طول آرایه ها در جاوااسکریپت قابل تغییر است، ولی برای
+        اشنایی با عملکرد آرایه دینامیکی، علاوه بر جاوا، کاتلین و پایتون به پیاده سازی list با جاوااسکریپت هم خواهیم
+        پرداخت.</p>
+    </aside>
     <section>
       <h3>ساختار list</h3>
 
@@ -132,7 +132,7 @@ layout: default
 
     <div class="sample">
       <div class="snippet-container">
-        <pre class="snippet">
+        <pre class="snippet PseudoCode">
 function add(element: E){
   
   if size = capacity
@@ -171,7 +171,7 @@ function add(element: E){
 
     <div class="sample">
       <div class="snippet-container">
-        <pre class="snippet">
+        <pre class="snippet PseudoCode">
 function get(index: int): E {  
 
    if index &lt; 0 or index &gt;= size
@@ -189,7 +189,7 @@ function get(index: int): E {
     <p>میتونیم تمام عناصر رو با استفاده از حلقه ها صدا بزنیم.</p>
     <div class="sample">
       <div class="snippet-container">
-        <pre class="snippet">
+        <pre class="snippet PseudoCode">
 for 0 &lt;= i &lt; list.size i++
   e := list.get(i);
   print(e);
@@ -230,7 +230,7 @@ for 0 &lt;= i &lt; list.size i++
 
     <div class="sample">
       <div class="snippet-container">
-        <pre class="snippet">
+        <pre class="snippet PseudoCode">
 function remove(index: int): E {
   if index &lt; 0 or index &gt;= size
     throw IndexOutOfBoundsException
@@ -263,9 +263,11 @@ function remove(index: int): E {
 
     <h2>پیاده سازی لیست در زبان های برنامه نویسی</h2>
 
-    <p>میخوایم یک لیست رو به صورت عملی در زبان های برنامه نویسی (جاوا و کاتلین) پیاده سازی کنیم.</p>
+    <p>میخوایم یک لیست رو به صورت عملی در زبان های برنامه نویسی جاوا، کاتلین، جاوااسکریپت و پایتون پیاده سازی کنیم.</p>
 
     <p>در این پیاده سازی ظرفیت اولیه (INITIAL_CAPACITY) موقع ایجاد یک نمونه از لیست رو برابر 3 قرار دادیم.</p>
+
+
 
     <div class="sample">
       <div class="snippet-container">

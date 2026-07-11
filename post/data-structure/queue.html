@@ -74,7 +74,7 @@ layout: default
 
     <div class="sample">
       <div class="snippet-container">
-        <pre class="snippet">
+        <pre class="snippet PseudoCode">
 function enqueue(e: E){
   linkedList.addLast(e);
 }
@@ -94,7 +94,7 @@ function enqueue(e: E){
 
     <div class="sample">
       <div class="snippet-container">
-        <pre class="snippet">
+        <pre class="snippet PseudoCode">
 function dequeue(): E{
    return linkedList.removeFirst();
 }
@@ -112,7 +112,7 @@ function dequeue(): E{
 
     <div class="sample">
       <div class="snippet-container">
-        <pre class="snippet">
+        <pre class="snippet PseudoCode">
 function peek(): E{
   return linkedList.getFirst();
 }
@@ -127,7 +127,7 @@ function peek(): E{
     <h2>پیاده سازی صف (Queue) در زبان های برنامه نویسی</h2>
 
     <p>میخوایم با استفاده از رابطه ی aggregation یک صف رو با لیست پیوندی که در <a href="linkedlist.html">مطلب قبل</a>
-      پیاده کردیم، پیاده سازی کنیم.</p>
+      پیاده کردیم، با زبان های برنامه نویسی جاوا، کاتلین، جاوااسکریپت و پایتون پیاده سازی کنیم.</p>
 
     <p>در زیر نمودار uml پیاده سازی صف (Queue) اورده شده است.</p>
 
@@ -284,13 +284,15 @@ class MyQueue:
 
 
     <p> مثل خیلی از پیاده سازی های ساختار داده صف (Queue) در کتابخونه های استاندارد زبان های برنامه نویسی پیاده سازی
-      شده است، در اینجا میخوایم به طور عملی از صف (Queue) استفاده کنیم.</p>
+      شده است، در اینجا میخوایم به طور عملی از صف (Queue) که پیاده کردیم، استفاده کنیم.</p>
 
     <p>میخوایم با استفاده از صف (Queue) یک برنامه بنویسیم که اندازه ی کل یک پوشه (پوشه با فایل و پوشه های داخلش) رو حساب
       کرده و نشون بده.</p>
 
     <p> این برنامه رو با استفاده از <a href="/post/algorithm/recursion.html">بازگشتی</a> نوشتیم و حالا
       میخوایم با استفاده از صف (Queue) بدون روش بازگشتی انجام بدیم.</p>
+
+    <p>مثال زیر به چهار زبان جاوا، کاتلین، جاوااسکریپت و پایتون زده شده است.</p>
 
     <div class="sample">
       <div class="snippet-container">
@@ -300,11 +302,11 @@ static long getSize(File file){
 
         long size =0;
         if (file.isDirectory()) {
-            directories.offer(file);
+            directories.enqueue(file);
 
             while (!directories.isEmpty()) {
 
-                File directory = directories.remove();
+                File directory = directories.dequeue();
                 File[] files = directory.listFiles();
 
                 for (int i = 0; files != null &amp;&amp; i &lt; files.length; i++) {
@@ -323,7 +325,7 @@ static long getSize(File file){
         </pre>
         <pre class="snippet Kotlin">
 fun getSize(file: File): Long {
-    val directories: Queue&lt;File&gt; = LinkedList()
+    val directories: MyQueue&lt;File&gt; = MyQueue()
 
     var size: Long = 0
     if (file.isDirectory()) {
@@ -331,11 +333,11 @@ fun getSize(file: File): Long {
         directories.offer(file)
 
         while (!directories.isEmpty()) {
-            val directory = directories.remove()
+            val directory = directories.dequeue()
             val files = directory.listFiles()
 
             var i = 0
-            while (files != null && i &lt; files.size) {
+            while (files != null &amp;&amp; i &lt; files.size) {
                 val f = files[i]
                 if (f.isDirectory()) directories.offer(f)
                 else size += f.length()

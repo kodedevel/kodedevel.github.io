@@ -112,7 +112,7 @@ c := 52
 
     <div class="sample">
       <div class="snippet-container">
-        <pre class="snippet">
+        <pre class="snippet PseudoCode">
 class Entry{
   K key
   V value
@@ -147,7 +147,7 @@ class Entry{
 
     <div class="sample">
       <div class="snippet-container">
-        <pre class="snippet">
+        <pre class="snippet PseudoCode">
 function hash(K key): int{
   
   int h = key.hashcode
@@ -189,7 +189,7 @@ function hash(K key): int{
 
       <div class="sample">
         <div class="snippet-container">
-          <pre class="snippet">
+          <pre class="snippet PseudoCode">
 entries := new LinkedList[capacity]
           </pre>
         </div>
@@ -212,7 +212,7 @@ entries := new LinkedList[capacity]
 
       <div class="sample">
         <div class="snippet-container">
-          <pre class="snippet">
+          <pre class="snippet PseudoCode">
 entries := new Entry[capacity]
           </pre>
         </div>
@@ -244,7 +244,7 @@ entries := new Entry[capacity]
 
     <div class="sample">
       <div class="snippet-container">
-        <pre class="snippet">
+        <pre class="snippet PseudoCode">
 class MyHashMap{
 
   loadFactor := 0.75
@@ -282,13 +282,13 @@ class MyHashMap{
       بیشتر از این مقدار بشه capacity باید افزایش پیدا کنه.</p>
 
 
-    <div class="note">
+    <aside class="note">
       <p class="note-head">
         توجه
       </p>
       <p>در بالا برای loadFactor و capacity از مقادیر پیشفرض استفاده کردیم ولی در پیاده سازی واقعی میتونیم loadFactor و
         capacity رو داخل کانستراکتور مقداردهی کنیم.</p>
-    </div>
+    </aside>
 
   </section>
 
@@ -301,7 +301,7 @@ class MyHashMap{
 
     <div class="sample">
       <div class="snippet-container">
-        <pre class="snippet">
+        <pre class="snippet PseudoCode">
 function get(key: K): V{
   
   index := hash(key)
@@ -332,7 +332,7 @@ function get(key: K): V{
 
     <div class="sample">
       <div class="snippet-container">
-        <pre class="snippet">
+        <pre class="snippet PseudoCode">
 function contains(key: K): boolean{
   
   return get(key) != null
@@ -346,7 +346,7 @@ function contains(key: K): boolean{
 
     <div class="sample">
       <div class="snippet-container">
-        <pre class="snippet">
+        <pre class="snippet PseudoCode">
 function contains(key: K): boolean {
   index := hash(key)
   bucket := buckets[index]
@@ -379,7 +379,7 @@ function contains(key: K): boolean {
 
     <div class="sample">
       <div class="snippet-container">
-        <pre class="snippet">
+        <pre class="snippet PseudoCode">
 function put(key: K, value: V): V{
 
   index := hash(key)
@@ -421,7 +421,7 @@ function put(key: K, value: V): V{
 
     <div class="sample">
       <div class="snippet-container">
-        <pre class="snippet">
+        <pre class="snippet PseudoCode">
 function remove(key: K): V{
 
   if contains(key)
@@ -451,7 +451,7 @@ function remove(key: K): V{
 
     <div class="sample">
       <div class="snippet-container">
-        <pre class="snippet">
+        <pre class="snippet PseudoCode">
 function toArray(): Entry&lt;K, V&gt;[]{
   
   entries := (Entry&lt;K, V&gt;[]) new Entry[size]
@@ -478,10 +478,15 @@ function toArray(): Entry&lt;K, V&gt;[]{
   <section id="p9">
     <h2>پیاده سازی map در زبان های برنامه نویسی</h2>
 
-    <p>در این قسمت میخوایم چیزایی که گفته شد رو به عنوان کلاس <strong>HashMap</strong> در زبان های برنامه نویسی (جاوا و
-      کاتلین) به طور عملی پیاده کنیم.
+    <p>در این قسمت میخوایم چیزایی که گفته شد رو به عنوان کلاس <strong>HashMap</strong> در زبان های برنامه نویسی جاوا،
+      کاتلین، جاوااسکریپت و پایتون به طور عملی پیاده کنیم.
     </p>
 
+    <aside class="note">
+      <p class="note-head">توجه</p>
+      <p>در جاوااسکریپت تابع هش کد (HashCode) وجود نداره بنابراین در مثال زیر برای جاوااسکریپت هش کد رو داخل تابع hash،
+        به صورت دستی تولید می کنیم.</p>
+    </aside>
 
     <div class="sample">
       <div class="snippet-container">
