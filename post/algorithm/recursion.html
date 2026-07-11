@@ -30,9 +30,11 @@ layout: default
 
   <div class="note">
     <p class="note-head">توجه</p>
-    <p>تمرکز این سایت بیشتر روی جاوا، کاتلین و فریمورک های جاوا و کاتلین است، اما مطلب فعلی و مطالب مشابه، بین همه ی
-      زبون های برنامه نویسی، توضیح و منطقشون یکیه و وابسته به زبان برنامه نویسی خاصی نیستن، بنابراین برای راحتی شما
-      علاوه بر جاوا و کاتلین از جاوااسکریپت و پایتون هم مثال آوردیم.</p>
+    <p>تمرکز این سایت بیشتر روی زبان برنامه نویسی جاوا، کاتلین و فریمورک هاشون (مثل اندروید و ...) است، اما توضیح و منطق
+      این مطلب بین همه ی
+      زبان های برنامه نویسی، یکیه و وابسته به زبان برنامه نویسی خاصی نیست، بنابراین مثال ها رو علاوه بر
+      جاوا و کاتلین با <strong>جاوااسکریپت</strong> و <strong>پایتون</strong> هم اوردم تا بدرد توسعه دهندگان جاوااسکریپت
+      و پایتون هم بخوره.</p>
   </div>
 
   <section id="p0">
@@ -80,7 +82,7 @@ fun myFunction(count: Int){
   }
 }
         </pre>
-        <pre class="snippet JS">
+        <pre class="snippet JavaScript">
 function myFunction(count) {
   if (count &lt;= 0) { //base-case
     console.log("Base-case reached");
@@ -125,7 +127,7 @@ static long fact(int n){
         <pre class="snippet Kotlin">
 fun fact(n: Int): Long = if(n == 0) 1 else n * fact(n-1);
         </pre>
-        <pre class="snippet JS">
+        <pre class="snippet JavaScript">
 function fact(n) {
   if (n === 0) return 1;
   else return n * fact(n - 1);
@@ -185,7 +187,7 @@ fun fib(index: Int): Int{
   else return fib(index - 1) + fib(index - 2)
 }
         </pre>
-        <pre class="snippet JS">
+        <pre class="snippet JavaScript">
 function fib(index) {
   if (index === 1 || index === 2) return 1;
   else return fib(index - 1) + fib(index - 2);
@@ -229,7 +231,7 @@ fun isPalindrome(String word): Boolean{
   }
 }
         </pre>
-        <pre class="snippet JS">
+        <pre class="snippet JavaScript">
 function isPalindrome(word) {
   if (word.length &lt;= 1) {
     return true;
@@ -337,7 +339,7 @@ fun isPalindrome(word: String, low: Int, high: Int): Boolean{
   else return isPalindrome(word, low + 1, high - 1)
 }
         </pre>
-        <pre class="snippet JS">
+        <pre class="snippet JavaScript">
 function isPalindrome(word, low, high) {
   if (low === undefined &amp;&amp; high === undefined) {
     let low = 0;
@@ -380,7 +382,7 @@ fun isPalindrome(word: String){
   return isPalindrome(word, low, high)
 }
         </pre>
-        <pre class="snippet JS">
+        <pre class="snippet JavaScript">
 function isPalindrome(word){
   const low = 0;
   const high = word.length - 1
@@ -461,7 +463,7 @@ fun sort(list: Array&lt;Double&gt;, low: Int, high: Int){
   }
 }
         </pre>
-        <pre class="snippet JS">
+        <pre class="snippet JavaScript">
 function sort(list){
   const low = 0
   const high = list.length - 1
@@ -560,7 +562,7 @@ fun binarySearch(list: Array&lt;Double&gt;, key: Double, low: Int, high: Int): I
 
 }
         </pre>
-        <pre class="snippet JS">
+        <pre class="snippet JavaScript">
 function binarySearch(list, key){
   return binarySearch(list, 0, list.length - 1) 
 }
@@ -664,7 +666,7 @@ static long fact(int n, int result){
         <pre class="snippet Kotlin">
 tailrec fact(n: Int, result: Int = 1): Long = if(n == 0) return result else return fact(n-1, result * n);
         </pre>
-        <pre class="snippet JS">
+        <pre class="snippet JavaScript">
 function fact(n, result) {
   if (result === undefined) {
     return fact(n, 1);
@@ -741,7 +743,7 @@ fun getSize(file: File): Long{
   }
 }
         </pre>
-          <pre class="snippet JS">
+          <pre class="snippet JavaScript">
 const fs = require('fs');
 const path = require('path');
 
@@ -863,7 +865,7 @@ fun moveDisks(n: Int, fromTower: Char, toTower: Char, auxTower: Char){
   }
 }
         </pre>
-            <pre class="snippet JS">
+            <pre class="snippet JavaScript">
 function moveDisks(n){
   moveDisks(n, 'A', 'B', 'C')
 }

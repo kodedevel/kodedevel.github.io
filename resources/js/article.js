@@ -21,7 +21,7 @@ const pseudo = /(?<!([^\s,(}]{1}|\/\/.*))(function|for|while|if|else|int|double|
 
 const codeContainerList = document.querySelectorAll(".sample");
 
-const languages = /(Java)|(Kotlin)|(Gradle)|(XML)|(Shell)|(PseudoCode)|(JS)|(Python)/g;
+const languages = /(Java)|(Kotlin)|(Gradle)|(XML)|(Shell)|(PseudoCode)|(JavaScript)|(Python)/g;
 
 function createCodeViews() {
 
