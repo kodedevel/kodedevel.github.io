@@ -28,15 +28,21 @@ function estimateRegularTextReadingTime(article) {
 }
 
 function estimateSnippetReadingTime(article) {
+
   var numberOfWords = 0;
-  article.querySelectorAll("pre").forEach((child) => {
-    const text = child.innerText.trim().split(/\n|\s/);
-    text.forEach((line) => {
-      if (line.length > 0) numberOfWords++;
+
+  const containers = article.querySelectorAll(".snippet-container");
+
+  containers.forEach(container => {
+    const snippet = container.firstElementChild;
+    const text = snippet.innerText.split(/[\s\n]/g);
+    text.forEach(word => {
+
+      if (word.length > 0)
+        numberOfWords++;
     });
-    //remove pre (code snippet) to make sure it won't be calculated for regular text.
-    child.remove();
   });
+
 
   return Math.max(1, Math.ceil(numberOfWords / 100));
 }
@@ -77,4 +83,4 @@ function applySEOConfigurations() {
   applyOnDisplayPersianDates();
 }
 
-export { applySEOConfigurations };
+export {applySEOConfigurations};
