@@ -482,15 +482,34 @@ function toArray(): Entry&lt;K, V&gt;[]{
       کاتلین، جاوااسکریپت و پایتون به طور عملی پیاده کنیم.
     </p>
 
-    <aside class="note">
-      <p class="note-head">توجه</p>
-      <p>در جاوااسکریپت تابع هش کد (HashCode) وجود نداره بنابراین در مثال زیر برای جاوااسکریپت هش کد رو داخل تابع hash،
-        به صورت دستی تولید می کنیم.</p>
-    </aside>
+    <p>برای راحتی یک دسترسی سریع به پیاده سازی ها با زبان های مختلف رو در زیر قرار دادیم.</p>
 
-    <div class="sample">
-      <div class="snippet-container">
-        <pre class="snippet Java">
+
+    <nav class="toc">
+      <div>پیاده سازی map در زبان های مختلف</div>
+      <ul>
+        <li>
+          <a href="#map_implementation_java">پیاده سازی map با زبان جاوا</a>
+        </li>
+        <li>
+          <a href="#map_implementation_kotlin">پیاده سازی map با کاتلین</a>
+        </li>
+        <li>
+          <a href="#map_implementation_javascript">پیاده سازی map با جاوااسکریپت</a>
+        </li>
+        <li>
+          <a href="#map_implementation_python">پیاده سازی map با پایتون</a>
+        </li>
+      </ul>
+    </nav>
+
+    <section id="map_implementation_java">
+      <h3>پیاده سازی map با زبان جاوا</h3>
+      <p>در زیر یک map رو به صورت <a href="/post/java/generics.html">جنریک</a> با جاوا پیاده میکنیم.</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
 import java.util.LinkedList;
 
 public class MyHashMap&lt;K, V&gt; {
@@ -705,8 +724,18 @@ public class MyHashMap&lt;K, V&gt; {
     }
 }
         </pre>
+        </div>
+      </div>
+    </section>
 
-        <pre class="snippet Kotlin">
+    <section id="map_implementation_kotlin">
+      <h3>پیاده سازی map با کاتلین</h3>
+      <p>در زیر یک map رو به صورت جنریک با کاتلین پیاده سازی میکنیم.</p>
+
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Kotlin">
 class MyHashMap&lt;K, V&gt; (var capacity: Int = DEFAULT_CAPACITY,val loadFactor: Float = DEFAULT_LOAD_FACTOR) {
 
     var size: Int = 0
@@ -857,7 +886,23 @@ class MyHashMap&lt;K, V&gt; (var capacity: Int = DEFAULT_CAPACITY,val loadFactor
 }
 
         </pre>
-        <pre class="snippet JavaScript">
+        </div>
+      </div>
+
+    </section>
+
+    <section id="map_implementation_javascript">
+      <h3>پیاده سازی map با جاوااسکریپت</h3>
+
+      <p>جاوااسکریپت یک زبان type-free است یعنی نوع متغیر هنگام مقداردهی متغیر مشخص میشه، در زیر یک map رو با
+        جاوااسکریپت پیاده کرده ایم.</p>
+      <p>در جاوااسکریپت تابع هش کد (HashCode) وجود نداره بنابراین در مثال زیر برای جاوااسکریپت هش کد رو داخل تابع hash
+        خودمون ایجاد می کنیم.</p>
+
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet JavaScript">
 class MyHashMap {
     static DEFAULT_CAPACITY = 16;
     static DEFAULT_LOAD_FACTOR = 0.75;
@@ -1048,7 +1093,18 @@ class MyHashMap {
     }
 }
         </pre>
-        <pre class="snippet Python">
+        </div>
+      </div>
+    </section>
+
+    <section id="map_implementation_python">
+      <h3>پیاده سازی map با پایتون</h3>
+      <p>پایتون یک زبان type-free است یعنی نوع متغیر هنگام مقداردهی متغیر مشخص میشه، در زیر یک map با پایتون پیاده کرده
+        ایم.</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Python">
 class MyHashMap:
     DEFAULT_CAPACITY = 16
     DEFAULT_LOAD_FACTOR = 0.75
@@ -1195,14 +1251,18 @@ class MyHashMap:
         sb += " ]"
         return sb
         </pre>
+
+        </div>
       </div>
-    </div>
+    </section>
 
   </section>
 
   <section id="p10">
     <h2>استفاده از map در برنامه نویسی</h2>
-    <p>میخوایم نام هر رنگ با کد <strong>hexadecimal</strong> رنگ رو داخل یک مپ ذخیره کنیم.</p>
+    <p>میخوایم با استفاده از map که در <a href="#p9">بالا</a> پیاده کردیم، نام هر رنگ با کد <strong>hexadecimal</strong>
+      رنگ رو داخل یک مپ ذخیره کنیم.</p>
+
     <div class="sample">
       <div class="snippet-container">
         <pre class="snippet Java">

@@ -136,9 +136,28 @@ function peek(): E{
       <figcaption>نمودار uml پیاده سازی صف (Queue)</figcaption>
     </figure>
 
-    <div class="sample">
-      <div class="snippet-container">
-        <pre class="snippet Java">
+    <p>برای راحتی یک دسترسی سریع به پیاده سازی ها با زبان های مختلف قرار دادیم.</p>
+
+    <nav class="toc">
+      <div>پیاده سازی صف در زبان های مختلف</div>
+
+      <ul>
+        <li><a href="#queue_implementation_java">پیاده سازی صف (Queue) با جاوا</a></li>
+        <li><a href="#queue_implementation_kotlin">پیاده سازی صف (Queue) با کاتلین</a></li>
+        <li><a href="#queue_implementation_javascript">پیاده سازی صف‌(Queue) با جاوااسکریپت</a></li>
+        <li><a href="#queue_implementation_python">پیاده سازی صف (Queue) با پایتون</a></li>
+      </ul>
+
+    </nav>
+
+
+
+    <section id="queue_implementation_java">
+      <h3>پیاده سازی صف (Queue) با جاوا</h3>
+      <p>در زیر یک صف رو به صورت <a href="/post/java/generics.html">جنریک</a> با جاوا پیاده کرده ایم.</p>
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
 public class MyQueue&lt;E&gt; {
 
     private final MyLinkedList&lt;E&gt; list = new MyLinkedList&lt;&gt;();
@@ -178,7 +197,19 @@ public class MyQueue&lt;E&gt; {
     }
 }
         </pre>
-        <pre class="snippet Kotlin">
+        </div>
+      </div>
+
+    </section>
+
+    <section id="queue_implementation_kotlin">
+
+      <h3>پیاده سازی صف (Queue) با کاتلین</h3>
+      <p>در زیر یک صف (Queue) رو با کاتلین پیاده سازی کرده ایم.</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Kotlin">
 class MyQueue&lt;E&gt;() {
     private val list: MyLinkedList&lt;E&gt; = MyLinkedList()
     
@@ -210,7 +241,19 @@ class MyQueue&lt;E&gt;() {
     }
 }
         </pre>
-        <pre class="snippet JavaScript">
+        </div>
+      </div>
+
+    </section>
+
+    <section id="queue_implementation_javascript">
+      <h3>پیاده سازی صف (Queue) با جاوا اسکریپت</h3>
+      <p>زبان جاوااسکریپت یک زبان type-free است یعنی نوع متغیر هنگام مقداردهی متغیر مشخص میشه، در زیر یک صف (Queue) رو
+        با جاوااسکریپت پیاده کرده ایم.</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet JavaScript">
 class MyQueue {
     constructor(elements = null) {
         this.list = new MyLinkedList();
@@ -245,7 +288,18 @@ class MyQueue {
     }
 }
         </pre>
-        <pre class="snippet Python">
+        </div>
+      </div>
+    </section>
+
+    <section id="queue_implementation_python">
+      <h3>پیاده سازی صف (Queue) با پایتون</h3>
+      <p>پایتون یک زبان type-free است یعنی نوع متغیر هنگام مقداردهی متغیر مشخص میشه، در زیر یک صف (Queue) با پایتون
+        پیاده کرده ایم.</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Python">
 class MyQueue:
 
     def __init__(self, elements=None):
@@ -274,8 +328,10 @@ class MyQueue:
     def isEmpty(self):
         return self.list.isEmpty()
         </pre>
+        </div>
       </div>
-    </div>
+
+    </section>
 
   </section>
 

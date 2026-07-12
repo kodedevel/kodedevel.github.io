@@ -439,10 +439,38 @@ function remove(index: int): E {
       بدید.</p>
 
 
-    <div class="sample">
-      <div class="snippet-container">
+    <p>برای راحتی یک دسترسی سریع به پیاده سازی ها رو در زیر قرار داده ایم.</p>
 
-        <pre class="snippet Java">
+    <nav class="toc">
+      <div>
+        پیاده سازی لیست پیوندی با زبان های مختلف
+      </div>
+      <ul>
+        <li>
+          <a href="#linkedlist_implementation_java">پیاده سازی لیست پیوندی (LinkedList) با جاوا</a>
+        </li>
+        <li>
+          <a href="#linkedlist_implementation_kotlin">پیاده سازی لیست پیوندی (LinkedList) با کاتلین</a>
+        </li>
+        <li>
+          <a href="#linkedlist_implementation_javascript">پیاده سازی لیست پیوندی (LinkedList) با جاوااسکریپت</a>
+        </li>
+        <li>
+          <a href="#linkedlist_implementation_python">پیاده سازی لیست پیوندی (LinkedList) با پایتون</a>
+        </li>
+      </ul>
+    </nav>
+
+    <section id="linkedlist_implementation_java">
+
+      <h3>پیاده سازی لیست پیوندی (LinkedList) با جاوا</h3>
+
+      <p>در زیر یک لیست پیوندی (LinkedList) رو به صورت جنریک با جاوا پیاده سازی کرده ایم.</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+
+          <pre class="snippet Java">
 public class MyLinkedList&lt;E&gt; {
 
     private Node&lt;E&gt; firstNode;
@@ -579,7 +607,19 @@ public class MyLinkedList&lt;E&gt; {
 }
         </pre>
 
-        <pre class="snippet Kotlin">
+
+
+        </div>
+      </div>
+
+
+      <section id="linkedlist_implementation_kotlin">
+        <h3>پیاده سازی لیست پیوندی با کاتلین</h3>
+        <p>در زیر یک لیست پیوندی (LinkedList) رو با کاتلین پیاده سازی کرده ایم.</p>
+
+        <div class="sample">
+          <div class="snippet-container">
+            <pre class="snippet Kotlin">
 class MyLinkedList&lt;E&gt; {
 
     private var firstNode: Node&lt;E&gt;? = null
@@ -692,7 +732,17 @@ class MyLinkedList&lt;E&gt; {
    private data class Node&lt;E&gt;(val element: E, var next: Node&lt;E&gt;? = null, var prev: Node&lt;E&gt;? = null)
 }
         </pre>
-        <pre class="snippet JavaScript">
+          </div>
+        </div>
+      </section>
+
+      <section id="linkedlist_implementation_javascript">
+        <h3>پیاده سازی لیست پیوندی (LinkedList) با جاوااسکریپت</h3>
+        <p>زبان جاوااسکریپت یک زبان type-free است، در زیر یک لیست پیوندی رو با جاوااسکریپت پیاده کرده ایم.</p>
+
+        <div class="sample">
+          <div class="snippet-container">
+            <pre class="snippet JavaScript">
 class MyLinkedList {
 
     static Node = class {
@@ -814,7 +864,20 @@ class MyLinkedList {
     }
 }
         </pre>
-        <pre class="snippet Python">
+
+          </div>
+        </div>
+
+      </section>
+
+      <section id="linkedlist_implementation_python">
+        <h3>پیاده سازی لیست پیوندی (LinkedList) با پایتون</h3>
+        <p>پایتون یک زبان type-free است، یعنی نوع متغیر تا زمان مقداردهیش معلوم نیست، در زیر یک لیست پیوندی (LinkedList)
+          رو با پایتون پیاده سازی کرده ایم.</p>
+
+        <div class="sample">
+          <div class="snippet-container">
+            <pre class="snippet Python">
 class MyLinkedList:
     # Inner Node class definition
     class Node:
@@ -914,22 +977,24 @@ class MyLinkedList:
         # TODO Left as an exercise
         return None
         </pre>
-      </div>
-    </div>
+          </div>
+        </div>
+      </section>
 
-  </section>
+    </section>
 
-  <section id="p7">
-    <h2>استفاده از لیست پیوندی در زبان های برنامه نویسی</h2>
-    <p>در بسیاری از زبان های برنامه نویسی لیست پیوندی (LinkedList) به عنوان یک کتابخونه ی استاندارد پیاده سازی شده و در
-      اینجا میخوایم
-      استفاده از LinkedList رو بررسی کنیم.</p>
+    <section id="p7">
+      <h2>استفاده از لیست پیوندی در زبان های برنامه نویسی</h2>
+      <p>در بسیاری از زبان های برنامه نویسی لیست پیوندی (LinkedList) به عنوان یک کتابخونه ی استاندارد پیاده سازی شده و
+        در
+        اینجا میخوایم
+        استفاده از LinkedList رو بررسی کنیم.</p>
 
 
 
-    <div class="sample">
-      <div class="snippet-container">
-        <pre class="snippet Java">
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
 LinkedList&lt;String&gt; colors = new LinkedList&lt;&gt;();
 colors.add("Blue");
 colors.add("Pink");
@@ -953,7 +1018,7 @@ while(!colors.isEmpty()){
   
 }
         </pre>
-        <pre class="snippet Kotlin">
+          <pre class="snippet Kotlin">
 val colors: LinkedList&lt;String&gt; = LinkedList&lt;&gt;();
 colors.add("Blue")
 colors.add("Pink")
@@ -976,7 +1041,7 @@ while(!colors.isEmpty()){
   println(c)
 }
         </pre>
-        <pre class="snippet JavaScript">
+          <pre class="snippet JavaScript">
 let colors = new MyLinkedList();
 colors.add(0, "Blue"); // Assuming add(index, element) implementation
 colors.add(1, "Pink");
@@ -1001,7 +1066,7 @@ while (!colors.isEmpty()) {
 }
 
         </pre>
-        <pre class="snippet Python">
+          <pre class="snippet Python">
 colors = MyLinkedList()
 colors.add(0, "Blue")
 colors.add(1, "Pink")
@@ -1023,28 +1088,31 @@ while not colors.isEmpty():
     c = colors.removeLast()
     print(c)
         </pre>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="p8">
-    <h2>خلاصه</h2>
+    <section id="p8">
+      <h2>خلاصه</h2>
 
-    <ul>
-      <li>در LinkedList عناصر داخل node ها ذخیره میشن.</li>
-      <li>هر node در LinkedList به node بعدی اشاره میکنه.</li>
-      <li>انواع پیاده سازی LinkedList وجود داره از جمله: Singly LinkedList, Doubly LinkedList و Circular LinkedList</li>
-      <li>در Singly LinkedList، یک node به node بعدی اشاره میکنه</li>
-      <li>در Doubly LinkedList یک node به node بعد و node قبل از خودش اشاره میکنه (Doubly LinkedList).</li>
-      <li>پیچیدگی زمان هنگام افزودن یک عنصر به ابتدا یا انتهای یک LinkedList O(1) و هنگام افزودن یک عنصر با index برابر
-        با O(n) است.</li>
-      <li>پیچیدگی زمان برای صدا زدن یک عنصر در LinkedList با index برابر با O(n) است.</li>
-      <li>پیچیدگی زمان (time complexity) برای حذف کردن یک عنصر از ابتدا یا انتهای یک LinkedList برابر با O(1) و برای حذف
-        کردن یک عنصر وسط LinkedList برابر با O(n) است.</li>
+      <ul>
+        <li>در LinkedList عناصر داخل node ها ذخیره میشن.</li>
+        <li>هر node در LinkedList به node بعدی اشاره میکنه.</li>
+        <li>انواع پیاده سازی LinkedList وجود داره از جمله: Singly LinkedList, Doubly LinkedList و Circular LinkedList
+        </li>
+        <li>در Singly LinkedList، یک node به node بعدی اشاره میکنه</li>
+        <li>در Doubly LinkedList یک node به node بعد و node قبل از خودش اشاره میکنه (Doubly LinkedList).</li>
+        <li>پیچیدگی زمان هنگام افزودن یک عنصر به ابتدا یا انتهای یک LinkedList O(1) و هنگام افزودن یک عنصر با index
+          برابر
+          با O(n) است.</li>
+        <li>پیچیدگی زمان برای صدا زدن یک عنصر در LinkedList با index برابر با O(n) است.</li>
+        <li>پیچیدگی زمان (time complexity) برای حذف کردن یک عنصر از ابتدا یا انتهای یک LinkedList برابر با O(1) و برای
+          حذف
+          کردن یک عنصر وسط LinkedList برابر با O(n) است.</li>
 
 
-    </ul>
-  </section>
+      </ul>
+    </section>
 
 </article>
 {% capture links %}

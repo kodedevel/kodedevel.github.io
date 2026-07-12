@@ -49,13 +49,8 @@ layout: default
     <p>list در زبان های مختلف با نام های مختلفی پیاده سازی شده مثلا در جاوا و کاتلین به عنوان
       <strong>ArrayList</strong> پیاده سازی شده و در api قدیمی جاوا به نام <strong>vector</strong> پیاده سازی شده است.
     </p>
-
-    <aside class="note">
-      <p class="note-head">توجه</p>
-      <p>آرایه ها در جاوااسکریپت به طور پیشفرض دینامیکی هستن، یعنی طول آرایه ها در جاوااسکریپت قابل تغییر است، ولی برای
-        اشنایی با عملکرد آرایه دینامیکی، علاوه بر جاوا، کاتلین و پایتون به پیاده سازی list با جاوااسکریپت هم خواهیم
-        پرداخت.</p>
-    </aside>
+    <p>بعد از آشنایی با عملکرد لیست در ادامه به پیاده سازی لیست با جاوا، کاتلین، جاوااسکریپت و پایتون خواهیم
+      پرداخت.</p>
     <section>
       <h3>ساختار list</h3>
 
@@ -265,13 +260,37 @@ function remove(index: int): E {
 
     <p>میخوایم یک لیست رو به صورت عملی در زبان های برنامه نویسی جاوا، کاتلین، جاوااسکریپت و پایتون پیاده سازی کنیم.</p>
 
-    <p>در این پیاده سازی ظرفیت اولیه (INITIAL_CAPACITY) موقع ایجاد یک نمونه از لیست رو برابر 3 قرار دادیم.</p>
+    <p>در این پیاده سازی ظرفیت اولیه <strong>(INITIAL_CAPACITY)</strong> موقع ایجاد یک نمونه از لیست رو برابر 3 قرار
+      دادیم.</p>
 
+    <p>برای راحتی یک دسترسی سریع به پیاده سازی با هر زبان رو قرار داده ایم.</p>
 
+    <nav class="toc">
+      <ul>
+        <div>پیاده سازی لیست با زبان های برنامه نویسی</div>
+        <li>
+          <a href="#list_implementation_java">پیاده سازی لیست با زبان برنامه نویسی جاوا</a>
+        </li>
+        <li>
+          <a href="#list_implementation_kotlin">پیاده سازی لیست با زبان برنامه نویسی کاتلین</a>
+        </li>
+        <li>
+          <a href="#list_implementation_javascript">پیاده سازی لیست با زبان برنامه نویسی جاوااسکریپت</a>
+        </li>
+        <li>
+          <a href="#list_implementation_python">پیاده سازی لیست با زبان برنامه نویسی پایتون</a>
+        </li>
+      </ul>
+    </nav>
 
-    <div class="sample">
-      <div class="snippet-container">
-        <pre class="snippet Java">
+    <section id="list_implementation_java">
+
+      <h3>پیاده سازی لیست با زبان برنامه نویسی جاوا</h3>
+      <p>در زیر یک لیست رو با زبان برنامه نویسی جاوا به صورت <a href="/post/java/generics.html">جنریک</a> پیاده سازی
+        کرده ایم.</p>
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
 public class MyList&lt;E&gt; {
 
     private static final int INITIAL_CAPACITY = 3;
@@ -354,7 +373,19 @@ public class MyList&lt;E&gt; {
     }
 }
         </pre>
-        <pre class="snippet Kotlin">
+
+        </div>
+      </div>
+
+    </section>
+
+    <section id="list_implementation_kotlin">
+      <h3>پیاده سازی لیست با زبان برنامه نویسی کاتلین</h3>
+      <p>در زیر یک لیست رو با زبان برنامه نویسی کاتلین به صورت جنریک پیاده سازی کردیم.</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Kotlin">
 class MyList&lt;E&gt;(private var capacity: Int = INITIAL_CAPACITY) {
     var size: Int = 0
         private set
@@ -422,7 +453,22 @@ class MyList&lt;E&gt;(private var capacity: Int = INITIAL_CAPACITY) {
 
 }
         </pre>
-        <pre class="snippet JavaScript">
+        </div>
+      </div>
+    </section>
+
+    <section id="list_implementation_javascript">
+      <h3>پیاده سازی لیست در زبان برنامه نویسی جاوااسکریپت</h3>
+
+      <p>آرایه ها در جاوااسکریپت به طور پیشفرض دینامیکی هستن، یعنی طول آرایه ها در جاوااسکریپت قابل تغییر است، ولی برای
+        اشنایی با عملکرد آرایه دینامیکی (list)، در زیر یک لیست رو با جاوااسکریپت پیاده سازی کردیم.</p>
+
+      <p>زبان برنامه نویسی جاوااسکریپت type-free یعنی نوع متغیر تا زمان مقداردهیش معلوم نیست بنابراین مفهومی به نام
+        جنریک در جاوااسکریپت وجود نداره.</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet JavaScript">
 class MyList {
     // Static constant for initial capacity
     static INITIAL_CAPACITY = 3;
@@ -497,7 +543,22 @@ class MyList {
     }
 }
         </pre>
-        <pre class="snippet Python">
+
+        </div>
+      </div>
+    </section>
+
+
+    <section id="list_implementation_python">
+      <h3>پیاده سازی لیست با زبان برنامه نویسی پایتون</h3>
+
+      <p>در زیر یک لیست رو با زبان برنامه نویسی پایتون پیاده کرده ایم؛ زبان برنامه نویسی پایتون type-free است یعنی نوع
+        متغیر تا زمان مقداردهیش مشخص نیست، بنابراین مفهومی به نام جنریک
+        در پایتون وجود نداره.</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Python">
 class MyList:
     INITIAL_CAPACITY = 3
 
@@ -558,8 +619,11 @@ class MyList:
     def isEmpty(self):
         return self.size == 0
         </pre>
+
+        </div>
       </div>
-    </div>
+
+    </section>
 
   </section>
 
@@ -570,14 +634,13 @@ class MyList:
     <p>در این قسمت میخوایم دوتا مثال بیاریم، اولین مثال مربوط به استفاده از list است مثل افزودن، صدا زدن و حذف کردن
       عناصر است؛ در مثال دوم میخوایم Stack رو با استفاده از list پیاده سازی کنیم.</p>
 
-    <section>
-      <h3>استفاده از list</h3>
-      <p>میخوایم یک list از نوع String ایجاد کنیم و چندتا اسم بهش اضافه کنیم؛ اسامی رو صدا زده و چاپ کنیم و در اخر چندتا
-        اسم رو ازش حذف کنیم.</p>
+    <p>میخوایم با استفاده از لیست که در <a href="#p4">قسمت قبل</a> پیاده کردیم، یک list از نوع String ایجاد کنیم و چندتا
+      اسم بهش اضافه کنیم؛ اسامی رو صدا زده و چاپ کنیم و در اخر چندتا
+      اسم رو ازش حذف کنیم.</p>
 
-      <div class="sample">
-        <div class="snippet-container">
-          <pre class="snippet Java">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
 MyList&lt;String&gt; list = new MyList();
 list.add("Lee");
 list.add("Rose");
@@ -607,7 +670,7 @@ System.out.println("Name " + removedName + " has been removed");
 
 println("The size of list after removing 3 elements is " + list.size())
         </pre>
-          <pre class="snippet Kotlin">
+        <pre class="snippet Kotlin">
 val list: MyList&lt;String&gt; = MyList();
 list.add("Lee")
 list.add("Rose")
@@ -637,7 +700,7 @@ println("Name $removedName has been removed");
 
 println("The size of list after removing 3 elements is ${list.size}")
         </pre>
-          <pre class="snippet JavaScript">
+        <pre class="snippet JavaScript">
 let list = new MyList();
 list.add("Lee");
 list.add("Rose");
@@ -668,7 +731,7 @@ console.log("Name " + removedName + " has been removed");
 
 console.log("The size of list after removing 3 elements is " + list.getSize());
         </pre>
-          <pre class="snippet Python">
+        <pre class="snippet Python">
 list = MyList()
 list.add("Lee")
 list.add("Rose")
@@ -698,11 +761,8 @@ print("Name " + removedName + " has been removed")
 
 print("The size of list after removing 3 elements is " + str(list.getSize()))
         </pre>
-        </div>
       </div>
-
-    </section>
-
+    </div>
 
     <section>
       <h3>پیاده سازی Stack با کمک List</h3>

@@ -173,10 +173,35 @@ function toArray(): Object[] {
       <figcaption>نمودار uml پیاده سازی set در برنامه نویسی</figcaption>
     </figure>
 
+    <p>برای راحتی یک دسترسی سریع به پیاده سازی ها با زبان های مختلف رو در زیر قرار دادیم.</p>
 
-    <div class="sample">
-      <div class="snippet-container">
-        <pre class="snippet Java">
+    <nav class="toc">
+      <div>
+        پیاده سازی set با زبان های مختلف
+      </div>
+      <ul>
+        <li>
+          <a href="#set_implementation_java">پیاده سازی set با جاوا</a>
+        </li>
+        <li>
+          <a href="#set_implementation_kotlin">پیاده سازی set با کاتلین</a>
+        </li>
+        <li>
+          <a href="#set_implementation_javascript">پیاده سازی set با جاوااسکریپت</a>
+        </li>
+        <li>
+          <a href="#set_implementation_python">پیاده سازی set با پایتون</a>
+        </li>
+      </ul>
+    </nav>
+
+    <section id="set_implementation_java">
+      <h3>پیاده سازی set با جاوا</h3>
+      <p>میخوایم یک set رو به صورت <a href="/post/java/generics.html">جنریک</a> با جاوا پیاده کنیم.</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
 public class MyHashSet&lt;E&gt; {
 
     private final MyHashMap&lt;E, Object&gt; map = new MyHashMap&lt;&gt;();
@@ -246,7 +271,20 @@ public class MyHashSet&lt;E&gt; {
     }
 }
         </pre>
-        <pre class="snippet Kotlin">
+
+
+        </div>
+      </div>
+
+    </section>
+
+    <section id="set_implementation_kotlin">
+      <h3>پیاده سازی set با کاتلین</h3>
+      <p>در پایین میخوایم یک set رو به صورت جنریک در کاتلین پیاده کنیم.</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Kotlin">
 class MyHashSet&lt;E&gt; {
     private val map: MyHashMap&lt;E?, Any?&gt; = MyHashMap()
 
@@ -307,7 +345,17 @@ class MyHashSet&lt;E&gt; {
     }
 }
         </pre>
-        <pre class="snippet JavaScript">
+        </div>
+      </div>
+    </section>
+
+    <section id="set_implementation_javascript">
+      <h3>پیاده سازی set با جاوااسکریپت</h3>
+      <p>زبان جاوااسکریپت یک زبان type-free است یعنی نوع متغیر هنگام مقداردهیش مشخص میشه، در زیر میخوایم یک set رو با
+        جاوااسکریپت پیاده کنیم.</p>
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet JavaScript">
 class MyHashSet {
     constructor() {
         this.map = new MyHashMap();
@@ -368,7 +416,18 @@ class MyHashSet {
     }
 }
         </pre>
-        <pre class="snippet Python">
+        </div>
+      </div>
+    </section>
+
+    <section id="set_implementation_python">
+      <h3>پیاده سازی set با پایتون</h3>
+      <p>زبان پایتون یک زبان type-free است یعنی نوع متغیر هنگام مقداردهی مشخص میشه، در پایین میخوایم یک set رو در پایتون
+        پیاده کنیم.</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Python">
 class MyHashSet:
 
     def __init__(self):
@@ -420,8 +479,10 @@ class MyHashSet:
         sb += "]"
         return sb
         </pre>
+        </div>
       </div>
-    </div>
+
+    </section>
 
   </section>
 
@@ -429,9 +490,9 @@ class MyHashSet:
   <section id="p6">
     <h2>استفاده از set در زبان های برنامه نویسی</h2>
 
-    <p>در این قسمت میخوایم یک نمونه از set که پیاده کردیم ایجاد کنیم و اسم چند شهر رو بهش اضافه کنیم و (اسم یک شهر رو
-      دوبار بنویسیم) و سپس دو شهر رو حذف کنیم و در نهایت شهر های داخل set رو نمایش بدیم. مثال زیر با چهار زبون برنامه
-      نویسی جاوا، کاتلین، جاوااسکریپت و پایتون آورده شده است.</p>
+    <p>در این قسمت میخوایم با استفاده از set که <a href="#p5">بالا</a> پیاده کردیم، اسم چند شهر رو ذخیره کنیم و (اسم یک
+      شهر رو
+      دوبار بنویسیم) و سپس دو شهر رو حذف کنیم و در نهایت شهر های داخل set رو نمایش بدیم.</p>
 
     <div class="sample">
       <div class="snippet-container">

@@ -122,7 +122,7 @@ function peek(): E{
 
   </section>
 
-  <section>
+  <section id="p4">
     <h2>پیاده سازی استک در زبان های برنامه نویسی</h2>
 
     <p>در اینجا میخوایم با استفاده از <a href="linkedlist.html">لیست پیوندی</a> که پیاده کردیم، استک رو در زبان های
@@ -137,9 +137,33 @@ function peek(): E{
       <figcaption>پیاده سازی استک با لیست پیوندی در uml</figcaption>
     </figure>
 
-    <div class="sample">
-      <div class="snippet-container">
-        <pre class="snippet Java">
+    <p>برای راحتی یک دسترسی سریع به پیاده سازی ها با زبان های مختلف رو در زیر قرار دادیم.</p>
+
+    <nav class="toc">
+      <div>پیاده سازی پشته (Stack) در زبان های مختلف</div>
+      <ul>
+        <li>
+          <a href="#stack_implementation_java">پیاده سازی پشته (Stack) با جاوا</a>
+        </li>
+        <li>
+          <a href="#stack_implementation_kotlin">پیاده سازی پشته (Stack) با کاتلین</a>
+        </li>
+        <li>
+          <a href="#stack_implementation_javascript">پیاده سازی پشته (Stack) با جاوااسکریپت</a>
+        </li>
+        <li>
+          <a href="#stack_implementation_python">پیاده سازی پشته (Stack) با پایتون</a>
+        </li>
+      </ul>
+    </nav>
+
+    <section id="stack_implementation_java">
+      <h3>پیاده سازی پشته (Stack) با جاوا</h3>
+      <p>در زیر یک پشته (Stack) رو به صورت <a href="/post/java/generics.html">جنریک</a> با جاوا پیاده میکنیم.</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
 public class MyStack&lt;E&gt; {
 
     private final MyLinkedList&lt;E&gt; list = new MyLinkedList&lt;&gt;();
@@ -177,7 +201,17 @@ public class MyStack&lt;E&gt; {
     }
 }
         </pre>
-        <pre class="snippet Kotlin">
+
+        </div>
+      </div>
+
+      <section id="stack_implementation_kotlin">
+        <h3>پیاده سازی پشته (Stack) با کاتلین</h3>
+        <p>در زیر یک صف (Queue) رو با کاتلین به صورت جنریک پیاده سازی میکنیم.</p>
+
+        <div class="sample">
+          <div class="snippet-container">
+            <pre class="snippet Kotlin">
 class MyStack&lt;E&gt;() {
     
     private val list: MyLinkedList&lt;E&gt; = MyLinkedList()
@@ -211,7 +245,20 @@ class MyStack&lt;E&gt;() {
     
 }
         </pre>
-        <pre class="snippet JavaScript">
+          </div>
+        </div>
+      </section>
+
+      <section id="stack_implementation_javascript">
+        <h3>پیاده سازی پشته (Stack) با جاوااسکریپت</h3>
+
+        <p>جاوااسکریپت یک زبان type-free است یعنی نوع متغیر هنگام مقداردهی متغیر مشخص میشه، در زیر یک صف (Queue) رو با
+          جاوااسکریپت پیاده میکنیم.</p>
+
+
+        <div class="sample">
+          <div class="snippet-container">
+            <pre class="snippet JavaScript">
 class MyStack {
     constructor(elements = null) {
         this.list = new MyLinkedList();
@@ -246,7 +293,20 @@ class MyStack {
     }
 }
         </pre>
-        <pre class="snippet Python">
+
+          </div>
+        </div>
+
+      </section>
+
+      <section id="stack_implementation_python">
+        <h3>پیاده سازی پشته (Stack) با پایتون</h3>
+        <p>پایتون یک زبان type-free است یعنی نوع متغیر هنگام مقداردهی متغیر مشخص میشه، در زیر یک پشته (Stack) با پایتون
+          پیاده میکنیم.</p>
+
+        <div class="sample">
+          <div class="snippet-container">
+            <pre class="snippet Python">
 class MyStack:
 
     def __init__(self, elements=None):
@@ -275,21 +335,22 @@ class MyStack:
     def getSize(self):
         return self.list.getSize()
         </pre>
-      </div>
-    </div>
+          </div>
+        </div>
+      </section>
 
-  </section>
+    </section>
 
-  <section>
-    <h2>استفاده از پشته (Stack) در زبان های برنامه نویسی</h2>
+    <section id="p5">
+      <h2>استفاده از پشته (Stack) در زبان های برنامه نویسی</h2>
 
-    <p>میخوایم با استفاده از پشته (Stack) یک پروژه ی ماشین حساب بنویسیم، در این پروژه یک عبارت مثل <strong
-        dir="ltr">2*5+(4/2)-32</strong> حساب کنه.</p>
-    <p>این پروژه با چهار زبان جاوا، کاتلین، جاوااسکریپت و پایتون در زیر نوشته شده است.</p>
+      <p>میخوایم با استفاده از پشته (Stack) یک پروژه ی ماشین حساب بنویسیم، در این پروژه یک عبارت مثل <strong
+          dir="ltr">2*5+(4/2)-32</strong> حساب کنه.</p>
+      <p>این پروژه با استفاده از پیاده سازی های <a href="#p6">بالا</a> نوشته شده است.</p>
 
-    <div class="sample">
-      <div class="snippet-container">
-        <pre class="snippet Java">
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
 public class EvaluateExpression {
 
      public double evaluateExpression(String expression) {
@@ -376,7 +437,7 @@ public class EvaluateExpression {
     }
 }
         </pre>
-        <pre class="snippet Kotlin">
+          <pre class="snippet Kotlin">
 fun evaluateExpression(expression: String): Double {
     var expression = expression
 
@@ -456,7 +517,7 @@ private fun insertBlanks(s: String): String {
     return result.toString()
 }
         </pre>
-        <pre class="snippet JavaScript">
+          <pre class="snippet JavaScript">
 class EvaluateExpression {
 
     evaluateExpression(expression) {
@@ -544,7 +605,7 @@ class EvaluateExpression {
     }
 }
         </pre>
-        <pre class="snippet Python">
+          <pre class="snippet Python">
 import re
 
 class EvaluateExpression:
@@ -620,25 +681,27 @@ class EvaluateExpression:
 
         return "".join(result)
         </pre>
+        </div>
       </div>
-    </div>
 
-  </section>
+    </section>
 
 
-  <section>
-    <h2>خلاصه</h2>
-    <ul>
-      <li>استک یک ساختار داده ی یک طرفه است.</li>
-      <li>در پشته (Stack) آخرین عنصری که وارد میکنیم اولین عنصریه که میتونیم صدا بزنیم یا حذف کنیم.</li>
-      <li>ساختار عناصر (داده ها) در استک به last-in-first-out معروف است.</li>
-      <li>در پشته (Stack) به فقط به آخرین عنصری که اضافه کردیم دسترسی داریم و تا زمانی که حذف نشده به عناصر بعدی دسترسی
-        نخواهیم داشت.</li>
-      <li>با استفاده از آرایه ها میتونیم یک استک با اندازه ی ثابت و با استفاده از لیست پیوندی میتونیم یک استک با اندازه
-        ی متغیر پیاده سازی کنیم.</li>
-      <li>پیچیدگی زمان برای اضافه و حذف کردن و صدا زدن عنصر در استک O(1) است.</li>
-    </ul>
-  </section>
+    <section>
+      <h2>خلاصه</h2>
+      <ul>
+        <li>استک یک ساختار داده ی یک طرفه است.</li>
+        <li>در پشته (Stack) آخرین عنصری که وارد میکنیم اولین عنصریه که میتونیم صدا بزنیم یا حذف کنیم.</li>
+        <li>ساختار عناصر (داده ها) در استک به last-in-first-out معروف است.</li>
+        <li>در پشته (Stack) به فقط به آخرین عنصری که اضافه کردیم دسترسی داریم و تا زمانی که حذف نشده به عناصر بعدی
+          دسترسی
+          نخواهیم داشت.</li>
+        <li>با استفاده از آرایه ها میتونیم یک استک با اندازه ی ثابت و با استفاده از لیست پیوندی میتونیم یک استک با
+          اندازه
+          ی متغیر پیاده سازی کنیم.</li>
+        <li>پیچیدگی زمان برای اضافه و حذف کردن و صدا زدن عنصر در استک O(1) است.</li>
+      </ul>
+    </section>
 
 </article>
 
