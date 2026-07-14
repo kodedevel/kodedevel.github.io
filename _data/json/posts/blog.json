@@ -25,6 +25,14 @@
       "lastModified": "",
       "imgCover": "/resources/image/blog/cover_programming_languages.png",
       "link": "/post/blog/programming-languages.html"
+    },
+    {
+      "title": "چند نخی (Multithreading) چیست؟",
+      "description": "چند نخی چیست؟ به قابلیت انجام چند کار توسط یک برنامه چند نخی گفته میشه، در این مطلب به عملکرد چند نخی و تفاوتش با چند پردازشی و multitasking خواهیم پرداخت.",
+      "datePublished": "2026-07-14",
+      "lastModified": "",
+      "imgCover": "/resources/image/blog/cover_threads.png",
+      "link": "/post/blog/threads.html"
     }
   ]
 }
