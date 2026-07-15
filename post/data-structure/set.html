@@ -434,14 +434,14 @@ class MyHashSet:
         self.map = MyHashMap()
 
     def add(self, e):
-        if self.map.containsKey(e): 
+        if self.map.contains_key(e): 
             return False
 
         self.map.put(e, None)
         return True
 
     def contains(self, e):
-        return self.map.containsKey(e)
+        return self.map.contains_key(e)
 
     def remove(self, e):
         if not self.contains(e): 
@@ -450,20 +450,20 @@ class MyHashSet:
         self.map.remove(e)
         return True
 
-    def getSize(self):
-        return self.map.getSize()
+    def get_size(self):
+        return self.map._size
 
-    def isEmpty(self):
-        return self.map.isEmpty()
+    def is_empty(self):
+        return self.map.is_empty()
 
     def toArray(self):
-        size = self.map.getSize()
+        size = self.map._size
         elements = [None] * size
 
-        entries = self.map.toArray()
+        entries = self.map.to_array()
 
         for i in range(len(entries)):
-            elements[i] = entries[i].getKey()
+            elements[i] = entries[i].get_key()
 
         return elements
 

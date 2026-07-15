@@ -24,7 +24,7 @@ function estimateRegularTextReadingTime(article) {
     if (line.length > 0) numberOfWords++;
   });
 
-  return Math.max(1, Math.ceil(numberOfWords / 200));
+  return Math.max(1, Math.ceil(numberOfWords / 250));
 }
 
 function estimateSnippetReadingTime(article) {
@@ -44,7 +44,7 @@ function estimateSnippetReadingTime(article) {
   });
 
 
-  return Math.max(1, Math.ceil(numberOfWords / 100));
+  return Math.ceil(numberOfWords / 100);
 }
 
 function applyOnDisplayPersianDates() {

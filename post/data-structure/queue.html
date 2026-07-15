@@ -310,23 +310,23 @@ class MyQueue:
                 self.enqueue(elements[i])
 
     def enqueue(self, e):
-        self.list.addLast(e)
+        self.list.add_last(e)
 
     def dequeue(self):
-        if self.isEmpty(): 
+        if self.is_empty(): 
             return None
-        return self.list.removeFirst()
+        return self.list.remove_first()
 
     def peek(self):
         if self.isEmpty(): 
             return None
-        return self.list.getFirst()
+        return self.list.get_first()
 
-    def getSize(self):
-        return self.list.getSize()
+    def get_size(self):
+        return self.list._size
 
-    def isEmpty(self):
-        return self.list.isEmpty()
+    def is_empty(self):
+        return self.list.is_empty()
         </pre>
         </div>
       </div>

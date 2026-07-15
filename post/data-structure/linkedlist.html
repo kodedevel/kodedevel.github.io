@@ -241,15 +241,13 @@ function addLast(e: E){
             <pre class="snippet PseudoCode">
 function add(index: int, e: E){
 
-  if index &lt; 0 or index &gt; size - 1
+  if index &lt; 0 or (index &gt;= size and size != 0)
      throw IndexOutOfBoundException
 
   newNode := Node(e)
 
-  if firstNode = null
-     firstNode := newNode
-     lastNode := newNode
-     size++
+  if index == 0
+     addFirst(e)
   else
       count := 0
       currentNode := firstNode
@@ -258,8 +256,10 @@ function add(index: int, e: E){
         currentNode := currentNode.next
         count++
 
-      newNode.next = currentNode.next
-      currentNode.next = newNode
+      newNode.prev = currentNode.prev
+      currentNode.prev.next = newNode
+      newNode.next = currentNode
+      currentNode.prev = newNode
       size++
   
 }
@@ -351,17 +351,16 @@ function removeFirst(): E {
         <div class="snippet-container">
           <pre class="snippet PseudoCode">
 function removeLast(): E{
-  Node removedNode := null
-
   if size = 0
     throw NoSuchElementException
   
+    removedNode := lastNode
+
   if size = 1
-    removedNode := firstNode
     firstNode := null
     lastNode := null
   else  
-    prevNode = lastNode.prev
+    prevNode := lastNode.prev
     prevNode.next = null
     lastNode := prevNode
 
@@ -434,8 +433,7 @@ function remove(index: int): E {
       پایتون) پیاده سازی
       کنیم.</p>
 
-    <p>در این پیاده سازی توابع <strong dir="ltr">remove(index: int)</strong>, <strong dir="ltr">add(index: int, element:
-        E)</strong>, <strong dir="ltr">removeLast(): E</strong> به عنوان تمرین رها شده تا خودتون انجامش
+    <p>در این پیاده سازی تابع <strong dir="ltr">remove(index: int)</strong> به عنوان تمرین رها شده تا خودتون انجامش
       بدید.</p>
 
 
@@ -574,10 +572,31 @@ public class MyLinkedList&lt;E&gt; {
     }
 
 
-    public E add(int index, E element){
-        //TODO Left as an exercise
+    public void add(int index, E element){
 
-        return null;
+        if (index &lt; 0 || (index &gt;= size &amp;&amp; size != 0)) throw new  IndexOutOfBoundsException();
+
+        Node&lt;E&gt; newNode = new Node&lt;&gt;(element);
+
+        if (index == 0){
+            addFirst(element);
+        }else {
+            int count = 0;
+            Node&lt;E&gt; currentNode = firstNode;
+            while (count != index){
+                currentNode = currentNode.next;
+                count++;
+            }
+
+            newNode.prev = currentNode.prev;
+            currentNode.prev.next = newNode;
+            newNode.next = currentNode;
+            currentNode.prev = newNode;
+
+            size++;
+
+        }
+        
     }
 
     public E remove(int index){
@@ -587,10 +606,26 @@ public class MyLinkedList&lt;E&gt; {
     }
 
     public E removeLast(){
-        //TODO Left as an exercise
 
-        return null;
+        if (size == 0)
+            throw new NoSuchElementException("List is empty");
+
+        Node&lt;E&gt; removedNode = lastNode;
+
+        if (size == 1){
+            firstNode = null;
+            lastNode = null;
+        }else {
+            Node&lt;E&gt; prevNode = lastNode.prev;
+            prevNode.next = null;
+            lastNode = prevNode;
+        }
+        
+        size--;
+        
+        return removedNode.element;
     }
+
 
     private static final class Node&lt;E&gt; {
         private final E element;
@@ -611,15 +646,16 @@ public class MyLinkedList&lt;E&gt; {
 
         </div>
       </div>
+    </section>
 
 
-      <section id="linkedlist_implementation_kotlin">
-        <h3>پیاده سازی لیست پیوندی با کاتلین</h3>
-        <p>در زیر یک لیست پیوندی (LinkedList) رو با کاتلین پیاده سازی کرده ایم.</p>
+    <section id="linkedlist_implementation_kotlin">
+      <h3>پیاده سازی لیست پیوندی با کاتلین</h3>
+      <p>در زیر یک لیست پیوندی (LinkedList) رو با کاتلین پیاده سازی کرده ایم.</p>
 
-        <div class="sample">
-          <div class="snippet-container">
-            <pre class="snippet Kotlin">
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Kotlin">
 class MyLinkedList&lt;E&gt; {
 
     private var firstNode: Node&lt;E&gt;? = null
@@ -716,42 +752,78 @@ class MyLinkedList&lt;E&gt; {
     }
 
     fun add(index: Int, element: E){
-        //TODO left as an exercise
+
+        if (index &lt; 0 || (index &gt;= size &amp;&amp; size != 0)) throw IndexOutOfBoundsException()
+
+        val newNode: Node&lt;E&gt; = Node(element)
+
+        if (index == 0) {
+            addFirst(element)
+        } else {
+            var count = 0
+            var currentNode: Node&lt;E&gt;? = firstNode
+            while (count != index) {
+                currentNode = currentNode?.next
+                count++
+            }
+
+            newNode.prev = currentNode?.prev
+            currentNode?.prev?.next = newNode
+            newNode.next = currentNode
+            currentNode?.prev = newNode
+
+            size++
+        }
+
     }
 
-    fun removeLast(): E? {
+    fun removeLast(): E?{
+
+        if (size == 0) throw NoSuchElementException("List is empty")
+
+        val removedNode: Node&lt;E&gt;? = lastNode
+
+        if (size == 1) {
+            firstNode = null
+            lastNode = null
+        } else {
+            val prevNode: Node&lt;E&gt;? = lastNode!!.prev
+            prevNode?.next = null
+            lastNode = prevNode
+        }
+
+        size--
+
+        return removedNode!!.element
+    }
+ 
+    fun removeLast(index: Int): E? {
         //TODO left as an exercise
         return null
     }
 
-    fun remove(index: Int): E?{
-        //TODO left as an exercise
-        return null
-    }
-    
    private data class Node&lt;E&gt;(val element: E, var next: Node&lt;E&gt;? = null, var prev: Node&lt;E&gt;? = null)
 }
         </pre>
-          </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section id="linkedlist_implementation_javascript">
-        <h3>پیاده سازی لیست پیوندی (LinkedList) با جاوااسکریپت</h3>
-        <p>زبان جاوااسکریپت یک زبان type-free است، در زیر یک لیست پیوندی رو با جاوااسکریپت پیاده کرده ایم.</p>
+    <section id="linkedlist_implementation_javascript">
+      <h3>پیاده سازی لیست پیوندی (LinkedList) با جاوااسکریپت</h3>
+      <p>زبان جاوااسکریپت یک زبان type-free است، در زیر یک لیست پیوندی رو با جاوااسکریپت پیاده کرده ایم.</p>
 
-        <div class="sample">
-          <div class="snippet-container">
-            <pre class="snippet JavaScript">
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet JavaScript">
 class MyLinkedList {
-
     static Node = class {
-        constructor(element, next, prev) {
+        constructor(element, next = null, prev = null) {
             this.element = element;
             this.next = next;
             this.prev = prev;
         }
-    };
+    }
 
     constructor() {
         this.firstNode = null;
@@ -808,12 +880,11 @@ class MyLinkedList {
     }
 
     get(index) {
-        if (index &lt; 0 || index &gt; this.size - 1) {
-            throw new RangeError("The index should be between 0 and " + (this.size - 1));
+        if (index &lt; 0 || index &gt;= this.size) {
+            throw new RangeError(`The index should be between 0 and ${this.size - 1}`);
         }
 
         let node;
-
         if (this.size === 1) {
             node = this.firstNode;
         } else {
@@ -849,37 +920,69 @@ class MyLinkedList {
     }
 
     add(index, element) {
-        // TODO Left as an exercise
-        return null;
+        if (index &lt; 0 || (index &gt;= this.size &amp;&amp; this.size !== 0)) {
+            throw new RangeError("Index out of bounds");
+        }
+
+        if (index === 0) {
+            this.addFirst(element);
+        } else {
+            const newNode = new MyLinkedList.Node(element);
+            let count = 0;
+            let currentNode = this.firstNode;
+            while (count !== index) {
+                currentNode = currentNode.next;
+                count++;
+            }
+
+            newNode.prev = currentNode.prev;
+            currentNode.prev.next = newNode;
+            newNode.next = currentNode;
+            currentNode.prev = newNode;
+            this.size++;
+        }
+    }
+
+
+    removeLast() {
+        if (this.size === 0) throw new Error("List is empty");
+
+        let removedNode = this.lastNode;
+
+        if (this.size === 1) {
+            this.firstNode = null;
+            this.lastNode = null;
+        } else {
+            let prevNode = this.lastNode.prev;
+            prevNode.next = null;
+            this.lastNode = prevNode;
+        }
+
+        this.size--;
+        return removedNode.element;
     }
 
     remove(index) {
         // TODO Left as an exercise
         return null;
     }
-
-    removeLast() {
-        // TODO Left as an exercise
-        return null;
-    }
 }
         </pre>
 
-          </div>
         </div>
+      </div>
 
-      </section>
+    </section>
 
-      <section id="linkedlist_implementation_python">
-        <h3>پیاده سازی لیست پیوندی (LinkedList) با پایتون</h3>
-        <p>پایتون یک زبان type-free است، یعنی نوع متغیر تا زمان مقداردهیش معلوم نیست، در زیر یک لیست پیوندی (LinkedList)
-          رو با پایتون پیاده سازی کرده ایم.</p>
+    <section id="linkedlist_implementation_python">
+      <h3>پیاده سازی لیست پیوندی (LinkedList) با پایتون</h3>
+      <p>پایتون یک زبان type-free است، یعنی نوع متغیر تا زمان مقداردهیش معلوم نیست، در زیر یک لیست پیوندی (LinkedList)
+        رو با پایتون پیاده سازی کرده ایم.</p>
 
-        <div class="sample">
-          <div class="snippet-container">
-            <pre class="snippet Python">
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Python">
 class MyLinkedList:
-    # Inner Node class definition
     class Node:
         def __init__(self, element, next_node=None, prev_node=None):
             self.element = element
@@ -887,115 +990,145 @@ class MyLinkedList:
             self.prev = prev_node
 
     def __init__(self):
-        self.firstNode = None
-        self.lastNode = None
-        self.size = 0
+        self._first_node = None
+        self._last_node = None
+        self._size = 0
 
-    def isEmpty(self):
-        return self.size == 0
+    def is_empty(self):
+        return self._size == 0
 
-    def getSize(self):
-        return self.size
+    def get_size(self):
+        return self._size
 
-    def addFirst(self, element):
-        newNode = self.Node(element, None, None)
+    def add_first(self, element):
+        new_node = self.Node(element, None, None)
 
-        if self.isEmpty():
-            self.firstNode = newNode
-            self.lastNode = newNode
+        if self.is_empty():
+            self._first_node = new_node
+            self._last_node = new_node
         else:
-            self.firstNode.prev = newNode
-            newNode.next = self.firstNode
-            self.firstNode = newNode
+            self._first_node.prev = new_node
+            new_node.next = self._first_node
+            self._first_node = new_node
 
-        self.size += 1
+        self._size += 1
 
-    def addLast(self, element):
-        newNode = self.Node(element, None, None)
+    def add_last(self, element):
+        new_node = self.Node(element, None, None)
 
-        if self.isEmpty():
-            self.firstNode = newNode
-            self.lastNode = newNode
+        if self.is_empty():
+            self._first_node = new_node
+            self._last_node = new_node
         else:
-            self.lastNode.next = newNode
-            newNode.prev = self.lastNode
-            self.lastNode = newNode
+            self._last_node.next = new_node
+            new_node.prev = self._last_node
+            self._last_node = new_node
 
-        self.size += 1
+        self._size += 1
 
-    def getFirst(self):
-        if self.isEmpty(): 
+    def get_first(self):
+        if self.is_empty():
             raise ValueError("The LinkedList is empty")
-        return self.firstNode.element
+        return self._first_node.element
 
-    def getLast(self):
-        if self.isEmpty(): 
+    def get_last(self):
+        if self.is_empty():
             raise ValueError("The LinkedList is empty")
-        return self.lastNode.element
+        return self._last_node.element
 
     def get(self, index):
-        if index &lt; 0 or index &gt; self.size - 1:
-            raise IndexError("The index should be between 0 and " + str(self.size - 1))
+        if index &lt; 0 or index &gt;= self._size:
+            raise IndexError(f"The index should be between 0 and {self._size - 1}")
 
-        if self.size == 1:
-            node = self.firstNode
+        if self._size == 1:
+            node = self._first_node
         else:
             count = 0
-            currentNode = self.firstNode
+            current_node = self._first_node
             while count != index:
-                currentNode = currentNode.next
+                current_node = current_node.next
                 count += 1
-            node = currentNode
+            node = current_node
 
         return node.element
 
-    def removeFirst(self):
-        if self.isEmpty(): 
+    def remove_first(self):
+        if self.is_empty():
             raise ValueError("The list is empty")
 
-        if self.size == 1:
-            removedNode = self.firstNode
-            self.firstNode = None
-            self.lastNode = None
+        removed_node = self._first_node
+        if self._size == 1:
+            self._first_node = None
+            self._last_node = None
         else:
-            removedNode = self.firstNode
-            self.firstNode = self.firstNode.next
-            self.firstNode.prev = None
+            self._first_node = self._first_node.next
+            self._first_node.prev = None
 
-        self.size -= 1
-        return removedNode.element
+        self._size -= 1
+        return removed_node.element
 
     def add(self, index, element):
-        # TODO Left as an exercise
-        return None
+        if index &lt; 0 or (index &gt;= self._size and self._size != 0):
+            raise IndexError("Index out of bounds")
+
+        if index == 0:
+            self.add_first(element)
+        else:
+            new_node = self.Node(element)
+            count = 0
+            current_node = self._first_node
+            while count != index:
+                current_node = current_node.next
+                count += 1
+
+            new_node.prev = current_node.prev
+            current_node.prev.next = new_node
+            new_node.next = current_node
+            current_node.prev = new_node
+            self._size += 1
+
+
+    def remove_last(self):
+        if self._size == 0:
+            raise ValueError("List is empty")
+
+        removed_node = self._last_node
+
+        if self._size == 1:
+            self._first_node = None
+            self._last_node = None
+        else:
+            prev_node = self._last_node.prev
+            prev_node.next = None
+            self._last_node = prev_node
+
+        self._size -= 1
+        return removed_node.element
+
 
     def remove(self, index):
         # TODO Left as an exercise
         return None
-
-    def removeLast(self):
-        # TODO Left as an exercise
-        return None
         </pre>
-          </div>
         </div>
-      </section>
-
+      </div>
     </section>
 
-    <section id="p7">
-      <h2>استفاده از لیست پیوندی در زبان های برنامه نویسی</h2>
-      <p>در بسیاری از زبان های برنامه نویسی لیست پیوندی (LinkedList) به عنوان یک کتابخونه ی استاندارد پیاده سازی شده و
-        در
-        اینجا میخوایم
-        استفاده از LinkedList رو بررسی کنیم.</p>
+  </section>
+
+  <section id="p7">
+    <h2>استفاده از لیست پیوندی در زبان های برنامه نویسی</h2>
+    <p>در بسیاری از زبان های برنامه نویسی لیست پیوندی (LinkedList) به عنوان یک کتابخونه ی استاندارد پیاده سازی شده و
+      در
+      اینجا میخوایم
+      استفاده از LinkedList رو بررسی کنیم.</p>
 
 
 
-      <div class="sample">
-        <div class="snippet-container">
-          <pre class="snippet Java">
-LinkedList&lt;String&gt; colors = new LinkedList&lt;&gt;();
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+MyLinkedList&lt;String&gt; colors = new MyLinkedList&lt;&gt;();
 colors.add("Blue");
 colors.add("Pink");
 colors.add("Purple");
@@ -1018,8 +1151,8 @@ while(!colors.isEmpty()){
   
 }
         </pre>
-          <pre class="snippet Kotlin">
-val colors: LinkedList&lt;String&gt; = LinkedList&lt;&gt;();
+        <pre class="snippet Kotlin">
+val colors: MyLinkedList&lt;String&gt; = MyLinkedList&lt;&gt;();
 colors.add("Blue")
 colors.add("Pink")
 colors.add("Purple")
@@ -1041,7 +1174,7 @@ while(!colors.isEmpty()){
   println(c)
 }
         </pre>
-          <pre class="snippet JavaScript">
+        <pre class="snippet JavaScript">
 let colors = new MyLinkedList();
 colors.add(0, "Blue"); // Assuming add(index, element) implementation
 colors.add(1, "Pink");
@@ -1066,53 +1199,53 @@ while (!colors.isEmpty()) {
 }
 
         </pre>
-          <pre class="snippet Python">
+        <pre class="snippet Python">
 colors = MyLinkedList()
 colors.add(0, "Blue")
 colors.add(1, "Pink")
 colors.add(2, "Purple")
 colors.addFirst("Cyan")
 colors.add(1, "Red")
-colors.removeLast()
-colors.addLast("Yellow")
+colors.remove_last()
+colors.add_last("Yellow")
 
 print("Display colors ")
-for i in range(0, colors.getSize()):
+for i in range(0, colors._size):
     c = colors.get(i)
     print(c + " ", end="")
 print()
 
 print("Remove and Display colors backward: ")
 
-while not colors.isEmpty():
-    c = colors.removeLast()
+while not colors.is_empty():
+    c = colors.remove_last()
     print(c)
         </pre>
-        </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section id="p8">
-      <h2>خلاصه</h2>
+  <section id="p8">
+    <h2>خلاصه</h2>
 
-      <ul>
-        <li>در LinkedList عناصر داخل node ها ذخیره میشن.</li>
-        <li>هر node در LinkedList به node بعدی اشاره میکنه.</li>
-        <li>انواع پیاده سازی LinkedList وجود داره از جمله: Singly LinkedList, Doubly LinkedList و Circular LinkedList
-        </li>
-        <li>در Singly LinkedList، یک node به node بعدی اشاره میکنه</li>
-        <li>در Doubly LinkedList یک node به node بعد و node قبل از خودش اشاره میکنه (Doubly LinkedList).</li>
-        <li>پیچیدگی زمان هنگام افزودن یک عنصر به ابتدا یا انتهای یک LinkedList O(1) و هنگام افزودن یک عنصر با index
-          برابر
-          با O(n) است.</li>
-        <li>پیچیدگی زمان برای صدا زدن یک عنصر در LinkedList با index برابر با O(n) است.</li>
-        <li>پیچیدگی زمان (time complexity) برای حذف کردن یک عنصر از ابتدا یا انتهای یک LinkedList برابر با O(1) و برای
-          حذف
-          کردن یک عنصر وسط LinkedList برابر با O(n) است.</li>
+    <ul>
+      <li>در LinkedList عناصر داخل node ها ذخیره میشن.</li>
+      <li>هر node در LinkedList به node بعدی اشاره میکنه.</li>
+      <li>انواع پیاده سازی LinkedList وجود داره از جمله: Singly LinkedList, Doubly LinkedList و Circular LinkedList
+      </li>
+      <li>در Singly LinkedList، یک node به node بعدی اشاره میکنه</li>
+      <li>در Doubly LinkedList یک node به node بعد و node قبل از خودش اشاره میکنه (Doubly LinkedList).</li>
+      <li>پیچیدگی زمان هنگام افزودن یک عنصر به ابتدا یا انتهای یک LinkedList O(1) و هنگام افزودن یک عنصر با index
+        برابر
+        با O(n) است.</li>
+      <li>پیچیدگی زمان برای صدا زدن یک عنصر در LinkedList با index برابر با O(n) است.</li>
+      <li>پیچیدگی زمان (time complexity) برای حذف کردن یک عنصر از ابتدا یا انتهای یک LinkedList برابر با O(1) و برای
+        حذف
+        کردن یک عنصر وسط LinkedList برابر با O(n) است.</li>
 
 
-      </ul>
-    </section>
+    </ul>
+  </section>
 
 </article>
 {% capture links %}

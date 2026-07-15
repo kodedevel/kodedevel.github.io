@@ -314,26 +314,26 @@ class MyStack:
 
         if elements is not None:
             for i in range(len(elements)):
-                self.list.addLast(elements[i])
+                self.list.add_last(elements[i])
 
     def pop(self):
         if self.list.isEmpty():
             return None
-        return self.list.removeLast()
+        return self.list.remove_last()
 
     def push(self, e):
-        self.list.addLast(e)
+        self.list.add_last(e)
 
     def peek(self):
-        if self.list.isEmpty():
+        if self.list.is_empty():
             return None
-        return self.list.getLast()
+        return self.list.get_last()
 
-    def isEmpty(self):
-        return self.list.isEmpty()
+    def is_empty(self):
+        return self.list.is_empty()
 
-    def getSize(self):
-        return self.list.getSize()
+    def get_size(self):
+        return self.list._size
         </pre>
           </div>
         </div>
@@ -610,13 +610,13 @@ import re
 
 class EvaluateExpression:
 
-     def evaluateExpression(self, expression):
+     def evaluate_expression(self, expression):
 
         operands = MyStack()
         operators = MyStack()
 
         expression = expression.strip() 
-        expression = self.insertBlanks(expression)
+        expression = self.insert_blanks(expression)
 
         tokens = re.split(r'\s+', expression)
 
@@ -627,16 +627,16 @@ class EvaluateExpression:
                 if token[0] == '+' or token[0] == '-':
 
                     while (
-                            not operators.isEmpty() and (operators.peek() == '*' or operators.peek() == '-' or operators.peek() == '*' or operators.peek() == '/')
+                            not operators.is_empty() and (operators.peek() == '*' or operators.peek() == '-' or operators.peek() == '*' or operators.peek() == '/')
                     ):
-                        self.processAnOperation(operators, operands)
+                        self.process_an_operation(operators, operands)
 
                     operators.push(token[0])
 
                 elif token[0] == '*' or token[0] == '/' or token[0] == '^':
 
-                    while not operators.isEmpty() and (operators.peek() == '*' or operators.peek() == '/'):
-                        self.processAnOperation(operators, operands)
+                    while not operators.is_empty() and (operators.peek() == '*' or operators.peek() == '/'):
+                        self.process_an_operation(operators, operands)
 
                     operators.push(token[0])
 
@@ -647,19 +647,19 @@ class EvaluateExpression:
                 elif token[0] == ')':
 
                     while operators.peek() != '(':
-                        self.processAnOperation(operators, operands)
+                        self.process_an_operation(operators, operands)
                     operators.pop()
 
                 else:
                     operands.push(float(token))
 
-        while not operators.isEmpty():
-            self.processAnOperation(operators, operands)
+        while not operators.is_empty():
+            self.process_an_operation(operators, operands)
 
         return operands.pop()
 
 
-     def processAnOperation(self, operators, operands):
+     def process_an_operation(self, operators, operands):
         op = operators.pop()
         operand0 = operands.pop()
         operand1 = operands.pop()
@@ -669,7 +669,7 @@ class EvaluateExpression:
         elif op == '-': operands.push(operand1 - operand0)
         elif op == '+': operands.push(operand1 + operand0)
 
-     def insertBlanks(self, s):
+     def insert_blanks(self, s):
         result = []
 
         for i in range(len(s)):

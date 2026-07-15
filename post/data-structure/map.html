@@ -1115,29 +1115,29 @@ class MyHashMap:
             self.key = key
             self.value = value
 
-        def getKey(self):
+        def get_key(self):
             return self.key
 
-        def getValue(self):
+        def get_value(self):
             return self.value
 
-        def setValue(self, value):
+        def set_value(self, value):
             oldValue = self.value
             self.value = value
             return oldValue
 
         def __str__(self):
-            return "{" + str(self.getKey()) + " : " + str(self.getValue()) + "}"
+            return "{" + str(self.get_key()) + " : " + str(self.get_value()) + "}"
 
-    def __init__(self, capacity=DEFAULT_CAPACITY, loadFactor=DEFAULT_LOAD_FACTOR):
+    def __init__(self, capacity=DEFAULT_CAPACITY, load_factor=DEFAULT_LOAD_FACTOR):
         if loadFactor &lt;= 0 or loadFactor &gt; 1:
             raise ValueError("load factor should be greater than 0 and less than or equal 1")
         if capacity &lt;= 0: 
             raise ValueError("Capacity can not be zero or less")
         
-        self.loadFactor = loadFactor
+        self.load_factor = load_factor
         self.capacity = capacity
-        self.size = 0
+        self._size = 0
 
         self.buckets = [None] * capacity
 
@@ -1154,23 +1154,23 @@ class MyHashMap:
         bucket = self.buckets[index]
 
         if bucket is not None:
-            for i in range(bucket.getSize()):
+            for i in range(bucket._size):
                 entry = bucket.get(i)
-                if entry.getKey() == key:
-                    return entry.getValue()
+                if entry.get_key() == key:
+                    return entry.get_value()
 
         return None
 
-    def containsKey(self, key):
-        # Keeping your exact recursive method signature/bug from the snippet
-        if self.containsKey(key):
+    def contains_key(self, key):
+      
+        if self.contains_key(key):
             index = self.hash(key)
             bucket = self.buckets[index]
 
-            for i in range(bucket.getSize()):
-                if bucket.get(i).getKey() == key:
+            for i in range(bucket._size):
+                if bucket.get(i).get_key() == key:
                     self.size -= 1
-                    return bucket.remove(i).getValue()
+                    return bucket.remove(i).get_value()
         return False
 
     def put(self, key, value):
@@ -1183,39 +1183,39 @@ class MyHashMap:
 
         bucket = self.buckets[index]
 
-        if self.containsKey(key):
-            for i in range(bucket.getSize()):
+        if self.contains_key(key):
+            for i in range(bucket._size):
                 entry = bucket.get(i)
                 if entry.getKey() == key:
-                    return entry.setValue(value)
+                    return entry.set_value(value)
         else:
             if self.buckets[index] is None: 
                 self.buckets[index] = MyLinkedList()
 
-            self.buckets[index].addLast(self.Entry(key, value))
+            self.buckets[index].add_last(self.Entry(key, value))
             self.size += 1
 
         return value
 
     def remove(self, key):
-        if self.containsKey(key):
+        if self.contains_key(key):
             index = self.hash(key)
             bucket = self.buckets[index]
 
-            for i in range(bucket.getSize()):
-                if bucket.get(i).getKey() == key:
+            for i in range(bucket._size):
+                if bucket.get(i).get_key() == key:
                     self.size -= 1
-                    return bucket.remove(i).getValue()
+                    return bucket.remove(i).get_value()
 
         return None
 
-    def toArray(self):
+    def to_array(self):
         entries = [None] * self.size
         index = 0
         
         for list_obj in self.buckets:
             if list_obj is not None:
-                for j in range(list_obj.getSize()):
+                for j in range(list_obj._size):
                     entry = list_obj.get(j)
                     if entry is not None:
                         entries[index] = entry
@@ -1223,29 +1223,26 @@ class MyHashMap:
 
         return entries
 
-    def getSize(self):
-        return self.size
-
-    def isEmpty(self):
-        return self.size == 0
+    def is_empty(self):
+        return self._size == 0
 
     def resize(self):
-        oldBuckets = self.buckets
+        old_buckets = self.buckets
         self.size = 0
         self.capacity *= 2
         self.buckets = [None] * self.capacity
 
-        for bucket in oldBuckets:
+        for bucket in old_buckets:
             if bucket is not None:
-                for j in range(bucket.getSize()):
+                for j in range(bucket._size):
                     entry = bucket.get(j)
-                    self.put(entry.getKey(), entry.getValue())
+                    self.put(entry.get_key(), entry.get_value())
 
     def __str__(self):
         sb = "[ "
         for bucket in self.buckets:
             if bucket is not None:
-                for j in range(bucket.getSize()):
+                for j in range(bucket._size):
                     entry = bucket.get(j)
                     sb += str(entry) + " "
         sb += " ]"

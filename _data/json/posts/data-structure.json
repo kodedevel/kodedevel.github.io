@@ -12,9 +12,9 @@
     },
     {
       "title": "لیست پیوندی (LinkedList) در برنامه نویسی",
-      "description": "لیست پیوندی (LinkedList) چیست؟‌ نگاهی کامل به لیست پیوندی در زبان های برنامه نویسی و پیاده سازی آن، به همراه مثال های عملی از لیست های پیوندی (LinkedList) پیاده سازی شده در زبان های برنامه نویسی.",
+      "description": "لیست پیوندی (LinkedList) چیست؟‌ نگاهی کامل به لیست پیوندی در زبان های برنامه نویسی و پیاده سازی لیست پیوندی با زبان های برنامه نویسی جاوا، کاتلین، جاوااسکریپت و پایتون، به همراه مثال های استفاده از لیست پیوندی (LinkedList) پیاده سازی شده.",
       "datePublished": "2026-06-15",
-      "lastModified": "2026-07-11",
+      "lastModified": "2026-07-15",
       "imgCover": "/resources/image/data-structure/cover_linkedlist.png",
       "link": "/post/data-structure/linkedlist.html"
     },
