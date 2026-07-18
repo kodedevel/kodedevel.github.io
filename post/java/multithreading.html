@@ -31,9 +31,11 @@ layout: default
 
   <aside class="note">
     <p class="note-head">توجه</p>
-    <p>بسیاری از کتابخونه های جاوا در زبان برنامه نویسی کاتلین هم قابل استفاده هستن و این مطلب از این قائده مستثنی نیست
-      و همینطور کراتین (Coroutines) در کاتلین بر اساس چندنخی در جاوا پیاده سازی شده است؛ بنابراین مثال های این مطلب
-      علاوه بر جاوا با کاتلین هم زده شده است.</p>
+    <p>کتابخونه های جاوا در زبان برنامه نویسی کاتلین هم قابل استفاده هستن و این مطلب از این قائده مستثنی نیست
+      بنابراین مثال های این مطلب
+      علاوه بر جاوا با کاتلین هم زده شده است؛ و باید به این نکته هم توجه کرد که کاتلین علاوه بر اینکه از کتابخونه های
+      چندنخی جاوا میتونه استفاده کنه، یک کتابخونه ی اختصاصی براش وجود داره به نام کراتین (Coroutines) که بر اساس چندنخی
+      در جاوا پیاده سازی شده است.</p>
   </aside>
 
 
@@ -220,7 +222,7 @@ class PrintCharTask(private val ch: Char, private val n: Int): Runnable {
         </tr>
 
         <tr class="tRow">
-          <td class="tDataLTR">+interrupt()</td>
+          <td class="tDataLTR">+interrupt(): void</td>
           <td class="tDataRTL">اجرای Thread رو قطع می کنه.</td>
         </tr>
 
@@ -635,6 +637,7 @@ private class PrintNumbersTask(private val n: Int) : Runnable {
 
 
     <table class="tb">
+
       <thead class="tHead">
         <tr>
           <th>java.util.concurrent.ExecutorService</th>
@@ -665,7 +668,7 @@ private class PrintNumbersTask(private val n: Int) : Runnable {
             +isTerminated(): boolean
           </td>
           <td class="tDataRTL">
-            اگه همه ی کار متوقف شده باشن مقدار true رو بر میگردونه.
+            اگه همه ی کارها متوقف شده باشن مقدار true رو بر میگردونه.
           </td>
         </tr>
         <tr class="tRow">
@@ -934,14 +937,10 @@ private class AddNumber(private val newNumber: Int) : Runnable {
 
 private class NumberUpdater {
 
-    val lock = ReentrantLock()
-
     var number: Int = 0
         private set
 
     fun updateNumber(n: Int) {
-
-        lock.lock()
 
         val newNumber = number + n
 
@@ -953,7 +952,6 @@ private class NumberUpdater {
 
         number = newNumber
 
-        lock.unlock()
     }
 }
         </pre>
@@ -968,7 +966,7 @@ private class NumberUpdater {
       <p class="note-head">توجه</p>
       <p>در کاتلین کلیدواژه ی synchronized وجود نداره، برای همگام سازی از کلاس ReentrantLock استفاده میکنیم؛ کلاس
         ReentrantLock یک پیاده سازی در جاواست، معمولا از ReentrantLock برای کنترل بیشتر روی همگام سازی داده ها با نخ ها
-        استفاده میشه اما در کاتلین کلیدواژه ی synchronized وجود نداره بنابراین در مثال
+        استفاده میشه اما در مثال
         زیر از ReentrantLock در کد های کاتلین استفاده کردیم.</p>
     </aside>
 
@@ -1034,7 +1032,7 @@ private class NumberUpdater {
       </li>
       <li>برای اجرای کار ها در جاوا از کلاس Thread استفاده می کنیم.</li>
       <li>
-        زمانی که بخوایم تعداد زیادی کار رو اجرا کنیم بجای کلاس Thread از با یکی از پیاده سازی های ExecutorService یک
+        زمانی که بخوایم تعداد زیادی کار رو اجرا کنیم بجای کلاس Thread با یکی از پیاده سازی های ExecutorService یک
         Thread Pool ایجاد میکنیم.
       </li>
       <li>
@@ -1049,3 +1047,18 @@ private class NumberUpdater {
 
 
 </article>
+{% capture links %}
+<li>
+  <a href="/post/blog/threads.html">نخ (Thread) ها در برنامه نویسی</a>
+</li>
+<li>
+  <a href="/post/java/interfaces.html">نگاهی به اینترفیس ها در جاوا</a>
+</li>
+<li>
+  <a href="/post/kotlin/interfaces.html">اینترفیس ها در کاتلین</a>
+</li>
+<li>
+  <a target="_blank" href="https://docs.oracle.com/javase/tutorial/essential/concurrency">مطالعه درباره ی همزمانی در
+    وبسایت اوراکل</a>
+</li>
+{% endcapture %} {% include article-foot.html relative_links = links %}
