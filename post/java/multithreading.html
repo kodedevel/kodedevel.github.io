@@ -1,0 +1,1051 @@
+---
+layout: default
+---
+
+<article>
+
+  <nav class="toc">
+    <div>دسترسی سریع</div>
+    <ul>
+      <li>
+        <a href="#p0">معرفی نخ (thread)</a>
+      </li>
+      <li>
+        <a href="#p1">اینترفیس Runnable در جاوا</a>
+      </li>
+      <li>
+        <a href="#p2">کلاس Thread در جاوا</a>
+      </li>
+      <li>
+        <a href="#p3">مفهوم Thread Pool در جاوا</a>
+      </li>
+      <li>
+        <a href="#p4">همگام سازی داده با نخ (Thread) ها در جاوا</a>
+      </li>
+      <li>
+        <a href="#p5">خلاصه</a>
+      </li>
+    </ul>
+  </nav>
+
+
+  <aside class="note">
+    <p class="note-head">توجه</p>
+    <p>بسیاری از کتابخونه های جاوا در زبان برنامه نویسی کاتلین هم قابل استفاده هستن و این مطلب از این قائده مستثنی نیست
+      و همینطور کراتین (Coroutines) در کاتلین بر اساس چندنخی در جاوا پیاده سازی شده است؛ بنابراین مثال های این مطلب
+      علاوه بر جاوا با کاتلین هم زده شده است.</p>
+  </aside>
+
+
+  <section id="p0">
+    <h2>معرفی نخ (Thread)</h2>
+
+    <blockquote>چندنخی به برنامه این امکان رو میده که چند کار رو به صورت همزمان انجام بده.</blockquote>
+
+    <p>وظیفه ی هر نخ اجرای یک کار از اول تا اخرشه، هر برنامه میتونه یک یا چند نخ داشته باشه و با هر نخ برنامه میتونه یک
+      کار جداگونه رو انجام بده، مثلا زمانی که تو
+      برنامه دارید تایپ می کنید و همزمان یک فایل رو دانلود می کنید، هر کار توسط یک نخ داره انجام میشه و هر دو کار داره
+      به صورت همزمان اتفاق می افته.</p>
+
+    <p>حتی زمانی که پردازنده فقط یک هسته و یک نخ فیزیکی داشته باشه، باز فرایند چند نخی میتونه اجرا بشه، سیستم عامل
+      مدیریت منابع رو در
+      دست میگیره و از فضای خالی پردازنده برای اجرای چندین نخ به صورت تقریبا هم زمان استفاده میکنه که اصطلاحا بهش
+      <strong>تسهیم زمانی (time slicing)</strong> میگیم. در مورد این موضوع به طور مفصل در قسمت <a
+        href="/post/blog/threads.html">نخ ها در برنامه نویسی</a> صحبت شد.
+    </p>
+
+    <p>جاوا به صورت پیشفرض از ویژگی چندنخی پشتیبانی میکنه و برای استفاده از قابلیت چندنخی در جاوا نیازی به اضافه کردن
+      کتابخونه های جانبی نیست.</p>
+
+  </section>
+
+  <section id="p1">
+    <h2>اینترفیس Runnable در جاوا و کاتلین</h2>
+
+    <p>در جاوا برای اجرای هر کاری توسط یک نخ ابتدا باید اون کار رو ایجاد کنیم، برای ایجاد یک کار در جاوا از <a
+        href="/post/java/interfaces.html">اینترفیس</a> <strong>Runnable</strong> استفاده می کنیم؛ این اینترفیس دارای یک
+      متد (تابع) به نام <strong dir="ltr">run()</strong> است و اجرای کد ها داخل این متد اتفاق می افته، متد run مقداری رو
+      بر نمیگردونه و تنها
+      متد (تابع) اینترفیس Runnable در جاوا است.</p>
+
+    <table class="tb">
+      <thead class="tHead">
+        <th>&lt;&lt;java.lang.Runnable&gt;&gt;</th>
+      </thead>
+      <tbody>
+        <tr class="tRow">
+          <td class="tDataLTR">+run(): void</td>
+          <td class="tDataRTL">کد ها داخل این متد اجرا میشن.</td>
+        </tr>
+      </tbody>
+    </table>
+
+
+    <p>میخوایم یک کار تعریف کنیم که اعداد صفر تا n رو نمایش بده.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+class PrintNumbersTask implements Runnable{
+
+  private int n;
+
+  public PrintNumbersTask(int n){
+    this.n = n;
+  }
+
+  @Override
+  public void run(){
+        
+    for(int i=0; i&lt;= n; i++){
+      
+      if(i % 10 == 0) System.out.println();
+
+      System.out.print(i + " ");
+    }
+    
+  }
+
+}
+        </pre>
+        <pre class="snippet Kotlin">
+class PrintNumbersTask(private val n: Int): Runnable{
+    
+    override fun run() {
+        for (i in 0 until n){
+            if (i % 10 == 0) println()
+            print("$i ")
+        }
+    }
+}
+        </pre>
+      </div>
+    </div>
+
+    <p>میخوایم یک کار تعریف کنیم که یک کاراکتر رو n بار نمایش بده.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+public class PrintCharTask implements Runnable{
+
+   private int numberOfChars;
+   private char ch;
+
+   public PrintCharTask(char ch, int numberOfChars){
+        this.numberOfChars = numberOfChars;
+        this.ch = ch;
+   }
+
+   @Override
+   public void run(){
+
+     for(int i=0; i&lt;numberOfChars; i++){
+
+        if(i % 10 == 0) System.out.println();
+
+        System.out.print(ch);
+     }
+
+   }
+
+}
+        </pre>
+        <pre class="snippet Kotlin">
+class PrintCharTask(private val ch: Char, private val n: Int): Runnable {
+    override fun run() {
+        for (i in 0 until n){
+            if (i % 10 == 0) println()
+            print("$ch ")
+        }
+    }
+}
+        </pre>
+      </div>
+    </div>
+
+  </section>
+  <section id="p2">
+    <h2>کلاس Thread در جاوا و کاتلین</h2>
+
+    <blockquote>تمام نخ (Thread) هایی که در جاوا ایجاد می کنیم، مستقیم یا غیر مستقیم روی نخ (Thread) اصلی (main thread)
+      شروع به کار میکنن.
+    </blockquote>
+
+    <p>برای اجرای کار های تعریف شده در قسمت قبل از کلاس <strong>Thread</strong> در جاوا استفاده می کنیم.</p>
+
+    <p>تا قبل از آشنایی با کلاس Thread هرچی کد اجرا میشد روی <strong>نخ (Thread) اصلی (main thread)</strong> برنامه اجرا
+      میشد بدون اینکه متوجه بشیم
+      داریم داخل یک نخ (Thread) کد نویسی می کنیم، با استفاده از کلاس Thread میتونیم نخ های مختلفی رو برای کار های مختلف
+      ایجاد کنیم.</p>
+
+    <p>در زیر کلاس Thread با متد (تابع) های پرکاربرد و کانستراکتور هاش شرح داده شده است.</p>
+
+    <table class="tb">
+      <thead class="tHead">
+        <th>java.lang.Thread</th>
+      </thead>
+
+      <tbody>
+        <tr class="tRow">
+          <td class="tDataLTR">Thread(runnable: Runnable)</td>
+          <td class="tDataRTL">یک نمونه از thread ایجاد می کنه و پیاده سازی Runnable رو به عنوان پارامتر بهش پاس میدیم.
+          </td>
+        </tr>
+        <tr class="tRow">
+          <td class="tDataLTR">Thread()</td>
+          <td class="tDataRTL">یک نمونه از Thread ایجاد می کنه.</td>
+        </tr>
+        <tr class="tRow">
+          <td class="tDataLTR">+start():void</td>
+          <td class="tDataRTL">Thread رو شروع می کنه.</td>
+        </tr>
+
+        <tr class="tRow">
+          <td class="tDataLTR">+isAlive():boolean</td>
+          <td class="tDataRTL">بررسی میکنه ببینه آیا Thread در حال اجراست یا کارش تموم شده.</td>
+        </tr>
+
+        <tr class="tRow">
+          <td class="tDataLTR">+setPeriority(periority: int): void</td>
+          <td class="tDataRTL">برای شروع Thread نسبت به بقیه thread ها اولویت قرار میده، یک عدد بین 1 تا 10 رو به عنوان
+            پارامتر میتونیم بهش پاس بدیم و هرچی این عدد کمتر باشه Thread زودتر از بقیه ی Thread ها اجرا
+            میشه.</td>
+        </tr>
+
+        <tr class="tRow">
+          <td class="tDataLTR">+join(): void</td>
+          <td class="tDataRTL">صبر میکنه تا کار Thread فعلی تموم بشه؛ این متد رو باید داخل Thread که میخوایم به طور موقت
+            متوقف بشه صدا بزنیم.</td>
+        </tr>
+
+        <tr class="tRow">
+          <td class="tDataLTR">+interrupt()</td>
+          <td class="tDataRTL">اجرای Thread رو قطع می کنه.</td>
+        </tr>
+
+        <tr class="tRow">
+          <td class="tDataLTR" style="text-decoration: underline;">+sleep(millis: long): void</td>
+          <td class="tDataRTL">کلاس Thread رو برای مدت زمان مشخص متوقف میکنه. (این متد استاتیک است)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>مثال</p>
+    <p>در زیر میخوایم دو کاری که در قسمت قبل تعریف کردیم رو با Thread اجرا کنیم.</p>
+
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+Thread thread0 = new Thread(new PrintNumbersTask(200));
+Thread thread1 = new Thread(new PrintCharTask('a', 100));
+
+thread0.start();
+thread1.start();
+        </pre>
+        <pre class="snippet Koltin">
+val thread0 = Thread(PrintNumbersTask(200))
+val thread1 = ThreaD(PrintCharTask('a', 100)
+        </pre>
+      </div>
+    </div>
+
+    <p>داخل کلاس Thread اینترفیس Runnable وجود داره میتونیم از کلاس Thread مستقیم ارث بری کنیم و Runnable رو داخلش پیاده
+      سازی کنیم.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+public class PrintNumbersThread extends Thread{
+    
+    private int n;
+
+    public PrintNumbersThread(int n){
+       this.n = n;
+    }
+
+    @Override
+    public void run() {
+        for (int i = 0; i &lt; n; i++) {
+
+            if (i % 10 == 0) System.out.println();
+
+            System.out.print(i + " ");
+        }
+    }
+}
+
+public class PrintCharThread extends Thread {
+
+    private int n;
+    private char ch;
+
+    public PrintCharThread(char ch, int n){
+       this.n = n;
+       this.ch = ch;
+    }
+
+    public PrintCharThread()
+    
+    @Override
+    public void run() {
+        for (int i=0; i&lt;n; i++){
+            
+            if(i % 10 == 0) System.out.println();
+
+            System.out.print(ch + "");
+        }
+    }
+    
+}
+        </pre>
+        <pre class="snippet Kotlin">
+
+
+class PrintNumbersThread(private val n: Int): Thread(){
+    override fun run() {
+       for (i in 0 until n){
+           if (i % 10 == 0) println()
+
+           print("$i ")
+       }
+    }
+}
+
+
+class PrintCharThread(private val ch: Char, private val n: Int): Thread() {
+
+    override fun run() {
+        for (i in 0 until n){
+            if (i % 10 == 0) println()
+
+            print("$ch ")
+        }
+    }
+}
+        </pre>
+      </div>
+    </div>
+
+
+    <section>
+
+      <h3>متد (تابع) join</h3>
+
+      <p>فرض کنید دوتا Thread داریم به نام های <strong>A</strong> و <strong>B</strong>، نخ A رو داخل نخ B اجرا کنیم و در
+        جایی از اجرای کد میخوایم
+        نخ B متوقف بشه تا اجرای نخ A کامل بشه، بنابراین از متد join در نخ A برای توقف موقت نخ B استفاده می کنیم.</p>
+
+      <p>میخوایم در کار PrintNumbersTask یک Thread از کار PrintRandomCharTask ایجاد کنیم و متد join رو صدا بزنیم؛
+        بنابراین
+        کد PrintNumbersTask رو به صورت زیر تغییر میدیم.</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
+private static class PrintNumbersTask implements Runnable {
+
+    private int n;
+    
+    public PrintNumbersTask(int n){
+       this.n = n;
+    }
+
+    @Override
+    public void run() {
+
+        Thread printCharThread = new Thread(new PrintCharTask('a', 1000));
+        printCharThread.start();
+
+        try {
+
+            for (int i = 0; i &lt;n; i++) {
+
+                if (i == 50) 
+                    printCharThread.join();
+                
+                System.out.print(i + " ");
+
+            }
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+    }
+}
+        </pre>
+          <pre class="snippet Kotlin">
+private class PrintNumbersTask(private val n: Int) : Runnable {
+    override fun run() {
+        val printCharThread = Thread(PrintCharTask('a', 1000))
+        printCharThread.start()
+
+        try {
+
+            for (i in 0..&lt;n) {
+                
+                if (i == 50) printCharThread.join()
+
+                if(i % 10 == 0) println()
+
+                print("$i ")
+            }
+
+        } catch (e: InterruptedException) {
+            e.printStackTrace()
+        }
+    }
+        </pre>
+        </div>
+      </div>
+
+      <p>سپس یک نخ برای اجرای کار PrintNumbersTask ایجاد میکنیم، زمانی که کار PrintNumbersTask شروع کنه به اجرا شدن
+        کار
+        PrintRandomCharsTask هم شروع به اجرا شدن میکنه چون داخل PrintNumbersTask با یک Thread اجراش کردیم.</p>
+
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
+public class TestJoin {
+
+    public static void main(String[] args) {
+        Thread t = new Thread(new PrintNumbersTask(1000));
+        t.start();
+    }
+
+    private static class PrintCharTask implements Runnable{
+        private int numberOfChars;
+        private char ch;
+
+        public PrintCharTask(char ch, int numberOfChars){
+            this.numberOfChars = numberOfChars;
+            this.ch = ch;
+        }
+        @Override
+        public void run(){
+            for(int i=0; i&lt;numberOfChars; i++){
+                if(i % 10 == 0) System.out.println();
+                System.out.print(ch);
+            }
+        }
+    }
+    private static class PrintNumbersTask implements Runnable {
+        private int n;
+        
+        public PrintNumbersTask(int n){
+            this.n = n;
+        }
+        
+        @Override
+        public void run() {
+            Thread printCharThread = new Thread(new PrintCharTask('a', 1000));
+            printCharThread.start();
+            try {
+                for (int i = 0; i &lt;n; i++) {
+                    
+                    if (i == 50)
+                        printCharThread.join();
+                    
+                    if(i % 10 == 0) System.out.println();
+
+                    System.out.print(i + " ");
+
+                }
+            }catch (InterruptedException e){
+                e.printStackTrace();
+            }
+        }
+    }
+}
+        </pre>
+          <pre class="snippet Kotlin">
+fun main() {
+    val t = Thread(PrintNumbersTask(1000))
+    t.start()
+}
+
+private class PrintCharTask(private val ch: Char, private val numberOfChars: Int) : Runnable {
+    override fun run() {
+        for (i in 0..&lt;numberOfChars) {
+            if (i % 10 == 0) println()
+
+            print(ch)
+        }
+    }
+}
+
+private class PrintNumbersTask(private val n: Int) : Runnable {
+    override fun run() {
+        val printCharThread = Thread(PrintCharTask('a', 1000))
+        printCharThread.start()
+
+        try {
+
+            for (i in 0..&lt;n) {
+                
+                if (i == 50) printCharThread.join()
+
+                if(i % 10 == 0) println()
+
+                print("$i ")
+            }
+
+        } catch (e: InterruptedException) {
+            e.printStackTrace()
+        }
+    }
+}
+        </pre>
+        </div>
+      </div>
+
+      <p>ابتدا دو کار نمایش کاراکتر های تصادفی و چاپ اعداد تقریبا همزمان اجرا میشن (کار نمایش کاراکتر های تصادفی کمی
+        زودتر)، سپس زمانی که چاپ اعداد به 50 میرسه
+        متوقف شده، تا کار نمایش تصادفی کاراکتر ها تموم بشه و بعد از تموم شدنش کار چاپ اعداد ادامه پیدا می کنه.</p>
+    </section>
+
+    <section>
+      <h3>متد (تابع) sleep در Thread</h3>
+      <p>با استفاده از متد (تابع) sleep میتونیم یک نخ (Thread) رو تا یک بازه ی زمانی مشخصی متوقف کنیم، متد sleep
+        استاتیکه، زمانی که داخل یک کار صدا زده بشه، Thread اجرا کننده ی کار رو متوقف میکنه و Thread هایی که داخل کار
+        اجرا شدن هم به طور موقت متوقف میشن.</p>
+
+
+      <p>در مثال زیر زمانی که i به 50 میرسه متد sleep صدا زده میشه.</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
+public class TestSleep {
+
+    public static void main(String[] args) throws InterruptedException {
+        Thread t = new Thread(new PrintNumbersTask(1000));
+        t.start();
+
+        for(int i=0; i&lt;1000; i++)
+            System.out.println("Hello from main thread");
+    }
+
+    private static class PrintCharTask implements Runnable{
+
+        private int numberOfChars;
+        private char ch;
+
+        public PrintCharTask(char ch, int numberOfChars){
+            this.numberOfChars = numberOfChars;
+            this.ch = ch;
+        }
+
+        @Override
+        public void run(){
+
+            for(int i=0; i&lt;numberOfChars; i++){
+
+                if(i % 10 == 0) System.out.println();
+
+                System.out.print(ch);
+            }
+
+        }
+
+    }
+
+    private static class PrintNumbersTask implements Runnable {
+
+        private int n;
+        
+        public PrintNumbersTask(int n){
+            this.n = n;
+        }
+        
+        @Override
+        public void run() {
+
+            Thread thread = new Thread(new PrintCharTask('a', 1000));
+            thread.start();
+
+            try {
+
+                for (int i = 0; i &lt;n; i++) {
+
+                    if (i == 50)
+                        Thread.sleep(2000);
+
+
+                    System.out.print(i + " ");
+
+                }
+            }catch (InterruptedException e){
+                e.printStackTrace();
+            }
+        }
+    }
+}
+          </pre>
+          <pre class="snippet Kotlin">
+@Throws(InterruptedException::class)
+fun main() {
+    val t = Thread(PrintNumbersTask(1000))
+    t.start()
+
+    for (i in 0..999) println("Hello from main thread")
+}
+
+private class PrintCharTask(private val ch: Char, private val numberOfChars: Int) : Runnable {
+    override fun run() {
+        for (i in 0..&lt;numberOfChars) {
+            if (i % 10 == 0) println()
+
+            print(ch)
+        }
+    }
+}
+
+private class PrintNumbersTask(private val n: Int) : Runnable {
+    override fun run() {
+        val thread = Thread(PrintCharTask('a', 1000))
+        thread.start()
+
+        try {
+            for (i in 0..&lt;n) {
+                if (i == 50) Thread.sleep(2000)
+
+                print("$i ")
+            }
+        } catch (e: InterruptedException) {
+            e.printStackTrace()
+        }
+    }
+}
+          </pre>
+        </div>
+      </div>
+    </section>
+
+  </section>
+
+  <section id="p3">
+    <h2>مفهوم Thread Pool در جاوا و کاتلین</h2>
+
+    <p>زمانی که بخوایم یکی دو نخ ایجاد کنیم، کلاس Thread کاملا مناسبه ولی اگه بخوایم برای چند کار تعداد زیادی نخ ایجاد
+      کنیم، ایجاد یک Thread Pool بهینه تره.</p>
+    <p>برای ایجاد Thread Pool در جاوا یک اینترفیس به نام ExecutorService وجود داره، میتونیم پیاده سازی های مختلف این
+      اینترفیس رو با کلاس <strong>Executors</strong> به صورت استاتیک صدا بزنیم.</p>
+
+
+    <table class="tb">
+      <thead class="tHead">
+        <tr>
+          <th>java.util.concurrent.ExecutorService</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr class="tRow">
+          <td class="tDataLTR">+shutdown(): void</td>
+          <td class="tDataRTL">اجرای کار ها توسط ExecutorService رو متوقف میکنه ولی به کار هایی که هم اکنون در حال اجرا
+            شدن هستن اجازه میده تا فعالیتشون تموم بشه.</td>
+        </tr>
+        <tr class="tRow">
+          <td class="tDataLTR">+shutdownNow(): List&lt;Runnable&gt;</td>
+          <td class="tDataRTL">اجرای تمام کار ها توسط ExecutorService رو فورا متوقف میکنه و در آخر یک لیست از کار های
+            اجرا نشده بر میگردونه.</td>
+        </tr>
+        <tr class="tRow">
+          <td class="tDataLTR">
+            +isShutdown(): boolean
+          </td>
+          <td class="tDataRTL">
+            اگه ExecutorService متوقف شده باشه مقدار true رو بر میگردونه.
+          </td>
+        </tr>
+        <tr class="tRow">
+          <td class="tDataLTR">
+            +isTerminated(): boolean
+          </td>
+          <td class="tDataRTL">
+            اگه همه ی کار متوقف شده باشن مقدار true رو بر میگردونه.
+          </td>
+        </tr>
+        <tr class="tRow">
+          <td class="tDataLTR">
+            +close(): void
+          </td>
+          <td class="tDataRTL">
+            بعد از اجرای کار های اضافه شده با صدا زدن close،‌ کلاس ExecutorService بسته میشه و اگه بعد از close کاری رو
+            بهش اضافه کنیم دچار RejectedExecutionException میشیم.
+          </td>
+        </tr>
+      </tbody>
+
+    </table>
+
+    <p>پیاده سازی های مختلفی از ExecutorService در کلاس Executors وجود داره که بر اساس نیاز میتونیم از هرکدوم که خواستیم
+      استفاده کنیم.</p>
+
+    <table class="tb">
+      <thead class="tHead">
+        <tr>
+          <th>
+            java.util.concurrent.Executors
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="tRow">
+          <td class="tDataLTR">
+            +newFixedThreadPool(numberOfThreads: int): ExecutorService
+          </td>
+          <td class="tDataRTL">
+            یک ExecutorService ایجاد میکنه با تعداد مشخصی Thread زمانی که یک کارش تموم میشه میتونه کار های جدید رو با
+            Thread خالی شروع کنه.
+          </td>
+        </tr>
+        <tr class="tRow">
+          <td class="tDataLTR">
+            +newCachedThreadPool(): ExecutorService
+          </td>
+          <td class="tDataRTL">
+            یک ExecutorService با تعدادی Thread به اندازه ی نیاز برنامه ایجاد میکنه و زمانی که یک Thread کارش تموم بشه
+            میتونه کار های جدید رو باهاش شروع کنه.
+          </td>
+        </tr>
+        <tr class="tRow">
+          <td class="tDataLTR">
+            +newSingleThreadPool(): ExecutorService
+          </td>
+          <td class="tDataRTL">
+            یک ExecutorService با یک Thread ایجاد میکنه و زمانی که کار Thread تموم بشه، کار بعدی با Thread شروع میشه.
+          </td>
+        </tr>
+      </tbody>
+
+    </table>
+
+    <p>در بخش <a href="#p1">اینترفیس Runnable</a> در جاوا دو کار PrintNumbersTask و PrintCharTask رو پیاده کردیم، حالا
+      میخوایم این دو کار رو با ExecutorService اجرا کنیم.</p>
+
+    <p>در مثال زیر بعد از تموم شدن یکی از کارها، کار مربوط به نمایش حرف d شروع به اجرا شدن میکنه.</p>
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+public class ThreadPool {
+
+    public static void main(String[] args) throws InterruptedException {
+        ExecutorService service = Executors.newFixedThreadPool(3);
+
+        service.execute(new PrintNumbers(1000));
+        service.execute(new PrintChar('a',400));
+        service.execute(new PrintChar('b', 300));
+        service.execute(new PrintChar('c', 200));
+        service.execute(new PrintChar('d', 100));
+
+        service.close();
+
+        //RejectedExecutionException
+        service.execute(new PrintChar('e', 100));
+
+    }
+
+
+    private static class PrintChar implements Runnable{
+        private final int n;
+        private final char ch;
+
+        PrintChar(char ch, int n){
+            this.n = n;
+            this.ch = ch;
+        }
+
+        @Override
+        public void run() {
+            for (int i=0; i&lt;n; i++) {
+                if (i % 10 == 0) System.out.println();
+                System.out.print(ch + "");
+            }
+        }
+    }
+
+    private static class PrintNumbers implements Runnable{
+        private final int n;
+
+        PrintNumbers(int n){
+            this.n = n;
+        }
+
+        @Override
+        public void run() {
+            for (int i=0; i&lt;n; i++){
+                if (i % 10 == 0) System.out.println();
+                System.out.print(i);
+            }
+        }
+    }
+}
+        </pre>
+        <pre class="snippet Kotlin">
+@Throws(InterruptedException::class)
+fun main() {
+    val service = Executors.newFixedThreadPool(3)
+
+    service.execute(PrintNumbers(1000))
+    service.execute(PrintChar('a', 400))
+    service.execute(PrintChar('b', 300))
+    service.execute(PrintChar('c', 200))
+    service.execute(PrintChar('d', 100))
+
+    service.close()
+
+    //RejectedExecutionException
+    service.execute(PrintChar('e', 100))
+}
+
+
+private class PrintChar(private val ch: Char, private val n: Int) : Runnable {
+    override fun run() {
+        for (i in 0..&lt;n) {
+            if (i % 10 == 0) println()
+            print(ch.toString() + "")
+        }
+    }
+}
+
+private class PrintNumbers(private val n: Int) : Runnable {
+    override fun run() {
+        for (i in 0..&lt;n) {
+            if (i % 10 == 0) println()
+            print(i)
+        }
+    }
+}
+        </pre>
+      </div>
+    </div>
+
+  </section>
+
+
+  <section id="p4">
+    <h2>همگام سازی داده با نخ (Thread) ها در جاوا و کاتلین</h2>
+
+    <p>زمانی که چند نخ به طور همزمان بخوان یک داده رو تغییر بدن، هنگام ایجاد تغییرات روی داده ممکنه باعث خراب شدن داده
+      بشن، فرض کنید میخوایم یک متغیر رو با دو عدد به طور همزمان جمع کنیم، برنامه نمیدونه کدوم عدد رو اضافه کنه و ممکنه
+      به طور تصادفی عدد اول رو با متغیر جمع کنه و از عدد دوم صرف نظر کنه، شایدم برعکس عدد دوم رو با
+      متغیر جمع بزنه، به این وضعیت در چندنخی (multithreading) وضعیت
+      <strong>رقابت بین نخ (Thread) ها (race condition)</strong>
+      میگیم.
+    </p>
+
+    <p>برای جلوگیری از race condition یک کلیدواژه به نام synchronized در جاوا وجود داره، هنگامی که این کلیدواژه در متد
+      (تابع) استفاده بشه تنها یک نخ میتونه تابع رو اجرا کنه و زمانی که کار نخ با تابع تموم نشده باشه، تابع برای نخ های
+      دیگه ازاد نمیشه و نخ های دیگه نمیتونن تابع رو
+      اجرا کنن، به متد هایی که با کلیدواژه ی synchronized تعریف میشن، <strong>متد های همگام سازی شده (Synchronized
+        Methods)</strong> گفته میشه.</p>
+
+
+    <p>جمع اعداد یک تا 100 برابر است با 5050، زمانی که بخوایم این جمع رو به صورت چند نخی انجام بدیم،‌ اگه از
+      synchronized استفاده نکنیم، با هربار اجرای برنامه حاصل جمع به صورت پرت و پلا خواهد بود در زیر یک مثال بدون استفاده
+      از synchronized زدیم.</p>
+
+
+
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+public class MultithreadedAddition {
+
+    private static NumberUpdater numberUpdater = new NumberUpdater();
+
+    public static void main(String[] args){
+
+        ExecutorService service = Executors.newCachedThreadPool();
+
+        for (int i=1; i&lt;=100; i++) {
+            service.execute(new AddNumber(i));
+        }
+
+        service.shutdown();
+
+        while (!service.isTerminated());
+
+        System.out.println(numberUpdater.getNumber());
+    }
+
+    private static class AddNumber implements Runnable{
+
+        private final int newNumber;
+
+        AddNumber(int newNumber){
+            this.newNumber = newNumber;
+        }
+
+        @Override
+        public void run() {
+            numberUpdater.updateNumber(newNumber);
+        }
+
+    }
+
+    private static class NumberUpdater {
+        private int number;
+
+        public void updateNumber(int n){
+            int newNumber = number + n;
+
+            try {
+                Thread.sleep(5);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+
+            number = newNumber;
+        }
+
+        public int getNumber() {
+            return number;
+        }
+    }
+}
+        </pre>
+        <pre class="snippet Kotlin">
+private val numberUpdater = NumberUpdater()
+
+fun main() {
+    val service = Executors.newCachedThreadPool()
+
+    for (i in 1..100) {
+        service.execute(AddNumber(i))
+    }
+
+    service.shutdown()
+
+    while (!service.isTerminated);
+
+    println(numberUpdater.number)
+}
+
+private class AddNumber(private val newNumber: Int) : Runnable {
+    override fun run() {
+        numberUpdater.updateNumber(newNumber)
+    }
+}
+
+private class NumberUpdater {
+
+    val lock = ReentrantLock()
+
+    var number: Int = 0
+        private set
+
+    fun updateNumber(n: Int) {
+
+        lock.lock()
+
+        val newNumber = number + n
+
+        try {
+            Thread.sleep(5)
+        } catch (e: InterruptedException) {
+            throw RuntimeException(e)
+        }
+
+        number = newNumber
+
+        lock.unlock()
+    }
+}
+        </pre>
+      </div>
+    </div>
+
+    <p>در مثال بالا برای اینکه منظور بهتر درک بشه از sleep در متد updateNumber استفاده کردیم، متد sleep باعث میشه نخ های
+      بیشتری منتظر بمونن و باهم شروع به اجرای</p>
+    <p>برای اینکه race condition به وجود نیاد کافیه متد (تابع) updateNumber رو به صورت synchronized تعریف کنیم.</p>
+
+    <aside class="note">
+      <p class="note-head">توجه</p>
+      <p>در کاتلین کلیدواژه ی synchronized وجود نداره، برای همگام سازی از کلاس ReentrantLock استفاده میکنیم؛ کلاس
+        ReentrantLock یک پیاده سازی در جاواست، معمولا از ReentrantLock برای کنترل بیشتر روی همگام سازی داده ها با نخ ها
+        استفاده میشه اما در کاتلین کلیدواژه ی synchronized وجود نداره بنابراین در مثال
+        زیر از ReentrantLock در کد های کاتلین استفاده کردیم.</p>
+    </aside>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+private static class NumberUpdater {
+    private int number;
+    public synchronized void updateNumber(int n){
+        int newNumber = number + n;
+        try {
+            Thread.sleep(5);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        number = newNumber;
+    }
+    public int getNumber() {
+        return number;
+    }
+}
+        </pre>
+        <pre class="snippet Kotlin">
+private class NumberUpdater {
+    val lock = ReentrantLock()
+
+    var number: Int = 0
+        private set
+
+    fun updateNumber(n: Int) {
+        lock.lock()
+
+        val newNumber = number + n
+
+        try {
+            Thread.sleep(5)
+        } catch (e: InterruptedException) {
+            throw RuntimeException(e)
+        }
+
+        number = newNumber
+
+        lock.unlock()
+    }
+}
+        </pre>
+      </div>
+    </div>
+
+    <p>از این به بعد زمانی که گفته میشه یک متد در جاوا synchronized است باید بدونید منظور چیه :)</p>
+
+  </section>
+
+  <section id="p5">
+    <h2>خلاصه</h2>
+
+    <ul>
+      <li>
+        از نخ ها برای انجام چند کار به صورت همزمان در برنامه استفاده می کنیم.
+      </li>
+      <li>
+        برای ایجاد کار در جاوا از اینترفیس Runnable استفاده میکنیم.
+      </li>
+      <li>برای اجرای کار ها در جاوا از کلاس Thread استفاده می کنیم.</li>
+      <li>
+        زمانی که بخوایم تعداد زیادی کار رو اجرا کنیم بجای کلاس Thread از با یکی از پیاده سازی های ExecutorService یک
+        Thread Pool ایجاد میکنیم.
+      </li>
+      <li>
+        زمانی که چند نخ به صورت همزمان بخوان یک داده رو تغییر بدن دچار race condition میشیم.
+      </li>
+      <li>
+        از کلیدواژه ی synchronized در جاوا برای جلوگیری از race condition استفاده می کنیم.
+      </li>
+    </ul>
+
+  </section>
+
+
+</article>
