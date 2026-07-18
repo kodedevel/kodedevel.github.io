@@ -173,35 +173,41 @@
   width: 100%;
 }
 
+section{
+  justify-content: center;
+  align-items: center;
+}
 
 .tb{
-    display: block;
+    height: 100%;
     width: 100%;
+    display: block;
+    justify-self: center;
     height: wrap-content;
     margin-bottom: 24px;
     direction: ltr;
 }
 
-.tb .tRow{
+.tRow{
     width: 100%;
     display: flex;
     justify-content: space-between;
     background-color: #e1f5fe;
 }
 
-.tRow .tHead{
+.tHead{
     width: 100%;
     font-weight: bold;
-    font-size: 1.25em;
+    font-size: 1.1rem;
     text-align: center;
-    background-color: #80d8ff;
-    border-radius: 8px;
-    padding: 8px 0;
+    background-color: #E0E0E0;
 }
 
 .tRow .tDataLTR{
+    background-color: #80d8ff;
     direction: ltr;
     font-weight:bold;
+    min-width: 250px;
     padding: 16px 8px;
 }
 

@@ -1,0 +1,469 @@
+---
+layout: default
+---
+
+<article>
+
+  <nav class="toc">
+    <div>دسترسی سریع</div>
+    <ul>
+      <li>
+        <a href="#p0">معرفی نخ (thread)</a>
+      </li>
+      <li>
+        <a href="#p1">اینترفیس Runnable در جاوا</a>
+      </li>
+      <li>
+        <a href="#p2">کلاس Thread در جاوا</a>
+      </li>
+      <li>
+        <a href="#p3">خلاصه</a>
+      </li>
+    </ul>
+  </nav>
+
+  <section id="p0">
+    <h2>معرفی نخ (Thread)</h2>
+
+    <blockquote>چندنخی به برنامه این امکان رو میده که چند کار رو به صورت همزمان انجام بده.</blockquote>
+
+    <p>وظیفه ی هر نخ اجرای یک کار از اول تا اخرشه، هر برنامه میتونه یک یا چند نخ داشته باشه و با هر نخ برنامه میتونه یک
+      کار جداگونه رو انجام بده، مثلا زمانی که تو
+      برنامه دارید تایپ می کنید و همزمان یک فایل رو دانلود می کنید، هر کار توسط یک نخ داره انجام میشه و هر دو کار داره
+      به صورت همزمان اتفاق می افته.</p>
+
+    <p>حتی زمانی که پردازنده فقط یک هسته و یک نخ فیزیکی داشته باشه، باز فرایند چند نخی میتونه اجرا بشه، سیستم عامل
+      مدیریت منابع رو در
+      دست میگیره و از فضای خالی پردازنده برای اجرای چندین نخ به صورت تقریبا هم زمان استفاده میکنه که اصطلاحا بهش
+      <strong>تسهیم زمانی (time slicing)</strong> میگیم. در مورد این موضوع به طور مفصل در قسمت <a
+        href="/post/blog/threads.html">نخ ها در برنامه نویسی</a> صحبت شد.
+    </p>
+
+    <p>جاوا به صورت پیشفرض از ویژگی چندنخی پشتیبانی میکنه و برای استفاده از قابلیت چندنخی در جاوا نیازی به اضافه کردن
+      کتابخونه های جانبی نیست.</p>
+
+  </section>
+
+  <section id="p1">
+    <h2>اینترفیس Runnable در جاوا</h2>
+
+    <p>در جاوا برای اجرای هر کاری توسط یک نخ ابتدا باید اون کار رو ایجاد کنیم، برای ایجاد یک کار در جاوا از <a
+        href="/post/java/interfaces.html">اینترفیس</a> <strong>Runnable</strong> استفاده می کنیم؛ این اینترفیس دارای یک
+      متد (تابع) به نام <strong dir="ltr">run()</strong> است و اجرای کد ها داخل این متد اتفاق می افته، متد run مقداری رو
+      بر نمیگردونه و تنها
+      متد (تابع) اینترفیس Runnable در جاوا است.</p>
+
+    <table class="tb">
+      <thead class="tHead">
+        <th>&lt;&lt;java.lang.Runnable&gt;&gt;</th>
+      </thead>
+      <tbody>
+        <tr class="tRow">
+          <td class="tDataLTR">+run(): void</td>
+          <td class="tDataRTL">کد ها داخل این متد اجرا میشن.</td>
+        </tr>
+      </tbody>
+    </table>
+
+
+    <p>میخوایم یک کار تعریف کنیم که اعداد صفر تا n رو نمایش بده.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+class PrintNumbersTask implements Runnable{
+
+  private int n;
+
+  public PrintNumbersTask(int n){
+    this.n = n;
+  }
+
+  @Override
+  public void run(){
+        
+    for(int i=0; i&lt;= n; i++){
+      
+      if(i % 10 == 0) System.out.println();
+
+      System.out.print(i + " ");
+    }
+    
+  }
+
+}
+        </pre>
+      </div>
+    </div>
+
+    <p>میخوایم یک کار تعریف کنیم که یک کاراکتر رو n بار نمایش بده.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+public class PrintCharTask implements Runnable{
+
+   private int numberOfChars;
+   private char ch;
+
+   public PrintCharTask(char ch, int numberOfChars){
+        this.numberOfChars = numberOfChars;
+        this.ch = ch;
+   }
+
+   @Override
+   public void run(){
+
+     for(int i=0; i&lt;numberOfChars; i++){
+
+        if(i % 10 == 0) System.out.println();
+
+        System.out.print(ch);
+     }
+
+   }
+
+}
+        </pre>
+      </div>
+    </div>
+
+  </section>
+  <section id="p2">
+    <h2>کلاس Thread در جاوا</h2>
+
+    <blockquote>تمام نخ (Thread) هایی که در جاوا ایجاد می کنیم، مستقیم یا غیر مستقیم روی نخ (Thread) اصلی (main thread)
+      شروع به کار میکنن.
+    </blockquote>
+
+    <p>برای اجرای کار های تعریف شده در قسمت قبل از کلاس <strong>Thread</strong> در جاوا استفاده می کنیم.</p>
+
+    <p>تا قبل از آشنایی با کلاس Thread هرچی کد اجرا میشد روی <strong>نخ (Thread) اصلی (main thread)</strong> برنامه اجرا
+      میشد بدون اینکه متوجه بشیم
+      داریم داخل یک نخ (Thread) کد نویسی می کنیم، با استفاده از کلاس Thread میتونیم نخ های مختلفی رو برای کار های مختلف
+      ایجاد کنیم.</p>
+
+    <p>در زیر کلاس Thread با متد (تابع) های پرکاربرد و کانستراکتور هاش شرح داده شده است.</p>
+
+    <table class="tb">
+      <thead class="tHead">
+        <th>java.lang.Thread</th>
+      </thead>
+
+      <tbody>
+        <tr class="tRow">
+          <td class="tDataLTR">Thread(runnable: Runnable)</td>
+          <td class="tDataRTL">یک نمونه از thread ایجاد می کنه و پیاده سازی Runnable رو به عنوان پارامتر بهش پاس میدیم.
+          </td>
+        </tr>
+        <tr class="tRow">
+          <td class="tDataLTR">Thread()</td>
+          <td class="tDataRTL">یک نمونه از Thread ایجاد می کنه.</td>
+        </tr>
+        <tr class="tRow">
+          <td class="tDataLTR">+start():void</td>
+          <td class="tDataRTL">Thread رو شروع می کنه.</td>
+        </tr>
+
+        <tr class="tRow">
+          <td class="tDataLTR">+isAlive():boolean</td>
+          <td class="tDataRTL">بررسی میکنه ببینه آیا Thread در حال اجراست یا کارش تموم شده.</td>
+        </tr>
+
+        <tr class="tRow">
+          <td class="tDataLTR">+setPeriority(periority: int): void</td>
+          <td class="tDataRTL">برای شروع Thread نسبت به بقیه thread ها اولویت قرار میده، یک عدد بین 1 تا 10 رو به عنوان
+            پارامتر میتونیم بهش پاس بدیم و هرچی این عدد کمتر باشه Thread زودتر از بقیه ی Thread ها اجرا
+            میشه.</td>
+        </tr>
+
+        <tr class="tRow">
+          <td class="tDataLTR">+join(): void</td>
+          <td class="tDataRTL">صبر میکنه تا کار Thread فعلی تموم بشه؛ این متد رو باید داخل Thread که میخوایم به طور موقت
+            متوقف بشه صدا بزنیم.</td>
+        </tr>
+
+        <tr class="tRow">
+          <td class="tDataLTR">+interrupt()</td>
+          <td class="tDataRTL">اجرای Thread رو قطع می کنه.</td>
+        </tr>
+
+        <tr class="tRow">
+          <td class="tDataLTR" style="text-decoration: underline;">+sleep(millis: long): void</td>
+          <td class="tDataRTL">کلاس Thread رو برای مدت زمان مشخص متوقف میکنه. (این متد استاتیک است)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>مثال</p>
+    <p>در زیر میخوایم دو کاری که در قسمت قبل تعریف کردیم رو با Thread اجرا کنیم.</p>
+
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+Thread thread0 = new Thread(new PrintNumbersTask(200));
+Thread thread1 = new Thread(new RandomCharsTask('a', 100));
+
+thread0.start();
+thread1.start();
+        </pre>
+      </div>
+    </div>
+
+    <p>داخل کلاس Thread اینترفیس Runnable وجود داره میتونیم از کلاس Thread مستقیم ارث بری کنیم و Runnable رو داخلش پیاده
+      سازی کنیم.</p>
+
+
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+public class PrintNumbersThread extends Thread{
+    
+    private int n;
+
+    public PrintNumbersThread(int n){
+       this.n = n;
+    }
+
+    @Override
+    public void run() {
+        for (int i = 0; i &lt; n; i++) {
+
+            if (i % 10 == 0) System.out.println();
+
+            System.out.print(i + " ");
+        }
+    }
+}
+
+public class PrintCharThread extends Thread {
+
+    private int n;
+    private char ch;
+
+    public PrintCharThread(char ch, int n){
+       this.n = n;
+       this.ch = ch;
+    }
+
+    public PrintCharThread()
+    
+    @Override
+    public void run() {
+        for (int i=0; i&lt;n; i++){
+            
+            if(i % 10 == 0) System.out.println();
+
+            System.out.print(ch + "");
+        }
+    }
+    
+}
+        </pre>
+      </div>
+    </div>
+
+
+    <section>
+
+      <h3>متد (تابع) join</h3>
+
+      <p>فرض کنید دوتا Thread داریم به نام های <strong>A</strong> و <strong>B</strong>، نخ A رو داخل نخ B اجرا کنیم و در
+        جایی از اجرای کد میخوایم
+        نخ B متوقف بشه تا اجرای نخ A کامل بشه، بنابراین از متد join در نخ A برای توقف موقت نخ B استفاده می کنیم.</p>
+
+      <p>میخوایم در کار PrintNumbersTask یک Thread از کار PrintRandomCharTask ایجاد کنیم و متد join رو صدا بزنیم؛
+        بنابراین
+        کد PrintNumbersTask رو به صورت زیر تغییر میدیم.</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
+private static class PrintNumbersTask implements Runnable {
+
+    private int n;
+    
+    public PrintNumbersTask(int n){
+       this.n = n;
+    }
+
+    @Override
+    public void run() {
+
+        Thread printCharThread = new Thread(new PrintCharTask('a', 1000));
+        printCharThread.start();
+
+        try {
+
+            for (int i = 0; i &lt;n; i++) {
+
+                if (i == 50) 
+                    printCharThread.join();
+                
+                System.out.print(i + " ");
+
+            }
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+    }
+}
+        </pre>
+        </div>
+      </div>
+
+      <p>سپس یک نخ برای اجرای کار PrintNumbersTask ایجاد میکنیم، زمانی که کار PrintNumbersTask شروع کنه به اجرا شدن
+        کار
+        PrintRandomCharsTask هم شروع به اجرا شدن میکنه چون داخل PrintNumbersTask با یک Thread اجراش کردیم.</p>
+
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
+public class TestJoin {
+
+    public static void main(String[] args) {
+        Thread t = new Thread(new PrintNumbersTask(1000));
+        t.start();
+    }
+
+    private static class PrintCharTask implements Runnable{
+
+       private int numberOfChars;
+       private char ch;
+
+       public PrintCharTask(char ch, int numberOfChars){
+            this.numberOfChars = numberOfChars;
+            this.ch = ch;
+       }
+
+       @Override
+       public void run(){
+
+         for(int i=0; i&lt;numberOfChars; i++){
+
+            if(i % 10 == 0) System.out.println();
+
+            System.out.print(ch);
+         }
+
+       }
+
+    }
+
+    private static class PrintNumbersTask implements Runnable {
+
+        @Override
+        public void run() {
+
+            Thread thread = new Thread(new PrintRandomCharsTask('a', 1000));
+            thread.start();
+
+            try {
+
+                for (int i = 0; i &lt;N; i++) {
+
+                    if (i == 50) 
+                        thread.join();
+                    
+
+                    System.err.print(i + " ");
+
+                }
+            }catch (InterruptedException e){
+                e.printStackTrace();
+            }
+        }
+    }
+}
+        </pre>
+        </div>
+      </div>
+
+      <p>ابتدا دو کار نمایش کاراکتر های تصادفی و چاپ اعداد تقریبا همزمان اجرا میشن (کار نمایش کاراکتر های تصادفی کمی
+        زودتر)، سپس زمانی که چاپ اعداد به 50 میرسه
+        متوقف شده، تا کار نمایش تصادفی کاراکتر ها تموم بشه و بعد از تموم شدنش کار چاپ اعداد ادامه پیدا می کنه.</p>
+    </section>
+
+    <section>
+      <h3>متد (تابع) sleep در Thread</h3>
+      <p>با استفاده از متد (تابع) sleep میتونیم یک نخ (Thread) رو تا یک بازه ی زمانی مشخصی متوقف کنیم، متد sleep
+        استاتیکه، زمانی که داخل یک کار صدا زده بشه، Thread اجرا کننده ی کار رو متوقف میکنه و Thread هایی که داخل کار
+        اجرا شدن هم به طور موقت متوقف میشن.</p>
+
+
+      <p>در مثال زیر زمانی که i به 50 میرسه متد sleep صدا زده میشه.</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
+public class TestJoin {
+
+    public static void main(String[] args) throws InterruptedException {
+        Thread t = new Thread(new PrintNumbersTask(1000));
+        t.start();
+
+        for(int i=0; i&lt;1000; i++)
+            System.out.println("Hello from main thread");
+    }
+
+    private static class PrintCharTask implements Runnable{
+
+       private int numberOfChars;
+       private char ch;
+
+       public PrintCharTask(char ch, int numberOfChars){
+            this.numberOfChars = numberOfChars;
+            this.ch = ch;
+       }
+
+       @Override
+       public void run(){
+
+         for(int i=0; i&lt;numberOfChars; i++){
+
+            if(i % 10 == 0) System.out.println();
+
+            System.out.print(ch);
+         }
+
+       }
+
+    }
+
+    private static class PrintNumbersTask implements Runnable {
+
+        @Override
+        public void run() {
+
+            Thread thread = new Thread(new PrintRandomCharsTask('a', 1000));
+            thread.start();
+
+            try {
+
+                for (int i = 0; i &lt;N; i++) {
+
+                    if (i == 50) 
+                        thread.join();
+                    
+
+                    System.err.print(i + " ");
+
+                }
+            }catch (InterruptedException e){
+                e.printStackTrace();
+            }
+        }
+    }
+}
+
+          </pre>
+        </div>
+      </div>
+    </section>
+
+  </section>
+
+</article>

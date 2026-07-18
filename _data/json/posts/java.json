@@ -169,6 +169,14 @@
       "lastModified": "",
       "imgCover": "/resources/image/java/cover_generics.png",
       "link": "/post/java/generics.html"
+    },
+    {
+      "title": "چندنخی (multithreading) در جاوا و کاتلین",
+      "description": "برای اینکه یک برنامه بتونه چندتا کار رو به صورت همزمان انجام بده از چندنخی استفاده می کنیم در این مطلب به صورت کامل و به همراه مثال به چندنخی در جاوا رو توضیح میدیم و چون کلاس های جاوا در کاتلین هم قابل استفاده هستند مثال ها علاوه بر جاوا با کاتلین هم زده شده.",
+      "datePublished": "2026-07-19",
+      "lastModified": "",
+      "imgCover": "/resources/image/java/cover_multithreading.png",
+      "link": "/post/java/multithreading.html"
     }
   ]
 }
