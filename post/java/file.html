@@ -65,152 +65,156 @@ layout: default
       کاربرد این کلاس پرداختیم:
     </p>
 
-    <div class="tb" id="file_uml_cheat_sheet">
-      <div class="tRow">
-        <div class="tHead">java.io.File</div>
-      </div>
-      <div class="tRow">
-        <div class="tDataLTR">+File(String)</div>
-        <div class="tDataRTL">
-          یک نمونه از کلاس File ایجاد می کنه و مقدار String مسیر فایل یا پوشه ی
-          مد نظر است.
-        </div>
-      </div>
-      <div class="tRow">
-        <div class="tDataLTR">+File(String,String)</div>
-        <div class="tDataRTL">
-          یک نمونه از کلاس File ایجاد می کنه پارامتر ها از چپ parent مسیر پوشه
-          ها و child مسیر پوشه یا فایل داخل parent است.
-        </div>
-      </div>
+    <table class="tb" id="file_uml_cheat_sheet">
+      <thead class="tHead">
+        <th>java.io.File</th>
+      </thead>
+      <tbody>
+        <tr class="tRow">
+          <td class="tDataLTR">+File(String)</td>
+          <td class="tDataRTL">
+            یک نمونه از کلاس File ایجاد می کنه و مقدار String مسیر فایل یا پوشه ی
+            مد نظر است.
+          </td>
+        </tr>
+        <tr class="tRow">
+          <td class="tDataLTR">+File(String,String)</td>
+          <td class="tDataRTL">
+            یک نمونه از کلاس File ایجاد می کنه پارامتر ها از چپ parent مسیر پوشه
+            ها و child مسیر پوشه یا فایل داخل parent است.
+          </td>
+        </tr>
 
-      <div class="tRow">
-        <div class="tDataLTR">+File(URI)</div>
-        <div class="tDataRTL">
-          یک نمونه از File بر اساس uri توسط کلاس URI در جاوا ایجاد میکنه.
-        </div>
-      </div>
+        <tr class="tRow">
+          <td class="tDataLTR">+File(URI)</td>
+          <td class="tDataRTL">
+            یک نمونه از File بر اساس uri توسط کلاس URI در جاوا ایجاد میکنه.
+          </td>
+        </tr>
 
-      <div class="tRow">
-        <div class="tDataLTR">+exists(): boolean</div>
-        <div class="tDataRTL">
-          بررسی میکنه آیا فایل در مسیر تعریف شده وجود داره یا خیر
-        </div>
-      </div>
+        <tr class="tRow">
+          <td class="tDataLTR">+exists(): boolean</td>
+          <td class="tDataRTL">
+            بررسی میکنه آیا فایل در مسیر تعریف شده وجود داره یا خیر
+          </td>
+        </tr>
 
-      <div class="tRow">
-        <div class="tDataLTR">+canRead(): boolean</div>
-        <div class="tDataRTL">بررسی میکنه آیا فایل قابل خوندن هست یا خیر.</div>
-      </div>
+        <tr class="tRow">
+          <td class="tDataLTR">+canRead(): boolean</td>
+          <td class="tDataRTL">بررسی میکنه آیا فایل قابل خوندن هست یا خیر.</td>
+        </tr>
 
-      <div class="tRow">
-        <div class="tDataLTR">+canWrite(): boolean</div>
-        <div class="tDataRTL">بررسی میکنه آیا فایل قابل نوشتن هست یا خیر.</div>
-      </div>
+        <tr class="tRow">
+          <td class="tDataLTR">+canWrite(): boolean</td>
+          <td class="tDataRTL">بررسی میکنه آیا فایل قابل نوشتن هست یا خیر.</td>
+        </tr>
 
-      <div class="tRow">
-        <div class="tDataLTR">+isDirectory(): boolean</div>
-        <div class="tDataRTL">بررسی می کنه فایل پوشه هست یا خیر.</div>
-      </div>
+        <tr class="tRow">
+          <td class="tDataLTR">+isDirectory(): boolean</td>
+          <td class="tDataRTL">بررسی می کنه فایل پوشه هست یا خیر.</td>
+        </tr>
 
-      <div class="tRow">
-        <div class="tDataLTR">+isFile(): boolean</div>
-        <div class="tDataRTL">
-          بررسی میکنه نوع فایل در مسیر تعریف شده فایل هست یا خیر.
-        </div>
-      </div>
+        <tr class="tRow">
+          <td class="tDataLTR">+isFile(): boolean</td>
+          <td class="tDataRTL">
+            بررسی میکنه نوع فایل در مسیر تعریف شده فایل هست یا خیر.
+          </td>
+        </tr>
 
-      <div class="tRow">
-        <div class="tDataLTR">+isHidden(): boolean</div>
-        <div class="tDataRTL">بررسی میکنه فایل مخفیه یا نه.</div>
-      </div>
+        <tr class="tRow">
+          <td class="tDataLTR">+isHidden(): boolean</td>
+          <td class="tDataRTL">بررسی میکنه فایل مخفیه یا نه.</td>
+        </tr>
 
-      <div class="tRow">
-        <div class="tDataLTR">+isAbsolute(): boolean</div>
-        <div class="tDataRTL">
-          بررسی میکنه مسیر تعریف شده برای فایل یک مسیر کامل هست یا خیر.
-        </div>
-      </div>
+        <tr class="tRow">
+          <td class="tDataLTR">+isAbsolute(): boolean</td>
+          <td class="tDataRTL">
+            بررسی میکنه مسیر تعریف شده برای فایل یک مسیر کامل هست یا خیر.
+          </td>
+        </tr>
 
-      <div class="tRow">
-        <div class="tDataLTR">+getAbsolutePath(): String</div>
-        <div class="tDataRTL">
-          مقدار مسیر کامل رو به صورت String بر میگردونه.
-        </div>
-      </div>
+        <tr class="tRow">
+          <td class="tDataLTR">+getAbsolutePath(): String</td>
+          <td class="tDataRTL">
+            مقدار مسیر کامل رو به صورت String بر میگردونه.
+          </td>
+        </tr>
 
-      <div class="tRow">
-        <div class="tDataLTR">+getPath(): String</div>
-        <div class="tDataRTL">مقدار مسیر رو به صورت String بر می گردونه.</div>
-      </div>
+        <tr class="tRow">
+          <td class="tDataLTR">+getPath(): String</td>
+          <td class="tDataRTL">مقدار مسیر رو به صورت String بر می گردونه.</td>
+        </tr>
 
-      <div class="tRow">
-        <div class="tDataLTR">+getName(): String</div>
-        <div class="tDataRTL">اسم فایل رو به صورت String بر میگردونه.</div>
-      </div>
+        <tr class="tRow">
+          <td class="tDataLTR">+getName(): String</td>
+          <td class="tDataRTL">اسم فایل رو به صورت String بر میگردونه.</td>
+        </tr>
 
-      <div class="tRow">
-        <div class="tDataLTR">+getParent(): String</div>
-        <div class="tDataRTL">
-          مسیر پوشه ای که فایل داخلش قرار داره رو به صورت String بر میگردونه.
-        </div>
-      </div>
+        <tr class="tRow">
+          <td class="tDataLTR">+getParent(): String</td>
+          <td class="tDataRTL">
+            مسیر پوشه ای که فایل داخلش قرار داره رو به صورت String بر میگردونه.
+          </td>
+        </tr>
 
-      <div class="tRow">
-        <div class="tDataLTR">+listFiles(): File[]</div>
-        <div class="tDataRTL">
-          اگه مسیر تعریف شده برای کلاس File پوشه باشه یک لیست از محتوای داخل
-          پوشه به صورت آرایه ای از نوع File بر میگردونه.
-        </div>
-      </div>
+        <tr class="tRow">
+          <td class="tDataLTR">+listFiles(): File[]</td>
+          <td class="tDataRTL">
+            اگه مسیر تعریف شده برای کلاس File پوشه باشه یک لیست از محتوای داخل
+            پوشه به صورت آرایه ای از نوع File بر میگردونه.
+          </td>
+        </tr>
 
-      <div class="tRow">
-        <div class="tDataLTR">+list(): String[]</div>
-        <div class="tDataRTL">
-          اگه مسیر تعریف شده یک پوشه باشه آرایه ای از اسم فایل ها و پوشه های
-          داخلشو به صورت String بر میگردونه.
-        </div>
-      </div>
+        <tr class="tRow">
+          <td class="tDataLTR">+list(): String[]</td>
+          <td class="tDataRTL">
+            اگه مسیر تعریف شده یک پوشه باشه آرایه ای از اسم فایل ها و پوشه های
+            داخلشو به صورت String بر میگردونه.
+          </td>
+        </tr>
 
-      <div class="tRow">
-        <div class="tDataLTR">+delete(): boolean</div>
-        <div class="tDataRTL">
-          فایل در مسیر تعریف شده رو حذف میکنه و اگه انجام بشه مقدار true بر
-          میگردونه. (اگه پوشه باشه باید محتوای داخل پوشه قبل از حذف پوشه حذف
-          بشن).
-        </div>
-      </div>
+        <tr class="tRow">
+          <td class="tDataLTR">+delete(): boolean</td>
+          <td class="tDataRTL">
+            فایل در مسیر تعریف شده رو حذف میکنه و اگه انجام بشه مقدار true بر
+            میگردونه. (اگه پوشه باشه باید محتوای داخل پوشه قبل از حذف پوشه حذف
+            بشن).
+          </td>
+        </tr>
 
-      <div class="tRow">
-        <div class="tDataLTR">+mkdir(): boolean</div>
-        <div class="tDataRTL">
-          یک پوشه در مسیر تعریف شده ایجاد میکنه و اگه انجام بشه true بر
-          میگردونه.
-        </div>
-      </div>
+        <tr class="tRow">
+          <td class="tDataLTR">+mkdir(): boolean</td>
+          <td class="tDataRTL">
+            یک پوشه در مسیر تعریف شده ایجاد میکنه و اگه انجام بشه true بر
+            میگردونه.
+          </td>
+        </tr>
 
-      <div class="tRow">
-        <div class="tDataLTR">+mkdirs(): boolean</div>
-        <div class="tDataRTL">
-          یک یا چند پوشه در صورت عدم وجود در مسیر تعریف شده ایجاد میکنه و اگه
-          انجام بشه true بر میگردونه.
-        </div>
-      </div>
+        <tr class="tRow">
+          <td class="tDataLTR">+mkdirs(): boolean</td>
+          <td class="tDataRTL">
+            یک یا چند پوشه در صورت عدم وجود در مسیر تعریف شده ایجاد میکنه و اگه
+            انجام بشه true بر میگردونه.
+          </td>
+        </tr>
 
-      <div class="tRow">
-        <div class="tDataLTR">+lastModified(): long</div>
-        <div class="tDataRTL">
-          تاریخ اخرین تغییرات در فایل رو به صورت long بر میگردونه.
-        </div>
-      </div>
+        <tr class="tRow">
+          <td class="tDataLTR">+lastModified(): long</td>
+          <td class="tDataRTL">
+            تاریخ اخرین تغییرات در فایل رو به صورت long بر میگردونه.
+          </td>
+        </tr>
 
-      <div class="tRow">
-        <div class="tDataLTR">+renameTo(File): boolean</div>
-        <div class="tDataRTL">
-          فایل موجود رو تغییر نام میده و اگه انجام بشه true بر میگردونه.
-        </div>
-      </div>
-    </div>
+        <tr class="tRow">
+          <td class="tDataLTR">+renameTo(File): boolean</td>
+          <td class="tDataRTL">
+            فایل موجود رو تغییر نام میده و اگه انجام بشه true بر میگردونه.
+          </td>
+        </tr>
+
+      </tbody>
+
+    </table>
   </section>
 
   <section id="p1">
@@ -243,8 +247,7 @@ layout: default
       <div class="snippet-container">
         <pre class="snippet Java">
 new File("c:\\Music\\Haydeh.mp3");
-                        </pre
-        >
+                        </pre>
       </div>
     </div>
 
@@ -257,8 +260,7 @@ new File("c:\\Music\\Haydeh.mp3");
       <div class="snippet-container">
         <pre class="snippet Java">
 new File("/home/username/Music/Haydeh.mp3");
-                        </pre
-        >
+                        </pre>
       </div>
     </div>
 
@@ -282,8 +284,7 @@ new File("/home/username/Music/Haydeh.mp3");
         <div class="snippet-container">
           <pre class="snippet Java">
 new File("Music/Haydeh.mp3");
-                        </pre
-          >
+                        </pre>
         </div>
       </div>
     </section>
@@ -309,8 +310,7 @@ System.out.println("Is it Hidden? " + file.isHidden());
 System.out.println("Is it File? " + file.isFile());
 System.out.println("Is it Directory? " + file.isDirectory());
 System.out.println("Last modification date: " + java.util.Date(file.lastModified()));
-                        </pre
-        >
+                        </pre>
         <pre class="snippet Kotlin">
 val file = File("Path_To_File");
 println("Does it exist? ${file.exists()}");
@@ -322,17 +322,14 @@ println("Is it Hidden? ${file.isHidden()}");
 println("Is it File? ${file.isFile()}");
 println("Is it Directory? ${file.isDirectory()}");
 println("Last modification date: ${java.util.Date(file.lastModified())}");
-                        </pre
-        >
+                        </pre>
       </div>
     </div>
 
     <p>
       در مثال بالا چندتا از متد های پر کابرد کلاس File رو استفاده کردیم خودتون
       میتونید متد های دیگه ی این کلاس، که در
-      <a class="text-decoration-none" href="#file_uml_cheat_sheet"
-        >نمودار UML</a
-      >
+      <a class="text-decoration-none" href="#file_uml_cheat_sheet">نمودار UML</a>
       آورده شده رو بررسی کنید.
     </p>
   </section>
@@ -375,9 +372,6 @@ println("Last modification date: ${java.util.Date(file.lastModified())}");
 </li>
 
 <li>
-  <a
-    href="https://docs.oracle.com/en/java/javase/22/docs/api/java.base/java/io/File.html"
-    >مطالعه در وبسایت رسمی</a
-  >
+  <a href="https://docs.oracle.com/en/java/javase/22/docs/api/java.base/java/io/File.html">مطالعه در وبسایت رسمی</a>
 </li>
 {% endcapture %} {% include article-foot.html relative_link = links %}

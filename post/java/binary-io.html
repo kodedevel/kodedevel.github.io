@@ -144,83 +144,91 @@ System.out.println("The character for code  " + code + " is " + ch);
       دو نمودار UML زیر متد (تابع) های تعریف شده در این دو کلاس رو نشون میدن.
     </p>
 
-    <div class="tb" id="uml_input_stream">
-      <div class="tRow">
-        <div class="tHead">java.io.InputStream</div>
-      </div>
+    <table class="tb" id="uml_input_stream">
+      <thead class="tHead">
+        <th>java.io.InputStream</th>
+      </thead>
 
-      <div class="tRow">
-        <div class="tDataLTR">read(): int</div>
-        <div class="tDataRTL">
-          یک بایت از فایل رو میخونه و اگه به انتهای فایل برسه -1 رو بر میگردونه.
-        </div>
-      </div>
+      <tbody>
+        <tr class="tRow">
+          <td class="tDataLTR">read(): int</td>
+          <td class="tDataRTL">
+            یک بایت از فایل رو میخونه و اگه به انتهای فایل برسه -1 رو بر میگردونه.
+          </td>
+        </tr>
 
-      <div class="tRow">
-        <div class="tDataLTR">read(b: byte[]): int</div>
-        <div class="tDataRTL">
-          به اندازه ی طول آرایه ی b از فایل بایت میخونه و تعداد بایت هایی که
-          خونده رو به صورت integer برمیگردونه و اگه به اخر فایل برسه -1 رو بر
-          میگردونه.
-        </div>
-      </div>
+        <tr class="tRow">
+          <td class="tDataLTR">read(b: byte[]): int</td>
+          <td class="tDataRTL">
+            به اندازه ی طول آرایه ی b از فایل بایت میخونه و تعداد بایت هایی که
+            خونده رو به صورت integer برمیگردونه و اگه به اخر فایل برسه -1 رو بر
+            میگردونه.
+          </td>
+        </tr>
 
-      <div class="tRow">
-        <div class="tDataLTR">available(): int</div>
-        <div class="tDataRTL">
-          میگه چندتا بایت باقی مونده و اگه به انتهای فایل رسیده باشیم مقدار 0 رو
-          بر میگردونه.
-        </div>
-      </div>
+        <tr class="tRow">
+          <td class="tDataLTR">available(): int</td>
+          <td class="tDataRTL">
+            میگه چندتا بایت باقی مونده و اگه به انتهای فایل رسیده باشیم مقدار 0 رو
+            بر میگردونه.
+          </td>
+        </tr>
 
-      <div class="tRow">
-        <div class="tDataLTR">skip(n: long): long</div>
-        <div class="tDataRTL">
-          تعداد n بایت از فایل رو نادیده میگیره و تعداد نادیده گرفته شده رو بر
-          میگردونه.
-        </div>
-      </div>
+        <tr class="tRow">
+          <td class="tDataLTR">skip(n: long): long</td>
+          <td class="tDataRTL">
+            تعداد n بایت از فایل رو نادیده میگیره و تعداد نادیده گرفته شده رو بر
+            میگردونه.
+          </td>
+        </tr>
 
-      <div class="tRow">
-        <div class="tDataLTR">+close()</div>
-        <div class="tDataRTL">
-          استریم فعلی رو میبنده و منابع درگیر رو آزاد میکنه استفاده از close در
-          پایان کار ضروریه.
-        </div>
-      </div>
-    </div>
+        <tr class="tRow">
+          <td class="tDataLTR">+close()</td>
+          <td class="tDataRTL">
+            استریم فعلی رو میبنده و منابع درگیر رو آزاد میکنه استفاده از close در
+            پایان کار ضروریه.
+          </td>
+        </tr>
 
-    <div class="tb" id="uml_output_stream">
-      <div class="tRow">
-        <div class="tHead">java.io.OutputStream</div>
-      </div>
+      </tbody>
+    </table>
 
-      <div class="tRow">
-        <div class="tDataLTR">write(b: int): void</div>
-        <div class="tDataRTL">مقدار یک بایت رو در فایل مینویسه.</div>
-      </div>
 
-      <div class="tRow">
-        <div class="tDataLTR">write(b: byte[]): void</div>
-        <div class="tDataRTL">بایت های داخل آرایه ی b رو در فایل می نویسه.</div>
-      </div>
 
-      <div class="tRow">
-        <div class="tDataLTR">flush(): void</div>
-        <div class="tDataRTL">
-          پس از پایان کار صدا زدن این متد توصیه میشه چون مقادیر باقی مونده ای که
-          در buffer وجود دارند و ممکنه هنوز نوشته نشده باشن رو در فایل مینویسه.
-        </div>
-      </div>
+    <table class="tb" id="uml_output_stream">
+      <thead class="tHead">
+        <th>java.io.OutputStream</th>
+      </thead>
 
-      <div class="tRow">
-        <div class="tDataLTR">+close()</div>
-        <div class="tDataRTL">
-          استریم فعلی رو میبنده و منابع درگیر رو آزاد میکنه استفاده از close در
-          پایان کار ضروریه.
-        </div>
-      </div>
-    </div>
+      <tbody>
+
+        <tr class="tRow">
+          <td class="tDataLTR">write(b: int): void</td>
+          <td class="tDataRTL">مقدار یک بایت رو در فایل مینویسه.</td>
+        </tr>
+
+        <tr class="tRow">
+          <td class="tDataLTR">write(b: byte[]): void</td>
+          <td class="tDataRTL">بایت های داخل آرایه ی b رو در فایل می نویسه.</td>
+        </tr>
+
+        <tr class="tRow">
+          <td class="tDataLTR">flush(): void</td>
+          <td class="tDataRTL">
+            پس از پایان کار صدا زدن این متد توصیه میشه چون مقادیر باقی مونده ای که
+            در buffer وجود دارند و ممکنه هنوز نوشته نشده باشن رو در فایل مینویسه.
+          </td>
+        </tr>
+
+        <tr class="tRow">
+          <td class="tDataLTR">+close()</td>
+          <td class="tDataRTL">
+            استریم فعلی رو میبنده و منابع درگیر رو آزاد میکنه استفاده از close در
+            پایان کار ضروریه.
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </section>
 
   <section id="p2">
@@ -234,73 +242,82 @@ System.out.println("The character for code  " + code + " is " + ch);
 
     <p>نمودار UML مربوط به FileInputStream در جاوا</p>
 
-    <div class="tb" id="uml_file_input_stream">
-      <div class="tRow">
-        <div class="tHead">java.io.FileInputStream</div>
-      </div>
-      <div class="tRow">
-        <div class="tDataLTR">+FileInputStream(path: String)</div>
-        <div class="tDataRTL">
-          یک نمونه از FileInputStream با پاس دادن String به کانستراکتور ایجاد
-          میکنه؛ String مسیر فایل مورد نظر است.
-        </div>
-      </div>
+    <table class="tb" id="uml_file_input_stream">
 
-      <div class="tRow">
-        <div class="tDataLTR">+FileInputStream(file: File)</div>
-        <div class="tDataRTL">
-          یک نمونه از FileInputStream با پاس دادن File به کانستراکتور ایجاد
-          میکنه.
-        </div>
-      </div>
-    </div>
+      <thead class="tHead">
+        <th>java.io.FileInputStream</th>
+      </thead>
+
+      <tbody>
+
+        <tr class="tRow">
+          <td class="tDataLTR">+FileInputStream(path: String)</td>
+          <td class="tDataRTL">
+            یک نمونه از FileInputStream با پاس دادن String به کانستراکتور ایجاد
+            میکنه؛ String مسیر فایل مورد نظر است.
+          </td>
+        </tr>
+
+        <tr class="tRow">
+          <td class="tDataLTR">+FileInputStream(file: File)</td>
+          <td class="tDataRTL">
+            یک نمونه از FileInputStream با پاس دادن File به کانستراکتور ایجاد
+            میکنه.
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
     <p>نمودار UML مربوط به FileOutputStream در جاوا</p>
-    <div class="tb" id="uml_file_output_stream">
-      <div class="tRow">
-        <div class="tHead">java.io.FileOutputStream</div>
-      </div>
-      <div class="tRow">
-        <div class="tDataLTR">+FileOutputStream(path: String)</div>
-        <div class="tDataRTL">
-          یک نمونه از FileOutputStream با پاس دادن String به کانستراکتور ایجاد
-          میکنه؛ String مسیر فایل مورد نظر است.
-        </div>
-      </div>
+    <table class="tb" id="uml_file_output_stream">
+      <thead class="tRow">
+        <th class="tHead">java.io.FileOutputStream</th>
+      </thead>
+      <tbody>
+        <tr class="tRow">
+          <td class="tDataLTR">+FileOutputStream(path: String)</td>
+          <td class="tDataRTL">
+            یک نمونه از FileOutputStream با پاس دادن String به کانستراکتور ایجاد
+            میکنه؛ String مسیر فایل مورد نظر است.
+          </td>
+        </tr>
 
-      <div class="tRow">
-        <div class="tDataLTR">
-          +FileOutputStream(path: String, append: boolean)
-        </div>
-        <div class="tDataRTL">
-          یک نمونه از FileOutputStream با پاس دادن String و مقدار boolean به
-          کانستراکتور ایجاد میکنه؛ String مسیر فایل مورد نظر است و اگه فایل از
-          قبل وجود داشته باشه و مقدار boolean برابر با true باشه داده ها رو
-          ادامه ی فایل می نویسه و اگه false باشه فایل رو حذف کرده و یک فایل جدید
-          ایجاد میکنه.
-        </div>
-      </div>
+        <tr class="tRow">
+          <td class="tDataLTR">
+            +FileOutputStream(path: String, append: boolean)
+          </td>
+          <td class="tDataRTL">
+            یک نمونه از FileOutputStream با پاس دادن String و مقدار boolean به
+            کانستراکتور ایجاد میکنه؛ String مسیر فایل مورد نظر است و اگه فایل از
+            قبل وجود داشته باشه و مقدار boolean برابر با true باشه داده ها رو
+            ادامه ی فایل می نویسه و اگه false باشه فایل رو حذف کرده و یک فایل جدید
+            ایجاد میکنه.
+          </td>
+        </tr>
 
-      <div class="tRow">
-        <div class="tDataLTR">+FileOutputStream(file: File)</div>
-        <div class="tDataRTL">
-          یک نمونه از FileOutputStream با پاس دادن File به کانستراکتور ایجاد
-          میکنه.
-        </div>
-      </div>
+        <tr class="tRow">
+          <td class="tDataLTR">+FileOutputStream(file: File)</td>
+          <td class="tDataRTL">
+            یک نمونه از FileOutputStream با پاس دادن File به کانستراکتور ایجاد
+            میکنه.
+          </td>
+        </tr>
 
-      <div class="tRow">
-        <div class="tDataLTR">
-          +FileOutputStream(file: File, append: boolean)
-        </div>
-        <div class="tDataRTL">
-          یک نمونه از FileOutputStream با پاس دادن File به کانستراکتور ایجاد
-          میکنه. اگه فایل از قبل وجود داشته باشه و مقدار boolean برابر با true
-          باشه داده ها رو ادامه ی فایل می نویسه و اگه false باشه فایل رو حذف
-          کرده و یک فایل جدید ایجاد میکنه.
-        </div>
-      </div>
-    </div>
+        <tr class="tRow">
+          <td class="tDataLTR">
+            +FileOutputStream(file: File, append: boolean)
+          </td>
+          <td class="tDataRTL">
+            یک نمونه از FileOutputStream با پاس دادن File به کانستراکتور ایجاد
+            میکنه. اگه فایل از قبل وجود داشته باشه و مقدار boolean برابر با true
+            باشه داده ها رو ادامه ی فایل می نویسه و اگه false باشه فایل رو حذف
+            کرده و یک فایل جدید ایجاد میکنه.
+          </td>
+        </tr>
+
+      </tbody>
+
+    </table>
 
     <p>
       در مثال زیر میخوایم یک فایل به نام temp.dat با FileOutputStream ایجاد کنیم
@@ -406,128 +423,134 @@ fun main() {
 
     <p>بررسی متد های اینترفیس DataInput</p>
 
-    <div class="tb" id="data_input_uml">
-      <div class="tRow">
-        <div class="tHead">&lt;&lt;java.io.DataInput&gt;&gt;</div>
-      </div>
+    <table class="tb" id="data_input_uml">
 
-      <div class="tRow">
-        <div class="tDataLTR">+readBoolean(): boolean</div>
-        <div class="tDataRTL">
-          مقدار boolean رو از فایل میخونه و برمیگردونه.
-        </div>
-      </div>
+      <thead class="tHead">
+        <th>&lt;&lt;java.io.DataInput&gt;&gt;</th>
+      </thead>
 
-      <div class="tRow">
-        <div class="tDataLTR">+readByte(): byte</div>
-        <div class="tDataRTL">مقدار byte رو از فایل میخونه و بر میگردونه.</div>
-      </div>
+      <tbody>
+        <tr class="tRow">
+          <td class="tDataLTR">+readBoolean(): boolean</td>
+          <td class="tDataRTL">
+            مقدار boolean رو از فایل میخونه و برمیگردونه.
+          </td>
+        </tr>
 
-      <div class="tRow">
-        <div class="tDataLTR">+readChar(): char</div>
-        <div class="tDataRTL">مقدار char رو از فایل میخونه و بر میگردونه.</div>
-      </div>
+        <tr class="tRow">
+          <td class="tDataLTR">+readByte(): byte</td>
+          <td class="tDataRTL">مقدار byte رو از فایل میخونه و بر میگردونه.</td>
+        </tr>
 
-      <div class="tRow">
-        <div class="tDataLTR">+readFloat(): float</div>
-        <div class="tDataRTL">مقدار float رو از فایل میخونه و بر میگردونه.</div>
-      </div>
+        <tr class="tRow">
+          <td class="tDataLTR">+readChar(): char</td>
+          <td class="tDataRTL">مقدار char رو از فایل میخونه و بر میگردونه.</td>
+        </tr>
 
-      <div class="tRow">
-        <div class="tDataLTR">+readDouble(): double</div>
-        <div class="tDataRTL">
-          مقدار double رو از فایل میخونه و بر میگردونه.
-        </div>
-      </div>
+        <tr class="tRow">
+          <td class="tDataLTR">+readFloat(): float</td>
+          <td class="tDataRTL">مقدار float رو از فایل میخونه و بر میگردونه.</td>
+        </tr>
 
-      <div class="tRow">
-        <div class="tDataLTR">+readInt(): int</div>
-        <div class="tDataRTL">مقدار int رو از فایل میخونه و بر میگردونه.</div>
-      </div>
+        <tr class="tRow">
+          <td class="tDataLTR">+readDouble(): double</td>
+          <td class="tDataRTL">
+            مقدار double رو از فایل میخونه و بر میگردونه.
+          </td>
+        </tr>
 
-      <div class="tRow">
-        <div class="tDataLTR">+readLong(): long</div>
-        <div class="tDataRTL">مقدار long رو از فایل میخونه و بر میگردونه.</div>
-      </div>
+        <tr class="tRow">
+          <td class="tDataLTR">+readInt(): int</td>
+          <td class="tDataRTL">مقدار int رو از فایل میخونه و بر میگردونه.</td>
+        </tr>
 
-      <div class="tRow">
-        <div class="tDataLTR">+readShort(): short</div>
-        <div class="tDataRTL">مقدار short رو از فایل میخونه و بر میگردونه.</div>
-      </div>
+        <tr class="tRow">
+          <td class="tDataLTR">+readLong(): long</td>
+          <td class="tDataRTL">مقدار long رو از فایل میخونه و بر میگردونه.</td>
+        </tr>
 
-      <div class="tRow">
-        <div class="tDataLTR">+readLine(): String</div>
-        <div class="tDataRTL">
-          مقدار String رو از فایل میخونه و بر میگردونه.
-        </div>
-      </div>
+        <tr class="tRow">
+          <td class="tDataLTR">+readShort(): short</td>
+          <td class="tDataRTL">مقدار short رو از فایل میخونه و بر میگردونه.</td>
+        </tr>
 
-      <div class="tRow">
-        <div class="tDataLTR">+readString(): String</div>
-        <div class="tDataRTL">
-          مقدار String رو به صورت UTF از فایل میخونه و بر میگردونه.
-        </div>
-      </div>
-    </div>
+        <tr class="tRow">
+          <td class="tDataLTR">+readLine(): String</td>
+          <td class="tDataRTL">
+            مقدار String رو از فایل میخونه و بر میگردونه.
+          </td>
+        </tr>
+
+        <tr class="tRow">
+          <td class="tDataLTR">+readString(): String</td>
+          <td class="tDataRTL">
+            مقدار String رو به صورت UTF از فایل میخونه و بر میگردونه.
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
     <p>بررسی متد های اینترفیس DataOutput</p>
-    <div class="tb" id="data_output_uml">
-      <div class="tRow">
-        <div class="tHead">&lt;&lt;java.io.DataOutput&gt;&gt;</div>
-      </div>
+    <table class="tb" id="data_output_uml">
+      <thead class="tHeaed">
+        <th>&lt;&lt;java.io.DataOutput&gt;&gt;</th>
+      </thead>
 
-      <div class="tRow">
-        <div class="tDataLTR">+writeBoolean(b: boolean): void</div>
-        <div class="tDataRTL">مقدار boolean رو داخل فایل می نویسه.</div>
-      </div>
+      <tbody>
+        <tr class="tRow">
+          <td class="tDataLTR">+writeBoolean(b: boolean): void</td>
+          <td class="tDataRTL">مقدار boolean رو داخل فایل می نویسه.</td>
+        </tr>
 
-      <div class="tRow">
-        <div class="tDataLTR">+writeChar(c: char): void</div>
-        <div class="tDataRTL">مقدار char رو داخل فایل می نویسه.</div>
-      </div>
+        <tr class="tRow">
+          <td class="tDataLTR">+writeChar(c: char): void</td>
+          <td class="tDataRTL">مقدار char رو داخل فایل می نویسه.</td>
+        </tr>
 
-      <div class="tRow">
-        <div class="tDataLTR">+writeFloat(f: float): void</div>
-        <div class="tDataRTL">مقدار float رو داخل فایل می نویسه.</div>
-      </div>
+        <tr class="tRow">
+          <td class="tDataLTR">+writeFloat(f: float): void</td>
+          <td class="tDataRTL">مقدار float رو داخل فایل می نویسه.</td>
+        </tr>
 
-      <div class="tRow">
-        <div class="tDataLTR">+writeDouble(d: double): void</div>
-        <div class="tDataRTL">مقدار double رو داخل فایل می نویسه.</div>
-      </div>
+        <tr class="tRow">
+          <td class="tDataLTR">+writeDouble(d: double): void</td>
+          <td class="tDataRTL">مقدار double رو داخل فایل می نویسه.</td>
+        </tr>
 
-      <div class="tRow">
-        <div class="tDataLTR">+writeInt(i: int): void</div>
-        <div class="tDataRTL">مقدار int رو داخل فایل می نویسه.</div>
-      </div>
+        <tr class="tRow">
+          <td class="tDataLTR">+writeInt(i: int): void</td>
+          <td class="tDataRTL">مقدار int رو داخل فایل می نویسه.</td>
+        </tr>
 
-      <div class="tRow">
-        <div class="tDataLTR">+writeLong(l: long): void</div>
-        <div class="tDataRTL">مقدار long رو داخل فایل می نویسه.</div>
-      </div>
+        <tr class="tRow">
+          <td class="tDataLTR">+writeLong(l: long): void</td>
+          <td class="tDataRTL">مقدار long رو داخل فایل می نویسه.</td>
+        </tr>
 
-      <div class="tRow">
-        <div class="tDataLTR">+writeShort(sh: short): void</div>
-        <div class="tDataRTL">مقدار short رو داخل فایل می نویسه.</div>
-      </div>
+        <tr class="tRow">
+          <td class="tDataLTR">+writeShort(sh: short): void</td>
+          <td class="tDataRTL">مقدار short رو داخل فایل می نویسه.</td>
+        </tr>
 
-      <div class="tRow">
-        <div class="tDataLTR">+writeByte(b : byte): void</div>
-        <div class="tDataRTL">مقدار byte رو داخل فایل می نویسه.</div>
-      </div>
+        <tr class="tRow">
+          <td class="tDataLTR">+writeByte(b : byte): void</td>
+          <td class="tDataRTL">مقدار byte رو داخل فایل می نویسه.</td>
+        </tr>
 
-      <div class="tRow">
-        <div class="tDataLTR">+writeChars(s: String): void</div>
-        <div class="tDataRTL">مقدار String رو داخل فایل می نویسه.</div>
-      </div>
+        <tr class="tRow">
+          <td class="tDataLTR">+writeChars(s: String): void</td>
+          <td class="tDataRTL">مقدار String رو داخل فایل می نویسه.</td>
+        </tr>
 
-      <div class="tRow">
-        <div class="tDataLTR">+writeUTF(utf: String): void</div>
-        <div class="tDataRTL">
-          مقدار String رو داخل به فرمت utf داخل فایل می نویسه.
-        </div>
-      </div>
-    </div>
+        <tr class="tRow">
+          <td class="tDataLTR">+writeUTF(utf: String): void</td>
+          <td class="tDataRTL">
+            مقدار String رو داخل به فرمت utf داخل فایل می نویسه.
+          </td>
+        </tr>
+      </tbody>
+
+    </table>
 
     <p>
       در زیر میخوایم مقادیری رو با DataOutputStream در فایل بنویسیم و با
@@ -630,16 +653,17 @@ val file = File("temp.dat")
       شده است.
     </p>
 
-    <div class="tb" id="object-input-uml">
-      <div class="tRow">
-        <div class="tHead">&lt;&lt;java.io.ObjectInput&gt;&gt;</div>
-      </div>
-
-      <div class="tRow">
-        <div class="tDataLTR">readObject(): Object</div>
-        <div class="tDataRTL">یک آبجکت رو از فایل میخونه.</div>
-      </div>
-    </div>
+    <table class="tb" id="object-input-uml">
+      <thead class="tHead">
+        <th>&lt;&lt;java.io.ObjectInput&gt;&gt;</th>
+      </thead>
+      <tbody>
+        <tr class="tRow">
+          <td class="tDataLTR">readObject(): Object</td>
+          <td class="tDataRTL">یک آبجکت رو از فایل میخونه.</td>
+        </tr>
+      </tbody>
+    </table>
 
     <p>
       در اینترفیس ObjectOutput علاوه بر متد های اینترفیس
@@ -647,16 +671,18 @@ val file = File("temp.dat")
       تعریف شده است.
     </p>
 
-    <div class="tb" id="object_output_uml">
-      <div class="tRow">
-        <div class="tHead">&lt;&lt;java.io.ObjectOutput&gt;&gt;</div>
-      </div>
+    <table class="tb" id="object_output_uml">
+      <thead class="tHead">
+        <th>&lt;&lt;java.io.ObjectOutput&gt;&gt;</th>
+      </thead>
 
-      <div class="tRow">
-        <div class="tDataLTR">writeObject(object: Object): void</div>
-        <div class="tDataRTL">یک آبجکت رو داخل فایل می نویسه.</div>
-      </div>
-    </div>
+      <tbody>
+        <tr class="tRow">
+          <td class="tDataLTR">writeObject(object: Object): void</td>
+          <td class="tDataRTL">یک آبجکت رو داخل فایل می نویسه.</td>
+        </tr>
+      </tbody>
+    </table>
 
     <div class="note">
       <p class="note-head">توجه</p>
@@ -766,51 +792,56 @@ fun main() {
     </p>
 
     <p>در نمودار uml زیر به بررسی BufferedInputStream پرداخته ایم:</p>
-    <div class="tb" id="buffered_input_stream_uml">
-      <div class="tRow">
-        <div class="tHead">java.io.BufferedInputStream</div>
-      </div>
-      <div class="tRow">
-        <div class="tDataLTR">+BufferedInputStream(in: InputStream)</div>
-        <div class="tDataRTL">
-          یک نمونه از BufferedInputStream با حافظه ی buffer پیش فرض 512 بایت
-          ایجاد میکنه.
-        </div>
-      </div>
+    <table class="tb" id="buffered_input_stream_uml">
+      <thead class="tHead">
+        <th>java.io.BufferedInputStream</th>
+      </thead>
 
-      <div class="tRow">
-        <div class="tDataLTR">
-          +BufferedInputStream(in: InputStream, bufferSize: int)
-        </div>
-        <div class="tDataRTL">
-          یک نمونه از BufferedInputStream با حافظه ی buffer دلخواه ایجاد میکنه.
-        </div>
-      </div>
-    </div>
+      <tbody>
+        <tr class="tRow">
+          <td class="tDataLTR">+BufferedInputStream(in: InputStream)</td>
+          <td class="tDataRTL">
+            یک نمونه از BufferedInputStream با حافظه ی buffer پیش فرض 512 بایت
+            ایجاد میکنه.
+          </td>
+        </tr>
+
+        <tr class="tRow">
+          <td class="tDataLTR">
+            +BufferedInputStream(in: InputStream, bufferSize: int)
+          </td>
+          <td class="tDataRTL">
+            یک نمونه از BufferedInputStream با حافظه ی buffer دلخواه ایجاد میکنه.
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
     <p>در نمودار uml زیر به بررسی BufferedOutputStream پرداخته ایم:</p>
 
-    <div class="tb" id="buffered_output_stream_uml">
-      <div class="tRow">
-        <div class="tHead">java.io.BufferedOutputStream</div>
-      </div>
-      <div class="tRow">
-        <div class="tDataLTR">+BufferedOutputStream(out: OutputStream)</div>
-        <div class="tDataRTL">
-          یک نمونه از BufferedOutputStream با حافظه ی buffer پیش فرض 512 بایت
-          ایجاد میکنه.
-        </div>
-      </div>
+    <table class="tb" id="buffered_output_stream_uml">
+      <thead class="tHead">
+        <th>java.io.BufferedOutputStream</th>
+      </thead>
+      <tbody>
+        <tr class="tRow">
+          <td class="tDataLTR">+BufferedOutputStream(out: OutputStream)</td>
+          <td class="tDataRTL">
+            یک نمونه از BufferedOutputStream با حافظه ی buffer پیش فرض 512 بایت
+            ایجاد میکنه.
+          </td>
+        </tr>
 
-      <div class="tRow">
-        <div class="tDataLTR">
-          +BufferedInputStream(in: OutputStream, bufferSize: int)
-        </div>
-        <div class="tDataRTL">
-          یک نمونه از BufferedOutputStream با حافظه ی buffer دلخواه ایجاد میکنه.
-        </div>
-      </div>
-    </div>
+        <tr class="tRow">
+          <td class="tDataLTR">
+            +BufferedInputStream(in: OutputStream, bufferSize: int)
+          </td>
+          <td class="tDataRTL">
+            یک نمونه از BufferedOutputStream با حافظه ی buffer دلخواه ایجاد میکنه.
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
     <p>
       در زیر با استفاده از BufferedInputStream یک صد عدد تصادفی ۰ - ۲۵۵ (یک
