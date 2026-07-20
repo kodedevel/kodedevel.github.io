@@ -19,8 +19,8 @@
       "link": "/post/java/type-variables.html"
     },
     {
-      "title": "عملگرهای ریاضی، بولین (boolean)، منطقی و بیتی (bitwise) در جاوا",
-      "description": "در این مطلب به استفاده از عملگرهای ریاضی، بولین (boolean)، منطقی و بیتی (bitwise) در متغیر های اولیه (Primitive) می پردازیم.",
+      "title": "عملگر های ریاضی، بولین (boolean)، منطقی و بیتی (bitwise) در جاوا",
+      "description": "در این مطلب به استفاده از عملگر های ریاضی، بولین (boolean)، منطقی و بیتی (bitwise) برای تغییر در متغیر های اولیه (Primitive) می پردازیم.",
       "datePublished": "2026-07-20",
       "lastModified": "",
       "imgCover": "/resources/image/java/cover_operators.png",
