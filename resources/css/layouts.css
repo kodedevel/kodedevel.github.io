@@ -32,7 +32,8 @@
 .sidebar{
   display: block;
   position: fixed;
-  width: 340px;
+  width: auto;
+  max-width: 100%;
   min-height: 100vh;
   overflow-y: auto;
   scrollbar-width: none;
@@ -42,7 +43,7 @@
   box-shadow: -5px 0 10px -5px rgba(0,0,0, 0.1);
   z-index: 4;
   transition: transform ease-in-out 500ms;
-  transform: translateX(400px);
+  transform: translateX(110%);
 }
 
 .sidebar.show{
@@ -50,7 +51,7 @@
 }
 
 .sidebar.hide{
-  transform: translateX(400px);
+  transform: translateX(110%);
 }
 
 .sidebar-head{
@@ -105,7 +106,7 @@
   max-height: 0;
   overflow: hidden;
   background-color: transparent;
-  padding-bottom: 8px;
+  padding: 0 0 8px 8px;
   transition: max-height 200ms ease;
 }
 

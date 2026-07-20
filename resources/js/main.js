@@ -46,7 +46,10 @@ function executeCodes() {
 
   handleBrowserBackButton();
 
-  window.onscroll = scrollTopVisibility;
+
+  //window.onscroll = scrollTopVisibility;
+  //
+  window.addEventListener("scroll", scrollTopVisibility);
   createCodeViews();
   initUiComponents();
 

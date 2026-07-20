@@ -1,4 +1,6 @@
 //loads Ui Components into documents
+const scrollButtonContainer = document.querySelector(".scroll-top-container");
+
 function initUiComponents() {
   var path = window.location.pathname;
 
@@ -6,6 +8,10 @@ function initUiComponents() {
   if (path.match(/post\/.+\.html$/g)) {
     initSubjectItems();
   }
+
+  scrollButtonContainer.addEventListener("click", e => {
+    window.scrollTo({top: 0, behavior: "smooth"});
+  });
 
   initDialog();
   initSidebar();
@@ -152,7 +158,6 @@ function displaySidebarInfo() {
 }
 
 
-const scrollButtonContainer = document.querySelector(".scroll-top-container");
 
 let currentScrollY = 0;
 
