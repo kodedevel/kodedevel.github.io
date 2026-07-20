@@ -11,31 +11,39 @@
       "link": "/post/java/introduction.html"
     },
     {
-      "title": "انواع متغیر در جاوا",
-      "description": "انواع متغیر ها در جاوا؛ متغیر های نوع اول (Primitive Types)، بررسی ویژگی متغیر های نوع اول،‌ عملگرهای ریاضی در جاوا.",
+      "title": "انواع داده (Data Types) و تعریف متغیر های اولیه (Primitive) در جاوا",
+      "description": "در این مطلب ابتدا انواع داده رو بررسی می کنیم، سپس به تعریف متغیر های اولیه می پردازیم و در آخر یک نگاه کوتاهی به داده های آبجکتی در جاوا داریم.",
       "datePublished": "2025-09-12",
-      "lastModified": "",
+      "lastModified": "2026-07-20",
       "imgCover": "/resources/image/java/cover_type_variables.png",
       "link": "/post/java/type-variables.html"
     },
     {
-      "title": "دستورات شرطی در جاوا",
-      "description": "بررسی دستورات شرطی، if-else، if های زنجیره ای و تو در تو، عملگر های منطقی و دستور شرطی سوییچ (switch) در جاوا.",
+      "title": "عملگرهای ریاضی، بولین (boolean)، منطقی و بیتی (bitwise) در جاوا",
+      "description": "در این مطلب به استفاده از عملگرهای ریاضی، بولین (boolean)، منطقی و بیتی (bitwise) در متغیر های اولیه (Primitive) می پردازیم.",
+      "datePublished": "2026-07-20",
+      "lastModified": "",
+      "imgCover": "/resources/image/java/cover_operators.png",
+      "link": "/post/java/operators.html"
+    },
+    {
+      "title": "دستورات شرطی (if else switch) در جاوا",
+      "description": "بررسی دستورات شرطی if else و سوئیچ (switch) و استفاده از if های زنجیره ای و تودرتو با مثال های کاربردی در جاوا",
       "datePublished": "2025-09-12",
-      "lastModified": "2026-01-05",
+      "lastModified": "2026-07-20",
       "imgCover": "/resources/image/java/cover_selectors.png",
       "link": "/post/java/selectors.html"
     },
     {
-      "title": "حلقه (loop) ها در جاوا",
-      "description": "تعریف حلقه، تعریف حلقه ی for، while و do-while و استفاده از کلیدواژه های break و continue داخل حلقه در جاوا.",
+      "title": "حلقه ها (for foreach while do-while) در جاوا",
+      "description": "آموزش جامع انواع حلقه ها (for foreach while و do-while) در جاوا به همراه مثال های کاربردی",
       "datePublished": "2025-09-12",
       "lastModified": "2026-01-06",
       "imgCover": "/resources/image/java/cover_loops.png",
       "link": "/post/java/loops.html"
     },
     {
-      "title": "متد (تابع) در جاوا",
+      "title": "متد (تابع) و متد اورلودینگ (Overloading) در جاوا",
       "description": "تعریف متد، ساختار متد، نحوه ی صدا زدن متد، متد void، بررسی پارامتر های متد، پاس دادن متغیر های primary و آبجکتی، و مفهوم overloading متد در جاوا",
       "datePublished": "2025-09-12",
       "lastModified": "2026-01-28",

@@ -13,16 +13,13 @@ layout: default
         <a href="#p1">دستور شرطی if–else در جاوا</a>
       </li>
       <li>
-        <a href="#p2">عملگر های منطقی در جاوا</a>
+        <a href="#p2">دستور switch در جاوا</a>
       </li>
       <li>
-        <a href="#p3">دستور switch در جاوا</a>
+        <a href="#p3">عبارت شرطی</a>
       </li>
       <li>
-        <a href="#p4">عبارت شرطی</a>
-      </li>
-      <li>
-        <a href="#p5">خلاصه</a>
+        <a href="#p4">خلاصه</a>
       </li>
 
     </ul>
@@ -30,11 +27,11 @@ layout: default
 
   <section id="p0">
     <h2>پیش نیاز</h2>
-    <blockquote>
+    <p>
       دستورات شرطی (selector ها) در جاوا برای بررسی true یا false بودن یک عبارت
       مورد استفاده قرار میگیرند شرط یکی از مفاهیم مهم و ضروری در برنامه نویسی
       است.
-    </blockquote>
+    </p>
 
     <p>
       متغیر boolean در جاوا دارای دو مقدار true یا false است و به صورت زیر تعریف
@@ -52,7 +49,7 @@ boolean v1 = false;
   </section>
 
   <section id="p1">
-    <h2>دستور شرطی if–else در جاوا</h2>
+    <h2>دستور شرطی if–else</h2>
     <blockquote>
       با دستور شرطی if-else در جاوا به بررسی true یا false بودن یک عبارت
       می پردازیم if به زبان فارسی یعنی اگر.
@@ -198,116 +195,16 @@ if(condition0){
                         </pre>
         </div>
       </div>
+
     </section>
   </section>
+
 
   <section id="p2">
-    <h2>عملگر های منطقی در جاوا</h2>
-    <p>از عملگر های منطقی برای تغییر مقدار boolean استفاده میشه؛ این عملگر ها در جاوا از قوانین <a
-        href="https://en.wikipedia.org/wiki/Boolean_algebra">جبر بول</a> پیروی میکنن.</p>
-
-
-    <section>
-      <h3>عملگر !</h3>
-      <p>
-        مقدار عبارت boolean رو معکوس میکنه مثلا اگ مقدار یک عبارت true باشه با
-        این عملگر false میشه
-      </p>
-
-      <div class="sample">
-        <div class="snippet-container">
-          <pre class="snippet Java">
-boolean condition0 = true;
-
-if(!condition0){
-    ...
-}
-                        </pre>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <h3>عملگر &&</h3>
-      <p>
-        معنی and (و) میده، فرض کنید چندتا شرط داریم میخوایم بررسی کنیم اگه همه
-        true بودن عبارت داخل بدنه ی if اجرا بشه به صورت زیر عمل میکنیم:
-      </p>
-
-      <div class="sample">
-        <div class="snippet-container">
-          <pre class="snippet Java">
-if(condition0 &amp;&amp; condition1 &amp;&amp; ... &amp;&amp; conditionN) {
-          ...
-}
-                        </pre>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <h3>عملگر ||</h3>
-      <p>
-        معنی or (یا) میده، فرض کنید چندتا شرط داریم میخوایم بررسی کنیم اگه
-        یکیشون true بود کد های داخل {} مربوط به if اجرا بشه به صورت زیر عمل
-        میکنیم
-      </p>
-
-      <div class="sample">
-        <div class="snippet-container">
-          <pre class="snippet Java">
-if(condition0 || condition1 || ... || conditionN){
-      ...
-}
-                        </pre>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <h3>عملگر ^</h3>
-      <p>
-        معنی or اختصاصی (exclusive or) میده هنگام بررسی دو عبارت شرطی فقط باید یکیشون true باشه.
-      </p>
-
-      <div class="sample">
-        <div class="snippet-container">
-          <pre class="snippet Java">
-if(condition0 ^ condition1){
-    ...
-}
-                        </pre>
-        </div>
-      </div>
-
-      <p>مثال:</p>
-      <div class="sample">
-        <div class="snippet-container">
-          <pre class="snippet Java">
-Scanner input = new Scanner(System.in);
-
-System.out.println("Enter a number: ");
-int num = input.nextInt();
-
-if (num % 2 == 0 &amp;&amp; num % 3 == 0)
-        System.out.println("Number is divisible by 2 and 3");
-
-if (num % 2 == 0 || num % 3 == 0)
-        System.out.println("Number is divisible by 2 or 3");
-
-if (num % 2 == 0 ^ num % 3 == 0)
-        System.out.println("Number is divisible by 2 or 3 but not both");
-                        </pre>
-        </div>
-      </div>
-    </section>
-  </section>
-
-  <section id="p3">
-    <h2>دستور switch در جاوا</h2>
+    <h2>دستور سوئیچ (switch)</h2>
 
     <p>
-      اگه چندین مورد برای بررسی داشته باشیم میتونیم به جای استفاده از if های زنجیره ای از دستور سوییچ (switch) در
+      اگه چندین مورد برای بررسی داشته باشیم میتونیم به جای استفاده از if های زنجیره ای از دستور سوئیچ (switch) در
       جاوا استفاده کنیم.
     </p>
 
@@ -337,14 +234,14 @@ switch (dayNumber){
     default:
     System.out.println("Day is not in range");
 }
-                        </pre>
+        </pre>
       </div>
     </div>
 
     <p>
       در مثال بالا کاربر عدد یکی از روز های هفته رو وارد میکنه اگه مطابق با
       هرکدوم از case ها بود برنامه اسم اون روزو نمایش میده از کلید واژه ی break
-      برای خارج شدن از switch در جاوا استفاده میشه، چون بعد از برابر بودن متغیر
+      برای خارج شدن از سوئیچ (switch) در جاوا استفاده میشه، چون بعد از برابر بودن متغیر
       با یک case، علاوه بر کد های مربوط به case برابر با متغیر کد های مربوط به
       case های بعدی هم به صورت خودکار اجرا میشن در این مثال بعد از هر case عبارت
       ()System.out.println اجرا میشه، از default زمانی استفاده میکنیم که متغیر
@@ -353,10 +250,25 @@ switch (dayNumber){
     </p>
   </section>
 
-  <section id="p4">
+  <section id="p3">
     <h2>عبارت شرطی</h2>
-    <p>مثال</p>
 
+    <p>عبارت شرطی در جاوا سه بخش داره، بخش اول شرطه که بررسی میکنه آیا شرط درسته یا خیر، اگه شرط درست باشه قسمت
+      <strong>سمت چپ</strong> : رو به عنوان مقدار درنظر می گیره و اگه شرط false باشه قسمت <strong>سمت راست</strong> : رو
+      به عنوان مقدار در نظر میگیره.
+    </p>
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet PseudoCode">
+myVariable := condition ? return_if_true : return_if_false
+          </pre>
+      </div>
+    </div>
+    <p>مثال</p>
+    <p>
+      مثال زیر از کاربر دو عدد میگیره و عدد بزرگتر رو
+      نمایش میده
+    </p>
     <div class="sample">
       <div class="snippet-container">
         <pre class="snippet Java">
@@ -374,13 +286,9 @@ System.out.println("number 1 is " + num1 + " number 2 is " + num2 + " maximum is
       </div>
     </div>
 
-    <p>
-      مثال بالا یک برنامه ی ساده است که از کاربر دو عدد میگیره و عدد بزرگتر رو
-      نمایش میده
-    </p>
   </section>
 
-  <section id="p5">
+  <section id="p4">
     <h2>خلاصه</h2>
     <ul>
       <li>از دستورات شرطی برای بررسی true یا false بودن یک یا چند عبارت شرطی استفاده میکنیم.</li>
@@ -395,7 +303,12 @@ System.out.println("number 1 is " + num1 + " number 2 is " + num2 + " maximum is
 <li>
   <a href="/post/blog/switch-statement-jdk-17.html">تغییرات سوییچ تا JDK 17</a>
 </li>
-
+<li>
+  <a href="/post/java/operators.html">عملگرهای ریاضی، بولین و منطقی در جاوا</a>
+</li>
+<li>
+  <a href="/post/java/type-variables.html">متغیر ها در جاوا</a>
+</li>
 <li>
   <a href="/post/java/loops.html">حلقه ها در جاوا</a>
 </li>
