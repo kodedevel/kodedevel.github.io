@@ -1,0 +1,556 @@
+---
+layout: default
+---
+
+<article>
+  <div class="toc">
+    <div>دسترسی سریع</div>
+    <ul>
+      <li>
+        <a href="#p0">معرفی عملگرها</a>
+      </li>
+      <li>
+        <a href="#p1">عملگر های ریاضی</a>
+      </li>
+      <li>
+        <a href="#p2">ترکیب عملگرهای ریاضی برای تغییر در مقدار متغیر</a>
+      </li>
+      <li>
+        <a href="#p3">عملگر های بولین (Boolean)</a>
+      </li>
+
+      <li>
+        <a href="#p4">عملگر های منطقی و بیتی (bitwise)</a>
+      </li>
+      <li>
+        <a href="#p5">خلاصه</a>
+      </li>
+    </ul>
+  </div>
+
+  <section id="p0">
+    <h2>معرفی عملگر ها</h2>
+
+    <p>در برنامه نویسی تغییر در مقدار متغیر به برنامه معنی میده و در واقع میشه گفت برنامه نویسی هنر تغییر مقدار متغیر
+      است.</p>
+    <p>در جاوا متغیر ها به متغیر های اولیه (Primitive) و متغیر های آبجکتی (Object) تقسیم میشن، متغیر های اولیه
+      یا بولین (boolean) هستن یا عددی، در جاوا علامت هایی وجود داره که مقادیر متغیر های اولیه
+      (Primitive) رو تغییر میدن و بهشون عملگر میگیم.</p>
+
+
+    <p>سه نوع عملگر داریم که عبارتند از عملگر های ریاضی، عملگرهای منطقی و عملگر های باینری که در ادامه به این سه
+      نوع عملگر می پردازیم.</p>
+
+  </section>
+
+  <section id="p1">
+    <h2>عملگر های ریاضی</h2>
+    <p>
+      زبان برنامه نویسی جاوا از چهار عمل اصلی ریاضی (ضرب، تقسیم، جمع و تفریق)
+      پشتیبانی میکنه و برای هرکدوم یک عملگر داره.
+    </p>
+    <p>
+      زبان جاوا از ترتیب انجام اعمال در ریاضی پشتیبانی میکنه یعنی در یک عمل
+      ریاضی اولویت به ترتیب با عمل داخل پرانتز، ضرب و تقسیم و در اخر جمع و تفریق
+      است.
+    </p>
+
+    <h3>عملگر ضرب</h3>
+    <p>اگه بخوایم دوتا عدد رو ضرب کنیم از * استفاده میکنیم.</p>
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+int number0 = 4;
+int number1 = 7;
+int result = n0 * n1;
+System.out.println("multiplication of " + number0 + " and " number1 is " + result);
+                        </pre>
+      </div>
+    </div>
+
+    <section>
+      <h3>عملگر تقسیم</h3>
+      <p>اگه بخوایم دوتا عدد رو تقسیم کنیم از / استفاده می کنیم.</p>
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
+float number0 = 632;
+float number1 = 4241;
+float result = number0 / number1;
+System.out.println(number0 + " / " + number1  + " = "  result);
+                        </pre>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h3>عملگر های جمع و تفریق</h3>
+
+      <p>برای جمع از + و برای تفریق در جاوا از - استفاده می کنیم</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
+int number0 = 42;
+int number1 = 75;
+int result = number0 + number1;
+System.out.println(number0 + " + " number1 + " = " + result);
+                        </pre>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h3>عملگر باقی مانده</h3>
+      <p>برای گرفتن باقی مانده ی تقسیم دو عدد صحیح از % استفاده می کنیم.</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
+int number0 = 32;
+int number1 = 5;
+int reminder = 32 % 5;
+System.out.println("reminder of " + number0 + " / " + number1 + " is " + reminder);
+                        </pre>
+        </div>
+      </div>
+
+      <p>
+        در مثال زیر برنامه دما رو به فارنهایت از کاربر میگیره و به سلسیوس نشون
+        میده:
+      </p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
+public static void main(String[] args){
+Scanner input = new Scanner(System.in);
+
+
+System.out.println("Enter a degree in fahrenheit : ")
+double fahrenheit = input.nextDouble();
+
+double celsius = (5 / 9.0) * (fahrenheit - 32);
+
+System.out.println("Degree in fahrenheit " + fahrenheit + " is " + celsius + " in celsius");
+}
+                        </pre>
+        </div>
+      </div>
+
+      <p>در مثال زیر برنامه زمان الانو نشون میده:</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
+public static void main(String[] args){
+    long currentTime = System.currentTimeMillis();
+
+    long totalSeconds = currentTime / 1000;
+
+    long currentSecond = totalSeconds % 60;
+
+    long totalMinutes = totalSeconds / 60;
+
+    long currentMinute = totalMinutes % 60;
+
+    long totalHours = totalMinutes / 60;
+
+    long currentHour = totalHours % 24;
+
+    System.out.println("Current time is " + currentHour + ":" + currentMinute + ":" + currentSecond);
+}
+                        </pre>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <section id="p2">
+    <h2>ترکیب عملگر های ریاضی برای تغییر در مقدار متغیر</h2>
+
+    <p>برای خلاصه نویسی در کد میتونیم عملگرهای ریاضی رو باهم ترکیب کنیم.</p>
+
+    <section>
+      <h3>عملگر =+</h3>
+
+      <p>
+        اگه بخوایم به مقدار متغیر اضافه و سپس نتیجه رو در خودش ذخیره کنیم از این
+        عملگر استفاده میکنیم
+      </p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
+int i = 1;
+//i = i + 4;
+i += 4
+                        </pre>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h3>عملگر =-</h3>
+      <p>
+        اگه بخوایم مقداری از متغیر کم و سپس نتیجه رو در خودش ذخیره کنیم از این
+        عملگر استفاده میکنیم:
+      </p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
+int i = 7;
+//i = i - 4;
+i -= 4;
+                        </pre>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h3>عملگر =/</h3>
+
+      <p>
+        اگه بخوایم متغیر رو تقسیم بر عددی کنیم و حاصل تقسیم رو در خودش ذخیره
+        کنیم از این عملگر استفاده میکنیم:
+      </p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
+int i = 5;
+//i = i / 2;
+i /= 2;
+                        </pre>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h3>عملگر =*</h3>
+
+      <p>
+        اگه بخوایم متغیر رو در عددی ضرب و نتیجه رو در خود متغیر ذخیره کنیم از =*
+        استفاده می کنیم.
+      </p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
+int m = 3;
+//m = m * 5;
+m *= 5;
+                        </pre>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h3>عملگر =%</h3>
+
+      <p>
+        اگه بخوایم حاصل باقی مانده ی تقسیم متغیر بر عددی رو در خود متغیر ذخیره
+        کنیم از =% استفاده می کنیم.
+      </p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
+int i = 8;
+//i = i % 7;
+i %= 7;
+                        </pre>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h3>عملگر ++</h3>
+
+      <p>از عملگر ++ برای اضافه کردن یک واحد به متغیر استفاده می کنیم.</p>
+
+      <p>
+        اگه بخوایم ابتدا از متغیر استفاده و سپس یک واحد بهش اضافه کنیم عملگر رو
+        در <strong>سمت راست متغیر</strong> می نویسیم.
+      </p>
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
+int i = 1;
+int j = i++; //j = 1 , i = 2
+                        </pre>
+        </div>
+      </div>
+
+      <p>
+        اگه بخوایم ابتدا یک واحد به متغیر اضافه و سپس از متغیر استفاده کنیم
+        عملگر رو در <strong>سمت چپ متغیر</strong> می نویسیم.
+      </p>
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
+int i = 1;
+int j = ++i; //j = 2, i = 2;
+                        </pre>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h3>عملگر --</h3>
+      <p>از -- برای کم کردن یک واحد از متغیر استفاده میکنیم.</p>
+
+      <p>
+        اگه بخوایم ابتدا از مقدار متغیر استفاده و سپس یک واحد ازش کم کنیم عملگر
+        رو <strong>سمت راست متغیر</strong> می نویسیم.
+      </p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
+int i = 1;
+int j = i--;
+                        </pre>
+        </div>
+      </div>
+
+      <p>
+        اگه بخوایم ابتدا یک واحد از متغیر کم و سپس ازش استفاده کنیم عملگر رو در
+        <strong>سمت چپ متغیر</strong> می نویسیم.
+      </p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
+int i = 1;
+int j = --i;
+                        </pre>
+        </div>
+      </div>
+    </section>
+  </section>
+
+
+  <section id="p3">
+    <h2>عملگر های بولین (Boolean)</h2>
+    <p>از عملگر های بولین (boolean) در جاوا برای تغییر در مقادیر بولین (boolean) استفاده می کنیم.</p>
+    <p>از عملگر های منطقی برای تغییر مقدار boolean استفاده میشه؛ این عملگر ها در جاوا از قوانین <a
+        href="https://en.wikipedia.org/wiki/Boolean_algebra">جبر بول</a> پیروی میکنن.</p>
+
+
+    <section>
+      <h3>عملگر !</h3>
+      <p>
+        مقدار عبارت boolean رو معکوس میکنه مثلا اگ مقدار یک عبارت true باشه با
+        این عملگر false میشه
+      </p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
+boolean b = true;
+System.out.println(!b);
+          </pre>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h3>عملگر &amp;&amp;</h3>
+      <p>
+        معنی and (و) میده، بین دو یا چند مقدار بولین (boolean) باید همگی true باشن، نتیجه برابر با true حتی اگه یکی از
+        مقادیر false باشه نتیجه رو false میکنه.</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
+boolean b0 = true;
+boolean b1 = false;
+boolean b2 = true;
+
+System.out.println("b0 is " + b0 + " b1 is " + b1 + " b2 is " + b2)
+System.out.println("b0 and b1 and b2 is " + b0&amp;&amp;b1&amp;&amp;b2);
+System.out.println("b0 and b1 is " + b0&amp;&amp;b1);
+System.out.println("b0 and b2 is " + b0&amp;&amp;b2);
+System.out.println("b1 and b2 is " + b1&amp;&amp;b2);
+                        </pre>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h3>عملگر ||</h3>
+      <p>
+        معنی or (یا) میده، بین دو یا چند مقدار بولین (boolean) اگه همگی false باشن نتیجه false میشه ولی اگه یکی از
+        مقادیر true بود نتیجه true میشه.
+      </p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
+System.out.println("b0 is " + b0 + " b1 is " + b1 + " b2 is " + b2);
+System.out.println("b0 or b1 or b2 is " + b0 || b1 || b2);
+System.out.println("b0 or b1 is " + b0 || b1);
+System.out.println("b0 or b2 is " + b0 || b2);
+System.out.println("b1 or b2 is " + b1 || b2);
+                        </pre>
+        </div>
+      </div>
+    </section>
+
+  </section>
+
+  <section id="p4">
+    <h2> و بیتی (bitwise) عملگر های منطقی</h2>
+    <p>میدونیم مقادیر در کامپیوتر مجموعه ای از صفر و یک هستند که بهش میگیم مجموعه ای از بیت (bit) ها، با استفاده از
+      عملگرهای بیتی (bitwise) میتونیم مقادیر رو در سطح بیت (bit) تغییر بدیم؛ این عملگر ها از قوانین جبر بول پیروی میکنن.
+    </p>
+
+    <section>
+      <h3>عملگر &amp;</h3>
+      <p>عملگر &amp; بیت های دو مقدار رو بررسی میکنه، بین دو بیت اگه یکیشون یا هردو صفر باشه نتیجه صفر میشه
+        ولی اگه هردو یک باشه نتیجه یک میشه.</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
+int a = 0b110101;
+int b = 0b101011;
+//result: 100001; 
+System.out.println("a = " + a);
+System.out.println("b = " + b);
+System.out.println("a and b = " +  a &amp; b);
+          </pre>
+        </div>
+      </div>
+
+
+    </section>
+
+    <section>
+      <h3>عملگر |</h3>
+      <p>عملگر | بیت (bit) های دو مقدار رو بررسی میکنه اگه هردو صفر بود نتیجه صفر میشه ولی اگه یکیشون یا هردو یک بود
+        نتیجه یک میشه.</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
+int a = 0b110101;
+int b = 0b101011;
+//result: 111111
+System.out.println("a = " + a);
+System.out.println("b = " + b);
+System.out.println("a or b = " + a | b);
+        </pre>
+        </div>
+      </div>
+
+    </section>
+
+    <section>
+      <h3>عملگر ^</h3>
+      <p>
+        معنی or اختصاصی (exclusive or) میده هنگام بررسی بیت (bit) ها اگه یکیشون یک بود و اون یکی صفر نتیجه یک میشه در
+        غیر اینصورت نتیجه صفر است.
+      </p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
+int a = 0b110101;
+int b = 0b101011;
+//result: 011110;
+System.out.println("a = " + a);
+System.out.println("b = " + b);
+System.out.println("a xor b = " + a ^ b);
+                        </pre>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h3>عمگر شیفت به راست</h3>
+
+      <p>با این عملگر به اندازه ی عددی که براش تعیین میکنیم بیت (bit) ها رو به سمت راست شیفت میدیم.</p>
+
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
+int a = 0b110101;
+//result: 001101
+System.out.println("a = " + a);
+System.out.println("shifiting bits two units to right: " + a &gt;&gt;&gt; 2);
+          </pre>
+        </div>
+      </div>
+
+      <p>هنگام شیفت به راست اگه بخوایم بیت علامت حفظ بشه (یعنی اگه عدد منفی بوده منفی بمونه) از <strong
+          dir="ltr">&gt;&gt;</strong> بجای <strong dir="ltr">&gt;&gt;&gt;</strong> استفاده
+        میکنیم؛ یعنی هنگام استفاده از راست شیفت دوتایی اگه عدد منفی باشه، مقدار عدد تغییر میکنه ولی علامت عدد مثبت
+        نمیشه.</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
+int a = -8;
+System.out.println("shifiting bits 10 units to right with significant bit change: " + a &gt;&gt;&gt; 10);
+System.out.println("shifiting bits 10 units to right without significant bit change "  + a &gt;&gt; 10);
+          </pre>
+        </div>
+      </div>
+
+    </section>
+    <section>
+      <h3>عملگر شیفت به چپ</h3>
+      <p>با این عملگر به اندازه ی عددی که براش تعیین میکنیم بیت (bit) ها رو به سمت چپ شیفت میدیم.</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
+int a = 0b110101;
+//result: 11010100000
+System.out.println("a = " + a);
+System.out.println("shifiting bits two units to right: " + 5 &lt;&lt; a);
+          </pre>
+        </div>
+      </div>
+
+    </section>
+  </section>
+  <section id="p5">
+    <h2>خلاصه</h2>
+
+    <ul>
+      <li>از عملگر ها در جاوا برای تغییر در مقدار متغیر و داده های اولیه استفاده می کنیم.</li>
+
+      <li>به طور کلی عملگر ها در جاوا به سه دسته ی عملگر های ریاضی، عملگر های منطقی و عملگرهای باینری تقسیم میشن.</li>
+
+      <li>
+        عملگرهای ریاضی از قوانین ترتیب انجام اعمال در ریاضی پیروی میکنن.
+      </li>
+
+      <li>از عملگر های منطقی برای تغییر در مقادیر بولین (boolean) استفاده می کنیم.</li>
+
+      <li>از عملگرهای باینری برای تغییر در مقدار بیت (bit) های داده ها استفاده میکنیم.</li>
+    </ul>
+
+  </section>
+</article>
+
+{% capture links %}
+<li>
+  <a href="/post/java/type-variables.html">انواع متغیر در جاوا</a>
+</li>
+
+<li>
+  <a href="/post/java/selectors.html">دستورات شرطی در جاوا</a>
+</li>
+<li>
+  <a href="/post/java/loops.html">حلقه ها در جاوا</a>
+</li>
+
+{% endcapture %}
+
+{% include article-foot.html relative_links = links %}
