@@ -11,16 +11,16 @@ layout: default
         <a href="#p0">معرفی نخ (thread)</a>
       </li>
       <li>
-        <a href="#p1">اینترفیس Runnable در جاوا</a>
+        <a href="#p1">اینترفیس Runnable</a>
       </li>
       <li>
-        <a href="#p2">کلاس Thread در جاوا</a>
+        <a href="#p2">کلاس Thread</a>
       </li>
       <li>
-        <a href="#p3">مفهوم Thread Pool در جاوا</a>
+        <a href="#p3">مفهوم Thread Pool</a>
       </li>
       <li>
-        <a href="#p4">همگام سازی داده با نخ (Thread) ها در جاوا</a>
+        <a href="#p4">همگام سازی داده با نخ (Thread) ها</a>
       </li>
       <li>
         <a href="#p5">خلاصه</a>
@@ -62,7 +62,7 @@ layout: default
   </section>
 
   <section id="p1">
-    <h2>اینترفیس Runnable در جاوا و کاتلین</h2>
+    <h2>اینترفیس Runnable</h2>
 
     <p>در جاوا برای اجرای هر کاری توسط یک نخ ابتدا باید اون کار رو ایجاد کنیم، برای ایجاد یک کار در جاوا از <a
         href="/post/java/interfaces.html">اینترفیس</a> <strong>Runnable</strong> استفاده می کنیم؛ این اینترفیس دارای یک
@@ -168,7 +168,7 @@ class PrintCharTask(private val ch: Char, private val n: Int): Runnable {
 
   </section>
   <section id="p2">
-    <h2>کلاس Thread در جاوا و کاتلین</h2>
+    <h2>کلاس Thread</h2>
 
     <blockquote>تمام نخ (Thread) هایی که در جاوا ایجاد می کنیم، مستقیم یا غیر مستقیم روی نخ (Thread) اصلی (main thread)
       شروع به کار میکنن.
@@ -628,7 +628,7 @@ private class PrintNumbersTask(private val n: Int) : Runnable {
   </section>
 
   <section id="p3">
-    <h2>مفهوم Thread Pool در جاوا و کاتلین</h2>
+    <h2>مفهوم Thread Pool</h2>
 
     <p>زمانی که بخوایم یکی دو نخ ایجاد کنیم، کلاس Thread کاملا مناسبه ولی اگه بخوایم برای چند کار تعداد زیادی نخ ایجاد
       کنیم، ایجاد یک Thread Pool بهینه تره.</p>
@@ -830,7 +830,7 @@ private class PrintNumbers(private val n: Int) : Runnable {
 
 
   <section id="p4">
-    <h2>همگام سازی داده با نخ (Thread) ها در جاوا و کاتلین</h2>
+    <h2>همگام سازی داده با نخ (Thread) ها</h2>
 
     <p>زمانی که چند نخ به طور همزمان بخوان یک داده رو تغییر بدن، هنگام ایجاد تغییرات روی داده ممکنه باعث خراب شدن داده
       بشن، فرض کنید میخوایم یک متغیر رو با دو عدد به طور همزمان جمع کنیم، برنامه نمیدونه کدوم عدد رو اضافه کنه و ممکنه
@@ -850,8 +850,6 @@ private class PrintNumbers(private val n: Int) : Runnable {
     <p>جمع اعداد یک تا 100 برابر است با 5050، زمانی که بخوایم این جمع رو به صورت چند نخی انجام بدیم،‌ اگه از
       synchronized استفاده نکنیم، با هربار اجرای برنامه حاصل جمع به صورت پرت و پلا خواهد بود در زیر یک مثال بدون استفاده
       از synchronized زدیم.</p>
-
-
 
 
     <div class="sample">
