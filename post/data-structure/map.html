@@ -976,15 +976,12 @@ class MyHashMap {
     }
 
     containsKey(key) {
-        // Keeping your exact recursive method signature/bug from the snippet
-        if (this.containsKey(key)) {
             const index = this.hash(key);
             const bucket = this.buckets[index];
 
             for (let i = 0; i &lt; bucket.getSize(); i++) {
                 if (bucket.get(i).getKey() === key) {
-                    this.size--;
-                    return bucket.remove(i).getValue();
+                    return true;
                 }
             }
         }
@@ -1105,6 +1102,8 @@ class MyHashMap {
       <div class="sample">
         <div class="snippet-container">
           <pre class="snippet Python">
+import MyLinkedList
+
 class MyHashMap:
     DEFAULT_CAPACITY = 16
     DEFAULT_LOAD_FACTOR = 0.75
@@ -1130,7 +1129,7 @@ class MyHashMap:
             return "{" + str(self.get_key()) + " : " + str(self.get_value()) + "}"
 
     def __init__(self, capacity=DEFAULT_CAPACITY, load_factor=DEFAULT_LOAD_FACTOR):
-        if loadFactor &lt;= 0 or loadFactor &gt; 1:
+        if load_factor &lt;= 0 or load_factor &gt; 1:
             raise ValueError("load factor should be greater than 0 and less than or equal 1")
         if capacity &lt;= 0: 
             raise ValueError("Capacity can not be zero or less")
@@ -1163,14 +1162,12 @@ class MyHashMap:
 
     def contains_key(self, key):
       
-        if self.contains_key(key):
-            index = self.hash(key)
-            bucket = self.buckets[index]
+        index = self.hash(key)
+        bucket = self.buckets[index]
 
-            for i in range(bucket._size):
-                if bucket.get(i).get_key() == key:
-                    self.size -= 1
-                    return bucket.remove(i).get_value()
+        for i in range(bucket._size):
+            if bucket.get(i).get_key() == key:
+                return True
         return False
 
     def put(self, key, value):
@@ -1178,7 +1175,7 @@ class MyHashMap:
 
         if index &lt; 0: return None
 
-        if self.size &gt;= self.capacity * self.loadFactor: 
+        if self._size &gt;= self.capacity * self.load_factor: 
             self.resize()
 
         bucket = self.buckets[index]
@@ -1193,7 +1190,7 @@ class MyHashMap:
                 self.buckets[index] = MyLinkedList()
 
             self.buckets[index].add_last(self.Entry(key, value))
-            self.size += 1
+            self._size += 1
 
         return value
 
@@ -1204,13 +1201,13 @@ class MyHashMap:
 
             for i in range(bucket._size):
                 if bucket.get(i).get_key() == key:
-                    self.size -= 1
+                    self._size -= 1
                     return bucket.remove(i).get_value()
 
         return None
 
     def to_array(self):
-        entries = [None] * self.size
+        entries = [None] * self._size
         index = 0
         
         for list_obj in self.buckets:
@@ -1228,7 +1225,7 @@ class MyHashMap:
 
     def resize(self):
         old_buckets = self.buckets
-        self.size = 0
+        self._size = 0
         self.capacity *= 2
         self.buckets = [None] * self.capacity
 

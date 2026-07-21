@@ -1039,7 +1039,7 @@ class MyLinkedList:
     def get(self, index):
         if index &lt; 0 or index &gt;= self._size:
             raise IndexError(f"The index should be between 0 and {self._size - 1}")
-
+            
         if self._size == 1:
             node = self._first_node
         else:
@@ -1189,7 +1189,7 @@ for (let i = 0; i &lt; colors.getSize(); i++) {
     let c = colors.get(i);
     process.stdout.write(c + " ");
 }
-console.log(); // New line
+console.log();
 
 console.log("Remove and Display colors backward: ");
 

@@ -564,47 +564,47 @@ class MyList:
 
     def __init__(self, capacity=INITIAL_CAPACITY):
         self.capacity = capacity
-        self.size = 0
+        self._size = 0
         self.elements = [None] * capacity
 
-    def getSize(self):
-        return self.size
+    def get_size(self):
+        return self._size
 
     def add(self, element):
-        if self.size == self.capacity:
+        if self._size == self.capacity:
             self.capacity *= 2
             new_array = [None] * self.capacity
 
             for i in range(len(self.elements)):
                 new_array[i] = self.elements[i]
 
-            new_array[self.size] = element
-            self.size += 1
+            new_array[self._size] = element
+            self._size += 1
             self.elements = new_array
         else:
-            self.elements[self.size] = element
-            self.size += 1
+            self.elements[self._size] = element
+            self._size += 1
 
     def get(self, index):
-        if self.isEmpty():
-            raise ValueError("The list is empty") # Match for NoSuchElementException
+        if self.is_empty():
+            raise ValueError("The list is empty")
 
-        if index &lt; 0 or index &gt;= self.size:
-            raise IndexError("index should be between 0 to " + str(self.size - 1))
+        if index &lt; 0 or index &gt;= self._size:
+            raise IndexError("index should be between 0 to " + str(self._size - 1))
 
         return self.elements[index]
 
     def remove(self, index):
-        if self.isEmpty():
+        if self.is_empty():
             raise ValueError("The list is empty")
 
-        if index &lt; 0 or index &gt;= self.size:
-            raise IndexError("index should be between 0 to " + str(self.size - 1))
+        if index &lt; 0 or index &gt;= self._size:
+            raise IndexError("index should be between 0 to " + str(self._size - 1))
 
-        removedElement = self.elements[index]
+        removed_element = self.elements[index]
         self.elements[index] = None
 
-        if index &lt; self.size - 1:
+        if index &lt; self._size - 1:
             new_array = [None] * self.capacity
             count = 0
             for i in range(len(self.elements)):
@@ -613,11 +613,11 @@ class MyList:
                     count += 1
             self.elements = new_array
 
-        self.size -= 1
-        return removedElement
+        self._size -= 1
+        return removed_element
 
-    def isEmpty(self):
-        return self.size == 0
+    def is_empty(self):
+        return self._size == 0
         </pre>
 
         </div>
@@ -741,25 +741,25 @@ list.add("Susan")
 list.add("Emilly")
 list.add("Nick")
 
-print("Size of list after adding elements is " + str(list.getSize()))
+print("Size of list after adding elements is " + str(list.get_size()))
 
-for i in range(0, list.getSize()):
+for i in range(0, list.get_size()):
   name = list.get(i)
   print(name + " ", end="")
 print() # New line
 
 trash = None
 
-removedName = list.remove(0)
-print("Name " + removedName + " has been removed")
+removed_name = list.remove(0)
+print("Name " + removed_name + " has been removed")
 
-removedName = list.remove(0)
-print("Name " + removedName + " has been removed")
+removed_name = list.remove(0)
+print("Name " + removed_name + " has been removed")
 
-removedName = list.remove(4)
-print("Name " + removedName + " has been removed")
+removed_name = list.remove(4)
+print("Name " + removed_name + " has been removed")
 
-print("The size of list after removing 3 elements is " + str(list.getSize()))
+print("The size of list after removing 3 elements is " + str(list.get_size()))
         </pre>
       </div>
     </div>
@@ -915,17 +915,17 @@ class MyStack:
         return True
 
     def peek(self):
-        if self.list.isEmpty(): 
+        if self.list.is_empty(): 
             return None
-        return self.list.get(self.list.getSize() - 1)
+        return self.list.get(self.list.get_size() - 1)
 
     def pop(self):
         if self.list.isEmpty(): 
             return None
-        return self.list.remove(self.list.getSize() - 1)
+        return self.list.remove(self.list.get_size() - 1)
 
-    def isEmpty(self):
-        return self.list.getSize() == 0
+    def is_empty(self):
+        return self.list.get_size() == 0
         </pre>
         </div>
       </div>
@@ -981,7 +981,7 @@ stack.push(42)
 stack.push(50)
 stack.push(126)
 
-while not stack.isEmpty():
+while not stack.is_empty():
     number = stack.pop()
     print(number)
         </pre>

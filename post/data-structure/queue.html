@@ -300,6 +300,8 @@ class MyQueue {
       <div class="sample">
         <div class="snippet-container">
           <pre class="snippet Python">
+import MyLinkedList
+
 class MyQueue:
 
     def __init__(self, elements=None):
@@ -318,7 +320,7 @@ class MyQueue:
         return self.list.remove_first()
 
     def peek(self):
-        if self.isEmpty(): 
+        if self.is_empty(): 
             return None
         return self.list.get_first()
 
@@ -386,7 +388,7 @@ fun getSize(file: File): Long {
     var size: Long = 0
     if (file.isDirectory()) {
         
-        directories.offer(file)
+        directories.enqueue(file)
 
         while (!directories.isEmpty()) {
             val directory = directories.dequeue()
@@ -395,7 +397,7 @@ fun getSize(file: File): Long {
             var i = 0
             while (files != null &amp;&amp; i &lt; files.size) {
                 val f = files[i]
-                if (f.isDirectory()) directories.offer(f)
+                if (f.isDirectory()) directories.enqueue(f)
                 else size += f.length()
                 i++
             }
@@ -463,7 +465,7 @@ def getSize(file_path):
     if os.path.isdir(file_path):
         directories.enqueue(file_path)
 
-        while not directories.isEmpty():
+        while not directories.is_empty():
             directory = directories.dequeue()
             files = None
 
