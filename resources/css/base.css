@@ -1,9 +1,9 @@
 html{
   font-family: "Vazirmatn", sans-serif;
   font-weight: normal;
-  
   direction: rtl;
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body{
@@ -14,9 +14,9 @@ body{
 main{
   position: relative;
   background-color: #ffffff;
-  max-width: 732px;
+  max-width: 768px;
   margin: auto;
-  padding-bottom: 64px;
+  padding: 0 8px 32px 8px;
   font-variant-ligatures: normal;
 }
 
@@ -83,3 +83,5 @@ a[href^="https"]:not([href*="kodedevel"]):not([href*="github.com/kodedevel"]):no
   font-size: 0.8em;
   margin-left: 4px;
 }
+
+

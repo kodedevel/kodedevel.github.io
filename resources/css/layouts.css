@@ -13,10 +13,13 @@
   color: #fafafa;
   text-decoration: none;
   opacity: 1;
-  transition: all 500ms ease-in-out; 
-  transform: translateX(0px);
+  transition: all 500ms ease-in-out;
+  transform: translateX(0);
 }
 
+.navbar-brand:hover{
+  color: #80d8ff;
+}
 
 .navbar-content{
   display:flex;
@@ -36,7 +39,9 @@
   max-width: 100%;
   min-height: 100vh;
   overflow-y: auto;
+  overflow-x: hidden;
   scrollbar-width: none;
+  overscroll-behavior-y: contain;
   background-color: #ffffff;
   top: 0;
   bottom: 0;
@@ -133,13 +138,7 @@
   content: "commit";
 }
 
-.navbar-brand{
-  color:#fafafa !important;
-}
 
-.navbar-brand:hover{
-  color: #e0e0e0 !important;
-}
 
 .dialog {
     width: 100%;
