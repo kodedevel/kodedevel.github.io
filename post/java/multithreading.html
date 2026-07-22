@@ -20,10 +20,7 @@ layout: default
         <a href="#p3">مفهوم Thread Pool</a>
       </li>
       <li>
-        <a href="#p4">همگام سازی داده با نخ (Thread) ها</a>
-      </li>
-      <li>
-        <a href="#p5">خلاصه</a>
+        <a href="#p4">خلاصه</a>
       </li>
     </ul>
   </nav>
@@ -509,80 +506,47 @@ private class PrintNumbersTask(private val n: Int) : Runnable {
 
     <section>
       <h3>متد (تابع) sleep در Thread</h3>
-      <p>با استفاده از متد (تابع) sleep میتونیم یک نخ (Thread) رو تا یک بازه ی زمانی مشخصی متوقف کنیم، متد sleep
-        استاتیکه، زمانی که داخل یک کار صدا زده بشه، Thread اجرا کننده ی کار رو متوقف میکنه و Thread هایی که داخل کار
-        اجرا شدن هم به طور موقت متوقف میشن.</p>
+      <p>با استفاده از متد (تابع) sleep میتونیم یک نخ (Thread) رو تا یک بازه ی زمانی مشخصی متوقف کنیم،، زمانی که داخل یک
+        کار صدا زده بشه، Thread اجرا کننده ی کار رو متوقف میکنه و Thread هایی که داخل کار
+        اجرا شدن هم به طور موقت متوقف میشن؛ متد sleep
+        استاتیکه</p>
 
 
-      <p>در مثال زیر زمانی که i به 50 میرسه متد sleep صدا زده میشه.</p>
+      <p>در مثال قبل بجای join از <strong>Thread.sleep(millis)</strong> استفاده می کنیم.</p>
 
       <div class="sample">
         <div class="snippet-container">
           <pre class="snippet Java">
 public class TestSleep {
-
-    public static void main(String[] args) throws InterruptedException {
-        Thread t = new Thread(new PrintNumbersTask(1000));
+public static void main(String[] args) {
+        Thread t = new Thread(new SecondCounter());
         t.start();
 
-        for(int i=0; i&lt;1000; i++)
-            System.out.println("Hello from main thread");
+        System.out.println("Hello from main thread");
     }
 
-    private static class PrintCharTask implements Runnable{
+    private static class SecondCounter implements Runnable {
 
-        private int numberOfChars;
-        private char ch;
-
-        public PrintCharTask(char ch, int numberOfChars){
-            this.numberOfChars = numberOfChars;
-            this.ch = ch;
-        }
-
-        @Override
-        public void run(){
-
-            for(int i=0; i&lt;numberOfChars; i++){
-
-                if(i % 10 == 0) System.out.println();
-
-                System.out.print(ch);
-            }
-
-        }
-
-    }
-
-    private static class PrintNumbersTask implements Runnable {
-
-        private int n;
-        
-        public PrintNumbersTask(int n){
-            this.n = n;
-        }
-        
         @Override
         public void run() {
 
-            Thread thread = new Thread(new PrintCharTask('a', 1000));
-            thread.start();
-
+            System.out.println("20 seconds to end of the loop");
             try {
 
-                for (int i = 0; i &lt;n; i++) {
-
-                    if (i == 50)
-                        Thread.sleep(2000);
-
-
+                for (int i = 1; i &lt;= 20; i++) {
+                    Thread.sleep(1000);
                     System.out.print(i + " ");
-
                 }
-            }catch (InterruptedException e){
+
+                Thread t = new Thread(() -&gt; System.out.println("\nEnd of the loop reached"));
+                t.start();
+
+            } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
     }
+    
 }
           </pre>
           <pre class="snippet Kotlin">
@@ -591,34 +555,26 @@ fun main() {
     val t = Thread(PrintNumbersTask(1000))
     t.start()
 
-    for (i in 0..999) println("Hello from main thread")
+    println("Hello from main thread")
 }
 
-private class PrintCharTask(private val ch: Char, private val numberOfChars: Int) : Runnable {
+private class PrintNumbersTask : Runnable {
     override fun run() {
-        for (i in 0..&lt;numberOfChars) {
-            if (i % 10 == 0) println()
-
-            print(ch)
-        }
-    }
-}
-
-private class PrintNumbersTask(private val n: Int) : Runnable {
-    override fun run() {
-        val thread = Thread(PrintCharTask('a', 1000))
-        thread.start()
+        
 
         try {
-            for (i in 0..&lt;n) {
-                if (i == 50) Thread.sleep(2000)
-
+            for (i in 0..&lt;20) {
+                Thread.sleep(1000)
                 print("$i ")
             }
+
+            val thread = Thread{
+              println("\nEnd of the loop reached")
+            }
+
         } catch (e: InterruptedException) {
             e.printStackTrace()
-        }
-    }
+        }    }
 }
           </pre>
         </div>
@@ -639,9 +595,7 @@ private class PrintNumbersTask(private val n: Int) : Runnable {
     <table class="tb">
 
       <thead class="tHead">
-        <tr>
-          <th>java.util.concurrent.ExecutorService</th>
-        </tr>
+        <th>java.util.concurrent.ExecutorService</th>
       </thead>
 
       <tbody>
@@ -689,11 +643,9 @@ private class PrintNumbersTask(private val n: Int) : Runnable {
 
     <table class="tb">
       <thead class="tHead">
-        <tr>
-          <th>
-            java.util.concurrent.Executors
-          </th>
-        </tr>
+        <th>
+          java.util.concurrent.Executors
+        </th>
       </thead>
       <tbody>
         <tr class="tRow">
@@ -828,197 +780,7 @@ private class PrintNumbers(private val n: Int) : Runnable {
 
   </section>
 
-
   <section id="p4">
-    <h2>همگام سازی داده با نخ (Thread) ها</h2>
-
-    <p>زمانی که چند نخ به طور همزمان بخوان یک داده رو تغییر بدن، هنگام ایجاد تغییرات روی داده ممکنه باعث خراب شدن داده
-      بشن، فرض کنید میخوایم یک متغیر رو با دو عدد به طور همزمان جمع کنیم، برنامه نمیدونه کدوم عدد رو اضافه کنه و ممکنه
-      به طور تصادفی عدد اول رو با متغیر جمع کنه و از عدد دوم صرف نظر کنه، شایدم برعکس عدد دوم رو با
-      متغیر جمع بزنه، به این وضعیت در چندنخی (multithreading) وضعیت
-      <strong>رقابت بین نخ (Thread) ها (race condition)</strong>
-      میگیم.
-    </p>
-
-    <p>برای جلوگیری از race condition یک کلیدواژه به نام synchronized در جاوا وجود داره، هنگامی که این کلیدواژه در متد
-      (تابع) استفاده بشه تنها یک نخ میتونه تابع رو اجرا کنه و زمانی که کار نخ با تابع تموم نشده باشه، تابع برای نخ های
-      دیگه ازاد نمیشه و نخ های دیگه نمیتونن تابع رو
-      اجرا کنن، به متد هایی که با کلیدواژه ی synchronized تعریف میشن، <strong>متد های همگام سازی شده (Synchronized
-        Methods)</strong> گفته میشه.</p>
-
-
-    <p>جمع اعداد یک تا 100 برابر است با 5050، زمانی که بخوایم این جمع رو به صورت چند نخی انجام بدیم،‌ اگه از
-      synchronized استفاده نکنیم، با هربار اجرای برنامه حاصل جمع به صورت پرت و پلا خواهد بود در زیر یک مثال بدون استفاده
-      از synchronized زدیم.</p>
-
-
-    <div class="sample">
-      <div class="snippet-container">
-        <pre class="snippet Java">
-public class MultithreadedAddition {
-
-    private static NumberUpdater numberUpdater = new NumberUpdater();
-
-    public static void main(String[] args){
-
-        ExecutorService service = Executors.newCachedThreadPool();
-
-        for (int i=1; i&lt;=100; i++) {
-            service.execute(new AddNumber(i));
-        }
-
-        service.shutdown();
-
-        while (!service.isTerminated());
-
-        System.out.println(numberUpdater.getNumber());
-    }
-
-    private static class AddNumber implements Runnable{
-
-        private final int newNumber;
-
-        AddNumber(int newNumber){
-            this.newNumber = newNumber;
-        }
-
-        @Override
-        public void run() {
-            numberUpdater.updateNumber(newNumber);
-        }
-
-    }
-
-    private static class NumberUpdater {
-        private int number;
-
-        public void updateNumber(int n){
-            int newNumber = number + n;
-
-            try {
-                Thread.sleep(5);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-
-            number = newNumber;
-        }
-
-        public int getNumber() {
-            return number;
-        }
-    }
-}
-        </pre>
-        <pre class="snippet Kotlin">
-private val numberUpdater = NumberUpdater()
-
-fun main() {
-    val service = Executors.newCachedThreadPool()
-
-    for (i in 1..100) {
-        service.execute(AddNumber(i))
-    }
-
-    service.shutdown()
-
-    while (!service.isTerminated);
-
-    println(numberUpdater.number)
-}
-
-private class AddNumber(private val newNumber: Int) : Runnable {
-    override fun run() {
-        numberUpdater.updateNumber(newNumber)
-    }
-}
-
-private class NumberUpdater {
-
-    var number: Int = 0
-        private set
-
-    fun updateNumber(n: Int) {
-
-        val newNumber = number + n
-
-        try {
-            Thread.sleep(5)
-        } catch (e: InterruptedException) {
-            throw RuntimeException(e)
-        }
-
-        number = newNumber
-
-    }
-}
-        </pre>
-      </div>
-    </div>
-
-    <p>در مثال بالا برای اینکه منظور بهتر درک بشه از sleep در متد updateNumber استفاده کردیم، متد sleep باعث میشه نخ های
-      بیشتری منتظر بمونن و باهم شروع به اجرای</p>
-    <p>برای اینکه race condition به وجود نیاد کافیه متد (تابع) updateNumber رو به صورت synchronized تعریف کنیم.</p>
-
-    <aside class="note">
-      <p class="note-head">توجه</p>
-      <p>در کاتلین کلیدواژه ی synchronized وجود نداره، برای همگام سازی از کلاس ReentrantLock استفاده میکنیم؛ کلاس
-        ReentrantLock یک پیاده سازی در جاواست، معمولا از ReentrantLock برای کنترل بیشتر روی همگام سازی داده ها با نخ ها
-        استفاده میشه اما در مثال
-        زیر از ReentrantLock در کد های کاتلین استفاده کردیم.</p>
-    </aside>
-
-    <div class="sample">
-      <div class="snippet-container">
-        <pre class="snippet Java">
-private static class NumberUpdater {
-    private int number;
-    public synchronized void updateNumber(int n){
-        int newNumber = number + n;
-        try {
-            Thread.sleep(5);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-        number = newNumber;
-    }
-    public int getNumber() {
-        return number;
-    }
-}
-        </pre>
-        <pre class="snippet Kotlin">
-private class NumberUpdater {
-    val lock = ReentrantLock()
-
-    var number: Int = 0
-        private set
-
-    fun updateNumber(n: Int) {
-        lock.lock()
-
-        val newNumber = number + n
-
-        try {
-            Thread.sleep(5)
-        } catch (e: InterruptedException) {
-            throw RuntimeException(e)
-        }
-
-        number = newNumber
-
-        lock.unlock()
-    }
-}
-        </pre>
-      </div>
-    </div>
-
-    <p>از این به بعد زمانی که گفته میشه یک متد در جاوا synchronized است باید بدونید منظور چیه :)</p>
-
-  </section>
-
-  <section id="p5">
     <h2>خلاصه</h2>
 
     <ul>
