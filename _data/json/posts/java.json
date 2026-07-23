@@ -189,7 +189,7 @@
     {
       "title": "همگام سازی (synchronizing) داده با نخ (Thread) ها در جاوا",
       "description": "در این مطلب به بررسی اینکه چرا باید فقط با یک نخ به داده دسترسی داشته باشیم، همگام سازی در چند نخی چیه و روش های مختلف همگام سازی با استفاده از کلیدواژه ی synchronized، استفاده از کلاس ReentrantLock و استفاده کلاس Semophare می پردازیم.",
-      "datePublished": "2026-06-23",
+      "datePublished": "2026-07-23",
       "lastModified": "",
       "imgCover": "/resources/image/java/cover_thread_synchronization.png",
       "link": "/post/java/thread-synchronization.html"

@@ -11,16 +11,16 @@ layout: default
         <a href="#p0">معرفی نخ (thread)</a>
       </li>
       <li>
-        <a href="#p1">کلیدواژه ی synchronized</a>
+        <a href="#p1">همگام سازی با کلیدواژه ی synchronized</a>
       </li>
       <li>
         <a href="#p2">همکاری بین نخ ها با متدهای wait, notify و notifyAll</a>
       </li>
       <li>
-        <a href="#p3">همگام سازی (synchronizing) نخ ها با استفاده از کلاس ReentrantLock</a>
+        <a href="#p3">همگام سازی (synchronizing) با کلاس ReentrantLock</a>
       </li>
       <li>
-        <a href="#p4">محدود کردن دسترسی تعداد نخ ها به داده با استفاده از کلاس Semaphore</a>
+        <a href="#p4">محدود کردن دسترسی تعداد نخ ها به داده با کلاس Semaphore</a>
       </li>
       <li>
         <a href="#p5">مفهوم Deadlock</a>
@@ -159,7 +159,7 @@ private class Account {
       دیگه به داده رو بگیریم و اصطلاحا داده رو قفل کنیم.</p>
   </section>
   <section id="p1">
-    <h2>کلیدواژه ی synchronized</h2>
+    <h2> همگام سازی با کلیدواژه ی synchronized</h2>
 
     <blockquote>همگام سازی نخ یعنی هماهنگ کردن اجرای نخ هایی که به هم وابسته هستن.</blockquote>
 
@@ -175,7 +175,7 @@ private class Account {
       <p>در کاتلین کلیدواژه ی synchronized وجود نداره، برای همگام سازی از کلاس ReentrantLock استفاده میکنیم؛ کلاس
         ReentrantLock یک پیاده سازی در جاواست، معمولا از ReentrantLock برای کنترل بیشتر روی همگام سازی داده ها با نخ
         ها
-        استفاده میشه، بنابراین در این قسمت از مطلب مثال از کاتلین نداریم و مثال های کاتلین از <a href="#p4">قسمت
+        استفاده میشه، بنابراین در این قسمت از مطلب مثال از کاتلین نداریم و مثال های کاتلین از <a href="#p3">قسمت
           ReentrantLock</a> شروع میشه.</p>
     </aside>
 
@@ -384,7 +384,7 @@ public class ConsumerProducerDemo {
   </section>
 
   <section id="p3">
-    <h2>همگام سازی (synchronizing) نخ ها با استفاده از کلاس ReentrantLock</h2>
+    <h2>همگام سازی (synchronizing) با کلاس ReentrantLock</h2>
     <blockquote>با استفاده از Lock و condition میتونیم به صورت آشکار (explicitly) داده ها رو با نخ ها همگام سازی کنیم.
     </blockquote>
 
@@ -422,7 +422,7 @@ public class ConsumerProducerDemo {
       <tbody>
         <tr class="tRow">
           <td class="tDataLTR">+lock(): void</td>
-          <td>یک قفل ایجاد میکنه.</td>
+          <td class="tDataRTL">یک قفل ایجاد میکنه.</td>
         </tr>
         <tr class="tRow">
           <td class="tDataLTR">+unlock(): void</td>
@@ -526,8 +526,6 @@ private class Account {
 
     <p>همینطور که در بالا مشخصه بدون استفاده از کلیدواژه ی synchronized تونستیم یک قفل روی متد updateScore ایجاد کنیم که
       بعد از پایان کار متد با unlock، متد برای نخ (thread) های دیگه آزاد میشه.</p>
-
-
 
     <section>
       <h3>اینترفیس Condition</h3>
@@ -656,6 +654,77 @@ public class ConsumerProducerReentrantLock {
 
         private boolean isEmpty(){
             return data == 0;
+        }
+    }
+}
+        </pre>
+        <pre class="snippet Kotlin">
+fun main(){
+    val cp = ConsumerProducer()
+
+    val service = Executors.newFixedThreadPool(2)
+
+    service.execute {
+        while (true)
+            cp.consume()
+    }
+
+    service.execute {
+        while (true)
+            cp.produce()
+    }
+
+    service.close()
+}
+
+private class ConsumerProducer{
+    private var data = 0
+
+    private val lock = ReentrantLock()
+    private val consumeCondition = lock.newCondition()
+    private val produceCondition = lock.newCondition()
+
+    val empty get() = data == 0
+
+    fun consume(){
+        try {
+            lock.lock()
+
+            while (empty)
+                consumeCondition.await()
+
+            Thread.sleep(1000)
+
+            println("consuming data $data")
+            data = 0
+            produceCondition.signal()
+
+
+        }catch (e: InterruptedException){
+            e.printStackTrace()
+        }finally {
+            lock.unlock()
+        }
+    }
+
+    fun produce(){
+        try {
+            lock.lock()
+
+            while (!empty)
+                produceCondition.await()
+
+            Thread.sleep(2000)
+
+
+            data = (Math.random() * 255).toInt()
+            println("producing data $data")
+            consumeCondition.signal()
+
+        }catch (e: InterruptedException){
+            e.printStackTrace()
+        }finally {
+            lock.unlock()
         }
     }
 }
