@@ -189,8 +189,8 @@ section{
 }
 
 .tRow{
-    width: 100%;
     display: flex;
+    width: 100%;
     justify-content: space-between;
     background-color: #e1f5fe;
 }
@@ -207,13 +207,15 @@ section{
     background-color: #80d8ff;
     direction: ltr;
     font-weight:bold;
-    min-width: 250px;
+    flex: 1;
+    word-wrap: break-word;
     padding: 16px 8px;
 }
 
 .tRow .tDataRTL{
     direction: rtl;
     padding: 16px 8px;
+    flex: 2;
 }
 
 .course-category{
