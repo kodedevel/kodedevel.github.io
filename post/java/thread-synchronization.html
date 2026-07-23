@@ -8,7 +8,7 @@ layout: default
     <div>دسترسی سریع</div>
     <ul>
       <li>
-        <a href="#p0">معرفی نخ (thread)</a>
+        <a href="#p0">مفهوم رقابت بین نخ ها (race condition) و همگام سازی (synchronizing)</a>
       </li>
       <li>
         <a href="#p1">همگام سازی با کلیدواژه ی synchronized</a>
@@ -70,7 +70,7 @@ public class StudentAccount{
               service.execute(new IncrementScoreByOne());
           }
 
-          service.close();
+          service.shutdown();
 
           while (!service.isTerminated());
 
@@ -88,7 +88,7 @@ public class StudentAccount{
       private static class Account{
           private Integer score = 0;
 
-          public synchronized void updateScore(int v){
+          public void updateScore(int v){
               int newScore = score + v;
               try {
                   Thread.sleep(5);
@@ -124,7 +124,7 @@ fun main() {
 
 private class IncrementScoreByOne : Runnable {
     override fun run() {
-        numberUpdater.updateNumber(1)
+        account.updateScore(1)
     }
 }
 
@@ -135,7 +135,7 @@ private class Account {
 
     fun updateScore(v: Int) {
 
-        val newScore = score + n
+        val newScore = score + v
 
         try {
             Thread.sleep(5)
@@ -336,7 +336,7 @@ public class ConsumerProducerDemo {
                     cp.produce();
             });
 
-            service.close();
+            service.shutdown();
 
     }
 
@@ -415,9 +415,11 @@ public class ConsumerProducerDemo {
 
     <table class="tb">
       <thead class="tHead">
-        <th>
-          java.util.concurrent.locks.Lock
-        </th>
+        <tr>
+          <th>
+            java.util.concurrent.locks.Lock
+          </th>
+        </tr>
       </thead>
       <tbody>
         <tr class="tRow">
@@ -439,9 +441,11 @@ public class ConsumerProducerDemo {
 
     <table class="tb">
       <thead class="tHead">
-        <th>
-          java.util.concurrent.locks.ReentrantLock
-        </th>
+        <tr>
+          <th>
+            java.util.concurrent.locks.ReentrantLock
+          </th>
+        </tr>
       </thead>
 
       <tbody>
@@ -538,7 +542,9 @@ private class Account {
 
       <table class="tb">
         <thead class="tHead">
-          <th>&lt;&lt;java.util.concurrent.Condition&gt;&gt;</th>
+          <tr>
+            <th>&lt;&lt;java.util.concurrent.Condition&gt;&gt;</th>
+          </tr>
         </thead>
 
         <tbody>
@@ -595,7 +601,7 @@ public class ConsumerProducerReentrantLock {
 
         });
 
-        service.close();
+        service.shutdown();
     }
 
 
@@ -674,7 +680,7 @@ fun main(){
             cp.produce()
     }
 
-    service.close()
+    service.shutdown()
 }
 
 private class ConsumerProducer{
@@ -891,7 +897,7 @@ service.execute(() -&gt; {
   }
 });
 
-service.close();
+service.shutdown();
         </pre>
       </div>
     </div>
@@ -927,7 +933,7 @@ public class ConsumerProducerDemo {
                     producer.produce();
             });
 
-            service.close();
+            service.shutdown();
 
     }
 

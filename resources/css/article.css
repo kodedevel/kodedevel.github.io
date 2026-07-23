@@ -179,43 +179,38 @@ section{
 }
 
 .tb{
-    height: 100%;
-    width: 100%;
-    display: block;
+    table-layout: fixed;
+    display: table;
     justify-self: center;
     height: wrap-content;
     margin-bottom: 24px;
     direction: ltr;
 }
 
-.tRow{
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    background-color: #e1f5fe;
-}
-
 .tHead{
+    display: table-header-group;
     width: 100%;
     font-weight: bold;
     font-size: 1.1rem;
     text-align: center;
     background-color: #E0E0E0;
+    align-items: center;
 }
 
-.tRow .tDataLTR{
+tr .tDataLTR{
+    width: 30%;
     background-color: #80d8ff;
     direction: ltr;
     font-weight:bold;
-    flex: 1;
     word-wrap: break-word;
     padding: 16px 8px;
 }
 
-.tRow .tDataRTL{
+tr .tDataRTL{
+    width: 70%;
+    background-color: #e1f5fe;
     direction: rtl;
     padding: 16px 8px;
-    flex: 2;
 }
 
 .course-category{
