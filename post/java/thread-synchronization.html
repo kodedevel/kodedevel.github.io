@@ -1,0 +1,961 @@
+---
+layout: default
+---
+
+<article>
+
+  <nav class="toc">
+    <div>دسترسی سریع</div>
+    <ul>
+      <li>
+        <a href="#p0">معرفی نخ (thread)</a>
+      </li>
+      <li>
+        <a href="#p1">کلیدواژه ی synchronized</a>
+      </li>
+      <li>
+        <a href="#p2">همکاری بین نخ ها با متدهای wait, notify و notifyAll</a>
+      </li>
+      <li>
+        <a href="#p3">همگام سازی (synchronizing) نخ ها با استفاده از کلاس ReentrantLock</a>
+      </li>
+      <li>
+        <a href="#p4">محدود کردن دسترسی تعداد نخ ها به داده با استفاده از کلاس Semaphore</a>
+      </li>
+      <li>
+        <a href="#p5">مفهوم Deadlock</a>
+      </li>
+      <li>
+        <a href="#p6">خلاصه</a>
+      </li>
+    </ul>
+  </nav>
+
+
+  <aside class="note">
+    <p class="note-head">توجه</p>
+    <p>کتابخونه های جاوا در زبان برنامه نویسی کاتلین هم قابل استفاده هستن و این مطلب از این قائده مستثنی نیست
+      بنابراین مثال های این مطلب
+      علاوه بر جاوا با کاتلین هم زده شده است؛ و باید به این نکته هم توجه کرد که کاتلین علاوه بر اینکه از کتابخونه های
+      چندنخی جاوا میتونه استفاده کنه، یک کتابخونه ی اختصاصی براش وجود داره به نام کروتینز (Coroutines) که بر اساس چندنخی
+      در جاوا پیاده سازی شده است.</p>
+  </aside>
+
+  <section id="p0">
+    <h2>مفهوم رقابت بین نخ ها (race condition) و همگام سازی (synchronizing)</h2>
+
+    <p>زمانی که چند نخ به طور همزمان بخوان یک داده رو تغییر بدن، هنگام ایجاد تغییرات روی داده ممکنه باعث خراب شدن داده
+      بشن و اصطلاحا میگیم <strong>data corruption</strong> رخ داده، فرض کنید میخوایم یک متغیر رو با دو عدد به طور همزمان
+      جمع کنیم، برنامه نمیدونه کدوم عدد رو اضافه کنه و ممکنه
+      به طور تصادفی عدد اول رو با متغیر جمع کنه و از عدد دوم صرف نظر کنه، شایدم برعکس عدد دوم رو با
+      متغیر جمع بزنه، به این وضعیت در چندنخی (multithreading) وضعیت
+      <strong>رقابت بین نخ (Thread) ها (race condition)</strong>
+      میگیم.
+    </p>
+
+    <p>در مثال زیر میخوایم امتیاز حساب یک دانش آموز رو به ۱۰۰ برسونیم و برای اینکار از چندنخی استفاده می کنیم.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+public class StudentAccount{
+
+  private static Account account = new Account();
+
+      public static void main(String[] args) {
+
+          ExecutorService service = Executors.newCachedThreadPool();
+
+          for (int i=0; i&lt;100; i++){
+              service.execute(new IncrementScoreByOne());
+          }
+
+          service.close();
+
+          while (!service.isTerminated());
+
+          System.out.println("student score Is " + account.getScore());
+      }
+
+
+      private static class IncrementScoreByOne implements Runnable{
+          @Override
+          public void run() {
+              account.updateScore(1);
+          }
+      }
+
+      private static class Account{
+          private Integer score = 0;
+
+          public synchronized void updateScore(int v){
+              int newScore = score + v;
+              try {
+                  Thread.sleep(5);
+              }catch (InterruptedException e){
+                  throw new RuntimeException(e);
+              }
+
+              score = newScore;
+          }
+
+          public int getScore() {
+              return score;
+          }
+      }
+  }
+        </pre>
+        <pre class="snippet Kotlin">
+private val account = Account()
+
+fun main() {
+    val service = Executors.newCachedThreadPool()
+
+    for (i in 1..100) {
+        service.execute(AddNumber(i))
+    }
+
+    service.shutdown()
+
+    while (!service.isTerminated);
+
+    println("The student score is " + account.score)
+}
+
+private class IncrementScoreByOne : Runnable {
+    override fun run() {
+        numberUpdater.updateNumber(1)
+    }
+}
+
+private class Account {
+
+    var score: Int = 0
+        private set
+
+    fun updateScore(v: Int) {
+
+        val newScore = score + n
+
+        try {
+            Thread.sleep(5)
+        } catch (e: InterruptedException) {
+            throw RuntimeException(e)
+        }
+
+        score = newScore
+
+    }
+}
+        </pre>
+      </div>
+    </div>
+
+    <p>در مثال بالا برای بهتر مشخص شدن مشکل از متد (تابع) sleep استفاده کردیم، بعد از اجرای کد میبینیم یک سری اعداد پرت
+      و
+      پلا نشون میده که از ۱۰۰ کمترن علت این موضوع بخاطر تغییر دادن مقدار فیلد score به صورت همزمان توسط چند نخ است.</p>
+
+    <p>برای جلوگیری از این وضعیت باید هنگام استفاده از یک داده توسط نخ (thread)، تا پایان کار جلوی دسترسی نخ های
+      دیگه به داده رو بگیریم و اصطلاحا داده رو قفل کنیم.</p>
+  </section>
+  <section id="p1">
+    <h2>کلیدواژه ی synchronized</h2>
+
+    <blockquote>همگام سازی نخ یعنی هماهنگ کردن اجرای نخ هایی که به هم وابسته هستن.</blockquote>
+
+    <p>برای جلوگیری از race condition یک کلیدواژه به نام <strong>synchronized</strong> در جاوا وجود داره، هنگامی که از
+      این کلیدواژه
+      استفاده بشه، تنها یک نخ میتونه به داده دسترسی داشته باشه و تا زمانی که کار نخ (thread)
+      تموم نشده داده قفل میمونه و نخ های دیگه به داده دسترسی ندارن.</p>
+
+    <p>از کلیدواژه ی synchronized میتونیم برای آبجکت و متد (تابع) استفاده کنیم.</p>
+
+    <aside class="note">
+      <p class="note-head">توجه</p>
+      <p>در کاتلین کلیدواژه ی synchronized وجود نداره، برای همگام سازی از کلاس ReentrantLock استفاده میکنیم؛ کلاس
+        ReentrantLock یک پیاده سازی در جاواست، معمولا از ReentrantLock برای کنترل بیشتر روی همگام سازی داده ها با نخ
+        ها
+        استفاده میشه، بنابراین در این قسمت از مطلب مثال از کاتلین نداریم و مثال های کاتلین از <a href="#p4">قسمت
+          ReentrantLock</a> شروع میشه.</p>
+    </aside>
+
+    <section>
+      <h3>استفاده از کلیدواژه ی synchronized برای آبجکت</h3>
+
+      <p>با استفاده از کلیدواژه ی synchronized میتونیم یک قفل روی آبجکت ایجاد کنیم تا هنگام استفاده از آبجکت توسط چند نخ
+        (Thread) دچار race condition نشیم.</p>
+
+      <p>فرم کلی:</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
+synchronized (expression){
+   //statement
+}
+          </pre>
+        </div>
+      </div>
+
+      <p>بجای expression متغیری که به آبجکت اشاره می کنه رو می نویسیم و داخل بلوک توابع یا فیلد های آبجکت رو که میخوایم
+        قفل بشن
+        صدا میزنیم.</p>
+
+      <p>در مثال قبل میتونیم از synchronized برای متغیر account استفاده کنیم و از race condition جلوگیری کنیم.</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
+private static class IncrementScoreByOne implements Runnable{
+    @Override
+    public void run() {
+        synchronized (account) {
+            account.updateScore(1);
+        }
+    }
+}
+          </pre>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h3>استفاده از کلیدواژه ی synchronized برای متد</h3>
+      <p>
+        تابع برای نخ های
+        دیگه ازاد نمیشه و نخ های دیگه نمیتونن تابع رو
+        اجرا کنن، به متد هایی که با کلیدواژه ی synchronized تعریف میشن، <strong>متد های همگام سازی شده (Synchronized
+          Methods)</strong> گفته میشه.</p>
+
+      <p>در مثال قبل برای اینکه race condition به وجود نیاد کافیه متد (تابع) updateScore رو با کلیدواژه ی synchronized
+        تعریف کنیم.</p>
+
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
+private static class Account{
+  private Integer score = 0;
+  public synchronized void updateScore(int v){
+      int newScore = score + v;
+      try {
+          Thread.sleep(5);
+      }catch (InterruptedException e){
+          throw new RuntimeException(e);
+      }
+      score = newScore;
+  }
+  public int getScore() {
+      return score;
+  }
+}
+        </pre>
+        </div>
+      </div>
+
+    </section>
+
+    <p>از این به بعد زمانی که گفته میشه یک متد در جاوا synchronized است باید بدونید منظور چیه :)</p>
+
+  </section>
+
+
+  <section id="p2">
+    <h2>همکاری بین نخ (Thread) ها با متد های wait, notify و notifyAll</h2>
+
+    <p>نخ (thread) ها میتونن باهمدیگه همکاری کنن، دوتا نخ رو در نظر بگیرید زمانی که اجرای نخ اول به جایی برسه، نخ اول
+      متوقف بشه و نخ دوم شروع به کار کنه و زمانی که اجرای نخ دوم به جایی برسه، نخ دوم متوقف بشه و نخ اول شروع به کار
+      کنه.</p>
+
+    <p>برای بدست اوردن چنین عملکردی در کلاس Object جاوا سه متد (تابع) به نام های <strong>wait</strong>,
+      <strong>notify</strong> و <strong>notifyAll</strong> تعریف شده، از این سه تابع میتونیم داخل متد هایی که با
+      synchronized تعریف شده باشن یا عبارت synchronized استفاده کنیم.
+    </p>
+
+    <aside class="note">
+      <p class="note-head">توجه</p>
+      <p>استفاده از سه متد wait, notify و notifyAll فقط در جاهایی که synchronized تعریف شده امکان پذیر است.</p>
+    </aside>
+
+    <section>
+      <h3>متد (تابع) wait</h3>
+      <p>از این متد (تابع) برای متوقف کردن نخ هایی که دارن از آبجکت مورد نظر استفاده میکنن، استفاده کنیم؛ و برای ادامه ی
+        کار نخ منتظر سیگنال ادامه میمونه.</p>
+    </section>
+
+
+    <section>
+      <h3>متد (تابع) notify</h3>
+      <p>اگه یک نخ توسط یک آبجکت با wait متوقف شده باشه، با استفاده از متد notify میتونیم سیگنال ادامه رو به نخ (thread)
+        بدیم.
+        سیگنال ادامه ی کار فقط به نخ هایی داده میشه که توسط همون آبجکت با wait متوقف شده باشن، و اگه چند نخ توسط آبجکت
+        با wait متوقف شده باشه با notify فقط یکیشون به کار ادامه میده.
+      </p>
+    </section>
+
+    <section>
+      <h3>متد (تابع) notifyAll</h3>
+
+      <p>از این متد برای دادن سیگنال به تمام نخ های متوقف شده روی آبجکت فعلی استفاده می کنیم، استفاده از این متد هر نخی
+        که روی این آبجکت متوقف شده باشه رو اجرا می کنه، سیگنال ادامه ی کار به نخ هایی داده میشه که توسط همون آبجکت با
+        wait متوقف شده باشن و تمام نخ های متوقف شده با
+        سیگنال notifyAll به کار خودشون ادامه میدن.</p>
+    </section>
+
+
+    <p>مثال زیر یک برنامه ی تولید کننده و مصرف کننده است (Consumer-Producer) یک مثال کلاسیک برای درک مفهوم همکاری بین نخ
+      (thread) ها؛ در این مثال یک کلاس داریم و دوتابع به اسم produce و consume، زمانی که مقدار data صفر باشه تابع
+      consume
+      متوقف میشه و سیگنال ادامه ی کار رو به produce می فرسته و تابع produce شروع به کار میکنه تا مقدار داده تغییر کنه،
+      زمانی که مقدار داده تغییر کرد، تابع produce
+      متوقف میشه و سیگنال ادامه ی کار رو به تابع consume میفرسته و consume شروع به ادامه ی کار میکنه.</p>
+    <p></p>
+
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+public class ConsumerProducerDemo {
+
+    public static void main(String[] args) {
+        ExecutorService service = Executors.newFixedThreadPool(2);
+
+        ConsumerProducer cp = new ConsumerProducer();
+
+            service.execute(() -&gt; {
+                while (true)
+                    cp.consume();
+            });
+
+
+            service.execute(() -&gt; {
+                while (true)
+                    cp.produce();
+            });
+
+            service.close();
+
+    }
+
+    private static class ConsumerProducer{
+        private int data;
+
+
+        public synchronized void consume(){
+            try {
+
+                while (data == 0) {
+                    wait();
+                }
+                Thread.sleep(1000);
+            }catch (InterruptedException e){
+                e.printStackTrace();
+            }
+
+            System.out.println("Consuming " + data);
+            data = 0;
+            notify();
+        }
+
+        public synchronized void produce(){
+
+            try {
+                while (data != 0) {
+                    wait();
+                }
+
+                Thread.sleep(2000);
+            }catch (InterruptedException e){
+                e.printStackTrace();
+            }
+
+            data = (int) (1 + (Math.random() * 126));
+            System.out.println("Producing " + data);
+            notify();
+        }
+    }
+}       
+        </pre>
+      </div>
+    </div>
+  </section>
+
+  <section id="p3">
+    <h2>همگام سازی (synchronizing) نخ ها با استفاده از کلاس ReentrantLock</h2>
+    <blockquote>با استفاده از Lock و condition میتونیم به صورت آشکار (explicitly) داده ها رو با نخ ها همگام سازی کنیم.
+    </blockquote>
+
+    <p>با کلیدواژه ی synchronized یک <strong>قفل پنهانی (implicit lock)</strong> روی نمونه قرار میدادیم و هنگام استفاده
+      از متد توسط نخ (thread)، متد برای
+      استفاده از نخ قفل میشد.</p>
+    <p>با استفاده از کلاس <strong>ReentrantLock</strong> میتونیم بدون نیاز به کلیدواژه ی synchronized یک متد رو به صورت
+      آشکار
+      (explicitly) قفل کنیم؛
+      یکی از پیاده سازی های داخل کلاس ReentrantLock، اینترفیس Lock است که متد های پرکاربرد lock, unlock و newCondition
+      داخل اینترفیس lock تعریف شده اند.</p>
+
+    <aside class="note">
+      <p class="note-head">توجه</p>
+      <p>در اکثر موارد استفاده از کلیدواژه ی synchronized کفایت میکنه ولی استفاده از ReentrantLock کنترل بیشتری
+        روی هماهنگ کردن نخ ها به برنامه نویس میده.</p>
+    </aside>
+
+    <p>در زیر نمودار uml ارتباط ReentrantLock با اینترفیس Lock و متد های پیاده سازی شده ی داخلش شرح داده شده است.</p>
+
+
+    <figure>
+      <img src="/resources/image/java/java_reentrantlock_uml_diagram.png"
+        alt="نمودار uml رابطه ی بین ReentrantLock و Lock">
+      <figcaption>نمودار uml رابطه ی بین ReentrantLock و Lock</figcaption>
+    </figure>
+
+
+    <table class="tb">
+      <thead class="tHead">
+        <th>
+          java.util.concurrent.locks.Lock
+        </th>
+      </thead>
+      <tbody>
+        <tr class="tRow">
+          <td class="tDataLTR">+lock(): void</td>
+          <td>یک قفل ایجاد میکنه.</td>
+        </tr>
+        <tr class="tRow">
+          <td class="tDataLTR">+unlock(): void</td>
+          <td class="tDataRTL">قفل رو آزاد میکنه.</td>
+        </tr>
+        <tr class="tRow">
+          <td class="tDataLTR">+newCondition(): Condition</td>
+          <td class="tDataRTL">یک نمونه از Condition رو بر میگردونه.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>اینترفیس Lock در کلاس ReentrantLock پیاده شده است.</p>
+
+    <table class="tb">
+      <thead class="tHead">
+        <th>
+          java.util.concurrent.locks.ReentrantLock
+        </th>
+      </thead>
+
+      <tbody>
+        <tr class="tRow">
+          <td class="tDataLTR">
+            +ReentrantLock()
+          </td>
+          <td class="tDataRTL">
+            یک نمونه از کلاس ReentrantLock ایجاد میکنه.
+          </td>
+        </tr>
+
+        <tr class="tRow">
+          <td class="tDataLTR">
+            +ReentrantLock(fair: boolean)
+          </td>
+          <td class="tDataRTL">
+            یک نمونه از کلاس ReentrantLock ایجاد میکنه و زمانی که مقدار پارامتر true باشه و نخی که بیشتر از بقیه ی نخ ها
+            تو صف استفاده از داده قرار گرفته، اولین اولویت استفاده از داده بعد از آزاد شدن داده رو داره.
+          </td>
+        </tr>
+      </tbody>
+
+    </table>
+
+    <aside class="note">
+      <p class="note-head">راهنمایی</p>
+      <p>عادت خوبیه اگه lock رو داخل try و unlock رو داخل finally صدا بزنیم.</p>
+    </aside>
+
+    <p>برای جلوگیری از race condition میتونیم مثال <a href="#p0">StudentAccount</a> رو با ReentrantLock بنویسیم، کافیه
+      یک
+      Lock در کلاس Account تعریف کنیم.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+private static class Account{
+  private Integer score = 0;
+
+  private Lock lock = new ReentrantLock();
+
+  public void updateScore(int v){
+      lock.lock();
+      try {
+          int newScore = score + v;
+          Thread.sleep(5);
+          score = newScore;
+      }catch (InterruptedException e){
+          throw new RuntimeException(e);
+      }finally{
+        lock.unlock();
+      }
+  }
+  public int getScore() {
+      return score;
+  }
+}
+        </pre>
+        <pre class="snippet Kotlin">
+private class Account {
+  val lock: Lock = ReentrantLock()
+  var score: Int = 0
+      private set
+
+  fun updateScore(v: Int) {
+      lock.lock()
+      try {
+          val newScore = score + n
+          Thread.sleep(5)
+          score = newScore
+      } catch (e: InterruptedException) {
+          throw RuntimeException(e)
+      }finally{
+          lock.unlock()
+      }
+  }
+}
+        </pre>
+      </div>
+    </div>
+
+    <p>همینطور که در بالا مشخصه بدون استفاده از کلیدواژه ی synchronized تونستیم یک قفل روی متد updateScore ایجاد کنیم که
+      بعد از پایان کار متد با unlock، متد برای نخ (thread) های دیگه آزاد میشه.</p>
+
+
+
+    <section>
+      <h3>اینترفیس Condition</h3>
+
+      <p>هنگام استفاده از کلاس ReentrantLock بجای متد های wait، notify و notifyAll باید از متدهای
+        اینترفیس
+        Condition استفاده کنیم، برای ایجاد یک نمونه از condition کافیه متد newCondition رو با ReentrantLock صدا بزنیم.
+      </p>
+
+
+      <table class="tb">
+        <thead class="tHead">
+          <th>&lt;&lt;java.util.concurrent.Condition&gt;&gt;</th>
+        </thead>
+
+        <tbody>
+          <tr class="tRow">
+            <td class="tDataLTR">
+              +await(): void
+            </td>
+            <td class="tDataRTL">
+              باعث میشه نخ (thread) فعلی به طور موقت متوقف بشه تا وقتی که سیگنال ادامه بهش داده بشه.
+            </td>
+          </tr>
+
+          <tr class="tRow">
+            <td class="tDataLTR">
+              +signal(): void
+            </td>
+            <td class="tDataRTL">
+              به یکی از نخ (thread) های متوقف شده با await سیگنال اجرا میده.
+            </td>
+          </tr>
+          <tr class="tRow">
+            <td class="tDataLTR">
+              +signalAll(): void
+            </td>
+            <td class="tDataRTL">
+              به تمام نخ (thread) های متوقف شده با await سیگنال اجرا میده.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+
+    <p>میخوایم مثال ConsumerProducer رو با ReentrantLock پیاده کنیم.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+public class ConsumerProducerReentrantLock {
+    public static void main(String[] args) {
+
+        ConsumerProducer cp = new ConsumerProducer();
+
+        ExecutorService service = Executors.newFixedThreadPool(2);
+
+        service.execute(() -&gt; {
+            while (true)
+                cp.consume();
+
+        });
+        service.execute(() -&gt; {
+            while (true)
+                cp.produce();
+
+        });
+
+        service.close();
+    }
+
+
+    private static class ConsumerProducer{
+
+        private int data = 0;
+
+        private final Lock lock = new ReentrantLock();
+        private final Condition consumeCondition = lock.newCondition();
+        private final Condition produceCondition = lock.newCondition();
+
+
+        public void consume(){
+
+            try {
+                lock.lock();
+                while (isEmpty()) {
+                    consumeCondition.await();
+                }
+
+                Thread.sleep(1000);
+
+                System.out.println("consuming " + data);
+                data = 0;
+                produceCondition.signal();
+
+            }catch (InterruptedException e){
+                e.printStackTrace();
+            }finally {
+                lock.unlock();
+            }
+        }
+
+
+        public void produce(){
+
+            lock.lock();
+
+            try {
+                while (!isEmpty()){
+                    produceCondition.await();
+                }
+
+                Thread.sleep(2000);
+
+                data = (int)(Math.random() * 255);
+                System.out.println("producing " + data);
+                consumeCondition.signal();
+
+            }catch (InterruptedException e){
+                e.printStackTrace();
+            }finally {
+                lock.unlock();
+            }
+        }
+
+        private boolean isEmpty(){
+            return data == 0;
+        }
+    }
+}
+        </pre>
+      </div>
+    </div>
+
+  </section>
+
+  <section id="p4">
+    <h2>محدود کردن دسترسی تعداد نخ (thread) ها به داده با کلاس Semaphore</h2>
+
+    <p>با استفاده از کلاس <strong>Semaphore</strong> در جاوا میتونیم تعداد نخ هایی که به داده میتونن دسترسی داشته باشن
+      رو محدود کنیم، برخلاف synchronized و ReentrantLock که فقط به یک نخ دسترسی به داده رو میدن با Semaphore میتونیم
+      دسترسی به داده رو محدود به یک یا چند نخ کنیم، به عبارتی خودمون تعیین میکنیم که چندتا نخ همزمان میتونه به یک
+      داده دسترسی داشته باشه.</p>
+
+
+    <table class="tb">
+      <thead class="tHead">
+        <th>
+          java.util.concurrent.Semaphore
+        </th>
+      </thead>
+      <tbody>
+        <tr class="tRow">
+          <td class="tDataLTR">
+            +Semaphore(numberOfPermits)
+          </td>
+          <td class="tDataRTL">
+            یک نمونه از Semaphore ایجاد می کنه و داخل پارامتر کانستراکتور تعداد نخ هایی که میتونن از داده ها (منابع)
+            استفاده کنن رو تعیین میکنیم.
+          </td>
+        </tr>
+        <tr class="tRow">
+          <td class="tDataLTR">
+            +Semaphore(numberOfPermits: int, fair: boolean)
+          </td>
+          <td class="tDataRTL">
+            یک نمونه از Semaphore ایجاد میکنه و تعداد نخ هایی که میتونن از داده (منابع) استفاده کنن رو تعیین میکنیم و
+            همینطور با boolean مشخص میکنیم نوبت دهی منصفانه باشه یعنی نخی که بیشتر از همه منتظر مونده تا از منابع
+            استفاده کنه زمانی که کار یکی از نخ ها تموم بشه اولویت بالاتری نسبت به بقیه داره تا شروع کنه.
+          </td>
+        </tr>
+        <tr class="tRow">
+          <td class="tDataLTR">
+            +acquire(): void
+          </td>
+          <td class="tDataRTL">
+            محدودیت استفاده از داده (منابع) رو ایجاد میکنه.
+          </td>
+        </tr>
+        <tr class="tRow">
+          <td class="tDataLTR">
+            +release(): void
+          </td>
+          <td class="tDataRTL">
+            محدودیت ایجاد شده رو بر میداره.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>برای جلوگیری از race condition میتونیم مثال <a href="#p0">StudentAccount</a> رو با Semaphore بنویسیم.</p>
+
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+private static class Account{
+  private int score = 0;
+
+  private final Semaphore semaphore = new Semaphore(1);
+
+  public void updateScore(int v){
+      
+      try {
+
+        semaphore.acquire();
+        int newScore = score + v;
+        Thread.sleep(5);
+        score = newScore;
+
+      }catch (InterruptedException e){
+          throw new RuntimeException(e);
+      }finally{
+        semaphore.release();
+      }
+  }
+  public int getScore() {
+      return score;
+  }
+}
+        </pre>
+        <pre class="snippet Kotlin">
+private class Account {
+  val semaphore = Semaphore(1)
+  var score: Int = 0
+      private set
+
+  fun updateScore(v: Int) {
+      
+      try {
+          semaphore.acquire()
+          val newScore = score + n
+          Thread.sleep(5)
+          score = newScore
+      } catch (e: InterruptedException) {
+          throw RuntimeException(e)
+      }finally{
+          semaphore.release()
+      }
+  }
+}        
+        </pre>
+      </div>
+    </div>
+
+  </section>
+  <section id="p5">
+    <h2>مفهوم Deadlock</h2>
+    <p>معلم میره سر کلاس میبینه دانش آموز نیست، دانش آموز میره سر کلاس میبنه معلم نیست، این وضعیت تا زمانی که ادامه پیدا
+      کنه مدرسه تعطیله، بحث Deadlock
+      مشابه همینه دوتا کار در دو نخ جدا به همدیگه وابسته ان، هردو قفل شدن و
+      هرکدوم منتظر اون یکیه تا شروع بشه یا ادامه پیدا کنه.</p>
+
+    <p>در مثال زیر از sleep داخل عبارت synchronized مربوط به object استفاده کردیم تا Deadlock شکل بگیره.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+ExecutorService service = Executors.newFixedThreadPool(2);
+
+Object object = new Object();
+Object object1 = new Object();
+
+
+service.execute(() -&gt; {
+  synchronized (object) {
+
+      System.out.println("From object");
+
+      try {
+          Thread.sleep(200);
+      } catch (InterruptedException e) {
+
+      }
+
+      synchronized (object1) {
+          System.out.println("Causes dead lock");
+      }
+  }
+});
+
+
+service.execute(() -&gt; {
+
+  synchronized (object1) {
+      System.out.println("From object1");
+
+      synchronized (object) {
+          System.out.println("Causes dead lock");
+      }
+  }
+});
+
+service.close();
+        </pre>
+      </div>
+    </div>
+
+    <p>یکی از کار هایی که ممکنه باعث deadlock بشه صدا زدن notify یا notifyAll توسط یک آبجکت دیگه برای ادامه ی اجرای
+      thread یک آبجکت دیگس.</p>
+    <p>فرض کنید در مثال ConsumerProducer فرض کنید بجای یک کلاس مشترک برای متد های consume و produce یک کلاس جدا برای
+      consume تعریف کرده باشیم و یک کلاس دیگه برای produce و مانند
+      قسمت قبل میخوایم از wait و notify برای توقف و سیگنال دادن به نخ هاشون استفاده کنیم.</p>
+
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+public class ConsumerProducerDemo {
+
+    public static void main(String[] args) {
+        ExecutorService service = Executors.newFixedThreadPool(2);
+
+        Producer producer = new Producer();
+        Consumer consumer = new Consumer();
+
+        //ConsumerProducer cp = new ConsumerProducer();
+
+            service.execute(() -&gt; {
+                while (true)
+                    consumer.consume(producer);
+            });
+
+
+            service.execute(() -&gt; {
+                while (true)
+                    producer.produce();
+            });
+
+            service.close();
+
+    }
+
+
+    private static class Producer{
+        private int data ;
+
+        public synchronized void produce(){
+            try {
+                while (data != 0)
+                    wait();
+            }catch (InterruptedException e){
+                e.printStackTrace();
+            }
+
+            data = (int) (1 + (Math.random() * 126));
+            System.out.println("Producing " + data);
+            notifyAll();
+
+        }
+
+        public void resetData(){
+            data = 0;
+        }
+    }
+
+    private static class Consumer{
+
+        public synchronized void consume(Producer producer){
+            try {
+
+                while (producer.data == 0) {
+                    wait();
+                }
+                Thread.sleep(1000);
+            }catch (InterruptedException e){
+                e.printStackTrace();
+            }
+
+            System.out.println("Consuming " + producer.data);
+            producer.resetData();
+            notifyAll();
+        }
+    }
+
+}
+        </pre>
+      </div>
+    </div>
+
+
+    <p>برای جلوگیری از deadlock از روش ترتیب منابع (resource ordering) استفاده کنید هر چیزی که قفل روشه رو به ترتیب با
+      نخ (thread) اجرا کنید و از اجرای قفل های تو در تو پرهیز کنید و همینطور موقع صدا زدن wait و notify دقت کنید که این
+      متد ها پس زمینه ی آبجکتی باشن که داریم از متد هاش استفاده می کنیم.</p>
+
+  </section>
+
+  <section id="p6">
+    <h2>خلاصه</h2>
+    <ul>
+      <li>
+        زمانی که چندتا نخ به صورت همزمان دارن از یک داده استفاده میکنن، race condition پیش میاد.
+      </li>
+      <li>
+        برای جلوگیری از race condition در جاوا میتونیم از کلیدواژه ی synchronized یا از کلاس های ReentrantLock و
+        Semaphore استفاده کنیم.
+      </li>
+      <li>
+        زمانی که از کلاس ReentrantLock استفاده میکنیم بجای wait, notify و notifyAll باید از متد های await, signal و
+        signalAll در اینترفیس condition استفاده کنیم.
+      </li>
+      <li>
+        با استفاده از متد newCondition در Lock میتونیم یک نمونه از Condition استفاده کنیم.
+      </li>
+      <li>
+        با استفاده از کلاس Semaphore میتونیم تعداد نخ هایی که میتونن به یک داده دسترسی داشته باشن رو محدود کنیم.
+      </li>
+    </ul>
+  </section>
+
+</article>
+
+{% capture links %}
+<li>
+  <a href="/post/blog/threads.html">نخ (Thread) ها در برنامه نویسی</a>
+</li>
+<li>
+  <a href="/post/java/multithreading.html">شروع یادگیری چندنخی (multithreading) در جاوا</a>
+</li>
+<li>
+  <a href="/post/java/interfaces.html">نگاهی به اینترفیس ها در جاوا</a>
+</li>
+<li>
+  <a href="/post/kotlin/interfaces.html">اینترفیس ها در کاتلین</a>
+</li>
+<li>
+  <a target="_blank" href="https://docs.oracle.com/javase/tutorial/essential/concurrency">مطالعه درباره ی همزمانی در
+    وبسایت اوراکل</a>
+</li>
+{% endcapture %} {% include article-foot.html relative_links = links %}
