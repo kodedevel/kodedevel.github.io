@@ -179,8 +179,8 @@ section{
 }
 
 .tb{
+    max-width: 100%;
     table-layout: fixed;
-    display: table;
     justify-self: center;
     height: wrap-content;
     margin-bottom: 24px;
@@ -196,20 +196,20 @@ tr th{
 }
 
 tr .tDataLTR{
-    min-width: 30%;
-    width: 30%;
-    max-width: 50%;
+    width: 40%;
     background-color: #80d8ff;
+    word-break: break-word;
+    overflow-wrap: anywhere;
     direction: ltr;
     font-weight:bold;
     padding: 16px 8px;
 }
 
 tr .tDataRTL{
-    max-width: 70%;
-    width: 70%;
-    min-width: 50%;
+    width: 60%;
     background-color: #e1f5fe;
+    word-break: break-word;
+    overflow-wrap: anywhere;
     direction: rtl;
     padding: 16px 8px;
 }
