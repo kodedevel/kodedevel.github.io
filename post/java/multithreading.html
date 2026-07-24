@@ -68,11 +68,13 @@ layout: default
       متد (تابع) اینترفیس Runnable در جاوا است.</p>
 
     <table class="tb">
-      <thead class="tHead">
-        <th>&lt;&lt;java.lang.Runnable&gt;&gt;</th>
+      <thead>
+        <tr>
+          <th colspan="2">&lt;&lt;java.lang.Runnable&gt;&gt;</th>
+        </tr>
       </thead>
       <tbody>
-        <tr class="tRow">
+        <tr>
           <td class="tDataLTR">+run(): void</td>
           <td class="tDataRTL">کد ها داخل این متد اجرا میشن.</td>
         </tr>
@@ -181,51 +183,51 @@ class PrintCharTask(private val ch: Char, private val n: Int): Runnable {
     <p>در زیر کلاس Thread با متد (تابع) های پرکاربرد و کانستراکتور هاش شرح داده شده است.</p>
 
     <table class="tb">
-      <thead class="tHead">
+      <thead>
         <tr>
-          <th>java.lang.Thread</th>
+          <th colspan="2">java.lang.Thread</th>
         </tr>
       </thead>
 
       <tbody>
-        <tr class="tRow">
+        <tr>
           <td class="tDataLTR">Thread(runnable: Runnable)</td>
           <td class="tDataRTL">یک نمونه از thread ایجاد می کنه و پیاده سازی Runnable رو به عنوان پارامتر بهش پاس میدیم.
           </td>
         </tr>
-        <tr class="tRow">
+        <tr>
           <td class="tDataLTR">Thread()</td>
           <td class="tDataRTL">یک نمونه از Thread ایجاد می کنه.</td>
         </tr>
-        <tr class="tRow">
+        <tr>
           <td class="tDataLTR">+start():void</td>
           <td class="tDataRTL">Thread رو شروع می کنه.</td>
         </tr>
 
-        <tr class="tRow">
+        <tr>
           <td class="tDataLTR">+isAlive():boolean</td>
           <td class="tDataRTL">بررسی میکنه ببینه آیا Thread در حال اجراست یا کارش تموم شده.</td>
         </tr>
 
-        <tr class="tRow">
+        <tr>
           <td class="tDataLTR">+setPeriority(periority: int): void</td>
           <td class="tDataRTL">برای شروع Thread نسبت به بقیه thread ها اولویت قرار میده، یک عدد بین 1 تا 10 رو به عنوان
             پارامتر میتونیم بهش پاس بدیم و هرچی این عدد کمتر باشه Thread زودتر از بقیه ی Thread ها اجرا
             میشه.</td>
         </tr>
 
-        <tr class="tRow">
+        <tr>
           <td class="tDataLTR">+join(): void</td>
           <td class="tDataRTL">صبر میکنه تا کار Thread فعلی تموم بشه؛ این متد رو باید داخل Thread که میخوایم به طور موقت
             متوقف بشه صدا بزنیم.</td>
         </tr>
 
-        <tr class="tRow">
+        <tr>
           <td class="tDataLTR">+interrupt(): void</td>
           <td class="tDataRTL">اجرای Thread رو قطع می کنه.</td>
         </tr>
 
-        <tr class="tRow">
+        <tr>
           <td class="tDataLTR" style="text-decoration: underline;">+sleep(millis: long): void</td>
           <td class="tDataRTL">کلاس Thread رو برای مدت زمان مشخص متوقف میکنه. (این متد استاتیک است)</td>
         </tr>
@@ -596,24 +598,24 @@ private class PrintNumbersTask : Runnable {
 
     <table class="tb">
 
-      <thead class="tHead">
+      <thead>
         <tr>
-          <th>java.util.concurrent.ExecutorService</th>
+          <th colspan="2">java.util.concurrent.ExecutorService</th>
         </tr>
       </thead>
 
       <tbody>
-        <tr class="tRow">
+        <tr>
           <td class="tDataLTR">+shutdown(): void</td>
           <td class="tDataRTL">اجرای کار ها توسط ExecutorService رو متوقف میکنه ولی به کار هایی که هم اکنون در حال اجرا
             شدن هستن اجازه میده تا فعالیتشون تموم بشه.</td>
         </tr>
-        <tr class="tRow">
+        <tr>
           <td class="tDataLTR">+shutdownNow(): List&lt;Runnable&gt;</td>
           <td class="tDataRTL">اجرای تمام کار ها توسط ExecutorService رو فورا متوقف میکنه و در آخر یک لیست از کار های
             اجرا نشده بر میگردونه.</td>
         </tr>
-        <tr class="tRow">
+        <tr>
           <td class="tDataLTR">
             +isShutdown(): boolean
           </td>
@@ -621,7 +623,7 @@ private class PrintNumbersTask : Runnable {
             اگه ExecutorService متوقف شده باشه مقدار true رو بر میگردونه.
           </td>
         </tr>
-        <tr class="tRow">
+        <tr>
           <td class="tDataLTR">
             +isTerminated(): boolean
           </td>
@@ -629,7 +631,7 @@ private class PrintNumbersTask : Runnable {
             اگه همه ی کارها متوقف شده باشن مقدار true رو بر میگردونه.
           </td>
         </tr>
-        <tr class="tRow">
+        <tr>
           <td class="tDataLTR">
             +close(): void
           </td>
@@ -646,15 +648,15 @@ private class PrintNumbersTask : Runnable {
       استفاده کنیم.</p>
 
     <table class="tb">
-      <thead class="tHead">
+      <thead>
         <tr>
-          <th>
+          <th colspan="2">
             java.util.concurrent.Executors
           </th>
         </tr>
       </thead>
       <tbody>
-        <tr class="tRow">
+        <tr>
           <td class="tDataLTR">
             +newFixedThreadPool(numberOfThreads: int): ExecutorService
           </td>
@@ -663,7 +665,7 @@ private class PrintNumbersTask : Runnable {
             Thread خالی شروع کنه.
           </td>
         </tr>
-        <tr class="tRow">
+        <tr>
           <td class="tDataLTR">
             +newCachedThreadPool(): ExecutorService
           </td>
@@ -672,7 +674,7 @@ private class PrintNumbersTask : Runnable {
             میتونه کار های جدید رو باهاش شروع کنه.
           </td>
         </tr>
-        <tr class="tRow">
+        <tr>
           <td class="tDataLTR">
             +newSingleThreadPool(): ExecutorService
           </td>

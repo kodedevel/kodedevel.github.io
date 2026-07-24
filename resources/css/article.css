@@ -187,27 +187,28 @@ section{
     direction: ltr;
 }
 
-.tHead{
-    display: table-header-group;
-    width: 100%;
+tr th{
     font-weight: bold;
     font-size: 1.1rem;
     text-align: center;
-    background-color: #E0E0E0;
     align-items: center;
+    background-color: #E0E0E0;
 }
 
 tr .tDataLTR{
+    min-width: 30%;
     width: 30%;
+    max-width: 50%;
     background-color: #80d8ff;
     direction: ltr;
     font-weight:bold;
-    word-wrap: break-word;
     padding: 16px 8px;
 }
 
 tr .tDataRTL{
+    max-width: 70%;
     width: 70%;
+    min-width: 50%;
     background-color: #e1f5fe;
     direction: rtl;
     padding: 16px 8px;

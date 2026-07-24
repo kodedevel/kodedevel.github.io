@@ -172,10 +172,13 @@ private class Account {
 
     <aside class="note">
       <p class="note-head">توجه</p>
-      <p>در کاتلین کلیدواژه ی synchronized وجود نداره، برای همگام سازی از کلاس ReentrantLock استفاده میکنیم؛ کلاس
-        ReentrantLock یک پیاده سازی در جاواست، معمولا از ReentrantLock برای کنترل بیشتر روی همگام سازی داده ها با نخ
-        ها
-        استفاده میشه، بنابراین در این قسمت از مطلب مثال از کاتلین نداریم و مثال های کاتلین از <a href="#p3">قسمت
+      <p>در کاتلین کلیدواژه ی synchronized برای تابع وجود نداره، برای همگام سازی یا باید از <strong
+          dir="ltr">@Synchronized</strong> استفاده کنیم
+        یا از کلیدواژه ی synchronized به صورت <strong dir="ltr">synchronized(expr){...}</strong> و یا از کلاس
+        ReentrantLock برای همگام سازی نخ ها در کاتلین استفاده کنیم، کلاس
+        ReentrantLock یک پیاده سازی در جاواست، معمولا از ReentrantLock برای کنترل بیشتر
+        استفاده میشه، چون تمرکز مطلب بیشتر روی جاواست بنابراین در این قسمت مثال از کاتلین نداریم و مثال های
+        کاتلین از <a href="#p3">قسمت
           ReentrantLock</a> شروع میشه.</p>
     </aside>
 
@@ -414,23 +417,23 @@ public class ConsumerProducerDemo {
 
 
     <table class="tb">
-      <thead class="tHead">
+      <thead>
         <tr>
-          <th>
+          <th colspan="2">
             java.util.concurrent.locks.Lock
           </th>
         </tr>
       </thead>
       <tbody>
-        <tr class="tRow">
+        <tr>
           <td class="tDataLTR">+lock(): void</td>
           <td class="tDataRTL">یک قفل ایجاد میکنه.</td>
         </tr>
-        <tr class="tRow">
+        <tr>
           <td class="tDataLTR">+unlock(): void</td>
           <td class="tDataRTL">قفل رو آزاد میکنه.</td>
         </tr>
-        <tr class="tRow">
+        <tr>
           <td class="tDataLTR">+newCondition(): Condition</td>
           <td class="tDataRTL">یک نمونه از Condition رو بر میگردونه.</td>
         </tr>
@@ -440,16 +443,16 @@ public class ConsumerProducerDemo {
     <p>اینترفیس Lock در کلاس ReentrantLock پیاده شده است.</p>
 
     <table class="tb">
-      <thead class="tHead">
+      <thead>
         <tr>
-          <th>
+          <th colspan="2">
             java.util.concurrent.locks.ReentrantLock
           </th>
         </tr>
       </thead>
 
       <tbody>
-        <tr class="tRow">
+        <tr>
           <td class="tDataLTR">
             +ReentrantLock()
           </td>
@@ -458,7 +461,7 @@ public class ConsumerProducerDemo {
           </td>
         </tr>
 
-        <tr class="tRow">
+        <tr>
           <td class="tDataLTR">
             +ReentrantLock(fair: boolean)
           </td>
@@ -541,14 +544,14 @@ private class Account {
 
 
       <table class="tb">
-        <thead class="tHead">
+        <thead>
           <tr>
-            <th>&lt;&lt;java.util.concurrent.Condition&gt;&gt;</th>
+            <th colspan="2">&lt;&lt;java.util.concurrent.Condition&gt;&gt;</th>
           </tr>
         </thead>
 
         <tbody>
-          <tr class="tRow">
+          <tr>
             <td class="tDataLTR">
               +await(): void
             </td>
@@ -557,7 +560,7 @@ private class Account {
             </td>
           </tr>
 
-          <tr class="tRow">
+          <tr>
             <td class="tDataLTR">
               +signal(): void
             </td>
@@ -565,7 +568,7 @@ private class Account {
               به یکی از نخ (thread) های متوقف شده با await سیگنال اجرا میده.
             </td>
           </tr>
-          <tr class="tRow">
+          <tr>
             <td class="tDataLTR">
               +signalAll(): void
             </td>
@@ -750,13 +753,15 @@ private class ConsumerProducer{
 
 
     <table class="tb">
-      <thead class="tHead">
-        <th>
-          java.util.concurrent.Semaphore
-        </th>
+      <thead>
+        <tr>
+          <th colspan="2">
+            java.util.concurrent.Semaphore
+          </th>
+        </tr>
       </thead>
       <tbody>
-        <tr class="tRow">
+        <tr>
           <td class="tDataLTR">
             +Semaphore(numberOfPermits)
           </td>
@@ -765,7 +770,7 @@ private class ConsumerProducer{
             استفاده کنن رو تعیین میکنیم.
           </td>
         </tr>
-        <tr class="tRow">
+        <tr>
           <td class="tDataLTR">
             +Semaphore(numberOfPermits: int, fair: boolean)
           </td>
@@ -775,7 +780,7 @@ private class ConsumerProducer{
             استفاده کنه زمانی که کار یکی از نخ ها تموم بشه اولویت بالاتری نسبت به بقیه داره تا شروع کنه.
           </td>
         </tr>
-        <tr class="tRow">
+        <tr>
           <td class="tDataLTR">
             +acquire(): void
           </td>
@@ -783,7 +788,7 @@ private class ConsumerProducer{
             محدودیت استفاده از داده (منابع) رو ایجاد میکنه.
           </td>
         </tr>
-        <tr class="tRow">
+        <tr>
           <td class="tDataLTR">
             +release(): void
           </td>
