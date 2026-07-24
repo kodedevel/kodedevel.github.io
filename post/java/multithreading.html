@@ -628,7 +628,7 @@ private class PrintNumbersTask : Runnable {
             +isTerminated(): boolean
           </td>
           <td class="tDataRTL">
-            اگه همه ی کارها متوقف شده باشن مقدار true رو بر میگردونه.
+            اگه همه ی کارها متوقف شده باشن یا به اتمام رسیده باشن مقدار true رو بر میگردونه.
           </td>
         </tr>
         <tr>
@@ -637,7 +637,7 @@ private class PrintNumbersTask : Runnable {
           </td>
           <td class="tDataRTL">
             بعد از اجرای کار های اضافه شده با صدا زدن close،‌ کلاس ExecutorService بسته میشه و اگه بعد از close کاری رو
-            بهش اضافه کنیم دچار RejectedExecutionException میشیم.
+            بهش اضافه کنیم دچار RejectedExecutionException میشیم. (متد close از jdk 19 به بعد در دسترس است)
           </td>
         </tr>
       </tbody>
@@ -661,8 +661,8 @@ private class PrintNumbersTask : Runnable {
             +newFixedThreadPool(numberOfThreads: int): ExecutorService
           </td>
           <td class="tDataRTL">
-            یک ExecutorService ایجاد میکنه با تعداد مشخصی Thread زمانی که یک کارش تموم میشه میتونه کار های جدید رو با
-            Thread خالی شروع کنه.
+            یک ExecutorService ایجاد میکنه با تعداد مشخصی نخ (Thread) زمانی که یک نخ (Thread) کارش تموم میشه، میتونه کار
+            جدید رو شروع کنه.
           </td>
         </tr>
         <tr>
@@ -670,8 +670,8 @@ private class PrintNumbersTask : Runnable {
             +newCachedThreadPool(): ExecutorService
           </td>
           <td class="tDataRTL">
-            یک ExecutorService با تعدادی Thread به اندازه ی نیاز برنامه ایجاد میکنه و زمانی که یک Thread کارش تموم بشه
-            میتونه کار های جدید رو باهاش شروع کنه.
+            یک ExecutorService ایجاد میکنه و به اندازه ی نیاز برنامه نخ (Thread) ایجاد میکنه، زمانی که یک نخ (Thread)
+            کارش تموم بشه کار جدید رو میتونه با نخی که خالی شده شروع کنه.
           </td>
         </tr>
         <tr>
@@ -679,7 +679,8 @@ private class PrintNumbersTask : Runnable {
             +newSingleThreadPool(): ExecutorService
           </td>
           <td class="tDataRTL">
-            یک ExecutorService با یک Thread ایجاد میکنه و زمانی که کار Thread تموم بشه، کار بعدی با Thread شروع میشه.
+            یک نمونه از ExecutorService ایجاد میکنه با فقط یک نخ، زمانی که کار نخ تموم بشه، کار جدید رو همون نخ شروع
+            میکنه.
           </td>
         </tr>
       </tbody>
