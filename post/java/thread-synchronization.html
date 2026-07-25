@@ -159,7 +159,7 @@ private class Account {
       پلا نشون میده که از ۱۰۰ کمترن علت این موضوع بخاطر تغییر دادن مقدار فیلد score به صورت همزمان توسط چند نخ است.</p>
 
     <p>برای جلوگیری از این وضعیت باید هنگام استفاده از یک داده توسط نخ (thread)، تا پایان کار جلوی دسترسی نخ های
-      دیگه به داده رو بگیریم و اصطلاحا داده رو قفل کنیم، که بهش همگام سازی داده با نخ ها (thread synchroniziation)
+      دیگه به داده رو بگیریم و اصطلاحا داده رو قفل کنیم، که بهش همگام سازی داده با نخ ها (thread synchronization)
       میگیم.</p>
   </section>
 
@@ -338,8 +338,6 @@ private class UserInputPermissionTask(private val permission: Permission) : Runn
       توسط
       UserInputPermissionTask نمیشدن.</p>
 
-
-
     <p>داده ای که با کلیدواژه ی volatile تعریف شده رو میتونیم با یک نخ تغییر بدیم و سپس با چند نخ به طور همزمان تغییرات
       رو بخونیم اما نمیتونیم همزمان با چند نخ داخل داده تغییر ایجاد کنیم، بنابراین کلیدواژه ی volatile مشکل رقابت بین نخ
       ها رو حل
@@ -397,16 +395,54 @@ public class StudentAccountVolatile {
     }
 }
         </pre>
+        <pre class="snippet Kotlin">
+private val account = Account()
+
+fun main() {
+    val service = Executors.newCachedThreadPool()
+
+    while (account.score != 100) service.execute(IncrementScoreByOne())
+
+    service.shutdown()
+
+    while (!service.isTerminated);
+
+    println(account.score)
+}
+
+private class IncrementScoreByOne : Runnable {
+    override fun run() {
+        if (account.score != 100) account.updateScore(1)
+    }
+}
+
+private class Account {
+    @Volatile
+    var score: Int = 0
+        private set
+
+    fun updateScore(v: Int) {
+        val newScore = score + v
+        try {
+            Thread.sleep(5)
+        } catch (e: InterruptedException) {
+            throw RuntimeException(e)
+        }
+
+        score = newScore
+    }
+}
+        </pre>
       </div>
     </div>
 
     <p>با توجه به منطق کد باید انتظار داشته باشیم 100 نخ (thread) ایجاد بشه اما مقدار نخ های ایجاد شده بیشتر از 100
-      خواهد بود و این امر بخاطر اینه زمانی که مقدار score هر عددی شده باشه ممکنه چندتا نخ بخوان به طور همزمان اون عدد
-      رو افزایش بدن چندتا نخ اجرا میشه ولی فقط یک واحد به score اضافه میشه، چون تداخل وجود داره و با توجه به منطق برنامه
-      هنوز score به 100 نرسیده بنابراین نخ هایی ایجاد میشن که بخاطر تداخل باهم، مقدار score رو
-      فقط یک واحد افزایش میدن؛ پس ممکنه بعضی از نخ (thread) ها تلف بشن.</p>
+      خواهد بود و این امر بخاطر اینه ممکنه چندتا نخ بخوان به طور همزمان مقدار score رو افزایش بدن،
+      رو افزایش بدن چندتا نخ اجرا میشه ولی فقط یک واحد به score اضافه میشه، چون تداخل وجود داره و با توجه به شرط برنامه
+      اگه مقدار score به 100 نرسیده باشه، نخ هایی ایجاد میشن که بخاطر تداخل باهم، مقدار score رو
+      فقط یک واحد افزایش میدن؛ پس ممکنه تا قبل از اینکه مقدار score به 100 برسه بعضی نخ (thread) ها تلف بشن.</p>
 
-    <p>با اینکه مقیاس تداخل نخ ها با volatile به شدت کاهش پیدا کرده ولی همین تداخل باز باعث میشه گاهی ولی به ندرت خطا هم
+    <p>با اینکه با volatile مشکل تا حد زیادی حل شده، ولی همین تداخل ممکنه باعث بشه گاهی هرچند به ندرت خطا هم
       وجود داشته باشه، مثلا به 100 نرسه و تا 99 یا 98 کار تموم بشه.</p>
 
 
