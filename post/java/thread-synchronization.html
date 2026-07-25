@@ -77,7 +77,7 @@ public class StudentAccount{
 
           while (!service.isTerminated());
 
-          System.out.println("student score Is " + account.getScore());
+          System.out.println("student score is " + account.getScore());
       }
 
 
@@ -115,7 +115,7 @@ fun main() {
     val service = Executors.newCachedThreadPool()
 
     for (i in 1..100) {
-        service.execute(AddNumber(i))
+        service.execute(IncrementScoreByOne())
     }
 
     service.shutdown()
