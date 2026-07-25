@@ -11,22 +11,25 @@ layout: default
         <a href="#p0">مفهوم رقابت بین نخ ها (race condition) و همگام سازی (synchronizing)</a>
       </li>
       <li>
-        <a href="#p1">همگام سازی با کلیدواژه ی synchronized</a>
+        <a href="#p1">کلیدواژه ی volatile</a>
       </li>
       <li>
-        <a href="#p2">همکاری بین نخ ها با متدهای wait, notify و notifyAll</a>
+        <a href="#p2">همگام سازی با کلیدواژه ی synchronized</a>
       </li>
       <li>
-        <a href="#p3">همگام سازی (synchronizing) با کلاس ReentrantLock</a>
+        <a href="#p3">همکاری بین نخ ها با متدهای wait, notify و notifyAll</a>
       </li>
       <li>
-        <a href="#p4">محدود کردن دسترسی تعداد نخ ها به داده با کلاس Semaphore</a>
+        <a href="#p4">همگام سازی (synchronizing) با کلاس ReentrantLock</a>
       </li>
       <li>
-        <a href="#p5">مفهوم Deadlock</a>
+        <a href="#p5">محدود کردن دسترسی تعداد نخ ها به داده با کلاس Semaphore</a>
       </li>
       <li>
-        <a href="#p6">خلاصه</a>
+        <a href="#p6">مفهوم Deadlock</a>
+      </li>
+      <li>
+        <a href="#p7">خلاصه</a>
       </li>
     </ul>
   </nav>
@@ -49,7 +52,7 @@ layout: default
       جمع کنیم، برنامه نمیدونه کدوم عدد رو اضافه کنه و ممکنه
       به طور تصادفی عدد اول رو با متغیر جمع کنه و از عدد دوم صرف نظر کنه، شایدم برعکس عدد دوم رو با
       متغیر جمع بزنه، به این وضعیت در چندنخی (multithreading) وضعیت
-      <strong>رقابت بین نخ (Thread) ها (race condition)</strong>
+      <strong>رقابت بین نخ (Thread) ها (race condition)</strong> یا <strong>تداخل نخ (thread) ها</strong>
       میگیم.
     </p>
 
@@ -156,12 +159,267 @@ private class Account {
       پلا نشون میده که از ۱۰۰ کمترن علت این موضوع بخاطر تغییر دادن مقدار فیلد score به صورت همزمان توسط چند نخ است.</p>
 
     <p>برای جلوگیری از این وضعیت باید هنگام استفاده از یک داده توسط نخ (thread)، تا پایان کار جلوی دسترسی نخ های
-      دیگه به داده رو بگیریم و اصطلاحا داده رو قفل کنیم.</p>
+      دیگه به داده رو بگیریم و اصطلاحا داده رو قفل کنیم، که بهش همگام سازی داده با نخ ها (thread synchroniziation)
+      میگیم.</p>
   </section>
+
   <section id="p1">
+
+    <h2>کلیدواژه ی volatile</h2>
+
+    <p>دوتا نخ به نام های A و B رو در نظر بگیرید، فرض کنید این دو نخ دارن یک کار روی داده ی مشترک انجام میدن، زمانی که
+      تغییرات توسط نخ A روی داده انجام میشه این تغییرات توسط نخ B فورا خونده نمیشه علتش بخاطر اینه که زمانی که داده توسط
+      نخ A
+      دچار تغییر میشه تغییرات روی حافظه ی موقت (RAM) ذخیره بشه، روی حافظه ی پنهان (cache) پردازنده میاد و
+      نخ B به تغییرات نخ A روی cache پردازنده دسترسی نداره.</p>
+
+
+    <p>برای اینکه تغییرات یک نخ روی داده توسط نخ های دیگه فورا خونده بشه از کلیدواژه ی <strong>volatile</strong> در جاوا
+      استفاده می کنیم؛ با استفاده از کلیدواژه ی volatile تغییرات بجای حافظه ی پنهان (cache) پردازنده، مستقیم تو حافظه ی
+      موقت (RAM) ذخیره میشن و سایر نخ ها به این تغییرات دسترسی دارن.</p>
+
+
+    <p>هنگام استفاده از کلیدواژه ی volatile، مشکل دسترسی همزمان نخ ها به داده حل نمیشه، ولی تغییرات روی داده توسط یک نخ
+      فورا قابل خوندن توسط نخ های دیگه است.</p>
+
+    <p>زمانی که بخوایم بقیه ی نخ (thread) ها از تغییرات در داده توسط یک نخ با خبر
+      بشن، داده
+      رو با کلیدواژه ی volatile تعریف
+      میکنیم.</p>
+
+    <p>زمانی که فقط نیاز به flag داریم تا وضعیت داده رو بین نخ ها مشخص کنیم، فیلد رو با کلیدواژه ی volatile تعریف می
+      کنیم، زمانی که مشکل برنامه با volatile حل میشه بهتره جایگزین استفاده از قفل ها در برنامه بشه که در ادامه بهشون می
+      پردازیم، استفاده از volatile بهینه تره.</p>
+
+
+    <aside class="note">
+      <p class="note-head">توجه</p>
+      <p>در کاتلین کلیدواژه ی volatile وجود نداره و برای تعریف متغیر های volatile باید از <strong
+          dir="ltr">@Volatile</strong> استفاده کنیم.</p>
+    </aside>
+
+    <p>در مثال زیر هردو کار TaskA و TaskB منتظر اجازه ی کاربر هستند، زمانی که کاربر y یا yes رو وارد کنه هردو کار TaskA
+      و TaskB پیام رو نمایش میدن.</p>
+
+
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+public static void main(String[] args){
+    Permission permission = new Permission();
+
+    ExecutorService service = Executors.newFixedThreadPool(3);
+    service.execute(new TaskA(permission));
+    service.execute(new TaskB(permission));
+    service.execute(new UserInputPermissionTask(permission));
+
+    service.shutdown();
+}
+
+private static class Permission {
+    private volatile boolean granted;
+}
+
+private static class TaskA implements Runnable {
+    private Permission permission;
+
+    public TaskA(Permission permission) {
+        this.permission = permission;
+    }
+
+    @Override
+    public void run() {
+        while (!permission.granted) ;
+
+        System.out.println("A message from TaskA");
+    }
+}
+
+private static class TaskB implements Runnable{
+    private Permission permission;
+
+    public TaskB(Permission permission){
+        this.permission = permission;
+    }
+
+    @Override
+    public void run() {
+        while (!permission.granted);
+
+        System.out.println("A message from TaskB");
+    }
+}
+
+private static class UserInputPermissionTask implements Runnable{
+
+    private Permission permission;
+
+    public UserInputPermissionTask(Permission permission){
+        this.permission = permission;
+    }
+
+
+    @Override
+    public void run() {
+        Scanner input = new Scanner(System.in);
+
+        while (true) {
+            System.out.println("Ask permission: Do u wanna print message?(yes/no)");
+            String userInput = input.next();
+            if (userInput.equalsIgnoreCase("y") || userInput.equalsIgnoreCase("yes")) {
+                permission.granted = true;
+                System.out.println("Permission Granted!");
+                break;
+            }
+            else {
+                System.out.println("Permission Denied!");
+            }
+        }
+    }
+}
+        </pre>
+        <pre class="snippet Kotlin">
+fun main() {
+    val permission = Permission()
+
+    val service = Executors.newFixedThreadPool(3)
+    service.execute(TaskA(permission))
+    service.execute(TaskB(permission))
+    service.execute(UserInputPermissionTask(permission))
+
+    service.shutdown()
+}
+
+
+private class Permission {
+    @Volatile
+    var granted = false
+}
+
+private class TaskA(private val permission: Permission) : Runnable {
+    override fun run() {
+        while (!permission.granted);
+
+        println("A message from TaskA")
+    }
+}
+
+private class TaskB(private val permission: Permission) : Runnable {
+    override fun run() {
+        while (!permission.granted);
+
+        println("A message from TaskB")
+    }
+}
+
+private class UserInputPermissionTask(private val permission: Permission) : Runnable {
+    override fun run() {
+        val input = Scanner(System.`in`)
+
+        while (true) {
+            println("Ask permission: Do u wanna print message?(yes/no)")
+            val userInput = input.next()
+            if (userInput.equals("y", ignoreCase = true) || userInput.equals("yes", ignoreCase = true)) {
+                permission.granted = true
+                println("Permission Granted!")
+                break
+            } else {
+                println("Permission Denied!")
+            }
+        }
+    }
+}
+        </pre>
+      </div>
+    </div>
+
+    <p>در بالا اگه متغیر granted با کلیدواژه ی volatile تعریف نمیشد هردوکار TaskA و TaskB متوجه تغییرات در مقدار granted
+      توسط
+      UserInputPermissionTask نمیشدن.</p>
+
+
+
+    <p>داده ای که با کلیدواژه ی volatile تعریف شده رو میتونیم با یک نخ تغییر بدیم و سپس با چند نخ به طور همزمان تغییرات
+      رو بخونیم اما نمیتونیم همزمان با چند نخ داخل داده تغییر ایجاد کنیم، بنابراین کلیدواژه ی volatile مشکل رقابت بین نخ
+      ها رو حل
+      نمیکنه</p>
+
+    <p>اگه مثال <a href="#p0">StudentAccount</a> رو بخوایم با کلیدواژه ی volatile حل کنیم مشابه زیر میشه.</p>
+
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+public class StudentAccountVolatile {
+    private static final Account account = new Account();
+
+    public static void main(String[] args) {
+
+        ExecutorService service = Executors.newCachedThreadPool();
+
+        while (account.getScore() != 100)
+            service.execute(new IncrementScoreByOne());
+
+        service.shutdown();
+
+        while (!service.isTerminated()) ;
+
+        System.out.println(account.getScore());
+    }
+
+    private static class IncrementScoreByOne implements Runnable{
+
+        @Override
+        public void run() {
+            if (account.getScore() != 100)
+                account.updateScore(1);
+        }
+    }
+
+    private static class Account {
+        private volatile Integer score = 0;
+
+        public void updateScore(int v) {
+            int newScore = score + v;
+            try {
+                Thread.sleep(5);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+
+            score = newScore;
+        }
+
+        public int getScore() {
+            return score;
+        }
+    }
+}
+        </pre>
+      </div>
+    </div>
+
+    <p>با توجه به منطق کد باید انتظار داشته باشیم 100 نخ (thread) ایجاد بشه اما مقدار نخ های ایجاد شده بیشتر از 100
+      خواهد بود و این امر بخاطر اینه زمانی که مقدار score هر عددی شده باشه ممکنه چندتا نخ بخوان به طور همزمان اون عدد
+      رو افزایش بدن چندتا نخ اجرا میشه ولی فقط یک واحد به score اضافه میشه، چون تداخل وجود داره و با توجه به منطق برنامه
+      هنوز score به 100 نرسیده بنابراین نخ هایی ایجاد میشن که بخاطر تداخل باهم، مقدار score رو
+      فقط یک واحد افزایش میدن؛ پس ممکنه بعضی از نخ (thread) ها تلف بشن.</p>
+
+    <p>با اینکه مقیاس تداخل نخ ها با volatile به شدت کاهش پیدا کرده ولی همین تداخل باز باعث میشه گاهی ولی به ندرت خطا هم
+      وجود داشته باشه، مثلا به 100 نرسه و تا 99 یا 98 کار تموم بشه.</p>
+
+
+    <p>یک راه حل بهتر برای حل 100 درصدی مشکل رسیدن score به 100 وجود داره اونم استفاده از قفل هاست، قفل ها رو میتونیم با
+      کلیدواژه ی synchronized یا با کلاس ReentrantLock ایجاد کنیم که در ادامه بهش میپردازیم.</p>
+
+  </section>
+
+
+  <section id="p2">
     <h2> همگام سازی با کلیدواژه ی synchronized</h2>
 
-    <blockquote>همگام سازی نخ یعنی هماهنگ کردن اجرای نخ هایی که به هم وابسته هستن.</blockquote>
+    <blockquote>همگام سازی در چندنخی یعنی هماهنگ کردن اجرای نخ هایی که به هم وابسته هستن.</blockquote>
 
     <p>برای جلوگیری از race condition یک کلیدواژه به نام <strong>synchronized</strong> در جاوا وجود داره، هنگامی که از
       این کلیدواژه
@@ -170,23 +428,18 @@ private class Account {
 
     <p>از کلیدواژه ی synchronized میتونیم برای آبجکت و متد (تابع) استفاده کنیم.</p>
 
-    <aside class="note">
-      <p class="note-head">توجه</p>
-      <p>در کاتلین کلیدواژه ی synchronized برای تابع وجود نداره، برای همگام سازی یا باید از <strong
-          dir="ltr">@Synchronized</strong> استفاده کنیم
-        یا از کلیدواژه ی synchronized به صورت <strong dir="ltr">synchronized(expr){...}</strong> و یا از کلاس
-        ReentrantLock برای همگام سازی نخ ها در کاتلین استفاده کنیم، کلاس
-        ReentrantLock یک پیاده سازی در جاواست، معمولا از ReentrantLock برای کنترل بیشتر
-        استفاده میشه، چون تمرکز مطلب بیشتر روی جاواست بنابراین در این قسمت مثال از کاتلین نداریم و مثال های
-        کاتلین از <a href="#p3">قسمت
-          ReentrantLock</a> شروع میشه.</p>
-    </aside>
 
     <section>
       <h3>استفاده از کلیدواژه ی synchronized برای آبجکت</h3>
 
       <p>با استفاده از کلیدواژه ی synchronized میتونیم یک قفل روی آبجکت ایجاد کنیم تا هنگام استفاده از آبجکت توسط چند نخ
         (Thread) دچار race condition نشیم.</p>
+
+      <aside class="note">
+        <p>در کاتلین بجای استفاده از کلیدواژه ی synchronized برای تعریف عبارت synchronized با آبجکت، یک <a
+            href="/post/kotlin/inline-functions.html">تابع خطی (inline function)</a> به نام synchronized وجود داره که
+          میتونیم عبارت synchronized رو باهاش تعریف کنیم.</p>
+      </aside>
 
       <p>فرم کلی:</p>
 
@@ -197,6 +450,9 @@ synchronized (expression){
    //statement
 }
           </pre>
+          <pre class="snippet Kotlin">
+synchronized(lock: Any, block: () -&gt; R)
+          </pre>
         </div>
       </div>
 
@@ -204,7 +460,8 @@ synchronized (expression){
         قفل بشن
         صدا میزنیم.</p>
 
-      <p>در مثال قبل میتونیم از synchronized برای متغیر account استفاده کنیم و از race condition جلوگیری کنیم.</p>
+      <p>در مثال <a href="#p0">StudentAccount</a> میتونیم یک عبارت synchronized برای account تعریف کنیم و از race
+        condition جلوگیری کنیم.</p>
 
       <div class="sample">
         <div class="snippet-container">
@@ -215,6 +472,16 @@ private static class IncrementScoreByOne implements Runnable{
         synchronized (account) {
             account.updateScore(1);
         }
+    }
+}
+          </pre>
+          <pre class="snippet Kotlin">
+private class IncrementScoreByOne : Runnable {
+
+    override fun run() {
+        synchronized(account, fun(){
+            account.updateScore(1)
+        })
     }
 }
           </pre>
@@ -229,6 +496,11 @@ private static class IncrementScoreByOne implements Runnable{
         دیگه ازاد نمیشه و نخ های دیگه نمیتونن تابع رو
         اجرا کنن، به متد هایی که با کلیدواژه ی synchronized تعریف میشن، <strong>متد های همگام سازی شده (Synchronized
           Methods)</strong> گفته میشه.</p>
+
+      <aside class="note">
+        <p class="note-head">توجه</p>
+        <p>در کاتلین برای تعریف تابع synchronized باید از <strong dir="ltr">@Synchronized</strong> استفاده کنیم.</p>
+      </aside>
 
       <p>در مثال قبل برای اینکه race condition به وجود نیاد کافیه متد (تابع) updateScore رو با کلیدواژه ی synchronized
         تعریف کنیم.</p>
@@ -253,6 +525,25 @@ private static class Account{
   }
 }
         </pre>
+          <pre class="snippet Kotlin">
+private class Account {
+
+    var score: Int = 0
+        private set
+
+    @Synchronized
+    fun updateScore(v: Int) {
+        val newScore = score + v
+        try {
+            Thread.sleep(5)
+        } catch (e: InterruptedException) {
+            throw RuntimeException(e)
+        }
+
+        score = newScore
+    }
+}
+        </pre>
         </div>
       </div>
 
@@ -263,7 +554,7 @@ private static class Account{
   </section>
 
 
-  <section id="p2">
+  <section id="p3">
     <h2>همکاری بین نخ (Thread) ها با متد های wait, notify و notifyAll</h2>
 
     <p>نخ (thread) ها میتونن باهمدیگه همکاری کنن، دوتا نخ رو در نظر بگیرید زمانی که اجرای نخ اول به جایی برسه، نخ اول
@@ -306,13 +597,19 @@ private static class Account{
     </section>
 
 
+    <aside class="note">
+      <p class="note-head">توجه</p>
+      <p>از اونجایی که متد (تابع) های wait, notify و notifyAll در کلاس Object جاوا تعریف شدن، برای استفاده ازشون تو
+        کاتلین
+        باید کلاس رو به Object کست کنیم.</p>
+    </aside>
+
     <p>مثال زیر یک برنامه ی تولید کننده و مصرف کننده است (Consumer-Producer) یک مثال کلاسیک برای درک مفهوم همکاری بین نخ
       (thread) ها؛ در این مثال یک کلاس داریم و دوتابع به اسم produce و consume، زمانی که مقدار data صفر باشه تابع
       consume
       متوقف میشه و سیگنال ادامه ی کار رو به produce می فرسته و تابع produce شروع به کار میکنه تا مقدار داده تغییر کنه،
       زمانی که مقدار داده تغییر کرد، تابع produce
       متوقف میشه و سیگنال ادامه ی کار رو به تابع consume میفرسته و consume شروع به ادامه ی کار میکنه.</p>
-    <p></p>
 
 
     <div class="sample">
@@ -382,11 +679,62 @@ public class ConsumerProducerDemo {
     }
 }       
         </pre>
+        <pre class="snippet Kotlin">
+fun main(){
+    val service = Executors.newFixedThreadPool(2)
+    val cp = ConsumerProducer()
+    service.execute(Runnable {
+        while (true) cp.consume()
+    })
+    service.execute(Runnable {
+        while (true) cp.produce()
+    })
+    service.shutdown()
+}
+
+@Suppress("PLATFORM_CLASS_MAPPED_TO_KOTLIN")
+private class ConsumerProducer{
+    private var data = 0
+
+    @Synchronized
+    fun consume() {
+
+        try {
+            while (data == 0) {
+                (this as Object).wait()
+            }
+            Thread.sleep(1000)
+        } catch (e: InterruptedException) {
+            e.printStackTrace()
+        }
+        
+        println("Consuming $data")
+        data = 0
+        (this as Object).notify()
+    }
+
+    @Synchronized
+    fun produce() {
+        try {
+            while (data != 0) {
+                (this as Object).wait()
+            }
+            Thread.sleep(2000)
+        } catch (e: InterruptedException) {
+            e.printStackTrace()
+        }
+        data = (1 + (Math.random() * 126)).toInt()
+        println("Producing $data")
+        (this as Object).notify()
+    }
+
+}
+        </pre>
       </div>
     </div>
   </section>
 
-  <section id="p3">
+  <section id="p4">
     <h2>همگام سازی (synchronizing) با کلاس ReentrantLock</h2>
     <blockquote>با استفاده از Lock و condition میتونیم به صورت آشکار (explicitly) داده ها رو با نخ ها همگام سازی کنیم.
     </blockquote>
@@ -581,56 +929,92 @@ private class Account {
     </section>
 
 
-    <p>میخوایم مثال ConsumerProducer رو با ReentrantLock پیاده کنیم.</p>
+    <p>میخوایم در مثال زیر یک Buffer رو شبیه سازی کنیم و با دو کار ProducerTask و ConsumerTask مقادیر رو با Buffer نوشته
+      و هنگامی که ظرفیت Buffer پر شد مقادیر نوشته شده رو بخونیم.</p>
+
+
+    <p>در مثال زیر در داخل کلاس Buffer دو نمونه از Condition ایجاد می کنیم یکی برای متد (تابع) write و اون یکی برای متد
+      (تابع) read؛ هنگامی که ظرفیت Buffer پر باشه، با writeCondition متد write رو متوقف میکنیم و داخل متد write با
+      readCondition سیگنال ادامه رو به متد read میدیم تا ظرفیت Buffer با متد read
+      خالی بشه و زمانی که buffer با read خالی شد، داخل تابع read با writeCondition دوباره سیگنال ادامه ی کار write رو
+      رو میدیم و با readCondition کار متد read رو متوقف می کنیم؛ متغیر CAPACITY ظرفیت Buffer و مقدارش ثابت و برابر با 1
+      است</p>
+
+    <p>در زیر به صورت تصویری عملکرد این برنامه شرح داده شده است.</p>
+
+    <figure>
+      <img src="/resources/image/java/java_condition_buffer_simulation_diagram.png"
+        alt="نمودار عملکرد برنامه ی شبیه سازی Buffer با condition">
+      <figcaption>نمودار عملکرد برنامه ی شبیه سازی Buffer با condition</figcaption>
+    </figure>
 
     <div class="sample">
       <div class="snippet-container">
         <pre class="snippet Java">
-public class ConsumerProducerReentrantLock {
+public class ConsumerProducerReentrantLockDemo {
+
+    private static final Buffer buffer = new Buffer();
+
     public static void main(String[] args) {
-
-        ConsumerProducer cp = new ConsumerProducer();
-
         ExecutorService service = Executors.newFixedThreadPool(2);
-
-        service.execute(() -&gt; {
-            while (true)
-                cp.consume();
-
-        });
-        service.execute(() -&gt; {
-            while (true)
-                cp.produce();
-
-        });
+        service.execute(new ProducerTask());
+        service.execute(new ConsumerTask());
 
         service.shutdown();
     }
 
+    private static class ProducerTask implements Runnable{
+        @Override
+        public void run() {
+            while (true){
+                int value = (int)(Math.random() * 256);
+                System.out.println("Producer writes " + value);
+                buffer.write(value);
+                try {
+                    Thread.sleep((long)(Math.random() * 10000));
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
 
-    private static class ConsumerProducer{
+        }
+    }
 
-        private int data = 0;
+    private static class ConsumerTask implements Runnable{
+        @Override
+        public void run() {
+            while (true){
+                int value = buffer.read();
+                System.out.println("\t\t\tConsumer reads " + value);
+                try {
+                    Thread.sleep((int)(Math.random() * 10000));
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }
+    }
+
+    private static class Buffer{
+        private static final int CAPACITY = 1;
+        private final Queue&lt;Integer&gt; queue = new LinkedList&lt;&gt;();
 
         private final Lock lock = new ReentrantLock();
-        private final Condition consumeCondition = lock.newCondition();
-        private final Condition produceCondition = lock.newCondition();
 
+        private final Condition writeCondition = lock.newCondition();
+        private final Condition readCondition = lock.newCondition();
 
-        public void consume(){
+        public void write(int value){
+            lock.lock();
 
-            try {
-                lock.lock();
-                while (isEmpty()) {
-                    consumeCondition.await();
+            try{
+                while (isFull()) {
+                    System.out.println("Wait for reading buffer");
+                    writeCondition.await();
                 }
 
-                Thread.sleep(1000);
-
-                System.out.println("consuming " + data);
-                data = 0;
-                produceCondition.signal();
-
+                queue.offer(value);
+                readCondition.signal();
             }catch (InterruptedException e){
                 e.printStackTrace();
             }finally {
@@ -639,102 +1023,133 @@ public class ConsumerProducerReentrantLock {
         }
 
 
-        public void produce(){
-
+        public int read(){
+            int value = 0;
             lock.lock();
-
             try {
-                while (!isEmpty()){
-                    produceCondition.await();
+                while (isEmpty()){
+                    System.out.println("\t\t\tWait for writing buffer");
+                    readCondition.await();
                 }
 
-                Thread.sleep(2000);
-
-                data = (int)(Math.random() * 255);
-                System.out.println("producing " + data);
-                consumeCondition.signal();
+                value = queue.remove();
+                writeCondition.signal();
 
             }catch (InterruptedException e){
                 e.printStackTrace();
             }finally {
                 lock.unlock();
             }
+
+            return value;
         }
 
         private boolean isEmpty(){
-            return data == 0;
+            return queue.isEmpty();
+        }
+
+        private boolean isFull(){
+            return queue.size == CAPACITY;
         }
     }
 }
+
         </pre>
         <pre class="snippet Kotlin">
-fun main(){
-    val cp = ConsumerProducer()
+private val buffer = Buffer()
 
+fun main() {
     val service = Executors.newFixedThreadPool(2)
-
-    service.execute {
-        while (true)
-            cp.consume()
-    }
-
-    service.execute {
-        while (true)
-            cp.produce()
-    }
+    service.execute(Producer())
+    service.execute(Consumer())
 
     service.shutdown()
 }
 
-private class ConsumerProducer{
-    private var data = 0
+private class ProducerTask : Runnable {
+    override fun run() {
+        while (true) {
+            val value = (Math.random() * 256).toInt()
+            println("Producer writes $value")
+            buffer.write(value)
+            try {
+                Thread.sleep((Math.random() * 10000).toLong())
+            } catch (e: InterruptedException) {
+                throw RuntimeException(e)
+            }
+        }
+    }
+}
 
-    private val lock = ReentrantLock()
-    private val consumeCondition = lock.newCondition()
-    private val produceCondition = lock.newCondition()
+private class ConsumerTask : Runnable {
+    override fun run() {
+        while (true) {
 
-    val empty get() = data == 0
+            val value = buffer.read()
+            println("\t\t\tConsumer reads $value")
 
-    fun consume(){
+            try {
+                Thread.sleep((Math.random() * 10000).toInt().toLong())
+            } catch (e: InterruptedException) {
+                throw RuntimeException(e)
+            }
+
+        }
+    }
+}
+
+private class Buffer {
+    private val queue: Queue&lt;Int&gt; = LinkedList()
+
+    private val lock: Lock = ReentrantLock()
+
+    private val writeCondition: Condition = lock.newCondition()
+    private val readCondition: Condition = lock.newCondition()
+
+    private val isEmpty get() = queue.isEmpty()
+    private val isFull get() = queue.size == CAPACITY
+
+    fun write(value: Int) {
+        lock.lock()
+
         try {
-            lock.lock()
+            while (isFull) {
+                println("Wait for reading buffer")
+                writeCondition.await()
+            }
 
-            while (empty)
-                consumeCondition.await()
-
-            Thread.sleep(1000)
-
-            println("consuming data $data")
-            data = 0
-            produceCondition.signal()
-
-
-        }catch (e: InterruptedException){
+            queue.offer(value)
+            readCondition.signal()
+        } catch (e: InterruptedException) {
             e.printStackTrace()
-        }finally {
+        } finally {
             lock.unlock()
         }
     }
 
-    fun produce(){
+
+    fun read(): Int {
+        var value = 0
+        lock.lock()
         try {
-            lock.lock()
+            while (isEmpty) {
+                println("\t\t\tWait for writing buffer")
+                readCondition.await()
+            }
 
-            while (!empty)
-                produceCondition.await()
-
-            Thread.sleep(2000)
-
-
-            data = (Math.random() * 255).toInt()
-            println("producing data $data")
-            consumeCondition.signal()
-
-        }catch (e: InterruptedException){
+            value = queue.remove()!!
+            writeCondition.signal()
+        } catch (e: InterruptedException) {
             e.printStackTrace()
-        }finally {
+        } finally {
             lock.unlock()
         }
+
+        return value
+    }
+
+    companion object {
+        private const val CAPACITY = 1
     }
 }
         </pre>
@@ -743,7 +1158,7 @@ private class ConsumerProducer{
 
   </section>
 
-  <section id="p4">
+  <section id="p5">
     <h2>محدود کردن دسترسی تعداد نخ (thread) ها به داده با کلاس Semaphore</h2>
 
     <p>با استفاده از کلاس <strong>Semaphore</strong> در جاوا میتونیم تعداد نخ هایی که به داده میتونن دسترسی داشته باشن
@@ -855,7 +1270,7 @@ private class Account {
     </div>
 
   </section>
-  <section id="p5">
+  <section id="p6">
     <h2>مفهوم Deadlock</h2>
     <p>معلم میره سر کلاس میبینه دانش آموز نیست، دانش آموز میره سر کلاس میبنه معلم نیست، این وضعیت تا زمانی که ادامه پیدا
       کنه مدرسه تعطیله، بحث Deadlock
@@ -904,12 +1319,47 @@ service.execute(() -&gt; {
 
 service.shutdown();
         </pre>
+        <pre class="snippet Kotlin">
+fun main(){
+    val service = Executors.newFixedThreadPool(2)
+    
+    val any = Any()
+    val any1 = Any()
+
+
+    service.execute(Runnable {
+        synchronized(any) {
+            println("From object")
+            try {
+                Thread.sleep(200)
+            } catch (e: InterruptedException) {
+            }
+            synchronized(any1) {
+                println("Causes dead lock")
+            }
+        }
+    })
+
+
+    service.execute(Runnable {
+        synchronized(any1) {
+            println("From object1")
+            synchronized(any) {
+                println("Causes dead lock")
+            }
+        }
+    })
+
+    service.shutdown()
+
+}
+        </pre>
       </div>
     </div>
 
     <p>یکی از کار هایی که ممکنه باعث deadlock بشه صدا زدن notify یا notifyAll توسط یک آبجکت دیگه برای ادامه ی اجرای
       thread یک آبجکت دیگس.</p>
-    <p>فرض کنید در مثال ConsumerProducer فرض کنید بجای یک کلاس مشترک برای متد های consume و produce یک کلاس جدا برای
+    <p>در مثال ConsumerProducer فرض کنید بجای یک کلاس مشترک برای متد های consume و produce یک کلاس جدا برای
       consume تعریف کرده باشیم و یک کلاس دیگه برای produce و مانند
       قسمت قبل میخوایم از wait و notify برای توقف و سیگنال دادن به نخ هاشون استفاده کنیم.</p>
 
@@ -986,6 +1436,61 @@ public class ConsumerProducerDemo {
 
 }
         </pre>
+        <pre class="snippet Kotlin">
+fun main(){
+
+    val service = Executors.newFixedThreadPool(2)
+
+    val producer = Producer()
+    val consumer = Consummer()
+
+    service.execute({
+        while (true) consumer.consume(producer)
+    })
+    service.execute({
+        while (true) producer.produce()
+    })
+    service.shutdown()
+
+}
+
+private class Producer {
+    private var data = 0
+
+    @Synchronized
+    fun produce() {
+        try {
+            while (data != 0) (this as Object).wait()
+        } catch (e: InterruptedException) {
+            e.printStackTrace()
+        }
+        data = (1 + (Math.random() * 126)).toInt()
+        println("Producing " + data)
+        (this as Object).notifyAll()
+    }
+
+    fun resetData() {
+        data = 0
+    }
+}
+
+private class Consumer {
+    @Synchronized
+    fun consume(producer: Producer) {
+        try {
+            while (producer.data == 0) {
+                (this as Object).wait()
+            }
+            Thread.sleep(1000)
+        } catch (e: InterruptedException) {
+            e.printStackTrace()
+        }
+        println("Consuming " + producer.data)
+        producer.resetData()
+        (this as Object).notifyAll()
+    }
+}
+        </pre>
       </div>
     </div>
 
@@ -996,11 +1501,15 @@ public class ConsumerProducerDemo {
 
   </section>
 
-  <section id="p6">
+  <section id="p7">
     <h2>خلاصه</h2>
     <ul>
       <li>
         زمانی که چندتا نخ به صورت همزمان دارن از یک داده استفاده میکنن، race condition پیش میاد.
+      </li>
+      <li>
+        زمانی که سایر نخ ها بخوان از وضعیت تغییرات در یک داده ی مشترک توسط یک نخ فورا با خبر بشن، داده رو باید با
+        کلیدواژه ی volatile تعریف کنیم.
       </li>
       <li>
         برای جلوگیری از race condition در جاوا میتونیم از کلیدواژه ی synchronized یا از کلاس های ReentrantLock و
