@@ -11,16 +11,16 @@ layout: default
         <a href="#p0">مفهوم رقابت بین نخ ها (race condition) و همگام سازی (synchronizing)</a>
       </li>
       <li>
-        <a href="#p1">کلیدواژه ی volatile</a>
+        <a href="#p1">داده (متغیر) های volatile</a>
       </li>
       <li>
-        <a href="#p2">همگام سازی با کلیدواژه ی synchronized</a>
+        <a href="#p2">همگام سازی با synchronized</a>
       </li>
       <li>
         <a href="#p3">همکاری بین نخ ها با متدهای wait, notify و notifyAll</a>
       </li>
       <li>
-        <a href="#p4">همگام سازی (synchronizing) با کلاس ReentrantLock</a>
+        <a href="#p4">همگام سازی با کلاس ReentrantLock</a>
       </li>
       <li>
         <a href="#p5">محدود کردن دسترسی تعداد نخ ها به داده با کلاس Semaphore</a>
@@ -165,7 +165,7 @@ private class Account {
 
   <section id="p1">
 
-    <h2>کلیدواژه ی volatile</h2>
+    <h2>داده (متغیر) های volatile</h2>
 
     <p>دوتا نخ به نام های A و B رو در نظر بگیرید، فرض کنید این دو نخ دارن یک کار روی داده ی مشترک انجام میدن، زمانی که
       تغییرات توسط نخ A روی داده انجام میشه این تغییرات توسط نخ B فورا خونده نمیشه علتش بخاطر اینه که زمانی که داده توسط
@@ -174,33 +174,29 @@ private class Account {
       نخ B به تغییرات نخ A روی cache پردازنده دسترسی نداره.</p>
 
 
-    <p>برای اینکه تغییرات یک نخ روی داده توسط نخ های دیگه فورا خونده بشه از کلیدواژه ی <strong>volatile</strong> در جاوا
-      استفاده می کنیم؛ با استفاده از کلیدواژه ی volatile تغییرات بجای حافظه ی پنهان (cache) پردازنده، مستقیم تو حافظه ی
+    <p>برای اینکه تغییرات یک نخ روی داده توسط نخ های دیگه فورا خونده بشه از <strong>volatile</strong> در جاوا و کاتلین
+      استفاده می کنیم؛ با استفاده از volatile تغییرات بجای حافظه ی پنهان (cache) پردازنده، مستقیم تو حافظه ی
       موقت (RAM) ذخیره میشن و سایر نخ ها به این تغییرات دسترسی دارن.</p>
 
 
-    <p>هنگام استفاده از کلیدواژه ی volatile، مشکل دسترسی همزمان نخ ها به داده حل نمیشه، ولی تغییرات روی داده توسط یک نخ
+    <p>هنگام استفاده از volatile، مشکل دسترسی همزمان نخ ها به داده حل نمیشه، ولی تغییرات روی داده توسط یک نخ
       فورا قابل خوندن توسط نخ های دیگه است.</p>
 
     <p>زمانی که بخوایم بقیه ی نخ (thread) ها از تغییرات در داده توسط یک نخ با خبر
       بشن، داده
-      رو با کلیدواژه ی volatile تعریف
+      رو با volatile تعریف
       میکنیم.</p>
 
-    <p>زمانی که فقط نیاز به flag داریم تا وضعیت داده رو بین نخ ها مشخص کنیم، فیلد رو با کلیدواژه ی volatile تعریف می
+    <p>زمانی که فقط نیاز به flag داریم تا وضعیت داده رو بین نخ ها مشخص کنیم، فیلد رو با volatile تعریف می
       کنیم، زمانی که مشکل برنامه با volatile حل میشه بهتره جایگزین استفاده از قفل ها در برنامه بشه که در ادامه بهشون می
       پردازیم، استفاده از volatile بهینه تره.</p>
 
-
-    <aside class="note">
-      <p class="note-head">توجه</p>
-      <p>در کاتلین کلیدواژه ی volatile وجود نداره و برای تعریف متغیر های volatile باید از <strong
-          dir="ltr">@Volatile</strong> استفاده کنیم.</p>
-    </aside>
+    <p>در جاوا متغیر رو با <strong dir="ltr">volatile</strong> تعریف می کنیم و در کاتلین با
+      <strong>@Volatile</strong>
+    </p>
 
     <p>در مثال زیر هردو کار TaskA و TaskB منتظر اجازه ی کاربر هستند، زمانی که کاربر y یا yes رو وارد کنه هردو کار TaskA
       و TaskB پیام رو نمایش میدن.</p>
-
 
 
     <div class="sample">
@@ -334,16 +330,16 @@ private class UserInputPermissionTask(private val permission: Permission) : Runn
       </div>
     </div>
 
-    <p>در بالا اگه متغیر granted با کلیدواژه ی volatile تعریف نمیشد هردوکار TaskA و TaskB متوجه تغییرات در مقدار granted
+    <p>در بالا اگه متغیر granted با volatile تعریف نمیشد هردوکار TaskA و TaskB متوجه تغییرات در مقدار granted
       توسط
       UserInputPermissionTask نمیشدن.</p>
 
-    <p>داده ای که با کلیدواژه ی volatile تعریف شده رو میتونیم با یک نخ تغییر بدیم و سپس با چند نخ به طور همزمان تغییرات
-      رو بخونیم اما نمیتونیم همزمان با چند نخ داخل داده تغییر ایجاد کنیم، بنابراین کلیدواژه ی volatile مشکل رقابت بین نخ
+    <p>داده ای که با volatile تعریف شده رو میتونیم با یک نخ تغییر بدیم و سپس با چند نخ به طور همزمان تغییرات
+      رو بخونیم اما نمیتونیم همزمان با چند نخ داخل داده تغییر ایجاد کنیم، بنابراین volatile مشکل رقابت بین نخ
       ها رو حل
       نمیکنه</p>
 
-    <p>اگه مثال <a href="#p0">StudentAccount</a> رو بخوایم با کلیدواژه ی volatile حل کنیم مشابه زیر میشه.</p>
+    <p>اگه مثال <a href="#p0">StudentAccount</a> رو بخوایم با volatile حل کنیم مشابه زیر میشه.</p>
 
 
     <div class="sample">
@@ -447,35 +443,32 @@ private class Account {
 
 
     <p>یک راه حل بهتر برای حل 100 درصدی مشکل رسیدن score به 100 وجود داره اونم استفاده از قفل هاست، قفل ها رو میتونیم با
-      کلیدواژه ی synchronized یا با کلاس ReentrantLock ایجاد کنیم که در ادامه بهش میپردازیم.</p>
+      synchronized یا با کلاس ReentrantLock ایجاد کنیم که در ادامه بهش میپردازیم.</p>
 
   </section>
 
 
   <section id="p2">
-    <h2> همگام سازی با کلیدواژه ی synchronized</h2>
+    <h2> همگام سازی با synchronized</h2>
 
     <blockquote>همگام سازی در چندنخی یعنی هماهنگ کردن اجرای نخ هایی که به هم وابسته هستن.</blockquote>
 
-    <p>برای جلوگیری از race condition یک کلیدواژه به نام <strong>synchronized</strong> در جاوا وجود داره، هنگامی که از
-      این کلیدواژه
-      استفاده بشه، تنها یک نخ میتونه به داده دسترسی داشته باشه و تا زمانی که کار نخ (thread)
+    <p>برای جلوگیری از race condition میتونیم از synchronized برای همگام سازی آبجکت یا متد استفاده کنیم،
+      زمانی که از synchronized استفاده بشه، تنها یک نخ میتونه به داده دسترسی داشته باشه و تا زمانی که کار نخ (thread)
       تموم نشده داده قفل میمونه و نخ های دیگه به داده دسترسی ندارن.</p>
 
-    <p>از کلیدواژه ی synchronized میتونیم برای آبجکت و متد (تابع) استفاده کنیم.</p>
+    <p>از کلیدواژه ی synchronized میتونیم برای همگام سازی آبجکت و متد در جاوا استفاده کنیم و همینطور برای همگام سازی
+      تابع در کاتلین از <strong dir="ltr">@Synchronized</strong> و برای همگام سازی آبجکت در کاتلین از <a
+        href="/post/kotlin//inline-functions.html">تابع خطی (inline function)</a> <strong
+        dir="ltr">synchronized</strong> استفاده
+      کنیم.</p>
 
 
     <section>
-      <h3>استفاده از کلیدواژه ی synchronized برای آبجکت</h3>
+      <h3>استفاده از synchronized برای همگام سازی آبجکت</h3>
 
-      <p>با استفاده از کلیدواژه ی synchronized میتونیم یک قفل روی آبجکت ایجاد کنیم تا هنگام استفاده از آبجکت توسط چند نخ
+      <p>با استفاده از synchronized میتونیم یک قفل روی آبجکت ایجاد کنیم تا هنگام استفاده از آبجکت توسط چند نخ
         (Thread) دچار race condition نشیم.</p>
-
-      <aside class="note">
-        <p>در کاتلین بجای استفاده از کلیدواژه ی synchronized برای تعریف عبارت synchronized با آبجکت، یک <a
-            href="/post/kotlin/inline-functions.html">تابع خطی (inline function)</a> به نام synchronized وجود داره که
-          میتونیم عبارت synchronized رو باهاش تعریف کنیم.</p>
-      </aside>
 
       <p>فرم کلی:</p>
 
@@ -526,19 +519,14 @@ private class IncrementScoreByOne : Runnable {
     </section>
 
     <section>
-      <h3>استفاده از کلیدواژه ی synchronized برای متد</h3>
+      <h3>استفاده از synchronized برای همگام سازی متد (تابع)</h3>
       <p>
         تابع برای نخ های
         دیگه ازاد نمیشه و نخ های دیگه نمیتونن تابع رو
-        اجرا کنن، به متد هایی که با کلیدواژه ی synchronized تعریف میشن، <strong>متد های همگام سازی شده (Synchronized
+        اجرا کنن، به متد هایی که با synchronized تعریف میشن، <strong>متد های همگام سازی شده (Synchronized
           Methods)</strong> گفته میشه.</p>
 
-      <aside class="note">
-        <p class="note-head">توجه</p>
-        <p>در کاتلین برای تعریف تابع synchronized باید از <strong dir="ltr">@Synchronized</strong> استفاده کنیم.</p>
-      </aside>
-
-      <p>در مثال قبل برای اینکه race condition به وجود نیاد کافیه متد (تابع) updateScore رو با کلیدواژه ی synchronized
+      <p>در مثال قبل برای اینکه race condition به وجود نیاد کافیه متد (تابع) updateScore رو با synchronized
         تعریف کنیم.</p>
 
 
@@ -771,14 +759,14 @@ private class ConsumerProducer{
   </section>
 
   <section id="p4">
-    <h2>همگام سازی (synchronizing) با کلاس ReentrantLock</h2>
+    <h2>همگام سازی با کلاس ReentrantLock</h2>
     <blockquote>با استفاده از Lock و condition میتونیم به صورت آشکار (explicitly) داده ها رو با نخ ها همگام سازی کنیم.
     </blockquote>
 
-    <p>با کلیدواژه ی synchronized یک <strong>قفل پنهانی (implicit lock)</strong> روی نمونه قرار میدادیم و هنگام استفاده
+    <p>با synchronized یک <strong>قفل پنهانی (implicit lock)</strong> روی نمونه قرار میدادیم و هنگام استفاده
       از متد توسط نخ (thread)، متد برای
       استفاده از نخ قفل میشد.</p>
-    <p>با استفاده از کلاس <strong>ReentrantLock</strong> میتونیم بدون نیاز به کلیدواژه ی synchronized یک متد رو به صورت
+    <p>با استفاده از کلاس <strong>ReentrantLock</strong> میتونیم بدون نیاز به synchronized یک متد رو به صورت
       آشکار
       (explicitly) قفل کنیم؛
       یکی از پیاده سازی های داخل کلاس ReentrantLock، اینترفیس Lock است که متد های پرکاربرد lock, unlock و newCondition
@@ -786,7 +774,7 @@ private class ConsumerProducer{
 
     <aside class="note">
       <p class="note-head">توجه</p>
-      <p>در اکثر موارد استفاده از کلیدواژه ی synchronized کفایت میکنه ولی استفاده از ReentrantLock کنترل بیشتری
+      <p>در اکثر موارد استفاده از synchronized کفایت میکنه ولی استفاده از ReentrantLock کنترل بیشتری
         روی هماهنگ کردن نخ ها به برنامه نویس میده.</p>
     </aside>
 
@@ -799,6 +787,7 @@ private class ConsumerProducer{
       <figcaption>نمودار uml رابطه ی بین ReentrantLock و Lock</figcaption>
     </figure>
 
+    <p>در زیر متد های تعریف شده در اینترفیس Lock اورده شده است.</p>
 
     <table class="tb">
       <thead>
@@ -915,7 +904,7 @@ private class Account {
       </div>
     </div>
 
-    <p>همینطور که در بالا مشخصه بدون استفاده از کلیدواژه ی synchronized تونستیم یک قفل روی متد updateScore ایجاد کنیم که
+    <p>همینطور که در بالا مشخصه بدون استفاده از synchronized تونستیم یک قفل روی متد updateScore ایجاد کنیم که
       بعد از پایان کار متد با unlock، متد برای نخ (thread) های دیگه آزاد میشه.</p>
 
     <section>
@@ -1197,7 +1186,8 @@ private class Buffer {
   <section id="p5">
     <h2>محدود کردن دسترسی تعداد نخ (thread) ها به داده با کلاس Semaphore</h2>
 
-    <p>با استفاده از کلاس <strong>Semaphore</strong> در جاوا میتونیم تعداد نخ هایی که به داده میتونن دسترسی داشته باشن
+    <p>با استفاده از کلاس <strong>Semaphore</strong> در جاوا و کاتلین میتونیم تعداد نخ هایی که به داده میتونن دسترسی
+      داشته باشن
       رو محدود کنیم، برخلاف synchronized و ReentrantLock که فقط به یک نخ دسترسی به داده رو میدن با Semaphore میتونیم
       دسترسی به داده رو محدود به یک یا چند نخ کنیم، به عبارتی خودمون تعیین میکنیم که چندتا نخ همزمان میتونه به یک
       داده دسترسی داشته باشه.</p>
@@ -1545,10 +1535,10 @@ private class Consumer {
       </li>
       <li>
         زمانی که سایر نخ ها بخوان از وضعیت تغییرات در یک داده ی مشترک توسط یک نخ فورا با خبر بشن، داده رو باید با
-        کلیدواژه ی volatile تعریف کنیم.
+        volatile تعریف کنیم.
       </li>
       <li>
-        برای جلوگیری از race condition در جاوا میتونیم از کلیدواژه ی synchronized یا از کلاس های ReentrantLock و
+        برای جلوگیری از race condition در جاوا و کاتلین میتونیم از synchronized یا کلاس های ReentrantLock و
         Semaphore استفاده کنیم.
       </li>
       <li>

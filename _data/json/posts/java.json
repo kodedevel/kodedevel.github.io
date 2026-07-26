@@ -187,8 +187,8 @@
       "link": "/post/java/multithreading.html"
     },
     {
-      "title": "همگام سازی (synchronizing) داده با نخ (Thread) ها در جاوا",
-      "description": "در این مطلب به بررسی اینکه چرا باید فقط با یک نخ به داده دسترسی داشته باشیم، همگام سازی در چند نخی چیه و روش های مختلف همگام سازی با استفاده از کلیدواژه ی synchronized، استفاده از کلاس ReentrantLock و استفاده کلاس Semophare می پردازیم.",
+      "title": "همگام سازی (synchronizing) داده با نخ (Thread) ها در جاوا و کاتلین",
+      "description": "آموزش کامل همگام سازی (synchronization) در جاوا و کاتلین. بررسی مفهوم (race condition)، تعاریف volatile، synchronized، کلاس ReentrantLock، Semaphore، و مفهوم Deadlock همراه با مثال.",
       "datePublished": "2026-07-23",
       "lastModified": "2026-07-26",
       "imgCover": "/resources/image/java/cover_thread_synchronization.png",
