@@ -179,10 +179,10 @@
       "link": "/post/java/generics.html"
     },
     {
-      "title": "چندنخی (multithreading) در جاوا",
-      "description": "برای اینکه یک برنامه بتونه چندتا کار رو به صورت همزمان انجام بده از چندنخی استفاده می کنیم در این مطلب به صورت کامل و به همراه مثال چندنخی (multithreading) در جاوا رو توضیح میدیم و با توجه به اینکه در کاتلین میتونیم از کتابخونه های جاوا استفاده کنیم مثال ها رو علاوه بر جاوا با کاتلین هم زدیم.",
+      "title": "چندنخی (multithreading) در جاوا و کاتلین",
+      "description": "مفهوم نخ (thread) ها، بررسی اینترفیس Runnable، کلاس Thread و مفهوم Thread Pool در جاوا و کاتلین به همراه مثال",
       "datePublished": "2026-07-19",
-      "lastModified": "2026-07-23",
+      "lastModified": "2026-07-26",
       "imgCover": "/resources/image/java/cover_multithreading.png",
       "link": "/post/java/multithreading.html"
     },
