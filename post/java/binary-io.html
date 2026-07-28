@@ -32,7 +32,10 @@ layout: default
       </li>
     </ul>
   </nav>
-
+  <aside class="note">
+    <p class="note-head">توجه</p>
+    <p>مثال های این مطلب برای هردو زبان جاوا و کاتلین نوشته شده و این یک مطلب مشترک برای جاوا و کاتلین است.</p>
+  </aside>
   <section id="p0">
     <h2>مقایسه ی کلاس های Text-IO با Binary-IO</h2>
     <blockquote>
@@ -49,7 +52,7 @@ layout: default
     <p>
       برای کامپیوتر فرقی نداره یک فایل از چه نوعی (متنی، تصویری یا...) باشه؛
       تمام فایل ها در کامپیوتر به صورت باینری ذخیره میشن؛ تنها چیزی که یک فایل
-      متنی رو با باینری در جاوا متمایز میکنه رمزنگاری و رمزگشایی کاراکترهای
+      متنی رو با باینری در جاوا و کاتلین متمایز میکنه رمزنگاری و رمزگشایی کاراکترهای
       (حروف) فایل متنی است.
     </p>
     <p>
@@ -85,7 +88,7 @@ System.out.println("The code for character A is " + code);
 
     <p>
       با خوندن هر کاراکتر (حرف) از فایل توسط کلاس هایی مانند
-      <a class="text-decoration-none" href="scanner.html">Scanner</a> در جاوا
+      <a class="text-decoration-none" href="scanner.html">Scanner</a> در جاوا و کاتلین
       مشابه عملیات زیر اتفاق میوفته.
     </p>
 
@@ -104,7 +107,7 @@ System.out.println("The character for code  " + code + " is " + ch);
       نوشتن درگیر فرایند رمزگشایی و رمزنگاری نمیشن.
     </p>
     <p>
-      در جاوا کلاس های مختلفی برای عملیات io تعریف شده در ادامه ی این مطلب به
+      در جاوا و کاتلین کلاس های مختلفی برای عملیات io تعریف شده در ادامه ی این مطلب به
       چندتا از این کلاس ها می پردازیم.
     </p>
   </section>
@@ -114,7 +117,7 @@ System.out.println("The character for code  " + code + " is " + ch);
 
     <blockquote>
       کلاس های InputStream و OutputStream سوپرکلاس تمام کلاس های Stream در پکیج
-      io در جاوا هستند.
+      io در جاوا و کاتلین هستند.
     </blockquote>
 
     <p>
@@ -124,8 +127,8 @@ System.out.println("The character for code  " + code + " is " + ch);
 
     <figure>
       <img src="/resources/image/java/java_io_inheritance_hierarchy.png"
-        alt="سلسله مراتب ارث بری کلاس های Binary IO در جاوا" />
-      <figcaption>سلسله مراتب ارث بری کلاس های Binary-IO در جاوا</figcaption>
+        alt="سلسله مراتب ارث بری کلاس های Binary IO در جاوا و کاتلین" />
+      <figcaption>سلسله مراتب ارث بری کلاس های Binary-IO در جاوا و کاتلین</figcaption>
     </figure>
 
     <p>
@@ -240,11 +243,11 @@ System.out.println("The character for code  " + code + " is " + ch);
 
     <p>
       دو کلاس FileInputStream و FileOutputStream به ترتیب از کلاس های
-      InputStream و OutputStream ارث بری کردن در ادامه کانستراکتور های تعریف شده
+      InputStream و OutputStream ارث بری کردن در ادامه سازنده (constructor) های تعریف شده
       در این دو کلاس رو بررسی میکنیم.
     </p>
 
-    <p>نمودار UML مربوط به FileInputStream در جاوا</p>
+    <p>نمودار UML مربوط به FileInputStream در جاوا و کاتلین</p>
 
     <table class="tb" id="uml_file_input_stream">
 
@@ -258,21 +261,21 @@ System.out.println("The character for code  " + code + " is " + ch);
         <tr>
           <td class="tDataLTR">+FileInputStream(path: String)</td>
           <td class="tDataRTL">
-            یک نمونه از FileInputStream با پاس دادن String به کانستراکتور ایجاد
+            یک نمونه از FileInputStream با پاس دادن String به سازنده (constructor) ایجاد
             میکنه؛ String مسیر فایل مورد نظر است.
           </td>
         </tr>
         <tr>
           <td class="tDataLTR">+FileInputStream(file: File)</td>
           <td class="tDataRTL">
-            یک نمونه از FileInputStream با پاس دادن File به کانستراکتور ایجاد
+            یک نمونه از FileInputStream با پاس دادن File به سازنده (constructor) ایجاد
             میکنه.
           </td>
         </tr>
       </tbody>
     </table>
 
-    <p>نمودار UML مربوط به FileOutputStream در جاوا</p>
+    <p>نمودار UML مربوط به FileOutputStream در جاوا و کاتلین</p>
     <table class="tb" id="uml_file_output_stream">
       <thead>
         <tr>
@@ -283,7 +286,7 @@ System.out.println("The character for code  " + code + " is " + ch);
         <tr>
           <td class="tDataLTR">+FileOutputStream(path: String)</td>
           <td class="tDataRTL">
-            یک نمونه از FileOutputStream با پاس دادن String به کانستراکتور ایجاد
+            یک نمونه از FileOutputStream با پاس دادن String به سازنده (constructor) ایجاد
             میکنه؛ String مسیر فایل مورد نظر است.
           </td>
         </tr>
@@ -294,7 +297,7 @@ System.out.println("The character for code  " + code + " is " + ch);
           </td>
           <td class="tDataRTL">
             یک نمونه از FileOutputStream با پاس دادن String و مقدار boolean به
-            کانستراکتور ایجاد میکنه؛ String مسیر فایل مورد نظر است و اگه فایل از
+            سازنده (constructor) ایجاد میکنه؛ String مسیر فایل مورد نظر است و اگه فایل از
             قبل وجود داشته باشه و مقدار boolean برابر با true باشه داده ها رو
             ادامه ی فایل می نویسه و اگه false باشه فایل رو حذف کرده و یک فایل جدید
             ایجاد میکنه.
@@ -304,7 +307,7 @@ System.out.println("The character for code  " + code + " is " + ch);
         <tr>
           <td class="tDataLTR">+FileOutputStream(file: File)</td>
           <td class="tDataRTL">
-            یک نمونه از FileOutputStream با پاس دادن File به کانستراکتور ایجاد
+            یک نمونه از FileOutputStream با پاس دادن File به سازنده (constructor) ایجاد
             میکنه.
           </td>
         </tr>
@@ -314,7 +317,7 @@ System.out.println("The character for code  " + code + " is " + ch);
             +FileOutputStream(file: File, append: boolean)
           </td>
           <td class="tDataRTL">
-            یک نمونه از FileOutputStream با پاس دادن File به کانستراکتور ایجاد
+            یک نمونه از FileOutputStream با پاس دادن File به سازنده (constructor) ایجاد
             میکنه. اگه فایل از قبل وجود داشته باشه و مقدار boolean برابر با true
             باشه داده ها رو ادامه ی فایل می نویسه و اگه false باشه فایل رو حذف
             کرده و یک فایل جدید ایجاد میکنه.
@@ -334,7 +337,7 @@ System.out.println("The character for code  " + code + " is " + ch);
     <div class="note">
       <p class="note-head">نکته</p>
       <p>
-        تمام کلاس های io-stream در جاوا حامل
+        تمام کلاس های io-stream در جاوا و کاتلین حامل
         <a class="text-decoration-none" href="exceptions.html">checked-exception</a>
         هستند یعنی باید حتما اکسپشن هاشون رو هندل کنیم اما در کاتلین
         checked-exception وجود نداره.
@@ -387,13 +390,13 @@ fun main() {
       مثال بالا این کار رو نکردیم. چرا؟
     </p>
     <p>
-      چون تمام کلاس های IO Stream در جاوا از AutoClosable ارث بری میکنن
+      چون تمام کلاس های IO Stream در جاوا و کاتلین از AutoClosable ارث بری میکنن
       AutoCloseable مشخص میکنه که کلاس یک io-stream است پس باید متد close در
       پایان کار صدا زده بشه. بنابراین میتونیم از کلاس های io-stream در try-catch
       مانند بالا داخل پرانتز یک نمونه ایجاد کنیم.
     </p>
     <p>
-      به این نوع از try-catch، در جاوا <strong>try-with-resources</strong> گفته
+      به این نوع از try-catch، در جاوا و کاتلین <strong>try-with-resources</strong> گفته
       میشه. در این حالت سیستم پس از پایان کار به طور خودکار stream ایجاد شده
       داخل پرانتز رو می بنده و نیازی به صدا زدن close نداریم.
     </p>
@@ -415,14 +418,14 @@ fun main() {
 
     <figure>
       <img src="/resources/image/java/java_data_io_stream_inheritance.png"
-        alt="ارث بری دو کلاس DataInputStream و DataOutputStream در جاوا" />
+        alt="ارث بری دو کلاس DataInputStream و DataOutputStream در جاوا و کاتلین" />
       <figcaption>
-        ارث بری دو کلاس DataInputStream و DataOutputStream در جاوا
+        ارث بری دو کلاس DataInputStream و DataOutputStream در جاوا و کاتلین
       </figcaption>
     </figure>
 
     <p>
-      برای این کلاس های DataInputStream و DataOutputStream فقط یک کانستراکتور
+      برای این کلاس های DataInputStream و DataOutputStream فقط یک سازنده (constructor)
       تعریف شده که به ترتیب مقادیری از جنس InputStream و OutputStream رو باید به
       صورت پارامتر بهشون پاس بدیم.
     </p>
@@ -638,16 +641,16 @@ val file = File("temp.dat")
 
     <figure>
       <img src="/resources/image/java/java_object_io_stream_inheritance.png"
-        alt="نمودار uml نحوه ی ارث بری دو کلاس ObjectInputStream و ObjectOutputStream در جاوا" />
+        alt="نمودار uml نحوه ی ارث بری دو کلاس ObjectInputStream و ObjectOutputStream در جاوا و کاتلین" />
       <figcaption>
-        ارث بری دو کلاس ObjectInputStream و ObjectOutputStream در جاوا
+        ارث بری دو کلاس ObjectInputStream و ObjectOutputStream در جاوا و کاتلین
       </figcaption>
     </figure>
 
     <p>
-      همانطور که در تصویر مشاهده میکنید برای هردو کلاس یک کانستراکتور تعریف شده
+      همانطور که در تصویر مشاهده میکنید برای هردو کلاس یک سازنده (constructor) تعریف شده
       که هنگام نمونه سازی از ObjectInputStream و ObjectOutputStream میتونیم به
-      ترتیب مقادیری از جنس InputStream و OutputStream رو به کانستراکتور هاشون
+      ترتیب مقادیری از جنس InputStream و OutputStream رو به سازنده (constructor) هاشون
       پاس بدیم.
     </p>
 
@@ -1031,7 +1034,7 @@ fun main(args: Array&lt;String&gt;) {
         بدون رمزنگار یا رمزگشایی انجام میشه.
       </li>
       <li>
-        تمام کلاس های استریم پیکیج io در جاوا از دو کلاس InputStream و
+        تمام کلاس های استریم پیکیج io در جاوا و کاتلین از دو کلاس InputStream و
         OutputStream ارث بری میکنن.
       </li>
       <li>
@@ -1057,15 +1060,15 @@ fun main(args: Array&lt;String&gt;) {
 
 {% capture links %}
 <li>
-  <a href="objects-and-classes.html">آبجکت و کلاس ها در جاوا</a>
+  <a href="objects-and-classes.html">آبجکت و کلاس ها در جاوا و کاتلین</a>
 </li>
 
 <li>
-  <a href="inheritance.html">وراثت در جاوا</a>
+  <a href="inheritance.html">وراثت در جاوا و کاتلین</a>
 </li>
 
 <li>
-  <a href="interfaces.html">اینترفیس ها در جاوا</a>
+  <a href="interfaces.html">اینترفیس ها در جاوا و کاتلین</a>
 </li>
 
 <li>

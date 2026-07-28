@@ -21,6 +21,11 @@ layout: default
     </ul>
   </nav>
 
+  <aside class="note">
+    <p class="note-head">توجه</p>
+    <p>مثال های این مطلب برای هردو زبان جاوا و کاتلین نوشته شده و این یک مطلب مشترک برای جاوا و کاتلین است.</p>
+  </aside>
+
   <section id="p0">
     <h2>بررسی کلاس File</h2>
 
@@ -40,11 +45,11 @@ layout: default
 
     <p>
       برای این کار میتونیم از پکیج <strong>Input Output (IO)</strong> و یا
-      کتابخونه ی <strong>پایگاه داده</strong> در جاوا استفاده کنیم.
+      کتابخونه ی <strong>پایگاه داده</strong> در جاوا و کاتلین استفاده کنیم.
     </p>
 
     <p>
-      کلاس File از کلاس های مهم پکیج io در جاوا است این کلاس اساس همه ی عملیات
+      کلاس File از کلاس های مهم پکیج io در جاوا و کاتلین است این کلاس اساس همه ی عملیات
       io است. از این کلاس برای دسترسی به فایل های کامپیوتر، گرفتن اطلاعات فایل و
       انجام عملیاتی از قبیل تغییر نام، حذف فایل و یا ایجاد پوشه های جدید استفاده
       میکنیم.
@@ -61,7 +66,7 @@ layout: default
     </p>
 
     <p>
-      در نمودار UML زیر به بررسی کانستراکتور (constructor) و متد (تابع) های پر
+      در نمودار UML زیر به بررسی سازنده (constructor) و متد (تابع) های پر
       کاربرد این کلاس پرداختیم:
     </p>
 
@@ -90,7 +95,7 @@ layout: default
         <tr>
           <td class="tDataLTR">+File(URI)</td>
           <td class="tDataRTL">
-            یک نمونه از File بر اساس uri توسط کلاس URI در جاوا ایجاد میکنه.
+            یک نمونه از File بر اساس uri توسط کلاس URI در جاوا و کاتلین ایجاد میکنه.
           </td>
         </tr>
 
@@ -223,7 +228,7 @@ layout: default
     <h2>تعریف مسیر</h2>
 
     <p>
-      برای کلاس File در جاوا و کاتلین به دو روش میتونیم مسیر پوشه یا فایل مورد
+      برای کلاس File در جاوا و کاتلین و کاتلین به دو روش میتونیم مسیر پوشه یا فایل مورد
       نظر رو تعریف کنیم.
     </p>
 
@@ -249,7 +254,11 @@ layout: default
       <div class="snippet-container">
         <pre class="snippet Java">
 new File("c:\\Music\\Haydeh.mp3");
-                        </pre>
+        </pre>
+        <pre class="snippet Kotlin">
+//Kotlin
+File("c:\\Music\\Haydeh.mp3")
+        </pre>
       </div>
     </div>
 
@@ -262,7 +271,11 @@ new File("c:\\Music\\Haydeh.mp3");
       <div class="snippet-container">
         <pre class="snippet Java">
 new File("/home/username/Music/Haydeh.mp3");
-                        </pre>
+        </pre>
+        <pre class="snippet Kotlin">
+//Kotlin
+File("/home/username/Music/Haydeh.mp3")
+        </pre>
       </div>
     </div>
 
@@ -274,7 +287,7 @@ new File("/home/username/Music/Haydeh.mp3");
         میگیم.
       </p>
       <p>
-        نحوه ی تعریف مسیر abstract در جاوا بین ویندوز و لینوکس مشابه یکدیگر است.
+        نحوه ی تعریف مسیر abstract در جاوا و کاتلین بین ویندوز و لینوکس مشابه یکدیگر است.
       </p>
 
       <p>
@@ -286,7 +299,11 @@ new File("/home/username/Music/Haydeh.mp3");
         <div class="snippet-container">
           <pre class="snippet Java">
 new File("Music/Haydeh.mp3");
-                        </pre>
+          </pre>
+          <pre class="snippet Kotlin">
+//Kotlin          
+File("Music/Haydeh.mp3")
+          </pre>
         </div>
       </div>
     </section>
@@ -295,7 +312,7 @@ new File("Music/Haydeh.mp3");
   <section id="p2">
     <h2>مورد مطالعه (مثال)</h2>
     <p>
-      در زیر هرکس میتونه مسیر مورد نظر خودشو به‌جای پارامتر کانستراکتور قرار
+      در زیر هرکس میتونه مسیر مورد نظر خودشو به‌جای پارامتر سازنده (constructor) قرار
       بده.
     </p>
 
@@ -340,11 +357,11 @@ println("Last modification date: ${java.util.Date(file.lastModified())}");
     <h2>خلاصه</h2>
     <ul>
       <li>
-        برای خوندن و نوشتن داده ها رو حافظه ی دائمی از پکیج io در جاوا استفاده
+        برای خوندن و نوشتن داده ها رو حافظه ی دائمی از پکیج io در جاوا و کاتلین استفاده
         میکنیم.
       </li>
       <li>
-        کلاس File اساس همه ی عملیات های io در جاواست از این کلاس برای عملیاتی از
+        کلاس File اساس همه ی عملیات های io در جاوا و کاتلینست از این کلاس برای عملیاتی از
         جمله تغییر نام، حذف، گرفتن اطلاعات فایل و یا ایجاد پوشه ی جدید استفاده
         میکنیم.
       </li>
@@ -364,13 +381,16 @@ println("Last modification date: ${java.util.Date(file.lastModified())}");
   <a href="printwriter.html">نوشتن در فایل با PrintWriter</a>
 </li>
 <li>
+  <a href="/post/kotlin/inheritance.html">آبجکت و کلاس ها در جاوا</a>
+</li>
+<li>
+  <a href="/post/java/methods.html">متد (تابع) در جاوا</a>
+</li>
+<li>
   <a href="/post/kotlin/functions.html">توابع در کاتلین</a>
 </li>
 <li>
   <a href="/post/kotlin/objects-and-classes.html">آبجکت و کلاس ها در کاتلین</a>
-</li>
-<li>
-  <a href="/post/kotlin/inheritance.html">وراثت در کاتلین</a>
 </li>
 
 <li>

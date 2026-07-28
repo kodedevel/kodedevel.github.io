@@ -21,23 +21,27 @@ layout: default
     </ul>
   </nav>
 
+  <aside class="note">
+    <p class="note-head">توجه</p>
+    <p>مثال های این مطلب برای هردو زبان جاوا و کاتلین نوشته شده و این یک مطلب مشترک برای جاوا و کاتلین است.</p>
+  </aside>
   <section id="p0">
     <h2>بررسی PrintWriter</h2>
 
     <blockquote>
-      با استفاده از PrintWriter در جاوا و کاتلین میتونیم داده ها رو به صورت متن
+      با استفاده از PrintWriter در جاوا و کاتلین و کاتلین میتونیم داده ها رو به صورت متن
       در فایل بنویسیم.
     </blockquote>
 
     <p>
       همانطور که گفتیم کلاس
-      <a class="text-decoration-none" href="file.html">File</a> در جاوا از خوندن
+      <a class="text-decoration-none" href="file.html">File</a> در جاوا و کاتلین از خوندن
       و نوشتن داخل فایل پشتیبانی نمیکنه و برای این کار باید از کلاس های دیگه در
       پکیج io استفاده کنیم.
     </p>
 
     <p>
-      یکی از این کلاس ها PrintWriter در جاوا است؛ کلاس PrintWriter برای
+      یکی از این کلاس ها PrintWriter در جاوا و کاتلین است؛ کلاس PrintWriter برای
       <strong>نوشتن متن</strong> در فایل مورد استفاده قرار میگیره.
     </p>
 
@@ -55,7 +59,7 @@ layout: default
       در PrintWriter میتونیم داده ها رو به صورت متن در فایل بنویسیم.
     </p>
 
-    <p>در زیر کانستراکتور و متد های پرکاربرد کلاس PrintWriter بیان شده.</p>
+    <p>در زیر سازنده (constructor) و متد های پرکاربرد کلاس PrintWriter بیان شده.</p>
 
     <table class="tb">
       <thead>
@@ -67,14 +71,14 @@ layout: default
         <tr>
           <td class="tDataLTR">+PrintWriter(File)</td>
           <td class="tDataRTL">
-            با پاس دادن آبجکت File به عنوان پارامتر کانستراکتور یک نمونه از
+            با پاس دادن آبجکت File به عنوان پارامتر سازنده (constructor) یک نمونه از
             PrintWriter ایجاد میکنه.
           </td>
         </tr>
         <tr>
           <td class="tDataLTR">+PrintWriter(String)</td>
           <td class="tDataRTL">
-            با پاس دادن مسیر فایل به صورت String به عنوان پارامتر کانستراکتور یک
+            با پاس دادن مسیر فایل به صورت String به عنوان پارامتر سازنده (constructor) یک
             نمونه از PrintWriter ایجاد میکنه.
           </td>
         </tr>
@@ -159,7 +163,7 @@ layout: default
     </table>
 
     <p>
-      در کلاس هایی که مختص خوندن و نوشتن در جاوا هستند،<a class="text-decoration-none"
+      در کلاس هایی که مختص خوندن و نوشتن در جاوا و کاتلین هستند،<a class="text-decoration-none"
         href="/post/java/exceptions.html">checked-exception</a>
       انداخته شده و هنگام تعریفشون باید در بلوک try-catch قرار بگیرند.
     </p>
@@ -267,7 +271,7 @@ fun main(){
     <h2>معرفی try-with-resources</h2>
 
     <blockquote>
-      استفاده از try-with-resources در جاوا اجباری نیست اما برای مرتب تر شدن کد
+      استفاده از try-with-resources در جاوا و کاتلین اجباری نیست اما برای مرتب تر شدن کد
       ها و جلو گیری از فراموش کردن صدا زدن متد close توصیه میشه.
     </blockquote>
 
@@ -280,7 +284,7 @@ fun main(){
 
     <div class="note">
       <p class="note-head">توجه</p>
-      <p>کلاس Scanner در جاوا نیز از AutoClosable ارث میبره.</p>
+      <p>کلاس Scanner در جاوا و کاتلین نیز از AutoClosable ارث میبره.</p>
     </div>
 
     <h3></h3>
@@ -336,7 +340,7 @@ output.use{
 
     <p>مثال</p>
     <p>
-      در مثال زیر از try-with-resources در جاوا و تابع use در کاتلین استفاده
+      در مثال زیر از try-with-resources در جاوا و کاتلین و تابع use در کاتلین استفاده
       کردیم.
     </p>
 
@@ -426,7 +430,7 @@ fun main(){
     </p>
 
     <p>
-      برای این کار باید مقدار پارامتر appendable کانستراکتور FileWriter رو true
+      برای این کار باید مقدار پارامتر appendable سازنده (constructor) FileWriter رو true
       قرار بدیم و خود FileWriter رو به عنوان پارامتر به PrintWriter پاس بدیم.
     </p>
 
@@ -444,7 +448,7 @@ val output = PrintWriter(FileWriter(file, true))
     <div class="note">
       <p class="note-head">توجه</p>
       <p>
-        کلاس FileWriter یکی از کلاس های Output در جاوا است و مانند PrintWriter
+        کلاس FileWriter یکی از کلاس های Output در جاوا و کاتلین است و مانند PrintWriter
         میتونیم مستقیم از متد های خودش استفاده کنیم.
       </p>
     </div>
@@ -453,13 +457,13 @@ val output = PrintWriter(FileWriter(file, true))
   <section id="p3">
     <h2>خلاصه</h2>
     <ul>
-      <li>کلاس PrintWriter در جاوا برای نوشتن داده های متنی در فایل است.</li>
+      <li>کلاس PrintWriter در جاوا و کاتلین برای نوشتن داده های متنی در فایل است.</li>
       <li>
         بعد از انجام عملیات خوندن و نوشتن باید با استفاده از متد close فایل رو
         ببندیم.
       </li>
       <li>
-        با try-with-resources در جاوا کلاس هایی که از AutoClosable ارث بری میکنن
+        با try-with-resources در جاوا و کاتلین کلاس هایی که از AutoClosable ارث بری میکنن
         بدون نیاز به صدا زدن متد close به طور خودکار در آخر کار بسته میشن.
       </li>
       <li>در کاتلین بجای try-with-resources از تابع use استفاده میکنیم.</li>
@@ -477,7 +481,7 @@ val output = PrintWriter(FileWriter(file, true))
   <a href="exceptions.html">اکسپشن ها</a>
 </li>
 <li>
-  <a href="file.html">کلاس File</a>
+  <a href="file.html">کلاس File در جاوا و کاتلین</a>
 </li>
 
 <li>

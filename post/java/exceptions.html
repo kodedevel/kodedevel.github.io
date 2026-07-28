@@ -30,6 +30,12 @@ layout: default
     </ul>
   </nav>
 
+
+  <aside class="note">
+    <p class="note-head">توجه</p>
+    <p>مثال های این مطلب برای هردو زبان جاوا و کاتلین نوشته شده و این یک مطلب مشترک برای جاوا و کاتلین است.</p>
+  </aside>
+
   <section id="p0">
     <h2>آشنایی با اکسپشن</h2>
 
@@ -42,11 +48,6 @@ layout: default
       اکسپشن ها انواع مختلفی دارن که در ادامه با عملکرد و نحوه ی استفاده ازشون
       آشنا میشیم.
     </p>
-
-    <div class="note">
-      <p class="note-head">توجه</p>
-      <p>این مطلب برای کسایی که با کاتلین سروکار دارند نیز قابل مطالعه است.</p>
-    </div>
 
     <p>
       در زیر یک آرایه به طول ۶ تعریف کردیم؛ برنامه از کاربر میخواد شماره ی یکی
@@ -531,8 +532,9 @@ fun quotient(number0: Int, number1: Int): Int{
       </p>
 
       <p>
-        تمام اکسپشن ها حداقل دوتا کانستراکتور دارن یکی کانستراکتور بدون پارامتر و دیگری کانستراکتور با پارامتر از نوع
-        String که هنگام ایجاد نمونه ی جدید پیغام خطا رو نشون میده.
+        تمام اکسپشن ها حداقل دو سازنده (constructor) دارن، یکی سازنده (constructor) بدون پارامتر و دیگری سازنده
+        (constructor) با پارامتر از نوع
+        String که توضیحات خطا رو میتونیم به عنوان پارامتر بهش پاس بدیم.
       </p>
 
       <p>
@@ -687,7 +689,7 @@ System.out.println("Perimeter of circle c0: " + c0.getPerimeter());
 
 System.out.println();
 
-//اختصاص دادن عمدی مقدار منفی به کانستراکتور کلاس دایره برای بیرون انداختن اکسپشن
+//اختصاص دادن عمدی مقدار منفی به سازنده (constructor) کلاس دایره برای بیرون انداختن اکسپشن
 Circle c1 = new Circle(-2);
 System.out.println("Radius of circle c1: " + c1.getRadius());
 System.out.println("Area of circle c1: " + c1.getArea());
@@ -701,7 +703,7 @@ println("Perimeter of circle c0: ${c0.getPerimeter()}");
 
 println();
 
-//اختصاص دادن عمدی مقدار منفی به کانستراکتور کلاس دایره برای بیرون انداختن اکسپشن
+//اختصاص دادن عمدی مقدار منفی به سازنده (constructor) کلاس دایره برای بیرون انداختن اکسپشن
 val c1 = new Circle(-2);
 println("Radius of circle c1: ${c1.getRadius()}");
 println("Area of circle c1: ${c1.getArea()}" + );

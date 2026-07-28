@@ -35,11 +35,11 @@
 
         <div class="subject-list-container" id="{{ category.id }}">
           {% assign metadata_list = category.metadata_list %}
-          <ul>
+          <ol>
             {% for metadata in metadata_list %}
             <li><a href="{{metadata.link}}">{{ metadata.title }}</a></li>
             {% endfor %}
-          </ul>
+          </ol>
         </div>
 
       </div>

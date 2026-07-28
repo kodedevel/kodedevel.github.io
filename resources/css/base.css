@@ -57,6 +57,7 @@ figcaption{
 
 pre{
   font-family: "JetBrains Mono", monospace;
+  font-variant-ligatures: none;
   font-size: 0.9em;
   margin: 0;
   border-right: 1px solid #bdbdbd;

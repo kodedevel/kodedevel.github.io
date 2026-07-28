@@ -19,17 +19,22 @@ layout: default
     <h2>بررسی کلیدواژه ی final</h2>
 
     <p>
-      کلیدواژه ی <strong>final</strong> یک
-      <strong>کلاس، متد یا متغیر</strong> رو برامون نهایی میکنه؛ اگه کلاس رو با final تعریف کنیم،
-      نمیتونیم از کلاس ارث بری کنیم، اگه متد رو با final تعریف کنیم، نمیتونیم متد رو بازنویسی (Override) کنیم و اگه
-      یک متغیر رو با final تعریف کنیم، مقدارش ثابته و تغییر نمیکنه.
+      از کلیدواژه <strong>final</strong> میتونیم برای تعریف کلاس، متد و متغیر استفاده کنیم، در ادامه به استفاده از final
+      در هر سه می پردازیم.
     </p>
-
 
     <section>
       <h3>تعریف کلاس final</h3>
-      <p>در مثال زیر یک کلاس رو با کلیدواژه ی final تعریف کردیم</p>
+      <p>اگه یک کلاس رو با کلیدواژه final در جاوا تعریف کنیم، نمیتونیم از کلاس ارث بری کنیم؛ در مثال زیر یک کلاس رو با
+        کلیدواژه ی final تعریف کردیم.</p>
 
+      <aside class="note">
+        <p class="note-head">توجه</p>
+        <p>
+          کلاس های <strong>abstract و اینترفیس ها</strong> رو نمیتونیم با final
+          تعریف کنیم.
+        </p>
+      </aside>
 
       <div class="sample">
         <div class="snippet-container">
@@ -40,19 +45,19 @@ public final class MyFinalClass{
                         </pre>
         </div>
       </div>
-      <div class="note">
-        <p class="note-head">توجه</p>
-        <p>
-          کلاس های <strong>abstract و اینترفیس ها</strong> رو نمیتونیم با final
-          تعریف کنیم.
-        </p>
-      </div>
+
     </section>
 
     <section>
       <h3>تعریف متد final</h3>
 
-      <p>در مثال زیر یک متد رو با کلیدواژه ی final تعریف کردیم.</p>
+      <p>اگه از کلیدواژه final برای متد در جاوا استفاده کنیم، هنگام ارث بری نمیتونیم متد رو بازنویسی (Override) کنیم؛‌در
+        مثال زیر یک متد رو با کلیدواژه ی final تعریف کردیم.</p>
+
+      <aside class="note">
+        <p class="note-head">توجه</p>
+        <p>متد های ابستراکت رو نمیشه با final تعریف کنیم.</p>
+      </aside>
 
       <div class="sample">
         <div class="snippet-container">
@@ -68,18 +73,22 @@ public class MyClass{
         </div>
       </div>
 
-      <div class="note">
-        <p class="note-head">توجه</p>
-        <p>متد های ابستراکت رو نمیشه با final تعریف کنیم.</p>
-      </div>
-
     </section>
 
     <section>
       <h3>تعریف متغیر final</h3>
       <p>
-        در مثال زیر متغیر ها رو با کلیدواژه ی final تعریف کردیم.
+        اگه یک متغیر رو با کلیدواژه final در جاوا تعریف کنیم مقدار متغیر ثابت میمونه و نمیتونیم تغییرش بدیم؛ در مثال زیر
+        متغیر ها رو با کلیدواژه final تعریف کردیم.
       </p>
+
+      <aside class="note">
+        <p class="note-head">راهنمایی</p>
+        <p>
+          معمولا فیلد های ثابت یک کلاس رو با final و static تعریف میکنیم و
+          اسمشونو با حروف بزرگ مینویسیم.
+        </p>
+      </aside>
 
       <div class="sample">
         <div class="snippet-container">
@@ -101,13 +110,7 @@ public class MyClass{
         </div>
       </div>
 
-      <div class="note">
-        <p class="note-head">راهنمایی</p>
-        <p>
-          معمولا فیلد های ثابت یک کلاس رو با final و static تعریف میکنیم و
-          اسمشونو با حروف بزرگ مینویسیم.
-        </p>
-      </div>
+
     </section>
 
   </section>
