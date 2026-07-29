@@ -8,19 +8,19 @@ layout: default
     <div>دسترسی سریع</div>
     <ul>
       <li>
-        <a href="#p0">مفهوم رقابت بین نخ ها (race condition) و همگام سازی (synchronizing)</a>
+        <a href="#p0">مفهوم رقابت بین نخ ها (race condition) و همگام‌سازی (synchronizing)</a>
       </li>
       <li>
         <a href="#p1">داده (متغیر) های volatile</a>
       </li>
       <li>
-        <a href="#p2">همگام سازی با synchronized</a>
+        <a href="#p2">همگام‌سازی با synchronized</a>
       </li>
       <li>
         <a href="#p3">همکاری بین نخ ها با متدهای wait, notify و notifyAll</a>
       </li>
       <li>
-        <a href="#p4">همگام سازی با کلاس ReentrantLock</a>
+        <a href="#p4">همگام‌سازی با کلاس ReentrantLock</a>
       </li>
       <li>
         <a href="#p5">محدود کردن دسترسی تعداد نخ ها به داده با کلاس Semaphore</a>
@@ -44,7 +44,7 @@ layout: default
   </aside>
 
   <section id="p0">
-    <h2>مفهوم رقابت بین نخ ها (race condition) و همگام سازی (synchronizing)</h2>
+    <h2>مفهوم رقابت بین نخ ها (race condition) و همگام‌سازی (synchronizing)</h2>
 
     <p>زمانی که چند نخ به طور همزمان بخوان یک داده رو تغییر بدن، ممکنه باعث خراب شدن داده
       بشن و اصطلاحا میگیم <strong>data corruption</strong> رخ داده، فرض کنید میخوایم یک متغیر رو با دو عدد به طور همزمان
@@ -157,7 +157,7 @@ private class Account {
       پلا نشون میده که از ۱۰۰ کمترن علت این موضوع بخاطر تغییر دادن مقدار فیلد score به صورت همزمان توسط چند نخ است.</p>
 
     <p>برای جلوگیری از این وضعیت باید تا پایان کار هر نخ (thread) جلوی دسترسی سایر نخ (thread) ها به داده رو بگیریم و
-      اصطلاحا داده رو قفل کنیم، که بهش همگام سازی داده با نخ ها (thread synchronization)
+      اصطلاحا داده رو قفل کنیم، که بهش همگام‌سازی داده با نخ ها (thread synchronization)
       میگیم.</p>
   </section>
 
@@ -444,16 +444,16 @@ private class Account {
 
 
   <section id="p2">
-    <h2> همگام سازی با synchronized</h2>
+    <h2> همگام‌سازی با synchronized</h2>
 
-    <blockquote>همگام سازی در چندنخی یعنی هماهنگ کردن اجرای نخ هایی که به هم وابسته هستن.</blockquote>
+    <blockquote>همگام‌سازی در چندنخی یعنی هماهنگ کردن اجرای نخ هایی که به هم وابسته هستن.</blockquote>
 
-    <p>برای جلوگیری از race condition میتونیم از synchronized برای همگام سازی استفاده کنیم،
+    <p>برای جلوگیری از race condition میتونیم از synchronized برای همگام‌سازی استفاده کنیم،
       زمانی که از synchronized استفاده بشه، داده قفل میشه و تا زمانی که کار نخ (thread)
       تموم نشده، نخ های دیگه به داده دسترسی ندارن.</p>
 
-    <p>از کلیدواژه ی synchronized میتونیم برای همگام سازی آبجکت و متد در جاوا استفاده کنیم و برای همگام سازی
-      تابع در کاتلین از <strong dir="ltr">@Synchronized</strong> و برای همگام سازی آبجکت در کاتلین از <a
+    <p>از کلیدواژه ی synchronized میتونیم برای همگام‌سازی آبجکت و متد در جاوا استفاده کنیم و برای همگام‌سازی
+      تابع در کاتلین از <strong dir="ltr">@Synchronized</strong> و برای همگام‌سازی آبجکت در کاتلین از <a
         href="/post/kotlin//inline-functions.html">تابع خطی (inline function)</a> <strong
         dir="ltr">synchronized</strong> استفاده
       کنیم.</p>
@@ -465,7 +465,7 @@ private class Account {
     </aside>
 
     <section>
-      <h3>همگام سازی آبجکت با synchronized</h3>
+      <h3>همگام‌سازی آبجکت با synchronized</h3>
 
       <p>با synchronized میتونیم آبجکت رو قفل کنیم تا هنگام استفاده از آبجکت توسط چند نخ
         (Thread) دچار race condition نشیم، هنگام استفاده ی نخ (thread) از آبجکت synchronized، آبجکت قفل میشه و نخ های
@@ -520,7 +520,7 @@ private class IncrementScoreByOne : Runnable {
     </section>
 
     <section>
-      <h3>همگام سازی متد (تابع) با synchronized</h3>
+      <h3>همگام‌سازی متد (تابع) با synchronized</h3>
       <p>
         با synchronized میتونیم متد (تابع) رو قفل کنیم تا هنگام استفاده از تابع توسط چند نخ دچار race condition نشیم.
         هنگام استفاده ی نخ (thread) از متد synchronized، متد قفل میشه و تا پایان کار نخ های دیگه ازش نمیتونن استفاده
@@ -758,8 +758,8 @@ private class ConsumerProducer{
   </section>
 
   <section id="p4">
-    <h2>همگام سازی با کلاس ReentrantLock</h2>
-    <blockquote>با استفاده از Lock و condition میتونیم به صورت آشکار (explicitly) داده ها رو با نخ ها همگام سازی کنیم.
+    <h2>همگام‌سازی با کلاس ReentrantLock</h2>
+    <blockquote>با استفاده از Lock و condition میتونیم به صورت آشکار (explicitly) داده ها رو با نخ ها همگام‌سازی کنیم.
     </blockquote>
 
     <p>با synchronized یک <strong>قفل پنهانی (implicit lock)</strong> روی نمونه قرار میدیم و متد یا آبجکت برای نخ های
