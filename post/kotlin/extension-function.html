@@ -33,9 +33,7 @@ layout: default
     <blockquote>
       در این مطلب فرض شده با شی گرایی و توابع (متدها) در کاتلین آشنایی دارید.
       اگه با توابع در کاتلین اشنایی ندارید میتونید به مطلب
-      <a class="text-decoration-none" href="/post/kotlin/functions.html"
-        >بررسی توابع در کاتلین</a
-      >
+      <a class="text-decoration-none" href="/post/kotlin/functions.html">بررسی توابع در کاتلین</a>
       مراجعه کنید.
     </blockquote>
 
@@ -51,9 +49,7 @@ layout: default
     <p>
       با اینکه اکستنشن ها مانند اعضای کلاس صدا زده میشن اما عضوی به کلاس اضافه
       نمیکنن و
-      <a class="text-decoration-none" href="/post/java/static-keyword.html"
-        >استاتیک</a
-      >
+      <a href="/post/java/static-keyword.html">استاتیک</a>
       در نظر گرفته میشن. مثلا اگه برای دو کلاس تابع اکستنشن یکسان تعریف کرده
       باشیم، و دو کلاس از همدیگ ارث ببرن بدون توجه به وراثت؛ زمان کامپایل مشخص
       میشه تابع اکستنشن کدوم کلاس اجرا میشه.
@@ -61,11 +57,7 @@ layout: default
 
     <p>
       معمولا اکستنشن ها رو داخل فایل کاتلین؛ یعنی به صورت
-      <a
-        class="text-decoration-none"
-        href="https://kodedevel.github.io/post/kotlin/functions.html#p8"
-        >Top Level</a
-      >
+      <a href="https://kodedevel.github.io/post/kotlin/functions.html#p8">Top Level</a>
       تعریف میکنیم.
     </p>
 
@@ -76,7 +68,7 @@ layout: default
   </section>
 
   <section id="p1">
-    <h2>تابع اکستنشن</h2>
+    <h2>تابع اکستنشن (Extension Function)</h2>
 
     <p>به توابعی گفته میشه که برای یک کلاس، در خارج از کلاس تعریف میکنیم.</p>
 
@@ -87,11 +79,10 @@ layout: default
         <pre class="snippet Kotlin">
 fun &lt;T&gt; MyClass&lt;T&gt;.myFunction(...){
 
-    ....
+    //Execute codes here
 
 }
-                    </pre
-        >
+                    </pre>
       </div>
     </div>
 
@@ -114,8 +105,7 @@ fun &lt;T&gt; MyClass&lt;T&gt;.myFunction(...){
         <pre class="snippet Kotlin">
 val myClass = MyClass&lt;T&gt;()
 myClass.myFunction(...)
-                    </pre
-        >
+                    </pre>
       </div>
     </div>
 
@@ -127,7 +117,6 @@ myClass.myFunction(...)
       </p>
     </div>
 
-    <p>مثال:</p>
     <p>
       یک function به کلاس String اضافه کردیم که بررسی میکنه یک String متقارن است
       یا خیر
@@ -153,12 +142,10 @@ fun main(){
   println("is $s2 palindrome? ${s2.isPalindrome()}")
   println("is $s3 palindrome? ${s3.isPalindrome()}")
 }
-                    </pre
-        >
+                    </pre>
       </div>
     </div>
 
-    <p>مثال:</p>
     <p>اجرای تابع اکستنشن از دو کلاس پدر و فرزند.</p>
 
     <div class="sample">
@@ -184,8 +171,7 @@ fun main(){
   show(A())
   show(ChildA())
 }
-                    </pre
-        >
+                    </pre>
       </div>
     </div>
     <p>
@@ -194,7 +180,7 @@ fun main(){
       printInfo مربوط به A است. چون پارامتر show از نوع A است.
     </p>
 
-    <h3>استفاده از کلیدواژه ی this داخل تابع:</h3>
+    <h3>استفاده از کلیدواژه ی this داخل تابع</h3>
 
     <p>
       داخل تابع اکستنشن با کلید واژه ی this میتونیم به نمونه کلاس و اعضای کلاس
@@ -213,8 +199,7 @@ fun MutableList&lt;Int&gt;.swap(index1: Int, index2: Int) {
     this[index1] = this[index2]
     this[index2] = tmp
 }
-                    </pre
-        >
+                    </pre>
       </div>
     </div>
 
@@ -227,12 +212,11 @@ fun MutableList&lt;Int&gt;.swap(index1: Int, index2: Int) {
         <pre class="snippet Kotlin">
 val list = mutableListOf(96, 78, 44)
 list.swap(0, 2)
-                    </pre
-        >
+                    </pre>
       </div>
     </div>
 
-    <h3>تعریف تابع اکستنشن به صورت Generic:</h3>
+    <h3>تعریف تابع اکستنشن به صورت Generic</h3>
 
     <p>میتونیم توابع اکستنشن رو به صورت، جنریک تعریف کنیم.</p>
 
@@ -253,14 +237,13 @@ fun &lt;T&gt; MutableList&lt;T&gt;.swap(index1: Int, index2: Int) {
     this[index1] = this[index2]
     this[index2] = tmp
 }
-                    </pre
-        >
+                    </pre>
       </div>
     </div>
   </section>
 
   <section id="p2">
-    <h2>اکستنشن پراپرتی در کاتلین</h2>
+    <h2>پراپرتی اکستنشن (Extension Property)</h2>
 
     <p>فرم کلی:</p>
 
@@ -269,8 +252,7 @@ fun &lt;T&gt; MutableList&lt;T&gt;.swap(index1: Int, index2: Int) {
         <pre class="snippet Kotlin">
 val &lt;T&gt; MyClass&lt;T&gt;.myProperty: Int
     get(){...}
-                    </pre
-        >
+                    </pre>
       </div>
     </div>
 
@@ -298,8 +280,7 @@ fun main(){
   println("is $num0 even? ${num0.even}")
   println("is $num1 even? ${num1.even}")
 }
-                    </pre
-        >
+                    </pre>
       </div>
     </div>
 
@@ -324,8 +305,7 @@ MyClass.Companion.myFunction(){
 //...
 
 }
-                    </pre
-        >
+                    </pre>
       </div>
     </div>
 
@@ -335,8 +315,7 @@ MyClass.Companion.myFunction(){
       <div class="snippet-container">
         <pre class="snippet Kotlin">
 MyClass.myFunction()
-                    </pre
-        >
+                    </pre>
       </div>
     </div>
   </section>
@@ -370,8 +349,7 @@ class MyExtensionReceiver{
     println("This is a message from MyExtensionReceiver")
   }
 }
-                      </pre
-        >
+                      </pre>
       </div>
     </div>
 
@@ -387,8 +365,7 @@ class MyDispatchReceiver(val er: MyExtensionReceiver){
   }
 
 }
-                      </pre
-        >
+                      </pre>
       </div>
     </div>
 
@@ -422,8 +399,7 @@ class MyDispatchReceiver(val er: MyExtensionReceiver){
   }
 
 }
-                      </pre
-        >
+                      </pre>
       </div>
     </div>
 
@@ -484,8 +460,7 @@ fun main() {
     cb.call(A())
     cb.call(ChildA())
 }
-                      </pre
-        >
+                      </pre>
       </div>
     </div>
 
@@ -539,8 +514,7 @@ myObject.myExtensionFunction()
 val list = myObject.myExtensionProperty
 
 MyClass.myExtensionCompanionFunction()
-            </pre
-        >
+            </pre>
       </div>
     </div>
   </section>
@@ -558,18 +532,12 @@ MyClass.myExtensionCompanionFunction()
   <a href="/post/kotlin/functions.html">بررسی توابع در کاتلین</a>
 </li>
 <li>
-  <a href="/post/kotlin/anonymous-function-and-lambda.html"
-    >توابع بی نام و عبارات لامبدا در کاتلین</a
-  >
+  <a href="/post/kotlin/anonymous-function-and-lambda.html">توابع بی نام و عبارات لامبدا در کاتلین</a>
 </li>
 <li>
-  <a href="/post/kotlin/higher-order-functions.html"
-    >توابع مرتبه ی بالا در کاتلین</a
-  >
+  <a href="/post/kotlin/higher-order-functions.html">توابع مرتبه ی بالا در کاتلین</a>
 </li>
 <li>
-  <a href="https://kotlinlang.org/docs/extensions.html"
-    >سایت رسمی کاتلین برای مطالعه موضوع</a
-  >
+  <a href="https://kotlinlang.org/docs/extensions.html">سایت رسمی کاتلین برای مطالعه موضوع</a>
 </li>
 {% endcapture %} {% include article-foot.html relative_links = relative_links %}

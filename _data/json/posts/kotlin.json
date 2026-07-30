@@ -35,14 +35,6 @@
       "link": "/post/kotlin/functions.html"
     },
     {
-      "title": "آموزش تابع و پراپرتی اکشتنشن در کاتلین",
-      "description": "آموزش اکستنشن ها در کاتلین؛ اکستنشن فانکشن (Extension Function)، اکستنشن پراپرتی (Extension Property)  و بررسی Companion Object به همراه مثال.",
-      "datePublished": "2025-09-12",
-      "lastModified": "2026-07-30",
-      "imgCover": "/resources/image/kotlin/cover_extensions.png",
-      "link": "/post/kotlin/extension-function.html"
-    },
-    {
       "title": "آموزش توابع در کاتلین: عبارت لامبدا و تابع بی نام",
       "description": "آموزش توابع در کاتلین؛ بررسی عبارت لامبدا (Lambda expression) و تابع بی نام (anonymous functions) و تعریف توابع لفظی با عبارات لامبدا به همراه بررسی موارد استفاده در برنامه نویسی تابعی و اندروید.",
       "datePublished": "2025-09-12",
@@ -131,7 +123,15 @@
       "link": "/post/kotlin/polymorphism.html"
     },
     {
-      "title": "آموزش کلاس های ابستراکت (Abstract) یا انتزاعی",
+      "title": "آموزش تابع و پراپرتی اکشتنشن در کاتلین",
+      "description": "آموزش اکستنشن ها در کاتلین؛ اکستنشن فانکشن (Extension Function)، اکستنشن پراپرتی (Extension Property)  و بررسی Companion Object به همراه مثال.",
+      "datePublished": "2025-09-12",
+      "lastModified": "2026-07-30",
+      "imgCover": "/resources/image/kotlin/cover_extensions.png",
+      "link": "/post/kotlin/extension-function.html"
+    },
+    {
+      "title": "آموزش کلاس های ابستراکت (Abstract) یا انتزاعی در کاتلین",
       "description": "کلاس انتزاعی چیست؟ آموزش کلاس های ابستراکت (Abstract) در کاتلین به همراه مثال های مفهومی.",
       "datePublished": "2025-09-12",
       "lastModified": "2026-07-30",
@@ -147,7 +147,7 @@
       "link": "/post/kotlin/interfaces.html"
     },
     {
-      "title": "کلاس های تودرتو (Nested) و داخلی (Inner) در کاتلین",
+      "title": "کلاس های تودرتو (Nested Classes) و داخلی در کاتلین",
       "description": "آموزش کلاس های تودرتو (Nested Classes) و کلاس  های داخلی (Inner Classes) در کاتلین به همراه مثال از نحوه ی عملکرد کلاس OnClickListener اندروید.",
       "datePublished": "2025-09-12",
       "lastModified": "2026-07-30",

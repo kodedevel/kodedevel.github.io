@@ -7,73 +7,75 @@ layout: default
     <div>دسترسی سریع</div>
     <ul>
       <li>
-        <a href="#p0">حلقه ی for</a>
+        <a href="#p0">تعریف حلقه</a>
       </li>
       <li>
-        <a href="#p1">کلید واژه ی break و continue</a>
+        <a href="#p1">حلقه ی for</a>
       </li>
       <li>
-        <a href="#p2">حلقه ی while</a>
+        <a href="#p2">کلید واژه ی break و continue</a>
       </li>
       <li>
-        <a href="#p3">حلقه ی do-while</a>
+        <a href="#p3">حلقه ی while</a>
       </li>
       <li>
-        <a href="#p4">حلقه های تو در تو</a>
+        <a href="#p4">حلقه ی do-while</a>
       </li>
       <li>
-        <a href="#p5">خلاصه</a>
+        <a href="#p5">حلقه های تو در تو</a>
+      </li>
+      <li>
+        <a href="#p6">خلاصه</a>
       </li>
     </ul>
   </nav>
 
   <section id="p0">
-    <h2>حلقه ی for</h2>
+    <h2>تعریف حلقه</h2>
 
     <blockquote>برای تکرار یک عمل از حلقه استفاده میکنیم</blockquote>
 
-    <p>به دو روش میشه از حلقه ی for استفاده کرد.</p>
+    <p>در دستورات شرطی زمانی که شرط برقرار باشه، کد های داخل بلوک شرط یک بار اجرا شده و از شرط خارج میشیم، در حلقه ها تا
+      زمانی که شرط
+      برقرار باشه، کد های داخل حلقه تکرار میشه.</p>
+
+    <p>در کاتلین سه نوع حلقه ی <strong>for</strong>، <strong>while</strong> و <strong>do-while</strong> وجود داره که
+      هرکدوم ويژگی ها و موارد استفاده ی خاص خودشونو دارن.</p>
+
+  </section>
+
+  <section id="p1">
+    <h2>حلقه ی for</h2>
+
+
+    <p>در کاتلین به دو روش <strong>foreach</strong> و <strong>index-based</strong> میشه از حلقه ی for استفاده کرد.</p>
+
 
     <section>
-      <h3>روش foreach</h3>
+      <h3>استفاده از حلقه for به روش foreach</h3>
 
-      <p>
-        در کاتلین همه چیز object است دونستن این موضوع میتونه به درک بهتر حلقه ی
-        for در کاتلین کمک کنه.
-      </p>
-
-      <p>
-        همین طور که گفتیم حلقه برای تکرار یک عمل مورد استفاده قرار میگیره روش
-        foreach برای هر ابجکتی که تابع iterator براش تعریف شده باشه قابل استفاده
-        است.
-      </p>
+      <p>روش foreach برای آرایه ها و هر آبجکتی که Iterator رو پیاده سازی کرده باشه قابل استفاده است.</p>
+      <p>در روش foreach حلقه به ازای هر عنصری که در آرایه وجود داره، یک بار تکرار میشه تا به آخرین عنصر برسه، پس شرط
+        تکرار حلقه رسیدن به آخرین عنصر آرایه است.</p>
 
       <p>فرم کلی:</p>
 
       <div class="sample">
         <div class="snippet-container">
           <pre class="snippet Kotlin">
-val myClass = MyClass(...)
-for(element in myClass){
+for(element in myArray){
 
-    //do some works with element
-    ...
+    //Execute codes inside loop
 
 }
                   </pre>
         </div>
       </div>
-      <p>
-        عضو MyClass است. با for به ترتیب element هایی که myClass داره رو صدا
-        میزنیم.
-      </p>
 
       <aside class="note">
         <p class="note-head">توجه:</p>
-        <p>نکته: element یک اسم دلخواهه و هر اسمی میتونه باشه</p>
+        <p>اسم element دلخواهه و هر اسمی میتونه باشه.</p>
       </aside>
-
-      <p>مثال:</p>
 
       <p>خوندن اعضای ارایه با استفاده از روش foreach.</p>
 
@@ -86,8 +88,6 @@ for(element in myArray)
                   </pre>
         </div>
       </div>
-
-      <p>مثال:</p>
 
       <p>خوندن اعضای لیست با استفاده از روش foreach</p>
 
@@ -110,14 +110,16 @@ for(e in list){
     </section>
 
     <section>
-      <h3>روش index-based</h3>
+      <h3>استفاده از حلقه for به روش index-based</h3>
 
       <p>
         اگه با for بخوایم عمل تکرارو در محددوه ای از اعداد انجام بدیم به این روش
         index-based گفته میشه
       </p>
 
-      <p>مثال:</p>
+      <p>در مثال زیر تا زمانی که index به 100 نرسیده باشه حلقه تکرار میشه؛ با هربار تکرار یک واحد به index اضافه میشه و
+        زمانی که به 100 برسه حلقه متوقف میشه؛ در واقع شرط تکرار حلقه کوچیکتر بودن index از 100 است؛ برنامه اعداد 0 تا 99
+        رو نمایش میده.</p>
 
       <div class="sample">
         <div class="snippet-container">
@@ -128,11 +130,6 @@ for(index in 0 until 100){
                   </pre>
         </div>
       </div>
-
-      <p>
-        در مثال بالا برنامه اعداد 0 تا 99 رو نمایش میده. با هر تکرار یک واحد به
-        index اضافه میشه تا به 100 برسه و حلقه متوقف بشه
-      </p>
 
       <p>حالا اگه بخوایم خود عدد 100 هم تو محدوده وجود داشته باشه مینویسیم:</p>
 
@@ -269,13 +266,13 @@ for((index, element) in myArray.withIndex())
     </section>
   </section>
 
-  <section id="p1">
+  <section id="p2">
     <h2>کلید واژه ی break و continue</h2>
 
     <p>این کلید واژه ها داخل حلقه مورد استفاده قرار میگیرن.</p>
 
     <section>
-      <h3>۱- کلید واژه ی break:</h3>
+      <h3>کلیدواژه break</h3>
 
       <p>برای شکستن حلقه و جلو گیری از ادامه ی تکرار استفاده میشه</p>
 
@@ -300,11 +297,11 @@ println("Sum is $sum")
     </section>
 
     <section>
-      <h3>۲-کلید واژه ی continue:</h3>
+      <h3>کلیدواژه continue</h3>
 
       <p>برای جلو گیری از اجرای بقیه کد ها در داخل حلقه استفاده میشه</p>
 
-      <p>مثال:</p>
+      <p>در مثال زیر زمانی که number زوج باشه sum با number جمع نمیشه.</p>
 
       <div class="sample">
         <div class="snippet-container">
@@ -323,7 +320,7 @@ println("Sum of even numbers to 20 is $sum")
     </section>
   </section>
 
-  <section id="p2">
+  <section id="p3">
     <h2>حلقه ی while</h2>
 
     <p>حلقه ی while در کاتلین دارای دو بخشه:</p>
@@ -344,8 +341,6 @@ while(condition){
     <p>
       ۲- بدنه ی حلقه و اجرای کد های داخل آن پس از برقرار بودن شرط در هر تکرار
     </p>
-
-    <p>مثال:</p>
 
     <p>
       در مثال زیر برنامه یک عدد بین 0 تا 10 به صورت تصادفی ایجاد میکنه و کاربر
@@ -390,7 +385,7 @@ println("Congratulations! you guessed correct");
     </p>
   </section>
 
-  <section id="p3">
+  <section id="p4">
     <h2>حلقه ی do while</h2>
 
     <p>
@@ -400,7 +395,7 @@ println("Congratulations! you guessed correct");
 
     <div class="sample">
       <div class="snippet-container">
-        <pre class="snippet">
+        <pre class="snippet kotlin">
 do{
 
   //Execute codes inside loop
@@ -437,8 +432,8 @@ println("The sum is $sum");
     </div>
   </section>
 
-  <section id="p4">
-    <h2>حلقه های تو در تو (nested loops)</h2>
+  <section id="p5">
+    <h2>حلقه های تودرتو (nested loops)</h2>
     <p>
       اگه بخوایم داخل یک حلقه، حلقه ی دیگه ای استفاده کنیم ازش به عنوان حلقه های
       تو در تو یاد میکنیم.
@@ -467,7 +462,7 @@ for(i in 0 until 100){
     </p>
   </section>
 
-  <section id="p5">
+  <section id="p6">
     <h2>خلاصه</h2>
 
     <ul>

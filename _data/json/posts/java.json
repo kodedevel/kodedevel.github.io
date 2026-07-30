@@ -38,7 +38,7 @@
       "title": "آموزش حلقه ها (for foreach while do-while) در جاوا",
       "description": "آموزش جامع انواع حلقه ها (for foreach while و do-while) در جاوا به همراه مثال های کاربردی",
       "datePublished": "2025-09-12",
-      "lastModified": "2026-07-29",
+      "lastModified": "2026-07-30",
       "imgCover": "/resources/image/java/cover_loops.png",
       "link": "/post/java/loops.html"
     },
@@ -46,7 +46,7 @@
       "title": "آموزش متد (تابع) در جاوا + مفهوم Overloading",
       "description": "متد در جاوا چیست؟‌ آموزش نحوه تعریف متد، ارسال پارامتر ها به متد و متد های void با بررسی کامل مفهوم اورلودینگ (Method Overloading) با مثال.",
       "datePublished": "2025-09-12",
-      "lastModified": "2026-07-29",
+      "lastModified": "2026-07-30",
       "imgCover": "/resources/image/java/cover_method.png",
       "link": "/post/java/methods.html"
     },
@@ -54,7 +54,7 @@
       "title": "شی گرایی در جاوا: آموزش کلاس و آبجکت (شی) به زبان ساده",
       "description": "شروع آموزش شی گرایی؛ آموزش ساخت کلاس، ایجاد شی (Object)، نحوه کار با سازنده (Constructor) و کپسوله سازی (encapsulation) به زبان ساده + مثال های عملی",
       "datePublished": "2025-09-12",
-      "lastModified": "2026-07-29",
+      "lastModified": "2026-07-30",
       "imgCover": "/resources/image/java/cover_objects_and_classes.png",
       "link": "/post/java/objects-and-classes.html"
     },

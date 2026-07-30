@@ -243,7 +243,7 @@ System.out.println("The character for code  " + code + " is " + ch);
 
     <p>
       دو کلاس FileInputStream و FileOutputStream به ترتیب از کلاس های
-      InputStream و OutputStream ارث بری کردن در ادامه سازنده (constructor) های تعریف شده
+      InputStream و OutputStream ارث بری کردن در ادامه کانستراکتور (سازنده) های تعریف شده
       در این دو کلاس رو بررسی میکنیم.
     </p>
 
@@ -261,14 +261,14 @@ System.out.println("The character for code  " + code + " is " + ch);
         <tr>
           <td class="tDataLTR">+FileInputStream(path: String)</td>
           <td class="tDataRTL">
-            یک نمونه از FileInputStream با پاس دادن String به سازنده (constructor) ایجاد
+            یک نمونه از FileInputStream با پاس دادن String به کانستراکتور (سازنده) ایجاد
             میکنه؛ String مسیر فایل مورد نظر است.
           </td>
         </tr>
         <tr>
           <td class="tDataLTR">+FileInputStream(file: File)</td>
           <td class="tDataRTL">
-            یک نمونه از FileInputStream با پاس دادن File به سازنده (constructor) ایجاد
+            یک نمونه از FileInputStream با پاس دادن File به کانستراکتور (سازنده) ایجاد
             میکنه.
           </td>
         </tr>
@@ -286,7 +286,7 @@ System.out.println("The character for code  " + code + " is " + ch);
         <tr>
           <td class="tDataLTR">+FileOutputStream(path: String)</td>
           <td class="tDataRTL">
-            یک نمونه از FileOutputStream با پاس دادن String به سازنده (constructor) ایجاد
+            یک نمونه از FileOutputStream با پاس دادن String به کانستراکتور (سازنده) ایجاد
             میکنه؛ String مسیر فایل مورد نظر است.
           </td>
         </tr>
@@ -297,7 +297,7 @@ System.out.println("The character for code  " + code + " is " + ch);
           </td>
           <td class="tDataRTL">
             یک نمونه از FileOutputStream با پاس دادن String و مقدار boolean به
-            سازنده (constructor) ایجاد میکنه؛ String مسیر فایل مورد نظر است و اگه فایل از
+            کانستراکتور (سازنده) ایجاد میکنه؛ String مسیر فایل مورد نظر است و اگه فایل از
             قبل وجود داشته باشه و مقدار boolean برابر با true باشه داده ها رو
             ادامه ی فایل می نویسه و اگه false باشه فایل رو حذف کرده و یک فایل جدید
             ایجاد میکنه.
@@ -307,7 +307,7 @@ System.out.println("The character for code  " + code + " is " + ch);
         <tr>
           <td class="tDataLTR">+FileOutputStream(file: File)</td>
           <td class="tDataRTL">
-            یک نمونه از FileOutputStream با پاس دادن File به سازنده (constructor) ایجاد
+            یک نمونه از FileOutputStream با پاس دادن File به کانستراکتور (سازنده) ایجاد
             میکنه.
           </td>
         </tr>
@@ -317,7 +317,7 @@ System.out.println("The character for code  " + code + " is " + ch);
             +FileOutputStream(file: File, append: boolean)
           </td>
           <td class="tDataRTL">
-            یک نمونه از FileOutputStream با پاس دادن File به سازنده (constructor) ایجاد
+            یک نمونه از FileOutputStream با پاس دادن File به کانستراکتور (سازنده) ایجاد
             میکنه. اگه فایل از قبل وجود داشته باشه و مقدار boolean برابر با true
             باشه داده ها رو ادامه ی فایل می نویسه و اگه false باشه فایل رو حذف
             کرده و یک فایل جدید ایجاد میکنه.
@@ -425,7 +425,7 @@ fun main() {
     </figure>
 
     <p>
-      برای این کلاس های DataInputStream و DataOutputStream فقط یک سازنده (constructor)
+      برای این کلاس های DataInputStream و DataOutputStream فقط یک کانستراکتور (سازنده)
       تعریف شده که به ترتیب مقادیری از جنس InputStream و OutputStream رو باید به
       صورت پارامتر بهشون پاس بدیم.
     </p>
@@ -648,9 +648,9 @@ val file = File("temp.dat")
     </figure>
 
     <p>
-      همانطور که در تصویر مشاهده میکنید برای هردو کلاس یک سازنده (constructor) تعریف شده
+      همانطور که در تصویر مشاهده میکنید برای هردو کلاس یک کانستراکتور (سازنده) تعریف شده
       که هنگام نمونه سازی از ObjectInputStream و ObjectOutputStream میتونیم به
-      ترتیب مقادیری از جنس InputStream و OutputStream رو به سازنده (constructor) هاشون
+      ترتیب مقادیری از جنس InputStream و OutputStream رو به کانستراکتور (سازنده) هاشون
       پاس بدیم.
     </p>
 

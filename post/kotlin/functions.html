@@ -53,11 +53,9 @@ layout: default
     </p>
 
     <p>
-      موضوع تابع و برنامه نویسی تابعی (<a
-        class="text-decoration-none"
-        href="https://en.wikipedia.org/wiki/Functional_programming"
-        >Functional Programming</a
-      >) در کاتلین به خوبی پشتیبانی میشه و کاتلین در این زمینه قوی عمل کرده.
+      موضوع تابع و برنامه نویسی تابعی (<a href="https://en.wikipedia.org/wiki/Functional_programming">Functional
+        Programming</a>) در کاتلین به خوبی
+      پشتیبانی میشه و کاتلین در این زمینه قوی عمل کرده.
     </p>
 
     <p>به تابع ، فانکشن (function) و متد گفته می شود.</p>
@@ -82,80 +80,67 @@ layout: default
     <p>فرم کلی ساختار یک تابع در تصویر زیرنمایان شده.</p>
 
     <figure>
-      <img
-        src="/resources/image/kotlin/function_structure.png"
-        alt=" ساختار تابع در کاتلین"
-        class="rounded figure-img img-fluid"
-      />
+      <img src="/resources/image/kotlin/kotlin_function_structure.png" alt=" ساختار تابع در کاتلین" />
       <figcaption class="figure-caption text-end p-2">
         ساختار تابع در کاتلین
       </figcaption>
     </figure>
 
-    <p>
-      ۱-بیان کننده ی
-      <a class="text-decoration-none" href="/post/kotlin/access-modifiers.html"
-        >سطح دسترسی</a
-      >
-      به تابع در پروژه است. سطح دسترسی میتونه private، protected، internal و
-      public باشه. به این کلیدواژه ها کلیدواژه های سطح دسترسی یا access modifier
-      گفته میشه.
-    </p>
 
-    <div class="note">
-      <p class="note-head">توجه:</p>
+    <section>
+      <h3>1- کلیدواژه fun</h3>
       <p>
-        سطح دسترسی توابع در کاتلین به صورت پیشفرض public است و نیازی به نوشتن
-        نداره.
+        با استفاده از کلیدواژه ی fun به کامپایلر اعلام میکنیم عبارت یک تابع
+        است.
       </p>
-    </div>
 
-    <p>
-      ۲- با استفاده از کلیدواژه ی fun به کامپایلر اعلام میکنیم عبارت یک تابع
-      است.
-    </p>
+    </section>
 
-    <p>۳- myFunction اسم تابع است و هر اسمی میتونه باشه.</p>
+    <section>
+      <h3>2- نام تابع</h3>
 
-    <p>
-      ۴- برای تابع میتونیم پارامتر هایی تعریف کنیم تا هنگام صدا زدن تابع مقادیری
-      به داخل تابع پاس بدیم. مثلا t0: T0 رو در نظر بگیرید t0 اسم دلخواه برای
-      پارامتر و T0 کلاسی از نوع دلخواه برای پارامتر است سپس با یک ویرگول میتونیم
-      پارامتر بعدی که در اینجا t1: T1 است رو برای فانکشن تعریف کنیم. به همین
-      ترتیب هرچندتا پارامتر خواستید میتونید برای تابع تعریف کنید.
-    </p>
+      <p>کلمه ی myFunction اسم تابع است و هر اسم دلخواهی میتونه باشه.</p>
+    </section>
 
-    <div class="note">
-      <p class="note-head">توجه:</p>
 
-      <p>هنگام استفاده از پارامتر داخل فانکشن در کاتلین، پارامتر val است.</p>
-    </div>
-
-    <p>۵- R کلاسیه که تابع بر میگردونه و هر نوعی میتونه باشه</p>
-
-    <p>
-      ۶- r مقداری از جنس R است که بعد از اجرای کد های داخل تابع با استفاده از
-      کلیدواژه ی return برگردونده میشه.
-    </p>
-
-    <div class="note">
-      <p class="note-head">توجه:</p>
-
+    <section>
+      <h3>3- پارامتر های تابع</h3>
       <p>
-        تابع حتما باید مقداری از جنس R برگردونه در غیر این صورت دچار خطای
-        کامپایل میشیم، مگه اینکه R از نوع Unit باشه، در اینصورت نیاری نیست چیزی
-        برگردونده بشه.
-      </p>
-    </div>
+        برای تابع میتونیم پارامتر هایی تعریف کنیم تا هنگام صدا زدن تابع مقادیری
+        به داخل تابع پاس بدیم. میتونیم با استفاده از ویرگول (,) یک یا چند پارامتر برای تابع تعریف کنیم.
 
-    <div class="note">
-      <p class="note-head">توجه:</p>
-      <p>
-        علاوه بر اخرین عبارت میتونیم از return هرجای تابع که خواستیم استفاده
-        کنیم، در اینصورت بعد از اجرای return تابع متوقف میشه و کد های بعد از
-        return اجرا نمیشه.
+        مقادیری که به عنوان پارامتر داخل تابع پاس میدیم به صورت <strong>val</strong> در تابع در نظر گرفته میشن.
       </p>
-    </div>
+    </section>
+
+
+    <section>
+      <h3>4- نوعی که تابع بر میگردونه</h3>
+      <p>R کلاسیه که تابع بر میگردونه و هر نوعی میتونه باشه</p>
+
+    </section>
+
+    <section>
+      <h3>5- مقداری که تابع بر میگردونه</h3>
+      <p>
+        r مقداری از جنس R است که با استفاده از
+        کلیدواژه ی return برگردونده میشه. میتونیم هرجای تابع که خواستیم مقدار r رو برگردونیم در اینصورت کد های بعد از
+        return داخل تابع اجرا نمیشن.
+      </p>
+      <aside class="note">
+        <p class="note-head">توجه</p>
+        <p>
+          تابع حتما باید مقداری از جنس R برگردونه در غیر این صورت دچار خطای
+          کامپایل میشیم، مگه اینکه R از نوع Unit باشه، در اینصورت نیاری نیست چیزی
+          برگردونده بشه.
+        </p>
+      </aside>
+    </section>
+
+    <p>علاوه بر مواردی که گفته شد، میتونیم با <a href="access-modifiers.html">کلیدواژه های سطح دسترسی</a>، دسترسی به
+      تابع
+      رو در پروژه تعیین کنیم.</p>
+
 
     <p>مثال:</p>
 
@@ -169,8 +154,7 @@ fun squareEven(a: Int): Int{
 
   return square
 }
-                  </pre
-        >
+                  </pre>
       </div>
     </div>
 
@@ -195,8 +179,7 @@ val t1: T1 = ...
 var tn: Tn = ...
 
 val returnedValue: R = myFunction(t0, t1, ..., tn)
-                  </pre
-        >
+                  </pre>
       </div>
     </div>
 
@@ -225,8 +208,7 @@ fun main(){
 fun max(a: Int, b: Int): Int {
   return if(a &lt; b) a else b
 }
-                  </pre
-        >
+                  </pre>
       </div>
     </div>
 
@@ -253,8 +235,7 @@ fun max(a: Double, b: Double): Double {
 fun max(a: Long, b: Long): Long {
   return if(a &lt; b) a else b
 }
-                  </pre
-          >
+                  </pre>
         </div>
       </div>
 
@@ -264,9 +245,10 @@ fun max(a: Long, b: Long): Long {
 
   <section id="p2">
     <h2>ویژگی پارامتر ها در توابع</h2>
+    <p>هنگام تعریف پارامتر برای تابع در کاتلین میتونیم یک سری ويژگی ها رو به پارامتر اختصاص بدیم.</p>
 
     <section>
-      <h3>۱- اختصاص دادن مقدار پیشفرض به پارامتر:</h3>
+      <h3>اختصاص دادن مقدار پیشفرض به پارامتر</h3>
 
       <p>
         هر پارامتری که برای تابع تعریف میکنید میتونید بهش مقدار پیشفرض اختصاص
@@ -285,8 +267,7 @@ fun max(a: Long, b: Long): Long {
 fun hello(name: String = "World"): String{
   return "Hello $name"
 }
-                  </pre
-          >
+                  </pre>
         </div>
       </div>
 
@@ -304,21 +285,18 @@ fun main(){
   
   println(helloKotlin)
 }
-                  </pre
-          >
+                  </pre>
         </div>
       </div>
     </section>
 
     <section>
-      <h3>نوشتن اسم پارامتر به صورت آشکار هنگام صدا زدن تابع:</h3>
+      <h3>نوشتن اسم پارامتر به صورت آشکار هنگام صدا زدن تابع</h3>
 
       <p>
         بعد از صدا زدن تابع هنگامی که بخوایم مقداری به پارامتر اختصاص بدیم،
         میتونیم اسم پارامتر رو به صورت آشکار بنویسیم.
       </p>
-
-      <p>مثال:</p>
 
       <p>تعریف تابع:</p>
 
@@ -329,8 +307,7 @@ fun multiply(number1: Double, number2: Double): Double{
 
   return number1 * number2
 }
-                  </pre
-          >
+                  </pre>
         </div>
       </div>
 
@@ -341,8 +318,7 @@ fun multiply(number1: Double, number2: Double): Double{
           <pre class="snippet Kotlin">
 val mult = multiply(number1 = 78.3, number2 = 36.0)
 println("Multiplication of 78.3 and 36 is $mult")
-                  </pre
-          >
+                  </pre>
         </div>
       </div>
     </section>
@@ -351,10 +327,8 @@ println("Multiplication of 78.3 and 36 is $mult")
       <h3>۳- استفاده از کلیدواژه ی vararg هنگام تعریف پارامتر:</h3>
 
       <p>
-        <strong
-          >توابع arrayOf ، listOf ، asList و ... با این روش پیاده‌سازی
-          شدن.</strong
-        >
+        <strong>توابع arrayOf ، listOf ، asList و ... با این روش پیاده‌سازی
+          شدن.</strong>
       </p>
 
       <p>
@@ -367,21 +341,20 @@ println("Multiplication of 78.3 and 36 is $mult")
         مقادیر اختصاص داده شده در میاد.
       </p>
 
-      <div class="note">
-        <p class="note-head">توجه:</p>
-
+      <aside class="note">
+        <p class="note-head">توجه</p>
         <p>از این کلید واژه فقط برای یک پارامتر میتونید استفاده کنید.</p>
-      </div>
+      </aside>
 
-      <div class="note">
-        <p class="note-head">توجه:</p>
+      <aside class="note">
+        <p class="note-head">توجه</p>
 
         <p>
           معمولا از این کلیدواژه در اخرین پارامتر استفاده میکنن. اگه از این
           کلیدواژه در اخرین پارامتر استفاده نشه هنگام صدا زدن تابع و اختصاص دادن
           مقدار به پارامتر باید اسم پارامتر به صورت آشکار نوشته بشه.
         </p>
-      </div>
+      </aside>
 
       <p>مثال:</p>
 
@@ -399,8 +372,7 @@ fun findAverage(vararg numbers: Double): Double{
 
   return sum / numbers.size
 }
-                  </pre
-          >
+                  </pre>
         </div>
       </div>
 
@@ -412,8 +384,7 @@ fun findAverage(vararg numbers: Double): Double{
 val average = findAverage(4, 7, 2, 9)
 
 println("Average is $average")
-                  </pre
-          >
+                  </pre>
         </div>
       </div>
 
@@ -436,8 +407,7 @@ fun countASCIIOccurrences(asciiCode: Int, vararg strings: String): Int{
 
   return count
 }
-                  </pre
-          >
+                  </pre>
         </div>
       </div>
 
@@ -451,8 +421,7 @@ val asciiCode = 65
 val asciiCodeOccurrences = countASCIIOccurrences(asciiCode, "Emily, "Adam", "Billy", "Michael")
 
 println("ASCII code $asciiCode has occurrences")
-                  </pre
-          >
+                  </pre>
         </div>
       </div>
     </section>
@@ -477,8 +446,7 @@ println("ASCII code $asciiCode has occurrences")
       <div class="snippet-container">
         <pre class="snippet Kotlin">
 fun multiply(number1: Double, number2: Double): Double = number1 * number2
-                  </pre
-        >
+                  </pre>
       </div>
     </div>
 
@@ -493,8 +461,7 @@ fun multiply(number1: Double, number2: Double): Double = number1 * number2
       <div class="snippet-container">
         <pre class="snippet Kotlin">
 fun multiply(number1: Double, number2: Double) = number1 * number2
-                  </pre
-        >
+                  </pre>
       </div>
     </div>
 
@@ -504,8 +471,7 @@ fun multiply(number1: Double, number2: Double) = number1 * number2
       <div class="snippet-container">
         <pre class="snippet Kotlin">
 fun max(a: Double, b: Double) = if(a &gt; b) a else b
-                  </pre
-        >
+                  </pre>
       </div>
     </div>
   </section>
@@ -535,8 +501,7 @@ fun hello(): Unit{
 
   return Unit
 }
-                  </pre
-        >
+                  </pre>
       </div>
     </div>
 
@@ -558,8 +523,7 @@ fun hello(): Unit{
 fun hello(){
   println("Hello World")
 }
-                  </pre
-        >
+                  </pre>
       </div>
     </div>
 
@@ -571,8 +535,7 @@ fun hello(){
 fun hello(name: String = "World!"){
   println("Hello $name")
 }
-                  </pre
-        >
+                  </pre>
       </div>
     </div>
 
@@ -590,8 +553,7 @@ fun printSquareEven(n: Int){
   println("Square of number $n is $square")
 
 }
-                  </pre
-        >
+                  </pre>
       </div>
     </div>
 
@@ -613,8 +575,7 @@ fun printGrade(score: Double){
     println('F')
   }
 }
-                  </pre
-        >
+                  </pre>
       </div>
     </div>
   </section>
@@ -633,11 +594,7 @@ fun printGrade(score: Double){
 
     <p>
       ۱-تابع باید عضو کلاس (Member Function) یا
-      <a
-        class="text-decoration-none"
-        href="/post/kotlin/extension-function.html#p1"
-        >تابع اکستنشن</a
-      >
+      <a class="text-decoration-none" href="/post/kotlin/extension-function.html#p1">تابع اکستنشن</a>
       باشه.
     </p>
 
@@ -655,8 +612,7 @@ fun printGrade(score: Double){
 infix fun myInfixFunction(t: T): R {
   ...
 }
-                  </pre
-        >
+                  </pre>
       </div>
     </div>
 
@@ -672,18 +628,17 @@ a myInfixFunction b
 //Or
 
 a.myInfixFunction(b)
-                  </pre
-        >
+                  </pre>
       </div>
     </div>
 
     <p>متغیر a رسیور (receiver) و متغیر b مقدار اختصاصی به پارامتر است.</p>
 
-    <div class="note">
-      <p class="note-head">توجه:</p>
+    <aside class="note">
+      <p class="note-head">توجه</p>
 
       <p>متغیر a باید یک آبجکت از کلاسی باشه که براش تابع رو تعریف کردیم.</p>
-    </div>
+    </aside>
 
     <p>مثال:</p>
 
@@ -695,19 +650,18 @@ a.myInfixFunction(b)
 infix fun String.chain(other: String): String {
   return this.plus(other)
 }
-                  </pre
-        >
+                  </pre>
       </div>
     </div>
 
-    <div class="note">
-      <p class="note-head">توجه:</p>
+    <aside class="note">
+      <p class="note-head">توجه</p>
 
       <p>
         کلیدواژه ی this اشاره به آبجکت همون کلاسی داره که تابع رو براش تعریف
         کردیم.
       </p>
-    </div>
+    </aside>
 
     <p>صدا زدن تابع</p>
 
@@ -717,8 +671,7 @@ infix fun String.chain(other: String): String {
 val s = "Hello!" 
 val chained = s chain " I have been chained to hello"
 println(chained)
-                  </pre
-        >
+                  </pre>
       </div>
     </div>
 
@@ -738,8 +691,7 @@ infix fun Int.to(to: Int): IntRange{
 
   return this..to
 }
-                  </pre
-        >
+                  </pre>
       </div>
     </div>
 
@@ -758,8 +710,7 @@ infix fun Int.downUntil(to: Int): IntProgression{
   return IntProgression.fromClosedRange(this, (to + 1) , -1)
 
 }
-                  </pre
-        >
+                  </pre>
       </div>
     </div>
 
@@ -769,13 +720,12 @@ infix fun Int.downUntil(to: Int): IntProgression{
       <div class="snippet-container">
         <pre class="snippet Kotlin">
 for(i in 100 downUntil 0) println(i)
-                  </pre
-        >
+                  </pre>
       </div>
     </div>
 
-    <div class="note">
-      <p class="note-head">توجه:</p>
+    <aside class="note">
+      <p class="note-head">توجه</p>
 
       <p>
         اجرای تابع infix نسبت به عمل ریاضی، rangeTo و کست کردن اولویت پایین تری
@@ -792,10 +742,10 @@ for(i in 100 downUntil 0) println(i)
         <strong>p until (8 + 5)</strong> است. ابتدا 8 با 5 جمع میشه بعد به تابع
         until پاس داده میشه.
       </p>
-    </div>
+    </aside>
 
-    <div class="note">
-      <p class="note-head">توجه:</p>
+    <aside class="note">
+      <p class="note-head">توجه</p>
 
       <p>اجرای تابع نسبت به عملگر های منطقی و in اولویت بالاتری داره.</p>
 
@@ -803,7 +753,7 @@ for(i in 100 downUntil 0) println(i)
         <strong>a && b xor c</strong> همون <strong>a && (b xor c)</strong> است.
         ابتدا تابع xor اجرا میشه بعد && بررسی میشه.
       </p>
-    </div>
+    </aside>
   </section>
 
   <section id="p6">
@@ -819,8 +769,7 @@ for(i in 100 downUntil 0) println(i)
 fun &lt;E&gt; myFunction(e: E): Type&lt;E&gt;{
     ...
 }
-                  </pre
-        >
+                  </pre>
       </div>
     </div>
 
@@ -840,8 +789,7 @@ fun &lt;E&gt; myList(vararg e: E): MutableList&lt;E&gt;{
 
   return list
 }
-                  </pre
-        >
+                  </pre>
       </div>
     </div>
 
@@ -851,8 +799,7 @@ fun &lt;E&gt; myList(vararg e: E): MutableList&lt;E&gt;{
       <div class="snippet-container">
         <pre class="snippet Kotlin">
 val myFriendList = myList&lt;String&gt;("Joe", "Rose", "Kate", "Jane")
-                  </pre
-        >
+                  </pre>
       </div>
     </div>
   </section>
@@ -864,18 +811,16 @@ val myFriendList = myList&lt;String&gt;("Joe", "Rose", "Kate", "Jane")
       با استفاده از کلیدواژه ی tailrec میتونید به صورت native تابع tail
       recursive در کاتلین تعریف کنید. tail recursion نوع خاصی از توابع بازگشتی
       است که صدا زدن تابع داخل خودش باید اخرین عبارت داخل تابع باشه.
+      در مورد توابع بازگشتی میتونید <a href="/post/algorithm/recursion.html">اینجا</a> مطالعه کنید.
     </p>
 
-    <div class="note">
-      <p class="note-head">توجه:</p>
-
+    <aside class="note">
+      <p class="note-head">توجه</p>
       <p>
         در تابع tail recursive پس از صدا کردن تابع در داخل خود تابع، هیچ کدی
         نباید نوشته بشه در غیر این صورت دچار خطای کامپایل میشیم.
       </p>
-    </div>
-
-    <p>مثال:</p>
+    </aside>
 
     <p>محاسبه ی فیبوناچی به روش tail recursion.</p>
 
@@ -890,8 +835,7 @@ tailrec fun printFib(n: Int, a: Int = 0, b: Int = 1){
     printFib(n - 1, b , a + b)
   }
 }
-                  </pre
-        >
+                  </pre>
       </div>
     </div>
 
@@ -901,15 +845,13 @@ tailrec fun printFib(n: Int, a: Int = 0, b: Int = 1){
       میشه تا n به 0 برسه در اینجا صدا زدن تابع متوقف میشه.
     </p>
 
-    <p>مثال:</p>
     <p>محاسبه ی فاکتوریل به روش tail recursion.</p>
 
     <div class="sample">
       <div class="snippet-container">
         <pre class="snippet Kotlin">
 tailrec fun fact(n: Int, result: Int = 1): Int = if(n &lt;= 1) result else fact(n -1 , n * result)
-                  </pre
-        >
+                  </pre>
       </div>
     </div>
 
@@ -937,7 +879,7 @@ tailrec fun fact(n: Int, result: Int = 1): Int = if(n &lt;= 1) result else fact(
     </p>
 
     <section>
-      <h3>تاپ لول فانکشن:</h3>
+      <h3>تاپ لول فانکشن</h3>
 
       <div class="sample">
         <div class="snippet-container">
@@ -945,8 +887,7 @@ tailrec fun fact(n: Int, result: Int = 1): Int = if(n &lt;= 1) result else fact(
 fun myFunction(){
   ...
 }
-                  </pre
-          >
+                  </pre>
         </div>
       </div>
     </section>
@@ -967,7 +908,7 @@ class MyClass{
     </section>
 
     <section>
-      <h3>لوکال فانکشن:</h3>
+      <h3>لوکال فانکشن</h3>
 
       <p>
         لوکال فانکشن (تابع داخلی) رو فقط داخل تابعی که تعریف کردیم میشه صدا زد.
@@ -999,8 +940,7 @@ fun outerFunction(...): R0{
   ...
 
 }
-                  </pre
-          >
+                  </pre>
         </div>
       </div>
     </section>
@@ -1020,8 +960,7 @@ fun myFunction(){
 
   printNumbers()
 }
-                  </pre
-        >
+                  </pre>
       </div>
     </div>
 
@@ -1054,8 +993,7 @@ tailrec fun printFib(n: Int, p0: Int = 0, p1: Int = 1){
   }
 
 }
-                  </pre
-        >
+                  </pre>
       </div>
     </div>
   </section>
@@ -1127,15 +1065,11 @@ tailrec fun printFib(n: Int, p0: Int = 0, p1: Int = 1){
 </li>
 
 <li>
-  <a href="/post/kotlin/anonymous-function-and-lambda.html"
-    >توابع بی نام و عبارات لامبدا در کاتلین</a
-  >
+  <a href="/post/kotlin/anonymous-function-and-lambda.html">توابع بی نام و عبارات لامبدا در کاتلین</a>
 </li>
 
 <li>
-  <a href="/post/kotlin/higher-order-functions.html"
-    >توابع مرتبه ی بالا در کاتلین</a
-  >
+  <a href="/post/kotlin/higher-order-functions.html">توابع مرتبه ی بالا در کاتلین</a>
 </li>
 
 <li>
@@ -1143,8 +1077,6 @@ tailrec fun printFib(n: Int, p0: Int = 0, p1: Int = 1){
 </li>
 
 <li>
-  <a target="_blank" href="https://kotlinlang.org/docs/functions.html"
-    >سایت رسمی کاتلین برای مطالعه موضوع</a
-  >
+  <a target="_blank" href="https://kotlinlang.org/docs/functions.html">سایت رسمی کاتلین برای مطالعه موضوع</a>
 </li>
 {% endcapture %} {% include article-foot.html relative_links = links %}
