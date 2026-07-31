@@ -206,7 +206,7 @@ fun main(){
 
 //تعریف تابع
 fun max(a: Int, b: Int): Int {
-  return if(a &lt; b) a else b
+  return if(a &gt; b) a else b
 }
                   </pre>
       </div>
@@ -225,15 +225,15 @@ fun max(a: Int, b: Int): Int {
         <div class="snippet-container">
           <pre class="snippet Kotlin">
  fun max(a: Int, b: Int): Int {
-  return if(a &lt; b) a else b
+  return if(a &gt; b) a else b
 }
 
 fun max(a: Double, b: Double): Double {
-  return if(a &lt; b) a else b
+  return if(a &gt; b) a else b
 }
 
 fun max(a: Long, b: Long): Long {
-  return if(a &lt; b) a else b
+  return if(a &gt; b) a else b
 }
                   </pre>
         </div>
@@ -324,7 +324,7 @@ println("Multiplication of 78.3 and 36 is $mult")
     </section>
 
     <section>
-      <h3>۳- استفاده از کلیدواژه ی vararg هنگام تعریف پارامتر:</h3>
+      <h3>استفاده از کلیدواژه ی vararg هنگام تعریف پارامتر:</h3>
 
       <p>
         <strong>توابع arrayOf ، listOf ، asList و ... با این روش پیاده‌سازی
@@ -367,7 +367,7 @@ println("Multiplication of 78.3 and 36 is $mult")
           <pre class="snippet Kotlin">
 fun findAverage(vararg numbers: Double): Double{
   
-  var sum = 0
+  var sum = 0.0
   for(num in numbers) sum += num
 
   return sum / numbers.size
@@ -387,8 +387,6 @@ println("Average is $average")
                   </pre>
         </div>
       </div>
-
-      <p>مثال:</p>
 
       <p>بررسی دفعات تکرار یک کد ASCII در مجموعه ی استرینگ ها.</p>
 
