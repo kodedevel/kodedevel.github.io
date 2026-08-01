@@ -179,6 +179,14 @@
       "link": "/post/java/generics.html"
     },
     {
+      "title": "کالکشن ها در جاوا: بررسی اینترفیس Collection و Iterator",
+      "description": "شروع آموزش کالکشن ها در جاوا؛ بررسی اینترفیس Collection و پیمایش بین عناصر کالکشن ها با اینترفیس های Iterable و Iterator",
+      "datePublished": "2026-08-01",
+      "lastModified": "",
+      "imgCover": "/resources/image/java/cover_collection.png",
+      "link": "/post/java/collection.html"
+    },
+    {
       "title": "چندنخی (multithreading) در جاوا و کاتلین",
       "description": "مفهوم نخ (thread) ها، بررسی اینترفیس Runnable، کلاس Thread و مفهوم Thread Pool در جاوا و کاتلین به همراه مثال",
       "datePublished": "2026-07-19",

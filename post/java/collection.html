@@ -1,0 +1,398 @@
+---
+layout: default
+---
+
+<article>
+  <nav class="toc">
+    <div>دسترسی سریع</div>
+    <ul>
+      <li>
+        <a href="#p0">بررسی اینترفیس Collection</a>
+      </li>
+      <li>
+        <a href="#p1">پیمایش در عناصر Collection با اینترفیس Iterator</a>
+      </li>
+      <li>
+        <a href="#p2">خلاصه</a>
+      </li>
+    </ul>
+  </nav>
+
+  <section id="p0">
+    <h2>بررسی اینترفیس Collection</h2>
+
+    <blockquote>
+      بسیاری از کلاس های ساختمان داده در جاوا اینترفیس Collection رو پیاده‌سازی میکنن.
+    </blockquote>
+
+    <p>کلاس های <a href="/post/data-structure.html">ساختمان داده</a> در جاوا داخل پکیج <strong>java.utils</strong> تعریف
+      شدن؛ بسیاری از کلاس های ساختمان
+      داده در جاوا اینترفیس Collection رو پیاده‌سازی میکنن و از این رو معروف به <strong>کالکشن (Collection)</strong> ها
+      هستند.
+    </p>
+
+    <p>در تصویر زیر سلسله مراتب ارث بری کلاس های کالکشن (ساختمان داده) در جاوا به صورت UML نمایش داده شده است.</p>
+
+
+    <figure>
+      <img src="/resources/image/java/java_collection_classes_inheritance_hierarchy.png"
+        alt="سلسله مراتب ارث بری کلاس های ساختار داده در جاوا">
+      <figcaption>سلسله مراتب ارث بری کلاس های ساختار داده در جاوا</figcaption>
+    </figure>
+
+    <p>همینطور که در تصویر هم مشخصه تمام کلاس ها به صورت مستقیم یا غیر مستقیم اینترفیس کالکشن رو پیاده‌سازی میکنن؛ تصویر
+      به سه بخش تقسیم میشه، در بخش شماره 1 اینترفیس ها قرار دارن، در بخش شماره 2 کلاس های ابستراکت و در بخش شماره 3
+      پیاده سازی های کامل از کلاس های کالکشن قرار گرفته است.</p>
+
+
+    <p>در اینترفیس Collection یک سری توابع مشترک بین تمام کلاس های ساختار داده در جاوا تعریف شده است در زیر به صورت UML
+      توابع تعریف شده در Collection توضیح داده شده است.</p>
+
+
+    <table class="tb">
+      <thead>
+        <tr>
+          <th colspan="2">
+            &lt;&lt;interface&gt;&gt;
+          </th>
+        </tr>
+        <tr>
+          <th colspan="2">java.util.Collection&lt;E&gt;</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="tDataLTR">
+            +add(e: E)
+          </td>
+          <td class="tDataRTL">
+            یک عنصر به کالکشن اضافه میکنه
+          </td>
+        </tr>
+
+        <tr>
+          <td class="tDataLTR">
+            +addAll(collection: Collection&lt;e extends E&gt;)
+          </td>
+          <td class="tDataRTL">
+            تمام عناصر یک کالکشن رو به کالکشن فعلی اضافه می کنه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +clear(): void
+          </td>
+          <td class="tDataRTL">
+            تمام عناصر موجود در کالکشن رو حذف میکنه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +contains(o: Object): boolean
+          </td>
+          <td class="tDataRTL">
+            اگه عنصر o داخل کالکشن وجود داشته باشه true رو بر میگردونه.
+          </td>
+        </tr>
+        <tr>
+
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +containsAll(c: Collection&lt;?&gt;): boolean
+          </td>
+          <td class="tDataRTL">
+            اگه تمام عناصر کالکشن c داخل کالکشن وجود داشته باشه مقدار true رو بر میگردونه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +isEmpty(): boolean
+          </td>
+          <td class="tDataRTL">
+            اگه عنصری داخل کالکشن وجود نداشته باشه مقدار true رو برمیگردونه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +remove(o: Object)
+          </td>
+          <td class="tDataRTL">
+            عنصر o رو از کالکشن حذف میکنه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +removeAll(c: Collection&lt;?&gt;): boolean
+          </td>
+          <td class="tDataRTL">
+            تمام عناصر مشترک با کالکشن c رو از کالکشن حذف میکنه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +retainAll(c: Collection&lt;?&gt;): boolean
+          </td>
+          <td class="tDataRTL">
+            تمام عناصر داخل کالکشن رو حذف می کنه و تنها عناصر مشترک با کالکشن c رو نگه میداره.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +size(): int
+          </td>
+          <td class="tDataRTL">
+            تعداد عناصر داخل کالکشن رو بر میگردونه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +toArray(): Object[]
+          </td>
+          <td class="tDataRTL">
+            یک آرایه از نوع آبجکت از عناصر داخل کالکشن بر میگردونه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +toArray(t: T[]): T[]
+          </td>
+          <td class="tDataRTL">
+            یک آرایه از نوع T از عناصر داخل کالکشن بر میگردونه.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>در هر کدوم از کالکشن های زیر نام یک سری شهر ذخیره میکنیم و به بررسی متد های گفته شده در بالا داخل مثال می
+      پردازیم.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+public class TestCollection {
+
+    public static void main(String[] args) {
+        ArrayList&lt;String&gt; collection = new ArrayList&lt;&gt;();
+        collection.add("Tehran");
+        collection.add("Arak");
+        collection.add("Mashhad");
+        collection.add("Qom");
+
+        System.out.println("A list of cities in collection: ");
+        System.out.println(collection);
+        System.out.println("\nIs Mashhad in collection? " + collection.contains("Mashhad"));
+        collection.remove("Mashhad");
+        System.out.println("\n"+ collection.size() + " cities in collection now");
+
+        Collection&lt;String&gt; collection1 = new ArrayList&lt;&gt;();
+        collection1.add("Tabriz");
+        collection1.add("Shiraz");
+        collection1.add("Zanjan");
+        collection1.add("Arak");
+        System.out.println("\nA list of cities in collection1: ");
+        System.out.println(collection1);
+
+        ArrayList&lt;String&gt; collection2 = (ArrayList&lt;String&gt;) collection.clone();
+        collection2.addAll(collection1);
+        System.out.println("\nCities in collection or collection1 are: ");
+        System.out.println(collection2);
+
+        collection2 = (ArrayList&lt;String&gt;) collection.clone();
+        collection2.retainAll(collection1);
+        System.out.println("\nCities in collection and collection1: ");
+        System.out.println(collection2);
+
+        collection2 = (ArrayList&lt;String&gt;) collection.clone();
+        collection2.removeAll(collection1);
+        System.out.println("\nCities in collection but not in collection1: ");
+        System.out.println(collection2);
+    }
+}
+        </pre>
+      </div>
+    </div>
+
+  </section>
+
+  <section id="p1">
+    <h2>پیمایش در عناصر Collection با اینترفیس Iterator</h2>
+
+    <blockquote>هر Collection یک Iterable است؛ با صدا زدن متد iterator در Iterable میتونیم به پیمایش عناصر کالکشن
+      بپردازیم.
+    </blockquote>
+
+    <p>Iterator یک طراحی الگو کلاسیک است که بدون معلوم شدن جزئیات ذخیره سازی عناصر، باهاش به پیمایش
+      عناصر کالکشن ها می پردازیم.</p>
+
+    <p>اینترفیس Collection از Iterable ارث بری میکنه و داخل Iterable یک متد وجود داره به نام <strong>iterator</strong>
+      که این متد یک پیاده‌سازی از Iterator رو بر میگردونه.</p>
+
+    <p>در کتابخونه های جاوا هر کلاسی که Iterable رو پیاده‌سازی کرده باشه میتونه از <a href="loops.html">حلقه ی
+        foreach</a>
+      استفاده کنه.</p>
+
+    <p>در نمودار UML زیر رابطه ی بین Collection، Iterable و Iterator شرح داده شده است.</p>
+
+
+    <figure>
+      <img src="/resources/image/java/java_collection_iterator_relationship.png"
+        alt="نمودار UML رابطه بین Collection، Iterable و Iterator">
+      <figcaption>نمودار UML رابطه بین Collection، Iterable و Iterator</figcaption>
+    </figure>
+
+    <p>در زیر نمودار UML اینترفیس Iterable به همراه متد و توضیحاتشون اورده شده.</p>
+
+    <table class="tb">
+      <thead>
+        <tr>
+          <th colspan="2">&lt;&lt;interface&gt;&gt;</th>
+        </tr>
+        <tr>
+          <th colspan="2">java.lang.Iterable&lt;E&gt;</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="tDataLTR">
+            +iterator(): Iterator&lt;E&gt;
+          </td>
+          <td class="tDataRTL">
+            یک نمونه از Iterator رو برای اعضای کالکشن بر میگردونه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">+forEach(action: Consumer&lt;? super E&gt;)</td>
+          <td class="tDataRTL">به جستجو بین اعضای کالکشن می پردازه.</td>
+        </tr>
+      </tbody>
+    </table>
+
+
+    <p>در زیر نمودار UML اینترفیس Iterator در جاوا به همراه متدها و توضیحاتشون اورده شده است.</p>
+
+    <table class="tb">
+      <thead>
+        <tr>
+          <th colspan="2">
+            &lt;&lt;interface&gt;&gt;
+          </th>
+        </tr>
+        <tr>
+          <th colspan="2">
+            java.util.Iterator&lt;E&gt;
+          </th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td class="tDataLTR">
+            +hasNext(): boolean
+          </td>
+          <td class="tDataRTL">
+            اگه عنصر بعدی برای پیمایش وجود داشته باشه true رو بر میگردونه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +next(): E
+          </td>
+          <td class="tDataRTL">
+            عنصر بعدی رو از Iterator فعلی بر میگردونه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +remove(): void
+          </td>
+          <td class="tDataRTL">
+            اخرین عنصری که در Iterator با next بهش رسیدیم رو حذف میکنه.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>در مثال زیر به جستجوی بین شهر ها با استفاده از Iterator می‌پردازیم.</p>
+
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+Collection&lt;String&gt; collection = new ArrayList&lt;&gt;();
+collection.add("Tehran");
+collection.add("Arak");
+collection.add("Mashhad");
+collection.add("Qom");
+
+Iterator&lt;String&gt; iterator = collection.iterator();
+while(iterator.hasNext()){
+   String city = iterator.next();
+   System.out.print(city.toUpperCase() + " ");
+}
+System.out.println();
+        </pre>
+      </div>
+    </div>
+
+    <p>در مثال زیر با استفاده از متد forEach به پیمایش در عناصر Collection می پردازیم.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+Collection&lt;String&gt; collection = new ArrayList&lt;&gt;();
+collection.add("Tehran");
+collection.add("Arak");
+collection.add("Mashhad");
+collection.add("Qom");
+
+collection.forEach(city -&gt; System.out.print(city.toUpperCase());
+
+System.out.println();
+        </pre>
+      </div>
+    </div>
+  </section>
+
+  <section id="p2">
+    <h2>خلاصه</h2>
+    <ul>
+      <li>
+        اکثر کلاس های ساختمان داده در جاوا، اینترفیس Collection رو پیاده‌سازی میکنن.
+      </li>
+      <li>
+        متد های مشترک بین کلاس های ساختمان داده در جاوا (add, addAll, remove, removeAll, retainAll, contains,...) در
+        اینترفیس Collection تعریف شده اند.
+      </li>
+      <li>
+        اینترفیس کالکشن در جاوا از کلاس Iterable ارث بری میکنه.
+      </li>
+      <li>در Iterable یک متد وجود داره به نام iterator که برای پیمایش بین عناصر کالکشن یک نمونه از Iterator رو بر
+        میگردونه.</li>
+      <li>
+        در اینترفیس iterator متد های hasNext, next و remove برای پیمایش و حذف عناصر از کلاس کالکشن مورد نظر تعریف شده
+        است.
+      </li>
+    </ul>
+
+  </section>
+</article>
+{% capture links %}
+<li>
+  <a href="generics.html">کلاس های Generic در جاوا</a>
+</li>
+<li>
+  <a href="interfaces.html">تعریف و پیاده‌سازی اینترفیس ها در جاوا</a>
+</li>
+<li>
+  <a href="loops.html">انواع حلقه های for foreach while در جاوا</a>
+</li>
+<li>
+  <a href="/post/java/methods.html">متد (method) در جاوا</a>
+</li>
+
+<li>
+  <a target="_blank" href="https://docs.oracle.com/javase/tutorial/essential/io/scanning.html">مطالعه در وبسایت رسمی</a>
+</li>
+
+{% endcapture %} {% include article-foot.html relative_links = links %}
