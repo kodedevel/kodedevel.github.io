@@ -28,22 +28,24 @@ function initSidebar() {
 
   const courseContainer = document.querySelector(".list-container");
 
-  const listCourses = courseContainer.children;
+  if (courseContainer) {
+    const listCourses = courseContainer.children;
 
-  for (var i = 0; i < listCourses.length; i++) {
-    const btExpand = listCourses[i].querySelector(".md-bt-expandable");
+    for (var i = 0; i < listCourses.length; i++) {
+      const btExpand = listCourses[i].querySelector(".md-bt-expandable");
 
-    const posts = document.getElementById(btExpand.dataset.target);
+      const posts = document.getElementById(btExpand.dataset.target);
 
-    btExpand.addEventListener("click", function () {
+      btExpand.addEventListener("click", function () {
 
-      if (isExpanded(btExpand)) {
-        collapse(btExpand, posts);
-      } else {
-        collapseAll(listCourses);
-        expand(btExpand, posts);
-      }
-    });
+        if (isExpanded(btExpand)) {
+          collapse(btExpand, posts);
+        } else {
+          collapseAll(listCourses);
+          expand(btExpand, posts);
+        }
+      });
+    }
   }
 }
 
@@ -116,6 +118,9 @@ function hideNavbarBrand() {
 
 function toggleSidebar() {
   const sidebar = document.getElementById("sidebar");
+
+  if (sidebar == null) return
+
   const btShowSidebar = document.getElementById("bt_show_sidebar");
   const btHideSidebar = document.getElementById("bt_hide_sidebar");
 
@@ -130,6 +135,7 @@ function toggleSidebar() {
     sidebar.classList.add("hide");
     showNavbarBrand();
   });
+
 }
 
 function displaySidebarInfo() {
@@ -138,21 +144,22 @@ function displaySidebarInfo() {
   }).then(response => response.json()).then(function (json) {
 
     const sidebarInfo = document.querySelector(".sidebar-info");
+    if (sidebarInfo) {
+      const totalNumberOfSubjects = sidebarInfo.firstElementChild;
+      totalNumberOfSubjects.dataset.count = json.length;
 
-    const totalNumberOfSubjects = sidebarInfo.firstElementChild;
-    totalNumberOfSubjects.dataset.count = json.length;
+      const totalNumberOfPosts = sidebarInfo.lastElementChild;
 
-    const totalNumberOfPosts = sidebarInfo.lastElementChild;
+      var postCounter = 0;
 
-    var postCounter = 0;
+      for (var i = 0; i < json.length; i++) {
+        var metadata_list = json[i].metadata_list;
+        postCounter += metadata_list.length;
+      }
 
-    for (var i = 0; i < json.length; i++) {
-      var metadata_list = json[i].metadata_list;
-      postCounter += metadata_list.length;
+
+      totalNumberOfPosts.dataset.count = postCounter;
     }
-
-
-    totalNumberOfPosts.dataset.count = postCounter;
 
   }).catch(e => console.log(e));
 }

@@ -18,10 +18,8 @@
 
 <body>
 
-  {% include header.html %}
+  {% include nosidebar-header.html %}
   <div>
-
-    {% include sidebar.html %}
 
     <main>
 
@@ -29,6 +27,18 @@
       {% include category-head.html metadata = page_metadata %}
 
       {{ content }}
+
+
+      <aside>
+        <nav class="post-navigation-container" aria-label="Post navigation">
+          <a class="md-bt md-bt-dark bt-back-home" href="/">
+            <span>بازگشت به صفحه اصلی</span>
+            <span class="material-symbols-outlined">
+              home
+            </span>
+          </a>
+        </nav>
+      </aside>
 
       {% include category-foot.html %}
 
@@ -42,7 +52,7 @@
   {% include dialog.html %}
 
   <div class="scroll-top-container">
-    <a class="material-symbols-outlined" href="#">
+    <a class="material-symbols-outlined">
       arrow_drop_up
     </a>
   </div>
