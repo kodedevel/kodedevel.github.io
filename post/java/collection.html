@@ -10,7 +10,7 @@ layout: default
         <a href="#p0">بررسی اینترفیس Collection</a>
       </li>
       <li>
-        <a href="#p1">پیمایش در عناصر Collection با اینترفیس Iterator</a>
+        <a href="#p1">پیمایش در کالکشن ها</a>
       </li>
       <li>
         <a href="#p2">خلاصه</a>
@@ -217,14 +217,14 @@ public class TestCollection {
   </section>
 
   <section id="p1">
-    <h2>پیمایش در عناصر Collection با اینترفیس Iterator</h2>
+    <h2>پیمایش در کالکشن ها</h2>
 
     <blockquote>هر Collection یک Iterable است؛ با صدا زدن متد iterator در Iterable میتونیم به پیمایش عناصر کالکشن
       بپردازیم.
     </blockquote>
 
     <p>Iterator یک طراحی الگو کلاسیک است که بدون معلوم شدن جزئیات ذخیره سازی عناصر، باهاش به پیمایش
-      عناصر کالکشن ها می پردازیم.</p>
+      عناصر کالکشن می پردازیم.</p>
 
     <p>اینترفیس Collection از Iterable ارث بری میکنه و داخل Iterable یک متد وجود داره به نام <strong>iterator</strong>
       که این متد یک پیاده‌سازی از Iterator رو بر میگردونه.</p>
@@ -314,7 +314,7 @@ public class TestCollection {
       </tbody>
     </table>
 
-    <p>در مثال زیر به جستجوی بین شهر ها با استفاده از Iterator می‌پردازیم.</p>
+    <p>در مثال زیر با استفاده از Iterator به پیمایش در Collection می پردازیم.</p>
 
 
     <div class="sample">
@@ -336,7 +336,7 @@ System.out.println();
       </div>
     </div>
 
-    <p>در مثال زیر با استفاده از متد forEach به پیمایش در عناصر Collection می پردازیم.</p>
+    <p>در مثال زیر با استفاده از متد forEach به پیمایش در Collection می پردازیم.</p>
 
     <div class="sample">
       <div class="snippet-container">
@@ -347,7 +347,7 @@ collection.add("Arak");
 collection.add("Mashhad");
 collection.add("Qom");
 
-collection.forEach(city -&gt; System.out.print(city.toUpperCase());
+collection.forEach(city -&gt; System.out.print(city.toUpperCase()));
 
 System.out.println();
         </pre>
