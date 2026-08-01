@@ -11,8 +11,8 @@ User-agent: ClaudeBot
 Disallow: /
 
 # Google AI Training (Opts out of Gemini/Vertex training)
-User-agent: Google-Extended
-Disallow: /
+# User-agent: Google-Extended
+# Disallow: /
 
 # Meta AI Training
 User-agent: Meta-ExternalAgent
