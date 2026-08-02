@@ -1,0 +1,554 @@
+---
+layout: default
+---
+
+
+<article>
+  <nav class="toc">
+    <div>دسترسی سریع</div>
+    <ul>
+      <li>
+        <a href="#p0">بررسی اینترفیس List</a>
+      </li>
+      <li>
+        <a href="#p1">کلاس ArrayList</a>
+      </li>
+      <li>
+        <a href="#p2">کلاس LinkedList</a>
+      </li>
+      <li>
+        <a href="#p3">پیمایش در List با ListIterator</a>
+      </li>
+      <li>
+        <a href="#p4">خلاصه</a>
+      </li>
+    </ul>
+  </nav>
+
+  <section id="p0">
+    <h2>بررسی اینترفیس List</h2>
+    <p>کلاس های ArrayList و LinkedList به صورت غیر مستقیم اینترفیس List رو پیاده میکنن و بسیاری از متدهای این دو کلاس در
+      List تعریف شده است.</p>
+
+
+    <p>اینترفیس List از <a href="collection.html">اینترفیس Collection</a> ارث‌بری میکنه؛ در زیر رابطه بین List و
+      Collection شرح داده شده است.</p>
+
+    <figure>
+      <img src="/resources/image/java/java_list_inheritace.png" alt="رابطه ارث‌بری اینترفیس List با Collection">
+      <figcaption>رابطه ارث‌بری اینترفیس List با Collection</figcaption>
+    </figure>
+
+
+    <p>اینترفیس List علاوه بر متد های کالکشن، برای خودش هم متد تعریف شده.</p>
+
+    <p>در نمودار UML زیر متد های تعریف شده در کلاس List به همراه توضیحاتشون اورده شده است.</p>
+    <table class="tb">
+      <thead>
+        <tr>
+          <th colspan="2">
+            &lt;&lt;interface&gt;&gt;
+          </th>
+        </tr>
+        <tr>
+          <th colspan="2">
+            java.util.List&lt;E&gt;
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="tDataLTR">
+            +add(index: int, element: E): void
+          </td>
+          <td class="tDataRTL">
+            یک عنصر در جای شماره index مورد نظر اضافه میکنه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +addAll(index: int, c: Collection&lt;? extends E&gt;
+          </td>
+          <td class="tDataRTL">
+            تمام عناصر Collection رو از شماره index به بعد وارد List میکنه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +get(index: int): E
+          </td>
+          <td class="tDataRTL">
+            عنصر مربوط به شماره index رو بر میگردونه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +indexOf(o: Object): int
+          </td>
+          <td class="tDataRTL">
+            با اولین تطابق عنصر داخل آرایه با o شماره index عنصر رو بر میگردونه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +lastIndexOf(o: Object): int
+          </td>
+          <td class="tDataRTL">
+            شماره index آخرین تطابق عنصر داخل آرایه با o رو بر میگردونه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +listIterator(): ListIterator
+          </td>
+          <td class="tDataRTL">
+            یک نمونه از ListIterator رو بر میگردونه؛ اینترفیس ListIterator از Iterator ارث‌بری می کنه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +listIterator(index: int): ListIterator
+          </td>
+          <td class="tDataRTL">
+            یک نمونه از ListIterator رو بر میگردونه و شروع پیمایش توسط ListIterator از شماره index خواهد بود.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +remove(index: int): E
+          </td>
+          <td class="tDataRTL">
+            عنصر موجود در شماره index مورد نظر رو حذف کرده و بر میگردونه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +subList(fromIndex: int, toIndex: int): List&lt;E&gt;
+          </td>
+          <td class="tDataRTL">
+            یک List جدید از fromIndex تا toIndex - 1 از عناصر List فعلی رو بر میگردونه؛ مانند آرایه ها شماره خونه ی
+            آخرین عنصر (size - 1) است.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +set(index: int, e: E): E
+          </td>
+          <td class="tDataRTL">
+            عنصر جدید e رو جایگزین عنصر موجود در شماره index مورد نظر میکنه و عنصر قدیمی رو بر میگردونه.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>دو کلاس ArrayList و LinkedList اینترفیس List رو پیاده‌سازی کرده اند که در ادامه به این دو کلاس میپردازیم.</p>
+
+  </section>
+  <section id="p1">
+    <h2>کلاس ArrayList</h2>
+
+    <p>یکی از پیاده سازی های List کلاس <strong>ArrayList</strong> است؛ با استفاده از کلاس ArrayList در جاوا میتونیم
+      عناصر رو به صورت <a href="arrays.html">آرایه‌وار</a> نگهداری کنیم؛ در
+      ArrayList میتونیم عناصر
+      رو حذف کنیم، اضافه کنیم یا صدا بزنیم.</p>
+
+    <p>تفاوت ArrayList با آرایه ها در جاوا در دینامیکی بودن سایز (طول) ArrayList است، بر خلاف
+      آرایه ها که اندازه ی
+      ثابتی دارن، اندازه ی ArrayList با افزودن یا حذف کردن عناصر تغییر میکنه و میگیم دارای <strong>اندازه ی دینامیکی
+        (dynamic size)</strong> است.</p>
+
+    <p>زمانی که در برنامه بخوایم به عناصر به صورت تصادفی دسترسی پیدا کنیم از ArrayList استفاده می کنیم.</p>
+
+    <p>در UML زیر سلسه مراتب ارث بری کلاس ArrayList در جاوا شرح داده شده است.</p>
+
+    <figure>
+      <img src="/resources/image/java/java_arraylist_inheritance_heirarchy.png"
+        alt="سلسه مراتب‌ ارث‌بری کلاس ArrayList در جاوا">
+      <figcaption>سلسه مراتب ارث‌بری کلاس ArrayList در جاوا</figcaption>
+    </figure>
+
+    <p>متد های ArrayList، داخل اینترفیس List تعریف شدن که با پیاده‌سازی ‌List در ArrayList این متد ها بازنویسی
+      میشن.</p>
+
+    <p>در کلاس ArrayList یک capacity داریم که ظرفیت ArrayList رو مشخص میکنه، ظرفیت ArrayList به تعداد خونه های
+      آرایه برای نگهداری عناصر گفته میشه، با پر شدن capacity، به صورت خودکار اندازه ی capacity افزایش پیدا میکنه،
+    </p>
+
+    <p>به
+      تعداد عناصری که در ArrayList نگهداری میشه اندازه (size) میگیم.</p>
+    <p>نمودار UML کانستراکتور (سازنده) ها و متد های کلاس ArrayList در زیر با توضیحاتشون شرح داده شده است.</p>
+
+
+    <table class="tb">
+      <thead>
+        <tr>
+          <th colspan="2">
+            java.util.ArrayList
+          </th>
+        </tr>
+      </thead>
+
+      <body>
+        <tr>
+          <td class="tDataLTR">
+            +ArrayList()
+          </td>
+          <td class="tDataRTL">
+            یک نمونه از ArrayList ایجاد می کنه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +ArrayList(c: Collection&lt;? extends E&gt;)
+          </td>
+          <td class="tDataRTL">
+            یک نمونه از ArrayList ایجاد می کنه و اعضای کالکشن c رو بهش اضافه می کنه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +ArrayList(capacity: int)
+          </td>
+          <td class="tDataRTL">
+            یک نمونه از ArrayList با ظرفیت اولیه ی مشخص ایجاد میکنه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +trimToSize(): void
+          </td>
+          <td class="tDataRTL">
+            ظرفیت ArrayList رو به تعداد عناصر (سایز)ArrayList کاهش میده.
+          </td>
+        </tr>
+      </body>
+    </table>
+
+    <p>در مثال زیر میخوایم به استفاده از ArrayList و متد های توضیح داده شده در List بپردازیم.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+List&lt;String&gt; cities = new ArrayList&lt;&gt;();
+list.add("Arak");
+list.add("Tehran");
+list.add("Mashhad");
+list.add("Hamedan");
+list.add("Sanandaj");
+list.add(0, "Kermanshah");
+list.add(3, "Rasht");
+
+System.out.println("A list of cities in arraylist: ");
+System.out.println(list);
+
+System.out.println(list.remove(4) + " removed from list");
+
+System.out.println("Now cities in arraylist are ");
+
+System.out.println(cities);
+
+        </pre>
+      </div>
+    </div>
+
+  </section>
+
+  <section id="p2">
+    <h2>کلاس LinkedList</h2>
+
+    <p>یکی دیگه از پیاده سازی های List در لیست پیوندی است؛ متد های گفته شده در List، با لیست پیوندی (LinkedList) هم
+      بازنویسی شدن.</p>
+
+    <p>هنگامی که در برنامه بخوایم با index به صورت تصادفی به عناصر دسترسی داشته باشیم، از ArrayList استفاده می کنیم و
+      هنگامی که
+      بخوایم به عناصر اول و آخر لیست دسترسی داشته باشیم استفاده از <strong>لیست پیوندی (LinkedList)</strong> بهینه تره.
+    </p>
+
+
+    <p>در نمودار UML زیر رابطه ی سلسله مراتب ارث‌بری در لیست پیوندی شرح داده شده است.</p>
+
+    <figure>
+      <img src="/resources/image/java/java_linkedlist_inheritace_heirarchy.png"
+        alt="نمودار UML رابطه ارث‌بری کلاس LinkedList در جاوا">
+      <figcaption>نمودار UML رابطه ارث‌بری کلاس LinkedList در جاوا</figcaption>
+    </figure>
+
+    <p>یک سری متد های اختصاصی برای لیست پیوندی (LinkedList) در جاوا تعریف شده، این متد ها برای بهینه کردن حذف، اضافه و
+      صدا زدن عناصر در اول و آخر لیست اضافه شده اند.</p>
+
+    <p>در نمودار UML زیر کلاس LinkedList با متد های پرکاربردش شرح داده شده است.</p>
+
+    <table class="tb">
+      <thead>
+        <tr>
+          <th colspan="2">java.util.LinkedList</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="tDataLTR">
+            +LinkedList()
+          </td>
+          <td class="tDataRTL">
+            یک نمونه از LinkedList ایجاد میکنه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +LinkedList(c: Collection&lt;? extends E&gt;)
+          </td>
+          <td class="tDataRTL">
+            یک نمونه از LinkedList ایجاد می کنه و عناصر کالکشن c رو بهش اضافه می کنه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +addFirst(e: E): void
+          </td>
+          <td class="tDataRTL">
+            عنصر e رو به اول لیست اضافه می کنه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +addLast(e: E): void
+          </td>
+          <td class="tDataRTL">
+            عنصر e رو به آخر لیست اضافه می کنه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +getFirst(): E
+          </td>
+          <td class="tDataRTL">
+            اولین عنصر در لیست رو بر میگردونه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +getLast(): E
+          </td>
+          <td class="tDataRTL">
+            آخرین عنصر رو در لیست بر میگردونه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +removeFirst(): E
+          </td>
+          <td class="tDataRTL">
+            اولین عنصر رو از لیست رو حذف می کنه و بر میگردونه.
+          </td>
+        </tr>
+
+        <tr>
+          <td class="tDataLTR">
+            +removeLast(): E
+          </td>
+          <td class="tDataRTL">
+            آخرین عنصر رو از لیست حذف میکنه و بر میگردونه.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+
+    <p>در مثال زیر به استفاده از لیست پیوندی (LinkedList) در جاوا می پردازیم و بعضی از متدهای گفته شده رو استفاده می
+      کنیم.</p>
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+LinkedList&lt;Object&gt; linkedList = new LinkedList&lt;&gt;(list);
+linkedList.add(0, "Red");
+linkedList.removeLast();
+linkedList.addFirst("Green");
+System.out.println("A list of objects in linked list:");
+System.out.println(linkedList);
+        </pre>
+      </div>
+    </div>
+
+    <p>در مثال زیر میخوایم اسم رنگ ها رو به صورت String در LinkedList ذخیره کنیم و سپس با حلقه ی for به پیمایش در
+      LinkedList
+      بپردازیم و با حلقه ی while عناصر رو از آخر عنصر حذف کنیم.</p>
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+LinkedList&lt;String&gt; colors = new LinkedList&lt;&gt;();
+colors.add("Blue");
+colors.add("Pink");
+colors.add("Purple");
+colors.addFirst("Cyan");
+colors.add(1, "Red");
+colors.removeLast();
+colors.addLast("Yellow");
+
+System.out.println("Display colors ");
+for(int i =0; i&lt;colors.size(); i++){
+  String c = colors.get(i);
+  System.out.print(c + " ");
+}
+
+System.out.println("Remove and Display colors backward: ");
+
+while(!colors.isEmpty()){
+  String c = colors.removeLast();
+  System.out.println(c);
+  
+}
+        </pre>
+      </div>
+    </div>
+
+  </section>
+
+  <section id="p3">
+    <h2>پیمایش در List با ListIterator</h2>
+
+    <p>در مطلب <a href="collection.html">اینترفیس Collection</a> به Iterator پرداختیم، در این قسمت میخوایم به
+      ListIterator بپردازیم.</p>
+    <p>اینترفیس ListIterator از <a href="collection.html">Iterator</a> ارث‌بری میکنه و باهاش میشه به پیمایش در List از
+      هر دو سو (به سمت آخرین عنصر یا
+      به سمت اولین عنصر) پرداخت.</p>
+
+    <p>در نمودار UML زیر رابطه ارث بری ListIterator با Iterator شرح داده شده است.</p>
+
+    <figure>
+      <img src="/resources/image/java/java_listiterator_inheritance.png"
+        alt="رابطه ارث‌بری ListIterator با Iterator در جاوا">
+      <figcaption>رابطه ارث‌بری ListIterator با Iterator در جاوا</figcaption>
+    </figure>
+
+    <p>در اینترفیس ListIterator، علاوه بر متد های Iterator که ازش ارث بری میکنه، متد های جدیدی تعریف شده است.</p>
+
+    <p>در نمودار UML زیر متد های تعریف شده در ListIterator شرح داده شده است.</p>
+
+    <table class="tb">
+      <thead>
+        <tr>
+          <th colspan="2">&lt;&lt;interface&gt;&gt;</th>
+        </tr>
+        <tr>
+          <th colspan="2">
+            java.util.ListIterator
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="tDataLTR">
+            +add(e: E): void
+          </td>
+          <td class="tDataRTL">
+            یک عنصر رو به List اضافه میکنه؛ عنصر جدید به قبل از عنصر بعدی که با next صدا زده میشه اضافه میشه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +hasPrevious(): boolean
+          </td>
+          <td class="tDataRTL">
+            اگه به اولین عنصر در لیست رسیده باشیم مقدار false رو بر میگردونه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +nextIndex(): int
+          </td>
+          <td class="tDataRTL">
+            شماره index عنصر بعدی رو بر میگردونه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +previous(): E
+          </td>
+          <td class="tDataRTL">
+            عنصر قبلی رو بر می گردونه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +previousIndex(): int
+          </td>
+          <td class="tDataRTL">
+            شماره index عنصر قبلی رو بر میگردونه.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>در مثال زیر میخوایم با ListIterator به پیمایش در LinkedList بپردازیم.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+LinkedList&lt;String&gt; colors = new LinkedList&lt;&gt;();
+colors.add("Blue");
+colors.add("Pink");
+colors.add("Purple");
+colors.addFirst("Cyan");
+colors.add(1, "Red");
+colors.removeLast();
+colors.addLast("Yellow");
+
+ListIterator&lt;String&gt; listIterator = colors.listIterator();
+
+System.out.println("Display color forward: ");
+
+while(listIterator.hasNext())
+  System.out.print(listIterator.next());
+
+System.out.println();
+
+System.out.println("Display color backward: ");
+
+while(listIterator.hasPrevious())
+  System.out.print(listIterator.previous());
+        </pre>
+      </div>
+    </div>
+
+  </section>
+
+  <section id="p4">
+    <h2>خلاصه</h2>
+    <ul>
+      <li>
+        اینترفیس List یک اینترفیس مشترک بین ArrayList و LinkedList است و متد هاش در این دو کلاس بازنویسی میشه.
+      </li>
+      <li>
+        کلاس ArrayList یک آرایه دینامیکی است که داخلش میتونیم عناصر رو حذف و اضافه کنیم.
+      </li>
+      <li>
+        زمانی که بخوایم به یک عنصر به صورت تصادفی دسترسی داشته باشیم از ArrayList استفاده می کنیم.
+      </li>
+      <li>
+        زمانی که بخوایم به اول یا اخر لیست دسترسی داشته باشیم از LinkedList استفاده می کنیم.
+      </li>
+      <li>
+        اینترفیس ListIterator از اینترفیس Iterator ارث بری میکنه و باهاش میتونیم به صورت دوسویی به پیمایش در ArrayList و
+        LinkedList بپردازیم.
+      </li>
+    </ul>
+  </section>
+</article>
+{% capture links %}
+<li>
+  <a href="collection.html">بررسی اینترفیس کالکشن و پیمایش در کالکشن ها در جاوا</a>
+</li>
+<li>
+  <a href="inheritance.html">ارث‌‌بری در جاوا</a>
+</li>
+<li>
+  <a href="objects-and-classes.html">آبجکت و کلاس ها در جاوا</a>
+</li>
+
+<li>
+  <a href="arrays.html">آرایه ها در جاوا</a>
+</li>
+<li>
+  <a href="loops.html">حلقه ها در جاوا</a>
+</li>
+{% endcapture %} {% include article-foot.html relative_links = links %}
