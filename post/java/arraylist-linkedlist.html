@@ -25,6 +25,15 @@ layout: default
     </ul>
   </nav>
 
+  <aside class="note">
+    <p class="note-head">توجه</p>
+    <p></p>
+    <p>پیش‌نیاز این مطلب موضوع <a href="collection.html">اینترفیس Collection و پیمایش در کالکشن ها</a> است؛ همچنین این
+      مطلب به استفاده از کتابخونه های رسمی ساختمان داده در جاوا می پردازد، برای یادگیری پیاده سازی ساختمان داده به بخش
+      <a href="/post/data-structure.html">ساختار داده ها</a> مراجعه کنید.
+    </p>
+  </aside>
+
   <section id="p0">
     <h2>بررسی اینترفیس List</h2>
     <p>کلاس های ArrayList و LinkedList به صورت غیر مستقیم اینترفیس List رو پیاده میکنن و بسیاری از متدهای این دو کلاس در
@@ -141,7 +150,7 @@ layout: default
       </tbody>
     </table>
 
-    <p>دو کلاس ArrayList و LinkedList اینترفیس List رو پیاده‌سازی کرده اند که در ادامه به این دو کلاس میپردازیم.</p>
+    <p>در ادامه به کلاس های ArrayList و LinkedList می پردازیم و از متدهای گفته شده، تو اونا استفاده می کنیم.</p>
 
   </section>
   <section id="p1">
@@ -251,6 +260,29 @@ System.out.println(cities);
       </div>
     </div>
 
+    <p>در مثال زیر با حلقه ی for به پیمایش در ArrayList می پردازیم.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+List&lt;Integer&gt; list = new ArrayList&lt;&gt;();
+list.add(8);
+list.add(21);
+list.add(12);
+list.add(14);
+list.add(32);
+list.add(10);
+list.add(30);
+
+System.out.println("The size of list is " + list.size());
+
+System.out.println("List of numbers: ");
+
+for(int i=0; i&lt;list.size(); i++)
+   System.out.print(list.get(i) + " ");
+        </pre>
+      </div>
+    </div>
   </section>
 
   <section id="p2">
@@ -330,7 +362,7 @@ System.out.println(cities);
             +getLast(): E
           </td>
           <td class="tDataRTL">
-            آخرین عنصر رو در لیست بر میگردونه.
+            آخرین عنصر در لیست رو بر میگردونه.
           </td>
         </tr>
         <tr>
@@ -338,7 +370,7 @@ System.out.println(cities);
             +removeFirst(): E
           </td>
           <td class="tDataRTL">
-            اولین عنصر رو از لیست رو حذف می کنه و بر میگردونه.
+            اولین عنصر رو از لیست حذف می کنه و بر میگردونه.
           </td>
         </tr>
 
@@ -354,17 +386,31 @@ System.out.println(cities);
     </table>
 
 
-    <p>در مثال زیر به استفاده از لیست پیوندی (LinkedList) در جاوا می پردازیم و بعضی از متدهای گفته شده رو استفاده می
-      کنیم.</p>
+    <p>در مثال زیر به استفاده از لیست پیوندی (LinkedList) با متد های گفته شده در جاوا می پردازیم.</p>
+
     <div class="sample">
       <div class="snippet-container">
         <pre class="snippet Java">
+ArrayList&lt;Integer&gt; list = new ArrayList&lt;&gt;();
+list.add(10);
+list.add(52);
+list.add(12);
+list.add(16);
+
 LinkedList&lt;Object&gt; linkedList = new LinkedList&lt;&gt;(list);
 linkedList.add(0, "Red");
-linkedList.removeLast();
 linkedList.addFirst("Green");
 System.out.println("A list of objects in linked list:");
 System.out.println(linkedList);
+
+linkedList.removeLast();
+System.out.println("After removing " + linkedList.removeLast() + " elements in linkedlist are as follow: ");
+for(Object o: linkedList)
+   System.out.print(o + " ");
+
+System.out.println("After removing " + linkedList.removeFirst() + " elements linkedlist are as follow: ");
+for(Object o: linkedList)
+   System.out.println(o + " ");
         </pre>
       </div>
     </div>
@@ -406,7 +452,7 @@ while(!colors.isEmpty()){
   <section id="p3">
     <h2>پیمایش در List با ListIterator</h2>
 
-    <p>در مطلب <a href="collection.html">اینترفیس Collection</a> به Iterator پرداختیم، در این قسمت میخوایم به
+    <p>در مطلب <a href="collection.html">Collection</a> به Iterator پرداختیم، در این قسمت میخوایم به
       ListIterator بپردازیم.</p>
     <p>اینترفیس ListIterator از <a href="collection.html">Iterator</a> ارث‌بری میکنه و باهاش میشه به پیمایش در List از
       هر دو سو (به سمت آخرین عنصر یا
