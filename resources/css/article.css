@@ -187,7 +187,7 @@ section{
     direction: ltr;
 }
 
-tr th{
+.tb tr th{
     font-weight: bold;
     font-size: 1.1rem;
     text-align: center;
@@ -195,7 +195,7 @@ tr th{
     background-color: #E0E0E0;
 }
 
-tr .tDataLTR{
+.tb tr .tDataLTR{
     width: 40%;
     background-color: #80d8ff;
     word-break: break-word;
@@ -205,7 +205,7 @@ tr .tDataLTR{
     padding: 16px 8px;
 }
 
-tr .tDataRTL{
+.tb tr .tDataRTL{
     width: 60%;
     background-color: #e1f5fe;
     word-break: break-word;
@@ -214,10 +214,32 @@ tr .tDataRTL{
     padding: 16px 8px;
 }
 
+.table-regular{
+  width: 100%;
+  table-layout: fixed;
+  justify-content: center;
+  height: auto;
+  direction: ltr;
+}
+
+.table-regular tr th{
+  font-size: 1.1rem;
+  background-color: #f5f5f5;
+}
+
+.table-regular tr td, .table-regular tr th{
+  padding: 16px;
+  overflow-wrap: anywhere;
+  text-align: center;
+  border: 1px solid #212121;
+  border-collapse: collapse;
+}
+
+
 .course-category{
   width: 100%;
   height: fit-content;
-  background-color: #01579B;
+  background-color: #0D47A1;
   padding-top: 4px;
   padding-bottom: 4px;
   padding-right: 16px;
@@ -280,7 +302,7 @@ tr .tDataRTL{
 .article-foot .post-navigation-container{
   display: flex;
   min-height: 32px;
-  background: #01579b;
+  background: #0D47A1;
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
   overflow: none;
