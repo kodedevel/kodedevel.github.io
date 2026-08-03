@@ -2,12 +2,6 @@
 const scrollButtonContainer = document.querySelector(".scroll-top-container");
 
 function initUiComponents() {
-  var path = window.location.pathname;
-
-  //check if the file path origins from learn
-  if (path.match(/post\/.+\.html$/g)) {
-    initSubjectItems();
-  }
 
   scrollButtonContainer.addEventListener("click", e => {
     window.scrollTo({top: 0, behavior: "smooth"});
@@ -49,33 +43,6 @@ function initSidebar() {
   }
 }
 
-
-function initSubjectItems() {
-
-  const subjectContainer = document.querySelector(".subject-container");
-
-  if (subjectContainer === null) return;
-
-  const listItems = subjectContainer.children;
-
-
-  for (var i = 0; i < listItems.length; i++) {
-
-    const itemHead = listItems[i].querySelector(".md-bt-expandable");
-    const itemContent = document.getElementById(itemHead.dataset.target);
-
-    itemHead.addEventListener("click", function () {
-
-      if (isExpanded(itemHead)) {
-        collapse(itemHead, itemContent);
-      } else {
-        collapseAll(listItems);
-        expand(itemHead, itemContent);
-      }
-
-    });
-  }
-}
 
 function expand(btExpand, content) {
   btExpand.classList.add("expanded");

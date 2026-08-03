@@ -28,7 +28,7 @@
 
 .md-bt.md-bt-dark-blue{
     color: #fafafa;
-    background-color: #01579B;
+    background-color: #0D47A1;
 }
 
 .md-bt-dark-blue:hover{
@@ -63,7 +63,7 @@
 }
 
 .md-bt-expandable.expanded{
-     background-color: #01579B;
+     background-color: #0D47A1;
      color: #fafafa;
      box-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
 }

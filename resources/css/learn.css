@@ -1,36 +1,37 @@
-.subject-container{
+.card-view{
+  background-color: #fafafa;
+  border-radius: 8px;
+  max-width: 480px;
+  width: auto;
+  height: auto;
+  padding:8px;
+  margin: 32px auto;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.card-view p, .card-view a{
+  margin: 8px;
+}
+
+.card-view h2{
+  margin: 0;
+  margin-bottom: 16px;
+  background-color: #fafafa;
+}
+
+.card-view-container{
+  display: block;
+  background-color: white;
   width: 100%;
   height: auto;
   margin-top: 32px;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  justify-items: center;
 }
 
-.subject-item{
-  background-color: transparent;
-  padding: 8px;
-}
-
-.subject-item-head {
-  background-color: #eeeeee;
-  margin: 0;
-  border-radius: 0;
-  padding: 16px 0;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-}
-
-.subject-item-head.expanded::after{
-  background-color: #01579B;
-}
-
-.subject-item-content{
-  width: 100%;
-  background-color: #f5f5f5;
-  overflow: hidden;
-  max-height: 0;
-  margin: 0;
-  transition: max-height 200ms ease-out;
-}
-
-.subject-item-content a{
+.card-view a{
   position: relative;
   display: block;
   text-decoration: none;
@@ -38,14 +39,13 @@
   background-color: #fafafa;
   text-align: center;
   text-anchor: middle;
-  margin: 0 8px 16px 8px;
-  padding: 8px 0px 8px 0px ;
+  padding: 8px 0;
   border-radius: 8px;
   font-weight: bold;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
-.subject-item-content a:hover{
+.subject-item-content a:hover, .card-view a:hover{
   background-color: #fafafa;
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
 }
