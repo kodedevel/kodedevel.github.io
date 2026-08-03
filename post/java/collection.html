@@ -28,12 +28,12 @@ layout: default
     <h2>بررسی اینترفیس Collection</h2>
 
     <blockquote>
-      بسیاری از کلاس های ساختمان داده در جاوا اینترفیس Collection رو پیاده‌سازی میکنن.
+      کلاس های ساختمان داده در جاوا اینترفیس Collection رو پیاده‌سازی میکنن.
     </blockquote>
 
     <p>کلاس های <a href="/post/data-structure.html">ساختمان داده</a> در جاوا داخل پکیج <strong>java.util</strong> تعریف
-      شدن؛ بسیاری از کلاس های ساختمان
-      داده در جاوا اینترفیس Collection رو پیاده‌سازی میکنن (بجز map) و از این رو معروف به <strong>کالکشن
+      شدن؛ بجز map در جاوا کلاس های ساختمان
+      داده در جاوا اینترفیس Collection رو پیاده‌سازی میکنن و از این رو معروف به <strong>کالکشن
         (Collection)</strong> ها
       هستند.
     </p>
@@ -73,10 +73,9 @@ layout: default
             +add(e: E)
           </td>
           <td class="tDataRTL">
-            یک عنصر به کالکشن اضافه میکنه
+            یک عنصر به کالکشن اضافه میکنه.
           </td>
         </tr>
-
         <tr>
           <td class="tDataLTR">
             +addAll(collection: Collection&lt;e extends E&gt;)
@@ -102,7 +101,6 @@ layout: default
           </td>
         </tr>
         <tr>
-
         </tr>
         <tr>
           <td class="tDataLTR">
@@ -165,7 +163,7 @@ layout: default
             +toArray(t: T[]): T[]
           </td>
           <td class="tDataRTL">
-            یک آرایه از نوع T از عناصر داخل کالکشن بر میگردونه.
+            یک آرایه از عناصر داخل کالکشن بر میگردونه.
           </td>
         </tr>
       </tbody>
