@@ -2,45 +2,28 @@
 layout: category
 ---
 
-<section>
-  <h2>فهرست مطالب کاتلین</h2>
+<article>
+  <section>
+    <h2>فهرست مطالب</h2>
+    <p>در اینجا یک لیست از مطالب کاتلین قرار دادیم، میتونید به مطلب مورد نظر خود مراجعه و آن را مطالعه
+      کنید.</p>
 
-  <article>
-    <div class="description">
-
-      <p>در اینجا یک لیست از مطالب آموزشی کاتلین قرار دادیم، میتونید به مطلب مورد نظر خود مراجعه و آن را مطالعه
-        کنید.</p>
-      <p>کاتلین یک زبان کراس پلتفرم و قابل استفاده برای، موبایل، وب و دسکتاپ است؛ این زبان در حال حاضر بیشترین
-        کاربرد رو در توسعه ی اندروید داره.</p>
-
-      <p>کد های کاتلین در فایل هایی با پسوند <strong>.kt و .kts (برای کد های اسکریپتی)</strong> نوشته میشن و سپس با
-        کامپایلر کاتلین
-        کامپایل شده و در نهایت توسط ماشین مجازی جاوا (JVM) خونده و اجرا میشن.</p>
-
-
-
-      <div class="note">
-        <p class="note-head">توجه</p>
-        <p>در تمامی مطالب فرض شده با Intellij Idea و یا نحوه ی کامپایل و اجرای کد های کاتلین آشنایی دارید.</p>
-      </div>
+    <div class="card-view-container">
+      {% for metadata in site.data.json.posts.kotlin.metadata_list %}
+      <section class="card-view">
+        <h3>
+          {{ metadata.title }}
+        </h3>
+        <div>
+          <figure>
+            <img src="{{ metadata.imgCover }}" alt="{{ metadata.title }}" </figure>
+            <p>{{ metadata.description }}</p>
+            <a href="{{ metadata.link }}">مطالعه</a>
+        </div>
+      </section>
+      {% endfor %}
     </div>
-  </article>
 
-  <div class="card-view-container">
-    {% for metadata in site.data.json.posts.kotlin.metadata_list %}
-    <section class="card-view">
-      <h2>
-        {{ metadata.title }}
-      </h2>
-      <div>
 
-        <figure>
-          <img src="{{ metadata.imgCover }}" alt="{{ metadata.title }}" </figure>
-          <p>{{ metadata.description }}</p>
-          <a href="{{ metadata.link }}">مطالعه</a>
-      </div>
-    </section>
-    {% endfor %}
-  </div>
-
-</section>
+  </section>
+</article>

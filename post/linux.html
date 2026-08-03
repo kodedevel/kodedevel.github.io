@@ -2,42 +2,27 @@
 layout: category
 ---
 
-<section>
-  <h2>لیست دستورات لینوکس</h2>
-  <article>
-    <div class="description">
-      <p>در این صفحه لیست دستورات لینوکس رو قرار داده ایم با کلیک بر روی هر کدوم، میتونید دستور مورد نظر رو مطالعه
-        کنید.</p>
-      <p>گنو لینوکس یک سیستم عامل متن باز با قابلیت شخصی سازی بالاست.</p>
-      <p>در گنو لینوکس یک محیط اسکریپتی به نام <strong>shell</strong> وجود داره، وظیفه ی این محیط اجرای برنامه های
-        لینوکس
-        است؛
-        shell توسط <strong>ترمینال (terminal)</strong> شبیه سازی میشه؛ میتونیم برنامه های لینوکسی رو در فایل هایی با
-        پسوند <strong>.sh</strong> نوشته و این فایل ها رو در
-        ترمینال لینوکس
-        اجرا کنیم. حتی میتونیم بدون نیاز به نوشتن در فایل و اجرای فایل، برنامه ها رو مستقیم در ترمینال اجرا کنیم.
-      </p>
-      <p> به طور تلویحی وقتی یک برنامه رو در ترمینال لینوکس اجرا میکنیم میگیم یک دستور لینوکسی اجرا کرده ایم.</p>
+<article>
+  <section>
+    <h2>فهرست مطالب</h2>
+    <p>در این صفحه یک فهرست از مطالب لینوکس قرار دادیم، از اینجا میتونید به مطلب مورد نظر مراجعه کنید.</p>
 
+    <div class="subject-container">
+      {% for metadata in site.data.json.posts.linux.metadata_list %}
+      <section class="card-view">
+        <h3>
+          {{ metadata.title }}
+        </h3>
+        <div>
+          <figure>
+            <img src="{{ metadata.imgCover }}" alt="{{ metadata_title }}">
+          </figure>
+          <p>{{ metadata.description }}</p>
+          <a href="{{ metadata.link }}">مطالعه</a>
+        </div>
+      </section>
+      {% endfor %}
     </div>
 
-  </article>
-
-  <div class="subject-container">
-    {% for metadata in site.data.json.posts.linux.metadata_list %}
-    <section class="card-view">
-      <h2>
-        {{ metadata.title }}
-      </h2>
-      <div>
-        <figure>
-          <img src="{{ metadata.imgCover }}" alt="{{ metadata_title }}">
-        </figure>
-        <p>{{ metadata.description }}</p>
-        <a href="{{ metadata.link }}">مطالعه</a>
-      </div>
-    </section>
-    {% endfor %}
-  </div>
-
-</section>
+  </section>
+</article>

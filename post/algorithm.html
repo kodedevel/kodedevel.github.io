@@ -5,33 +5,33 @@ layout: category
 
 <section>
   <article>
-    <div class="description">
-      <p>
-        از الگوریتم ها برای بهینه تر کردن برنامه ها و گاهی مرتب تر نوشتن کد های برنامه استفاده میکنیم؛ به سرعت اجرای یک
-        برنامه پیچیدگی زمان (time complexity) و به روند استفاده از منابع حافظه توسط برنامه پیچیدگی فضا (space
-        complexity) میگیم.</p>
 
-      <p>در زیر فهرست مطالب مربوط به الگوریتم های معروف در برنامه نویسی رو قرار داده ایم، مثال های مطالب با جاوا
-        و کاتلین اورده شده اما نحوه ی پیاده سازیشون در تمام زبان های برنامه نویسی مشابه است.</p>
-    </div>
+    <section>
+      <h2>لیست مطالب الگوریتم ها</h2>
+
+      <p>در اینجا یک فهرست از مطالب الگوریتم ها در سایت قرار دادیم، از این صفحه میتونید به مطلب مورد نظرتون مراجعه کنید.
+      </p>
+
+      <div class="subject-container">
+
+        {% for metadata in site.data.json.posts.algorithm.metadata_list %}
+        <section class="card-view">
+          <h3>
+            {{ metadata.title }}
+          </h3>
+          <div>
+            <figure>
+              <img src="{{ metadata.imgCover }}" alt="{{ metadata_title }}">
+            </figure>
+            <p>{{ metadata.description }}</p>
+            <a href="{{ metadata.link }}">مطالعه</a>
+          </div>
+        </section>
+        {% endfor %}
+      </div>
+
+    </section>
   </article>
 
-  <div class="subject-container">
-
-    {% for metadata in site.data.json.posts.algorithm.metadata_list %}
-    <section class="card-view">
-      <h2>
-        {{ metadata.title }}
-      </h2>
-      <div>
-        <figure>
-          <img src="{{ metadata.imgCover }}" alt="{{ metadata_title }}">
-        </figure>
-        <p>{{ metadata.description }}</p>
-        <a href="{{ metadata.link }}">مطالعه</a>
-      </div>
-    </section>
-    {% endfor %}
-  </div>
 
 </section>

@@ -3,54 +3,30 @@ layout: category
 ---
 
 
-<section>
-  <article>
-    <div class="description">
-      <p>
-        گاهی نیاز داریم تعدادی از عناصر رو در طی زمان اجرای برنامه نگهداری و ازشون استفاده کنیم ولی نمیدونیم چندتا عنصر
-        رو میخوایم
-        نگهداری کنیم، استفاده از آرایه کار رو برامون سخت می کنه چون طول آرایه ثابته (<strong>fixed length</strong>)،
-        برای اینکار
-        نیاز به یک container
-        ،با طول قابل تغییر داریم
-        بنابراین به <strong>ساختار داده (data structure)</strong> رو میاریم.
-      </p>
+<article>
+  <section>
 
-      <p>
-        با استفاده از ساختار داده (data structure) میتونیم در طی زمان اجرای برنامه، داده ها رو به ترتیب
-        خاصی نگهداری، اضافه و حذف کنیم یا صداشون بزنیم؛
-        انتخاب ساختار داده ی مناسب به بهبود عملکرد برنامه کمک می کنه.
-        به طور عمومی به طول ساختار داده، اندازه ی (size) ساختار داده میگیم،
-        برخلاف آرایه ها که طول ثابتی دارن، در ساختار داده اندازه ی ثابتی نداریم و با حذف و اضافه ی عناصر اندازه ی ساختار
-        داده
-        تغییر میکنه اصطلاحا میگیم اندازه ی ساختار داده دینامیکی (<strong>dynamic size</strong>) است، در ساختار داده
-        پیاده سازی های مختلفی داریم، ازجمله لیست (List)، لیست پیوندی (LinkedList)، صف
-        (Queue)، پشته (Stack)، Map، Set و ...
-      </p>
+    <h2>فهرست مطالب</h2>
 
-      <div class="note">
-        <p class="note-head">توجه</p>
-        <p>بسیاری از پیاده سازی های ساختار داده در کتابخونه های استاندارد زبان های برنامه نویسی وجود داره.</p>
-      </div>
+    <p>در اینجا یک فهرست از مطالب ساختار داده ها قرار دادیم، از این صفحه میتونید به مطلب مورد نظر خودتون مراجعه کنید..
+    </p>
+
+    <div class="card-view-container">
+      {% for metadata in site.data.json.posts.data-structure.metadata_list %}
+      <section class="card-view">
+        <h3>
+          {{ metadata.title }}
+        </h3>
+        <div>
+          <figure>
+            <img src="{{ metadata.imgCover }}" alt="{{ metadata_title }}">
+          </figure>
+          <p>{{ metadata.description }}</p>
+          <a href="{{ metadata.link }}">مطالعه</a>
+        </div>
+      </section>
+      {% endfor %}
     </div>
-  </article>
 
-  <div class="card-view-container">
-
-    {% for metadata in site.data.json.posts.data-structure.metadata_list %}
-    <section class="card-view">
-      <h2>
-        {{ metadata.title }}
-      </h2>
-      <div>
-        <figure>
-          <img src="{{ metadata.imgCover }}" alt="{{ metadata_title }}">
-        </figure>
-        <p>{{ metadata.description }}</p>
-        <a href="{{ metadata.link }}">مطالعه</a>
-      </div>
-    </section>
-    {% endfor %}
-  </div>
-
-</section>
+  </section>
+</article>

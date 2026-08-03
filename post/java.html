@@ -2,44 +2,29 @@
 layout: category
 ---
 
-<section>
-  <h2>فهرست مطالب جاوا</h2>
-  <article>
-    <div class="description">
-      <p>در زیر یک لیست از مطالب آموزشی جاوا قرار دادیم، میتونید به مطلب مورد نظر خود مراجعه و آن را مطالعه
-        کنید.</p>
+<article>
+  <section>
+    <h2>فهرست مطالب</h2>
 
-      <p>جاوا یک زبان کراس پلتفرم است که در سه پلتفرم دسکتاپ، وب و اندروید مورد استفاده قرار میگیره؛ در حال حاضر با
-        حمایت بیشتر گوگل از کاتلین، نقش جاوا در توسعه اندروید نسبت به قبل کمرنگ تر شده است.</p>
-      <p>کد های جاوا در فایل هایی با پسوند <strong>.java</strong> نوشته میشن، سپس این فایل ها توسط کامپایلر جاوا
-        تبدیل
-        به فایل هایی با
-        پسوند <strong>.javac</strong> شده و در نهایت فایل های کامپایل شده توسط ماشین مجازی جاوا <strong>JVM</strong>
-        خونده و اجرا میشن.</p>
+    <p>در یک فهرست از مطالب جاوا قرار دادیم، از اینجا میتونید به مطلب مورد نظر مراجعه کنید.</p>
 
+    <div class="card-view-container">
 
-      <div class="note">
-        <p class="note-head">توجه</p>
-        <p>در مطالب فرض شده با Intellij Idea و یا نحوه ی کامپایل و اجرای کد های جاوا آشنایی دارید.</p>
-      </div>
+      {% for metadata in site.data.json.posts.java.metadata_list %}
+      <section class="card-view">
+        <h3>
+          {{ metadata.title }}
+        </h3>
+        <div>
+          <figure>
+            <img src="{{ metadata.imgCover }}" alt="{{ metadata.title }}">
+          </figure>
+          <p>{{ metadata.description }}</p>
+          <a href="{{ metadata.link }}">مطالعه</a>
+        </div>
+      </section>
+      {% endfor %}
     </div>
-  </article>
 
-  <div class="card-view-container">
-
-    {% for metadata in site.data.json.posts.java.metadata_list %}
-    <section class="card-view">
-      <h2>
-        {{ metadata.title }}
-      </h2>
-      <div>
-        <figure>
-          <img src="{{ metadata.imgCover }}" alt="{{ metadata.title }}">
-        </figure>
-        <p>{{ metadata.description }}</p>
-        <a href="{{ metadata.link }}">مطالعه</a>
-      </div>
-    </section>
-    {% endfor %}
-  </div>
-</section>
+  </section>
+</article>
