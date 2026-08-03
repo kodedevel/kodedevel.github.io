@@ -17,10 +17,13 @@ layout: default
         <a href="#p2">کلاس LinkedList</a>
       </li>
       <li>
-        <a href="#p3">پیمایش در List با ListIterator</a>
+        <a href="#p3">مقایسه ArrayList با LinkedList</a>
       </li>
       <li>
-        <a href="#p4">خلاصه</a>
+        <a href="#p4">پیمایش در List با ListIterator</a>
+      </li>
+      <li>
+        <a href="#p5">خلاصه</a>
       </li>
     </ul>
   </nav>
@@ -48,10 +51,8 @@ layout: default
       <figcaption>رابطه ارث‌بری اینترفیس List با Collection</figcaption>
     </figure>
 
-
-    <p>اینترفیس List علاوه بر متد های کالکشن، برای خودش هم متد تعریف شده.</p>
-
-    <p>در نمودار UML زیر متد های تعریف شده در کلاس List به همراه توضیحاتشون اورده شده است.</p>
+    <p>اینترفیس List علاوه بر متد های Collection که به ارث میبره، متد های اختصاصی خودش هم داره؛ در نمودار UML زیر متد
+      های تعریف شده در کلاس List به همراه توضیحاتشون اورده شده است.</p>
     <table class="tb">
       <thead>
         <tr>
@@ -95,7 +96,7 @@ layout: default
             +indexOf(o: Object): int
           </td>
           <td class="tDataRTL">
-            با اولین تطابق عنصر داخل آرایه با o شماره index عنصر رو بر میگردونه.
+            شماره index اولین عنصر مطابق با آبجکت o رو بر میگردونه.
           </td>
         </tr>
         <tr>
@@ -103,7 +104,7 @@ layout: default
             +lastIndexOf(o: Object): int
           </td>
           <td class="tDataRTL">
-            شماره index آخرین تطابق عنصر داخل آرایه با o رو بر میگردونه.
+            شماره index آخرین عنصر مطابق با آبجکت o رو بر میگردونه.
           </td>
         </tr>
         <tr>
@@ -166,7 +167,6 @@ layout: default
       ثابتی دارن، اندازه ی ArrayList با افزودن یا حذف کردن عناصر تغییر میکنه و میگیم دارای <strong>اندازه ی دینامیکی
         (dynamic size)</strong> است.</p>
 
-    <p>زمانی که در برنامه بخوایم به عناصر به صورت تصادفی دسترسی پیدا کنیم از ArrayList استفاده می کنیم.</p>
 
     <p>در UML زیر سلسه مراتب ارث بری کلاس ArrayList در جاوا شرح داده شده است.</p>
 
@@ -178,6 +178,8 @@ layout: default
 
     <p>متد های ArrayList، داخل اینترفیس List تعریف شدن که با پیاده‌سازی ‌List در ArrayList این متد ها بازنویسی
       میشن.</p>
+
+    <p>زمانی که در برنامه بخوایم به عناصر با index به صورت تصادفی دسترسی داشته باشیم از ArrayList استفاده می کنیم.</p>
 
     <p>در کلاس ArrayList یک capacity داریم که ظرفیت ArrayList رو مشخص میکنه، ظرفیت ArrayList به تعداد خونه های
       آرایه برای نگهداری عناصر گفته میشه، با پر شدن capacity، به صورت خودکار اندازه ی capacity افزایش پیدا میکنه،
@@ -239,13 +241,13 @@ layout: default
       <div class="snippet-container">
         <pre class="snippet Java">
 List&lt;String&gt; cities = new ArrayList&lt;&gt;();
-list.add("Arak");
-list.add("Tehran");
-list.add("Mashhad");
-list.add("Hamedan");
-list.add("Sanandaj");
-list.add(0, "Kermanshah");
-list.add(3, "Rasht");
+cities.add("Arak");
+cities.add("Tehran");
+cities.add("Mashhad");
+cities.add("Hamedan");
+cities.add("Sanandaj");
+cities.add(0, "Kermanshah");
+cities.add(3, "Rasht");
 
 System.out.println("A list of cities in arraylist: ");
 System.out.println(list);
@@ -288,12 +290,13 @@ for(int i=0; i&lt;list.size(); i++)
   <section id="p2">
     <h2>کلاس LinkedList</h2>
 
-    <p>یکی دیگه از پیاده سازی های List در لیست پیوندی است؛ متد های گفته شده در List، با لیست پیوندی (LinkedList) هم
+    <p>یکی دیگه از پیاده‌سازی های List در لیست پیوندی است؛ متد های گفته شده در List، با لیست پیوندی (LinkedList) هم
       بازنویسی شدن.</p>
 
-    <p>هنگامی که در برنامه بخوایم با index به صورت تصادفی به عناصر دسترسی داشته باشیم، از ArrayList استفاده می کنیم و
-      هنگامی که
-      بخوایم به عناصر اول و آخر لیست دسترسی داشته باشیم استفاده از <strong>لیست پیوندی (LinkedList)</strong> بهینه تره.
+    <p>
+      زمانی که
+      بخوایم به عناصر اول و آخر لیست رو حذف و اضافه کنیم، استفاده از <strong>لیست پیوندی (LinkedList)</strong> بهینه تر
+      از ArrayList است..
     </p>
 
 
@@ -302,13 +305,12 @@ for(int i=0; i&lt;list.size(); i++)
     <figure>
       <img src="/resources/image/java/java_linkedlist_inheritace_heirarchy.png"
         alt="نمودار UML رابطه ارث‌بری کلاس LinkedList در جاوا">
-      <figcaption>نمودار UML رابطه ارث‌بری کلاس LinkedList در جاوا</figcaption>
+      <figcaption>نمودار UML سلسه مراتب ارث‌بری کلاس LinkedList در جاوا</figcaption>
     </figure>
 
-    <p>یک سری متد های اختصاصی برای لیست پیوندی (LinkedList) در جاوا تعریف شده، این متد ها برای بهینه کردن حذف، اضافه و
-      صدا زدن عناصر در اول و آخر لیست اضافه شده اند.</p>
-
-    <p>در نمودار UML زیر کلاس LinkedList با متد های پرکاربردش شرح داده شده است.</p>
+    <p>کلاس LinkedList علاوه بر متد های تعریف شده در اینترفیس List متد های اختصاصی خودشو داره این متد ها برای بهینه کردن
+      عمل حذف و اضافه عناصر در اول و آخر لیست تعریف شده اند؛ در نمودار UML زیر کلاس LinkedList با متد های اختصاصی تعریف
+      شده در داخلش شرح داده شده است.</p>
 
     <table class="tb">
       <thead>
@@ -386,38 +388,12 @@ for(int i=0; i&lt;list.size(); i++)
     </table>
 
 
-    <p>در مثال زیر به استفاده از لیست پیوندی (LinkedList) با متد های گفته شده در جاوا می پردازیم.</p>
 
-    <div class="sample">
-      <div class="snippet-container">
-        <pre class="snippet Java">
-ArrayList&lt;Integer&gt; list = new ArrayList&lt;&gt;();
-list.add(10);
-list.add(52);
-list.add(12);
-list.add(16);
-
-LinkedList&lt;Object&gt; linkedList = new LinkedList&lt;&gt;(list);
-linkedList.add(0, "Red");
-linkedList.addFirst("Green");
-System.out.println("A list of objects in linked list:");
-System.out.println(linkedList);
-
-linkedList.removeLast();
-System.out.println("After removing " + linkedList.removeLast() + " elements in linkedlist are as follow: ");
-for(Object o: linkedList)
-   System.out.print(o + " ");
-
-System.out.println("After removing " + linkedList.removeFirst() + " elements linkedlist are as follow: ");
-for(Object o: linkedList)
-   System.out.println(o + " ");
-        </pre>
-      </div>
-    </div>
 
     <p>در مثال زیر میخوایم اسم رنگ ها رو به صورت String در LinkedList ذخیره کنیم و سپس با حلقه ی for به پیمایش در
       LinkedList
       بپردازیم و با حلقه ی while عناصر رو از آخر عنصر حذف کنیم.</p>
+
     <div class="sample">
       <div class="snippet-container">
         <pre class="snippet Java">
@@ -447,9 +423,200 @@ while(!colors.isEmpty()){
       </div>
     </div>
 
+    <p>در بالا پیچیدگی زمان صدا زدن عناصر با index برابر با O(n) است و پیچیدگی زمان حلقه ی for نیز O(n) است پس پیچیدگی
+      زمان کل در حلقه ی for برابر با O(n^2) است؛ در حالی که پیچیدگی زمان کل در حلقه ی while با حذف عناصر برابر با O(n)
+      است.
+    </p>
+
+    <p>در مثال زیر یک نمونه از LinkedList از نوع Object ایجاد می کنیم، و عناصری از نوع integer و String رو داخلش نگهداری
+      میکنم و سپس به حذف آخرین عنصر در لیست و اولین عنصر در لیست میپردازیم پس از هر بار حذف با حلقه ی foreach عنصر های
+      باقی مونده در لیست رو نمایش میدیم.</p>
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+ArrayList&lt;Integer&gt; list = new ArrayList&lt;&gt;();
+list.add(10);
+list.add(52);
+list.add(12);
+list.add(16);
+
+LinkedList&lt;Object&gt; linkedList = new LinkedList&lt;&gt;(list);
+linkedList.add(0, "Red");
+linkedList.addFirst("Green");
+System.out.println("A list of objects in linked list:");
+System.out.println(linkedList);
+
+System.out.println("After removing " + linkedList.removeLast() + " elements in linkedlist are as follow: ");
+for(Object o: linkedList)
+   System.out.print(o + " ");
+
+System.out.println("After removing " + linkedList.removeFirst() + " elements linkedlist are as follow: ");
+for(Object o: linkedList)
+   System.out.println(o + " ");
+        </pre>
+      </div>
+    </div>
+  </section>
+  <section id="p3">
+    <h2>مقایسه ArrayList با LinkedList</h2>
+    <p>زمانی که بخوایم به عناصر به صورت تصادفی با index دسترسی داشته باشیم از ArrayList استفاده می کنیم و زمانی که
+      بخوایم عناصر رو در اول یا آخر لیست حذف یا اضافه کنیم، استفاده از LinkedList بهینه تره.</p>
+
+    <p>در جدول زیر <a href="/post/algorithm/time-complexity.html">پیچیدگی زمان (Time Complexity)</a> متدهای مشترک
+      ArrayList و LinkedList رو در بدترین حالت (worst case) مقایسه کردیم.</p>
+
+    <table class="table-regular">
+      <thead>
+
+        <tr>
+          <th>
+          </th>
+          <th>
+            LinkedList
+          </th>
+          <th>
+            ArrayList
+          </th>
+        </tr>
+        <tr>
+          <th>متد</th>
+          <th colspan="2">پیچیدگی زمان (Time Complexity)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="tdLTR">
+            +get(index: int): E
+          </td>
+          <td class="tdLTR">
+            O(n)
+          </td>
+          <td class="tdLTR">
+            O(1)
+          </td>
+        </tr>
+        <tr>
+          <td>
+            +add(e: E): void
+          </td>
+          <td>
+            O(1)
+          </td>
+          <td>
+            O(n)
+          </td>
+        </tr>
+        <tr>
+          <td>
+            +add(index: int, e: E): void
+          </td>
+          <td>
+            O(n)
+          </td>
+          <td>
+            O(n)
+          </td>
+        </tr>
+        <tr>
+          <td>
+            +remove(index: int): E
+          </td>
+          <td>
+            O(n)
+          </td>
+          <td>
+            O(n)
+          </td>
+        </tr>
+        <tr>
+          <td>
+            +set(index: int, e: E): E
+          </td>
+          <td>
+            O(n)
+          </td>
+          <td>
+            O(1)
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+
+    <p>متد های removeFirst, removeLast, addFirst، addLast, getFirst و getLast برای LinkedList تعریف شده اند، جدول زیر
+      پیچیدگی زمان این ۶ متد اورده شده است.</p>
+
+    <table class="table-regular">
+      <thead>
+        <tr>
+          <th colspan="2">
+            LinkedList
+          </th>
+        </tr>
+        <tr>
+          <th>
+            نام متد
+          </th>
+          <th>
+            پیچیدگی زمان (Time Complexity)
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            +addFirst(e: E): void
+          </td>
+          <td>
+            O(1)
+          </td>
+        </tr>
+        <tr>
+          <td>
+            +addLast(e: E): void
+          </td>
+          <td>
+            O(1)
+          </td>
+        </tr>
+        <tr>
+          <td>
+            +removeFirst(): E
+          </td>
+          <td>
+            O(1)
+          </td>
+        </tr>
+        <tr>
+          <td>
+            +removeLast(): E
+          </td>
+          <td>
+            O(1)
+          </td>
+        </tr>
+        <tr>
+          <td>
+            +getFirst(): E
+          </td>
+          <td>
+            O(1)
+          </td>
+        </tr>
+        <tr>
+          <td>
+            +getLast(): E
+          </td>
+          <td>
+            O(1)
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
   </section>
 
-  <section id="p3">
+  <section id="p4">
     <h2>پیمایش در List با ListIterator</h2>
 
     <p>در مطلب <a href="collection.html">Collection</a> به Iterator پرداختیم، در این قسمت میخوایم به
@@ -557,8 +724,7 @@ while(listIterator.hasPrevious())
     </div>
 
   </section>
-
-  <section id="p4">
+  <section id="p5">
     <h2>خلاصه</h2>
     <ul>
       <li>
