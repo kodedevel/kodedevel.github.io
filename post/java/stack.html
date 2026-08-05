@@ -84,7 +84,7 @@ layout: default
         </tr>
         <tr>
           <td class="tDataLTR">
-            +empty()
+            +isEmpty()
           </td>
           <td class="tDataRTL">
             اگه عنصری داخل Stack نباشه مقدار true رو بر میگردونه.
@@ -124,6 +124,7 @@ layout: default
 
     </table>
 
+    <p>پیچیدگی زمان add, pop, peek و push برابر با O(1) است.</p>
 
     <p>میخوایم اسم شهر ها رو داخل Stack ذخیره کنیم و سپس با استفاده از حلقه while اسم شهر ها رو حذف و چاپ کنیم.</p>
 
@@ -140,7 +141,7 @@ cities.push("Mashhad");
 
 System.out.println("Displaying cities: ");
 
-while(!cities.empty())
+while(!cities.isEmpty())
    System.out.print(cities.pop() + " ");
 
 System.out.println();
@@ -171,21 +172,21 @@ public class EvaluateExpression {
 
         for (String token : tokens) {
 
-            if (!token.empty()) {
+            if (!token.isEmpty()) {
 
                 if (token.charAt(0) == '+' || token.charAt(0) == '-') {
 
                     while (
-                            !operators.empty() &amp;&amp; (operators.peek() == '*' || operators.peek() == '-' || operators.peek() == '*' || operators.peek() == '/')
+                            !operators.isEmpty() &amp;&amp; (operators.peek() == '+' || operators.peek() == '-' || operators.peek() == '*' || operators.peek() == '/')
                     ) {
                         processAnOperation(operators, operands);
                     }
 
                     operators.push(token.charAt(0));
 
-                } else if (token.charAt(0) == '*' || token.charAt(0) == '/' || token.charAt(0) == '^') {
+                } else if (token.charAt(0) == '*' || token.charAt(0) == '/') {
 
-                    while (!operators.empty() &amp;&amp; (operators.peek() == '*' || operators.peek() == '/' || operators.peek() == '^')) {
+                    while (!operators.isEmpty() &amp;&amp; (operators.peek() == '*' || operators.peek() == '/')) {
                         processAnOperation(operators, operands);
                     }
 
@@ -208,7 +209,7 @@ public class EvaluateExpression {
             }
         }
 
-        while (!operators.empty())
+        while (!operators.isEmpty())
             processAnOperation(operators, operands);
 
         return operands.pop();
