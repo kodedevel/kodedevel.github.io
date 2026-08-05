@@ -1,0 +1,283 @@
+---
+layout: default
+---
+
+<article>
+  <nav class="toc">
+    <div>دسترسی سریع</div>
+    <ul>
+      <li>
+        <a href="#p0">معرفی ArrayList</a>
+      </li>
+      <li>
+        <a href="#p1">کار با ArrayList</a>
+      </li>
+      <li>
+        <a href="#p2">پیچیدگی زمان متد های ArrayList</a>
+      </li>
+      <li>
+        <a href="#p2">خلاصه</a>
+      </li>
+    </ul>
+  </nav>
+
+  <aside class="note">
+    <p class="note-head">توجه</p>
+    <p>
+      پیش‌نیاز این مطلب، موضوع <a href="list.html">اینترفیس List</a> است که میتونید بهش مراجعه کنید.
+    </p>
+  </aside>
+  <aside class="note">
+    <p class="note-head">توجه</p>
+    <p>
+      این مطلب به استفاده از کتابخونه های رسمی ساختمان داده در جاوا می پردازد، برای یادگیری پیاده‌سازی ArrayList به <a
+        href="/post/data-structure/list.html">اینجا</a> مراجعه کنید.
+    </p>
+  </aside>
+
+  <section id="p0">
+    <h2>معرفی ArrayList</h2>
+    <p>یکی از پیاده سازی های List کلاس <strong>ArrayList</strong> است؛ با استفاده از کلاس ArrayList در جاوا میتونیم
+      عناصر رو به صورت <a href="arrays.html">آرایه‌وار</a> نگهداری کنیم؛ در
+      ArrayList میتونیم عناصر
+      رو حذف کنیم، اضافه کنیم یا صدا بزنیم.</p>
+
+    <p>تفاوت ArrayList با آرایه ها در جاوا در دینامیکی بودن سایز (طول) ArrayList است، بر خلاف
+      آرایه ها که اندازه ی
+      ثابتی دارن، اندازه ی ArrayList با افزودن یا حذف کردن عناصر تغییر میکنه و میگیم اندازه (size) کلاس ArrayList
+      <strong>دینامیکی
+        (dynamically)</strong> است.
+    </p>
+
+    <p>زمانی که در برنامه بخوایم به عناصر با index به صورت تصادفی دسترسی داشته باشیم از ArrayList استفاده می کنیم.</p>
+
+    <p>در UML زیر سلسه مراتب ارث بری کلاس ArrayList در جاوا شرح داده شده است.</p>
+
+    <figure>
+      <img src="/resources/image/java/java_arraylist_inheritance_heirarchy.png"
+        alt="سلسه مراتب‌ ارث‌بری کلاس ArrayList در جاوا">
+      <figcaption>سلسه مراتب ارث‌بری کلاس ArrayList در جاوا</figcaption>
+    </figure>
+
+    <p>متد های ArrayList، داخل اینترفیس List تعریف شدن که با پیاده‌سازی ‌List در ArrayList این متد ها بازنویسی
+      میشن.</p>
+
+    <p>به
+      تعداد عناصری که در ArrayList نگهداری میشه اندازه (size) میگیم.</p>
+
+    <p>در کلاس ArrayList یک capacity داریم که ظرفیت ArrayList رو مشخص میکنه، ظرفیت ArrayList به تعداد خونه های
+      آرایه برای نگهداری عناصر گفته میشه، با پر شدن capacity، به صورت خودکار اندازه ی capacity افزایش پیدا میکنه؛ در
+      تصویر زیر ساختار یک ArrayList به اندازه n و ظرفیت n+k شرح داده شده است.
+    </p>
+
+    <figure>
+      <img src="/resources/image/data-structure/list_structure.png" alt="ساختار لیست به اندازه n و ظرفیت n + k">
+      <figcaption>ساختار لیست به اندازه n و ظرفیت n + k</figcaption>
+    </figure>
+
+  </section>
+  <section>
+    <h2>استفاده از ArrayList</h2>
+
+    <p>زمانی که بخوایم به عناصر با index به صورت تصادفی دسترسی داشته باشیم ArrayList گزینه ی مناسبی میتونه باشه.</p>
+    <p>اکثر متد های ArrayList در <a href="list.html">اینترفیس List</a> تعریف شدن و در ArrayList بازنویسی شدن.</p>
+    <p>در زیر نمودار UML کلاس ArrayList و متد های تعریف شده در این کلاس با توضیحاتشون آورده شده است.</p>
+
+    <table class="tb">
+      <thead>
+        <tr>
+          <th colspan="2">
+            java.util.ArrayList
+          </th>
+        </tr>
+      </thead>
+
+      <body>
+        <tr>
+          <td class="tDataLTR">
+            +ArrayList()
+          </td>
+          <td class="tDataRTL">
+            یک نمونه از ArrayList ایجاد می کنه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +ArrayList(c: Collection&lt;? extends E&gt;)
+          </td>
+          <td class="tDataRTL">
+            یک نمونه از ArrayList ایجاد می کنه و اعضای کالکشن c رو بهش اضافه می کنه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +ArrayList(capacity: int)
+          </td>
+          <td class="tDataRTL">
+            یک نمونه از ArrayList با ظرفیت اولیه ی مشخص ایجاد میکنه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +trimToSize(): void
+          </td>
+          <td class="tDataRTL">
+            ظرفیت ArrayList رو به تعداد عناصر (سایز)ArrayList کاهش میده.
+          </td>
+        </tr>
+      </body>
+    </table>
+
+    <p>در مثال زیر میخوایم به استفاده از ArrayList و متد های توضیح داده شده در List بپردازیم.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+List&lt;String&gt; cities = new ArrayList&lt;&gt;();
+cities.add("Arak");
+cities.add("Tehran");
+cities.add("Mashhad");
+cities.add("Hamedan");
+cities.add("Sanandaj");
+cities.add(0, "Kermanshah");
+cities.add(3, "Rasht");
+
+System.out.println("A list of cities in arraylist: ");
+System.out.println(list);
+
+System.out.println(list.remove(4) + " removed from list");
+
+System.out.println("Now cities in arraylist are ");
+
+System.out.println(cities);
+
+        </pre>
+      </div>
+    </div>
+
+    <p>در مثال زیر با حلقه ی for به پیمایش در ArrayList می پردازیم.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+List&lt;Integer&gt; list = new ArrayList&lt;&gt;();
+list.add(8);
+list.add(21);
+list.add(12);
+list.add(14);
+list.add(32);
+list.add(10);
+list.add(30);
+
+System.out.println("The size of list is " + list.size());
+
+System.out.println("List of numbers: ");
+
+for(int i=0; i&lt;list.size(); i++)
+   System.out.print(list.get(i) + " ");
+        </pre>
+      </div>
+    </div>
+  </section>
+  <section>
+    <h2>پیچیدگی زمان متد های ArrayList</h2>
+    <p>در این قسمت به <a href="/post/algorithm/time-complexity.html">پیچیدگی زمان</a> متد های ArrayList می پردازیم، در
+      جدول زیر پیچیدگی زمان این متد ها در بدترین حالت (worst case) شرح داده شده است.</p>
+
+    <table class="table-regular">
+      <thead>
+        <tr>
+          <th colspan="2">
+            ArrayList
+          </th>
+        </tr>
+        <tr>
+          <th>متد</th>
+          <th>پیچیدگی زمان (Time Complexity)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+        <tr>
+          <td>
+            +add(e: E): boolean
+          </td>
+          <td>
+            O(n)/O(1) (amplified case)
+          </td>
+        </tr>
+        <tr>
+          <td>
+            +add(index: int, e: E): void
+          </td>
+          <td>
+            O(n)
+          </td>
+        </tr>
+        <td class="tdLTR">
+          +get(index: int): E
+        </td>
+        <td class="tdLTR">
+          O(1)
+        </td>
+        </tr>
+        <tr>
+          <td>
+            +remove(index: int): E
+          </td>
+          <td>
+            O(n)
+          </td>
+        </tr>
+        <tr>
+          <td>
+            +set(index: int, e: E): E
+          </td>
+          <td>
+            O(1)
+          </td>
+        </tr>
+        <tr>
+          <td>
+            +contains(o: Object): boolean
+          </td>
+          <td>
+            O(n)
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+  </section>
+  <section>
+    <h2>خلاصه</h2>
+    <ul>
+      <li>
+        از ArrayList برای دسترسی به عناصر با index به صورت تصادفی استفاده میکنیم.
+      </li>
+      <li>
+        اکثر متد های ArrayList در اینترفیس List تعریف شده اند.
+      </li>
+    </ul>
+  </section>
+</article>
+{% capture links %}
+<li>
+  <a href="collection.html">بررسی اینترفیس کالکشن در جاوا</a>
+</li>
+<li>
+  <a href="inheritance.html">ارث‌‌بری در جاوا</a>
+</li>
+<li>
+  <a href="objects-and-classes.html">آبجکت و کلاس ها در جاوا</a>
+</li>
+<li>
+  <a href="/post/algorithm/time-complexity.html">پیچیدگی زمان</a>
+</li>
+<li>
+  <a href="arrays.html">آرایه ها در جاوا</a>
+</li>
+<li>
+  <a href="loops.html">حلقه ها در جاوا</a>
+</li>
+{% endcapture %} {% include article-foot.html relative_links = links %}

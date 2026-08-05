@@ -1,0 +1,437 @@
+---
+layout: default
+---
+
+<article>
+  <nav class="toc">
+    <div>دسترسی سریع</div>
+    <ul>
+      <li>
+        <a href="#p0">معرفی لیست پیوندی (LinkedList)</a>
+      </li>
+      <li>
+        <a href="#p1">کار با لیست پیوندی (LinkedList)</a>
+      </li>
+      <li>
+        <a href="#p2">پیچیدگی زمان متد های لیست پیوندی (LinkedList)</a>
+      </li>
+      <li>
+        <a href="#p3">خلاصه</a>
+      </li>
+    </ul>
+  </nav>
+
+  <aside class="note">
+    <p class="note-head">توجه</p>
+    <p>
+      پیش‌نیاز این مطلب، موضوع <a href="list.html">اینترفیس List</a> است که میتونید بهش مراجعه کنید.
+    </p>
+  </aside>
+  <aside class="note">
+    <p class="note-head">توجه</p>
+    <p>
+      این مطلب به استفاده از کتابخونه های رسمی ساختمان داده در جاوا می پردازد، برای یادگیری پیاده‌سازی LinkedList به <a
+        href="/post/data-structure/linkedlist.html">اینجا</a> مراجعه کنید.
+    </p>
+  </aside>
+
+  <section id="p0">
+    <h2>معرفی LinkedList</h2>
+
+    <p>بر خلاف list که عناصر آرایه وار مستقیم روی حافظه ذخیره میشن، در لیست پیوندی (LinkedList) عناصر در گره (node) ها
+      ذخیره میشن.</p>
+    <p>هر عنصر داخل یک node نگهداری میشه و هر node به node بعد از خودش و به node قبل
+      از خودش اشاره میکنه.
+      در زیر به صورت تصویری شرح داده شده که چطور عناصر در LinkedList نگهداری میشن.</p>
+
+    <figure>
+      <img src="/resources/image/data-structure/doubly_linkedlist_structure.png" alt="ساختار لیست پیوندی (LinkedList)">
+      <figcaption>ساختار لیست پیوندی (LinkedList)</figcaption>
+    </figure>
+
+
+  </section>
+  <section id="p1">
+    <h2>کار با لیست پیوندی (LinkedList)</h2>
+
+    <p>یکی دیگه از پیاده‌سازی های List در لیست پیوندی است؛ متد های گفته شده در List، با لیست پیوندی (LinkedList) هم
+      بازنویسی شدن.</p>
+
+    <p>
+      زمانی که
+      بخوایم به عناصر اول و آخر لیست رو حذف و اضافه کنیم، استفاده از <strong>لیست پیوندی (LinkedList)</strong> بهینه تر
+      از ArrayList است.
+    </p>
+
+    <p>در نمودار UML زیر رابطه ی سلسله مراتب ارث‌بری در لیست پیوندی شرح داده شده است.</p>
+
+    <figure>
+      <img src="/resources/image/java/java_linkedlist_inheritace_heirarchy.png"
+        alt="نمودار UML رابطه ارث‌بری کلاس LinkedList در جاوا">
+      <figcaption>نمودار UML سلسه مراتب ارث‌بری کلاس LinkedList در جاوا</figcaption>
+    </figure>
+
+    <p>کلاس LinkedList علاوه بر متد های تعریف شده در اینترفیس List متد های اختصاصی خودشو داره این متد ها برای بهینه کردن
+      عمل حذف و اضافه عناصر در اول و آخر لیست تعریف شده اند؛ در نمودار UML زیر کلاس LinkedList با متد های اختصاصی تعریف
+      شده در داخلش شرح داده شده است.</p>
+
+    <table class="tb">
+      <thead>
+        <tr>
+          <th colspan="2">java.util.LinkedList</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="tDataLTR">
+            +LinkedList()
+          </td>
+          <td class="tDataRTL">
+            یک نمونه از LinkedList ایجاد میکنه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +LinkedList(c: Collection&lt;? extends E&gt;)
+          </td>
+          <td class="tDataRTL">
+            یک نمونه از LinkedList ایجاد می کنه و عناصر کالکشن c رو بهش اضافه می کنه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +addFirst(e: E): void
+          </td>
+          <td class="tDataRTL">
+            عنصر e رو به اول لیست اضافه می کنه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +addLast(e: E): void
+          </td>
+          <td class="tDataRTL">
+            عنصر e رو به آخر لیست اضافه می کنه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +getFirst(): E
+          </td>
+          <td class="tDataRTL">
+            اولین عنصر در لیست رو بر میگردونه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +getLast(): E
+          </td>
+          <td class="tDataRTL">
+            آخرین عنصر در لیست رو بر میگردونه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +removeFirst(): E
+          </td>
+          <td class="tDataRTL">
+            اولین عنصر رو از لیست حذف می کنه و بر میگردونه.
+          </td>
+        </tr>
+
+        <tr>
+          <td class="tDataLTR">
+            +removeLast(): E
+          </td>
+          <td class="tDataRTL">
+            آخرین عنصر رو از لیست حذف میکنه و بر میگردونه.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>در مثال زیر میخوایم اسم رنگ ها رو به صورت String در LinkedList ذخیره کنیم و سپس با حلقه ی for به پیمایش در
+      LinkedList
+      بپردازیم و با حلقه ی while عناصر رو از آخر عنصر حذف کنیم.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+LinkedList&lt;String&gt; colors = new LinkedList&lt;&gt;();
+colors.add("Blue");
+colors.add("Pink");
+colors.add("Purple");
+colors.addFirst("Cyan");
+colors.add(1, "Red");
+colors.removeLast();
+colors.addLast("Yellow");
+
+System.out.println("Display colors ");
+for(int i =0; i&lt;colors.size(); i++){
+  String c = colors.get(i);
+  System.out.print(c + " ");
+}
+
+System.out.println("Remove and Display colors backward: ");
+
+while(!colors.isEmpty()){
+  String c = colors.removeLast();
+  System.out.println(c);
+  
+}
+        </pre>
+      </div>
+    </div>
+
+    <p>در بالا پیچیدگی زمان صدا زدن عناصر با index برابر با O(n) است و پیچیدگی زمان حلقه ی for نیز O(n) است پس پیچیدگی
+      زمان کل در حلقه ی for برابر با O(n^2) است؛ در حالی که پیچیدگی زمان کل در حلقه ی while با حذف عناصر برابر با O(n)
+      است.
+    </p>
+
+    <p>در مثال زیر یک نمونه از LinkedList از نوع Object ایجاد می کنیم، و عناصری از نوع integer و String رو داخلش نگهداری
+      میکنم و سپس به حذف آخرین عنصر در لیست و اولین عنصر در لیست میپردازیم پس از هر بار حذف با حلقه ی foreach عنصر های
+      باقی مونده در لیست رو نمایش میدیم.</p>
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+ArrayList&lt;Integer&gt; list = new ArrayList&lt;&gt;();
+list.add(10);
+list.add(52);
+list.add(12);
+list.add(16);
+
+LinkedList&lt;Object&gt; linkedList = new LinkedList&lt;&gt;(list);
+linkedList.add(0, "Red");
+linkedList.addFirst("Green");
+System.out.println("A list of objects in linked list:");
+System.out.println(linkedList);
+
+System.out.println("After removing " + linkedList.removeLast() + " elements in linkedlist are as follow: ");
+for(Object o: linkedList)
+   System.out.print(o + " ");
+
+System.out.println("After removing " + linkedList.removeFirst() + " elements linkedlist are as follow: ");
+for(Object o: linkedList)
+   System.out.println(o + " ");
+        </pre>
+      </div>
+    </div>
+
+    <p>در مثال زیر میخوایم یک <a href="stack.html">پشته (Stack)</a> با لیست پیوندی پیاده کنیم.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+public class MyStack&lt;E&gt; {
+
+    private final LinkedList&lt;E&gt; list = new LinkedList&lt;&gt;();
+
+    public MyStack(E[] elements){
+        for (int i=0; i&lt;elements.length; i++){
+            list.addLast(elements[i]);
+        }
+    }
+
+    public MyStack(){
+
+    }
+
+    public E pop(){
+        if (list.isEmpty()) return null;
+        return list.removeLast();
+    }
+
+    public void push(E e){
+        list.addLast(e);
+    }
+
+    public E peek(){
+        if (list.isEmpty()) return null;
+        return list.getLast();
+    }
+
+    public boolean isEmpty(){
+        return list.isEmpty();
+    }
+
+    public int getSize(){
+        return list.size();
+    }
+}        
+        </pre>
+      </div>
+    </div>
+  </section>
+
+  <section id="p2">
+    <h2>پیچیدگی زمان متد ها در لیست پیوندی (LinkedList)</h2>
+    <p>در این قسمت میخوایم پیچیدگی زمان متد ها در لیست پیوندی (LinkedList) رو بررسی کنیم.</p>
+
+    <p>در جدول زیر <a href="/post/algorithm/time-complexity.html">پیچیدگی زمان</a> متد های LinkedList در بدترین حالت
+      (worst case) توضیح داده شده است.</p>
+
+    <table class="table-regular">
+      <thead>
+        <tr>
+          <th colspan="2">
+            LinkedList
+          </th>
+        </tr>
+        <tr>
+          <th>
+            متد
+          </th>
+          <th>
+            پیچیدگی زمان (Time Complexity)
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            +add(e: E): boolean
+          </td>
+          <td>
+            O(1)
+          </td>
+        </tr>
+        <tr>
+          <td>
+            +add(index: int, e: E): void
+          </td>
+          <td>
+            O(n)
+          </td>
+        </tr>
+        <td>
+          +get(index: int): E
+        </td>
+        <td>
+          O(n)
+        </td>
+        <tr>
+          <td>
+            +remove(o: Object): boolean
+          </td>
+          <td>
+            O(n)
+          </td>
+        </tr>
+        <tr>
+          <td>
+            +remove(index: int): E
+          </td>
+          <td>
+            O(n)
+          </td>
+        </tr>
+        <tr>
+          <td>
+            +set(index: int, e: E): E
+          </td>
+          <td>
+            O(n)
+          </td>
+        </tr>
+        <tr>
+          <td>
+            +contains(o: Object): boolean
+          </td>
+          <td>
+            O(n)
+          </td>
+        </tr>
+        <tr>
+          <td>
+            +addFirst(e: E): void
+          </td>
+          <td>
+            O(1)
+          </td>
+        </tr>
+        <tr>
+          <td>
+            +addLast(e: E): void
+          </td>
+          <td>
+            O(1)
+          </td>
+        </tr>
+        <tr>
+          <td>
+            +removeFirst(): E
+          </td>
+          <td>
+            O(1)
+          </td>
+        </tr>
+        <tr>
+          <td>
+            +removeLast(): E
+          </td>
+          <td>
+            O(1)
+          </td>
+        </tr>
+        <tr>
+          <td>
+            +getFirst(): E
+          </td>
+          <td>
+            O(1)
+          </td>
+        </tr>
+        <tr>
+          <td>
+            +getLast(): E
+          </td>
+          <td>
+            O(1)
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+  <section id="p3">
+    <h2>خلاصه</h2>
+    <ul>
+      <li>
+        زمانی که بخوایم عناصر رو از ابتدا یا انتهای لیست حذف کنیم استفاده از لیست پیوندی (LinkedList) بهینه تر از
+        ArrayList است.
+      </li>
+      <li>
+        یکی از پیاده‌سازی های اینترفیس ‌List، در لیست پیوندی (LinkedList) است.
+      </li>
+      <li>
+        متد های تعریف شده در اینترفیس List در لیست پیوندی بازنویسی شده.
+      </li>
+    </ul>
+
+  </section>
+</article>
+{% capture links %}
+<li>
+  <a href="collection.html">بررسی اینترفیس کالکشن در جاوا</a>
+</li>
+<li>
+  <a href="list.html">بررسی اینترفیس List در جاوا</a>
+</li>
+<li>
+  <a href="inheritance.html">ارث‌‌بری در جاوا</a>
+</li>
+<li>
+  <a href="arraylist.html">کار با ArrayList در جاوا</a>
+</li>
+<li>
+  <a href="vector.html">کار با Vector در جاوا</a>
+</li>
+<li>
+  <a href="/post/algorithm/time-complexity.html">پیچیدگی زمان</a>
+</li>
+<li>
+  <a href="arrays.html">آرایه ها در جاوا</a>
+</li>
+<li>
+  <a href="loops.html">حلقه ها در جاوا</a>
+</li>
+{% endcapture %} {% include article-foot.html relative_links = links %}

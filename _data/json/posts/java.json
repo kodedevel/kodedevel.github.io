@@ -187,12 +187,52 @@
       "link": "/post/java/collection.html"
     },
     {
-      "title": "کالکشن ها در جاوا: آموزش کامل ArrayList و LinkedList",
-      "description": "آموزش کامل ArrayList و LinkedList در جاوا؛ بررسی اینترفیس List، درک تفاوت ArrayList با لیست پیوندی و بررسی اینترفیس ListIterator برای پیمایش دوسویی در ArrayList و LinkedList به همراه مثال.",
+      "title": "کالکشن ها در جاوا: اینترفیس List و پیمایش دوسویی با ListIterator",
+      "description": "بررسی اینترفیس List و استفاده از ListIterator برای پیمایش دوسویی در پیاده سازی های List به همراه مثال.",
       "datePublished": "2026-08-02",
       "lastModified": "",
       "imgCover": "/resources/image/java/cover_arraylist_linkedlist.png",
-      "link": "/post/java/arraylist-linkedlist.html"
+      "link": "/post/java/list.html"
+    },
+    {
+      "title": "کالکشن ها در جاوا: آموزش کار با ArrayList به همراه مثال",
+      "description": "آموزش کار با کلاس ArrayList در جاوا؛ معرفی ArrayList، استفاده از ArrayList و بررسی پیچیدگی زمان متد های ArrayList به همراه مثال.",
+      "datePublished": "2026-08-05",
+      "lastModified": "",
+      "imgCover": "/resources/image/java/cover_arraylist.png",
+      "link": "/post/java/arraylist.html"
+    },
+    {
+      "title": "کالکشن ها در جاوا: آموزش کار با Vector + مثال",
+      "description": "در کجا باید از Vector بجای ArrayList استفاده کنیم؟ بررسی کلاس Vector و مقایسه ی در جاوا و آموزش کار با Vector به همراه مثال.",
+      "datePublished": "2026-08-05",
+      "lastModified": "",
+      "imgCover": "/resources/image/java/cover_vector.png",
+      "link": "/post/java/vector.html"
+    },
+    {
+      "title": "کالکشن ها در جاوا: آموزش کار با لیست پیوندی (LinkedList) + مثال",
+      "description": "آموزش کار با کلاس LinkedList؛ معرفی لیست پیوندی (LinkedList) و بررسی پیچیدگی زمان متد های LinkedList به همراه مثال های مفهومی.",
+      "datePublished": "2026-08-05",
+      "lastModified": "",
+      "imgCover": "/resources/image/java/cover_linkedlist.png",
+      "link": "/post/java/linkedlist.html"
+    },
+    {
+      "title": "کالکشن ها در جاوا: آموزش کار با Queue + مثال های کاربردی",
+      "description": "آموزش کار با Queue در جاوا؛ معرفی Queue و کار با Queue به همراه مثال های کاربردی.",
+      "datePublished": "2026-08-05",
+      "lastModified": "",
+      "imgCover": "/resources/image/java/cover_queue.png",
+      "link": "/post/java/queue.html"
+    },
+    {
+      "title": "کالکشن ها در جاوا: آموزش کار با Stack + مثال های کاربردی",
+      "description": "آموزش کار با Stack در جاوا؛ معرفی پشته و کار با پشته به همراه مثال های کاربردی.",
+      "datePublished": "2026-08-05",
+      "lastModified": "",
+      "imgCover": "/resources/image/java/cover_stack.png",
+      "link": "/post/java/stack.html"
     },
     {
       "title": "چندنخی (multithreading) در جاوا و کاتلین",

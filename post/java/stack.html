@@ -1,0 +1,273 @@
+---
+layout: default
+---
+
+
+
+<article>
+  <nav class="toc" aria-label="Page Contents">
+    <div>دسترسی سریع</div>
+    <ul>
+      <li>
+        <a href="#p0">معرفی پشته (Stack)</a>
+      </li>
+      <li>
+        <a href="#p1">کار با پشته (Stack)</a>
+      </li>
+      <li>
+        <a href="#p2">خلاصه</a>
+      </li>
+    </ul>
+  </nav>
+
+  <aside class="note">
+    <p class="note-head">توجه</p>
+    <p>این مطلب به استفاده از کتابخونه های
+      رسمی ساختمان داده در جاوا می پردازد، برای یادگیری پیاده‌سازی Stack به <a
+        href="/post/data-structure/stack.html">اینجا</a> مراجعه کنید.</p>
+  </aside>
+  <section id="p0">
+    <h2>معرفی پشته (Stack)</h2>
+
+    <p>
+      پشته (Stack) یکی از پیاده‌سازی ها در ساختار داده است، در پشته (Stack) دسترسی به عناصر یک طرفه است و بر خلاف لیست
+      که میتونیم به عناصر با index دسترسی داشته باشیم در پشته فقط میتونیم آخرین عنصری که اضافه کردیم رو صدا بزنیم و برای
+      دسترسی به عنصر بعدی باید آخرین عنصر از Stack خارج (حذف) بشه و پشته (Stack) معروفه به last-in-first-out به زبون
+      خودمونی دیر اومدی میخوای زود بری :)
+    </p>
+
+    <p>
+      یک لیوان رو در نظر بگیرید که داخلش میخوایم چندتا توپ بندازیم، برای دسترسی به اولین توپی که انداختیم، باید توپ های
+      بعدی رو بیاریم بیرون؛ نگهداری، دسترسی و حذف عناصر در استک (Stack) شبیه همینه.
+    </p>
+
+    <figure>
+      <img src="/resources/image/data-structure/stack_structure.png" alt="ساختار پشته (Stack)">
+      <figcaption>ساختار پشته (Stack)</figcaption>
+    </figure>
+
+  </section>
+
+  <section id="p1">
+    <h2>کار با پشته (Stack)</h2>
+
+    <p>در جاوا کلاس Stack از Vector ارث‌بری میکنه؛ با اینکه Stack در جاوا از Vector پیاده‌سازی میشه، ولی پیاده‌سازی
+      Stack
+      با LinkedList بهینه تره.</p>
+
+
+    <figure>
+      <img src="/resources/image/java/java_collection_stack_inheritance.png" alt="ارث‌بری کلاس Stack از کلاس Vector">
+      <figcaption>ارث‌بری کلاس Stack از کلاس Vector</figcaption>
+    </figure>
+
+
+    <p>در نمودار UML زیر متد های Stack با توضیحاتشون آورده شده است.</p>
+
+
+    <table class="tb">
+      <thead>
+        <tr>
+          <th colspan="2">
+            java.util.Stack
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="tDataLTR">
+            +Stack()
+          </td>
+          <td class="tDataRTL">
+            یک نمونه از Stack ایجاد می کنه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +empty()
+          </td>
+          <td class="tDataRTL">
+            اگه عنصری داخل Stack نباشه مقدار true رو بر میگردونه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +peek(): E
+          </td>
+          <td class="tDataRTL">
+            آخرین عنصری که به Stack اضافه شده رو بر میگردونه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +pop(): E
+          </td>
+          <td class="tDataRTL">
+            آخرین عنصری که به Stack اضافه شده رو حذف می کنه و بر میگردونه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +push(e: E): boolean
+          </td>
+          <td class="tDataRTL">
+            عنصر e رو به Stack اضافه می کنه.
+          </td>
+        </tr>
+        <td class="tDataLTR">
+          +search(o: Object): int
+        </td>
+        <td class="tDataRTL">
+          موقعیت (index) عنصر مطابق با o در Stack رو بر می گردونه.
+        </td>
+      </tbody>
+
+    </table>
+
+
+    <p>میخوایم اسم شهر ها رو داخل Stack ذخیره کنیم و سپس با استفاده از حلقه while اسم شهر ها رو حذف و چاپ کنیم.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+Stack&lt;String&gt; cities = new Stack&lt;&gt;();
+
+cities.push("Tehran");
+cities.push("Arak");
+cities.push("Isfahan");
+cities.push("Tabriz");
+cities.push("Mashhad");
+
+System.out.println("Displaying cities: ");
+
+while(!cities.empty())
+   System.out.print(cities.pop() + " ");
+
+System.out.println();
+        
+        </pre>
+      </div>
+    </div>
+
+    <p>میخوایم با استفاده از پشته (Stack) یک پروژه ی ماشین حساب بنویسیم، در این پروژه ماشین حساب یک عبارت مثل
+      2*5+(4/2)-32 رو حساب
+      می کنه.</p>
+
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+public class EvaluateExpression {
+
+     public double evaluateExpression(String expression) {
+
+        Stack&lt;Double&gt; operands = new Stack&lt;&gt;();
+        Stack&lt;Character&gt; operators = new Stack&lt;&gt;();
+
+        expression = expression.trim(); //remove every space in expression
+        expression = insertBlanks(expression);
+
+        String[] tokens = expression.split("\\s");
+
+        for (String token : tokens) {
+
+            if (!token.empty()) {
+
+                if (token.charAt(0) == '+' || token.charAt(0) == '-') {
+
+                    while (
+                            !operators.empty() &amp;&amp; (operators.peek() == '*' || operators.peek() == '-' || operators.peek() == '*' || operators.peek() == '/')
+                    ) {
+                        processAnOperation(operators, operands);
+                    }
+
+                    operators.push(token.charAt(0));
+
+                } else if (token.charAt(0) == '*' || token.charAt(0) == '/' || token.charAt(0) == '^') {
+
+                    while (!operators.empty() &amp;&amp; (operators.peek() == '*' || operators.peek() == '/' || operators.peek() == '^')) {
+                        processAnOperation(operators, operands);
+                    }
+
+                    operators.push(token.charAt(0));
+
+                } else if (token.charAt(0) == '(') {
+
+                    operators.push('(');
+
+                } else if (token.charAt(0) == ')') {
+
+                    while (operators.peek() != '(') {
+                        processAnOperation(operators, operands);
+                    }
+                    operators.pop();
+
+                } else {
+                    operands.push(Double.parseDouble(token));
+                }
+            }
+        }
+
+        while (!operators.empty())
+            processAnOperation(operators, operands);
+
+        return operands.pop();
+    }
+
+
+    private static void processAnOperation(Stack&lt;Character&gt; operators, Stack&lt;Double&gt; operands) {
+        char op = operators.pop();
+        double operand0 = operands.pop();
+        double operand1 = operands.pop();
+
+        switch (op) {
+            case '*' -&gt; operands.push(operand1 * operand0);
+            case '/' -&gt; operands.push(operand1 / operand0);
+            case '-' -&gt; operands.push(operand1 - operand0);
+            case '+' -&gt; operands.push(operand1 + operand0);
+        }
+    }
+
+    private static String insertBlanks(String s) {
+        StringBuilder result = new StringBuilder();
+
+        for (int i = 0; i &lt; s.length(); i++) {
+            char ch = s.charAt(i);
+            if (ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '(' || ch == ')')
+                result.append(" ").append(ch).append(" ");
+            else result.append(ch);
+        }
+
+        return result.toString();
+    }
+}
+        </pre>
+      </div>
+    </div>
+
+  </section>
+
+  <section id="p2">
+    <h2>خلاصه</h2>
+
+    <ul>
+      <li>پشته (Stack) یک ساختار داده last-in-first-out است.</li>
+      <li>کلاس Stack در جاوا از کلاس Vector ارث‌بری می کنه.</li>
+    </ul>
+
+  </section>
+
+</article>
+{% capture links %}
+<li>
+  <a href="/post/java/queue.html">صف (Queue) در جاوا</a>
+</li>
+
+<li>
+  <a href="/post/java/arraylist-linkedlist.html">آموزش ArrayList و LinkedList در جاوا</a>
+</li>
+
+<li>
+  <a href="/post/java/collection.html">بررسی اینترفیس Collection و پیمایش در کالکشن ها</a>
+</li>
+{% endcapture %} {% include article-foot.html relative_links = links %}

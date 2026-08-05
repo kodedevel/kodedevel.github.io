@@ -1,0 +1,229 @@
+---
+layout: default
+---
+
+
+<article>
+  <nav class="toc" aria-label="Page Contents">
+    <div>دسترسی سریع</div>
+    <ul>
+      <li>
+        <a href="#p0">معرفی صف (Queue)</a>
+      </li>
+      <li>
+        <a href="#p1">کار با صف (Queue)</a>
+      </li>
+      <li>
+        <a href="#p2">خلاصه</a>
+      </li>
+    </ul>
+  </nav>
+  <aside class="note">
+    <p class="note-head">توجه</p>
+    <p>این مطلب به استفاده از کتابخونه های
+      رسمی ساختمان داده در جاوا می پردازد، برای یادگیری پیاده سازی صف (Queue) به <a
+        href="/post/data-structure/queue.html">اینجا</a> مراجعه کنید.</p>
+  </aside>
+  <section id="p0">
+    <h2>معرفی صف (Queue)</h2>
+
+    <p>وقتی میرید نونوایی به اولین چیزی که برخورد میکنید صف نونواییه، بهت میگن اقا دیر اومدی باید وایسی ته صف! اولین کسی
+      که نوبتشه همونیه زود تر از بقیه اومده و به همین ترتیب تا نوبت به اخرین نفری برسه که تو صف نونه</p>
+
+    <p>صف (Queue) یکی از پیاده سازی های ساختار داده است؛ در صف (Queue) اولین عنصری که اضافه میشه، اولین عنصریه که
+      میتونیم صدا بزنیم یا حذفش کنیم مثل همین قضیه ی صف نونوایی؛ صف (Queue) معروفه به first-in-first-out و یک ساختار
+      داده
+      ی یک طرفه است، در صف چیزی به اسم وسط صف نداریم یعنی برخلاف <a href="arraylist-linkedlist.html">ArrayList</a> که
+      به عناصر با index به صورت تصادفی دسترسی داشتیم، در صف تنها به عنصر سر صف (یعنی اولین عنصری که وارد کردیم) دسترسی
+      داریم و هنگامی که این عنصر حذف بشه، نوبت به عنصر وارد شده ی بعدی میرسه.</p>
+
+    <figure>
+      <img src="/resources/image/data-structure/queue_structure.png" alt="ساختار صف (Queue)">
+      <figcaption>ساختار صف (Queue)</figcaption>
+    </figure>
+  </section>
+
+
+  <p>پیچیدگی زمان حذف کردن یا صدا زدن عنصر از سر صف یا افزودن عنصر به ته صف O(1) است.</p>
+
+  <section id="p1">
+    <h2>کار با صف (Queue)</h2>
+
+    <p>یکی از پیاده‌سازی های صف (Queue) در جاوا کلاس LinkedList است؛ کلاس LinkedList برای ایجاد یک نمونه از Queue کاملا
+      مناسب است، چون افزودن و حذف کردن عناصر از دو طرف رو پشتیبانی میکنه.</p>
+
+
+    <p>اینترفیس Queue از اینترفیس Collection ارث‌بری میکنه.</p>
+
+    <figure>
+      <img src="/resources/image/java/java_collection_queue_inheritance.png"
+        alt="ارث‌بری اینترفیس Queue از Collection در جاوا">
+      <figcaption>ارث‌بری اینترفیس Queue از Collection در جاوا</figcaption>
+    </figure>
+
+    <p>در زیر نمودار UML متد های تعریف شده در صف با کاربرد هاشون آورده شده است.</p>
+
+    <table class="tb">
+      <thead>
+        <tr>
+          <th colspan="2">&lt;&lt;interface&gt;&gt;</th>
+        </tr>
+        <tr>
+          <th colspan="2">
+            java.util.Queue
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="tDataLTR">
+            +offer(e: Element): boolean
+          </td>
+          <td class="tDataRTL">
+            یک عنصر به صف اضافه میکنه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +remove(): E
+          </td>
+          <td class="tDataRTL">
+            عنصر سر صف رو حذف میکنه و بر میگردونه و اگه صف خالی باشه null رو بر میگردونه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +poll(): E
+          </td>
+          <td class="tDataRTL">
+            عنصر سر صف رو حذف میکنه و بر میگردونه، اگه صف خالی باشه یک اکسپشن ایجاد میکنه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +peek(): E
+          </td>
+          <td class="tDataRTL">
+            عنصر سر صف رو بدون اینکه حذف کنه بر میگردونه و اگه صف خالی باشه مقدار null رو بر میگردونه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +element(): E
+          </td>
+          <td class="tDataRTL">
+            عنصر سر صف رو بدون اینکه حذف کنه بر میگردونه و اگه صف خالی باشه، یک اکسپشن ایجاد میکنه.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>در مثال زیر شهر ها رو به صف اضافه می کنیم و سپس دونه دونه حذف کرده و چاپشون می کنیم.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+Queue&lt;String&gt; cities = new LinkedList&lt;&gt;();
+
+cities.offer("Tehran");
+cities.offer("Arak");
+cities.offer("Isfahan");
+cities.offer("Tabriz");
+cities.offer("Mashhad");
+
+
+System.out.println("Displaying cities: ");
+
+while(!cities.isEmpty())
+   System.out.print(cities.remove() + " ");
+
+System.out.println();
+        </pre>
+      </div>
+    </div>
+
+
+    <p>در مثال زیر میخوایم با استفاده از صف (Queue) اندازه ی یک پوشه رو بدست بیاریم؛ این مثال در قسمت بازگشتی ها
+      (Recursions) با روش بازگشتی گفته شده و در اینجا با صف میخوایم انجامش بدیم.</p>
+
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+public static void main(String[] args){
+  
+  System.out.println("Insert directory path: ");
+
+  Scanner input = new Scanner(System.in);
+
+  String path = input.nextLine();
+
+  File f = new File(path);
+
+  System.out.println("The size of directory is " + getSize(f)/(100_000) + "MB");
+
+}
+
+static long getSize(File file){
+        Queue&lt;File&gt; directories = new LinkedList&lt;&gt;();
+
+        long size =0;
+        if (file.isDirectory()) {
+            directories.offer(file);
+
+            while (!directories.isEmpty()) {
+
+                File directory = directories.remove();
+                File[] files = directory.listFiles();
+
+                for (int i = 0; files != null &amp;&amp; i &lt; files.length; i++) {
+                    File f = files[i];
+                    if (f.isDirectory())
+                        directories.offer(f);
+                    else size += f.length();
+                }
+            }
+        }else {
+            size += file.length();
+        }
+
+        return size;
+    }
+        </pre>
+      </div>
+    </div>
+
+  </section>
+  <section id="p2">
+    <h2>خلاصه</h2>
+
+    <ul>
+      <li>
+        صف (Queue) یک ساختار داده first-in-first-out است.
+      </li>
+      <li>
+        پیچیدگی زمان حذف کردن، صدا زدن عنصر از صف یا افزودن عنصر به صف O(1) است.
+      </li>
+      <li>
+        یکی از پیاده سازی های صف (Queue) در جاوا، کلاس LinkedList است.
+      </li>
+
+    </ul>
+
+  </section>
+
+</article>
+{% capture links %}
+<li>
+  <a href="/post/java/arraylist-linkedlist.html">آموزش کلاس ArrayList و LinkedList</a>
+</li>
+
+<li>
+  <a href="/post/java/collection.html">بررسی اینترفیس کالکشن و پیمایش در کالکشن ها</a>
+</li>
+
+<li>
+  <a href="/post/java/loops.html">حلقه ها در جاوا</a>
+</li>
+
+{% endcapture %} {% include article-foot.html relative_links = links %}

@@ -1,0 +1,333 @@
+---
+layout: default
+---
+
+<article>
+
+  <nav class="toc" aria-label="Page Contents">
+    <div>دسترسی سریع</div>
+    <ul>
+      <li>
+        <a href="#p0">بررسی و کار با Vector</a>
+      </li>
+      <li>
+        <a href="#p1">خلاصه</a>
+      </li>
+    </ul>
+  </nav>
+
+  <aside class="note">
+    <p class="note-head">توجه</p>
+    <p>
+      پیش‌نیاز این مطلب، موضوع <a href="list.html">اینترفیس List</a> است که میتونید بهش مراجعه کنید.
+    </p>
+  </aside>
+  <section id="p0">
+    <h2>بررسی و کار با Vector</h2>
+
+    <p>کلاس Vector در جاوا، مشابه ArrayList است با این تفاوت در Vector متد ها <a
+        href="thread-synchronization.html">synchronized</a> هستند.</p>
+    <p>در Vector علاوه بر متد های تعریف شده در <a href="list.html">List</a>، متدهای اختصاصی خودش هم داره که در
+      این مطلب متد های اختصاصی Vector رو بررسی می کنیم.</p>
+
+
+    <p>کلاس Vector در جاوا از AbstractList ارث‌بری میکنه؛ زمانی که به synchronized احتیاج نداریم استفاده از ArrayList
+      مناسبه اما وقتی که به synchronized نیاز داریم Vector
+      جایگزین خوبیه.</p>
+
+
+    <figure>
+      <img src="/resources/image/java/java_vector_inheritance_heirarchy.png"
+        alt="سلسله مراتب ارث‌بری کلاس ‌Vector در جاوا">
+      <figcaption>سلسله مراتب ارث‌بری کلاس Vector در جاوا</figcaption>
+    </figure>
+
+    <p>در زیر نمودار UML متد های Vector با توضیحاتشون آورده شده است.</p>
+
+    <table class="tb">
+      <thead>
+        <tr>
+          <th colspan="2">
+            java.util.Vector
+          </th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td class="tDataLTR">
+            +Vector()
+          </td>
+          <td class="tDataRTL">
+            یک نمونه از Vector ایجاد می کنه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +Vector(c: Collection&lt;? extends E&gt;)
+          </td>
+          <td class="tDataRTL">
+            یک نمونه از Vector ایجاد می کنه و اعضای کالکشن c رو بهش اضافه می کنه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +Vector(initialCapacity: int)
+          </td>
+          <td class="tDataRTL">
+            یک نمونه از Vector با ظرفیت اولیه ایجاد می کنه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +addElement(e: Element): void
+          </td>
+          <td class="tDataRTL">
+            عنصر e رو به آخر Vector اضافه می کنه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +capacity(): int
+          </td>
+          <td class="tDataRTL">
+            ظرفیت فعلی Vector رو بر میگردونه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +copyInto(array: Object[]): void
+          </td>
+          <td class="tDataRTL">
+            اعضای Vector رو داخل array کپی می کنه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +elementAt(index: int): E
+          </td>
+          <td class="tDataRTL">
+            عنصر موجود در index مورد نظر رو بر میگردونه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +elements(): Enumeration&lt;E&gt;
+          </td>
+          <td class="tDataRTL">
+            یک Enumeration از عناصر Vector بر میگردونه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +ensureCapacity(minCapacity: int): void
+          </td>
+          <td class="tDataRTL">
+            مطمئن میشیم که ظرفیت Vector از مقداری که تعیین میکنیم کمتر نباشه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +firstElement(): E
+          </td>
+          <td class="tDataRTL">
+            اولین عنصر در Vector رو بر میگردونه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +lastElement(): E
+          </td>
+          <td class="tDataRTL">
+            آخرین عنصر در Vector رو بر میگردونه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +insertElementAt(e: E, index: int): void
+          </td>
+          <td class="tDataRTL">
+            عنصر e رو در index مورد نظر اضافه میکنه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +removeAllElements(): void
+          </td>
+          <td class="tDataRTL">
+            تمام عناصر موجود در Vector رو حذف می کنه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +removeElement(o: Object): boolean
+          </td>
+          <td class="tDataRTL">
+            عنصر مطابق با o رو در Vector حذف می کنه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +removeElementAt(index: int): E
+          </td>
+          <td class="tDataRTL">
+            عنصر موجود در index مورد نظر رو حذف کرده و بر میگردونه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +setElementAt(e: E, index: int): void
+          </td>
+          <td class="tDataRTL">
+            عنصر جدید رو با عنصر قدیمی موجود در index مورد نظر جایگزین میکنه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +setSize(newSize: int): void
+          </td>
+          <td class="tDataRTL">
+            سایز جدید برای vector تعریف می کنه و عناصر اضافی رو حذف میکنه؛ اگه سایز جدید بیشتر از تعداد عناصر باشه
+            مقادیر null رو به بقیه عناصر اضافه می کنه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +trimToSize(): void
+          </td>
+          <td class="tDataRTL">
+            ظرفیت Vector رو برابر با size Vector می کنه.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>برای بسیاری از متد های بالا متد های مشابه وجود داره که در List تعریف شدن؛ در جدول زیر متد های مشابه بالا که در
+      List تعریف شدن و در Vector نیز وجود دارن آورده شده است.</p>
+
+    <table class="table-regular">
+      <thead>
+        <tr>
+          <th>
+            متد های تعریف شده در Vector
+          </th>
+          <th>
+            متد های تعریف شده در List
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            +addElement(e: E): void
+          </td>
+          <td>
+            +add(e: E): boolean
+          </td>
+        </tr>
+        <tr>
+          <td>
+            +insertElementAt(e: E, index: int): void
+          </td>
+          <td>
+            +add(index: int, e: E): void
+          </td>
+        </tr>
+        <tr>
+          <td>
+            +removeAllElements(): void
+          </td>
+          <td>
+            +clear(): void
+          </td>
+        </tr>
+        <tr>
+          <td>
+            +removeElementAt(index: int): E
+          </td>
+          <td>
+            +remove(index: int): E
+          </td>
+        </tr>
+        <tr>
+          <td>
+            +removeElement(o: Object): boolean
+          </td>
+          <td>
+            +remove(o: Object): boolean
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+
+    <p> در Vector میتونیم ظرفیت (capacity) و اندازه (size) رو تغییر بدیم، اگه ظرفیت Vector رو کمتر از size آن
+      قرار بدیم تغییری نمیکنه اما اگه از ظرفیت فعلی خودش بیشتر باشه، ظرفیتش افزایش پیدا میکنه
+      ؛اندازه (size) در Vector برابر است با تعداد عناصر موجود در Vector؛ اگه اندازه (size) رو کمتر از تعداد عناصر فعلی
+      در Vector قرار بدیم، عناصر اضافه حذف میشن و به اندازه ی size جدید عنصر در Vector باقی میمونه و اگه size رو بیشتر
+      از تعداد عناصر موجود در Vector قرار بدیم، مقادیر null به سایر عناصر موجود در Vector اضافه میشن.
+    </p>
+
+    <p>در مثال زیر نحوه ی کار با متد های گفته شده در Vector رو توضیح دادیم.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+Vector&lt;String&gt; vector = new Vector&lt;&gt;();
+vector.ensureCapacity(14);
+System.out.println("After changing minimum capacity to 14, the capacity is " + vector.capacity() );
+vector.addElement("Red");
+vector.add("Green"); //defined in List
+vector.addElement("Blue");
+vector.add("Cyan");
+vector.addFirst("Yellow");
+vector.addLast("Green");
+
+System.out.println("Colors are " + vector);
+
+System.out.println("The size of vector is " + vector.size());
+System.out.println("The capacity of vector is " + vector.capacity());
+
+vector.setSize(2);
+System.out.println("After changing size of vector The size is " + vector.size() + " remaining colors in vector are: " );
+System.out.println(vector);
+
+vector.setSize(25);
+System.out.println("After Increasing size to " + vector.size());
+System.out.println("capacity is " + vector.capacity());
+System.out.println("Elements in vector are ");
+System.out.println(vector);
+
+System.out.println("Traversing vector by for loop: ");
+
+for (int i=0; i&lt;vector.size(); i++)
+    System.out.print(vector.elementAt(i) + " ");
+        </pre>
+      </div>
+    </div>
+
+  </section>
+
+  <section>
+    <h2>خلاصه</h2>
+    <ul>
+      <li>کلاس Vector مشابه ArrayList در جاواست و تنها تفاوتش با ArrayList در synchronized بودن متد هاشه.</li>
+      <li>در Vector با ensureCapacity و setSize میتونیم ظرفیت و اندازه ی Vector رو تغییر بدیم.</li>
+    </ul>
+  </section>
+</article>
+
+
+{% capture links %}
+<li>
+  <a href="/post/java/selectors.html">اینترفیس List در جاوا</a>
+</li>
+
+<li>
+  <a href="/post/java/arraylist.html">کار با ArrayList در جاوا</a>
+</li>
+
+<li>
+  <a href="/post/java/linkedlist.html">کار با LinkedList در جاوا</a>
+</li>
+{% endcapture %} {% include article-foot.html relative_links = links %}
