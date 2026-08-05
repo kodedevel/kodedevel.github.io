@@ -1,0 +1,281 @@
+---
+layout: default
+---
+
+<article>
+  <nav class="toc">
+    <div>دسترسی سریع</div>
+    <ul>
+      <li>
+        <a href="#p0">بررسی اینترفیس List</a>
+      </li>
+      <li>
+        <a href="#p1">پیمایش در List با ListIterator</a>
+      </li>
+      <li>
+        <a href="#p2">خلاصه</a>
+      </li>
+    </ul>
+  </nav>
+
+  <aside class="note">
+    <p class="note-head">توجه</p>
+    <p>پیش‌نیاز این مطلب موضوع <a href="collection.html">اینترفیس Collection و پیمایش در کالکشن ها</a> است؛ همچنین این
+      مطلب به استفاده از کتابخونه های رسمی ساختمان داده در جاوا می پردازد، برای یادگیری پیاده سازی ساختمان داده به بخش
+      <a href="/post/data-structure.html">ساختار داده ها</a> مراجعه کنید.
+    </p>
+  </aside>
+
+  <section id="p0">
+    <h2>بررسی اینترفیس List</h2>
+    <p> اینترفیس List از <a href="collection.html">اینترفیس Collection</a> ارث‌بری میکنه.</p>
+    <p>کلاس های </p>
+
+    <p>کلاس های <a href="arraylist.html">ArrayList</a>, <a href="vector.html">Vector</a> و <a
+        href="linkedlist.html">LinkedList</a> در جاوا اینترفیس List رو پیاده‌سازی میکنن و اکثر متدهای این کلاس ها، متد
+      های بازنویسی شده ی اینترفیس List هستند؛ در مطالب بعد به نحوه ی کار با
+      این کلاس ها در جاوا خواهیم پرداخت.</p>
+
+    <figure>
+      <img src="/resources/image/java/java_list_inheritace.png" alt="رابطه ارث‌بری اینترفیس List با Collection">
+      <figcaption>رابطه ارث‌بری اینترفیس List با Collection</figcaption>
+    </figure>
+
+    <p>اینترفیس List علاوه بر متد های Collection که به ارث میبره، متد های اختصاصی خودش هم داره؛ در نمودار UML زیر متد
+      های تعریف شده در کلاس List به همراه توضیحاتشون اورده شده است.</p>
+    <table class="tb">
+      <thead>
+        <tr>
+          <th colspan="2">
+            &lt;&lt;interface&gt;&gt;
+          </th>
+        </tr>
+        <tr>
+          <th colspan="2">
+            java.util.List&lt;E&gt;
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="tDataLTR">
+            +add(index: int, element: E): void
+          </td>
+          <td class="tDataRTL">
+            یک عنصر در جای شماره index مورد نظر اضافه میکنه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +addAll(index: int, c: Collection&lt;? extends E&gt;
+          </td>
+          <td class="tDataRTL">
+            تمام عناصر Collection رو از شماره index به بعد وارد List میکنه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +get(index: int): E
+          </td>
+          <td class="tDataRTL">
+            عنصر مربوط به شماره index رو بر میگردونه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +indexOf(o: Object): int
+          </td>
+          <td class="tDataRTL">
+            شماره index اولین عنصر مطابق با آبجکت o رو بر میگردونه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +lastIndexOf(o: Object): int
+          </td>
+          <td class="tDataRTL">
+            شماره index آخرین عنصر مطابق با آبجکت o رو بر میگردونه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +listIterator(): ListIterator
+          </td>
+          <td class="tDataRTL">
+            یک نمونه از ListIterator رو بر میگردونه؛ اینترفیس ListIterator از Iterator ارث‌بری می کنه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +listIterator(index: int): ListIterator
+          </td>
+          <td class="tDataRTL">
+            یک نمونه از ListIterator رو بر میگردونه و شروع پیمایش توسط ListIterator از شماره index خواهد بود.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +remove(index: int): E
+          </td>
+          <td class="tDataRTL">
+            عنصر موجود در شماره index مورد نظر رو حذف کرده و بر میگردونه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +subList(fromIndex: int, toIndex: int): List&lt;E&gt;
+          </td>
+          <td class="tDataRTL">
+            یک List جدید از fromIndex تا toIndex - 1 از عناصر List فعلی رو بر میگردونه؛ مانند آرایه ها شماره خونه ی
+            آخرین عنصر (size - 1) است.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +set(index: int, e: E): E
+          </td>
+          <td class="tDataRTL">
+            عنصر جدید e رو جایگزین عنصر موجود در شماره index مورد نظر میکنه و عنصر قدیمی رو بر میگردونه.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+
+  </section>
+
+  <section id="p1">
+    <h2>پیمایش در List با ListIterator</h2>
+
+    <p>در مطلب <a href="collection.html">Collection</a> به Iterator پرداختیم، در این قسمت میخوایم به
+      ListIterator بپردازیم.</p>
+    <p>اینترفیس ListIterator از <a href="collection.html">Iterator</a> ارث‌بری میکنه و باهاش میشه به پیمایش دوسویی در
+      پیاده‌سازی های List پرداخت.</p>
+
+    <figure>
+      <img src="/resources/image/java/java_listiterator_inheritance.png"
+        alt="رابطه ارث‌بری ListIterator با Iterator در جاوا">
+      <figcaption>رابطه ارث‌بری ListIterator با Iterator در جاوا</figcaption>
+    </figure>
+
+    <p>در اینترفیس ListIterator، علاوه بر متد های Iterator که ازش ارث بری میکنه، متد های جدیدی تعریف شده است.</p>
+
+    <p>در نمودار UML زیر متد های تعریف شده در ListIterator شرح داده شده است.</p>
+
+    <table class="tb">
+      <thead>
+        <tr>
+          <th colspan="2">&lt;&lt;interface&gt;&gt;</th>
+        </tr>
+        <tr>
+          <th colspan="2">
+            java.util.ListIterator
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="tDataLTR">
+            +add(e: E): void
+          </td>
+          <td class="tDataRTL">
+            یک عنصر رو به List اضافه میکنه؛ عنصر جدید به قبل از عنصر بعدی که با next صدا زده میشه اضافه میشه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +hasPrevious(): boolean
+          </td>
+          <td class="tDataRTL">
+            اگه به اولین عنصر در لیست رسیده باشیم مقدار false رو بر میگردونه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +nextIndex(): int
+          </td>
+          <td class="tDataRTL">
+            شماره index عنصر بعدی رو بر میگردونه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +previous(): E
+          </td>
+          <td class="tDataRTL">
+            عنصر قبلی رو بر می گردونه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +previousIndex(): int
+          </td>
+          <td class="tDataRTL">
+            index عنصر قبلی رو بر میگردونه.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>در مثال زیر میخوایم با ListIterator به پیمایش در LinkedList بپردازیم.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+List&lt;String&gt; colors = new ArrayList&lt;&gt;();
+colors.add("Blue");
+colors.add("Pink");
+colors.add("Purple");
+colors.addFirst("Cyan");
+colors.add(1, "Red");
+colors.removeLast();
+colors.addLast("Yellow");
+
+ListIterator&lt;String&gt; listIterator = colors.listIterator();
+
+System.out.println("Display color forward: ");
+
+while(listIterator.hasNext())
+  System.out.print(listIterator.next());
+
+System.out.println();
+
+System.out.println("Display color backward: ");
+
+while(listIterator.hasPrevious())
+  System.out.print(listIterator.previous());
+        </pre>
+      </div>
+    </div>
+
+  </section>
+  <section id="p2">
+    <h2>خلاصه</h2>
+    <ul>
+      <li>
+        کلاس های ArrayList, Vector و LinkedList اینترفیس List رو پیاده سازی میکنن.
+      </li>
+      <li>
+        اینترفیس ListIterator از اینترفیس Iterator ارث بری میکنه و باهاش میتونیم به صورت دوسویی به پیمایش در پیاده‌سازی
+        های List بپردازیم.
+      </li>
+    </ul>
+  </section>
+</article>
+{% capture links %}
+<li>
+  <a href="collection.html">بررسی اینترفیس کالکشن در جاوا</a>
+</li>
+<li>
+  <a href="inheritance.html">ارث‌‌بری در جاوا</a>
+</li>
+<li>
+  <a href="objects-and-classes.html">آبجکت و کلاس ها در جاوا</a>
+</li>
+<li>
+  <a href="arrays.html">آرایه ها در جاوا</a>
+</li>
+<li>
+  <a href="loops.html">حلقه ها در جاوا</a>
+</li>
+{% endcapture %} {% include article-foot.html relative_links = links %}
