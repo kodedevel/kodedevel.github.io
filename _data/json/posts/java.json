@@ -211,6 +211,14 @@
       "link": "/post/java/vector.html"
     },
     {
+      "title": "کالکشن ها در جاوا: آموزش کار با Stack + مثال های کاربردی",
+      "description": "آموزش کار با Stack در جاوا؛ معرفی Stack و کار با Stack به همراه مثال های کاربردی.",
+      "datePublished": "2026-08-06",
+      "lastModified": "",
+      "imgCover": "/resources/image/java/cover_stack.png",
+      "link": "/post/java/stack.html"
+    },
+    {
       "title": "کالکشن ها در جاوا: آموزش کار با LinkedList + مثال",
       "description": "آموزش کار با کلاس LinkedList؛ معرفی لیست پیوندی (LinkedList) و بررسی پیچیدگی زمان متد های LinkedList به همراه مثال های مفهومی.",
       "datePublished": "2026-08-06",
@@ -225,14 +233,6 @@
       "lastModified": "",
       "imgCover": "/resources/image/java/cover_queue.png",
       "link": "/post/java/queue.html"
-    },
-    {
-      "title": "کالکشن ها در جاوا: آموزش کار با Stack + مثال های کاربردی",
-      "description": "آموزش کار با Stack در جاوا؛ معرفی پشته و کار با پشته به همراه مثال های کاربردی.",
-      "datePublished": "2026-08-06",
-      "lastModified": "",
-      "imgCover": "/resources/image/java/cover_stack.png",
-      "link": "/post/java/stack.html"
     },
     {
       "title": "چندنخی (multithreading) در جاوا و کاتلین",
