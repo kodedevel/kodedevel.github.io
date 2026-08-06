@@ -235,6 +235,22 @@
       "link": "/post/java/queue.html"
     },
     {
+      "title": "کالکشن ها در جاوا: آموزش کار با صف دو طرفه (Deque) + مثال",
+      "description": "آموزش کار با Deque در جاوا؛ معرفی صف دوطرفه (Deque)، کار با Deque، استفاده از Deque به عنوان Stack و استفاده از Deque به عنوان Queue به همراه مثال.",
+      "datePublished": "2026-08-07",
+      "lastModified": "",
+      "imgCover": "/resources/image/java/cover_deque.png",
+      "link": "/post/java/deque.html"
+    },
+    {
+      "title": "کالکشن ها در جاوا: معرفی و استفاده از ArrayDeque + مثال",
+      "description": "معرفی و استفاده از ArrayDeque در جاوا؛ مقایسه ArrayDeque با LinkedList، استفاده از ArrayDeque به عنوان Stack و Queue",
+      "datePublished": "2026-08-07",
+      "lastModified": "",
+      "imgCover": "/resources/image/java/cover_deque.png",
+      "link": "/post/java/arraydeque.html"
+    },
+    {
       "title": "چندنخی (multithreading) در جاوا و کاتلین",
       "description": "مفهوم نخ (thread) ها، بررسی اینترفیس Runnable، کلاس Thread و مفهوم Thread Pool در جاوا و کاتلین به همراه مثال",
       "datePublished": "2026-07-19",
