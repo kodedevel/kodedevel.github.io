@@ -1,0 +1,295 @@
+---
+layout: default
+---
+
+<article>
+  <nav class="toc">
+    <div>دسترسی سریع</div>
+    <ul>
+      <li>
+        <a href="#p0">معرفی صف دوطرفه (Double Ended Queue)</a>
+      </li>
+      <li>
+        <a href="#p1">کار با Deque</a>
+      </li>
+      <li>
+        <a href="#p2">خلاصه</a>
+      </li>
+    </ul>
+  </nav>
+
+  <section id="p0">
+    <h2>معرفی صف دوطرفه (Double Ended Queue)</h2>
+    <p>در مورد صف (Queue) گفتیم یک ساختار داده یک طرفه است، اولین عنصری که به صف اضافه می کنیم، اولین عنصری هست که
+      میتونیم صدا یا حذف کنیم.</p>
+    <p>در صف دو طرفه شرایط از هر دو طرف برقراره یعنی میتونیم یک عنصر رو به ابتدا یا انتهای صف اضافه کنیم یا از ابتدا یا
+      انتهای صف حذف کنیم؛ به صف دوطرفه <strong>double ended queue</strong> گفته میشه.</p>
+
+    <p>پیچیدگی زمان برای حذف کردن، اضافه کردن یا صدا زدن عناصر در هر دو طرف صف O(1) است.</p>
+  </section>
+  <section id="p1">
+    <h2>کار با Deque</h2>
+    <p>اینترفیس Deque برای حذف و اضافه کردن عناصر از دو طرف صف طراحی شده و مخفف double ended queue است؛
+      اینترفیس Deque از <a href="queue.html">اینترفیس Queue</a> ارث بری می کنه و کلاس های <a
+        href="linkedlist.html">LinkedList</a> و ArrayDeque
+      اینترفیس Deque رو پیاده سازی
+      میکنن.</p>
+
+    <p>از Deque علاوه بر امکان حذف و اضافه کردن دوطرفه عنصر ها، میتونیم به عنوان <a href="queue.html">Queue</a> و به
+      عنوان <a href="stack.html">Stack</a> استفاده کنیم.
+    </p>
+
+    <figure>
+      <img src="/resources/image/java/java_deque_inheritance.png" alt="ارث‌بری اینترفیس Deque از Queue در جاوا">
+      <figcaption>ارث‌بری اینترفیس Deque از Queue در جاوا</figcaption>
+    </figure>
+
+    <p>در نمودار UML زیر متد های تعریف شده برای Deque با توضیحاتشون آورده شده است.</p>
+
+    <table class="tb">
+      <thead>
+        <tr>
+          <th colspan="2">java.util.Deque</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="tDataLTR">
+            +push(e: E)
+          </td>
+          <td class="tDataRTL">
+            یک عنصر به Stack اضافه می کنه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +pop(e: E): E
+          </td>
+          <td class="tDataRTL">
+            آخرین عنصری که به استک اضافه شده رو میکنه و برمیگردونه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +addFirst(e: E): void
+          </td>
+          <td class="tDataRTL">
+            عنصر e رو به ابتدای صف اضافه می کنه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +offerFirst(e: E): boolean
+          </td>
+          <td class="tDataRTL">
+            یک عنصر رو به ابتدای صف اضافه می کنه و اگه اضافه بشه مقدار true رو بر میگردونه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +addLast(e: E): void
+          </td>
+          <td class="tDataRTL">
+            یک عنصر رو به انتهای صف اضافه می کنه و اگه اضافه بشه مقدار true رو بر میگردونه.
+          </td>
+        </tr>
+
+        <tr>
+          <td class="tDataLTR">
+            +offerLast(e: E): boolean
+          </td>
+          <td class="tDataRTL">
+            مشابه addLast ولی هنگامی که موفقیت‌آمیز باشه مقدار true رو برمیگردونه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +peekFirst(): E
+          </td>
+          <td class="tDataRTL">
+            اولین عنصر در صف رو بر میگردونه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +peekLast(): E
+          </td>
+          <td class="tDataRTL">
+            آخرین عنصر در صف رو بر میگردونه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +removeFirst(): E
+          </td>
+          <td class="tDataRTL">
+            اولین عنصر صف رو حذف میکنه و بر میگردونه؛ اگه صف خالی باشه، اکسپشن ایجاد می کنه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +pollFirst(): E
+          </td>
+          <td class="tDataRTL">
+            اولین عنصر صف رو حذف میکنه و بر میگردونه؛ اگه صف خالی باشه، مقدار null رو بر میگردونه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +removeLast(): E
+          </td>
+          <td class="tDataRTL">
+            آخرین عنصر صف رو حذف میکنه و بر میگردونه؛ اگه صف خالی باشه اکسپشن ایجاد میکنه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +pollLast(): E
+          </td>
+          <td class="tDataRTL">
+            آخرین عنصر صف رو حذف میکنه و برمیگردونه؛ اگه صف خالی باشه، مقدار null رو بر میگردونه.
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+
+    <p>در مطلب LinkedList از addFirst, addLast, removeFirst و removeLast صحبت کردیم در واقع این متد ها از Deque بازنویسی
+      شده اند اما برای اینکه بتونیم <a href="linkedlist.html">ويژگی های LinkedList</a> رو بررسی کنیم اونجا معرفیشون
+      کردیم.</p>
+
+    <p>در این بخش میخوایم از Deque استفاده کنیم، دوتا از پیاده‌سازی های اینترفیس Deque کلاس های LinkedList و ArrayDeque
+      هستند در <a href="linkedlist.html">مطلب قبل</a> به کلاس LinkedList پرداختیم و در مطلب بعدی به ArrayDeque خواهیم
+      پرداخت.</p>
+
+
+    <p>در مثال زیر میخوایم با استفاده از Deque بررسی کنیم ببینیم یک کلمه Palindrome است یا خیر.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+public static void main(String[] args) {
+
+    System.out.println("Is moon palindrome? " + isPalindrome("moon"));
+    System.out.println("Is noon palindrome? " + isPalindrome("noon"));
+    System.out.println("Is keep palindrome? " + isPalindrome("keep"));
+    System.out.println("Is peep palindrome? " + isPalindrome("peep"));
+    System.out.println("Is pip palindrome? " + isPalindrome("pip"));
+
+}
+
+private static boolean isPalindrome(String s){
+
+    Deque&lt;Character&gt; deque = new LinkedList&lt;&gt;();
+    for (int i=0; i &lt; s.length(); i++)
+        deque.add(s.charAt(i));
+
+    while (!deque.isEmpty() &amp;&amp; deque.size() != 1) {
+
+        if (!deque.getFirst().equals(deque.getLast())) return false;
+
+        deque.removeFirst();
+        deque.removeLast();
+    }
+
+    return deque.isEmpty();
+}
+        </pre>
+      </div>
+    </div>
+
+    <section>
+
+      <h3>استفاده از Deque به عنوان صف (Queue)</h3>
+
+      <p>در مثال زیر میخوایم از Deque به عنوان صف استفاده کنیم.</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
+Queue&lt;String&gt; queue = new LinkedList&lt;&gt;();
+
+queue.offer("Tehran");
+queue.offer("Arak");
+queue.offer("Isfahan");
+queue.offer("Tabriz");
+queue.offer("Mashhad");
+
+System.out.println("Displaying cities in queue: ");
+
+while(!queue.isEmpty())
+   System.out.print(queue.poll() + " ");
+
+System.out.println();
+        
+        </pre>
+        </div>
+      </div>
+
+    </section>
+
+    <section>
+      <h3>استفاده از Deque به عنوان Stack</h3>
+
+      <p>در مطلب Stack، کار با Stack رو توضیح دادیم؛ از Deque نیز میتونیم به عنوان Stack استفاده کنیم.</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
+Deque&lt;String&gt; stack = new LinkedList&lt;&gt;();
+
+stack.push("Tehran");
+stack.push("Arak");
+stack.push("Isfahan");
+stack.push("Tabriz");
+stack.push("Mashhad");
+
+System.out.println("Displaying queue: ");
+
+while(!stack.isEmpty())
+   System.out.print(queue.pop() + " ");
+
+System.out.println();
+        </pre>
+        </div>
+      </div>
+
+    </section>
+
+  </section>
+
+  <section id="p2">
+    <h2>خلاصه</h2>
+    <ul>
+      <li>
+        از Deque برای حذف و اضافه کردن عناصر در هر دو طرف صف استفاده میکنم.
+      </li>
+      <li>
+        پیچیدگی زمان حذف، اضافه و صدا زدن عناصر در دو طرف صف O(1) است.
+      </li>
+      <li>
+        کلاس های LinkedList و ArrayDeque اینترفیس Deque رو پیاده سازی میکنن.
+      </li>
+      <li>
+        از Deque میتونیم به عنوان Queue یا به عنوان Stack استفاده کنیم.
+      </li>
+    </ul>
+  </section>
+
+</article>
+{% capture links %}
+<li>
+  <a href="/post/java/linkedlist.html">کار با LinkedList در جاوا</a>
+</li>
+<li>
+  <a href="/post/java/queue.html">کار با صف (Queue) در جاوا</a>
+</li>
+<li>
+  <a href="/post/java/collection.html">بررسی اینترفیس کالکشن و پیمایش در کالکشن ها</a>
+</li>
+
+<li>
+  <a href="/post/java/loops.html">حلقه ها در جاوا</a>
+</li>
+
+{% endcapture %} {% include article-foot.html relative_links = links %}

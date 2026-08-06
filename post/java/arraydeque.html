@@ -1,0 +1,223 @@
+---
+layout: default
+---
+
+<article>
+  <nav class="toc">
+    <div>دسترسی سریع</div>
+    <ul>
+      <li>
+        <a href="#p0">معرفی ArrayDeque</a>
+      </li>
+      <li>
+        <a href="#p1">کار با ArrayDeque</a>
+      </li>
+      <li>
+        <a href="#p2">خلاصه</a>
+      </li>
+    </ul>
+  </nav>
+
+  <aside class="note">
+    <p class="note-head">توجه</p>
+    <p>
+      پیش‌نیاز این مطلب، موضوع <a href="deque.html">اینترفیس Deque</a> است که میتونید بهش مراجعه کنید.
+    </p>
+  </aside>
+  <section id="p0">
+    <h2>معرفی ArrayDeque</h2>
+    <p>کلاس ArrayDeque یک پیاده سازی رسمی در جاواست، که حذف و اضافه کردن عناصر در هر دو طرف لیست رو امکان پذیر میکنه.
+    </p>
+    <p>بر خلاف LinkedList که هر عنصر داخل یک گره (Node) ذخیره میشه، در ArrayDeque مانند ArrayList عناصر مستقیم روی حافظه
+      ذخیره میشن؛ بنابراین به لحاظ مصرف حافظه نسبت به LinkedList موثر تر عمل میکنه.</p>
+
+    <p>از ArrayDeque میتونیم هم به عنوان پشته (Stack) استفاده کنیم و هم به عنوان صف (Queue)؛ هنگامی که بخوایم از
+      ArrayDeque به عنوان Stack استفاده کنیم از <a href="stack.html">کلاس Stack</a> سریع تره و هنگامی که بخوایم از
+      ArrayDeque به عنوان صف (Queue)
+      استفاده کنیم، از Queue با LinkedList نیز سریع تر خواهد بود.</p>
+  </section>
+
+  <section id="p1">
+    <h2>کار با ArrayDeque</h2>
+
+    <p>تمام متد های ArrayDeque در <a href="deque.html">اینترفیس Deque</a> تعریف و در ArrayDeque پیاده‌سازی شدن؛ در واقع
+      کلاس ArrayDeque یک
+      پیاده‌سازی از Deque است.</p>
+
+    <p>در نمودار UML زیر سلسله مراتب ارث‌بری کلاس ArrayDeque شرح داده شده است.</p>
+
+    <figure>
+      <img src="/resources/image/java/java_arraydeque_inheritance_hierarchy.png"
+        alt="سلسله مراتب ارث‌بری کلاس ‌ArrayDeque در جاوا">
+      <figcaption>سلسله مراتب ارث‌بری کلاس ‌ArrayDeque در جاوا</figcaption>
+    </figure>
+
+    <p>کلاس ArrayDeque فقط از Iterator پشتیبانی میکنه و از ListIterator پشتیبانی چون اینترفیس List در این کلاس
+      پیاده‌سازی نشده.</p>
+
+    <p>در نمودار UML زیر کانستراکتور های کلاس ArrayDeque</p>
+
+    <table class="tb">
+      <thead>
+        <tr>
+          <th colspan="2">
+            java.util.ArrayDeque
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="tDataLTR">
+            +ArrayDeque()
+          </td>
+          <td class="tDataRTL">
+            یک نمونه از ArrayDeque ایجاد میکنه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +ArrayDeque(c: Collection&lt;? extends E&gt;)
+          </td>
+          <td class="tDataRTL">
+            یک نمونه از ArrayDeque ایجاد میکنه و عناصر کالکشن c رو بهش اضافه میکنه.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>در مثال زیر میخوایم از متد های گفته شده در <a href="deque.html">Deque</a> استفاده کنیم.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+ArrayDeque&lt;String&gt; deque = new ArrayDeque&lt;&gt;();
+colors.addLast("Blue");
+colors.addLast("Pink");
+colors.addLast("Purple");
+colors.addFirst("Cyan");
+colors.addLast("Red");
+
+System.out.println("Last element is " + deque.peek());
+
+colors.removeLast();
+colors.addLast("Yellow");
+
+System.out.println("Remove and Display colors backward: ");
+
+while(!colors.isEmpty()){
+  String c = colors.removeLast();
+  System.out.println(c);
+  
+}
+        </pre>
+      </div>
+    </div>
+
+    <section>
+      <h3>استفاده از ArrayDeque به عنوان Stack</h3>
+      <p>در موضوع <a href="stack.html">کار با Stack</a> در مورد ويژگی های Stack توضیح دادیم و در اونجا از کلاس Stack
+        استفاده می کردیم، با استفاده
+        از متد های ArrayDeque که در Deque تعریف شدن میتونیم از ArrayDeque به عنوان Stack
+        استفاده کنیم.</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
+Deque&lt;String&gt; stack = new ArrayDeque&lt;&gt;();
+
+stack.push("Tehran");
+stack.push("Arak");
+stack.push("Isfahan");
+stack.push("Tabriz");
+stack.push("Mashhad");
+
+System.out.println("Displaying queue: ");
+
+while(!stack.isEmpty())
+   System.out.print(queue.pop() + " ");
+
+System.out.println();
+          </pre>
+        </div>
+      </div>
+
+
+    </section>
+
+    <section>
+      <h3>استفاده از ArrayDeque به عنوان Queue</h3>
+      <p>در موضوع <a href="queue.html">کار با Queue</a> در مورد ویژگی های Queue توضیح دادیم، با توجه به اینکه ArrayDeque
+        متد های اینترفیس Queue رو پیاده‌سازی میکنه بنابراین میتونیم از ArrayDeque به عنوان
+        Queue نیز استفاده کنیم.</p>
+
+      <p>در مثال زیر عناصر رو داخل Queue ذخیره میکنیم و سپس دونه حذف و صداشون میکنیم.</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
+Queue&lt;String&gt; queue = new ArrayDeque&lt;&gt;();
+
+queue.offer("Tehran");
+queue.offer("Arak");
+queue.offer("Isfahan");
+queue.offer("Tabriz");
+queue.offer("Mashhad");
+
+System.out.println("Displaying cities in queue: ");
+
+while(!queue.isEmpty())
+   System.out.print(queue.poll() + " ");
+
+System.out.println();         
+          </pre>
+        </div>
+      </div>
+    </section>
+
+  </section>
+
+  <section id="p2">
+    <h2>خلاصه</h2>
+
+    <ul>
+      <li>با استفاده ArrayDeque میتونیم عناصر رو در دو طرف صف حذف یا اضافه کنیم.</li>
+      <li>
+        اکثر متد های ArrayDeque در Deque تعریف شدن.
+      </li>
+      <li>
+        از ArrayDeque میتونیم به عنوان Queue و Stack استفاده کنیم.
+      </li>
+      <li>
+        استفاده از ArrayDeque به عنوان Stack سریع تر از کلاس Stack است.
+      </li>
+      <li>
+        استفاده از ArrayDeque به عنوان Queue سریع تر از
+        استفاده از LinkedList به عنوان Queue است.
+      </li>
+      <li>
+        عناصر ArrayDeque آرایه‌وار مستقیم روی حافظه ذخیره میشن.
+      </li>
+    </ul>
+
+  </section>
+
+</article>
+{% capture links %}
+<li>
+  <a href="/post/java/deque.html">استفاده از Deque در جاوا</a>
+</li>
+<li>
+  <a href="/post/java/queue.html">استفاده از Queue در جاوا</a>
+</li>
+<li>
+  <a href="/post/java/linkedlist.html">کار با LinkedList در جاوا</a>
+</li>
+<li>
+  <a href="/post/java/collection.html">بررسی اینترفیس کالکشن و پیمایش در کالکشن ها</a>
+</li>
+
+<li>
+  <a href="/post/java/loops.html">حلقه ها در جاوا</a>
+</li>
+
+{% endcapture %} {% include article-foot.html relative_links = links %}
