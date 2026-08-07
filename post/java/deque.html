@@ -13,7 +13,10 @@ layout: default
         <a href="#p1">استفاده از صف دوطرفه (Deque)</a>
       </li>
       <li>
-        <a href="#p2">خلاصه</a>
+        <a href="#p2">بررسی پیچیدگی زمان صف دوطرفه (Deque)</a>
+      </li>
+      <li>
+        <a href="#p3">خلاصه</a>
       </li>
     </ul>
   </nav>
@@ -30,7 +33,6 @@ layout: default
       <figcaption>ساختار صف دوطرفه (double ended queue)</figcaption>
     </figure>
 
-    <p>پیچیدگی زمان برای حذف کردن، اضافه کردن یا صدا زدن عناصر در هر دو طرف صف O(1) است.</p>
   </section>
   <section id="p1">
     <h2>استفاده از صف دوطرفه (Deque)</h2>
@@ -266,6 +268,89 @@ System.out.println();
   </section>
 
   <section id="p2">
+    <h2>بررسی پیچیدگی زمان صف دوطرفه (Deque)</h2>
+    <p>در جدول زیر <a href="/post/algorithm/time-complexity.html">پیچیدگی زمان (Time Complexity)</a> متد های صف دوطرفه
+      (Deque) آورده شده است.</p>
+    <table class="table-regular">
+      <thead>
+        <tr>
+          <th colspan="2">Deque</th>
+        </tr>
+        <tr>
+          <th>متد</th>
+          <th>پیچیدگی زمان (TimeComplexity)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            +push(e: E)
+          </td>
+          <td>
+            O(1)
+          </td>
+        </tr>
+        <tr>
+          <td>
+            +offer(e: E) / +add(e: E) / +addLast(e: E)
+          </td>
+          <td>
+            O(1)
+          </td>
+        </tr>
+        <tr>
+          <td>
+            +addFirst(e: E) / offerFirst(e: E)
+          </td>
+          <td>
+            O(1)
+          </td>
+        </tr>
+        <tr>
+          <td>
+            +pop(): E
+          </td>
+          <td>
+            O(1)
+          </td>
+        </tr>
+        <tr>
+          <td>
+            +pollLast(): E / +removeLast(): E
+          </td>
+          <td>
+            O(1)
+          </td>
+        </tr>
+        <tr>
+          <td>
+            +poll(): E / +pollFirst(): E / +remove(): E / removeFirst(): E
+          </td>
+          <td>
+            O(1)
+          </td>
+        </tr>
+        <tr>
+          <td>
+            +peek(): E / +peekFirst(): E / element(): E
+          </td>
+          <td>
+            O(1)
+          </td>
+        </tr>
+        <tr>
+          <td>
+            +peekLast(): E
+          </td>
+          <td>
+            O(1)
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="p3">
     <h2>خلاصه</h2>
     <ul>
       <li>

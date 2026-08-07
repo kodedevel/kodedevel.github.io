@@ -2,7 +2,6 @@
 layout: default
 ---
 
-
 <article>
   <nav class="toc" aria-label="Page Contents">
     <div>دسترسی سریع</div>
@@ -14,7 +13,10 @@ layout: default
         <a href="#p1">استفاده از صف (Queue)</a>
       </li>
       <li>
-        <a href="#p2">خلاصه</a>
+        <a href="#p2">بررسی پیچیدگی زمان صف (Queue)</a>
+      </li>
+      <li>
+        <a href="#p3">خلاصه</a>
       </li>
     </ul>
   </nav>
@@ -42,8 +44,6 @@ layout: default
       <figcaption>ساختار صف (Queue)</figcaption>
     </figure>
   </section>
-
-  <p>پیچیدگی زمان حذف کردن از صف (Queue)، صدا زدن عنصر از صف (Queue) یا افزودن عنصر به صف (Queue) برابر با O(1) است.</p>
 
   <section id="p1">
     <h2>استفاده از صف (Queue)</h2>
@@ -194,6 +194,52 @@ static long getSize(File file){
 
   </section>
   <section id="p2">
+    <h2>بررسی پیچیدگی زمان صف (Queue)</h2>
+
+    <p>در جدول زیر <a href="/post/algorithm/time-complexity.html">پیچیدگی زمان (Time Complexity)</a> متد های Queue آورده
+      شده است.</p>
+
+    <table class="table-regular">
+      <thead>
+        <tr>
+          <th colspan="2">Queue</th>
+        </tr>
+        <tr>
+          <th>متد</th>
+          <th>پیچیدگی زمان (TimeComplexity)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            +offer(e: E) / +add(e: E)
+          </td>
+          <td>
+            O(1)
+          </td>
+        </tr>
+        <tr>
+          <td>
+            +poll(): E / +remove(): E
+          </td>
+          <td>
+            O(1)
+          </td>
+        </tr>
+        <tr>
+          <td>
+            +peek(): E / element(): E
+          </td>
+          <td>
+            O(1)
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+
+  </section>
+  <section id="p3">
     <h2>خلاصه</h2>
 
     <ul>
