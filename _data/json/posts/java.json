@@ -235,6 +235,14 @@
       "link": "/post/java/queue.html"
     },
     {
+      "title": "کالکشن ها در جاوا: معرفی و استفاده از صف اولویتی (PriorityQueue)",
+      "description": "آموزش استفاده از صف اولویتی (PriorityQueue) در جاوا؛ معرفی PriorityQueue و استفاده از PriorityQueue به همراه مثال.",
+      "datePublished": "2026-08-07",
+      "lastModified": "",
+      "imgCover": "/resources/image/java/cover_priorityqueue.png",
+      "link": "/post/java/priorityqueue.html"
+    },
+    {
       "title": "کالکشن ها در جاوا: معرفی و استفاده از صف دوطرفه (Deque) + مثال",
       "description": "آموزش استفاده از صف دوطرفه (Deque) در جاوا؛ معرفی صف دوطرفه، استفاده از Deque، استفاده از Deque به عنوان Stack و Queue به همراه مثال.",
       "datePublished": "2026-08-07",

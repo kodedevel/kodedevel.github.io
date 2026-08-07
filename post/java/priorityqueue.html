@@ -1,0 +1,266 @@
+---
+layout: default
+---
+
+<article>
+  <nav class="toc" aria-label="Page Contents">
+    <div>دسترسی سریع</div>
+    <ul>
+      <li>
+        <a href="#p0">معرفی صف اولویتی (PriorityQueue)</a>
+      </li>
+      <li>
+        <a href="#p1">استفاده از صف اولویتی (PriorityQueue)</a>
+      </li>
+      <li>
+        <a href="#p2">بررسی پیچیدگی زمان صف اولویتی (PriorityQueue)</a>
+      </li>
+      <li>
+        <a href="#p2">خلاصه</a>
+      </li>
+    </ul>
+  </nav>
+  <aside class="note">
+    <p class="note-head">توجه</p>
+    <p>این مطلب به استفاده از کتابخونه های
+      رسمی ساختمان داده در جاوا می پردازد، برای یادگیری پیاده سازی صف (Queue) به <a
+        href="/post/data-structure/queue.html">اینجا</a> مراجعه کنید.</p>
+  </aside>
+  <section id="p0">
+    <h2>معرفی صف اولویتی (PriorityQueue)</h2>
+
+    <p>در موضوع صف (Queue) گفتیم اولین عنصری که به صف اضافه میکنیم، اولین عنصریه که میتونیم صدا بزنیم یا حذف کنیم و صف
+      معروف ساختمان داده <strong>first-in-first-out</strong> است.</p>
+
+    <p>در جاوا یک پیاده سازی از صف داریم به نام <strong>صف اولویتی (PriorityQueue)</strong>؛ در Queue عناصر به ترتیبی که
+      اضافه میشن، در صف قرار میگیرن؛ اما در PriorityQueue عناصر بر اساس مقایسه ای که باهمدیگه میشن در
+      صف قرار می گیرن و این مقایسه به طور پیشفرض با <a href="interfaces.html#p2">Comparable</a> تعریف شده در کلاس ها
+      انجام میشه اما میتونیم
+      با استفاده از اینترفیس Comparator
+      عناصر رو اونطوری که میخوایم باهم مقایسه کنیم.</p>
+
+  </section>
+
+
+  <section id="p1">
+    <h2>استفاده از صف اولویتی (PriorityQueue)</h2>
+
+    <p>صف اولویتی (PriorityQueue) یک کلاس است و میتونیم مستقیم ازش استفاده کنیم؛ اینترفیس Queue در کلاس PriorityQueue
+      پیاده‌سازی شده است؛ در UML زیر سلسله مراتب ارث‌بری صف
+      اولویتی (PriorityQueue) شرح داده شده است.</p>
+
+    <figure>
+      <img src="/resources/image/java/java_collection_priorityqueue_inheritance_hierarchy.png"
+        alt="سلسله مراتب ارث‌بری صف اولویتی (PriorityQueue) در جاوا">
+      <figcaption>سلسله مراتب ارث‌بری صف اولویتی (PriorityQueue) در جاوا</figcaption>
+    </figure>
+
+
+    <p>در نمودار UML زیر کانستراکتور (سازنده) های کلاس PriorityQueue با توضیحاتشون آورده شده است.</p>
+
+    <table class="tb">
+      <thead>
+        <tr>
+          <th colspan="2">java.util.PriorityQueue</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="tDataLTR">
+            +PriorityQueue()
+          </td>
+          <td class="tDataRTL">
+            یک نمونه از PriorityQueue ایجاد میکنه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +PriorityQueue(initialCapacity: int)
+          </td>
+          <td class="tDataRTL">
+            یک نمونه از PriorityQueue با ظرفیت اولیه ایجاد میکنه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +PriorityQueue(c: Collection&lt;? extends E&gt;)
+          </td>
+          <td class="tDataRTL">
+            یک نمونه از PriorityQueue ایجاد میکنه و عناصر کالکشن c رو بهش اضافه می کنه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +PriorityQueue(comparator: Comparator&lt;? super E&gt;)
+          </td>
+          <td class="tDataRTL">
+            یک نمونه از PriorityQueue ایجاد میکنه و عناصر رو بر اساس مقایسه در Comparator در صف قرار
+            میده.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p> دوتا String با Comparable به صورت پیشفرض بر اساس اولین حروف مقایسه میشن؛ در مثال زیر میخوایم اسم ها رو بر اساس
+      حروف الفبا در PriorityQueue قرار بدیم.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+PriorityQueue&lt;String&gt; priorityQueue = new PriorityQueue&lt;&gt;();
+priorityQueue.offer("Tehran");
+priorityQueue.offer("Arak");
+priorityQueue.offer("Shiraz");
+priorityQueue.offer("Qazvin");
+priorityQueue.offer("Mashhad");
+priorityQueue.offer("Qom");
+priorityQueue.offer("Zanjan");
+priorityQueue.offer("Zahedan");
+
+while(!priorityQueue.isEmpty())
+    System.out.print(priorityQueue.poll() + " ");
+        </pre>
+      </div>
+    </div>
+    <p>در مثال زیر میخوایم عناصر String رو بر اساس طولشون در PriorityQueue قرار بدیم.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+PriorityQueue&lt;String&gt; priorityQueue = new PriorityQueue&lt;&gt;(new Comparator&lt;&gt;() {
+    @Override
+    public int compare(String o1, String o2) {
+        if (o1.length() &gt; o2.length())
+            return 1;
+        else if (o1.length() &lt; o2.length())
+            return -1;
+        else 
+            return 0;
+    }
+});
+
+priorityQueue.offer("Tehran");
+priorityQueue.offer("Arak");
+priorityQueue.offer("Shiraz");
+priorityQueue.offer("Qazvin");
+priorityQueue.offer("Mashhad");
+priorityQueue.offer("Qom");
+priorityQueue.offer("Zanjan");
+priorityQueue.offer("Zahedan");
+
+while (!priorityQueue.isEmpty())
+    System.out.print(priorityQueue.poll() + " ");
+        </pre>
+      </div>
+    </div>
+
+    <p>در مثال بالا برای آشنایی با اینترفیس Comparator به طور کامل پیادش کردیم؛ اینترفیس Comparator یک اینترفیس با یک
+      متد است بنابراین میتونیم به صورت عبارت لامبدا پیادش کنیم.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+PriorityQueue&lt;String&gt; priorityQueue = new PriorityQueue&lt;&gt;((o1, o2) -&gt; {
+    if (o1.length() &gt; o2.length())
+        return 1;
+    else if (o1.length() &lt; o2.length())
+        return -1;
+    else return 0;
+});
+        </pre>
+      </div>
+    </div>
+
+    <p>در مثال زیر میخوایم اعداد رو از بزرگ به کوچک داخل PriorityQueue قرار بدیم.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+PriorityQueue&lt;Integer&gt; priorityQueue2 = new PriorityQueue&lt;&gt;(Comparator.reverseOrder());
+priorityQueue2.offer(42);
+priorityQueue2.offer(54);
+priorityQueue2.offer(32);
+priorityQueue2.offer(71);
+priorityQueue2.offer(12);
+priorityQueue2.offer(25);
+priorityQueue2.offer(62);
+
+while (!priorityQueue2.isEmpty())
+    System.out.print(priorityQueue2.poll() + " ");
+        </pre>
+      </div>
+    </div>
+
+  </section>
+
+  <section id="p2">
+    <h2>بررسی پیچیدگی زمان در صف اولویتی (PriorityQueue)</h2>
+
+    <p>در جدول زیر <a href="/post/algorithm/time-complexity.html">پیچیدگی زمان (Time Complexity)</a> متد های حذف، اضافه
+      و صدا زدن عنصر در PriorityQueue آورده شده است.</p>
+
+    <table class="table-regular">
+      <thead>
+        <tr>
+          <th colspan="2">PriorityQueue</th>
+        </tr>
+        <tr>
+          <th>متد</th>
+          <th>پیچیدگی زمان (TimeComplexity)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            +offer(e: E) / +add(e: E)
+          </td>
+          <td>
+            O(logn)
+          </td>
+        </tr>
+        <tr>
+          <td>
+            +poll(): E / +remove(): E
+          </td>
+          <td>
+            O(logn)
+          </td>
+        </tr>
+        <tr>
+          <td>
+            +peek(): E
+          </td>
+          <td>
+            O(1)
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </section>
+  <section id="p3">
+    <h2>خلاصه</h2>
+
+    <ul>
+      <li>در صف اولویتی (PriorityQueue) عناصر بر اساس مقایسه باهمدیگه قرار میگیرن.</li>
+      <li>برای مقایسه ی عناصر در صف اولویتی از اینترفیس Comparable یا Comparator استفاده میکنیم.</li>
+      <li>پیچیدگی زمان برای حذف و اضافه کردن عنصر در PriorityQueue برابر با O(logn) است و برای صدا زدن عناصر O(1) است.
+      </li>
+    </ul>
+
+  </section>
+</article>
+{% capture links %}
+<li>
+  <a href="/post/java/linkedlist.html">کار با LinkedList در جاوا</a>
+</li>
+
+<li>
+  <a href="/post/java/collection.html">بررسی اینترفیس کالکشن و پیمایش در کالکشن ها</a>
+</li>
+
+<li>
+  <a href="/post/java/loops.html">حلقه ها در جاوا</a>
+</li>
+
+{% endcapture %} {% include article-foot.html relative_links = links %}
