@@ -227,16 +227,16 @@
       "link": "/post/java/linkedlist.html"
     },
     {
-      "title": "کالکشن ها در جاوا: آموزش کار با Queue + مثال های کاربردی",
-      "description": "آموزش کار با Queue در جاوا؛ معرفی Queue و کار با Queue به همراه مثال های کاربردی.",
+      "title": "کالکشن ها در جاوا: معرفی و استفاده از صف (Queue) + مثال",
+      "description": "آموزش استفاده از صف (Queue) در جاوا؛ معرفی Queue و استفاده از Queue به همراه مثال های کاربردی.",
       "datePublished": "2026-08-06",
-      "lastModified": "",
+      "lastModified": "2026-08-07",
       "imgCover": "/resources/image/java/cover_queue.png",
       "link": "/post/java/queue.html"
     },
     {
-      "title": "کالکشن ها در جاوا: آموزش کار با صف دو طرفه (Deque) + مثال",
-      "description": "آموزش کار با Deque در جاوا؛ معرفی صف دوطرفه (Deque)، کار با Deque، استفاده از Deque به عنوان Stack و استفاده از Deque به عنوان Queue به همراه مثال.",
+      "title": "کالکشن ها در جاوا: معرفی و استفاده از صف دوطرفه (Deque) + مثال",
+      "description": "آموزش استفاده از صف دوطرفه (Deque) در جاوا؛ معرفی صف دوطرفه، استفاده از Deque، استفاده از Deque به عنوان Stack و Queue به همراه مثال.",
       "datePublished": "2026-08-07",
       "lastModified": "",
       "imgCover": "/resources/image/java/cover_deque.png",
@@ -244,10 +244,10 @@
     },
     {
       "title": "کالکشن ها در جاوا: معرفی و استفاده از ArrayDeque + مثال",
-      "description": "معرفی و استفاده از ArrayDeque در جاوا؛ مقایسه ArrayDeque با LinkedList، استفاده از ArrayDeque به عنوان Stack و Queue",
+      "description": "معرفی و استفاده از ArrayDeque در جاوا؛ معرفی ArrayDeque و مقایسه آن با LinkedList، استفاده از ArrayDeque به عنوان Stack و Queue با مثال.",
       "datePublished": "2026-08-07",
       "lastModified": "",
-      "imgCover": "/resources/image/java/cover_deque.png",
+      "imgCover": "/resources/image/java/cover_arraydeque.png",
       "link": "/post/java/arraydeque.html"
     },
     {

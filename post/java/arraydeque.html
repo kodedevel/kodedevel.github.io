@@ -10,7 +10,7 @@ layout: default
         <a href="#p0">معرفی ArrayDeque</a>
       </li>
       <li>
-        <a href="#p1">کار با ArrayDeque</a>
+        <a href="#p1">استفاده از ArrayDeque</a>
       </li>
       <li>
         <a href="#p2">خلاصه</a>
@@ -35,6 +35,12 @@ layout: default
       ArrayDeque به عنوان Stack استفاده کنیم از <a href="stack.html">کلاس Stack</a> سریع تره و هنگامی که بخوایم از
       ArrayDeque به عنوان صف (Queue)
       استفاده کنیم، از Queue با LinkedList نیز سریع تر خواهد بود.</p>
+
+    <p>زمانی که نیاز به دسترسی تصادفی با index یا <a href="list.html">ListIterator</a> نداشته باشیم، استفاده از
+      ArrayDeque مناسب تر از LinkedList است.</p>
+
+    <p>پیچیدگی زمان حذف کردن، اضافه کردن یا صدا زدن عناصر در ArrayDeque در شرایط <strong>amortized</strong> برابر با
+      O(1) است.</p>
   </section>
 
   <section id="p1">
@@ -52,8 +58,8 @@ layout: default
       <figcaption>سلسله مراتب ارث‌بری کلاس ‌ArrayDeque در جاوا</figcaption>
     </figure>
 
-    <p>کلاس ArrayDeque فقط از Iterator پشتیبانی میکنه و از ListIterator پشتیبانی چون اینترفیس List در این کلاس
-      پیاده‌سازی نشده.</p>
+    <p>اینترفیس List در کلاس ArrayDeque پیاده نشده بنابراین کلاس ArrayDeque فقط از Iterator پشتیبانی می کنه و از
+      ListIterator پشتیبانی نمیکنه.</p>
 
     <p>در نمودار UML زیر کانستراکتور های کلاس ArrayDeque</p>
 
@@ -76,6 +82,14 @@ layout: default
         </tr>
         <tr>
           <td class="tDataLTR">
+            +ArrayDeque(numOfElements: int)
+          </td>
+          <td class="tDataRTL">
+            یک نمونه از ArrayDeque با ظرفیت (capacity) اولیه ایجاد میکنه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
             +ArrayDeque(c: Collection&lt;? extends E&gt;)
           </td>
           <td class="tDataRTL">
@@ -90,22 +104,22 @@ layout: default
     <div class="sample">
       <div class="snippet-container">
         <pre class="snippet Java">
-ArrayDeque&lt;String&gt; deque = new ArrayDeque&lt;&gt;();
-colors.addLast("Blue");
-colors.addLast("Pink");
-colors.addLast("Purple");
-colors.addFirst("Cyan");
-colors.addLast("Red");
+ArrayDeque&lt;String&gt; arrayDeque = new ArrayDeque&lt;&gt;();
+arrayDeque.addLast("Blue");
+arrayDeque.addLast("Pink");
+arrayDeque.addLast("Purple");
+arrayDeque.addFirst("Cyan");
+arrayDeque.addLast("Red");
 
 System.out.println("Last element is " + deque.peek());
 
-colors.removeLast();
-colors.addLast("Yellow");
+arrayDeque.removeLast();
+arrayDeque.addLast("Yellow");
 
 System.out.println("Remove and Display colors backward: ");
 
-while(!colors.isEmpty()){
-  String c = colors.removeLast();
+while(!arrayDeque.isEmpty()){
+  String c = arrayDeque.removeLast();
   System.out.println(c);
   
 }

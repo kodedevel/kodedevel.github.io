@@ -10,7 +10,7 @@ layout: default
         <a href="#p0">معرفی صف دوطرفه (Double Ended Queue)</a>
       </li>
       <li>
-        <a href="#p1">کار با Deque</a>
+        <a href="#p1">استفاده از صف دوطرفه (Deque)</a>
       </li>
       <li>
         <a href="#p2">خلاصه</a>
@@ -25,10 +25,15 @@ layout: default
     <p>در صف دو طرفه شرایط از هر دو طرف برقراره یعنی میتونیم یک عنصر رو به ابتدا یا انتهای صف اضافه کنیم یا از ابتدا یا
       انتهای صف حذف کنیم؛ به صف دوطرفه <strong>double ended queue</strong> گفته میشه.</p>
 
+    <figure>
+      <img src="/resources/image/data-structure/deque_structure.png" alt="ساختار صف دوطرفه (double ended queue)">
+      <figcaption>ساختار صف دوطرفه (double ended queue)</figcaption>
+    </figure>
+
     <p>پیچیدگی زمان برای حذف کردن، اضافه کردن یا صدا زدن عناصر در هر دو طرف صف O(1) است.</p>
   </section>
   <section id="p1">
-    <h2>کار با Deque</h2>
+    <h2>استفاده از صف دوطرفه (Deque)</h2>
     <p>اینترفیس Deque برای حذف و اضافه کردن عناصر از دو طرف صف طراحی شده و مخفف double ended queue است؛
       اینترفیس Deque از <a href="queue.html">اینترفیس Queue</a> ارث بری می کنه و کلاس های <a
         href="linkedlist.html">LinkedList</a> و <a href="arraydeque.html">ArrayDeque</a>
@@ -194,7 +199,7 @@ private static boolean isPalindrome(String s){
         deque.removeLast();
     }
 
-    return deque.isEmpty();
+    return true; 
 }
         </pre>
       </div>

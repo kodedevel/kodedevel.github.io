@@ -11,7 +11,7 @@ layout: default
         <a href="#p0">معرفی صف (Queue)</a>
       </li>
       <li>
-        <a href="#p1">کار با صف (Queue)</a>
+        <a href="#p1">استفاده از صف (Queue)</a>
       </li>
       <li>
         <a href="#p2">خلاصه</a>
@@ -43,15 +43,13 @@ layout: default
     </figure>
   </section>
 
-
-  <p>پیچیدگی زمان حذف کردن یا صدا زدن عنصر از سر صف یا افزودن عنصر به ته صف O(1) است.</p>
+  <p>پیچیدگی زمان حذف کردن از صف (Queue)، صدا زدن عنصر از صف (Queue) یا افزودن عنصر به صف (Queue) برابر با O(1) است.</p>
 
   <section id="p1">
-    <h2>کار با صف (Queue)</h2>
+    <h2>استفاده از صف (Queue)</h2>
 
-    <p>یکی از پیاده‌سازی های صف (Queue) در جاوا کلاس LinkedList است؛ کلاس LinkedList برای ایجاد یک نمونه از Queue کاملا
-      مناسب است، چون افزودن و حذف کردن عناصر از دو طرف رو پشتیبانی میکنه.</p>
-
+    <p>کلاس های <a href="linkedlist.html">LinkedList</a> و <a href="arraydeque.html">ArrayDeque</a> در جاوا صف (Queue)
+      رو پیاده‌سازی کردن و از این دو کلاس میتونیم یک صف (Queue) ایجاد کنیم.</p>
 
     <p>اینترفیس Queue از اینترفیس Collection ارث‌بری میکنه.</p>
 
@@ -88,7 +86,7 @@ layout: default
             +remove(): E
           </td>
           <td class="tDataRTL">
-            عنصر سر صف رو حذف میکنه و بر میگردونه و اگه صف خالی باشه یک اکسپشن ایجاد می کنه..
+            عنصر سر صف رو حذف میکنه و بر میگردونه و اگه صف خالی باشه یک اکسپشن ایجاد می کنه.
           </td>
         </tr>
         <tr>
@@ -118,24 +116,24 @@ layout: default
       </tbody>
     </table>
 
-    <p>در مثال زیر شهر ها رو به صف اضافه می کنیم و سپس دونه دونه حذف کرده و چاپشون می کنیم.</p>
+    <p>در مثال زیر عناصر رو به صف اضافه می کنیم و سپس دونه دونه حذف کرده و چاپشون می کنیم.</p>
 
     <div class="sample">
       <div class="snippet-container">
         <pre class="snippet Java">
-Queue&lt;String&gt; cities = new LinkedList&lt;&gt;();
+Queue&lt;String&gt; queue = new LinkedList&lt;&gt;();
 
-cities.offer("Tehran");
-cities.offer("Arak");
-cities.offer("Isfahan");
-cities.offer("Tabriz");
-cities.offer("Mashhad");
+queue.offer("Tehran");
+queue.offer("Arak");
+queue.offer("Isfahan");
+queue.offer("Tabriz");
+queue.offer("Mashhad");
 
 
-System.out.println("Displaying cities: ");
+System.out.println("Displaying queue: ");
 
-while(!cities.isEmpty())
-   System.out.print(cities.remove() + " ");
+while(!queue.isEmpty())
+   System.out.print(queue.remove() + " ");
 
 System.out.println();
         </pre>
@@ -143,8 +141,9 @@ System.out.println();
     </div>
 
 
-    <p>در مثال زیر میخوایم با استفاده از صف (Queue) اندازه ی یک پوشه رو بدست بیاریم؛ این مثال در قسمت بازگشتی ها
-      (Recursions) با روش بازگشتی گفته شده و در اینجا با صف میخوایم انجامش بدیم.</p>
+    <p>در مثال زیر میخوایم با استفاده از صف (Queue) اندازه ی یک پوشه رو بدست بیاریم؛ این مثال در موضوع <a
+        href="/post/algorithm/recursion.html">بازگشتی (Recursion)</a> با روش بازگشتی گفته شده و در اینجا با صف میخوایم
+      انجامش بدیم.</p>
 
 
     <div class="sample">
