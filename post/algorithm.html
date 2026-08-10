@@ -1,37 +1,36 @@
 ---
 layout: category
 ---
+<article class="page-content">
+  <section>
+    <h2>فهرست مطالب</h2>
+    <p>در اینجا یک لیست از مطالب کاتلین قرار دادیم، میتونید به مطلب مورد نظر خود مراجعه و آن را مطالعه
+      کنید.</p>
 
-
-<section>
-  <article>
-
-    <section>
-      <h2>لیست مطالب الگوریتم ها</h2>
-
-      <p>در اینجا یک فهرست از مطالب الگوریتم ها در سایت قرار دادیم، از این صفحه میتونید به مطلب مورد نظرتون مراجعه کنید.
-      </p>
-
-      <div class="subject-container">
-
-        {% for metadata in site.data.json.posts.algorithm.metadata_list %}
-        <section class="card-view">
-          <h3>
-            {{ metadata.title }}
-          </h3>
-          <div>
+    <ul class="card-view-container">
+      {% for metadata in site.data.json.posts.algorithm.metadata_list %}
+      <li class="card-view-item">
+        <a class="card-view" href="{{ metadata.link }}">
+          <div class="card-view-header">
             <figure>
-              <img src="{{ metadata.imgCover }}" alt="{{ metadata_title }}">
+              <img src="{{ metadata.imgCover }}" alt="{{ metadata.title }}">
             </figure>
-            <p>{{ metadata.description }}</p>
-            <a href="{{ metadata.link }}">مطالعه</a>
+            <h3>
+              {{ metadata.title }}
+            </h3>
           </div>
-        </section>
-        {% endfor %}
-      </div>
+          <div class="card-view-body">
+            <p>{{ metadata.description }}</p>
+          </div>
+          <div class="card-view-footer">
+            <span class="read-more">
+              مطالعه
+            </span>
+          </div>
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
 
-    </section>
-  </article>
-
-
-</section>
+  </section>
+</article>

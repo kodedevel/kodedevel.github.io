@@ -2,31 +2,36 @@
 layout: category
 ---
 
-
-<article>
+<article class="page-content">
   <section>
-
     <h2>فهرست مطالب</h2>
+    <p>در اینجا یک لیست از مطالب کاتلین قرار دادیم، میتونید به مطلب مورد نظر خود مراجعه و آن را مطالعه
+      کنید.</p>
 
-    <p>در اینجا یک فهرست از مطالب ساختار داده ها قرار دادیم، از این صفحه میتونید به مطلب مورد نظر خودتون مراجعه کنید..
-    </p>
-
-    <div class="card-view-container">
+    <ul class="card-view-container">
       {% for metadata in site.data.json.posts.data-structure.metadata_list %}
-      <section class="card-view">
-        <h3>
-          {{ metadata.title }}
-        </h3>
-        <div>
-          <figure>
-            <img src="{{ metadata.imgCover }}" alt="{{ metadata_title }}">
-          </figure>
-          <p>{{ metadata.description }}</p>
-          <a href="{{ metadata.link }}">مطالعه</a>
-        </div>
-      </section>
+      <li class="card-view-item">
+        <a class="card-view" href="{{ metadata.link }}">
+          <div class="card-view-header">
+            <figure>
+              <img src="{{ metadata.imgCover }}" alt="{{ metadata.title }}">
+            </figure>
+            <h3>
+              {{ metadata.title }}
+            </h3>
+          </div>
+          <div class="card-view-body">
+            <p>{{ metadata.description }}</p>
+          </div>
+          <div class="card-view-footer">
+            <span class="read-more">
+              مطالعه
+            </span>
+          </div>
+        </a>
+      </li>
       {% endfor %}
-    </div>
+    </ul>
 
   </section>
 </article>

@@ -1,3 +1,7 @@
+.index-content{
+  max-width: 960px;
+}
+
 .index-top-head{
   margin-top: 24px;
   margin-bottom: 32px;
@@ -126,82 +130,8 @@
   color: #0D47A1;
 }
 
-.category-redirect-link{
-  display: block;
-  position: relative;
-  width: 320px;
-  height: 320px;
-  text-align: center;
-  color: #f5f5f5;
-  font-size: 1.32rem;
-  font-weight: bold;
-  align-content: center;
-  text-decoration: none;
-  margin: 8px;
-  border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-}
-
-
-.category-redirect-link:hover{
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
-  color: #e5e5e5;
-}
-
-.category-redirect-link.java{
-  background-color: #4e7796;
-}
-
-.category-redirect-link.kotlin{
-  background-color: #bb1de5;
-}
-
-.category-redirect-link.linux{
-  background-color: #212121;
-}
-
-.category-redirect-link.algorithm{
-  background-color: #01579B;
-}
-
-.category-redirect-link.data-structure{
-  background-color: #fdd835;
-  color: #000000;
-}
-
-.category-redirect-link.data-structure:hover{
-  color: #212121;
-}
-
-.category-redirect-link-container{
-  display: flex;
-  flex-wrap: wrap;
-  background-color: #f5f5f5;
-  margin-bottom: 32px;
-  justify-content: space-between;
-}
-
-.category-redirect-link-container > div{
-  width: min(320px, 100%);
-  margin-left: 16px;
-}
-
-.category-redirect-link-description{
-  width: auto;
-  height: auto;
-  text-align: center;
-}
-
 
 @media (max-width: 768px){
 
-  .category-redirect-link-container{
-    justify-content: center;
-  }
-
-  .category-redirect-link-container > div {
-    width: 100%;
-    max-width: 320px;
-  }
 
 }

@@ -1,134 +1,237 @@
 ---
-layout: root
 ---
+<!DOCTYPE html>
+<html lang="fa">
 
-<div class="slider-container">
+{% assign page_metadata = site.data.json.root.metadata_list[0] %}
 
-  <div class="slider-wrapper">
+{% include head.html metadata = page_metadata %}
 
-    <figure class="figure figure-wrapper slide">
-      <a href="/post/java.html" class="slide-link">
-        <img class="slide-img" src="/resources/image/learn/java-cover.png">
-        <figcaption class="slide-caption">
-          آموزش رایگان جاوا از مبتدی تا پیشرفته
-        </figcaption>
-      </a>
-    </figure>
-
-    <figure class="figure figure-wrapper slide">
-
-      <a href="/post/kotlin.html" class="slide-link">
-        <img class="slide-img" src="/resources/image/learn/kotlin-cover.png">
-        <figcaption class="slide-caption">
-          آموزش رایگان کاتلین از مبتدی تا پیشرفته
-        </figcaption>
-      </a>
-    </figure>
-    <figure class="figure figure-wrapper slide">
-      <a href="/post/linux.html" class="slide-link">
-        <img class="slide-img" src="/resources/image/learn/linux-commands-cover.png">
-        <figcaption class="slide-caption">
-          دستورات لینوکس
-        </figcaption>
-      </a>
-    </figure>
-  </div>
-
+<body>
+  {% include header.html %}
   <div>
-    <a class="md-bt md-bt-dark slide-navigator next">
-      <span class="material-symbols-outlined">navigate_next</span>
-    </a>
-    <a class="md-bt md-bt-dark slide-navigator prev">
-      <span class="material-symbols-outlined">navigate_before</span>
+    {% include sidebar.html %}
+    <main>
+
+      <article class="index-content">
+        <h1>{{ page_metadata.title }}</h1>
+
+        <div class="slider-container">
+
+          <div class="slider-wrapper">
+
+            <figure class="figure figure-wrapper slide">
+              <a href="/post/java.html" class="slide-link">
+                <img class="slide-img" src="/resources/image/course_banners/java_course_banner.png"
+                  alt="آموزش جاوا از صفر تا صد">
+                <figcaption class="slide-caption">
+                  آموزش رایگان جاوا از مبتدی تا پیشرفته
+                </figcaption>
+              </a>
+            </figure>
+
+            <figure class="figure figure-wrapper slide">
+
+              <a href="/post/kotlin.html" class="slide-link">
+                <img class="slide-img" src="/resources/image/course_banners/kotlin_course_banner.png"
+                  alt="آموزش کاتلین از صفر تا صد">
+                <figcaption class="slide-caption">
+                  آموزش رایگان کاتلین از مبتدی تا پیشرفته
+                </figcaption>
+              </a>
+            </figure>
+            <figure class="figure figure-wrapper slide">
+              <a href="/post/data-structure.html" class="slide-link">
+                <img class="slide-img" src="/resources/image/course_banners/data_structure_course_banner.png"
+                  alt="پیاده‌سازی انواع ساختمان داده">
+                <figcaption class="slide-caption">
+                  پیاده‌سازی انواع ساختمان داده
+                </figcaption>
+              </a>
+            </figure>
+            <figure class="figure figure-wrapper slide">
+              <a href="/post/algorithm.html" class="slide-link">
+                <img class="slide-img" src="/resources/image/course_banners/algorithm_course_banner.png"
+                  alt="آشنایی و پیاده‌سازی الگوریتم ها">
+                <figcaption class="slide-caption">
+                  آشنایی و پیاده‌سازی الگوریتم ها
+                </figcaption>
+              </a>
+            </figure>
+
+            <figure class="figure figure-wrapper slide">
+              <a href="/post/linux.html" class="slide-link">
+                <img class="slide-img" src="/resources/image/course_banners/linux_course_banner.png"
+                  alt="استفاده از دستورات لینوکس در ترمینال">
+                <figcaption class="slide-caption">
+                  استفاده از دستورات لینوکس در ترمینال
+                </figcaption>
+              </a>
+            </figure>
+          </div>
+
+          <div>
+            <a class="md-bt md-bt-dark slide-navigator next">
+              <span class="material-symbols-outlined">navigate_next</span>
+            </a>
+            <a class="md-bt md-bt-dark slide-navigator prev">
+              <span class="material-symbols-outlined">navigate_before</span>
+            </a>
+          </div>
+
+          <div class="slider-dots-wrapper"> </div>
+
+        </div>
+
+        <section>
+          <h2 class="index-section-head">
+            <span class="material-symbols-outlined icon">local_library</span>
+            <span>آموزش ها</span>
+          </h2>
+
+          <ul class="card-view-container">
+            <li class="card-view-item">
+              <a href="/post/java.html" class="card-view">
+                <div class="card-view-header">
+                  <figure>
+                    <img src="/resources/image/course_banners/java_course_banner.png">
+                  </figure>
+                  <h3>آموزش برنامه نویسی جاوا</h3>
+                </div>
+                <div class="card-view-body">
+                  <p>آموزش رایگان و جامع زبان برنامه نویسی جاوا از صفر تا صد با مثال های کاربردی</p>
+                </div>
+                <div class="card-view-footer">
+                  <span class="read-more">مطالعه</span>
+                </div>
+              </a>
+            </li>
+            <li class="card-view-item">
+              <a href="/post/kotlin.html" class="card-view">
+                <div class="card-view-header">
+                  <figure>
+                    <img src="resources/image/course_banners/kotlin_course_banner.png">
+                  </figure>
+                  <h3>آموزش برنامه نویسی کاتلین</h3>
+                </div>
+                <div class="card-view-body">
+                  <p>آموزش رایگان و جامع زبان برنامه نویسی جاوا از صفر تا صد.</p>
+                </div>
+                <div class="card-view-footer">
+                  <span class="read-more">مطالعه</span>
+                </div>
+              </a>
+            </li>
+            <li class="card-view-item">
+              <a href="/post/algorithm.html" class="card-view">
+                <div class="card-view-header">
+                  <figure>
+                    <img src="resources/image/course_banners/algorithm_course_banner.png">
+                  </figure>
+                  <h3>آموزش الگوریتم</h3>
+                </div>
+                <div class="card-view-body">
+                  <p>آشنایی و پیاده‌سازی الگوریتم در برنامه نویسی</p>
+                </div>
+                <div class="card-view-footer">
+                  <span class="read-more">مطالعه</span>
+                </div>
+              </a>
+            </li>
+            <li class="card-view-item">
+              <a href="/post/data-structure.html" class="card-view">
+                <div class="card-view-header">
+                  <figure>
+                    <img src="resources/image/course_banners/data_structure_course_banner.png">
+                  </figure>
+                  <h3>آموزش ساختار داده</h3>
+                </div>
+                <div class="card-view-body">
+                  <p>آموزش رایگان پیاده‌سازی های مختلف در ساختمان داده با زبان های جاوا، کاتلین، جاوااسکریپت و پایتون.
+                  </p>
+                </div>
+                <div class="card-view-footer">
+                  <span class="read-more">مطالعه</span>
+                </div>
+              </a>
+            </li>
+
+            <li class="card-view-item">
+              <a href="/post/linux.html" class="card-view">
+                <div class="card-view-header">
+                  <figure>
+                    <img src="resources/image/course_banners/linux_course_banner.png">
+                  </figure>
+                  <h3>آموزش لینوکس</h3>
+                </div>
+                <div class="card-view-body">
+                  <p>استفاده از دستورات لینوکس در ترمینال.</p>
+                </div>
+                <div class="card-view-footer">
+                  <span class="read-more">مطالعه</span>
+                </div>
+              </a>
+            </li>
+          </ul>
+
+        </section>
+
+
+        <section>
+
+          <h2 class="index-section-head">
+            <span class="material-symbols-outlined icon" aria-hidden="true">bolt</span>
+            <span>شروع سریع</span>
+          </h2>
+
+          <aside class="redirect-link-container">
+
+            <div>
+              <a class="redirect-link" href="post/java/introduction.html">معرفی زبان برنامه نویسی جاوا</a>
+            </div>
+
+            <div>
+              <a class="redirect-link" href="post/kotlin/introduction.html">معرفی زبان برنامه نویسی کاتلین</a>
+            </div>
+
+            <div>
+              <a class="redirect-link" href="post/linux/introduction.html">معرفی سیستم عامل گنو لینوکس</a>
+            </div>
+
+          </aside>
+        </section>
+        <section>
+          <h2 class="index-section-head">
+            <span class="material-symbols-outlined icon" aria-hidden="true">rss_feed</span>
+            <span>بلاگ</span>
+          </h2>
+          <aside class="redirect-link-container">
+            <div>
+              <a class="redirect-link" href="post/blog/programming-languages.html">انواع زبان های برنامه نویسی</a>
+            </div>
+
+            <div>
+              <a class="redirect-link" href="post/blog/switch-statement-jdk-17.html">تغییرات سوییچ تا جاوا ۱۷</a>
+            </div>
+            <div>
+              <a class="redirect-link" href="post/blog/threads.html">بررسی چندنخی (multithreading) در برنامه‌نویسی</a>
+            </div>
+          </aside>
+        </section>
+
+      </article>
+
+    </main>
+  </div>
+  {% include footer.html %}
+
+  {% include dialog.html %}
+
+  <div class="scroll-top-container">
+    <a class="material-symbols-outlined">
+      arrow_drop_up
     </a>
   </div>
+</body>
 
-  <div class="slider-dots-wrapper"> </div>
-
-</div>
-
-<section>
-  <h2 class="index-section-head">
-    <span class="material-symbols-outlined icon">local_library</span>
-    <span>آموزش ها</span>
-  </h2>
-
-  <div class="category-redirect-link-container">
-    <div>
-      <a href="/post/java.html" class="category-redirect-link java">آموزش جاوا</a>
-      <p class="category-redirect-link-description">جاوا یک زبان کراس پلتفرم است که در سه پلتفرم دسکتاپ، وب و
-        اندروید
-        مورد استفاده قرار میگیره؛ در حال حاضر با حمایت بیشتر گوگل از کاتلین، نقش جاوا در توسعه اندروید نسبت به قبل
-        کمرنگ تر شده است. </p>
-    </div>
-    <div>
-      <a href="/post/kotlin.html" class="category-redirect-link kotlin">آموزش کاتلین</a>
-      <p class="category-redirect-link-description">کاتلین یک زبان کراس پلتفرم و قابل استفاده برای، موبایل، وب و
-        دسکتاپ
-        است؛ این زبان در حال حاضر بیشترین کاربرد رو در توسعه ی اندروید داره.
-      </p>
-    </div>
-    <div>
-      <a href="/post/data-structure.html" class="category-redirect-link data-structure">ساختمان داده</a>
-      <p class="category-redirect-link-description">
-        با استفاده از ساختمان داده (data structure) میتونیم در طی زمان اجرای برنامه، داده هایی از نوع یکسان رو به ترتیب
-        خاصی، حذف، اضافه یا ازشون استفاده کنیم؛ استفاده از ساختمان داده به مرتب کردن کد ها و بهبود عملکرد برنامه کمک می
-        کنه
-      </p>
-    </div>
-    <div>
-      <a href="/post/algorithm.html" class="category-redirect-link algorithm">الگوریتم</a>
-      <p class="category-redirect-link-description">از الگوریتم ها برای بهینه تر کردن برنامه ها و گاهی مرتب تر نوشتن کد
-        های برنامه استفاده میکنیم؛ به سرعت اجرای یک برنامه پیچیدگی زمان (time complexity) و به روند استفاده از منابع
-        حافظه توسط برنامه پیچیدگی فضا (space complexity) میگیم.</p>
-    </div>
-    <div>
-      <a href="/post/linux.html" class="category-redirect-link linux">آموزش لینوکس</a>
-      <p class="category-redirect-link-description">لینوکس یک سیستم عامل متن باز با قابلیت شخصی سازی بالاست، این
-        سیستم
-        عامل دارای محیطی به نام shell است که دستورات لینوکس در این محیط نوشته و اجرا میشن.</p>
-    </div>
-  </div>
-
-</section>
-
-
-<section>
-
-  <h2 class="index-section-head">
-    <span class="material-symbols-outlined icon" aria-hidden="true">bolt</span>
-    <span>شروع سریع</span>
-  </h2>
-
-  <aside class="redirect-link-container">
-
-    <div>
-      <a class="redirect-link" href="post/java/introduction.html">معرفی زبان برنامه نویسی جاوا</a>
-    </div>
-
-    <div>
-      <a class="redirect-link" href="post/kotlin/introduction.html">معرفی زبان برنامه نویسی کاتلین</a>
-    </div>
-
-    <div>
-      <a class="redirect-link" href="post/linux/introduction.html">معرفی سیستم عامل گنو لینوکس</a>
-    </div>
-
-  </aside>
-</section>
-<section>
-  <h2 class="index-section-head">
-    <span class="material-symbols-outlined icon" aria-hidden="true">rss_feed</span>
-    <span>بلاگ</span>
-  </h2>
-  <aside class="redirect-link-container">
-    <div>
-      <a class="redirect-link" href="post/blog/programming-languages.html">انواع زبان های برنامه نویسی</a>
-    </div>
-
-    <div>
-      <a class="redirect-link" href="post/blog/switch-statement-jdk-17.html">تغییرات سوییچ تا جاوا ۱۷</a>
-    </div>
-
-  </aside>
-</section>
+</html>

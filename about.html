@@ -1,40 +1,93 @@
 ---
-layout: root
 ---
+<!DOCTYPE html>
+<html lang="fa">
+{% assign page_metadata = site.data.json.root.metadata_list[1] %}
 
-<article>
-  <p>در سال ۲۰۲۲ تصمیم گرفتم یک سری مطالب درباره ی زبان برنامه نویسی جاوا بزارم که این مطالب رایگان باشه و بدرد
-    کسایی بخوره که حالا به هر دلیلی دوست ندارن بابت یادگیری زبان جاوا هزینه پرداخت کنن بنابراین این سایت
-    رو راه اندازی کردم و داخلش به آموزش زبان برنامه نویسی جاوا پرداختم.</p>
+{% include head.html metadata = page_metadata %}
 
-  <p>رفته رفته مطالب برنامه نویسی کاتلین رو بهش اضافه کردم و مطالب بیشتر و کامل تر شد و در حال حاضر یک دوره ی نسبتا
-    خوب از مبتدی تا پیشرفته ی جاوا و کاتلین در صفحات وجود داره و بدرد کسایی میخوره که دنبال یادگیری زبان برنامه
-    نویسی جاوا یا کاتلین هستند. علاوه بر جاوا و کاتلین مطالبی از آموزش اندروید، دستورات لینوکس و... نیز در سایت وجود
-    داره.</p>
+<body>
+  {% include header.html %}
+  <div>
 
-  <p>ابتدا این صفحات رو با نام کاربری <a href="https://github.com/skybirdbits">skybirdbits</a> در گیت هاب ایجاد کردم،
-    بعدا تصمیم گرفتم نام کاربری رو عوض کنم بنابراین یک حساب جدید گیت هاب به اسم کاربری <a
-      href="https://github.com/kodedevel">KodeDevel</a> ایجاد کردم و صفحات رو به اونجا انتقال دادم.</p>
+    {% include sidebar.html %}
+    <main>
+      <div class="article-head">
+        <h1>{{ page_metadata.title }}</h1>
+        <div class="article-meta">
+
+          <address class="author">
+            <span class="material-symbols-outlined" aria-hidden="true">person</span>
+            <a href="{{ metadata.author.link | default: '/about' }}" rel="author">
+              {{ metadata.author.name | default: site.author.name }}
+            </a>
+          </address>
+
+          <div class="eta">
+            <span class="material-symbols-outlined" aria-hidden="true">schedule</span>
+            <span aria-live="polite"></span>
+          </div>
+
+          <div>
+            <span class="material-symbols-outlined" aria-hidden="true">line_end_circle</span>
+            <span>تاریخ انتشار:</span>
+            <time id="publish-date" datetime="{{ metadata.datePublished }}"></time>
+          </div>
+
+          <div>
+            <span class="material-symbols-outlined" aria-hidden="true">cached</span>
+            <span>آخرین بروزرسانی:</span>
+            <time id="lastmod-date" datetime="{{ metadata.lastModified }}"></time>
+          </div>
+
+        </div>
+      </div>
+      <article>
+        <p>وبسایت <a href="/">KodeDevel</a> با هدف قرار دادن مطالب رایگان در برنامه نویسی ایجاد شده، رایگان بودن آموزش
+          ها مبنی سایت بوده و خواهد بود فرقی نمیکنه چه موضوعی باشه؛ تمام آموزش های سایت رایگان است و رایگان خواهد بود.
+        </p>
+
+        <p>در حال حاضر در سایت مطالب جاوا کاتلین، ساختمان داده، الگوریتم، اندروید و لینوکس قرار داده شده که میتونید
+          به هر مطلب مراجعه و مطالعه کنید.</p>
+
+        <p>کد های سایت روی گیت هاب به ادرس <a
+            href="https://github.com/kodedevel/kodedevel.github.io">github.com/kodedevel/kodedevel.github.io</a> قرار
+          داره، میتونید کد های سایت رو اونجا مطالعه کنید.</p>
+
+        <p>یک <a href="https://t.me/KodeDevel">کانال تلگرامی</a> داریم که با عضویت در کانال
+          میتونید
+          از مطالب جدید در سایت باخبر بشید.</p>
+
+        <p>همینطور در صورت پیشنهاد یا نظرات میتونید با آی دی تلگرام در پایین همین صفحه ارتباط برقرار کنید.</p>
+
+        <p>موفق باشید.</p>
+        <div>
+
+          <aside>
+            <nav aria-label="Post navigation" class="post-navigation-container">
+
+              <a href="/" class="md-bt md-bt-light bt-back-home">
+                بازگشت به صفحه ی اصلی
+              </a>
+            </nav>
+
+          </aside>
+
+        </div>
+      </article>
 
 
-  <p>در حال حاضر یک <a href="https://t.me/KodeDevel_Chat">گروه تلگرامی</a> داریم که میتونید برای پرسش و پاسخ عضو
-    گروهمون بشید و همینطور یک <a href="https://t.me/KodeDevel">کانال تلگرامی</a> داریم که با عضویت در کانال میتونید
-    از جدید ترین بروزرسانی های مطالب در اونجا با خبر بشید.</p>
+    </main>
+  </div>
 
-  <p>تمام مطالب سایت KodeDevel رایگان است و رایگان خواهد بود.</p>
+  {% include footer.html %}
+  {% include dialog.html %}
 
-</article>
+  <div class="scroll-top-container">
+    <a class="material-symbols-outlined">
+      arrow_drop_up
+    </a>
+  </div>
+</body>
 
-<div>
-
-  <aside>
-    <nav aria-label="Post navigation" class="post-navigation-container">
-
-      <a href="/" class="md-bt md-bt-light bt-back-home">
-        بازگشت به صفحه ی اصلی
-      </a>
-    </nav>
-
-  </aside>
-
-</div>
+</html>

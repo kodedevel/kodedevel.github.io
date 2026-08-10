@@ -1,52 +1,88 @@
-.card-view{
-  background-color: #fafafa;
-  border-radius: 8px;
-  max-width: 480px;
-  width: auto;
-  height: auto;
-  padding:8px;
-  margin: 32px auto;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-}
-
-.card-view p, .card-view a{
-  margin: 8px;
-}
-
-.card-view h3{
-  margin: 0;
-  margin-bottom: 16px;
-  background-color: #fafafa;
+.page-content{
+  max-width: 960px;
 }
 
 .card-view-container{
-  display: block;
-  background-color: white;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+  gap: 32px;
   width: 100%;
   height: auto;
   margin-top: 32px;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-  justify-items: center;
+  padding: 0;
+  margin-bottom: 32px;
+  border-bottom: 1px solid #bdbdbd;
+  padding-bottom: 32px;
 }
 
-.card-view a{
-  position: relative;
+.card-view-container .card-view-item{
   display: block;
-  text-decoration: none;
+  float: left;
+  list-style: none;
+  padding: 0;
+  margin: 0 16px;
+}
+
+.card-view{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  background-color: #fafafa;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.2);
+  transition: all 350ms cubic-bezier(1, 0, 0, 1);
   color: #212121;
   background-color: #fafafa;
-  text-align: center;
-  text-anchor: middle;
-  padding: 8px 0;
-  border-radius: 8px;
-  font-weight: bold;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  padding: 0;
 }
 
-.card-view a:hover{
+.card-view:hover{
+  transform: translateY(-12px);
+  box-shadow: 0 12px 18px -5px rgba(0, 0, 0, 0.3);
+  color: inherit;
+  border-image: linear-gradient(to right,#0D47A1 , #2196f3);
+  border-width: 2px;
+  border-bottom-style: solid;
+  border-image-slice: 1;
+}
+
+.card-view .card-view-header{
+  padding: 0;
+  margin: 0;
+}
+
+.card-view .card-view-body{
+  height: 100%;
+}
+
+
+.card-view-body p{
+  margin: 8px;
+}
+
+.card-view-header h3{
+  margin: 0 8px;
   background-color: #fafafa;
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
 }
 
+.card-view-header img{
+  border-radius: 8px 8px 0 0;
+}
+
+.card-view .card-view-footer{
+  display: flex;
+  margin-top: 8px;
+  padding-top: auto;
+  justify-content: center;
+  border-top: 1px solid #bdbdbd
+}
+
+.card-view-footer .read-more{
+  height: 100%;
+  margin: 8px 0;
+}
+
+.card-view-footer .read-more::before{
+  content: 'menu_book';
+}

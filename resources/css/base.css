@@ -1,6 +1,7 @@
 html{
   font-family: "Vazirmatn", sans-serif;
   font-weight: normal;
+  font-size: 1em;
   direction: rtl;
   scroll-behavior: smooth;
   overflow-x: hidden;
@@ -14,11 +15,11 @@ body{
 main{
   position: relative;
   background-color: #ffffff;
-  max-width: 768px;
-  margin: auto;
-  padding: 0 8px 32px 8px;
+  width: 100%;
+  margin: none;
   font-variant-ligatures: normal;
 }
+
 
 section {
   padding: 0 6px;
@@ -35,18 +36,20 @@ footer {
   color: #fafafa;
   flex-wrap: wrap;
   padding: 4px 0;
+  margin-top: 48px;
 }
 
 figure {
-  width: 100%;
+  position: relative;
+  width: auto;
+  max-width: 100%;
   margin: 0;
 }
 
 img{
-  display: block;
-  width: 100%;
+  max-width: 100%;
   height: auto;
-  object-fit: cover;
+  object-fit: scale-down;
   border-radius: 8px;
 }
 
