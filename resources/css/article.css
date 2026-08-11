@@ -213,6 +213,7 @@ article{
   width: 100%;
   table-layout: fixed;
   justify-content: center;
+  margin: 0 8px;
   height: auto;
   direction: ltr;
 }
@@ -230,6 +231,13 @@ article{
   border-collapse: collapse;
 }
 
+.table-regular tr td{
+  width: 50%;
+}
+
+.table-regular tr td:last-child{
+  direction: rtl;
+}
 
 .course-category{
   width: 100%;
@@ -315,4 +323,11 @@ article{
   margin: 0 12px 0 0;
   padding: 6px 0;
   list-style-type: none;
+}
+
+
+@media (max-width: 768px) {
+  .table-regular{
+    width: auto;
+  }
 }
