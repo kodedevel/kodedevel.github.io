@@ -3,114 +3,114 @@
   "name": "لینوکس",
   "metadata_list": [
     {
-      "title": "معرفی لینوکس سیستم عامل گنو لینوکس",
-      "description": "سیستم عامل گنو لینوکس (GNU Linux) یک سیستم عامل متن باز (open source) است کرنل آن لینوکس و نرم‌افزار آن گنو است",
+      "title": "لینوکس چیست؟ معرفی سیستم عامل گنو لینوکس",
+      "description": "لینوکس چیست؟ معرفی گنو لینوکس، آشنایی با نرم‌افزار آزاد، بررسی توزیع های لینوکسی.",
       "datePublished": "2025-09-12",
-      "lastModified": "",
+      "lastModified": "2026-08-11",
       "imgCover": "/resources/image/linux/cover_introduction.png",
       "link": "/post/linux/introduction.html"
     },
     {
-      "title": "دستور echo در لینوکس",
+      "title": "چاپ متن و افزودن متن به فایل با دستور echo در لینوکس",
       "description": "با استفاده از دستور echo در لینوکس قادر به چاپ متن در ترمینال یا افزودن متن به یک فایل متنی خواهیم بود.",
       "datePublished": "2026-05-31",
-      "lastModified": "",
+      "lastModified": "2026-08-11",
       "imgCover": "/resources/image/linux/cover_echo.png",
       "link": "/post/linux/echo.html"
     },
     {
-      "title": "دستور ls در لینوکس",
-      "description": "با دستور ls در ترمینال لینوکس قادر خواهیم بود محتوای یک پوشه مشاهده کنیم این دستور یکی از دستورات پر کاربرد در لینوکس است در این مطلب به بررسی این دستور می پردازیم.",
+      "title": "نمایش محتوای داخل پوشه با دستور ls در لینوکس",
+      "description": "با استفاده از دستور ls در لینوکس قادر خواهیم بود محتوای داخل پوشه رو در ترمینال مشاهده کنیم در این مطلب به بررسی و استفاده از ls و آرگومان های پرکاربردش می پردازیم.",
       "datePublished": "2025-09-12",
-      "lastModified": "",
+      "lastModified": "2026-08-11",
       "imgCover": "/resources/image/linux/cover_ls.png",
       "link": "/post/linux/list-directory-contents.html"
     },
     {
-      "title": "دستور cd در لینوکس",
-      "description": "با دستور cd در ترمینال لینوکس قادر خواهیم بود محل پوشه ی خود در ترمینال رو عوض کنیم.",
+      "title": "تغییر مسیر از یک پوشه به پوشه ی دیگه با دستور cd در لینوکس",
+      "description": "با دستور cd قادر خواهیم بود در ترمینال لینوکس از یک پوشه به پوشه ی دیگه تغییر مسیر بدیم، در این مطلب به بررسی و استفاده از cd و آرگومان های پرکاربردش می‌پردازیم.",
       "datePublished": "2025-09-12",
-      "lastModified": "",
+      "lastModified": "2026-08-11",
       "imgCover": "/resources/image/linux/cover_cd.png",
       "link": "/post/linux/change-directory.html"
     },
     {
-      "title": "دستور rm در لینوکس",
-      "description": "از دستور rm در لینوکس برای پاک کردن فایل ها از طریق ترمینال استفاده می کنیم و مخفف remove است.",
+      "title": "حذف فایل و پوشه ها با دستور rm در لینوکس",
+      "description": "با استفاده از دستور rm در لینوکس میتونیم فایل ها و پوشه ها رو از طریق ترمینال حذف کنیم؛ در این مطلب به بررسی و استفاده از rm و آرگومان های پرکاربردش خواهیم پرداخت.",
       "datePublished": "2026-05-31",
-      "lastModified": "",
+      "lastModified": "2026-08-11",
       "imgCover": "/resources/image/linux/cover_rm.png",
       "link": "/post/linux/remove.html"
     },
     {
-      "title": "دستور cp در لینوکس",
-      "description": "از دستور cp برای کپی کردن فایل ها توسط ترمینال استفاده می کنیم؛ cp مخفف copy است.",
+      "title": "کپی کردن فایل با دستور cp در لینوکس",
+      "description": "از دستور cp برای کپی کردن فایل ها توسط ترمینال استفاده می کنیم؛ در این مطلب به بررسی و استفاده از cp و آرگومان های پرکاربردش می‌پردازیم.",
       "datePublished": "2026-05-31",
-      "lastModified": "",
+      "lastModified": "2026-08-11",
       "imgCover": "/resources/image/linux/cover_cp.png",
       "link": "/post/linux/copy.html"
     },
     {
-      "title": "دستور mv در لینوکس",
-      "description": "از دستور mv در لینوکس برای انتقال فایل ها توسط ترمینال استفاده میکنیم؛‌ mv مخفف move است.",
+      "title": "انتقال فایل با دستور mv در لینوکس",
+      "description": "با دستور mv میتونیم فایل ها رو از طریق ترمینال به یک مسیر دیگه انتقال بدیم؛ در این مطلب به بررسی و استفاده از mv و آرگومان های پرکاربردش می‌پردازیم.",
       "datePublished": "2026-05-31",
-      "lastModified": "",
+      "lastModified": "2026-08-11",
       "imgCover": "/resources/image/linux/cover_mv.png",
       "link": "/post/linux/move.html"
     },
     {
-      "title": "دستور mkdir در لینوکس",
-      "description": "از دستور mkdir در لینوکس برای ساخت پوشه توسط ترمینال استفاده می کنیم؛ mkdir مخفف make directory است.",
+      "title": "ایجاد پوشه با دستور mkdir در لینوکس",
+      "description": "با دستور mkdir در لینوکس میتونیم پوشه ایجاد کنیم؛ در این مطلب به بررسی و استفاده از mkdir و آرگومان های پرکاربردش می پردازیم.",
       "datePublished": "2026-05-31",
-      "lastModified": "",
+      "lastModified": "2026-08-11",
       "imgCover": "/resources/image/linux/cover_mkdir.png",
       "link": "/post/linux/make-directory.html"
     },
     {
-      "title": "دستور dd در لینوکس",
-      "description": "با استفاده از دستور dd در لینوکس میتونیم یک فایل رو کپی کنیم، فرمت فایل رو تغییر بدیم، یا سیستم فایل ها (filesystems) رو فرمت کنیم.",
+      "title": "کپی و تغییر فرمت فایل + فرمت سیستمِ‌فایل ها با dd در لینوکس",
+      "description": "با استفاده از دستور dd در لینوکس میتونیم یک فایل رو کپی کنیم یا فرمت فایل رو تغییر کنیم و همچنین میتونیم سیستمِ‌فایل ها (filesystems) رو فرمت کنیم؛ در این مطلب به بررسی و استفاده از dd می‌پردازیم.",
       "datePublished": "2026-06-02",
-      "lastModified": "",
+      "lastModified": "2026-08-11",
       "imgCover": "/resources/image/linux/cover_dd.png",
       "link": "/post/linux/data-definition.html"
     },
     {
-      "title": "دستور fdisk در لینوکس",
-      "description": "با استفاده از دستور fdisk در لینوکس می تونیم حافظه ها و پارتیشن های شناسایی شده توسط سیستم عامل رو ببینیم و همچنین میتونیم یک حافظه ی دائمی رو پارتیشن بندی کنیم؛ fdisk مخفف fixed disk است.",
+      "title": "پارتیشن‌بندی هارد دیسک و فلش مموری با fdisk در لینوکس",
+      "description": "پارتیشن بندی حافظه های دائمی از قبیل، هارد، رم و فلش با دستور fdisk در لینوکس؛ کار در محیط fdisk، حذف پارتیشن، ایجاد پارتیشن جدید.",
       "datePublished": "2026-06-03",
-      "lastModified": "",
+      "lastModified": "2026-08-11",
       "imgCover": "/resources/image/linux/cover_fdisk.png",
       "link": "/post/linux/fixed-disk.html"
     },
     {
-      "title": "ساخت سیستمِ فایل (filesystem) در لینوکس",
-      "description": "سیستم فایل ها (filesystem) امکان دسترسی برنامه های سیستم عامل رو به محتوای داخل حافظه های دائمی داده و محتوای داخل حافظه های دائمی رو مدیریت و سازماندهی میکنن؛ در این مطلب به تعریف سیستمِ فایل ها و ساخت آنها در لینوکس می  پردازیم.",
+      "title": "ساخت سیستمِ‌فایل (filesystem) در لینوکس",
+      "description": "ساخت سیستم فایل با mkfs در لینوکس؛ تعریف سیستمِ‌فایل، ایجاد سیستمِ‌فایل به همراه مثال.",
       "datePublished": "2026-06-03",
-      "lastModified": "2026-06-27",
+      "lastModified": "2026-08-11",
       "imgCover": "/resources/image/linux/cover_mkfs.png",
       "link": "/post/linux/make-filesystems.html"
     },
     {
-      "title": "دستور mount در لینوکس",
-      "description": "با استفاده از دستور mount در لینوکس میتونیم درایو (پارتیشن ها، فایل های iso و ...) ها رو به یک پوشه وارد کنیم، تا کاربر به محتوای درایو دسترسی پیدا کنه؛ در این مطلب به دستور mount و بعضی از ویژگی های آن پرداخته ایم.",
+      "title": "وارد کردن درایو (سیستمِ‌فایل) ها با mount در لینوکس",
+      "description": "در این مطلب به وارد کردن درایو (سیستمِ‌فایل) ها با استفاده از دستور mount در لینوکس می پردازیم و آرگومان o رو بررسی می‌کنیم.",
       "datePublished": "2026-06-04",
-      "lastModified": "2026-06-30",
+      "lastModified": "2026-08-11",
       "imgCover": "/resources/image/linux/cover_mount.png",
       "link": "/post/linux/mount.html"
     },
     {
-      "title": "دستور umount در لینوکس",
-      "description": "با استفاده از دستور umount در لینوکس میتونیم درایو های وارد (mount) شده رو خارج (umount) کنیم.",
+      "title": "خارج کردن درایو (سیستمِ‌فایل) ها با دستور umount در لینوکس",
+      "description": "در این مطلب به دستور umount برای خارج کردن درایو (سیستمِ‌فایل) ها در لینوکس می‌پردازیم.",
       "datePublished": "2026-06-04",
-      "lastModified": "",
+      "lastModified": "2026-08-11",
       "imgCover": "/resources/image/linux/cover_umount.png",
       "link": "/post/linux/umount.html"
     },
     {
-      "title": "تغییر دسترسی به فایل در لینوکس با chmod",
-      "description": "با استفاده از دستور chmod میتونیم دسترسی به فایل (خوندن، نوشتن و اجرا) رو به دو روش تغییر بدیم ۱-تغییر دسترسی به فایل با استفاده از حروف، ۲- تغییر دسترسی به فایل با استفاده از اعداد؛ در این مطلب هردو روش رو بررسی میکنیم.",
+      "title": "تغییر دسترسی به فایل با دستور chmod در لینوکس",
+      "description": "دستور chmod در لینوکس؛ حالت های مختلف فایل، بررسی دستور chmod، تغییر دسترسی به فایل با استفاده از حروف و تغییر دسترسی به فایل با استفاده از اعداد.",
       "datePublished": "2026-06-06",
-      "lastModified": "",
+      "lastModified": "2026-08-11",
       "imgCover": "/resources/image/linux/cover_chmod.png",
       "link": "/post/linux/change-mode.html"
     }
