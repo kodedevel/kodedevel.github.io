@@ -7,78 +7,84 @@ layout: default
     <div>دسترسی سریع</div>
     <ul>
       <li>
-        <a href="#p0">بررسی دستور cd</a>
+        <a href="#p0">بررسی و استفاده از دستور cd در لینوکس</a>
+      </li>
+      <li>
+        <a href="#p1">خلاصه</a>
       </li>
     </ul>
   </nav>
 
   <section id="p0">
-    <h2>بررسی دستور cd</h2>
+    <h2>بررسی و استفاده از دستور cd در لینوکس</h2>
 
     <p>
       یکی از برنامه های پر کاربرد در ترمینال لینوکس دستور cd است؛ اسم کامل این
-      برنامه change directory (تغییر پوشه) است و قابل اجرا در shell (ترمینال)
-      است.
+      برنامه change directory (تغییر پوشه) است.
     </p>
     <p>
-      با دستور cd در لینوکس قادر خواهیم بود از یک پوشه به پوشه ی دیگه در ترمینال
-      بریم.
+      با دستور cd در ترمینال لینوکس قادر خواهیم بود از یک پوشه به پوشه ی دیگه تغییر مسیر بدیم.
     </p>
 
-    <section>
-      <h3>فرم کلی</h3>
+    <aside class="note">
+      <p class="note-head">توجه</p>
+      <p>هنگام تعیین مسیر در لینوکس، مسیر <strong dir="ltr">~</strong> برابر با <strong
+          dir="ltr">/home/username</strong> است.</p>
+    </aside>
 
-      <div class="sample">
-        <div class="snippet-container">
-          <pre class="snippet Shell">
-cd /Path_To_Target_Directory
-                        </pre
-          >
-        </div>
+    <p>فرم کلی</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Shell">
+cd destination
+          </pre>
       </div>
+    </div>
 
-      <p>
-        کافیه ترمینالو باز کنیم و به‌جای Path_To_Target_Directory آدرس مقصد رو
-        بنویسیم:
-      </p>
+    <p>
+      در مثال زیر میخوایم بریم تو پوشه Videos.
+    </p>
 
-      <div class="sample">
-        <div class="snippet-container">
-          <pre class="snippet Shell">
-cd /home/username/ٰVideos
-                        </pre
-          >
-        </div>
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Shell">
+cd ~/ٰVideos
+                        </pre>
       </div>
+    </div>
 
-      <p>
-        اگه پوشه ی مقصد داخل پوشه ی فعلی بود نیازی نیست از روت شروع کنیم به
-        تغییر مسیر و به صورت زیر به پوشه ی مقصد میریم
-      </p>
-      <p>فرض کنید پوشه ی Movies در پوشه ی Videos است.</p>
-      <div class="sample">
-        <div class="snippet-container">
-          <pre class="snippet Shell">
+    <p>
+      اگه پوشه ی مقصد داخل پوشه ی فعلی بود نیازی نیست از روت شروع کنیم به
+      تغییر مسیر و به صورت زیر به پوشه ی مقصد میریم
+    </p>
+    <p>فرض کنید پوشه ی Movies در پوشه ی Videos است.</p>
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Shell">
 cd Movies
-                        </pre
-          >
-        </div>
+                        </pre>
       </div>
+    </div>
 
-      <p>
-        اگه اسم پوشه عجیب غریب بود یا فاصله داشت باید اسمشو داخل کوتیشین یا دابل
-        کوتیشن بنویسیم
-      </p>
+    <p>
+      اگه اسم پوشه فاصله داشت باید اسمشو داخل ' یا " بنویسیم.
+    </p>
 
-      <div class="sample">
-        <div class="snippet-container">
-          <pre class="snippet Shell">
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Shell">
 cd Movies/"directory with space"
-                        </pre
-          >
-        </div>
+                        </pre>
       </div>
-    </section>
+    </div>
+  </section>
+  <section id="p1">
+    <h2>خلاصه</h2>
+    <ul>
+      <li>از دستور cd برای تغییر پوشه در ترمینال استفاده می کنیم.</li>
+      <li>نام cd مخفف change directory است.</li>
+    </ul>
   </section>
 </article>
 

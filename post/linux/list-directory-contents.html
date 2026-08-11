@@ -7,147 +7,169 @@ layout: default
     <div>دسترسی سریع</div>
     <ul>
       <li>
-        <a href="#p0">بررسی دستور ls</a>
+        <a href="#p0">بررسی و استفاده از دستور ls</a>
+      </li>
+      <li>
+        <a href="#p1">آرگومان های پر کاربرد</a>
       </li>
     </ul>
   </nav>
 
   <section id="p0">
-    <h2>بررسی دستور ls</h2>
+    <h2>بررسی و استفاده از دستور ls</h2>
 
     <p>
-      دستور ls در ترمینال لینوکس برای مشاهده ی فایل ها و پوشه های یک مسیر است و
-      اسمش لیست محتوای دایرکتوری (list directory contents) است.
+      دستور ls برای مشاهده ی محتوای داخل یک پوشه در ترمینال لینوکس است و ls مخفف (list directory contents) است.
     </p>
+
+    <aside class="note">
+      <p class="note-head">توجه</p>
+      <p>هنگام تعیین مسیر در لینوکس، مسیر <strong dir="ltr">~</strong> برابر با <strong
+          dir="ltr">/home/username</strong> است.</p>
+    </aside>
+
+    فرم کلی
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Shell">
+ls [Options] directory 
+          </pre>
+      </div>
+    </div>
+
     <p>
-      این برنامه ی ترمینالی یک برنامه ی بسیار مهم و کاربردی برای ترمینال به حساب
-      میاد وقتی بخوایم محتوای یک پوشه رو در ترمینال ببینیم از دستور ls در لینوکس
-      استفاده می کنیم.
+      در بالا بجای [Options] آرگومان مورد نظر رو می‌نویسیم.
     </p>
-    <p>هنگام استفاده از دستوراتی مثل cd ،ln و ... استفاده از ls اهمیت داره.</p>
 
-    <section>
-      <h3>فرم کلی</h3>
+    <p>در مثال زیر میخوایم داخل پوشه ی <strong dir="ltr">/home/username</strong> رو نمایش بدیم.</p>
 
-      <div class="sample">
-        <div class="snippet-container">
-          <pre class="snippet Shell">
-ls parameters /Path_To_Target_Directory
-                        </pre
-          >
-        </div>
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Shell">
+ls ~
+            </pre>
       </div>
+    </div>
 
-      <p>
-        در بالا parameters پارامتر هاییه که هنگام اجرای دستور استفاده می کنیم و
-        d0 تا dn پوشه های مسیر هستند.
-      </p>
+    <p>
+      هنگام تعیین مسیر اگه اسم پوشه‌ای دارای فاصله باشه باید اسم پوشه رو داخل
+      "" بنویسیم.
+    </p>
 
-      <p>
-        در صورت تعیین نکردن مسیر ls به صورت پیشفرض محتوای پوشه ای که در حال حاضر
-        با ترمینال داخلش هستیم رو برای نمایش مد نظر قرار میده.
-      </p>
-
-      <p>
-        هنگام تعیین مسیر اگه پرونده ای دارای فاصله باشه باید اسم پرونده رو داخل
-        "" بنویسیم.
-      </p>
-
-      <div class="sample">
-        <div class="snippet-container">
-          <pre class="snippet Shell">
-ls parameters /home/username/"directory with space"/Movies
-                        </pre
-          >
-        </div>
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Shell">
+ls  ~/"directory with space"/Movies
+            </pre>
       </div>
-    </section>
+    </div>
 
-    <section>
-      <h3>پارامتر های پر کاربرد</h3>
-
-      <p>
-        میتونیم از یک یا چند پارامتر به صورت ترکیبی هنگام اجرای دستور ls در
-        ترمینال استفاده کنیم.
-      </p>
-
-      <section>
-        <h4>پارامتر l</h4>
-        <p>پارامتر l باعث میشه فایل ها رو با جزئیات مشاهده کنیم</p>
-
-        <div class="sample">
-          <div class="snippet-container">
-            <pre class="snippet Shell">
-ls -l /home/username
-                        </pre
-            >
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <h4>پارامتر a</h4>
-        <p>
-          پارامتر a تمام فایل ها و پوشه های موجود (حتی پنهانی ها) رو نمایش میده
-        </p>
-        <div class="sample">
-          <div class="snippet-container">
-            <pre class="snippet Shell">
-ls -a /home/username/Documents
-                        </pre
-            >
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <h4>پارامتر R</h4>
-        <p>
-          پارامتر R تمام فایل ها پوشه ها ی تو در تو داخل پوشه ی یک مسیر رو به
-          صورت تفکیک شده و بازگشتی نمایش میده.
-        </p>
-
-        <div class="sample">
-          <div class="snippet-container">
-            <pre class="snippet Shell">
-ls -R /home/username/Movies
-                        </pre
-            >
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <h4>پارامتر h</h4>
-        <p>ترکیب پارامتر h با l علاوه بر جزئیات سایز پوشه ها رو نمایش میده.</p>
-        <div class="sample">
-          <div class="snippet-container">
-            <pre class="snippet Shell">
-ls -lh /home/username/Pictures
-                        </pre
-            >
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <h4>پارامتر t</h4>
-        <p>
-          پارامتر t پوشه ها و فایل ها رو بر اساس زمان نمایش می ده و جدید ترین
-          فایل اول نمایش داده میشه.
-        </p>
-
-        <div class="sample">
-          <div class="snippet-container">
-            <pre class="snippet Shell">
-ls -t /home/username/Music
-                        </pre
-            >
-          </div>
-        </div>
-      </section>
-    </section>
   </section>
+
+  <section id="p1">
+    <h2>آرگومان های پر کاربرد</h2>
+
+    <p>
+      میتونیم از یک یا چند آرگومان به صورت ترکیبی هنگام اجرای دستور ls در
+      ترمینال استفاده کنیم.
+    </p>
+
+    <table class="table-regular">
+      <thead>
+        <tr>
+          <th colspan="2">
+            ls
+          </th>
+        </tr>
+        <tr>
+          <th>آرگومان</th>
+          <th>توضیحات</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            l
+          </td>
+          <td>
+            فایل های داخل پوشه رو با جزییات نمایش میده.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            a
+          </td>
+          <td>
+            پارامتر a تمام فایل ها و پوشه های موجود (حتی پنهانی ها) رو نمایش میده
+          </td>
+        </tr>
+        <tr>
+          <td>
+            R
+          </td>
+          <td>
+            پارامتر R تمام فایل ها پوشه ها ی تو در تو داخل پوشه ی یک مسیر رو به
+            صورت تفکیک شده و بازگشتی نمایش میده.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            h
+          </td>
+          <td>
+            ترکیب پارامتر h با l علاوه بر جزئیات سایز پوشه ها رو نمایش میده.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            t
+          </td>
+          <td>
+            پارامتر t پوشه ها و فایل ها رو بر اساس زمان نمایش می ده و جدید ترین
+            فایل اول نمایش داده میشه.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+
+    <p>در مثال زیر میخوایم کل محتوای پوشه Documents رو به همراه جزییات نمایش بدیم.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Shell">
+ls -la ~/Documents
+            </pre>
+      </div>
+    </div>
+
+    <p>در مثال زیر میخوایم کل محتوای پوشه Documents به همراه محتوای تمام پوشه های داخلش رو نمایش بدیم.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Shell">
+ls -R ~/Documents
+            </pre>
+      </div>
+    </div>
+
+
+  </section>
+
+  <section class="p2">
+    <h2>خلاصه</h2>
+    <ul>
+      <li>
+        از دستور ls برای نمایش محتوای پوشه در ترمینال استفاده میکنیم.
+      </li>
+      <li>
+        نام ls مخفف list directory contents است.
+      </li>
+    </ul>
+
+  </section>
+
 </article>
 
 {% capture links %}

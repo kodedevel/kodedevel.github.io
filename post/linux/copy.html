@@ -7,102 +7,157 @@ layout: default
     <div>دسترسی سریع</div>
     <ul>
       <li>
-        <a href="#p0">بررسی دستور cp</a>
+        <a href="#p0">بررسی و استفاده از دستور cp</a>
       </li>
       <li>
-        <a href="#p1">خلاصه</a>
+        <a href="#p1">آرگومان های پرکاربرد</a>
+      </li>
+      <li>
+        <a href="#p2">خلاصه</a>
       </li>
     </ul>
   </nav>
 
   <section id="p0">
-    <h2>بررسی دستور cp</h2>
-    <p>از دستور cp در لینوکس برای کپی کردن یک فایل از طریق ترمینال استفاده می کنیم؛ cp مخفف کلمه ی <strong>copy</strong>
+    <h2>بررسی و استفاده از دستور cp</h2>
+    <p>از دستور cp در لینوکس برای کپی کردن فایل از طریق ترمینال استفاده می کنیم؛ کلمه ی cp مخفف <strong>copy</strong>
       است.</p>
 
+    <p>با cp در لینوکس میتونیم یک پوشه یا یک فایل رو در مسیر دیگه کپی کنیم.</p>
+
+    <div class="note">
+      <p class="note-head">توجه</p>
+      <p>برای کپی کردن فایل های موجود در روت، یا کپی کردن فایل ها به مسیر های روت توسط cp، از sudo استفاده می‌کنیم.</p>
+    </div>
 
     <p>فرم کلی:</p>
 
     <div class="sample">
       <div class="snippet-container">
         <pre class="snippet Shell">
-cp "path_to_source_file" "path_to_destination_file"
+cp [Options] source destination
         </pre>
       </div>
     </div>
 
-    <p>در بالا آرگومان اول مسیر فایل مبدا است و آرگومان دوم مسیر فایل مقصد.</p>
+    <p>در بالا [Options] آرگومان ها، source مسیر فایل مبدا و destination مسیر فایل مقصد است.</p>
 
-    <div class="note">
-      <p class="note-head">توجه</p>
-      <p>برای کپی کردن فایل های موجود در روت، یا کپی کردن فایل ها به مسیر های روت توسط cp، باید به
-        روت دسترسی داشته باشیم.</p>
-    </div>
-
-    <p>با استفاده از پارامتر <strong>t</strong> میتونیم مسیر یک پوشه رو آشکارا به عنوان مقصد تعیین کنیم.</p>
-
-    <p>فرض کنید میخوایم چندتا فایل رو به یک پوشه کپی کنیم:</p>
+    <p>در مثال زیر میخوایم یک فایل رو کپی کنیم.</p>
 
     <div class="sample">
       <div class="snippet-container">
         <pre class="snippet Shell">
-cp "path_to_file0" "path_to_file1"  "path_to_file2" -t "path_to_destination_directory"
+cp ~/Pictures/myImage.png ~/Documents/myImage.png
         </pre>
       </div>
     </div>
 
-    <p>میتونیم مسیر پوشه ی مقصد رو هر جا که t رو تعریف کردیم، تعریف کنیم.</p>
 
-    <div class="sample">
-      <div class="snippet-container">
-        <pre class="snippet Shell">
-cp -t "path_to_destination_directory" "path_to_file0" "path_to_file1"  "path_to_file2" 
+    <section>
+      <h3>استفاده از Regex در cp</h3>
+
+      <p>دستور cp از regex پشتیبانی میکنه؛ فرض کنید میخوایم تمام فایل ها با پسوند <strong dir="ltr">.extension</strong>
+        رو
+        در مسیر <strong dir="ltr">/home/username/myDir</strong> کپی کنیم.
+      </p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Shell">
+cp ~/myDir/*.extension -t ~/destDir
         </pre>
+        </div>
       </div>
-    </div>
 
-    <p>اگه بخوایم یک پوشه رو با تمام محتوای داخلش به به یک پوشه ی دیگه کپی کنیم از آرگومان <strong>r</strong> استفاده می
-      کنیم.</p>
+    </section>
 
-    <div class="sample">
-      <div class="snippet-container">
-        <pre class="snippet Shell">
-cp -r "path_to_source_directory" "path_to_destination_directory"
-        </pre>
-      </div>
-    </div>
-
-    <p>میتونیم هنگام کپی کردن یک پوشه به پوشه ی دیگه میتونیم مسیر پوشه ی مقصد رو به صورت آشکارا تعریف کنیم:</p>
-
-    <div class="sample">
-      <div class="snippet-container">
-        <pre class="snippet Shell">
-cp -rt "path_to_destination_directory" "path_to_source_directory" 
-        </pre>
-      </div>
-    </div>
-
-    <p>دستور mv از regex پشتیبانی میکنه؛ فرض کنید میخوایم تمام فایل ها با پسوند <strong>.extension</strong> در مسیر
-      <strong>/home/username/myDir</strong> کپی کنیم.
-    </p>
-
-    <div class="sample">
-      <div class="snippet-container">
-        <pre class="snippet Shell">
-cp "/home/username/myDir/*.extension" -t "path_to_destination_directory"
-        </pre>
-      </div>
-    </div>
   </section>
 
   <section id="p1">
+    <h2>آرگومان های پرکاربرد</h2>
+
+    <p>در جدول زیر پارامتر های پرکاربرد در cp به همراه توضیحاتشون اورده شده است.</p>
+
+
+    <table class="table-regular">
+      <thead>
+        <tr>
+          <th colspan="2">
+            cp
+          </th>
+        </tr>
+        <tr>
+          <th>
+            آرگومان
+          </th>
+          <th>
+            توضیحات
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            t
+          </td>
+          <td>
+            مسیر تعریف شده جلوی پارامتر t، مسیر مقصد خواهد بود.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            r
+          </td>
+          <td>
+            میتونیم یک پوشه به همراه محتوای داخلش رو کپی کنیم.
+          </td>
+        </tr>
+      </tbody>
+
+    </table>
+
+    <p>در مثال زیر میخوایم ۳ تا ویدیو رو به <strong dir="ltr">~/destDir</strong> کپی کنیم؛ هرجا که آرگومان t تعریف بشه
+      باید مسیر
+      پوشه ی مقصد رو همونجا تعریف کنیم.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Shell">
+cp  -t ~/destDir myVideo0.mp4 myVideo1.mp4  myVideo2.mp4
+        </pre>
+      </div>
+    </div>
+
+    <p>در مثال زیر میخوایم پوشه ی Haydeh رو به NewFolder کپی کنیم.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Shell">
+cp -r ~/Music/Haydeh ~/Music/NewFolder
+        </pre>
+      </div>
+    </div>
+
+    <p>در مثال زیر مسیر پوشه ی NewFolder رو به صورت آشکارا به عنوان پوشه ی مقصد تعیین کردیم.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Shell">
+cp -rt ~/Music/NewFolder ~/Music/Haydeh 
+        </pre>
+      </div>
+    </div>
+
+  </section>
+
+  <section id="p2">
     <h2>خلاصه</h2>
     <ul>
       <li>
-        دستور cp در لینوکس مخفف copy است و ازش برای کپی کردن فایل ها توسط ترمینال استفاده می کنیم.
+        با دستور cp میتونیم فایل ها رو از طریق ترمینال کپی کنیم.
       </li>
       <li>
-        برای کپی کردن یک پوشه به پوشه ی دیگه با cp از پارامتر r استفاده می کنیم.
+        کلمه ی cp مخفف copy است.
       </li>
     </ul>
   </section>

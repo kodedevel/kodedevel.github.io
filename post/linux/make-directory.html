@@ -10,13 +10,16 @@ layout: default
         <a href="#p0">بررسی دستور mkdir</a>
       </li>
       <li>
-        <a href="#p1">خلاصه</a>
+        <a href="#p1">آرگومان های پرکاربرد</a>
+      </li>
+      <li>
+        <a href="#p2">خلاصه</a>
       </li>
     </ul>
   </nav>
 
   <section id="p0">
-    <h2>بررسی دستور mkdir</h2>
+    <h2>بررسی و استفاده از دستور mkdir</h2>
 
     <p>از دستور mkdir در لینوکس برای ساخت پوشه توسط ترمینال استفاده می کنیم؛ mkdir مخفف make directory است.</p>
 
@@ -25,56 +28,90 @@ layout: default
     <div class="sample">
       <div class="snippet-container">
         <pre class="snippet Shell">
-mkdir "directory_name"
+mkdir directoryName
         </pre>
       </div>
     </div>
 
 
-    <p>اگه بخوایم تو یک مسیر متفاوت از مسیری که در ترمینال هستیم پوشه ایجاد کنیم باید مسیر رو کامل نوشته و سپس نام پوشه
-      ای که میخوایم بسازیم رو بنویسیم.</p>
+    <p>در بالا <strong>directoryName</strong> نام یا مسیر پوشه ای است که میخوایم ایجاد کنیم.</p>
 
-    <p>فرض کنید میخوایم یک پوشه به نام <strong>myDir‍1</strong> در مسیر <strong>/home/username/myDir0</strong> ایجاد
-      کنیم.</p>
+    <p>در مثال زیر میخوایم یک پوشه به نام movies رو در مسیر <strong>/home/username/Videos</strong> ایجاد کنیم.</p>
     <div class="sample">
       <div class="snippet-container">
         <pre class="snippet Shell">
-mkdir "/home/username/myDir0/myDir1"
+mkdir ~/Videos/movies
         </pre>
       </div>
     </div>
 
-    <p>میتونیم از آرگومان <strong>p</strong> استفاده کنیم تا پوشه هایی که در مسیر وجود ندارن هم ایجاد بشن؛ p ابتدای کلمه
-      ی parent است.</p>
-    <p>در مثال قبل فرض کنید پوشه ی <strong>myDir0</strong> نیز وجود نداره.</p>
+
+  </section>
+
+  <section id="p1">
+    <h2>آرگومان های پرکاربرد</h2>
+    <p>در جدول زیر آرگومان های پرکاربرد دستور mkdir با پارامتر هاشون آورده شده است.</p>
+
+    <table class="table-regular">
+      <thead>
+        <tr>
+          <th colspan="2">mkdir</th>
+        </tr>
+        <tr>
+          <th>آرگومان</th>
+          <th>توضیحات</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>
+            p
+          </td>
+          <td>
+            علاوه بر پوشه اصلی پوشه هایی که در مسیر وجود ندارن رو ایجاد میکنه، حرف p ابتدای کلمه ی parent است.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            m
+          </td>
+          <td>
+            میتونیم برای پوشه ای که ایجاد میکنیم و فایل های داخلش سطح دسترسی خوندن، نوشتن و اجرا شدن رو تعیین کنیم.
+          </td>
+        </tr>
+      </tbody>
+
+    </table>
+
+    <p>فرض کنید میخوایم پوشه myDir1 رو ایجاد کنیم و پوشه myDir0 هم وجود نداره.</p>
     <div class="sample">
       <div class="snippet-container">
         <pre class="snippet Shell">
-mkdir -p "/home/username/myDir0/myDir1"
+mkdir -p ~/myDir0/myDir1
         </pre>
       </div>
     </div>
 
-    <p>میتونیم هنگام ساخت پوشه سه حالت خوندن، نوشتن و اجرا شدن رو برای پوشه ای که ساخته میشه تعیین کنیم.</p>
-
-    <p>در زیر سطح دسترسی پوشه ای که میسازیم رو برای سه گروه user, group و other به read محدود کردیم.</p>
+    <p>در مثال زیر سطح دسترسی پوشه ای که میسازیم رو برای سه گروه user, group و other به read محدود کردیم.</p>
 
     <div class="sample">
       <div class="snippet-container">
         <pre class="snippet Shell">
-mkdir -m "ugo=r" "/home/username/myDir0/myDir1"
+mkdir -m "ugo=r" ~/myDir2
         </pre>
       </div>
     </div>
 
   </section>
 
-  <section id="p1">
+  <section id="p2">
     <h2>خلاصه</h2>
     <ul>
       <li>
-        از دستور mkdir در لینوکس برای ساخت پوشه ی جدید توسط ترمینال استفاده میکنیم؛ mkdir مخفف make directory است.
+        با mkdir از طریق ترمینال لینوکس میتونیم یک پوشه ایجاد کنیم.
       </li>
+      <li>کلمه mkdir مخفف make directory است.</li>
     </ul>
   </section>
 

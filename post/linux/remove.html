@@ -18,14 +18,16 @@ layout: default
   <section id="p0">
     <h2>بررسی دستور rm</h2>
 
-    <p>دستور rm در لینوکس برای پاک کردن فایل ها از طریق ترمینال و مخفف کلمه ی <strong>remove</strong> است.</p>
+    <p>از دستور rm در ترمینال لینوکس برای حذف فایل ها و پوشه ها استفاده می‌کنیم؛ کلمه ی rm مخفف
+      <strong>remove</strong> است.
+    </p>
 
     <p>فرم کلی:</p>
 
     <div class="sample">
       <div class="snippet-container">
         <pre class="snippet Shell">
-rm "path_to_file"
+rm [Options] destination
         </pre>
       </div>
     </div>
@@ -35,51 +37,90 @@ rm "path_to_file"
       <p>برای پاک کردن فایل های روت توسط rm نیاز به دسترسی روت داریم.</p>
     </div>
 
-    <p>اگه بخوایم یک پوشه با محتوای داخلشو پاک کنیم از آرگومان <strong>r</strong> استفاده می کنیم؛ r ابتدای حرف
-      <strong>recursive</strong> است.
-    </p>
-
-    <div class="sample">
-      <div class="snippet-container">
-        <pre class="snippet Shell">
-rm -r "path_to_directory"
-        </pre>
-      </div>
-    </div>
-
-    <p>اگه بخوایم بابت پاک کردن هر فایل ازمون اجازه گرفته بشه از آرگومان <strong>i</strong> استفاده می کنیم.</p>
-
-    <div class="sample">
-      <div class="snippet-container">
-        <pre class="snippet Shell">
-rm -i "path_to_file"
-        </pre>
-      </div>
-    </div>
-
-    <p>اگه بخوایم فایل یا فایلی رو بدون پرسیدن پاک بشه از آرگومان <strong>f</strong> استفاده می کنیم.</p>
-
-    <p>فرض کنید میخوایم یک پوشه با محتوای داخلشو بدون گرفتن اجازه پاک کنیم.</p>
-    <div class="sample">
-      <div class="snippet-container">
-        <pre class="snippet Shell">
-rm -rf "path_to_directory"
-        </pre>
-      </div>
-    </div>
-
-
-    <p>دستور rm از regex پشتیبانی میکنه به عنوان مثال اگه بخوایم تمام فایل های با پسوند <strong>.extension</strong> داخل
+    <p>دستور rm از regex پشتیبانی میکنه به عنوان مثال اگه بخوایم تمام فایل ها با پسوند <strong>.extension</strong> داخل
       یک پوشه رو پاک کنیم، مانند زیر
       عمل میکنیم:</p>
 
     <div class="sample">
       <div class="snippet-container">
         <pre class="snippet Shell">
-rm -rf "path_to_directory/*.extension"
+rm ~/Documents/*.extension
         </pre>
       </div>
     </div>
+  </section>
+
+  <section>
+    <h2>آرگومان های پرکاربرد</h2>
+
+    <p>در جدول زیر آرگومان های پرکاربرد دستور rm با توضیحاتشون شرح داده شده است.</p>
+
+    <table class="table-regular">
+      <thead>
+        <tr>
+          <th colspan="2">
+            rm
+          </th>
+        </tr>
+        <tr>
+          <th>
+            آرگومان
+          </th>
+          <th>
+            توضیحات
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            r
+          </td>
+          <td>
+            علاوه بر پوشه، فایل ها و پوشه های داخل پوشه رو به صورت بازگشتی پاک میکنه و r ابتدای حرف recursive است.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            i
+          </td>
+          <td>
+            برای حذف هر فایل از کاربر اجازه می‌گیره.
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            f
+          </td>
+          <td>
+            تمام فایل ها رو به اجبار حذف می‌کنه، حرف f ابتدای کلمه ی force است و استفاده از f در کنار r مرسومه.
+          </td>
+        </tr>
+      </tbody>
+
+    </table>
+
+    <p>در مثال زیر میخوایم پوشه MyDirectory رو به همراه تمام فایل ها و پوشه های داخلشو حذف کنیم.</p>
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Shell">
+rm -r ~/Documents/MyDirectory
+        </pre>
+      </div>
+    </div>
+
+    <p>در مثال زیر میخوایم تمام فایل های <strong dir="ltr">mp4</strong> رو حذف کرده و برای حذف هر فایل ازمون پرسیده بشه.
+    </p>
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Shell">
+rm -i ~/Videos/*.mp4
+        </pre>
+      </div>
+    </div>
+
+
 
   </section>
 

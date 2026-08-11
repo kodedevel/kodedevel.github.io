@@ -10,7 +10,10 @@ layout: default
         <a href="#p0">بررسی دستور mv</a>
       </li>
       <li>
-        <a href="#p1">خلاصه</a>
+        <a href="#p1">آرگومان های پرکاربرد</a>
+      </li>
+      <li>
+        <a href="#p2">خلاصه</a>
       </li>
     </ul>
   </nav>
@@ -20,82 +23,136 @@ layout: default
 
     <p>از دستور mv در لینوکس برای انتقال فایل ها توسط ترمینال استفاده می کنیم؛ mv مخفف <strong>move</strong> است.</p>
 
+    <div class="note">
+      <p class="note-head">توجه</p>
+      <p>برای انتقال دادن فایل های موجود در روت، یا انتقال فایل ها به مسیر های روت توسط mv، باید از sudo استفاده کنیم.
+      </p>
+    </div>
+
     <p>فرم کلی:</p>
 
     <div class="sample">
       <div class="snippet-container">
         <pre class="snippet Shell">
-mv "path_to_source_file" "path_to_destination_file"
+mv [Options] source destination
         </pre>
       </div>
     </div>
 
-    <p>در بالا آرگومان اول مسیر فایلیه که میخوایم انتقال بدیم و آرگومان دوم مسیر مقصد.</p>
+    <p>در بالا [Options] آرگومان ها، source مسیر فایل مبدا و destination مسیر فایل مقصد است.</p>
 
-    <div class="note">
-      <p class="note-head">توجه</p>
-      <p>برای انتقال دادن فایل های موجود در روت، یا انتقال فایل ها به مسیر های روت توسط mv، باید به
-        روت دسترسی داشته باشیم.</p>
-    </div>
-
-    <p>با دستور mv در لینوکس میتونیم نام یک فایل رو تغییر بدیم، کافیه مسیر فایل مبدا رو با نام جدید فایل بنویسیم.</p>
-
-    <p>فرض کنید یک فایل به نام <strong>myFile.extension</strong> در مسیر <strong
-        dir="ltr">/home/username/myDir/myFile.extension</strong> داریم و میخوایم فایل رو
-      به
-      <strong>myRenamedFile.extension</strong> تغییر نام بدیم.
-    </p>
-
+    <p>در مثال زیر میخوایم یک فایل رو از Pictures به Documents انتقال بدیم.</p>
     <div class="sample">
       <div class="snippet-container">
         <pre class="snippet Shell">
-mv "/home/username/myDir/myFile.extension" "/home/username/myDir/myRenamedFile.extension"
+mv ~/Pictures/myImage.png ~/Documents/myImage.png
       </pre>
       </div>
     </div>
 
+    <section>
+      <h3>تغییر نام فایل با mv</h3>
 
-    <p>اگه مقصد پوشه باشه با آرگومان <strong>t</strong> میتونیم مسیر مقصد رو به طور آشکار تعیین کنیم و جایی که آرگومان t
-      نوشته شده باشه همونجا مسیر پوشه ی مقصد رو تعریف می کنیم.</p>
+      <p>با دستور mv در لینوکس میتونیم نام یک فایل رو تغییر بدیم، کافیه مسیر فایل مبدا رو با نام جدید فایل در همون مسیر
+        بنویسیم.</p>
 
-    <div class="sample">
-      <div class="snippet-container">
-        <pre class="snippet Shell">
-mv -t "path_to_destination_directory" "path_to_source_file0" "path_to_source_file1" "path_to_source_file2"
-        </pre>
+      <p>
+        در مثال زیر میخوایم myImage.png رو به yourImage.png تغییر نام بدیم.
+      </p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Shell">
+mv ~/Pictures/myImage.png ~/Pictures/yourImage.png
+      </pre>
+        </div>
       </div>
-    </div>
+    </section>
 
+    <section>
+      <h3>استفاده از regex در mv</h3>
+      <p>دستور mv از regex پشتیبانی میکنه؛ در مثال زیر میخوایم تمام فایل ها با پسوند <strong>.png</strong> رو از پوشه ی
+        Documents به پوشه ی Pictures انتقال بدیم.
+      </p>
 
-    <p>هنگامی که یک فایل هم نام در مقصد وجود داشته باشه دستور mv به صورت پیشفرض از کاربر می پرسه که آیا مایل به جایگذاری
-      با فایلی که در پوشه ی مقصد قرار داره است یا خیر، با استفاده از آرگومان <strong>f</strong> میتونیم تعیین کنیم در
-      صورت وجود فایل با نام یکسان در مقصد بدون پرسیدن از کاربر، فایل مبدا رو با فایل مقصد جایگذاری کنه.</p>
-
-
-    <div class="sample">
-      <div class="snippet-container">
-        <pre class="snippet Shell">
-mv -f "path_to_source_file" "path_to_destination_file"
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Shell">
+mv ~/Documents/*.png ~/Documents/Pictures
         </pre>
+        </div>
       </div>
-    </div>
 
-
-    <p>دستور mv از regex پشتیبانی میکنه؛ فرض کنید میخوایم تمام فایل ها با پسوند <strong>.extension</strong> در مسیر
-      <strong>/home/username/myDir</strong> انتقال بدیم.
-    </p>
-
-    <div class="sample">
-      <div class="snippet-container">
-        <pre class="snippet Shell">
-mv "/home/username/myDir/*.extension" -t "path_to_destination_directory"
-        </pre>
-      </div>
-    </div>
+    </section>
 
   </section>
 
   <section id="p1">
+    <h2>آرگومان های پرکاربرد</h2>
+    <p>در جدول زیر آرگومان های پر کاربرد در mv با توضیحاتشون آورده شده است.</p>
+
+
+    <table class="table-regular">
+      <thead>
+        <tr>
+          <th colspan="2">
+            mv
+          </th>
+        </tr>
+        <tr>
+          <th>آرگومان</th>
+          <th>توضیحات</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            t
+          </td>
+          <td>
+            میتونیم مسیر پوشه ی مقصد رو بعد از t تعیین کنیم.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            f
+          </td>
+          <td>
+            در صورت وجود فایل با نام یکسان بدون پرسیدن از کاربر، فایل رو جایگزین فایل موجود می‌کنه.
+          </td>
+        </tr>
+      </tbody>
+
+    </table>
+
+
+    <p>در مثال زیر میخوایم پوشه ی مقصد رو با آرگومان t تعیین کنیم.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Shell">
+mv -t ~/Videos/movies/ ~/Videos/myFile0.mp4 ~/Videos/myFile1.mp4 ~/Videos/myFile2.mp4
+        </pre>
+      </div>
+    </div>
+
+
+    <p>در مثال زیر میخوایم فایل myFile0.mp4 رو به movies انتقال بدیم.</p>
+
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Shell">
+mv -f ~/Documents/myFile0.mp4 ~/Videos/movies
+        </pre>
+      </div>
+    </div>
+
+
+
+  </section>
+
+  <section id="p2">
     <h2>خلاصه</h2>
     <ul>
       <li>از دستور mv برای انتفال فایل ها توسط ترمینال استفاده می کنیم و این دستور مخفف move است.</li>
