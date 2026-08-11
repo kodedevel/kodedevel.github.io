@@ -235,10 +235,10 @@
       "link": "/post/java/queue.html"
     },
     {
-      "title": "کالکشن ها در جاوا: معرفی و استفاده از صف اولویتی (PriorityQueue)",
+      "title": "کالکشن ها در جاوا: استفاده از صف اولویتی (PriorityQueue)",
       "description": "آموزش استفاده از صف اولویتی (PriorityQueue) در جاوا؛ معرفی PriorityQueue و استفاده از PriorityQueue به همراه مثال.",
       "datePublished": "2026-08-07",
-      "lastModified": "",
+      "lastModified": "2026-08-12",
       "imgCover": "/resources/image/java/cover_priorityqueue.png",
       "link": "/post/java/priorityqueue.html"
     },

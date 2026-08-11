@@ -191,6 +191,71 @@ while (!priorityQueue2.isEmpty())
       </div>
     </div>
 
+
+    <p>فرض کنید سیستم عامل میخواد کار ها رو بر اساس اولویت اجرا کنه.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+public class TaskManagerDemo {
+
+    public static void main(String[] args) {
+
+        PriorityQueue&lt;Task&gt; tasks = new PriorityQueue&lt;&gt;();
+
+        tasks.offer(new Task(Task.Priority.HIGH, "Delete File"));
+        tasks.offer(new Task(Task.Priority.LOW, "Play Music"));
+        tasks.offer(new Task(Task.Priority.MEDIUM, "Run Text Editor"));
+        tasks.offer(new Task(Task.Priority.LOW, "Close Browser"));
+
+        while (!tasks.isEmpty())
+            tasks.poll().run();
+
+    }
+
+    private static class Task implements Comparable&lt;Task&gt; {
+
+        private final Priority priority;
+        private final String name;
+
+        public Task(Priority priority, String name) {
+            this.priority = priority;
+            this.name = name;
+        }
+
+        public Priority getPriority() {
+            return priority;
+        }
+
+        public void run() {
+            System.out.printf("Running task: %-20s" + " Priority Number: %1d\n", name, priority.getPriorityNumber());
+        }
+
+        @Override
+        public int compareTo(Task t) {
+            return Integer.compare(priority.getPriorityNumber(), t.getPriority().getPriorityNumber());
+        }
+
+        enum Priority {
+            HIGH(1), MEDIUM(2), LOW(3);
+
+            private final int priorityNumber;
+
+            Priority(int priorityNumber) {
+                this.priorityNumber = priorityNumber;
+            }
+
+            public int getPriorityNumber() {
+                return priorityNumber;
+            }
+        }
+    }
+}
+        </pre>
+      </div>
+    </div>
+
+
   </section>
 
   <section id="p2">
