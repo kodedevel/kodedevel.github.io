@@ -30,13 +30,13 @@ layout: default
     <h2>معرفی صف اولویتی (PriorityQueue)</h2>
 
     <p>در موضوع صف (Queue) گفتیم اولین عنصری که به صف اضافه میکنیم، اولین عنصریه که میتونیم صدا بزنیم یا حذف کنیم و صف
-      معروف ساختمان داده <strong>first-in-first-out</strong> است.</p>
+      <strong>first-in-first-out</strong> است.
+    </p>
 
     <p>در جاوا یک پیاده سازی از صف داریم به نام <strong>صف اولویتی (PriorityQueue)</strong>؛ در Queue عناصر به ترتیبی که
       اضافه میشن، در صف قرار میگیرن؛ اما در PriorityQueue عناصر بر اساس مقایسه ای که باهمدیگه میشن در
-      صف قرار می گیرن و این مقایسه به طور پیشفرض با <a href="interfaces.html#p2">Comparable</a> تعریف شده در کلاس ها
-      انجام میشه اما میتونیم
-      با استفاده از اینترفیس Comparator
+      صف قرار می گیرن و این مقایسه به طور پیشفرض با <a href="interfaces.html#p2">Comparable</a> انجام میشه اما میتونیم
+      با استفاده از اینترفیس <strong>Comparator</strong>
       عناصر رو اونطوری که میخوایم باهم مقایسه کنیم.</p>
 
   </section>
@@ -192,7 +192,7 @@ while (!priorityQueue2.isEmpty())
     </div>
 
 
-    <p>فرض کنید سیستم عامل میخواد کار ها رو بر اساس اولویت اجرا کنه.</p>
+    <p>در مثال زیر میخوایم اجرای کار ها توسط سیستم عامل رو شبیه سازی کنیم.</p>
 
     <div class="sample">
       <div class="snippet-container">
@@ -203,6 +203,7 @@ public class TaskManagerDemo {
 
         PriorityQueue&lt;Task&gt; tasks = new PriorityQueue&lt;&gt;();
 
+        tasks.offer(new Task(Task.Priority.HIGH, "Power Off");
         tasks.offer(new Task(Task.Priority.HIGH, "Delete File"));
         tasks.offer(new Task(Task.Priority.LOW, "Play Music"));
         tasks.offer(new Task(Task.Priority.MEDIUM, "Run Text Editor"));
@@ -277,7 +278,7 @@ public class TaskManagerDemo {
       <tbody>
         <tr>
           <td>
-            +offer(e: E) / +add(e: E)
+            offer(E) / add(E)
           </td>
           <td>
             O(logn)
@@ -285,7 +286,7 @@ public class TaskManagerDemo {
         </tr>
         <tr>
           <td>
-            +poll(): E / +remove(): E
+            poll(): E / remove(): E
           </td>
           <td>
             O(logn)
@@ -293,7 +294,7 @@ public class TaskManagerDemo {
         </tr>
         <tr>
           <td>
-            +peek(): E
+            peek(): E
           </td>
           <td>
             O(1)

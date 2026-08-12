@@ -233,9 +233,6 @@ article{
 
 .table-regular tr td{
   width: 50%;
-}
-
-.table-regular tr td:last-child{
   direction: rtl;
 }
 

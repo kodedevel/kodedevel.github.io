@@ -7,7 +7,7 @@ layout: default
     <div>دسترسی سریع</div>
     <ul>
       <li>
-        <a href="#p0">معرفی صف دوطرفه (Double Ended Queue)</a>
+        <a href="#p0">معرفی صف دوطرفه</a>
       </li>
       <li>
         <a href="#p1">استفاده از صف دوطرفه (Deque)</a>
@@ -22,11 +22,11 @@ layout: default
   </nav>
 
   <section id="p0">
-    <h2>معرفی صف دوطرفه (Double Ended Queue)</h2>
+    <h2>معرفی صف دوطرفه</h2>
     <p>در مورد صف (Queue) گفتیم یک ساختار داده یک طرفه است، اولین عنصری که به صف اضافه می کنیم، اولین عنصری هست که
       میتونیم صدا یا حذف کنیم.</p>
     <p>در صف دو طرفه شرایط از هر دو طرف برقراره یعنی میتونیم یک عنصر رو به ابتدا یا انتهای صف اضافه کنیم یا از ابتدا یا
-      انتهای صف حذف کنیم؛ به صف دوطرفه <strong>double ended queue</strong> گفته میشه.</p>
+      انتهای صف حذف کنیم.</p>
 
     <figure>
       <img src="/resources/image/data-structure/deque_structure.png" alt="ساختار صف دوطرفه (double ended queue)">
@@ -36,7 +36,7 @@ layout: default
   </section>
   <section id="p1">
     <h2>استفاده از صف دوطرفه (Deque)</h2>
-    <p>اینترفیس Deque برای حذف و اضافه کردن عناصر از دو طرف صف طراحی شده و مخفف double ended queue است؛
+    <p>اینترفیس Deque برای حذف و اضافه کردن عناصر در دو طرف صف طراحی شده و مخفف double ended queue است؛
       اینترفیس Deque از <a href="queue.html">اینترفیس Queue</a> ارث بری می کنه و کلاس های <a
         href="linkedlist.html">LinkedList</a> و <a href="arraydeque.html">ArrayDeque</a>
       اینترفیس Deque رو پیاده سازی
@@ -63,7 +63,7 @@ layout: default
       <tbody>
         <tr>
           <td class="tDataLTR">
-            +push(e: E)
+            +push(e: E): void
           </td>
           <td class="tDataRTL">
             یک عنصر به Stack اضافه می کنه.
@@ -71,7 +71,7 @@ layout: default
         </tr>
         <tr>
           <td class="tDataLTR">
-            +pop(e: E): E
+            +pop(): E
           </td>
           <td class="tDataRTL">
             آخرین عنصری که به استک اضافه شده رو میکنه و برمیگردونه.
@@ -162,12 +162,14 @@ layout: default
       </tbody>
     </table>
 
-    <p>در مطلب LinkedList از addFirst, addLast, removeFirst و removeLast صحبت کردیم در واقع این متد ها از Deque بازنویسی
+    <p>در مطلب LinkedList از <strong>addFirst</strong>, <strong>addLast</strong>, <strong>removeFirst</strong> و
+      <strong>removeLast</strong> صحبت کردیم در واقع این متد ها از Deque بازنویسی
       شده اند اما برای اینکه بتونیم <a href="linkedlist.html">ويژگی های LinkedList</a> رو بررسی کنیم اونجا معرفیشون
-      کردیم.</p>
+      کردیم.
+    </p>
 
     <p>در این بخش میخوایم از Deque استفاده کنیم، دوتا از پیاده‌سازی های اینترفیس Deque کلاس های LinkedList و ArrayDeque
-      هستند در <a href="linkedlist.html">مطلب قبل</a> به کلاس LinkedList پرداختیم و در <a href="arraydeque.html">مطلب
+      هستند در <a href="linkedlist.html">قبل</a> به کلاس LinkedList پرداختیم و در <a href="arraydeque.html">مطلب
         بعدی</a> به ArrayDeque خواهیم
       پرداخت.</p>
 
@@ -284,7 +286,7 @@ System.out.println();
       <tbody>
         <tr>
           <td>
-            +push(e: E)
+            push(E)
           </td>
           <td>
             O(1)
@@ -292,7 +294,7 @@ System.out.println();
         </tr>
         <tr>
           <td>
-            +offer(e: E) / +add(e: E) / +addLast(e: E)
+            offer(E) / add(E) / addLast(E)
           </td>
           <td>
             O(1)
@@ -300,7 +302,7 @@ System.out.println();
         </tr>
         <tr>
           <td>
-            +addFirst(e: E) / offerFirst(e: E)
+            addFirst(E) / offerFirst(E)
           </td>
           <td>
             O(1)
@@ -308,7 +310,7 @@ System.out.println();
         </tr>
         <tr>
           <td>
-            +pop(): E
+            pop(): E
           </td>
           <td>
             O(1)
@@ -316,7 +318,7 @@ System.out.println();
         </tr>
         <tr>
           <td>
-            +pollLast(): E / +removeLast(): E
+            pollLast(): E / removeLast(): E
           </td>
           <td>
             O(1)
@@ -324,7 +326,7 @@ System.out.println();
         </tr>
         <tr>
           <td>
-            +poll(): E / +pollFirst(): E / +remove(): E / removeFirst(): E
+            poll(): E / pollFirst(): E / remove(): E / removeFirst(): E
           </td>
           <td>
             O(1)
@@ -332,7 +334,7 @@ System.out.println();
         </tr>
         <tr>
           <td>
-            +peek(): E / +peekFirst(): E / element(): E
+            peek(): E / peekFirst(): E / element(): E
           </td>
           <td>
             O(1)
@@ -340,7 +342,7 @@ System.out.println();
         </tr>
         <tr>
           <td>
-            +peekLast(): E
+            peekLast(): E
           </td>
           <td>
             O(1)
@@ -363,7 +365,7 @@ System.out.println();
         کلاس های LinkedList و ArrayDeque اینترفیس Deque رو پیاده سازی میکنن.
       </li>
       <li>
-        از Deque میتونیم به عنوان Queue یا به عنوان Stack استفاده کنیم.
+        از Deque میتونیم به عنوان Queue یا Stack استفاده کنیم.
       </li>
     </ul>
   </section>
