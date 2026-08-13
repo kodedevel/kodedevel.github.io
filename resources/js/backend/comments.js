@@ -65,10 +65,10 @@ function createComments(comments) {
       <article class="comment" itemscope itemtype="https://schema.org/Comment">
         <header class="comment-header">
            <div itemprop="author" itemscope itemtype="https://schema.org/Person">
-            <div>
-              <a itemprop="url" href="${url} "target="_blank" rel="noopener noreferrer">
-                <img src="${avatar}" itemprop="avatar">
-                <strong itemprop="name">${name}</strong>
+            <div class="author-info">
+              <a class="author-url" itemprop="url" href="${url} "target="_blank" rel="noopener noreferrer">
+                <img class="author-avatar" src="${avatar}" itemprop="avatar">
+                <strong class="author-name" itemprop="name">${name}</strong>
               </a>
             </div>
             <div> 
