@@ -88,7 +88,7 @@ function createStaticComments(comments) {
 
     const authName = comment.author ? comment.author.login : 'Anonymous';
     const authURL = comment.author ? comment.author.url : '#';
-    const date = new Date(comment.createdAt).toLocaleDateString("ir-IR", {
+    const date = new Date(comment.createdAt).toLocaleDateString("fa-IR", {
       year: 'numeric',
       month: 'short',
       day: 'numeric'
@@ -102,15 +102,15 @@ function createStaticComments(comments) {
       <article class="static-comment" itemscope itemtype="https://schema.org/Comment">
         <header class="static-comment-header">
            <span itemprop="author" itemscope itemtype="https://schema.org/Person">
-              <a itemprop="url" href="${authURL}">
+              <a itemprop="url"  href="${authURL} "target="_blank" rel="noopener noreferrer">
                 <strong itemprop="name">${authName}</strong>
               </a>
            </span>
            <time itemprop="datePublished" datetime="${dateTime}">${date}</time>
+        </header>
            <div class="static-comment-body" itemprop="text">
                ${body}
            </div>
-        </header>
       </article>`;
 
   }).join('\n');
@@ -136,7 +136,7 @@ function walkDirectory(dir, callback) {
 async function initStaticComments() {
   const discussions = await fetchAllDiscussions();
 
-  console.log(`${discussions.length} comments found.`);
+  console.log(`${discussions.length} discussions found.`);
 
   const commentsMap = new Map();
 
@@ -161,7 +161,7 @@ async function initStaticComments() {
     const staticComments = createStaticComments(comments);
 
     if (staticComments) {
-      html = html.replace(/(<div class="giscus"[^>]*>)/i, staticComments + '\n$1');
+      html = html.replace(/(<div class="giscus"[^>]*>)/i, (match) => `${staticComments}\n${match}`);
       fs.writeFileSync(filePath, html);
       console.log(`${comments.length} injected into ${pagePath}`);
     }
