@@ -8,6 +8,7 @@
 @import url("article.css");
 @import url("learn.css");
 @import url("index.css");
+@import url("comments.css");
 
 .figure {
 width: 100%;

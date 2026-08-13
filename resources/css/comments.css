@@ -1,0 +1,29 @@
+.comment-container{
+  padding: 8px;
+  background-color: #f5f5f5;
+}
+
+.author-info{
+  display: flex;
+  flex-direction: row;
+}
+
+
+.author-url{
+  text-decoration: none;
+  color: #212121;
+}
+
+.author-url:hover{
+  color: #0D47A1;
+}
+
+.author-avatar{
+  width: 24px;
+  height: 24px;
+  object-fit: cover;
+}
+
+.author-name{
+  margin-right: 8px;
+}
