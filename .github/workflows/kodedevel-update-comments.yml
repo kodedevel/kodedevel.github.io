@@ -1,6 +1,12 @@
 name: Update Comments
 
 on:
+  discussion_comment:
+    types: [created, edited, deleted]
+
+  schedule:
+    - cron: '0 0 * * *'
+
   workflow_dispatch:
 
 permissions:
@@ -9,12 +15,15 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
+  #group: "pages"
+  #cancel-in-progress: false
+  group: "comment-sync"
   cancel-in-progress: false
 
 jobs:
   # Build job
   build:
+    if: ${{ github.event.comment.user.type != 'Bot' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -45,8 +54,7 @@ jobs:
         run: |
           npm init -y
           npm pkg set type="module"
-          npm install @octokit/graphql
-          node resources/js/comments.js
+          node resources/js/backend/comments.js
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

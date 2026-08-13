@@ -2,7 +2,6 @@ import {initSlider} from "./index.js";
 import {createCodeViews} from "./article.js";
 import {initUiComponents, scrollTopVisibility} from "./base.js";
 import {applySEOConfigurations} from "./seo-config.js";
-import {switchToLiveComments} from "./comments-front.js";
 
 let isOnDocumentClicked = false;
 let hashStack = [];
@@ -63,7 +62,6 @@ function executeCodes() {
   //apply all neccessary configurations for seo
   applySEOConfigurations();
 
-  switchToLiveComments();
 }
 
 function start() {
