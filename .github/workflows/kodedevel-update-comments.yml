@@ -51,9 +51,7 @@ jobs:
       - name: Inject Comments
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          npm init -y
-          npm pkg set type="module"
+        run:
           node resources/js/backend/comments.js
 
       - name: Upload artifact
