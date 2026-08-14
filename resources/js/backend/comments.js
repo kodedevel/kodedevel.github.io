@@ -216,7 +216,7 @@ async function run() {
     const createdComments = createComments(comments);
 
     if (createdComments) {
-      html = html.replace(/(<div class="giscus"[^>]*>)/i, (match) => `${createdComments}\n${match}`);
+      html = html.replace(/(<giscus-widget\b[^>]*>)/i, (match) => `${createdComments}\n${match}`);
       fs.writeFileSync(pageUrl, html, "utf-8");
     }
   })
