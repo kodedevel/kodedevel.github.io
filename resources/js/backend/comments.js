@@ -71,7 +71,7 @@ function createComments(comments) {
               </a>
             </div>
             <div> 
-              <time itemprop="datePublished" datetime="${dateTime}">${date}</time>
+              <time class="comment-date" itemprop="datePublished" datetime="${dateTime}">${date}</time>
             </div>
            </div>
         </header>
