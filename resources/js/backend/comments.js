@@ -4,20 +4,19 @@ import path from "node:path"
 const TOKEN = process.env.GITHUB_TOKEN;
 const OWNER = 'kodedevel';
 const REPO = 'kodedevel.github.io';
-
+const CATEGORY_ID = "DIC_kwDOPuPkF84DDOgs";
 
 const POST_BASE_PATH = '_site/post';
 
-
-const variables = {
-  owner: OWNER,
-  repo: REPO
-}
 const query = `
-  query getComments($owner: String!, $repo: String!){
+  query getComments($owner: String!, $repo: String!, $categoryId: ID!, $after: String){
 
     repository(owner: $owner, name: $repo){
-      discussions(first: 100){
+      discussions(first: 100, categoryId: $categoryId, after: $after){
+        pageInfo{
+          hasNextPage
+          endCursor
+        }
         nodes{
           id
           title
@@ -88,7 +87,7 @@ function createComments(comments) {
 
 function getPosts(p, files) {
 
-  const posts = [];
+  let posts = [];
 
 
   for (const file of files) {
@@ -97,9 +96,7 @@ function getPosts(p, files) {
 
     if (stat.isDirectory()) {
       const f = fs.readdirSync(relativePath);
-      const c = getPosts(relativePath, f);
-      for (const post of c)
-        posts.push(post);
+      posts = posts.concat(getPosts(relativePath, f));
     } else {
       posts.push(relativePath);
     }
@@ -123,20 +120,18 @@ async function matchComments() {
     const files = fs.readdirSync(POST_BASE_PATH);
     const posts = getPosts(POST_BASE_PATH, files);
 
-    const data = await graphql(query, variables);
-    console.log("data successfully fetched!")
-    const discussions = data?.repository?.discussions?.nodes;
-
+    const allDiscussions = await getAllDiscussions();
 
     for (let i = 0; i < posts.length; i++) {
 
       const post = posts[i];
-      //e.g post/java/loops
-      const briefPath = toBriefPath(post);
 
       map.set(post, null);
 
-      for (const discussion of discussions) {
+      //e.g post/java/loops
+      const briefPath = toBriefPath(post);
+
+      for (const discussion of allDiscussions) {
 
         const discussionPath = discussion.title;
 
@@ -155,10 +150,36 @@ async function matchComments() {
   return map;
 }
 
+async function getAllDiscussions() {
+
+  let allDiscussions = [];
+  let hasNextPage = true;
+  let cursor = null;
+
+  while (hasNextPage) {
+
+    const data = await graphql(query, {
+      owner: OWNER,
+      repo: REPO,
+      categoryId: CATEGORY_ID,
+      after: cursor
+    });
+
+    const pageInfo = data?.repository?.discussions?.pageInfo;
+    hasNextPage = pageInfo?.hasNextPage;
+    cursor = pageInfo?.endCursor;
+    const discussions = data?.repository?.discussions.nodes;
+    allDiscussions = allDiscussions.concat(discussions);
+
+  }
+  console.log("data successfully fetched!")
+
+  return allDiscussions;
+}
+
 async function graphql(query, variables) {
 
   const response = await fetch("https://api.github.com/graphql", {
-
     method: "POST",
     headers: {
       "Authorization": `bearer ${TOKEN}`,
@@ -172,7 +193,6 @@ async function graphql(query, variables) {
     const error = await response.text();
     throw new Error(`HTTP ERROR ${response.status}: ${error}`);
   }
-
 
   const json = await response.json();
 
