@@ -1,0 +1,9 @@
+@import url("https://giscus.app/themes/preferred_color_scheme.css");
+
+.gsc-timeline{
+  display: none !important;
+}
+
+.gsc-header{
+  display: none !important;
+}

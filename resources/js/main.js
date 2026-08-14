@@ -2,6 +2,7 @@ import {initSlider} from "./index.js";
 import {createCodeViews} from "./article.js";
 import {initUiComponents, scrollTopVisibility} from "./base.js";
 import {applySEOConfigurations} from "./seo-config.js";
+import 'https://esm.sh/giscus';
 
 let isOnDocumentClicked = false;
 let hashStack = [];
