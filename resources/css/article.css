@@ -294,7 +294,7 @@ article{
     display: block;
     min-height: 150px;
     max-width: 75ch;
-    background-color: #f5f5f5;
+    background-color: transparent;
     margin: 16px auto;
     padding-bottom: 8px;
     overflow: none;
@@ -311,9 +311,15 @@ article{
   padding: 8px;
 }
 
-.article-foot h2, .article-foot h3{
+.article-foot aside h2, .article-foot aside h3{
+  width: auto;
   margin: 0 8px 0 0;
   padding-bottom: 8px;
+  background-color: transparent;
+}
+
+.article-foot aside {
+  background-color: #f5f5f5;
 }
 
 .article-foot ul, .article-foot li{

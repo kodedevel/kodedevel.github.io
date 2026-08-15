@@ -41,7 +41,7 @@ function createComments(comments) {
   if (!comments || comments.length == 0)
     return `<article class="comment" itemscope itemtype="https://schema.org/Comment">
               <div class="comment-body" itemprop="text">
-                 <p>کامنتی وجود ندارد</p>
+                 <p>اولین نفری باشید که در مورد این پست نظر می‌دهید</p>
                </div>
             </article>`;
 
@@ -216,7 +216,7 @@ async function run() {
     const createdComments = createComments(comments);
 
     if (createdComments) {
-      html = html.replace(/(<giscus-widget\b[^>]*>)/i, (match) => `${createdComments}\n${match}`);
+      html = html.replace(/(<div class="comments".*>)/i, (match) => `${match}\n${createdComments}`);
       fs.writeFileSync(pageUrl, html, "utf-8");
     }
   })
