@@ -17,13 +17,3 @@ author:
   email: "soleimani.yunes@gmail.com"
   telegram: "https://t.me/skybirdbits"
 
-
-
-giscus:
-  enabled: true
-  repo: "kodedevel/kodedevel.github.io"
-  repo_id: "R_kgDOPuPkFw"
-  category: "Announcements"
-  category_id: "DIC_kwDOPuPkF84DDOgs"
-  theme: "preferred_color_scheme"
-  lang: "fa"

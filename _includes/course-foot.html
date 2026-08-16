@@ -2,7 +2,7 @@
 
   {% include comments.html %}
   <aside>
-    <nav class="post-navigation-container" style="justify-content: end;">
+    <nav class="post-navigation-container course">
       <a class="md-bt md-bt-light bt-back-home" href="/">
         <span>صفحه اصلی</span>
         <span class="material-symbols-outlined">
@@ -15,7 +15,7 @@
       <h2>موضوعات دیگر</h2>
 
       <ul>
-        {% for metadata in site.data.json.categories.metadata_list %}
+        {% for metadata in site.data.json.courses.metadata_list %}
         {% if page.url != metadata.link %}
         <li><a href="{{ metadata.link }}">{{ metadata.title }}</a></li>
         {% endif %}

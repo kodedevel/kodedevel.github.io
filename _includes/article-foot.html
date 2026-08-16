@@ -1,12 +1,11 @@
 {% assign prev_page = nil %}
 {% assign next_page = nil %}
 
-{% for data in site.data.json.posts %}
+{% for data in site.data.json.post %}
 
 {% assign metadata_list = data[1].metadata_list %}
 
 {% for entry in metadata_list %}
-
 
 {% if entry.link == page.url %}
 
@@ -20,8 +19,8 @@
 {% assign next_page = metadata_list[next_index].link %}
 {% endunless %}
 
-
 {% break %}
+
 {% endif %}
 
 {% endfor %}
@@ -73,7 +72,7 @@
       <h3>موضوعات دیگر</h3>
 
       <ul>
-        {% for metadata in site.data.json.categories.metadata_list %}
+        {% for metadata in site.data.json.courses.metadata_list %}
         <li><a href="{{ metadata.link }}">{{ metadata.title }}</a></li>
         {% endfor %}
       </ul>

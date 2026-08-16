@@ -3,7 +3,7 @@
 
 {% assign page_metadata = nil %}
 
-{% for metadata in site.data.json.categories.metadata_list %}
+{% for metadata in site.data.json.courses.metadata_list %}
 
 {% if metadata.link == page.url %}
 {% assign page_metadata = metadata %}
@@ -18,16 +18,25 @@
 
 <body>
 
-  {% include nosidebar-header.html %}
+  <header>
+    <div class="navbar">
+      <div class="navbar-content" style="justify-content: center;">
+        <a href="/" class="navbar-brand" id="brand">
+          <span>KodeDevel</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
   <div>
 
     <main>
 
-      {% include category-head.html metadata = page_metadata %}
+      {% include course-head.html metadata = page_metadata %}
 
       {{ content }}
 
-      {% include category-foot.html %}
+      {% include course-foot.html %}
 
     </main>
 

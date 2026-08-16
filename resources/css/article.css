@@ -311,6 +311,10 @@ article{
   padding: 8px;
 }
 
+.article-foot .post-navigation-container.course{
+  justify-content: end;
+}
+
 .article-foot aside h2, .article-foot aside h3{
   width: auto;
   margin: 0 8px 0 0;
