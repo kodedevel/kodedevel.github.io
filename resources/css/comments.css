@@ -18,6 +18,15 @@
   margin-bottom: 16px;
 }
 
+.empty-comment{
+  padding: 8px;
+}
+
+.empty-comment-body{
+  font-size: 1.2rem;
+  color: #757575;
+}
+
 .comment{
   margin: 0 8px;
   padding: 8px;

@@ -48,22 +48,28 @@ function estimateSnippetReadingTime(article) {
 }
 
 function applyOnDisplayPersianDates() {
-  const publishDateEl = document.getElementById("publish-date");
+  const datePublishedEl = document.getElementById("publish-date");
 
-  if (publishDateEl && publishDateEl.dateTime != null) {
-    const publishDate = new Date(publishDateEl.dateTime.trim());
+  if (datePublishedEl && datePublishedEl.dateTime != null) {
 
-    if (!isNaN(publishDate.getTime()))
-      publishDateEl.textContent = " " + toPersianDate(publishDate);
+    const datePublished = new Date(datePublishedEl.dateTime.trim());
+    datePublishedEl.dateTime = datePublished.toISOString();
+
+    if (!isNaN(datePublished.getTime())) {
+      datePublishedEl.textContent = " " + toPersianDate(datePublished);
+    }
   }
 
-  const lastmodDateEl = document.getElementById("lastmod-date");
+  const dateModifiedEl = document.getElementById("lastmod-date");
 
-  if (lastmodDateEl && lastmodDateEl.dateTime != null) {
-    const lastmodDate = new Date(lastmodDateEl.dateTime.trim());
+  if (dateModifiedEl && dateModifiedEl.dateTime != null) {
 
-    if (!isNaN(lastmodDate.getTime()))
-      lastmodDateEl.textContent = " " + toPersianDate(lastmodDate);
+    const dateModified = new Date(dateModifiedEl.dateTime.trim());
+    dateModifiedEl.dateTime = dateModified.toISOString();
+
+    if (!isNaN(dateModified.getTime()))
+      dateModifiedEl.textContent = " " + toPersianDate(dateModified);
+
   }
 }
 

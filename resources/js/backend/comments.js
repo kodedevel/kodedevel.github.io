@@ -36,16 +36,18 @@ const query = `
     }
   }`
 
+function createEmptyComment() {
+  return `
+    <article class="empty-comment">
+      <div class="empty-comment-body">
+        <p>اولین نفری باشید که در مورد این پست نظر می‌دهید</p>
+      </div>
+    </article>`;
+}
+
 function createComments(comments) {
 
-  if (!comments || comments.length == 0)
-    return `<article class="comment" itemscope itemtype="https://schema.org/Comment">
-              <div class="comment-body" itemprop="text">
-                 <p>اولین نفری باشید که در مورد این پست نظر می‌دهید</p>
-               </div>
-            </article>`;
-
-  const pageComments = comments.map(comment => {
+  const allComments = comments.map(comment => {
     const name = comment.author?.login;
     const url = comment?.author?.url;
     const avatar = comment?.author?.avatarUrl;
@@ -66,29 +68,30 @@ function createComments(comments) {
            <div itemprop="author" itemscope itemtype="https://schema.org/Person">
             <div class="author-info">
               <a class="author-url" itemprop="url" href="${url} "target="_blank" rel="noopener noreferrer">
-                <img class="author-avatar" src="${avatar}" itemprop="avatar">
+                <img class="author-avatar" src="${avatar}" alt="${name}" itemprop="image">
                 <strong class="author-name" itemprop="name">${name}</strong>
               </a>
             </div>
-            <div> 
-              <time class="comment-date" itemprop="datePublished" datetime="${dateTime}">${date}</time>
-            </div>
            </div>
+           <time class="comment-date" itemprop="datePublished" datetime="${dateTime}">${date}</time>
         </header>
            <div class="comment-body" itemprop="text">
                ${body}
            </div>
       </article>`
-
   }).join("\n");
 
-  return pageComments;
+  const createdComments = `
+    <div class="comments" itemscope itemtype="https://schema.org/DiscussionForumPosting">
+      ${allComments}
+    </div>`
+
+  return createdComments;
 }
 
 function getPosts(p, files) {
 
   let posts = [];
-
 
   for (const file of files) {
     const relativePath = path.join(p, file);
@@ -213,10 +216,10 @@ async function run() {
 
     let html = fs.readFileSync(pageUrl, "utf-8");
 
-    const createdComments = createComments(comments);
+    const createdComment = (!comments || comments.length === 0) ? createEmptyComment() : createComments(comments);
 
-    if (createdComments) {
-      html = html.replace(/(<div class="comments".*>)/i, (match) => `${match}\n${createdComments}`);
+    if (createdComment) {
+      html = html.replace(/(<giscus-widget.*)/i, (match) => `${createdComment}\n${match}`);
       fs.writeFileSync(pageUrl, html, "utf-8");
     }
   })
