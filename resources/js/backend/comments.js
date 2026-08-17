@@ -34,7 +34,40 @@ const query = `
         }
       }
     }
-  }`
+  }`;
+
+function createCommentsSchema(comments) {
+
+
+  const schemaContent = comments.map(comment => {
+    const name = comment.author?.login;
+    const url = comment?.author?.url.trim();
+    const avatar = comment?.author?.avatarUrl.trim();
+    const date = comment?.createdAt;
+    const text = comment.bodyHTML.replace(/<p.*?(?=>)>/i, "").replace(/<\/p.*?(?=>)>/i, "");
+
+    return `
+      {
+        "@type": "Comment",
+        "author": {
+          "@type": "Person",
+          "name": "${name}",
+          "url": "${url}",
+          "image": "${avatar}"
+        },
+        "datePublished": "${date}",
+        "text": "${text}"
+      }
+      `
+  });
+
+  const schema = `
+    "comment": [
+      ${schemaContent}
+    ]`;
+
+  return schema;
+}
 
 function createEmptyComment() {
   return `
@@ -63,17 +96,15 @@ function createComments(comments) {
     const body = comment?.bodyHTML;
 
     return `
-      <article class="comment" itemscope itemtype="https://schema.org/Comment">
+      <article class="comment">
         <header class="comment-header">
-           <div itemprop="author" itemscope itemtype="https://schema.org/Person">
-            <div class="author-info">
-              <a class="author-url" itemprop="url" href="${url} "target="_blank" rel="noopener noreferrer">
-                <img class="author-avatar" src="${avatar}" alt="${name}" itemprop="image">
-                <strong class="author-name" itemprop="name">${name}</strong>
-              </a>
-            </div>
+           <div class="author-info">
+            <a class="author-url" href="${url} "target="_blank" rel="noopener noreferrer">
+              <img class="author-avatar" src="${avatar}" alt="${name}" itemprop="image">
+              <strong class="author-name" itemprop="name">${name}</strong>
+            </a>
            </div>
-           <time class="comment-date" itemprop="datePublished" datetime="${dateTime}">${date}</time>
+           <time class="comment-date" datetime="${dateTime}">${date}</time>
         </header>
            <div class="comment-body" itemprop="text">
                ${body}
@@ -82,7 +113,7 @@ function createComments(comments) {
   }).join("\n");
 
   const createdComments = `
-    <div class="comments" itemscope itemtype="https://schema.org/DiscussionForumPosting">
+    <div class="comments">
       ${allComments}
     </div>`
 
@@ -217,9 +248,20 @@ async function run() {
     let html = fs.readFileSync(pageUrl, "utf-8");
 
     const createdComment = (!comments || comments.length === 0) ? createEmptyComment() : createComments(comments);
+    const createdSchema = (!comments || comments.length === 0) ? "" : createCommentsSchema(comments);
 
     if (createdComment) {
       html = html.replace(/(<giscus-widget.*)/i, (match) => `${createdComment}\n${match}`);
+
+      if (createdSchema) {
+        html = html.replace(/<script type="application\/ld\+json"(.|\n)*?(?=<\/script>)/i, match => {
+
+          let openedLDJson = match.trim().replace(/<\/script\s*>/i, "").replace(/}$/i, ",");
+
+          return `${openedLDJson}\n${createdSchema}\n}\n<\/script>`;
+        });
+      }
+
       fs.writeFileSync(pageUrl, html, "utf-8");
     }
   })
