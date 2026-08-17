@@ -84,7 +84,7 @@
     {%- assign parent_file = parent | append: '.html' -%}
     {%- assign parent_metadata = nil -%}
 
-    {%- for entry in site.data.json.categories.metadata_list -%}
+    {%- for entry in site.data.json.courses.metadata_list -%}
         
       {%- if entry.link == parent_file -%}
        {%- assign parent_metadata = entry -%} 

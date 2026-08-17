@@ -5,6 +5,7 @@
     {
       "title": "زبان جاوا چیست؟ معرفی زبان برنامه نویسی جاوا (Java)",
       "description": "زبان جاوا چیست؟ معرفی زبان جاوا، بررسی ویژگی های cross-platform و ماشین مجازی جاوا (JVM) به زبان ساده.",
+      "author": "یونس‌ سلیمانی",
       "datePublished": "2025-09-12",
       "lastModified": "2026-07-29",
       "imgCover": "/resources/image/java/cover_introduction.png",
@@ -13,6 +14,7 @@
     {
       "title": "انواع داده (Data Types) و انواع متغیر ها در جاوا",
       "description": "بررسی انواع داده و تعریف متغیر های اولیه (Primitive)، یادگیری اختصاص دادن حافظه به متغیر ها در جاوا به همراه نمونه کد.",
+      "author": "یونس‌ سلیمانی",
       "datePublished": "2025-09-12",
       "lastModified": "2026-07-29",
       "imgCover": "/resources/image/java/cover_type_variables.png",
@@ -21,6 +23,7 @@
     {
       "title": "عملگر های ریاضی، بولین (boolean)، منطقی و bitwise در جاوا",
       "description": "در این مطلب به استفاده از عملگر های ریاضی، بولین (boolean)، منطقی و بیتی (bitwise) برای تغییر در مقدار متغیر های اولیه (Primitive) می پردازیم.",
+      "author": "یونس‌ سلیمانی",
       "datePublished": "2026-07-29",
       "lastModified": "",
       "imgCover": "/resources/image/java/cover_operators.png",
@@ -29,6 +32,7 @@
     {
       "title": "دستورات شرطی در جاوا: آموزش کامل if، else و switch",
       "description": "بررسی دستورات شرطی if else و سوئیچ (switch) و استفاده از if های زنجیره ای و تودرتو با مثال های کاربردی در جاوا",
+      "author": "یونس‌ سلیمانی",
       "datePublished": "2025-09-12",
       "lastModified": "2026-07-29",
       "imgCover": "/resources/image/java/cover_selectors.png",
@@ -37,6 +41,7 @@
     {
       "title": "آموزش حلقه ها (for foreach while do-while) در جاوا",
       "description": "آموزش جامع انواع حلقه ها (for foreach while و do-while) در جاوا به همراه مثال های کاربردی",
+      "author": "یونس‌ سلیمانی",
       "datePublished": "2025-09-12",
       "lastModified": "2026-07-30",
       "imgCover": "/resources/image/java/cover_loops.png",
@@ -45,6 +50,7 @@
     {
       "title": "آموزش متد (تابع) در جاوا + مفهوم Overloading",
       "description": "متد در جاوا چیست؟‌ آموزش نحوه تعریف متد، ارسال پارامتر ها به متد و متد های void با بررسی کامل مفهوم اورلودینگ (Method Overloading) با مثال.",
+      "author": "یونس‌ سلیمانی",
       "datePublished": "2025-09-12",
       "lastModified": "2026-07-30",
       "imgCover": "/resources/image/java/cover_method.png",
@@ -53,6 +59,7 @@
     {
       "title": "شی گرایی در جاوا: آموزش کلاس و آبجکت (شی) به زبان ساده",
       "description": "شروع آموزش شی گرایی؛ آموزش ساخت کلاس، ایجاد شی (Object)، نحوه کار با سازنده (Constructor) و کپسوله سازی (encapsulation) به زبان ساده + مثال های عملی",
+      "author": "یونس‌ سلیمانی",
       "datePublished": "2025-09-12",
       "lastModified": "2026-07-30",
       "imgCover": "/resources/image/java/cover_objects_and_classes.png",
@@ -61,6 +68,7 @@
     {
       "title": " سطح دسترسی (private default protected public) در جاوا",
       "description": "آموزش کامل سطوح دسترسی (Access Modifiers) در جاوا؛ تفاوت و کاربرد های کلیدواژه های private default protected public",
+      "author": "یونس‌ سلیمانی",
       "datePublished": "2025-09-12",
       "lastModified": "2026-07-29",
       "imgCover": "/resources/image/java/cover_access_modifiers.png",
@@ -69,6 +77,7 @@
     {
       "title": "کاربرد کلیدواژه ی static و متد های استاتیک در جاوا",
       "description": "کلیدواژه static در جاوا چه کاربردی دارد؟ آموزش جامع متغیر و متد های استاتیک، مدیریت حافظه و کلاس های داخلی استاتیک + مثال های کاربردی.",
+      "author": "یونس‌ سلیمانی",
       "datePublished": "2025-09-12",
       "lastModified": "2026-07-29",
       "imgCover": "/resources/image/java/cover_static_keyword.png",
@@ -77,6 +86,7 @@
     {
       "title": "آموزش کار با آرایه ها (Arrays) و آرایه های چند بعدی در جاوا",
       "description": "نحوه ی تعریف و پیمایش آرایه ها در جاوا، آموزش کار با کلاس Arrays، متد های کاربردی و ایجاد آرایه های چند بعدی (multi-dimensional) با مثال",
+      "author": "یونس‌ سلیمانی",
       "datePublished": "2025-09-12",
       "lastModified": "2026-07-29",
       "imgCover": "/resources/image/java/cover_arrays.png",
@@ -85,6 +95,7 @@
     {
       "title": "کلاس های تو در تو (Nested Classes) و داخلی در جاوا",
       "description": "بررسی ساختار کلاس های تو در تو (Nested) و کلاس های داخلی در جاوا. آموزش پیاده سازی طراحی الگو Builder با کلاس های داخلی استاتیک + نمونه کد.",
+      "author": "یونس‌ سلیمانی",
       "datePublished": "2025-09-12",
       "lastModified": "2026-07-29",
       "imgCover": "/resources/image/java/cover_nested_classes.png",
@@ -93,6 +104,7 @@
     {
       "title": "شی گرایی در جاوا: آموزش وراثت (Inheritance) یا ارث بری",
       "description": "ارث بری در جاوا چیست؟ آموزش کامل رکن دوم شی گرایی؛ مفاهیم وراثت (Inheritance)، نحوه بازنویسی متدها (Overriding) و کار با کلیدواژه super به همراه مثال های مفهومی.",
+      "author": "یونس‌ سلیمانی",
       "datePublished": "2025-09-12",
       "lastModified": "2026-07-29",
       "imgCover": "/resources/image/java/cover_inheritance.png",
@@ -101,6 +113,7 @@
     {
       "title": "شی گرایی در جاوا: مفهوم چند ریختی و آموزش کست کردن (Casting)",
       "description": "آشنایی با رکن سوم شی گرایی؛ چند ریختی یا Polymorphism در جاوا. آموزش پیوند پویا (Dynamic Binding) و کست کردن (Casting) متغیر ها با مثال.",
+      "author": "یونس‌ سلیمانی",
       "datePublished": "2025-09-12",
       "lastModified": "2026-07-29",
       "imgCover": "/resources/image/java/cover_polymorphism.png",
@@ -109,6 +122,7 @@
     {
       "title": "کلاس ابستراکت (Abstract) یا انتزاعی در جاوا",
       "description": "کلاس انتزاعی چیست؟ آموزش کلاس ابستراکت (Abstract) در جاوا، تعریف متد های ابستراکت و تفاوتش با کلاس های معمولی + مثال های عملی.",
+      "author": "یونس‌ سلیمانی",
       "datePublished": "2025-09-12",
       "lastModified": "2026-07-29",
       "imgCover": "/resources/image/java/cover_abstract_classes.png",
@@ -117,6 +131,7 @@
     {
       "title": "آموزش اینترفیس (Interface) در جاوا با مثال های کاربردی",
       "description": "نحوه تعریف و پیاده سازی اینترفیس (Interface) در جاوا، تفاوت رابط (Interface) با کلاس ابستراکت، بررسی اینترفیس Comparable و ساختار اینترفیس های تابعی + مثال.",
+      "author": "یونس‌ سلیمانی",
       "datePublished": "2025-09-12",
       "lastModified": "2026-07-29",
       "imgCover": "/resources/image/java/cover_interfaces.png",
@@ -125,6 +140,7 @@
     {
       "title": "کاربرد کلیدواژه final در جاوا: ثابت ها و کلاس ها",
       "description": "کلیدواژه final در جاوا چه کاربردی داره؟ آموزش تعریف ثابت ها، جلوگیری از بازنویسی متدها و نهایی سازی متغیر و کلاس در برنامه نویسی شی گرا.",
+      "author": "یونس‌ سلیمانی",
       "datePublished": "2025-09-12",
       "lastModified": "2026-07-29",
       "imgCover": "/resources/image/java/cover_final_keyword.png",
@@ -133,6 +149,7 @@
     {
       "title": "آموزش try-catch در جاوا و کاتلین: مدیریت خطا و استثنا (Exception)",
       "description": "مدیریت استثناها در جاوا و کاتلین؛ آموزش جامع استفاده از بلوک try-catch برای کنترل خطا و استثناها، بررسی کلیدواژه های throw و throws و ساخت اکسپشن سفارشی.",
+      "author": "یونس‌ سلیمانی",
       "datePublished": "2025-09-12",
       "lastModified": "2026-07-29",
       "imgCover": "/resources/image/java/cover_exceptions.png",
@@ -141,6 +158,7 @@
     {
       "title": "آموزش کار با فایل در جاوا و کاتلین: معرفی کلاس File",
       "description": "آموزش کار با فایل در جاوا؛ نحوه ذخیره سازی دائمی داده ها، معرفی پکیج java.io، استفاده از کلاس File و مدیریت مسیر های ذخیره سازی فایل.",
+      "author": "یونس‌ سلیمانی",
       "datePublished": "2025-09-12",
       "lastModified": "2026-07-29",
       "imgCover": "/resources/image/java/cover_file.png",
@@ -149,6 +167,7 @@
     {
       "title": "نوشتن در فایل متنی با کلاس PrintWriter در جاوا و کاتلین",
       "description": "چگونه در جاوا و کاتلین فایل متنی بسازیم؟ آموزش نوشتن در فایل با کلاس PrintWriter، مدیریت خودکار منابع با try-with-resources به همراه نمونه کدهای جاوا + کاتلین.",
+      "author": "یونس‌ سلیمانی",
       "datePublished": "2025-09-12",
       "lastModified": "2026-07-29",
       "imgCover": "/resources/image/java/cover_printwriter.png",
@@ -157,6 +176,7 @@
     {
       "title": "خواندن فایل متنی با کلاس Scanner در جاوا و کاتلین",
       "description": "آموزش خواندن فایل متنی در جاوا و کاتلین. نحوه استفاده از کلاس Scanner برای دریافت ورودی، مدیریت فایل و خواندن خط به خط داده ها با مثال های عملی.",
+      "author": "یونس‌ سلیمانی",
       "datePublished": "2025-09-12",
       "lastModified": "2026-07-29",
       "imgCover": "/resources/image/java/cover_scanner.png",
@@ -165,6 +185,7 @@
     {
       "title": "خواندن و نوشتن فایل های باینری (Binary) در جاوا و کاتلین",
       "description": "تفاوت فایل متنی با باینری چیست؟ آموزش جامع نحوه خواندن و نوشتن مقادیر باینری در جاوا و کاتلین، مفهوم encoding کاراکتر ها و ذخیره فایل ها.",
+      "author": "یونس‌ سلیمانی",
       "datePublished": "2025-09-12",
       "lastModified": "2026-07-29",
       "imgCover": "/resources/image/java/cover_binary_io.png",
@@ -173,6 +194,7 @@
     {
       "title": "آموزش جنریک ها (Generics) در جاوا",
       "description": "جنریک در جاوا چیست؟ مفهوم جنریک، آموزش استفاده از Generics بجای Object، افزایش امنیت کدها در زمان کامپایل و مرتب سازی کلاس ها و متد ها + مثال",
+      "author": "یونس‌ سلیمانی",
       "datePublished": "2026-06-22",
       "lastModified": "2026-07-29",
       "imgCover": "/resources/image/java/cover_generics.png",
@@ -181,6 +203,7 @@
     {
       "title": "کالکشن ها در جاوا: اینترفیس Collection و پیمایش در کالکشن",
       "description": "شروع آموزش کالکشن ها در جاوا؛ بررسی اینترفیس Collection و پیمایش در کالکشن ها با اینترفیس های Iterable و Iterator",
+      "author": "یونس‌ سلیمانی",
       "datePublished": "2026-08-01",
       "lastModified": "",
       "imgCover": "/resources/image/java/cover_collection.png",
@@ -189,6 +212,7 @@
     {
       "title": "کالکشن ها در جاوا: اینترفیس List و پیمایش دوسویی با ListIterator",
       "description": "بررسی اینترفیس List و استفاده از ListIterator برای پیمایش دوسویی در پیاده سازی های List به همراه مثال.",
+      "author": "یونس‌ سلیمانی",
       "datePublished": "2026-08-06",
       "lastModified": "",
       "imgCover": "/resources/image/java/cover_list.png",
@@ -197,6 +221,7 @@
     {
       "title": "کالکشن ها در جاوا: آموزش کار با ArrayList به همراه مثال",
       "description": "آموزش کار با کلاس ArrayList در جاوا؛ معرفی ArrayList، استفاده از ArrayList و بررسی پیچیدگی زمان متد های ArrayList به همراه مثال.",
+      "author": "یونس‌ سلیمانی",
       "datePublished": "2026-08-06",
       "lastModified": "",
       "imgCover": "/resources/image/java/cover_arraylist.png",
@@ -205,6 +230,7 @@
     {
       "title": "کالکشن ها در جاوا: آموزش کار با Vector + مثال",
       "description": "در کجا باید از Vector بجای ArrayList استفاده کنیم؟ بررسی کلاس Vector و مقایسه ی در جاوا و آموزش کار با Vector به همراه مثال.",
+      "author": "یونس‌ سلیمانی",
       "datePublished": "2026-08-06",
       "lastModified": "",
       "imgCover": "/resources/image/java/cover_vector.png",
@@ -213,6 +239,7 @@
     {
       "title": "کالکشن ها در جاوا: آموزش کار با Stack + مثال های کاربردی",
       "description": "آموزش کار با Stack در جاوا؛ معرفی Stack و کار با Stack به همراه مثال های کاربردی.",
+      "author": "یونس‌ سلیمانی",
       "datePublished": "2026-08-06",
       "lastModified": "",
       "imgCover": "/resources/image/java/cover_stack.png",
@@ -221,6 +248,7 @@
     {
       "title": "کالکشن ها در جاوا: آموزش کار با LinkedList + مثال",
       "description": "آموزش کار با کلاس LinkedList؛ معرفی لیست پیوندی (LinkedList) و بررسی پیچیدگی زمان متد های LinkedList به همراه مثال های مفهومی.",
+      "author": "یونس‌ سلیمانی",
       "datePublished": "2026-08-06",
       "lastModified": "",
       "imgCover": "/resources/image/java/cover_linkedlist.png",
@@ -229,6 +257,7 @@
     {
       "title": "کالکشن ها در جاوا: معرفی و استفاده از صف (Queue) + مثال",
       "description": "آموزش استفاده از صف (Queue) در جاوا؛ معرفی Queue و استفاده از Queue به همراه مثال های کاربردی.",
+      "author": "یونس‌ سلیمانی",
       "datePublished": "2026-08-06",
       "lastModified": "2026-08-07",
       "imgCover": "/resources/image/java/cover_queue.png",
@@ -237,6 +266,7 @@
     {
       "title": "کالکشن ها در جاوا: استفاده از صف اولویتی (PriorityQueue)",
       "description": "آموزش استفاده از صف اولویتی (PriorityQueue) در جاوا؛ معرفی PriorityQueue و استفاده از PriorityQueue به همراه مثال.",
+      "author": "یونس‌ سلیمانی",
       "datePublished": "2026-08-07",
       "lastModified": "2026-08-12",
       "imgCover": "/resources/image/java/cover_priorityqueue.png",
@@ -245,6 +275,7 @@
     {
       "title": "کالکشن ها در جاوا: معرفی و استفاده از صف دوطرفه (Deque) + مثال",
       "description": "آموزش استفاده از صف دوطرفه (Deque) در جاوا؛ معرفی صف دوطرفه، استفاده از Deque، استفاده از Deque به عنوان Stack و Queue به همراه مثال.",
+      "author": "یونس‌ سلیمانی",
       "datePublished": "2026-08-07",
       "lastModified": "",
       "imgCover": "/resources/image/java/cover_deque.png",
@@ -253,6 +284,7 @@
     {
       "title": "کالکشن ها در جاوا: معرفی و استفاده از ArrayDeque + مثال",
       "description": "معرفی و استفاده از ArrayDeque در جاوا؛ معرفی ArrayDeque و مقایسه آن با LinkedList، استفاده از ArrayDeque به عنوان Stack و Queue با مثال.",
+      "author": "یونس‌ سلیمانی",
       "datePublished": "2026-08-07",
       "lastModified": "",
       "imgCover": "/resources/image/java/cover_arraydeque.png",
@@ -261,6 +293,7 @@
     {
       "title": "چندنخی (multithreading) در جاوا و کاتلین",
       "description": "مفهوم نخ (thread) ها، بررسی اینترفیس Runnable، کلاس Thread و مفهوم Thread Pool در جاوا و کاتلین به همراه مثال",
+      "author": "یونس‌ سلیمانی",
       "datePublished": "2026-07-19",
       "lastModified": "2026-07-26",
       "imgCover": "/resources/image/java/cover_multithreading.png",
@@ -269,6 +302,7 @@
     {
       "title": "همگام سازی (synchronizing) داده با نخ (Thread) ها در جاوا و کاتلین",
       "description": "آموزش کامل همگام سازی (synchronization) در جاوا و کاتلین. بررسی مفهوم (race condition)، تعاریف volatile، synchronized، کلاس ReentrantLock، Semaphore، و مفهوم Deadlock همراه با مثال.",
+      "author": "یونس‌ سلیمانی",
       "datePublished": "2026-07-23",
       "lastModified": "2026-07-26",
       "imgCover": "/resources/image/java/cover_thread_synchronization.png",

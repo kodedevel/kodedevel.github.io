@@ -2,21 +2,29 @@
 ---
 
 [
-  {% for data in site.data.json.posts %}
-    {% assign category = data[1] %}
+  {% for data in site.data.json.post %}
+    {% assign course = data[1] %}
     {
-      "name": "{{ category.name }}",
-      "metadata_list":[
-	{% for metadata in category.metadata_list %}
-	  { 
-	    "title": "{{ metadata.title }}",
-	    "imgCover": "{{ metadata.imgCover }}",
-	    "link" : "{{ metadata.link }}"
-	  }{% if forloop.last == false %},{% endif %}
-	{% endfor %}
-      ]
-      
-    }{% if forloop.last == false %},{% endif %}
+    "name": "{{ course.name }}",
+    "metadata_list": [
+      {% for metadata in course.metadata_list %}
+	  {
+        "title": "{{ metadata.title }}",
+        "author": "{{ metadata.author}}",
+        "description": "{{ metadata.description }}",
+        "imgCover": "{{ metadata.imgCover }}",
+        "link": "{{ metadata.link }}"
+      }
+        {% if forloop.last == false %}
+          ,
+        {% endif %}
+      {% endfor %}
+    ]
+  }
+  
+    {% if forloop.last == false %}
+      ,
+    {% endif %}
     
   {% endfor %}
 ]

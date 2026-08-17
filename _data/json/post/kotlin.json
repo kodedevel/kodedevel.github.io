@@ -5,6 +5,7 @@
     {
       "title": "زبان برنامه نویسی کاتلین چیست؟ معرفی زبان کاتلین (Kotlin)",
       "description": "معرفی کامل زبان برنامه نویسی کاتلین؛ تاریخچه، ویژگی ها، null safety و مقایسه با زبان برنامه نویسی جاوا به زبان ساده.",
+      "author": "یونس‌ سلیمانی",
       "datePublished": "2025-05-12",
       "lastModified": "2026-07-30",
       "imgCover": "/resources/image/kotlin/cover_introduction.png",
@@ -13,6 +14,7 @@
     {
       "title": "دستورات شرطی در کاتلین: آموزش کامل if، else و when",
       "description": "آموزش کامل دستورات شرطی در کاتلین؛ کار با if-else، when، عملگر های منطقی و بررسی کلیدواژه های in و is با مثال های کاربردی.",
+      "author": "یونس‌ سلیمانی",
       "datePublished": "2025-09-12",
       "lastModified": "2026-07-30",
       "imgCover": "/resources/image/kotlin/cover_selectors.png",
@@ -21,6 +23,7 @@
     {
       "title": "حلقه ها در کاتلین: آموزش for، foreach، while و do-while",
       "description": "آموزش جامع انواع حلقه ها در کاتلین و استفاده از کلیدواژه های break و continue به همراه مثال های عملی.",
+      "author": "یونس‌ سلیمانی",
       "datePublished": "2025-09-12",
       "lastModified": "2026-07-30",
       "imgCover": "/resources/image/kotlin/cover_loops.png",
@@ -29,6 +32,7 @@
     {
       "title": "آموزش توابع در کاتلین: بررسی انواع تابع",
       "description": "آموزش کامل توابع در کاتلین؛ بررسی تابع تک عبارتی (single expression)، infix، generic، tail recursive و محدوده تعریف توابع به همراه مثال.",
+      "author": "یونس‌ سلیمانی",
       "datePublished": "2025-09-12",
       "lastModified": "2026-07-30",
       "imgCover": "/resources/image/kotlin/cover_functions.png",
@@ -37,6 +41,7 @@
     {
       "title": "آموزش توابع در کاتلین: عبارت لامبدا و تابع بی نام",
       "description": "آموزش توابع در کاتلین؛ بررسی عبارت لامبدا (Lambda expression) و تابع بی نام (anonymous functions) و تعریف توابع لفظی با عبارات لامبدا به همراه بررسی موارد استفاده در برنامه نویسی تابعی و اندروید.",
+      "author": "یونس‌ سلیمانی",
       "datePublished": "2025-09-12",
       "lastModified": "2026-07-30",
       "imgCover": "/resources/image/kotlin/cover_lambda.png",
@@ -45,6 +50,7 @@
     {
       "title": "آموزش توابع در کاتلین: تابع مرتبه بالا (Higher-order Function)",
       "description": "آموزش توابع مرتبه بالا (Higher-order functions) و بررسی توابع لفظی با رسیور به زبان ساده + مثال.",
+      "author": "یونس‌ سلیمانی",
       "datePublished": "2025-09-12",
       "lastModified": "2026-07-30",
       "imgCover": "/resources/image/kotlin/cover_higher_order_functions.png",
@@ -53,6 +59,7 @@
     {
       "title": "آموزش توابع در کاتلین: تابع خطی (Inline Function)",
       "description": "آموزش توابع و پراپرتی های خطی (Inline) در کاتلین و کاربرد reified به همراه مثال.",
+      "author": "یونس‌ سلیمانی",
       "datePublished": "2025-09-12",
       "lastModified": "2026-07-30",
       "imgCover": "/resources/image/kotlin/cover_inline_functions.png",
@@ -61,6 +68,7 @@
     {
       "title": "آموزش کار با آرایه ها (Arrays) و آرایه های چند بعدی در کاتلین",
       "description": "روش های تعریف و مقداردهی آرایه ها در کاتلین، صدا زدن عناصر آرایه و تعریف آرایه های چند بعدی (Multi-Dimension) به همراه مثال های کاربردی.",
+      "author": "یونس‌ سلیمانی",
       "datePublished": "2025-09-12",
       "lastModified": "2026-07-30",
       "imgCover": "/resources/image/kotlin/cover_arrays.png",
@@ -69,6 +77,7 @@
     {
       "title": "انواع متغیر (var val const) در کاتلین",
       "description": "تعریف متغیرهای تغییر پذیر و تغییر ناپذیر (ثابت ها) در کاتلین با کلیدواژه های var val const.",
+      "author": "یونس‌ سلیمانی",
       "datePublished": "2025-09-12",
       "lastModified": "2026-07-30",
       "imgCover": "/resources/image/kotlin/cover_mutable_immutable_variables.png",
@@ -77,6 +86,7 @@
     {
       "title": "بررسی توابع ریاضی در کاتلین",
       "description": "بررسی توابع و مقادیر ثابت ریاضی در کتابخانه استاندارد کاتلین به همراه مثال.",
+      "author": "یونس‌ سلیمانی",
       "datePublished": "2025-09-12",
       "lastModified": "2026-07-30",
       "imgCover": "/resources/image/kotlin/cover_mathematics.png",
@@ -85,6 +95,7 @@
     {
       "title": "محدوده (Scope) تعریف متغیر و تابع در کاتلین",
       "description": "بررسی محدوده (Scope) تعریف متغیر ها وتوابع در کاتلین به زبان ساده.",
+      "author": "یونس‌ سلیمانی",
       "datePublished": "2025-09-12",
       "lastModified": "2026-07-30",
       "imgCover": "/resources/image/kotlin/cover_variable_scope.png",
@@ -93,6 +104,7 @@
     {
       "title": "سطح دسترسی (private internal protected public) در کاتلین",
       "description": "بررسی کلیدواژه های سطح دسترسی private internal protected public برای اعضای top-level و اعضای کلاس در کاتلین",
+      "author": "یونس‌ سلیمانی",
       "datePublished": "2025-09-12",
       "lastModified": "2026-07-30",
       "imgCover": "/resources/image/kotlin/cover_access_modifiers.png",
@@ -101,6 +113,7 @@
     {
       "title": "شی گرایی در کاتلین: آموزش کلاس و آبجکت (شی) به زبان ساده",
       "description": "شروع آموزش شی گرایی در کاتلین؛ آموزش ساخت کلاس، آبجکت، سازنده (constructor) و کپسوله سازی (encapsulation) به زبان ساده.",
+      "author": "یونس‌ سلیمانی",
       "datePublished": "2025-09-12",
       "lastModified": "2026-07-30",
       "imgCover": "/resources/image/kotlin/cover_objects_and_classes.png",
@@ -109,6 +122,7 @@
     {
       "title": "شی گرایی در کاتلین: آموزش کامل وراثت (inheritance) یا ارث بری",
       "description": "آموزش کامل وراثت (inheritance) در کاتلین؛ درک مفاهیم ارث بری، بررسی کلیدواژه ی open و override.",
+      "author": "یونس‌ سلیمانی",
       "datePublished": "2025-09-12",
       "lastModified": "2026-07-30",
       "imgCover": "/resources/image/kotlin/cover_inheritance.png",
@@ -117,6 +131,7 @@
     {
       "title": "شی گرایی در کاتلین: مفهوم چندریختی و آموزش کست کردن (Casting)",
       "description": "آموزش چندریختی (Polymorphism) و کست کردن در کاتلین با مثال های مفهومی.",
+      "author": "یونس‌ سلیمانی",
       "datePublished": "2025-09-12",
       "lastModified": "2026-07-30",
       "imgCover": "/resources/image/kotlin/cover_polymorphism_type_casting.png",
@@ -125,6 +140,7 @@
     {
       "title": "آموزش تابع و پراپرتی اکشتنشن در کاتلین",
       "description": "آموزش اکستنشن ها در کاتلین؛ اکستنشن فانکشن (Extension Function)، اکستنشن پراپرتی (Extension Property)  و بررسی Companion Object به همراه مثال.",
+      "author": "یونس‌ سلیمانی",
       "datePublished": "2025-09-12",
       "lastModified": "2026-07-30",
       "imgCover": "/resources/image/kotlin/cover_extensions.png",
@@ -133,6 +149,7 @@
     {
       "title": "آموزش کلاس های ابستراکت (Abstract) یا انتزاعی در کاتلین",
       "description": "کلاس انتزاعی چیست؟ آموزش کلاس های ابستراکت (Abstract) در کاتلین به همراه مثال های مفهومی.",
+      "author": "یونس‌ سلیمانی",
       "datePublished": "2025-09-12",
       "lastModified": "2026-07-30",
       "imgCover": "/resources/image/kotlin/cover_abstract_classes.png",
@@ -141,6 +158,7 @@
     {
       "title": "آموزش اینترفیس (interface) در کاتلین",
       "description": "نحوه تعریف و پیاده‌سازی اینترفیس در کاتلین؛ مقایسه اینترفیس با کلاس ابستراکت و بررسی اینترفیس های تابعی.",
+      "author": "یونس‌ سلیمانی",
       "datePublished": "2025-09-12",
       "lastModified": "2026-07-30",
       "imgCover": "/resources/image/kotlin/cover_interfaces.png",
@@ -149,6 +167,7 @@
     {
       "title": "کلاس های تودرتو (Nested Classes) و داخلی در کاتلین",
       "description": "آموزش کلاس های تودرتو (Nested Classes) و کلاس  های داخلی (Inner Classes) در کاتلین به همراه مثال از نحوه ی عملکرد کلاس OnClickListener اندروید.",
+      "author": "یونس‌ سلیمانی",
       "datePublished": "2025-09-12",
       "lastModified": "2026-07-30",
       "imgCover": "/resources/image/kotlin/cover_nested_classes.png",
@@ -157,6 +176,7 @@
     {
       "title": "آموزش کامل کلاس های enum در کاتلین به همراه مثال های مفهومی",
       "description": "آموزش کامل کلاس های enum در کاتلین با مثال های مفهومی.",
+      "author": "یونس‌ سلیمانی",
       "datePublished": "2025-09-12",
       "lastModified": "2026-07-30",
       "imgCover": "/resources/image/kotlin/cover_enum_classes.png",
@@ -165,6 +185,7 @@
     {
       "title": "آموزش کلاس sealed در کاتلین به زبان ساده",
       "description": "آموزش کلاس sealed در کاتلین به همراه بررسی ویژگی ها و کاربرد های آن.",
+      "author": "یونس‌ سلیمانی",
       "datePublished": "2025-09-12",
       "lastModified": "2026-07-30",
       "imgCover": "/resources/image/kotlin/cover_sealed_classes.png",
@@ -173,6 +194,7 @@
     {
       "title": "آموزش دیتا کلاس ها (Data Classes) در کاتلین + مثال",
       "description": "آموزش دیتا کلاس (Data Class) در کاتلین؛ و بررسی ویژگی ها و کاربرد ها.",
+      "author": "یونس‌ سلیمانی",
       "datePublished": "2025-09-12",
       "lastModified": "2026-07-30",
       "imgCover": "/resources/image/kotlin/cover_data_classes.png",
@@ -181,6 +203,7 @@
     {
       "title": "بررسی الگوی Delegation در کاتلین + مثال",
       "description": "آموزش الگوی Delegation در کاتلین؛ پیاده سازی Delegation در کاتلین به صورت نیتیو با کلیدواژه ی by به همراه مثال.",
+      "author": "یونس‌ سلیمانی",
       "datePublished": "2025-09-12",
       "lastModified": "2026-07-30",
       "imgCover": "/resources/image/kotlin/cover_delegation.png",
