@@ -52,7 +52,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run:
-          node resources/js/backend/comments.js
+          node resources/js/backend/inject.js
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
