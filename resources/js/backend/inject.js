@@ -64,7 +64,7 @@ async function injectComments() {
 async function getPagesMetadata() {
 
   try {
-    const response = await fetch(`${ROOT}/resources/json/list-posts.json`, {
+    const response = await fetch("https://kodedevel.ir/resources/json/list-posts.json", {
       method: 'GET'
     });
 
