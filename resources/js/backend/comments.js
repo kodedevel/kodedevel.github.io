@@ -3,8 +3,6 @@ const OWNER = 'kodedevel';
 const REPO = 'kodedevel.github.io';
 const CATEGORY_ID = "DIC_kwDOPuPkF84DDOgs";
 
-const ROOT = '_site';
-
 const query = `
   query getComments($owner: String!, $repo: String!, $categoryId: ID!, $after: String){
 

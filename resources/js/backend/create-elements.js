@@ -51,6 +51,8 @@ function createComments(comments) {
 
 function createCommentsSchema(comments) {
 
+  if (!comments) return '';
+
   const schemaContent = comments.map(comment => {
     const name = comment.author?.login;
     const url = comment?.author?.url.trim();
@@ -58,19 +60,17 @@ function createCommentsSchema(comments) {
     const date = comment?.createdAt;
     const text = comment.bodyHTML.replace(/<p.*?(?=>)>/i, "").replace(/<\/p.*?(?=>)>/i, "");
 
-    return `
-      {
-        "@type": "Comment",
-        "author": {
-          "@type": "Person",
-          "name": "${name}",
-          "url": "${url}",
-          "image": "${avatar}"
-        },
-        "datePublished": "${date}",
-        "text": "${text}"
-      }
-      `
+    return `,{
+      "@type": "Comment",
+      "author": {
+        "@type": "Person",
+        "name": "${name}",
+        "url": "${url}",
+        "image": "${avatar}"
+      },
+      "datePublished": "${date}",
+      "text": "${text}"
+      }`
   });
 
   const schema = `
@@ -83,11 +83,11 @@ function createCommentsSchema(comments) {
 
 
 function createHead(pageInfo) {
-  return `
-  <head>
+
+  return `<head>
   ${createMetaElments(pageInfo)}\n
   ${createLinksAndScripts(pageInfo)}\n
-  ${createPageSchema(pageInfo, comments)}\n
+  ${createPageSchema(pageInfo)}\n
   ${createBreadcrumbListSchema(pageInfo)}\n
   </head>`
 }
@@ -105,58 +105,66 @@ function createBreadcrumbListSchema(pageInfo) {
 }
 
 function createItemListElements(pageInfo) {
-  const link = pageInfo.metadata.link;
+  const path = pageInfo.metadata.path;
 
 
-  if (link.match(/^\/[a-zA-Z]+(\.html)$/g)) {
+  if (path.match(/^\/[a-zA-Z]+(\.html)$/g)) {
     return `
     {
       "@type": "ListItem",
       "position": 1,
       "name": "خانه",
-      "item": "https://kodedevel.ir${link}"
+      "item": "https://kodedevel.ir${path}"
     }`
-  } else if (link.match(/^\/[a-zA-Z]+\/[a-zA-Z]+.html$/g)) {
+  } else if (path.match(/^\/[a-zA-Z]+\/[a-zA-Z]+.html$/g)) {
     return `
     {
       "@type": "ListItem",
       "position": 1,
-      "name": "خانه",
-      "item": "https://kodedevel.ir"
+      "item": "https://kodedevel.ir/"
     },
     {
       "@type": "ListItem",
       "position": 2,
       "name": "${pageInfo.metadata.title}",
-      "item": "https://kodedevel.ir${link}"
+      "item": "https://kodedevel.ir${path}"
     }`
   } else {
-    const parentLink = link.replace(/(^\/[a-zA-Z]+\/)/g, '').replace(/(\/[a-zA-Z]+\.html$)/g, '.html');
+    const parentLink = path.replace(/(^\/[a-zA-Z]+\/)/g, '').replace(/(\/[a-zA-Z]+\.html$)/g, '.html');
     return `
     {
       "@type": "ListItem",
       "position": 1,
-      "name": "خانه",
       "item": "https://kodedevel.ir"
     },
     {
       "@type": "ListItem",
       "position": 2,
-      "item": "https://kodedevel.ir${parentLink}"
+      "item": "https://kodedevel.ir/${parentLink}"
     },
     {
       "@type": "ListItem",
       "position": 3,
       "name": "${pageInfo.metadata.title}",
-      "item": "https://kodedevel.ir${link}"
+      "item": "https://kodedevel.ir${path}"
     }`
   }
 
 }
 
 function createPageSchema(pageInfo) {
+  const datePublished = new Date(Date.parse(pageInfo.metadata.datePublished)).toISOString();
 
-  const commentsSchema = createCommentsSchema(pageInfo.comments);
+  let lastModified = "";
+  const rawLastModified = pageInfo.metadata.lastModified;
+
+  if (rawLastModified && rawLastModified.length > 0)
+    lastModified = new Date(Date.parse(pageInfo.metadata.lastModified)).toISOString();
+
+  const title = pageInfo.metadata.title;
+  const path = pageInfo.metadata.path;
+  const description = pageInfo.metadata.description;
+  const author = pageInfo.metadata.author;
 
   return `
 <script type="application/ld+json">
@@ -165,12 +173,12 @@ function createPageSchema(pageInfo) {
     "@type": "BlogPosting",
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": "https://kodedevel.ir${pageInfo.metadata.link}"
+      "@id": "https://kodedevel.ir${path}"
     },
     
-    "headline": "${pageInfo.metadata.title}",
-    "description": "${pageInfo.metadata.description}",
-    "datePublished": "2025-09-12","dateModified": "2026-07-30","inLanguage": "fa-IR",
+    "headline": "${title}",
+    "description": "${description}",
+    "datePublished": "${datePublished}","dateModified": "${lastModified}","inLanguage": "fa-IR",
 
     "image": {
       "@type": "ImageObject",
@@ -180,7 +188,7 @@ function createPageSchema(pageInfo) {
     },
     "author": {
       "@type": "Person",
-      "name": "${pageInfo.author}",
+      "name": "${author}",
       "url": "https://kodedevel.ir/about.html"
     },
     "publisher": {
@@ -191,22 +199,20 @@ function createPageSchema(pageInfo) {
         "url": "https://kodedevel.ir/resources/favicon.png"
       },
       "sameAs": ["https://t.me/KodeDevel","https://t.me/KodeDevel_Chat","https://github.com/KodeDevel"] 
-     },
-    ${commentsSchema}
+     }
+    ${createCommentsSchema(pageInfo.comments)}
 
 }
 </script>`
-
 }
 
 
 function createLinksAndScripts(pageInfo) {
 
   return `
-    <link rel="canonical" href="https://kodedevel.ir${pageInfo.metadata.link}">
+    <link rel="canonical" href="https://kodedevel.ir${pageInfo.metadata.path}">
     <link rel="icon" type="image/png" sizes="512x512" href="/resources/favicon.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/resources/apple-touch-icon.png">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link rel="dns-prefetch" href="//www.google-analytics.com">
@@ -220,28 +226,28 @@ function createLinksAndScripts(pageInfo) {
 function createMetaElments(pageInfo) {
 
   return `
-  <meta content="${pageInfo.description}" name="description">
-  <meta charset="UTF-8">
-  <meta content="width:device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" name="viewport">
+    <meta content="${pageInfo.metadata.description}" name="description">
+    <meta charset="UTF-8">
+    <meta content="width:device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" name="viewport">
 
-  <title>${pageInfo.title}</title>
+    <title>${pageInfo.metadata.title}</title>
 
-  <meta name="author" content="${pageInfo.metadata.author}">
+    <meta name="author" content="${pageInfo.metadata.author}">
 
-  <meta property="og:title" content="${pageInfo.metadata.title}">
-  <meta property="og:description" content="${pageInfo.metadata.description}">
-  <meta property="og:image" content="https://kodedevel.ir/resources/favicon.png">
-  <meta property="og:image:alt" content="${pageInfo.metadata.title}">
-  <meta property="og:url" content="https://kodedevel.ir${pageInfo.metadata.link}">
-  <meta property="og:locale" content="fa_IR">
-  <meta property="og:type" content="article">
-  <meta property="og:site_name" content="KodeDevel">
+    <meta property="og:title" content="${pageInfo.metadata.title}">
+    <meta property="og:description" content="${pageInfo.metadata.description}">
+    <meta property="og:image" content="https://kodedevel.ir/resources/favicon.png">
+    <meta property="og:image:alt" content="${pageInfo.metadata.title}">
+    <meta property="og:url" content="https://kodedevel.ir${pageInfo.metadata.path}">
+    <meta property="og:locale" content="fa_IR">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="KodeDevel">
 
-  <meta name="twitter:title" content="${pageInfo.metadata.title}">
-  <meta name="twitter:description" content="${pageInfo.metadata.description}">
-  <meta name="twitter:image" content="https://kodedevel.ir${pageInfo.metadata.imgCover}">
-  <meta name="twitter:card" content="summary_large_image">`
+    <meta name="twitter:title" content="${pageInfo.metadata.title}">
+    <meta name="twitter:description" content="${pageInfo.metadata.description}">
+    <meta name="twitter:image" content="https://kodedevel.ir${pageInfo.metadata.imgCover}">
+    <meta name="twitter:card" content="summary_large_image">`
 
 }
 
-export {createComments, createEmptyComment, createCommentsSchema, createHead};
+export {createComments, createEmptyComment, createHead};

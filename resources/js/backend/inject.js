@@ -2,38 +2,39 @@ import fs from "node:fs";
 import path from "node:path"
 import {createComments, createEmptyComment, createHead} from "./create-elements.js";
 import {getAllDiscussions} from "./comments.js";
-import {getAllPosts, toBriefPath, ROOT} from "./file-utils.js";
 
-async function mapComments() {
+
+const ROOT = "_site";
+
+function toRelativePath(briefPath) {
+  return "\/" + briefPath.concat(".html");
+}
+
+async function getAllComments() {
 
   const map = new Map();
 
   try {
-    const posts = getAllPosts();
 
+    const allPagesMetadata = await getAllPagesMetadata();
     const allDiscussions = await getAllDiscussions();
 
-    for (let i = 0; i < posts.length; i++) {
+    allPagesMetadata.forEach(metadata => {
 
-      const post = posts[i];
+      const postPath = metadata.path;
 
-      map.set(post, null);
+      allDiscussions.forEach(discussion => {
 
-      //e.g post/java/loops
-      const briefPath = toBriefPath(post);
+        const discussionPath = toRelativePath(discussion.title);
 
-      for (const discussion of allDiscussions) {
-
-        const discussionPath = discussion.title;
-
-        if (briefPath == discussionPath) {
+        if (postPath === discussionPath) {
           const comments = discussion?.comments.nodes;
-          map.set(post, comments);
-          break;
+          map.set(postPath, comments);
         }
-      }
 
-    }
+      });
+    });
+
   } catch (err) {
     console.error(err);
   }
@@ -42,29 +43,30 @@ async function mapComments() {
 }
 
 
-const allComments = (async () => mapComments())();
+async function injectComments(allComments) {
 
-async function injectComments() {
-
-  allComments.forEach((comments, pageUrl) => {
+  allComments.forEach((comments, relativePagePath) => {
 
     const createdComments = (!comments || comments.length === 0) ? createEmptyComment() : createComments(comments);
-
+    const absolutePath = ROOT + relativePagePath;
 
     if (createdComments) {
-      let html = fs.readFileSync(pageUrl, "utf-8");
+      let html = fs.readFileSync(absolutePath, "utf-8");
       html = html.replace(/(<giscus-widget.*)/i, (match) => `${createdComments}\n${match}`);
-      fs.writeFileSync(pageUrl, html, "utf-8");
+      fs.writeFileSync(absolutePath, html, "utf-8");
 
     }
   });
 
 }
 
-async function getPagesMetadata() {
+async function getAllPagesMetadata() {
+
+
+  let allPagesMetadata = [];
 
   try {
-    const response = await fetch("https://kodedevel.ir/resources/json/list-posts.json", {
+    const response = await fetch(new URL("/resources/json/metadata.json", "https://kodedevel.ir"), {
       method: 'GET'
     });
 
@@ -73,9 +75,32 @@ async function getPagesMetadata() {
       throw new Error(`HTTP ERROR ${response.status}: ${error}`);
     }
 
-    const json = await response.json();
+    const result = await response.json();
 
-    return json;
+    allPagesMetadata.push(result.home);
+    allPagesMetadata.push(result.about);
+
+    const courses = result.courses;
+
+    courses.forEach(course => {
+
+      if (course.path) {
+        allPagesMetadata.push({
+          title: course.title,
+          author: course.author,
+          description: course.description,
+          datePublished: course.datePublished,
+          lastModified: course.lastModified,
+          imgCover: course.imgCover,
+          path: course.path
+        });
+      }
+
+      const posts = course.metadata_list;
+      allPagesMetadata = allPagesMetadata.concat(posts);
+
+    });
+    return allPagesMetadata;
 
   } catch (error) {
     console.error("Error: ", error);
@@ -85,26 +110,34 @@ async function getPagesMetadata() {
 }
 
 
-async function injectHead() {
+class PageInfo {
+  constructor(metadata, comments) {
+    this.metadata = metadata;
+    this.comments = comments;
+  }
+}
+
+async function injectHead(allComments) {
 
   try {
 
-    const allPagesMetadata = await getPagesMetadata();
+    const allPagesMetadata = await getAllPagesMetadata();
+
+    if (!allPagesMetadata) return;
 
     allPagesMetadata.forEach(metadata => {
 
-      const pagePath = path.join(ROOT, metadata.link);
-      const html = fs.readFileSync(relativePath, "utf-8");
-      const comments = allComments[pagePath];
-      const head = createHead({metadata: metadata, comments: comments});
+      let pageFullPath = metadata.path === '/' ? path.join(ROOT, metadata.path, 'index.html') : path.join(ROOT, metadata.path);
 
-      html = html.replace(/(<html.*>)/i, match => {
-        `${match}\n${head}`
-      });
+      let html = fs.readFileSync(pageFullPath, "utf-8");
+      const comments = allComments.get(metadata.path);
+      const head = createHead(new PageInfo(metadata, comments));
 
-      fs.writeFileSync(pageUrl, html, "utf-8");
+      html = html.replace(/(<html.*>)/i, match => `${match}\n${head}`);
 
+      fs.writeFileSync(pageFullPath, html, "utf-8");
     });
+
 
   } catch (err) {
     console.error(err);
@@ -112,7 +145,14 @@ async function injectHead() {
 
 }
 
-(async () => {
-  injectHead();
-  injectComments();
-})();
+async function main() {
+
+  const allComments = await getAllComments();
+
+  injectHead(allComments);
+  injectComments(allComments);
+
+}
+
+
+main().catch(console.error);
