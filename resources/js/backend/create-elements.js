@@ -60,7 +60,7 @@ function createCommentsSchema(comments) {
     const date = comment?.createdAt;
     const text = comment.bodyHTML.replace(/<p.*?(?=>)>/i, "").replace(/<\/p.*?(?=>)>/i, "");
 
-    return `,{
+    return `{
       "@type": "Comment",
       "author": {
         "@type": "Person",
@@ -73,7 +73,7 @@ function createCommentsSchema(comments) {
       }`
   });
 
-  const schema = `
+  const schema = `,
     "comment": [
       ${schemaContent}
     ]`;
@@ -85,7 +85,7 @@ function createCommentsSchema(comments) {
 function createHead(pageInfo) {
 
   return `<head>
-  ${createMetaElments(pageInfo)}\n
+  ${createMetaElements(pageInfo)}\n
   ${createLinksAndScripts(pageInfo)}\n
   ${createPageSchema(pageInfo)}\n
   ${createBreadcrumbListSchema(pageInfo)}\n
@@ -104,50 +104,94 @@ function createBreadcrumbListSchema(pageInfo) {
   </script>`
 }
 
+const courseFiles = ["java.html", "kotlin.html", "linux.html", "algorithm.html", "data-structure.html"];
+
+function isCoursePage(fileName) {
+  for (var i = 0; i < courseFiles.length; i++) {
+    if (fileName === courseFiles[i])
+      return true;
+  }
+
+  return false;
+}
+
 function createItemListElements(pageInfo) {
   const path = pageInfo.metadata.path;
 
-
   if (path.match(/^\/[a-zA-Z]+(\.html)$/g)) {
+
+    let name;
+
+    if (path === "/about.html")
+      name = "About";
+    else name = "Home";
+
     return `
     {
       "@type": "ListItem",
-      "position": 1,
-      "name": "خانه",
-      "item": "https://kodedevel.ir${path}"
+      "name": ${name},
+      "item": "https://kodedevel.ir${path}",
+      "position": 1
     }`
-  } else if (path.match(/^\/[a-zA-Z]+\/[a-zA-Z]+.html$/g)) {
+  } else if (path.match(/^\/[a-zA-Z\d]+\/[a-zA-Z\-\d]+.html$/g)) {
+
+    const name = path.replace(/^\/[a-zA-Z\d]+\//g, '').replace(/\.html$/g, '');
+
     return `
     {
       "@type": "ListItem",
-      "position": 1,
-      "item": "https://kodedevel.ir/"
+      "name": "Home",
+      "item": "https://kodedevel.ir/",
+      "position": 1
     },
     {
       "@type": "ListItem",
-      "position": 2,
-      "name": "${pageInfo.metadata.title}",
-      "item": "https://kodedevel.ir${path}"
+      "name": "${name}",
+      "item": "https://kodedevel.ir${path}",
+      "position": 2
     }`
   } else {
-    const parentLink = path.replace(/(^\/[a-zA-Z]+\/)/g, '').replace(/(\/[a-zA-Z]+\.html$)/g, '.html');
-    return `
+    const parent = path.replace(/(^\/[a-zA-Z\-\d]+\/)/g, '').replace(/(\/[a-zA-Z\-\d]+\.html$)/g, '');
+
+    const parentFileName = parent + '.html';
+
+    if (isCoursePage(parentFileName)) {
+
+      return `
     {
       "@type": "ListItem",
       "position": 1,
-      "item": "https://kodedevel.ir"
+      "item": "https://kodedevel.ir",
+      "name": "Home"
     },
     {
       "@type": "ListItem",
       "position": 2,
-      "item": "https://kodedevel.ir/${parentLink}"
+      "item": "https://kodedevel.ir/${parent}",
+      "name": "${parent}"
     },
     {
       "@type": "ListItem",
       "position": 3,
-      "name": "${pageInfo.metadata.title}",
+      "name": "Post",
       "item": "https://kodedevel.ir${path}"
     }`
+    } else {
+      return `
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": "https://kodedevel.ir",
+      "name": "Home"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": "https://kodedevel.ir${path}",
+      "name": "Post"
+    }`
+
+    }
   }
 
 }
@@ -166,6 +210,8 @@ function createPageSchema(pageInfo) {
   const description = pageInfo.metadata.description;
   const author = pageInfo.metadata.author;
 
+  let imgCover = pageInfo.metadata.imgCover ? "https://kodedevel.ir" + pageInfo.metadata.imgCover : "";
+
   return `
 <script type="application/ld+json">
   {
@@ -182,14 +228,14 @@ function createPageSchema(pageInfo) {
 
     "image": {
       "@type": "ImageObject",
-      "url": "https://kodedevel.ir${pageInfo.metadata.imgCover}",
+      "url": "${imgCover}",
       "width": 1920,
       "height": 1080
     },
     "author": {
       "@type": "Person",
       "name": "${author}",
-      "url": "https://kodedevel.ir/about.html"
+      "url": "https://github.com/kodedevel"
     },
     "publisher": {
       "@type": "Organization",
@@ -223,7 +269,7 @@ function createLinksAndScripts(pageInfo) {
 }
 
 
-function createMetaElments(pageInfo) {
+function createMetaElements(pageInfo) {
 
   return `
     <meta content="${pageInfo.metadata.description}" name="description">
