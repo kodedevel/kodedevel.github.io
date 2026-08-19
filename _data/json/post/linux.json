@@ -1,6 +1,10 @@
 {
   "id": "linux_chapters",
   "name": "لینوکس",
+  "path": "/post/linux.html",
+  "description": "آموزش دستورات لینوکس؛ بررسی و استفاده از انواع دستورات لینوکس در ترمینال با مثال.",
+  "datePublished": "2025-12-31",
+  "lastModified": "2026-08-11",
   "metadata_list": [
     {
       "title": "لینوکس چیست؟ معرفی سیستم عامل گنو لینوکس",

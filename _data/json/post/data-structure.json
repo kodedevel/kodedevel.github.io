@@ -1,6 +1,10 @@
 {
   "id": "data-structure_chapters",
   "name": "ساختار داده",
+  "description": "آموزش پیاده سازی انواع ساختار داده (list, linkedlist, queue, stack, set, map) به همراه مثال های عملی از زبان های برنامه نویسی جاوا، کاتلین، جاوااسکریپت و پایتون.",
+  "datePublished": "2026-06-10",
+  "lastModified": "2026-08-07",
+  "path": "/post/data-structure.html",
   "metadata_list": [
     {
       "title": "نگاهی به لیست (List) در برنامه نویسی",

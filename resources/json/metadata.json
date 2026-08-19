@@ -1,0 +1,58 @@
+---
+---
+
+ {
+   {% assign home = site.data.json.root.metadata_list[0] %}
+   "home": {
+     "title": "{{ home.title }}",
+     "description": "{{ home.description }}",
+     "datePublished": "{{ home.datePublished }}",
+     "lastModified": "{{ home.lastModified }}",
+     "path": "{{ home.link }}"
+   },
+   {% assign about = site.data.json.root.metadata_list[1] %}
+   "about": {
+     "title": "{{ about.title }}",
+     "description": "{{ about.description }}",
+     "datePublished": "{{ about.datePublished }}",
+     "lastModified": "{{ about.lastModified }}",
+     "path": "{{ about.link }}"
+   },
+ "courses": [
+  {%- for data in site.data.json.post -%}
+    {%- assign course = data[1] -%}
+    {
+    "title": "{{ course.name }}",
+    {% assign coursePath = course.path %}
+    {%- if coursePath -%}
+    "description": "{{ course.description }}",
+    "datePublished": "{{ course.datePublished }}",
+    "lastModified": "{{ course.lastModified }}",
+    "path": "{{ course.path }}",
+    {% endif %}
+    "metadata_list": [
+      {%- for metadata in course.metadata_list -%}
+    {
+        "title": "{{ metadata.title }}",
+        "author": "{{ metadata.author}}",
+        "description": "{{ metadata.description }}",
+        "datePublished": "{{ metadata.datePublished }}",
+        "lastModified": "{{ metadata.lastModified }}",
+        "imgCover": "{{ metadata.imgCover }}",
+        "path": "{{ metadata.link }}"
+      }
+        {%- if forloop.last == false -%}
+          ,
+        {%- endif -%}
+      {%- endfor -%}
+    ]
+  }
+  
+    {%- if forloop.last == false -%}
+      ,
+    {%- endif -%}
+    
+  {%- endfor -%}
+  
+ ]
+}
