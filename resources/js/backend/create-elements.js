@@ -62,20 +62,6 @@ function createHead(pageInfo) {
 }
 
 
-function createBreadcrumbListSchema(pageInfo) {
-
-  if (pageInfo.metadata.path.match(/^\/(post)\/.+\/.+(\.html)$/g) === null) return '';
-
-  return `
-<script type="application/ld+json">{
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [${createItemListElements(pageInfo)}]
-  }
-  </script>`
-}
-
-
 function hasCoursePage(name) {
   const courseNames = ["java", "kotlin", "linux", "algorithm", "data-structure"];
   for (var i = 0; i < courseNames.length; i++) {
@@ -97,17 +83,22 @@ class ListItem {
 
 }
 
-function createItemListElements(pageInfo) {
+function createBreadcrumbListSchema(pageInfo) {
+
   const path = pageInfo.metadata.path;
 
   const parentName = path.replace(/(^\/(post)\/)/g, '').replace(/\/[a-zA-Z\-\d]+(\.html)$/g, '');
   const parentPath = 'https://kodedevel.ir/' + parentName + '.html';
 
+  if (path.match(/^\/(post)\/.+\/.+(\.html)$/g) === null || !hasCoursePage(parentName)) return '';
+
   const course = new ListItem(parentName, parentPath);
 
-  if (hasCoursePage(parentName)) {
-    return `
-      {
+  return `
+<script type="application/ld+json">{
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
         "@type": "ListItem",
         "name": "خانه",
         "item": "https://kodedevel.ir/",
@@ -115,13 +106,12 @@ function createItemListElements(pageInfo) {
       },{
       "@type": "ListItem",
       "name": "${course.name}",
-      "item": "${course.path}"
+      "item": "${course.path}",
       "position": 2
-      }
-    }`;
+    }]
   }
+  </script>`
 }
-
 
 function createPageSchema(pageInfo) {
   const datePublished = new Date(Date.parse(pageInfo.metadata.datePublished)).toISOString();
