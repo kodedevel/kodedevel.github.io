@@ -2,12 +2,14 @@ function createEmptyComment() {
   return `
     <article class="empty-comment">
       <div class="empty-comment-body">
-        <p>اولین نفری باشید که در مورد این پست نظر می‌دهید</p>
+        <p>اولین نفری باشید که در این صفحه نظر می‌دهید</p>
       </div>
     </article>`;
 }
 
 function createComments(comments) {
+
+  if (comments === null || comments.length === 0) return createEmptyComment();
 
   const allComments = comments.map(comment => {
     const name = comment.author?.login;
@@ -49,39 +51,6 @@ function createComments(comments) {
   return createdComments;
 }
 
-function createCommentsSchema(comments) {
-
-  if (!comments) return '';
-
-  const schemaContent = comments.map(comment => {
-    const name = comment.author?.login;
-    const url = comment?.author?.url.trim();
-    const avatar = comment?.author?.avatarUrl.trim();
-    const date = comment?.createdAt;
-    const text = comment.bodyHTML.replace(/<p.*?(?=>)>/i, "").replace(/<\/p.*?(?=>)>/i, "");
-
-    return `{
-      "@type": "Comment",
-      "author": {
-        "@type": "Person",
-        "name": "${name}",
-        "url": "${url}",
-        "image": "${avatar}"
-      },
-      "datePublished": "${date}",
-      "text": "${text}"
-      }`
-  });
-
-  const schema = `,
-    "comment": [
-      ${schemaContent}
-    ]`;
-
-  return schema;
-}
-
-
 function createHead(pageInfo) {
 
   return `<head>
@@ -95,6 +64,8 @@ function createHead(pageInfo) {
 
 function createBreadcrumbListSchema(pageInfo) {
 
+  if (pageInfo.metadata.path.match(/^\/(post)\/.+\/.+(\.html)$/g) === null) return '';
+
   return `
 <script type="application/ld+json">{
       "@context": "https://schema.org",
@@ -104,97 +75,53 @@ function createBreadcrumbListSchema(pageInfo) {
   </script>`
 }
 
-const courseFiles = ["java.html", "kotlin.html", "linux.html", "algorithm.html", "data-structure.html"];
 
-function isCoursePage(fileName) {
-  for (var i = 0; i < courseFiles.length; i++) {
-    if (fileName === courseFiles[i])
+function hasCoursePage(name) {
+  const courseNames = ["java", "kotlin", "linux", "algorithm", "data-structure"];
+  for (var i = 0; i < courseNames.length; i++) {
+    if (name === courseNames[i])
       return true;
   }
 
   return false;
 }
 
-function createItemListElements(pageInfo) {
-  const path = pageInfo.metadata.path;
+class ListItem {
 
-  if (path.match(/^\/[a-zA-Z]+(\.html)$/g)) {
+  courses = new Map([["java", "جاوا"], ["kotlin", "کاتلین"], ["linux", "لینوکس"], ["algorithm", "الگوریتم"], ["data-structure", "ساختمان‌ داده"]]);
 
-    let name;
-
-    if (path === "/about.html")
-      name = "About";
-    else name = "Home";
-
-    return `
-    {
-      "@type": "ListItem",
-      "name": ${name},
-      "item": "https://kodedevel.ir${path}",
-      "position": 1
-    }`
-  } else if (path.match(/^\/[a-zA-Z\d]+\/[a-zA-Z\-\d]+.html$/g)) {
-
-    const name = path.replace(/^\/[a-zA-Z\d]+\//g, '').replace(/\.html$/g, '');
-
-    return `
-    {
-      "@type": "ListItem",
-      "name": "Home",
-      "item": "https://kodedevel.ir/",
-      "position": 1
-    },
-    {
-      "@type": "ListItem",
-      "name": "${name}",
-      "item": "https://kodedevel.ir${path}",
-      "position": 2
-    }`
-  } else {
-    const parent = path.replace(/(^\/[a-zA-Z\-\d]+\/)/g, '').replace(/(\/[a-zA-Z\-\d]+\.html$)/g, '');
-
-    const parentFileName = parent + '.html';
-
-    if (isCoursePage(parentFileName)) {
-
-      return `
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "item": "https://kodedevel.ir",
-      "name": "Home"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "item": "https://kodedevel.ir/${parent}",
-      "name": "${parent}"
-    },
-    {
-      "@type": "ListItem",
-      "position": 3,
-      "name": "Post",
-      "item": "https://kodedevel.ir${path}"
-    }`
-    } else {
-      return `
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "item": "https://kodedevel.ir",
-      "name": "Home"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "item": "https://kodedevel.ir${path}",
-      "name": "Post"
-    }`
-
-    }
+  constructor(name, path) {
+    this.name = this.courses.get(name);
+    this.path = path;
   }
 
 }
+
+function createItemListElements(pageInfo) {
+  const path = pageInfo.metadata.path;
+
+  const parentName = path.replace(/(^\/(post)\/)/g, '').replace(/\/[a-zA-Z\-\d]+(\.html)$/g, '');
+  const parentPath = 'https://kodedevel.ir/' + parentName + '.html';
+
+  const course = new ListItem(parentName, parentPath);
+
+  if (hasCoursePage(parentName)) {
+    return `
+      {
+        "@type": "ListItem",
+        "name": "خانه",
+        "item": "https://kodedevel.ir/",
+        "position": 1
+      },{
+      "@type": "ListItem",
+      "name": "${course.name}",
+      "item": "${course.path}"
+      "position": 2
+      }
+    }`;
+  }
+}
+
 
 function createPageSchema(pageInfo) {
   const datePublished = new Date(Date.parse(pageInfo.metadata.datePublished)).toISOString();
@@ -252,6 +179,37 @@ function createPageSchema(pageInfo) {
 </script>`
 }
 
+function createCommentsSchema(comments) {
+
+  if (!comments) return '';
+
+  const schemaContent = comments.map(comment => {
+    const name = comment.author?.login;
+    const url = comment?.author?.url.trim();
+    const avatar = comment?.author?.avatarUrl.trim();
+    const date = comment?.createdAt;
+    const text = comment.bodyHTML.replace(/<p.*?(?=>)>/i, "").replace(/<\/p.*?(?=>)>/i, "");
+
+    return `{
+      "@type": "Comment",
+      "author": {
+        "@type": "Person",
+        "name": "${name}",
+        "url": "${url}",
+        "image": "${avatar}"
+      },
+      "datePublished": "${date}",
+      "text": "${text}"
+      }`
+  });
+
+  const schema = `,
+    "comment": [
+      ${schemaContent}
+    ]`;
+
+  return schema;
+}
 
 function createLinksAndScripts(pageInfo) {
 
@@ -296,4 +254,4 @@ function createMetaElements(pageInfo) {
 
 }
 
-export {createComments, createEmptyComment, createHead};
+export {createComments, createHead};

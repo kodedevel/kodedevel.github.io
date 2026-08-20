@@ -1,8 +1,7 @@
 import fs from "node:fs";
 import path from "node:path"
-import {createComments, createEmptyComment, createHead} from "./create-elements.js";
+import {createComments, createHead} from "./create-elements.js";
 import {getAllDiscussions} from "./comments.js";
-
 
 const ROOT = "_site";
 
@@ -22,6 +21,7 @@ async function getAllComments() {
     allPagesMetadata.forEach(metadata => {
 
       const postPath = metadata.path;
+      map.set(postPath, null);
 
       allDiscussions.forEach(discussion => {
 
@@ -42,13 +42,14 @@ async function getAllComments() {
   return map;
 }
 
-
 async function injectComments(allComments) {
 
-  allComments.forEach((comments, relativePagePath) => {
+  allComments.forEach((comments, pagePath) => {
 
-    const createdComments = (!comments || comments.length === 0) ? createEmptyComment() : createComments(comments);
-    const absolutePath = ROOT + relativePagePath;
+    const relativePath = pagePath === '/' ? '/index.html' : pagePath;
+    const absolutePath = ROOT + relativePath;
+
+    const createdComments = createComments(comments);
 
     if (createdComments) {
       let html = fs.readFileSync(absolutePath, "utf-8");
