@@ -38,6 +38,22 @@ jobs:
           source: ./
           destination: ./_site
 
+      - name: _site rw Permission
+        run: |
+          sudo chown -R $USER:$USER ./_site
+          sudo chmod -R 755 ${{ github.workspace }}/_site
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Inject Comments
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run:
+          node resources/js/backend/inject.js
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
 

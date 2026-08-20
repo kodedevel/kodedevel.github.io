@@ -41,7 +41,7 @@ jobs:
       - name: _site rw Permission
         run: |
           sudo chown -R $USER:$USER ./_site
-          sudo chmod -R 777 ${{ github.workspace }}/_site
+          sudo chmod -R 755 ${{ github.workspace }}/_site
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
