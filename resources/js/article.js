@@ -217,7 +217,7 @@ function styleAsCode(textLine) {
   textLine = styleSensitiveWords(textLine, className, "class-name");
   textLine = styleSensitiveWords(textLine, digit, "digit");
   textLine = styleSensitiveWords(textLine, annotation, "annotation");
-  textLine = styleSensitiveWords(textLine, comment, "comment");
+  textLine = styleSensitiveWords(textLine, comment, "code-comment");
   textLine = styleSensitiveWords(textLine, shellCommands, "shell-commands");
   return textLine;
 }
