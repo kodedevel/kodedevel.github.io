@@ -16,9 +16,7 @@ const dialog = document.querySelector(".dialog");
 
 function initSidebar() {
 
-  displaySidebarInfo();
   toggleSidebar();
-
 
   const courseContainer = document.querySelector(".list-container");
 
@@ -104,34 +102,6 @@ function toggleSidebar() {
   });
 
 }
-
-function displaySidebarInfo() {
-  fetch("https://kodedevel.ir/resources/json/list-posts.json", {
-    method: "GET"
-  }).then(response => response.json()).then(function (json) {
-
-    const sidebarInfo = document.querySelector(".sidebar-info");
-    if (sidebarInfo) {
-      const totalNumberOfSubjects = sidebarInfo.firstElementChild;
-      totalNumberOfSubjects.dataset.count = json.length;
-
-      const totalNumberOfPosts = sidebarInfo.lastElementChild;
-
-      var postCounter = 0;
-
-      for (var i = 0; i < json.length; i++) {
-        var metadata_list = json[i].metadata_list;
-        postCounter += metadata_list.length;
-      }
-
-
-      totalNumberOfPosts.dataset.count = postCounter;
-    }
-
-  }).catch(e => console.log(e));
-}
-
-
 
 let currentScrollY = 0;
 
