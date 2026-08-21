@@ -4,12 +4,10 @@
 
     <button aria-label="close" class="material-symbols-outlined md-bt md-bt-dark sidebar-head-button" type="button"
       id="bt_hide_sidebar">
-      arrow_forward
+      close
     </button>
 
-    <p class="sidebar-head-title">لیست مقاله ها</p>
-
-    <a href="{{ site.url }}" class="sidebar-head-label" id="sidebar_label">
+    <a href="/" class="sidebar-head-label" id="sidebar_label">
       <span>KodeDevel</span>
     </a>
   </div>
@@ -17,7 +15,14 @@
 
   <div>
 
-    <div class="list-container" id="article_container">
+    <div class="list-container">
+
+      <div class="list-container-head" aria-hidden="true">
+        <p>
+          لیست مطالب سایت
+        </p>
+      </div>
+
       {% for data in site.data.json.post %}
 
       {% assign category = data[1] %}

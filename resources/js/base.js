@@ -21,7 +21,7 @@ function initSidebar() {
   const courseContainer = document.querySelector(".list-container");
 
   if (courseContainer) {
-    const listCourses = courseContainer.children;
+    const listCourses = courseContainer.querySelectorAll('.subject-container');
 
     for (var i = 0; i < listCourses.length; i++) {
       const btExpand = listCourses[i].querySelector(".md-bt-expandable");
