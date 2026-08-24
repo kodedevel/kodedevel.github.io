@@ -15,25 +15,23 @@
 
   <div>
 
-    <div class="list-container">
+    <div class="sidebar-list">
 
-      <div class="list-container-head" aria-hidden="true">
-        <p>
-          لیست مطالب سایت
-        </p>
-      </div>
+      <p class="sidebar-list-label" aria-hidden="true">
+        لیست مطالب سایت
+      </p>
 
       {% for data in site.data.json.post %}
 
       {% assign category = data[1] %}
 
-      <div class="subject-container">
+      <div class="sidebar-item">
 
         <button class="md-bt-expandable" data-count="{{ category.metadata_list.size }}" data-target="{{ category.id }}">
           <span>{{ category.name }}</span>
         </button>
 
-        <div class="subject-list-container" id="{{ category.id }}">
+        <div class="sidebar-course-content" id="{{ category.id }}">
           {% assign metadata_list = category.metadata_list %}
           <ol>
             {% for metadata in metadata_list %}
@@ -46,6 +44,14 @@
 
       {% endfor %}
     </div>
+
+    <div class="sidebar-list">
+      <a class="sidebar-item sidebar-item-about" href="/about.html">
+        درباره
+      </a>
+      <a class="sidebar-item sidebar-item-contact" href="https://t.me/skybirdbits">ارتباط با ما</a>
+    </div>
+
   </div>
 
 </div>

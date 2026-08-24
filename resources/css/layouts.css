@@ -88,25 +88,23 @@
   margin-right: 8px;
 }
 
-.list-container-head{
-  display: flex;
-  flex-direction: row;
-  padding: 8px 4px;
+.sidebar-list-label{
+  padding: 8px 0;
   font-size: 1.2rem;
   font-weight: bold;
-  border-bottom: 1px solid #E0E0E0;
 }
 
-.list-container-head p::before{
+.sidebar-list-label::before{
   content: 'list';
 }
 
-.subject-container{
-  border-bottom: 1px solid #E0E0E0;
+.sidebar-item{
+  border-top: 1px solid #E0E0E0;
   padding: 0;
+  list-style: none;
 }
 
-.subject-list-container{
+.sidebar-course-content{
   position: relative;
   width: 100%;
   max-height: 0;
@@ -116,8 +114,32 @@
   transition: max-height 200ms ease;
 }
 
-.subject-list-container ol li{
+.sidebar-course-content ol li{
   font-size: 0.92rem;
+}
+
+.sidebar-list{
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+}
+
+.sidebar-item.sidebar-item-about, .sidebar-item.sidebar-item-contact{
+  padding: 12px 8px;
+  font-weight: bold;
+}
+
+.sidebar-item.sidebar-item-contact{
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.sidebar-item.sidebar-item-about::before{
+  content: 'info';
+}
+
+.sidebar-item.sidebar-item-contact::before{
+  content: 'help';
 }
 
 .footer-item{

@@ -18,10 +18,10 @@ function initSidebar() {
 
   toggleSidebar();
 
-  const courseContainer = document.querySelector(".list-container");
+  const courseContainer = document.querySelector(".sidebar-list");
 
   if (courseContainer) {
-    const listCourses = courseContainer.querySelectorAll('.subject-container');
+    const listCourses = courseContainer.querySelectorAll('.sidebar-item');
 
     for (var i = 0; i < listCourses.length; i++) {
       const btExpand = listCourses[i].querySelector(".md-bt-expandable");
