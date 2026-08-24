@@ -139,21 +139,21 @@
   padding: 0;
 }
 
-.sidebar-item.sidebar-item-about, .sidebar-item.sidebar-item-contact{
+.sidebar-item.sidebar-item-about, .sidebar-item.sidebar-item-source-code{
   padding: 12px 8px;
   font-weight: bold;
-}
-
-.sidebar-item.sidebar-item-contact{
-  border-bottom: 1px solid #e0e0e0;
 }
 
 .sidebar-item.sidebar-item-about::before{
   content: 'info';
 }
 
-.sidebar-item.sidebar-item-contact::before{
-  content: 'help';
+.sidebar-item.sidebar-item-source-code{
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.sidebar-item.sidebar-item-source-code::before{
+  content: 'code_xml';
 }
 
 .footer-item{
