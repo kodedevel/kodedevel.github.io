@@ -101,21 +101,35 @@
 .sidebar-item{
   border-top: 1px solid #E0E0E0;
   padding: 0;
-  list-style: none;
+}
+
+.sidebar-item .sidebar-course-head{
+  display: flex;
+  flex-direction: row;
 }
 
 .sidebar-course-content{
   position: relative;
   width: 100%;
+  height: auto;
   max-height: 0;
   overflow: hidden;
   background-color: transparent;
-  padding-left: 8px;
   transition: max-height 200ms ease;
+}
+
+.sidebar-course-content ol{
+  list-style-type: none;
+  padding: 0 8px;
 }
 
 .sidebar-course-content ol li{
   font-size: 0.92rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.sidebar-course-content ol li:last-child{
+  border-bottom: none;
 }
 
 .sidebar-list{

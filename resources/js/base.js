@@ -18,6 +18,8 @@ function initSidebar() {
 
   toggleSidebar();
 
+  (() => estimateCoursesReadingTime())();
+
   const courseContainer = document.querySelector(".sidebar-list");
 
   if (courseContainer) {
@@ -103,6 +105,97 @@ function toggleSidebar() {
 
 }
 
+async function estimateCoursesReadingTime() {
+
+  const response = await fetch("/resources/json/metadata.json", {
+    method: 'GET',
+    headers: {
+      "Content-Type": "application/json"
+    }
+  });
+
+  const json = await response.json();
+
+  const coursesObject = json.courses;
+
+  let coursesPaths = [];
+
+  coursesObject.forEach(course => {
+    let paths = [];
+    course.metadata_list.forEach(subject => {
+      paths = paths.concat(subject.path);
+    });
+
+    coursesPaths.push(paths);
+  });
+
+  const courseContainerUI = document.querySelector(".sidebar-list");
+  const coursesUI = courseContainerUI.querySelectorAll(".sidebar-item");
+
+  for (var i = 0; i < coursesPaths.length; i++) {
+    const courseUI = coursesUI[i];
+    const subjects = coursesPaths[i];
+    let courseETA = 0;
+
+    for (var j = 0; j < subjects.length; j++) {
+      const path = subjects[j];
+      try {
+        const pageResponse = await fetch(path, {
+          headers: {
+            "Content-Type": "text/html"
+          }
+        });
+
+        const text = await pageResponse.text();
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(text, "text/html");
+        const article = doc.querySelector("article");
+
+        const textETA = estimateRegularTextReadingTime(article);
+        const snippetETA = estimateSnippetReadingTime(article);
+
+        courseETA += (textETA + snippetETA);
+
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    const etaBadge = courseUI.querySelector(".badge-container").lastElementChild;
+    etaBadge.dataset.info = courseETA;
+  }
+
+}
+
+function estimateRegularTextReadingTime(article) {
+  var numberOfWords = 0;
+  const texts = article.innerText.trim().split(/\n|\s/);
+  texts.forEach((line) => {
+    if (line.length > 0) numberOfWords++;
+  });
+
+  return Math.max(1, Math.ceil(numberOfWords / 250));
+}
+
+function estimateSnippetReadingTime(article) {
+
+  var numberOfWords = 0;
+
+  const containers = article.querySelectorAll(".snippet-container");
+
+  containers.forEach(container => {
+    const snippet = container.firstElementChild;
+    const text = snippet.innerText.split(/[\s\n]/g);
+    text.forEach(word => {
+
+      if (word.length > 0)
+        numberOfWords++;
+    });
+  });
+
+
+  return Math.ceil(numberOfWords / 100);
+}
 let currentScrollY = 0;
 
 var scrollTopVisibility = function () {
@@ -162,4 +255,4 @@ function initDialog() {
   };
 }
 
-export {initUiComponents, scrollTopVisibility};
+export {initUiComponents, scrollTopVisibility, estimateRegularTextReadingTime, estimateSnippetReadingTime};

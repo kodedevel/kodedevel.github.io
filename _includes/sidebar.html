@@ -27,9 +27,17 @@
 
       <div class="sidebar-item">
 
-        <button class="md-bt-expandable" data-count="{{ category.metadata_list.size }}" data-target="{{ category.id }}">
-          <span>{{ category.name }}</span>
-        </button>
+        <div class="sidebar-course-head">
+
+          <button class="md-bt-expandable" data-target="{{ category.id }}">
+            <span>{{ category.name }}</span>
+            <div class="badge-container material-symbols-outlined">
+              <span data-info="{{ category.metadata_list.size }}" class="badge">app_badging</span>
+              <span data-info="min" class="badge">timer</span>
+            </div>
+          </button>
+
+        </div>
 
         <div class="sidebar-course-content" id="{{ category.id }}">
           {% assign metadata_list = category.metadata_list %}
