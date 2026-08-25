@@ -43,22 +43,7 @@ function handleBrowserBackButton() {
 
 }
 
-function initAnalytics() {
-  const measureId = 'G-S74CG697B9';
-
-  window.dataLayer = window.dataLayer || [];
-
-  function gtag(...args) {
-    window.dataLayer.push(args);
-  }
-
-  gtag('js', new Date());
-  gtag('config', measureId);
-}
-
 function executeCodes() {
-
-  initAnalytics();
 
   handleBrowserBackButton();
 
