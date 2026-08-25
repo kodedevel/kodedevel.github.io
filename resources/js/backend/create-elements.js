@@ -213,7 +213,15 @@ function createLinksAndScripts(pageInfo) {
 
     <link href="/resources/css/main.css" rel="stylesheet">
     <link href="/resources/favicon.png" rel="icon" type="image/x-icon">
+
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-S74CG697B9"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {window.dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-S74CG697B9');
+    </script>
+
     <script type="module" src="/resources/js/main.js"></script>`
 }
 
