@@ -295,6 +295,15 @@
       "link": "/post/java/arraydeque.html"
     },
     {
+      "title": "کالکشن ها در جاوا: استفاده از HashSet, LinkedHashSet و TreeSet",
+      "description": "معرفی Set در جاوا؛ استفاده از انواع پیاده سازی های Set و بررسی ویژگی ها و پیچیدگی زمان HashSet, LinkedHashSet و TreeSet به همراه مثال های مفهومی.",
+      "author": "یونس‌ سلیمانی",
+      "datePublished": "2026-08-27",
+      "lastModified": "",
+      "imgCover": "/resources/image/java/cover_set.png",
+      "link": "/post/java/set.html"
+    },
+    {
       "title": "چندنخی (multithreading) در جاوا و کاتلین",
       "description": "مفهوم نخ (thread) ها، بررسی اینترفیس Runnable، کلاس Thread و مفهوم Thread Pool در جاوا و کاتلین به همراه مثال",
       "author": "یونس‌ سلیمانی",

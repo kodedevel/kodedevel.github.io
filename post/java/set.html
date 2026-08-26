@@ -1,0 +1,580 @@
+---
+layout: default
+---
+
+<article>
+  <nav class="toc">
+    <div>دسترسی سریع</div>
+    <ul>
+      <li>
+        <a href="#p0">معرفی Set</a>
+      </li>
+      <li>
+        <a href="#p1">استفاده از HashSet</a>
+      </li>
+      <li>
+        <a href="#p2">استفاده از LinkedHashSet</a>
+      </li>
+      <li>
+        <a href="#p3">استفاده از TreeSet</a>
+      </li>
+      <li>
+        <a href="#p4">خلاصه</a>
+      </li>
+    </ul>
+  </nav>
+  <aside class="note">
+    <p class="note-head">توجه</p>
+    <p>
+      پیش‌نیاز این مطلب، موضوع <a href="collection.html">اینترفیس کالکشن</a> و <a href="linkedlist.html">لیست پیوندی
+        (LinkedList)</a> است که میتونید بهشون مراجعه کنید؛ این مطلب در مورد
+      استفاده از Set در جاواست، برای پیاده‌سازی Set در جاوا میتونید به مطلب <a
+        href="/post/data-structure/set.html">پیاده‌سازی ‌‌Set در ساختمان داده</a> مراجعه کنید.
+    </p>
+  </aside>
+  <section id="p0">
+    <h2>معرفی Set</h2>
+    <blockquote>Set یک پیاده‌سازی در ساختمان داده است که داخلش نمیتونیم عنصر تکراری داشته باشیم.</blockquote>
+    <p> هر عنصر در جاوا دارای یک <strong>هش کد
+        (hashCode)</strong> است، زمانی که دو عنصر باهم برابر باشن هش کد های یکسانی دارن.</p>
+
+    <p>تمام کلاس ها در جاوا یک تابع به نام <strong>hashCode</strong> دارن که این تابع یک کد اختصاصی برای کلاس تولید
+      میکنه Set یک ساختار داده است که در آن عنصر تکراری وجود نداره، مقایسه ی دو کلاس در Set با هش‌ کد صورت می گیره.</p>
+
+    <p>در جاوا سه کلاس <strong>HashSet</strong>, <strong>LinkedHashSet</strong> و <strong>TreeSet</strong> اینترفیس
+      Set رو پیاده‌سازی میکنن و Set یک ساب اینترفیس از <a href="/post/java/collection.html">Collection</a> است.</p>
+
+    <p>زمانی که بخوایم به Set یک عنصر تکراری اضافه کنیم، عنصر جدید بهش اضافه نمیشه استفاده از Set در مواقعی که نیاز
+      داریم عناصر تکراری نباشن بهینه تر از سایر کالکشن هاست.</p>
+
+    <p>متد (تابع) های پرکاربرد Set در Collection تعریف شده اند برای آشنایی با این متد ها میتونید به <a
+        href="/post/java/collection.html">معرفی اینترفیس کالکشن</a> مراجعه کنید.</p>
+
+  </section>
+
+  <section id="p1">
+    <h2>استفاده از HashSet</h2>
+
+    <p>کلاس HashSet یک پیاده سازی از اینترفیس Set است، عناصر داخل HashSet بر اساس hashCode هاشون نگهداری میشن و ترتیب
+      مشخصی در نگهداری عناصر داخل HashSet وجود نداره.</p>
+
+    <p>در زیر سلسله مراتب ارث‌بری کلاس HashSet شرح داده شده است.</p>
+
+    <figure>
+      <img src="/resources/image/java/java_hashset_inheritance_hierarchy.png"
+        alt="سلسله مراتب ارث‌بری کلاس HashSet در جاوا.">
+      <figcaption>سلسله مراتب ارث‌بری کلاس HashSet در جاوا.</figcaption>
+    </figure>
+
+    <p>در نمودار uml زیر کانستراکتور (سازنده) های کلاس HashSet با پارامتر هاشون توضیح داده شده است.</p>
+
+    <table class="tb">
+      <thead>
+        <tr>
+          <th colspan="2">java.util.HashSet</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="tDataLTR">
+            +HashSet()
+          </td>
+          <td class="tDataRTL">
+            یک نمونه از HashSet ایجاد میکنه با loadFactor پیشفرض 0.75.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +HashSet(c: Collection&lt;? extends&gt;)
+          </td>
+          <td class="tDataRTL">
+            یک نمونه از HashSet ایجاد می کنه و عناصر موجود در کالکشن c رو بهش اضافه می‌کنه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +HashSet(capacity: int)
+          </td>
+          <td class="tDataRTL">
+            یک نمونه از HashSet با ظرفیت اولیه مشخص ایجاد می کنه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +HashSet(capacity: int, loadFactor: float)
+          </td>
+          <td class="tDataRTL">
+            یک نمونه از HashSet با ظرفیت اولیه و loadFactor مشخص ایجاد میکنه.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>مقدار loadFactor باید یک عدد بین 0 تا 1 باشه و loadFactor در Set زمان افزایش ظرفیت رو مشخص میکنه فرض کنید ظرفیت
+      اولیه یک HashSet برابر با 16 است یعنی 16 تا عنصر داخلش جا میگیره، اگه مقدار loadFactor برابر با
+      0.5 باشه، زمانی که تعداد عناصر داخل HashSet به 8 برسه، ظرفیت HashSet به صورت خودکار افزایش پیدا میکنه؛
+      مقدار loadFactor به
+      صورت پیشفرض برابر با 0.75 است.</p>
+
+    <p>در مثال زیر میخوایم اسم زبان های برنامه‌نویسی رو به Set اضافه کنیم و سپس با foreach صداشون بزنیم.</p>
+
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+Set&lt;String&gt; set = new HashSet&lt;&gt;();
+set.add("Java");
+set.add("Python");
+set.add("Kotlin");
+set.add("JavaScript");
+
+set.forEach(System.out::println);
+
+System.out.println();
+
+set.add("JavaScript");
+
+set.forEach(System.out::println);
+        </pre>
+      </div>
+    </div>
+
+  </section>
+
+  <section id="p2">
+    <h2>استفاده از LinkedHashSet</h2>
+    <p>در پیاده‌سازی <strong>LinkedHashSet</strong> از <a href="linkedlist.html">LinkedList</a> استفاده شده و عناصر
+      مانند LinkedList به ترتیبی که اضافه میشن داخلش قرار میگیرن، زمانی که ترتیب قرار گرفتن عناصر مهم باشه یا بخوایم
+      عنصری رو به ابتدا یا انتهای Set اضافه کنیم از
+      LinkedHashSet استفاده میکنیم.</p>
+
+    <p>در زیر سلسله مراتب ارث‌بری LinkedHashSet شرح داده شده است.</p>
+
+    <figure>
+      <img src="/resources/image/java/java_linkedhashset_inheritance_hierarchy.png"
+        alt="سلسله مراتب ارث‌بری LinkedHashSet در جاوا.">
+      <figcaption>سلسله مراتب ارث‌بری LinkedHashSet در جاوا.</figcaption>
+    </figure>
+
+    <p>کانستراکتور (سازنده) های LinkedHashSet مانند HashSet هستن، در زیر uml کانستراکتور (سازنده) های کلاس LinkedHashSet
+      با توضیحاتشون اورده شده است.</p>
+
+    <table class="tb">
+      <thead>
+        <tr>
+          <th colspan="2">java.util.HashSet</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="tDataLTR">
+            +LinkedHashSet()
+          </td>
+          <td class="tDataRTL">
+            یک نمونه از LinkedHashSet ایجاد میکنه با loadFactor پیشفرض 0.75.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +LinkedHashSet(c: Collection&lt;? extends&gt;)
+          </td>
+          <td class="tDataRTL">
+            یک نمونه از HashSet ایجاد می کنه و عناصر موجود در کالکشن c رو بهش اضافه می‌کنه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +LinkedHashSet(capacity: int)
+          </td>
+          <td class="tDataRTL">
+            یک نمونه از LinkedHashSet با ظرفیت اولیه مشخص ایجاد می کنه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +LinkedHashSet(capacity: int, loadFactor: float)
+          </td>
+          <td class="tDataRTL">
+            یک نمونه از LinkedHashSet با ظرفیت اولیه و loadFactor مشخص ایجاد میکنه.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>در مثال زیر میخوایم زبان های برنامه نویسی رو به LinkedHashSet اضافه کنیم و سپس با foreach صداشون بزنیم و چاپ
+      کنیم.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+LinkedHashSet&lt;String&gt; linkedHashSet = new LinkedHashSet&lt;&gt;();
+linkedHashSet.add("Java");
+linkedHashSet.add("Python");
+linkedHashSet.add("Kotlin");
+linkedHashSet.addLast("JavaScript");
+linkedHashSet.addFirst("PHP");
+
+linkedHashSet.forEach(System.out::println);
+        </pre>
+      </div>
+    </div>
+
+
+    <p>در مثال زیر میخوایم یک <a href="queue.html">صف (Queue)</a> با LinkedHashSet پیاده کنیم.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+public class QueueSet&lt;E&gt; {
+    private final LinkedHashSet&lt;E&gt; set = new LinkedHashSet&lt;&gt;();
+
+    public QueueSet(E[] elements){
+        Collections.addAll(set, elements);
+    }
+
+    public E poll(){
+        return set.removeFirst();
+    }
+
+    public void add(E e){
+        set.addFirst(e);
+    }
+
+
+    public int size(){
+        return set.size();
+    }
+
+    public boolean isEmpty(){
+        return set.isEmpty();
+    }
+}
+        </pre>
+      </div>
+    </div>
+
+  </section>
+  <section id="p3">
+    <h2>استفاده از TreeSet</h2>
+    <p>عناصر در <strong>TreeSet</strong> به ترتیب مقایسه ای که توسط Comparable باهمدیگه میشن قرار میگیرن؛ در TreeSet
+      زمانی دو عنصر تکراری هستن که مقدار 0 توسط Comparable برگردونده بشه.</p>
+
+    <p>علاوه بر مقایسه ی عناصر به صورت پیشفرض توسط Comparable میتونیم عناصر رو با Comparator در TreeSet باهم مقایسه
+      کنیم.</p>
+
+    <p>در زیر سلسله مراتب ارث‌بری کلاس TreeSet شرح داده شده است.</p>
+
+    <figure>
+      <img src="/resources/image/java/java_treeset_inheritance_hierarchy.png"
+        alt="سلسله مراتب ارث‌بری TreeSet در جاوا.">
+      <figcaption>سلسله مراتب ارث‌بری TreeSet در جاوا.</figcaption>
+    </figure>
+
+    <p>در نمودار UML زیر کانستراکتور (سازنده) های TreeSet شرح داده شده است.</p>
+
+    <table class="tb">
+      <thead>
+        <th>
+          java.util.TreeSet
+        </th>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td class="tDataLTR">
+            +TreeSet()
+          </td>
+          <td class="tDataRTL">
+            یک نمونه از TreeSet ایجاد می‌کنه.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +TreeSet(compartor: Comparator&lt;? super E&gt;)
+          </td>
+          <td class="tDataRTL">
+            یک نمونه از TreeSet میکنه و عناصر بر اساس Comparator پاس داده شده بهش باهم مقایسه میشن.
+          </td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">
+            +TreeSet(c: Collection&lt;? extends E&gt;)
+          </td>
+          <td class="tDataRTL">
+            یک نمونه از TreeSet ایجاد میکنه و اعضای کالکشن c رو بهش اضافه می کنه.
+          </td>
+        </tr>
+
+        <tr>
+          <td class="tDataLTR">
+            +TreeSet(sortedSet: SortedSet&lt;E&gt;)
+          </td>
+          <td class="tDataRTL">
+            یک نمونه از TreeSet ایجاد میکنه و اعضا رو بر اساس ترتیبی که در TreeSet دیگه قرار گرفتن بهش اضافه
+            می کنه.
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+
+    <section>
+      <h3>اینترفیس SortedSet</h3>
+
+      <p>یکی از پیاده‌سازی های TreeSet اینترفیس SortedSet است، در نمودار UML زیر متد های SortedSet با توضیحاتشون آورده
+        شده
+        است.</p>
+
+      <table class="tb">
+        <thead>
+          <th colspan="2">java.util.SortedSet&lt;E&gt</th>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="tDataLTR">
+              +getFirst(): E
+            </td>
+            <td class="tDataRTL">
+              اولین عنصر در TreeSet رو بر میگردونه و اگه خالی بود یک اکسپشن ایجاد میکنه.
+            </td>
+          </tr>
+          <tr>
+            <td class="tDataLTR">
+              +getLast(): E
+            </td>
+            <td class="tDataRTL">
+              آخرین عنصر در TreeSet رو بر میگردونه و اگه TreeSet خالی بود یک اکسپشن ایجاد میکنه.
+            </td>
+          </tr>
+          <tr>
+            <td class="tDataLTR">
+              +removeFirst(): E
+            </td>
+            <td class="tDataRTL">
+              اولین عنصر در TreeSet رو حذف می کنه و اگه TreeSet خالی بود یک اکسپشن ایجاد میکنه.
+            </td>
+          </tr>
+          <tr>
+            <td class="tDataLTR">
+              +removeLast(): E
+            </td>
+            <td class="tDataRTL">
+              آخرین عنصر در TreeSet رو حذف می کنه و اگه TreeSet خالی بود یک اکسپشن ایجاد می کنه.
+            </td>
+          </tr>
+          <tr>
+            <td class="tDataLTR">
+              +headSet(e: E): SortedSet&lt;E&gt;
+            </td>
+            <td class="tDataRTL">
+              تمام عناصر قبل از عنصر مورد نظر رو به صورت یک نمونه ی جدید از SortedSet بر میگردونه.
+            </td>
+          </tr>
+          <tr>
+            <td class="tDataLTR">
+              +tailSet(e: E): SortedSet&lt;E&gt;
+            </td>
+            <td class="tDataRTL">
+              عنصر مورد نظر و تمام عناصر بعدشو به عنوان یک نمونه ی جدید از SortedSet بر میگردونه.
+            </td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="2" dir="rtl">
+              توجه: با اینکه متد های addFirst و addLast در SortedSet تعریف شدن اما در TreeSet قابل استفاده نیستن.
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+
+      <p>در مثال زیر میخوایم نام شهر ها رو به TreeSet اضافه کنیم و بر اساس طول String مرتبشون کنیم.</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
+SortedSet&lt;String&gt; sortedSet = new TreeSet&lt;&gt;(Comparator.comparingInt(String::length));
+
+sortedSet.add("Arak");
+sortedSet.add("Qom");
+sortedSet.add("Hamadan");
+sortedSet.add("Mashhad");
+sortedSet.add("Ahwaz");
+sortedSet.add("Sari");
+sortedSet.add("Qazvin");
+sortedSet.add("Golestan");
+sortedSet.add("Shiraz");
+sortedSet.add("Tabriz");
+
+System.out.println(sortedSet);
+System.out.println(sortedSet.getFirst());
+System.out.println(sortedSet.getLast());
+System.out.println("headSet(\"Qazvin\"): " + sortedSet.headSet("Qazvin"));
+System.out.println("tailSet(\"Qazvin\"): " + sortedSet.tailSet("Qazvin"));
+        </pre>
+        </div>
+      </div>
+
+      <p>در بالا بخاطر اینکه عناصر بر اساس طولشون باهم مقایسه میشن همه ی شهر ها به TreeSet اضافه نمیشن چون طول کاراکتر
+        بعضی از شهر ها باهم برابره و فقط اولین شهری که به TreeSet اضافه شده باقی می مونه.</p>
+
+    </section>
+
+    <section>
+      <h3>اینترفیس NavigableSet</h3>
+      <p>اینترفیس NavigableSet یک ساب‌اینترفیس از SortedSet است و علاوه بر اینکه متد های SortedSet رو به ارث می‌بره متد
+        های اختصاصی خودش هم داره.</p>
+
+      <p>در نمودار UML زیر متد های NavigableSet با توضیحاتشون اورده شده است.</p>
+
+      <table class="tb">
+        <thead>
+          <th colspan="2">
+            java.util.NavigableSet
+          </th>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td class="tDataLTR">
+              +lower(e: E): E
+            </td>
+            <td class="tDataRTL">
+              بزرگترین عنصر، کوچکتر از e رو بر میگردونه.
+            </td>
+          </tr>
+          <tr>
+            <td class="tDataLTR">
+              +higher(e: E): E
+            </td>
+            <td class="tDataRTL">
+              کوچکترین عنصر بزرگ تر از e رو بر میگردونه.
+            </td>
+          </tr>
+          <tr>
+            <td class="tDataLTR">
+              +floor(e: E): E
+            </td>
+            <td class="tDataRTL">
+              بزرگترین عنصر کوچکتر یا مساوی با e رو بر میگردونه.
+            </td>
+          </tr>
+          <tr>
+            <td class="tDataLTR">
+              +ceiling(e: E): E
+            </td>
+            <td class="tDataRTL">
+              کوچکترین عنصری که بزرگتر یا مساوی با عنصر e باشه رو بر میگردونه.
+            </td>
+          </tr>
+
+          <tr>
+            <td class="tDataLTR">
+              +descendingSet(): NavigableSet&lt;E&gt;
+            </td>
+            <td class="tDataRTL">
+              یک نمونه از NavigableSet با ترتیب معکوس از عناصر فعلی رو بر میگردونه.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>در مثال زیر میخوایم شهر ها رو بدون استفاده از Comparator به TreeSet اضافه کنیم و از متد های NavigableSet
+        استفاده
+        کنیم.</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
+NavigableSet&lt;String&gt; navigableSet = new TreeSet&lt;&gt;();
+navigableSet.add("Arak");
+navigableSet.add("Qom");
+navigableSet.add("Hamadan");
+navigableSet.add("Mashhad");
+navigableSet.add("Ahwaz");
+navigableSet.add("Sari");
+navigableSet.add("Qazvin");
+navigableSet.add("Golestan");
+navigableSet.add("Shiraz");
+navigableSet.add("Tabriz");
+
+System.out.println(navigableSet);
+System.out.println("lower(\"Q\"): " + navigableSet.lower("Q"));
+System.out.println("higher(\"Q\"): " + navigableSet.higher("Q"));
+System.out.println("floor(\"Q\"): " + navigableSet.floor("Q"));
+System.out.println("ceiling(\"Q\"): " + navigableSet.ceiling("Q"));
+System.out.println(navigableSet.descendingSet());
+          </pre>
+        </div>
+      </div>
+    </section>
+
+  </section>
+
+  <section>
+    <h2>پیچیدگی زمان (Time Complexity)</h2>
+
+    <p>در جدول زیر پیچیدگی زمان کلاس های HashSet, LinkedHashSet و TreeSet برای افزودن و جستجوی عناصر شرح داده شده است.
+    </p>
+
+
+    <table class="table-regular">
+      <thead>
+        <tr>
+          <th>-</th>
+          <th colspan="2">متد</th>
+        </tr>
+        <tr>
+          <th>نام کلاس</th>
+          <th>contains</th>
+          <th>add</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>HashSet</td>
+          <td>O(1)</td>
+          <td>O(1)</td>
+        </tr>
+        <tr>
+          <td>LinkedHashSet</td>
+          <td>O(1)</td>
+          <td>O(1)</td>
+        </tr>
+        <tr>
+          <td>TreeSet</td>
+          <td>O(logn)</td>
+          <td>O(logn)</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </section>
+  <section id="p4">
+    <h2>خلاصه</h2>
+    <ul>
+      <li>از Set برای نگهداری عناصر غیر تکراری استفاده می کنیم.</li>
+      <li>عناصر در HashSet به ترتیب hashCode هاشون نگهداری میشن.</li>
+      <li>هنگامی که بخوایم عناصر رو به ترتیبی که اضافه میکنیم در Set نگهداری کنیم از LinkedHashSet استفاده می کنیم.</li>
+      <li>در TreeSet عناصر به ترتیب مقایسه ای که با Comparable یا Comparator میشن، نگهداری میشن.</li>
+    </ul>
+
+  </section>
+</article>
+
+{% capture links %}
+<li>
+  <a href="/post/java/linkedlist.html">کار با LinkedList در جاوا</a>
+</li>
+<li>
+  <a href="/post/java/queue.html">کار با صف (Queue) در جاوا</a>
+</li>
+<li>
+  <a href="/post/java/collection.html">بررسی اینترفیس کالکشن و پیمایش در کالکشن ها</a>
+</li>
+
+<li>
+  <a href="/post/java/loops.html">حلقه ها در جاوا</a>
+</li>
+
+{% endcapture %} {% include article-foot.html relative_links = links %}
