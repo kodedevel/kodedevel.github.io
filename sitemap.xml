@@ -8,7 +8,7 @@ sitemap: false
 
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-{% for posts in site.data.json.posts %}
+{% for posts in site.data.json.post %}
 {% assign metadata_list = posts[1].metadata_list %}
 {% for entry in metadata_list %}
 <url>
@@ -27,7 +27,7 @@ sitemap: false
 
 {% endfor %}
 
-{% for entry in site.data.json.categories.metadata_list %}
+{% for entry in site.data.json.courses.metadata_list %}
 
 <url>
   <loc>{{ site.url }}{{ entry.link }}</loc>
