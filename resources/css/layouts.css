@@ -118,6 +118,25 @@
   transition: max-height 200ms ease;
 }
 
+.sidebar-course-items-counter{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  background-color: #eeeeee;
+  padding: 4px 8px;
+  font-family: Vazirmatn;
+  font-size: 0.8rem;
+  align-items: center;
+  line-height: 18px;
+}
+
+.sidebar-course-items-counter::before{
+  display: block;
+  content: 'files';
+  text-align: center;
+  margin: auto 4px;
+}
+
 .sidebar-course-content ol{
   list-style-type: none;
   padding: 0 8px;
