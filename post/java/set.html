@@ -35,20 +35,22 @@ layout: default
   <section id="p0">
     <h2>معرفی Set</h2>
     <blockquote>Set یک پیاده‌سازی در ساختمان داده است که داخلش نمیتونیم عنصر تکراری داشته باشیم.</blockquote>
-    <p> هر عنصر در جاوا دارای یک <strong>هش کد
-        (hashCode)</strong> است، زمانی که دو عنصر باهم برابر باشن هش کد های یکسانی دارن.</p>
-
-    <p>تمام کلاس ها در جاوا یک تابع به نام <strong>hashCode</strong> دارن که این تابع یک کد اختصاصی برای کلاس تولید
-      میکنه Set یک ساختار داده است که در آن عنصر تکراری وجود نداره، مقایسه ی دو کلاس در Set با هش‌ کد صورت می گیره.</p>
-
-    <p>در جاوا سه کلاس <strong>HashSet</strong>, <strong>LinkedHashSet</strong> و <strong>TreeSet</strong> اینترفیس
-      Set رو پیاده‌سازی میکنن و Set یک ساب اینترفیس از <a href="/post/java/collection.html">Collection</a> است.</p>
 
     <p>زمانی که بخوایم به Set یک عنصر تکراری اضافه کنیم، عنصر جدید بهش اضافه نمیشه استفاده از Set در مواقعی که نیاز
       داریم عناصر تکراری نباشن بهینه تر از سایر کالکشن هاست.</p>
 
     <p>متد (تابع) های پرکاربرد Set در Collection تعریف شده اند برای آشنایی با این متد ها میتونید به <a
         href="/post/java/collection.html">معرفی اینترفیس کالکشن</a> مراجعه کنید.</p>
+
+    <p>در جاوا سه کلاس <strong>HashSet</strong>, <strong>LinkedHashSet</strong> و <strong>TreeSet</strong> اینترفیس
+      Set رو پیاده‌سازی میکنن و Set یک ساب اینترفیس از <a href="/post/java/collection.html">Collection</a> است؛ کلاس های
+      HashSet و LinkedHashSet با <strong>hash code</strong> پیاده‌سازی شدن و کلاس TreeSet با
+      <strong>red-black tree</strong>.
+    </p>
+
+    <p>تمام کلاس ها در جاوا یک تابع به نام <strong>hashCode</strong> دارن که این تابع یک کد اختصاصی برای کلاس تولید
+      میکنه؛ زمانی که دو عنصر باهم برابر باشن هش کد های یکسانی دارن.</p>
+    <p>مقایسه ی عناصر در HashSet و LinkedHashSet با هش‌ کد صورت می گیره و در TreeSet با Comparable یا Comparator.</p>
 
   </section>
 
@@ -143,7 +145,7 @@ set.forEach(System.out::println);
 
   <section id="p2">
     <h2>استفاده از LinkedHashSet</h2>
-    <p>در پیاده‌سازی <strong>LinkedHashSet</strong> از <a href="linkedlist.html">LinkedList</a> استفاده شده و عناصر
+    <p>در پیاده‌سازی LinkedHashSet از <a href="linkedlist.html">LinkedList</a> استفاده شده و عناصر
       مانند LinkedList به ترتیبی که اضافه میشن داخلش قرار میگیرن، زمانی که ترتیب قرار گرفتن عناصر مهم باشه یا بخوایم
       عنصری رو به ابتدا یا انتهای Set اضافه کنیم از
       LinkedHashSet استفاده میکنیم.</p>
@@ -162,7 +164,7 @@ set.forEach(System.out::println);
     <table class="tb">
       <thead>
         <tr>
-          <th colspan="2">java.util.HashSet</th>
+          <th colspan="2">java.util.LinkedHashSet</th>
         </tr>
       </thead>
       <tbody>
@@ -237,7 +239,7 @@ public class QueueSet&lt;E&gt; {
     }
 
     public void add(E e){
-        set.addFirst(e);
+        set.addLast(e);
     }
 
 
@@ -256,7 +258,7 @@ public class QueueSet&lt;E&gt; {
   </section>
   <section id="p3">
     <h2>استفاده از TreeSet</h2>
-    <p>عناصر در <strong>TreeSet</strong> به ترتیب مقایسه ای که توسط Comparable باهمدیگه میشن قرار میگیرن؛ در TreeSet
+    <p>عناصر در TreeSet به ترتیب مقایسه ای که توسط Comparable باهمدیگه میشن قرار میگیرن؛ در TreeSet
       زمانی دو عنصر تکراری هستن که مقدار 0 توسط Comparable برگردونده بشه.</p>
 
     <p>علاوه بر مقایسه ی عناصر به صورت پیشفرض توسط Comparable میتونیم عناصر رو با Comparator در TreeSet باهم مقایسه
@@ -274,7 +276,7 @@ public class QueueSet&lt;E&gt; {
 
     <table class="tb">
       <thead>
-        <th>
+        <th colspan="2">
           java.util.TreeSet
         </th>
       </thead>
@@ -549,6 +551,9 @@ System.out.println(navigableSet.descendingSet());
       </tbody>
     </table>
 
+    <p>اگه مرتب سازی برامون مهم نباشه استفاده از HashSet از همه سریع تره؛ اگه مرتب سازی بر اساس افزودن عناصر و صدا زدن
+      عناصر اول و آخر اهمیت داشته باشه استفاده از LinkedHashSet مناسبه و اگه بخوایم عناصر بر اساس مقایسه ی طبیعی توسط
+      Comparable در Set قرار بگیرن یا توسط Comparator باهم مقایسه و اضافه بشن استفاده از TreeSet گزینه ی مناسبیه.</p>
   </section>
   <section id="p4">
     <h2>خلاصه</h2>
