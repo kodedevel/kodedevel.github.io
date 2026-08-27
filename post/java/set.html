@@ -19,7 +19,13 @@ layout: default
         <a href="#p3">استفاده از TreeSet</a>
       </li>
       <li>
-        <a href="#p4">خلاصه</a>
+        <a href="#p4">پیچیدگی زمان (Time Complexity)</a>
+      </li>
+      <li>
+        <a href="#p5">مورد مطالعه (مثال) ها</a>
+      </li>
+      <li>
+        <a href="#p6">خلاصه</a>
       </li>
     </ul>
   </nav>
@@ -49,7 +55,9 @@ layout: default
     </p>
 
     <p>تمام کلاس ها در جاوا یک تابع به نام <strong>hashCode</strong> دارن که این تابع یک کد اختصاصی برای کلاس تولید
-      میکنه؛ زمانی که دو عنصر باهم برابر باشن هش کد های یکسانی دارن.</p>
+      میکنه؛ زمانی که دو عنصر با متد <strong>equals</strong> باهم برابر باشن و هش کد های یکسانی داشته باشن، دو عنصر در
+      Set تکراری هستن.</p>
+
     <p>مقایسه ی عناصر در HashSet و LinkedHashSet با هش‌ کد صورت می گیره و در TreeSet با Comparable یا Comparator.</p>
 
   </section>
@@ -513,7 +521,7 @@ System.out.println(navigableSet.descendingSet());
 
   </section>
 
-  <section>
+  <section id="p4">
     <h2>پیچیدگی زمان (Time Complexity)</h2>
 
     <p>در جدول زیر پیچیدگی زمان کلاس های HashSet, LinkedHashSet و TreeSet برای افزودن و جستجوی عناصر شرح داده شده است.
@@ -551,11 +559,59 @@ System.out.println(navigableSet.descendingSet());
       </tbody>
     </table>
 
-    <p>اگه مرتب سازی برامون مهم نباشه استفاده از HashSet از همه سریع تره؛ اگه مرتب سازی بر اساس افزودن عناصر و صدا زدن
+    <p>اگه مرتب سازی برامون مهم نباشه استفاده از HashSet از همه بهینه تره؛ اگه مرتب سازی بر اساس افزودن عناصر و صدا زدن
       عناصر اول و آخر اهمیت داشته باشه استفاده از LinkedHashSet مناسبه و اگه بخوایم عناصر بر اساس مقایسه ی طبیعی توسط
       Comparable در Set قرار بگیرن یا توسط Comparator باهم مقایسه و اضافه بشن استفاده از TreeSet گزینه ی مناسبیه.</p>
   </section>
-  <section id="p4">
+  <section id="p5">
+    <h2>مورد مطالعه (مثال) ها</h2>
+    <p>در مثال زیر میخوایم برنامه یک فایل جاوا رو بخونه و بررسی کنه چندتا کلیدواژه در فایل وجود داره.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+public class CountKeywords {
+
+    public static void main(String[] args) throws IOException {
+
+        String[] keywordString = {"abstract", "assert", "boolean",
+                "break", "byte", "case", "catch", "char", "class", "const",
+                "continue", "default", "do", "double", "else", "enum",
+                "extends", "for", "final", "finally", "float", "goto",
+                "if", "implements", "import", "instanceof", "int",
+                "interface", "long", "native", "new", "package", "private",
+                "protected", "public", "return", "short", "static",
+                "strictfp", "super", "switch", "synchronized", "this",
+                "throw", "throws", "transient", "try", "void", "volatile",
+                "while", "true", "false", "null"};
+
+
+        Set&lt;String&gt; keywordSet = new HashSet&lt;&gt;(Arrays.asList(keywordString));
+
+        Scanner input = new Scanner(System.in);
+        System.out.println("Enter java file path: ");
+        
+        File file = new File(input.nextLine());
+
+        Scanner read = new Scanner(file);
+
+        int count = 0;
+        while (read.hasNext()) {
+            String word = read.next();
+            if (keywordSet.contains(word))
+                count++;
+        }
+
+        read.close();
+
+        System.out.println("There are " + count + " Java keywords in " + file.getName());
+    }
+}
+        </pre>
+      </div>
+    </div>
+  </section>
+  <section id="p6">
     <h2>خلاصه</h2>
     <ul>
       <li>از Set برای نگهداری عناصر غیر تکراری استفاده می کنیم.</li>
