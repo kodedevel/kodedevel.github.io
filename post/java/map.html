@@ -1,0 +1,769 @@
+---
+layout: default
+---
+
+<article>
+  <nav class="toc">
+    <div>دسترسی سریع</div>
+    <ul>
+      <li>
+        <a href="#p0">معرفی Map</a>
+      </li>
+      <li>
+        <a href="#p1">استفاده از HashMap</a>
+      </li>
+      <li>
+        <a href="#p2">استفاده از LinkedHashMap</a>
+      </li>
+      <li>
+        <a href="#p3">استفاده از TreeMap</a>
+      </li>
+      <li>
+        <a href="#p4">پیچیدگی زمان (Time Complexity)</a>
+      </li>
+      <li>
+        <a href="#p5">مورد مطالعه (مثال) ها</a>
+      </li>
+      <li>
+        <a href="#p6">خلاصه</a>
+      </li>
+    </ul>
+  </nav>
+  <aside class="note">
+    <p class="note-head">توجه</p>
+    <p>
+      پیش‌نیاز این مطلب، موضوع <a href="linkedlist.html">لیست پیوندی
+        (LinkedList)</a> است که میتونید بهشون مراجعه کنید؛ این مطلب در مورد
+      استفاده از Map در جاواست، برای پیاده‌سازی Map در جاوا میتونید به مطلب <a
+        href="/post/data-structure/map.html">پیاده‌سازی ‌‌Map در ساختمان داده</a> مراجعه کنید.
+    </p>
+  </aside>
+  <section id="p0">
+    <h2>معرفی Map</h2>
+    <p>هر Map یک مجموعه از <strong>کلید (Key)</strong> و <strong>مقدار (Value)</strong> است که با استفاده از کلید
+      میتونیم مقدار رو برگردونیم؛ کلید در Map
+      نمیتونه تکراری باشه اما مقدار میتونه تکراری باشه؛ به Map <strong>دیکشنری (Dictionary)</strong> هم گفته میشه.</p>
+
+
+    <section>
+      <h3>بررسی کلاس Entry</h3>
+      <p>هر Key و Value در Map داخل کلاسی به نام <strong>Entry</strong> نگهداری میشه و هر Map مجموعه ای از Entry هاست؛
+        در زیر متد های کلاس Entry به صورت UML شرح داده شده است.</p>
+
+      <table class="tb">
+        <thead>
+          <tr>
+            <th colspan="2">java.util.Map.Entry&lt;K, V&gt;</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="tDataLTR">getKey(): K</td>
+            <td class="tDataRTL">key رو بر میگردونه.</td>
+          </tr>
+          <tr>
+            <td class="tDataLTR">getValue(): V</td>
+            <td class="tDataRTL">value رو بر میگردونه.</td>
+          </tr>
+          <tr>
+            <td class="tDataLTR">setValue(v: V): void</td>
+            <td class="tDataRTL">value رو مقداردهی میکنه.</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </section>
+
+    <p>در تصویر زیر سلسله مراتب ارث‌بری کلاس های Map شرح داده شده است.</p>
+
+    <figure>
+      <img src="/resources/image/java/java_map_inheritance_hierarchy.png" alt="سلسله مراتب ارث‌بری کلاس های Map">
+      <figcaption>سلسله مراتب ارث‌بری کلاس های Map</figcaption>
+    </figure>
+
+    <section>
+      <h3>بررسی اینترفیس Map</h3>
+      <p>کلاس های Map در جاوا اینترفیس Map رو پیاده‌سازی میکنن و متد های مشترک بین تمام پیاده‌سازی های Map در اینترفیس
+        Map
+        قرار داره؛ در نمودار UML زیر متد های تعریف شده در Map شرح داده شده است.</p>
+
+      <table class="tb">
+        <thead>
+          <tr>
+            <th colspan="2">Interface</th>
+          </tr>
+          <tr>
+            <th colspan="2">&lt;&lt;java.util.Map&lt;K, V&gt;&gt;&gt;</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="tDataLTR">+put(key: K, value: V)</td>
+            <td class="tDataRTL">جفت Key و Value رو به صورت Entry به Map اضافه میکنه.</td>
+          </tr>
+          <tr>
+            <td class="tDataLTR">+putAll(map: Map&lt;? extends K, ? extends V&gt;</td>
+            <td class="tDataRTL">تمام Entry های map رو به Map فعلی اضافه می کنه.</td>
+          </tr>
+          <tr>
+            <td class="tDataLTR">+containsKey(key: Object): boolean</td>
+            <td class="tDataRTL">اگه Key در Map وجود داشته باشه مقدار true رو بر میگردونه.</td>
+          </tr>
+          <tr>
+            <td class="tDataLTR">+containsValue(value: Object): boolean</td>
+            <td class="tDataRTL">اگه یک یا چند کلید به مقدار value نگاشت شده باشه مقدار true رو بر میگردونه.</td>
+          </tr>
+          <tr>
+            <td class="tDataLTR">+entrySet(): Set&lt;Entry&lt;K, V&gt;&gt;</td>
+            <td class="tDataRTL">یک Set از Entry های موجود در Map رو بر میگردونه.</td>
+          </tr>
+          <tr>
+            <td class="tDataLTR">+get(key: Object): V</td>
+            <td class="tDataRTL">value مرتبط با Key رو بر میگردونه.</td>
+          </tr>
+          <tr>
+            <td class="tDataLTR">+isEmpty(): boolean</td>
+            <td class="tDataRTL">اگه Map خالی باشه مقدار true رو بر میگردونه.</td>
+          </tr>
+          <tr>
+            <td class="tDataLTR">+keySet(): Set&lt;K&gt;</td>
+            <td class="tDataRTL">یک Set از کلید های موجود در Map رو بر میگردونه.</td>
+          </tr>
+          <tr>
+            <td class="tDataLTR">+remove(key: Object): V</td>
+            <td class="tDataRTL">entry مربوط به Key مورد نظر رو حذف می کنه و value رو بر میگردونه.</td>
+          </tr>
+          <tr>
+            <td class="tDataLTR">+size()</td>
+            <td class="tDataRTL">تعداد entry های داخل Map رو بر میگردونه.</td>
+          </tr>
+          <tr>
+            <td class="tDataLTR">+values(): Collection&lt;V&gt;</td>
+            <td class="tDataRTL">تمام value های موجود در Map رو به صورت Collection بر میگردونه.</td>
+          </tr>
+          <tr>
+            <td class="tDataLTR">+forEach(action: Consumer&lt;? super K, ? super V&gt;</td>
+            <td class="tDataRTL">به پیمایش در entry های Map می پردازه.</td>
+          </tr>
+          <tr>
+            <td class="tDataLTR">+clear(): void</td>
+            <td class="tDataRTL">تمام Entry ها رو از Map حذف میکنه.</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </section>
+
+    <p>سه کلاس <strong>HashMap</strong>, <strong>LinkedHashMap</strong> و <strong>TreeMap</strong> از پیاده‌سازی های Map
+      هستن؛ کلاس HashMap و LinkedHashMap در با جاوا با هش کد پیاده سازی شدن و کلاس TreeMap با <strong>red-black
+        tree</strong>.</p>
+
+    <section>
+      <h3>بررسی هش کد (hash code)</h3>
+      <p>به طور کلی کلاس های *Hash* با هش کد (hash code) پیاده سازی شدن، هر کلاسی در جاوا یک کد اختصاصی داره که با
+        تابع <strong>hashCode</strong> ایجاد میشه؛ زمانی که دو عنصر با <strong>equals</strong> باهم برابر باشن و
+        هش کد های یکسانی داشته باشن میگیم دو عنصر باهم یکسان هستن.</p>
+
+      <p>محل قرار گرفتن Key در HashMap ها با hashCode مشخص میشه و زمانی که جایگاه Key پیدا بشه باهاش میتونیم Value رو
+        برگردونیم.</p>
+    </section>
+
+  </section>
+
+
+  <section id="p1">
+    <h2>استفاده از HashMap</h2>
+    <p>عناصر در HashMap به ترتیب و بر اساس هش کد هاشون قرار میگیرن، زمانی که بخوایم جفت Key, Value رو به یک HashMap
+      اضافه کنیم، محل قرار گرفتن این جفت در HashMap بر اساس هش کد های Key مشخص میشه و به صورت Entry داخل Map قرار
+      میگیرن؛ سپس با همین هش کد میتونیم محل قرار گرفتن Entry رو پیدا کنیم و Value رو صدا بزنیم.</p>
+
+    <p>در نمودار UML زیر کانستراکتور (سازنده) های کلاس HashMap شرح داده شده است.</p>
+
+    <table class="tb">
+      <thead>
+        <tr>
+          <th>java.util.HashMap</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="tDataLTR">+HashMap()</td>
+          <td class="tDataRTL">یک نمونه از HashMap با loadFactor پیشفرض 0.75 ایجاد میکنه.</td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">+HashMap(capacity: int, loadFactor: float)</td>
+          <td class="tDataRTL">یک نمونه از HashMap با ظرفیت (capacity) و loadFactor از پیش تعیین شده ایجاد میکنه.</td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">+HashMap(map: Map&lt;? extends K, ? extends V&gt;)</td>
+          <td class="tDataRTL">یک نمونه از HashMap ایجاد میکنه و عناصر موجود در map رو بهش اضافه می کنه.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>به تعداد Entry هایی که Map میتونه داخل خودش نگهداری کنه ظرفیت (capacity) میگن، زمانی که ظرفیت Map پر بشه به صورت
+      خودکار افزایش پیدا میکنه و امکان اضافه شدن Entry های جدید به Map فراهم میشه.</p>
+    <p>با loadFactor آستانه ی افزایش ظرفیت Map رو مشخص میکنیم مثلا اگه ظرفیت Map برابر با 16 باشه و loadFactor برابر با
+      0.5 باشه، زمانی که تعداد Entry های موجود در Map به 8 برسه ظرفیت به صورت خودکار افزایش پیدا میکنه.</p>
+
+
+    <p>در مثال زیر یک نمونه از استفاده از HashMap اورده شده است، میخوایم چندتا اسم رو به صورت key و سن رو به صورت value
+      در HashMap ذخیره کنیم.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+Map&lt;String, Integer&gt; map = new HashMap&lt;&gt;();
+
+map.put("Rick", 52);
+map.put("Carl", 32);
+map.put("Rosita", 38);
+map.put("Henry", 32);
+map.put("Maggie", 33);
+map.put("Negan", 45);
+
+System.out.println("Display entries in map: ");
+System.out.println(map + "\n");
+
+System.out.println("Is Bijan in list?" + map.containsKey("Bijan"));
+System.out.println("Do we have 32 yo person? " + map.containsValue(32));
+System.out.println("List of names in map: ");
+System.out.println(map.keySet());
+System.out.println("List of Ages in map: ");
+System.out.println(map.values() + "\n");
+        </pre>
+      </div>
+    </div>
+
+  </section>
+
+
+  <section id="p2">
+    <h2>استفاده از LinkedHashMap</h2>
+
+    <p>در پیاده‌سازی LinkedHashMap از <a href="linkedlist.html">LinkedList</a> استفاده شده، Entry ها به ترتیبی که اضافه
+      میشن در Map قرار میگیرن، زمانی که ترتیب قرار گرفتن Entry ها مهم باشه یا بخوایم یک Entry رو در اول یا آخر Map حذف
+      یا اضافه کنیم از LinkedHashMap استفاده می کنیم.</p>
+
+
+    <p>در نمودار UML زیر کانستراکتور (سازنده) های کلاس LinkedHashMap شرح داده شده است.</p>
+
+    <table class="tb">
+      <thead>
+        <tr>
+          <th colspan="2">java.util.LinkedHashMap</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="tDataLTR">+LinkedHashMap()</td>
+          <td class="tDataRTL">یک نمونه از LinkedHashMap با loadFactor پیشفرض 0.75 ایجاد میکنه.</td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">+LinkedHashMap(capacity: int, loadFactor: float, accessOrder: boolean)</td>
+          <td class="tDataRTL">یک نمونه از LinkedHashMap با ظرفیت (capacity) و loadFactor از پیش تعیین شده ایجاد میکنه و
+            زمانی که accessOrder برابر با true باشه، هر Entry که با get صدا میزنیم میره انتهای Map.</td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">+LinkedHashMap(map: Map&lt;? extends K, ? extends V&gt;)</td>
+          <td class="tDataRTL">یک نمونه از LinkedHashMap ایجاد میکنه و عناصر موجود در map رو بهش اضافه می کنه.</td>
+        </tr>
+
+        <tr>
+          <td class="tDataLTR">+putFirst(key: K, value: V): V</td>
+          <td class="tDataRTL">یک Entry از Key و Value به ابتدای Map اضافه می کنه؛ اگه Entry از پیش وجود داشته باشه
+            میارش ابتدای صف و مقدار Value قبلی رو با Value جدید جایگزین میکنه و Value قبلی رو بر میگردونه.</td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">+putLast(key: K, value: V): V</td>
+          <td class="tDataRTL">یک Entry از Key و Value به انتهای Map اضافه می کنه؛ اگه Entry از پیش وجود داشته باشه
+            میارش انتهای Map و مقدار Value قبلی رو با Value جدید جایگزین میکنه و Value قبلی رو بر میگردونه.</td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">+firstEntry(): Entry&lt;K, V&gt;</td>
+          <td class="tDataRTL">اولین Entry موجود در Map رو بر میگردونه.</td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">+lastEntry(): Entry&lt;K, V&gt;</td>
+          <td class="tDataRTL">آخرین Entry موجود در Map رو بر میگردونه.</td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">+pollFirstEntry(): Entry&lt;K, V&gt;</td>
+          <td class="tDataRTL">اولین Entry موجود در Map رو حذف میکنه و بر میگردونه، اگه Map خالی باشه مقدار null رو بر
+            میگردونه.</td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">+pollLastEntry(): Entry&lt;K, V&gt;</td>
+          <td class="tDataRTL">آخرین Entry موجود در Map رو حذف میکنه بر میگردونه و اگه Map خالی باشه مقدار null رو بر
+            میگردونه.</td>
+        </tr>
+      </tbody>
+    </table>
+
+
+    <p>در مثال زیر میخوایم اسم و سن رو به صورت Key و Value در LinkedHashMap ذخیره کنیم.</p>
+
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+LinkedHashMap&lt;String, Integer&gt; linkedHashMap = new LinkedHashMap&lt;&gt;();
+
+linkedHashMap.put("Rick", 52);
+linkedHashMap.put("Carl", 32);
+linkedHashMap.put("Rosita", 38);
+linkedHashMap.put("Henry", 32);
+linkedHashMap.put("Maggie", 33);
+linkedHashMap.put("Negan", 45);
+
+linkedHashMap.forEach((name, age) -&gt; System.out.println("name: " + name + " age: " + age));
+System.out.println();
+
+System.out.println("Updating map by changing Maggie's age and re ordering it as first entry: ");
+int oldAge = linkedHashMap.putFirst("Maggie", 27);
+System.out.println("old age of Maggie: " + oldAge);
+System.out.println();
+linkedHashMap.forEach((name, age) -&gt; System.out.println("name: " + name + " age: " + age));
+      </pre>
+      </div>
+    </div>
+
+    <p>در مثال زیر میخوایم اسم و سن رو به صورت Key و Value در LinkedHashMap با accessOrder ذخیره کنیم.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+LinkedHashMap&lt;String, Integer&gt; accessOrderMap = new LinkedHashMap&lt;&gt;(16, 0.5f, true);
+
+System.out.println("Access order enabled...\n");
+
+accessOrderMap.put("Rick", 52);
+accessOrderMap.put("Carl", 32);
+accessOrderMap.put("Rosita", 38);
+accessOrderMap.put("Henry", 32);
+accessOrderMap.put("Maggie", 33);
+accessOrderMap.put("Negan", 45);
+
+System.out.println("Rosita's age is " + accessOrderMap.get("Rosita"));
+System.out.println("Maggie's age is " + accessOrderMap.get("Maggie"));
+
+System.out.println();
+
+accessOrderMap.forEach((name, age) -&gt; System.out.println("name: " + name + " age: " + age));
+
+System.out.println();
+
+System.out.println("Updating map by changing Maggie's age and re ordering it as first entry: ");
+
+System.out.println();
+
+accessOrderMap.putFirst("Maggie", 27);
+accessOrderMap.forEach((name, age) -&gt; System.out.println("name: " + name + " age: " + age));
+      </pre>
+      </div>
+    </div>
+
+    <p>در مثال بالا زمانی که سن Rosita و Maggie با get صدا زده میشه، Entry هاشون میره به انتهای Map.</p>
+
+  </section>
+
+  <section id="p3">
+    <h2>استفاده از TreeMap</h2>
+    <p>کلاس TreeMap در جاوا با <strong>Red-Black Tree</strong> پیاده‌سازی شده و ترتیب قرار گرفتن Entry ها در TreeMap بر
+      اساس مقایسه ای
+      است که با Comparable یا Comparator بین Entry ها انجام میشه؛ در TreeMap زمانی دو Key باهم یکسان هستند که مقدار 0
+      توسط Comparable یا Comparator برگردونده بشه.</p>
+
+
+    <p>در نمودار UML زیر کانستراکتور (سازنده) های TreeMap با ویژگی هاشون شرح داده شده است.</p>
+
+    <table class="tb">
+      <thead>
+        <tr>
+          <th colspan="2">java.util.TreeMap</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td class="tDataLTR">+TreeMap()</td>
+          <td class="tDataRTL">یک نمونه از TreeMap ایجاد میکنه.</td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">+TreeMap(comparator: Comparator&lt;? super K&gt;</td>
+          <td class="tDataRTL">یک نمونه از TreeMap ایجاد می کنه و Entry ها رو به ترتیب مقایسه Key هاشون که با Comparator
+            میشن در TreeMap قرار میده.</td>
+        </tr>
+        <tr>
+          <td class="tDataLTR">+TreeMap(map: Map&lt;? extends K, ? extends V&gt;)</td>
+          <td class="tDataRTL">یک نمونه از TreeMap ایجاد می کنه و Entry های موجود در map رو بهش اضافه می کنه.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <section>
+      <h3>اینترفیس SortedMap</h3>
+
+      <p>یکی از پیاده‌سازی های TreeMap اینترفیس SortedMap است؛ در نمودار UML زیر متد های SortedMap با توضیحاتشون آورده
+        شده است.</p>
+
+      <table class="tb">
+        <thead>
+          <tr>
+            <th colspan="2">Interface</th>
+          </tr>
+          <tr>
+            <th colspan="2">java.util.SortedMap</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="tDataLTR">+firstEntry(): Entry&lt;K, V&gt;</td>
+            <td class="tDataRTL">اولین Entry در TreeMap رو بر میگردونه.</td>
+          </tr>
+          <tr>
+            <td class="tDataLTR">+lastEntry(): Entry&lt;K, V&gt;</td>
+            <td class="tDataRTL">آخرین Entry در TreeMap رو بر میگردونه.</td>
+          </tr>
+          <tr>
+            <td class="tDataLTR">+firstKey(): K</td>
+            <td class="tDataRTL">اولین Key موجود در TreeMap رو بر میگردونه.</td>
+          </tr>
+          <tr>
+            <td class="tDataLTR">+lastKey(): K</td>
+            <td class="tDataRTL">آخرین Key موجود در TreeMap رو بر میگردونه.</td>
+          </tr>
+          <tr>
+            <td class="tDataLTR">+comparator&lt;? extends K&gt;</td>
+            <td class="tDataRTL">comparator استفاده شده در مرتب کردن key ها رو بر میگردونه و اگه از Comparator استفاده
+              نشده باشه مقدار
+              null رو بر میگردونه.</td>
+          </tr>
+          <tr>
+            <td class="tDataLTR">+headMap(untilKey: K): SortedMap&lt;K, V&gt;</td>
+            <td class="tDataRTL">یک SortedMap جدید از Key های قبل از untilKey بر میگردونه.</td>
+          </tr>
+          <tr>
+            <td class="tDataLTR">+tailMap(fromKey: K): SortedMap&lt;K, V&gt;</td>
+            <td class="tDataRTL">یک SortedMap جدید از Key های fromKey به بعد بر میگردونه.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>در مثال زیر میخوایم یک TreeMap ایجاد کنیم و Key ها رو به ترتیب طولشون داخل TreeMap قرار بدیم.</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
+System.out.println("Putting Name and Ages using TreeMap and comparing them by length...\n");
+
+SortedMap&lt;String , Integer&gt; sortedMap = new TreeMap&lt;&gt;(Comparator.comparingInt(String::length));
+sortedMap.put("Rick", 52);
+sortedMap.put("Carl", 32);
+sortedMap.put("Rosita", 38);
+sortedMap.put("Henry", 32);
+sortedMap.put("Maggie", 33);
+sortedMap.put("Negan", 45);
+
+System.out.println(sortedMap);
+
+System.out.println("Names before Henry: " + sortedMap.headMap("Henry"));
+System.out.println("Names after Henry: " + sortedMap.tailMap("Henry"));
+          </pre>
+        </div>
+      </div>
+
+      <p>بعد از اجرای مثال بالا بعضی از اسامی به TreeMap اضافه نمیشن و بخاطر اینه که اسامی به عنوان Key در نظر گرفته شدن
+        و مقایسشون بر اساس طول String است و چون بعضی از Key ها طول یکسانی دارن بنابراین به TreeMap اضافه نمیشن و تنها
+        Value اولین Key اضافه شده تغییر می کنه.</p>
+
+    </section>
+
+
+    <section>
+      <h3>اینترفیس NavigableMap</h3>
+      <p>یکی دیگه از پیاده‌سازی ها در TreeMap اینترفیس NavigableMap است؛ اینترفیس NavigableMap یک ساب اینترفیس از
+        SortedMap است و علاوه بر متد های گفته شده در SortedMap متد های اختصاصی خودشو هم داره.</p>
+
+      <p>در نمودار UML زیر متد های تعریف شده در اینترفیس NavigableMap به همراه توضیحاتشون شرح داده شده است.</p>
+
+      <table class="tb">
+        <thead>
+          <tr>
+            <th colspan="2">Interface</th>
+          </tr>
+          <tr>
+            <th colspan="2">java.util.NavigableMap</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="tDataLTR">+lowerKey(k: K): K</td>
+            <td class="tDataRTL">بزرگترین کلید در TreeMap که کوچکتر از k باشه رو بر میگردونه.</td>
+          </tr>
+          <tr>
+            <td class="tDataLTR">+lowerEntry(k: K): Map.Entry&lt;K, V&gt;</td>
+            <td class="tDataRTL">Entry بزرگترین کلید در TreeMap که کوچکتر از K باشه رو بر میگردونه.</td>
+          </tr>
+          <tr>
+            <td class="tDataLTR">+higherKey(k: K): K</td>
+            <td class="tDataRTL">کوچکترین کلید در TreeMap که بزرگتر از k باشه رو بر میگردونه.</td>
+          </tr>
+          <tr>
+            <td class="tDataLTR">+higherEntry(k: K): Map.Entry&lt;K, V&gt;</td>
+            <td class="tDataRTL">Entry کوچکترین کلید در TreeMap که بزرگتر از k باشه رو بر میگردونه.</td>
+          </tr>
+          <tr>
+            <td class="tDataLTR">+floorKey(k: K): K</td>
+            <td class="tDataRTL">بزرگترین کلید در TreeMap که کوچکتر یا مساوی k باشه رو بر میگردونه.</td>
+          </tr>
+          <tr>
+            <td class="tDataLTR">+floorEntry(k: K): Map.Entry&lt;K, V&gt;</td>
+            <td class="tDataRTL">Entry مربوط به بزرگترین کلید در TreeMap که کوچکتر یا مساوی k باشه رو بر میگردونه.</td>
+          </tr>
+          <tr>
+            <td class="tDataLTR">+ceilingKey(k: K): K</td>
+            <td class="tDataRTL">کوچکترین کلید در TreeMap که بزرگتر یا مساوی k باشه رو بر میگردونه.</td>
+          </tr>
+          <tr>
+            <td class="tDataLTR">+ceilingEntry(k: K): Map.Entry&lt;K, V&gt;</td>
+            <td class="tDataRTL">Entry مربوط به کوچکترین کلید در TreeMap که بزرگتر یا مساوی k باشه رو بر میگردونه.</td>
+          </tr>
+          <tr>
+            <td class="tDataLTR">+descendingMap(): NavigableMap&lt;K, V&gt;</td>
+            <td class="tDataRTL">ترتیب قرار گرفتن Entry ها رو معکوس میکنه و یک نمونه از NavigableMap با ترتیب جدید بر
+              میگردونه.</td>
+          </tr>
+          <tr>
+            <td class="tDataLTR">+descendingSet(): NavigableSet&lt;K&gt;</td>
+            <td class="tDataRTL">ترتیب قرار گرفتن کلید ها در NavigableMap رو معکوس میکنه و یک نمونه از <a
+                href="set.html">NavigableSet</a> از کلید ها رو با ترتیب جدید بر میگردونه.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>در مثال زیر میخوایم اسم و سن ها رو بدون استفاده از Comparator به TreeMap اضافه کنیم و سپس از متد های گفته شده
+        در NavigableMap استفاده کنیم.</p>
+
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Java">
+System.out.println("Using TreeMap in natural order...");
+NavigableMap&lt;String, Integer&gt; navigableMap = new TreeMap&lt;&gt;(map);
+
+System.out.println(navigableMap);
+System.out.println("lowerEntry(\"R\"): " + navigableMap.lowerEntry("R"));
+System.out.println("higherEntry(\"R\"): " + navigableMap.higherEntry("R"));
+System.out.println("floorEntry(\"R\"): " + navigableMap.floorEntry("R"));
+System.out.println("ceilingEntry(\"R\"): " + navigableMap.ceilingEntry("R"));
+System.out.println(navigableMap.descendingMap());
+System.out.println(navigableMap.descendingKeySet());
+          </pre>
+        </div>
+      </div>
+
+    </section>
+
+  </section>
+
+  <section id="p4">
+    <h2>پیچیدگی زمان (Time Complexity)</h2>
+
+    <p>در جدول زیر پیچیدگی زمان افزودن و صدا زدن Entry ها در حالت amortized در HashMap, LinkedHashMap, TreeMap شرح داده
+      شده است.</p>
+
+    <table class="table-regular">
+      <thead>
+        <tr>
+          <th>
+          </th>
+          <th>
+            put
+          </th>
+          <th>
+            get
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>HashMap</td>
+          <td>O(1)</td>
+          <td>O(1)</td>
+        </tr>
+        <tr>
+          <td>LinkedHashMap</td>
+          <td>O(1)</td>
+          <td>O(1)</td>
+        </tr>
+        <tr>
+          <td>TreeMap</td>
+          <td>O(logn)</td>
+          <td>O(logn)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="note">
+      <p class="note-head">توجه</p>
+      <p>پیچیدگی زمان برای TreeMap در بدترین حالت (worst case) نیز O(logn) است در صورتی که برای HashMap LinkedHashMap
+        برابر با O(n) است.</p>
+    </div>
+
+  </section>
+
+  <section id="p5">
+    <h2>مورد مطالعه (مثال) ها</h2>
+    <p>در مثال زیر میخوایم دفعات تکرار کلمات در یک String رو با Map بررسی کنیم.</p>
+
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+
+public class CountOccurrencesOfWords {
+
+    public static void main(String[] args) {
+        String text = "Good morning. Have a good class. " +
+                "Have a good visit. Have fun!";
+
+        Map&lt;String, Integer&gt; map = new HashMap&lt;&gt;();
+
+
+        String[] words = text.split("[\\s+\\p{P}]");
+
+        for (String word : words) {
+            String key = word.toLowerCase();
+            if (!key.isBlank()) {
+                if (map.get(key) == null)
+                    map.put(key, 1);
+                else map.put(key, (map.get(key) + 1));
+            }
+        }
+
+        System.out.printf("%-10s %10s\n", "Word", "Number of Occurrences");
+        for (int i = 0; i &lt; 40; i++)
+            System.out.print("-");
+
+        System.out.println();
+
+        map.forEach((word, occurrences) -&gt; System.out.printf("%-10s %10d\n", word, occurrences));
+    }
+}
+        </pre>
+      </div>
+    </div>
+
+
+    <p>در مثال زیر برنامه دفعات تکرار کلیدواژه های جاوا در یک فایل جاوا رو بررسی میکنه و نمایش میده، اگه کلیدواژه در
+      فایل وجود نداشته باشه نمایش نمیده.</p>
+    <div class="sample">
+      <div class="snippet-container">
+        <pre class="snippet Java">
+public class CountOccurrencesOfKeywords {
+
+    public static void main(String[] args) throws IOException {
+
+        Map&lt;String, Integer&gt; map = prepareKeywordsMap();
+
+        Scanner input = new Scanner(System.in);
+        System.out.println("Enter java file path: ");
+        String path = input.nextLine();
+
+        File file = new File(path);
+
+        if (!file.getName().matches(".+\\.java")){
+            System.out.println("You should choose a java file");
+            System.exit(0);
+        }
+
+        Scanner readFile = new Scanner(file);
+
+        while (readFile.hasNext()){
+            String line = readFile.nextLine();
+            String[] words = line.split("\\s");
+
+            for (String word : words) {
+                if (map.containsKey(word)) {
+                    int count = map.get(word);
+                    map.put(word, ++count);
+                }
+            }
+        }
+
+        readFile.close();
+
+        System.out.printf("%-10s %22s\n", "Keyword", "Number of Occurrences");
+        for (int i = 0; i &lt; 35; i++)
+            System.out.print("-");
+
+        System.out.println();
+
+        map.forEach((keyword, occurrences) -&gt;{
+            if (occurrences != 0){
+                System.out.printf("%-10s %10d\n", keyword, occurrences);
+            }
+        });
+    }
+
+    private static Map&lt;String, Integer&gt; prepareKeywordsMap(){
+        String[] keywordString = {"abstract", "assert", "boolean",
+                "break", "byte", "case", "catch", "char", "class", "const",
+                "continue", "default", "do", "double", "else", "enum",
+                "extends", "for", "final", "finally", "float", "goto",
+                "if", "implements", "import", "instanceof", "int",
+                "interface", "long", "native", "new", "package", "private",
+                "protected", "public", "return", "short", "static",
+                "strictfp", "super", "switch", "synchronized", "this",
+                "throw", "throws", "transient", "try", "void", "volatile",
+                "while", "true", "false", "null"};
+
+        Map&lt;String, Integer&gt; map = new HashMap&lt;&gt;();
+
+        for (String keyword : keywordString){
+            map.put(keyword, 0);
+        }
+
+        return map;
+    }
+}
+        </pre>
+      </div>
+    </div>
+  </section>
+
+  <section id="p6">
+    <h2>خلاصه</h2>
+
+    <ul>
+      <li>هر Map در جاوا دارای کلید و مقدار است و برای دسترسی به مقدار از کلید استفاده میکنیم.</li>
+      <li>جفت کلید و مقدار به صورت Entry در Map نگهداری میشن.</li>
+      <li>تمام پیاده‌سازی های Map در جاوا اینترفیس Map رو پیاده‌سازی میکنن.</li>
+      <li>Entry ها در HashMap به ترتیب هش کد هاشون نگهداری میشن.</li>
+      <li>Entry ها در LinkedHashMap به ترتیبی که اضافه میشن نگهداری میشن و اگه فلگ accessOrder برابر با true باشه بر
+        اساس دسترسی که با get به مقدار داریم نگهداری میشن.</li>
+      <li>Entry ها در TreeMap به ترتیب مقایسه ای که با Comparable یا Comparator میشن، نگهداری میشن.</li>
+      <li>پیچیدگی زمان افزودن و صدا زدن Entry در HashMap و LinkedHashMap در حالت amortized برابر با O(1) است و در
+        TreeMap برابر با O(logn) است.</li>
+    </ul>
+
+  </section>
+
+
+</article>
+{% capture links %}
+<li>
+  <a href="/post/java/linkedlist.html">کار با LinkedList در جاوا</a>
+</li>
+<li>
+  <a href="/post/java/set.html">بررسی و استفاده از set در جاوا</a>
+</li>
+<li>
+  <a href="/post/java/collection.html">بررسی اینترفیس کالکشن و پیمایش در کالکشن ها</a>
+</li>
+
+<li>
+  <a href="/post/java/loops.html">حلقه ها در جاوا</a>
+</li>
+
+{% endcapture %} {% include article-foot.html relative_links = links %}

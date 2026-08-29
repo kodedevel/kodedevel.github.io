@@ -304,6 +304,14 @@
       "link": "/post/java/set.html"
     },
     {
+      "title": "آموزش Map در جاوا: استفاده از HashMap, LinkedHashMap و TreeMap",
+      "description": "آموزش Map در جاوا؛ معرفی Map، استفاده از انواع پیاده‌سازی های Map و بررسی ویژگی و پیچیدگی زمان HashMap, LinkedHashMap و TreeMap به همراه مثال های کاربردی.",
+      "datePublished": "2026-08-30",
+      "lastModified": "",
+      "imgCover": "/resources/image/java/cover_map.png",
+      "link": "/post/java/map.html"
+    },
+    {
       "title": "چندنخی (multithreading) در جاوا و کاتلین",
       "description": "مفهوم نخ (thread) ها، بررسی اینترفیس Runnable، کلاس Thread و مفهوم Thread Pool در جاوا و کاتلین به همراه مثال",
       "author": "یونس‌ سلیمانی",
