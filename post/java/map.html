@@ -448,6 +448,15 @@ accessOrderMap.forEach((name, age) -&gt; System.out.println("name: " + name + " 
             <td class="tDataRTL">یک SortedMap جدید از Key های fromKey به بعد بر میگردونه.</td>
           </tr>
         </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="2" dir="rtl">توجه: متد های <strong>firstEntry</strong> و <strong>lastEntry</strong> از jdk21 به
+              بعد اضافه شدن و در
+              اینترفیس SequencedMap تعریف شدن که
+              SortedMap یک ساب اینترفیس از SequencedMap است، SequencedMap یک پیاده‌سازی مشترک بین TreeMap و
+              LinkedHashMap است که برای خلاصه تر شدن از بررسیش خودداری کردم.</td>
+          </tr>
+        </tfoot>
       </table>
 
       <p>در مثال زیر میخوایم یک TreeMap ایجاد کنیم و Key ها رو به ترتیب طولشون داخل TreeMap قرار بدیم.</p>
