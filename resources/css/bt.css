@@ -101,8 +101,8 @@
   width: 18px;
   height: 18px;
   background-color: #eeeeee;
-  text-align: center;
   align-items: center;
+  justify-content: center;
   line-height: 18px;
   border-radius: 50%;
   font-size: 0.75rem;
