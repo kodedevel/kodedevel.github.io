@@ -182,17 +182,23 @@ article{
     direction: ltr;
 }
 
+.tb tbody tr, .tb thead, .tb tfoot{
+  border: 1px solid #212121;
+}
+
 .tb tr th{
     font-weight: bold;
     font-size: 1.1rem;
     text-align: center;
     align-items: center;
-    background-color: #E0E0E0;
+    color: #fafafa;
+    background-color: #0D47A1;
+    padding: 8px 0;
 }
 
 .tb tr .tDataLTR{
     width: 40%;
-    background-color: #80d8ff;
+    background-color: #bbdefb;
     word-break: break-word;
     overflow-wrap: anywhere;
     direction: ltr;
@@ -202,11 +208,19 @@ article{
 
 .tb tr .tDataRTL{
     width: 60%;
-    background-color: #e1f5fe;
+    background-color: #e3f2fd;
     word-break: break-word;
     overflow-wrap: anywhere;
     direction: rtl;
     padding: 16px 8px;
+}
+
+.tb tfoot tr td{
+  background-color: white;
+  line-height: 32px;
+  line-break: normal;
+  padding: 8px;
+  font-weight: 500;
 }
 
 .table-regular{
