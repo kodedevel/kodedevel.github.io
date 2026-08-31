@@ -34,7 +34,7 @@ layout: default
         <a href="#p8">تبدیل map به آرایه برای جستجوی خطی بین عناصر</a>
       </li>
       <li>
-        <a href="#p9">پیاده سازی map در زبان های برنامه نویسی</a>
+        <a href="#p9">پیاده‌سازی map در زبان های برنامه نویسی</a>
       </li>
       <li>
         <a href="#p10">استفاده از map در زبان های برنامه نویسی</a>
@@ -95,13 +95,13 @@ c := 52
 
     <blockquote>در map عناصر به صورت جفت کلید (key) و مقدار (value) نگهداری میشن.</blockquote>
 
-    <p><strong>map</strong> یک پیاده سازی در ساختار داده است که عناصر رو به صورت جفت <strong>کلید (key)</strong> و
+    <p><strong>map</strong> یک پیاده‌سازی در ساختار داده است که عناصر رو به صورت جفت <strong>کلید (key)</strong> و
       <strong>مقدار
         (value)</strong> (یک عنصر به
       عنوان کلید و یک عنصر به عنوان مقدار) داخل خودش نگهداری میکنه؛ در map کلید ها نمیتونن تکراری باشن ولی مقادیر میتونن
       تکراری باشن، هر key و value به صورت جفت داخل یک
-      آرایه نگهداری میشه، با هش کد (hash code) ها میتونیم یک map پیاده سازی کنیم اگه با هش کد (hash code) ها یک map رو
-      پیاده سازی کنیم بهش HashMap میگیم،
+      آرایه نگهداری میشه، با هش کد (hash code) ها میتونیم یک map پیاده‌سازی کنیم اگه با هش کد (hash code) ها یک map رو
+      پیاده‌سازی کنیم بهش HashMap میگیم،
       به map <strong>دیکشنری
         (Dictionary)</strong> هم میگن.
     </p>
@@ -228,7 +228,7 @@ entries := new Entry[capacity]
 
     </section>
 
-    <p> رفع تداخل index ها (collision resolution) در روش separate chaining بهینه تره، در این مطلب به پیاده سازی map با
+    <p> رفع تداخل index ها (collision resolution) در روش separate chaining بهینه تره، در این مطلب به پیاده‌سازی map با
       روش
       separate chaining می پردازیم.</p>
 
@@ -286,7 +286,7 @@ class MyHashMap{
       <p class="note-head">
         توجه
       </p>
-      <p>در بالا برای loadFactor و capacity از مقادیر پیشفرض استفاده کردیم ولی در پیاده سازی واقعی میتونیم loadFactor و
+      <p>در بالا برای loadFactor و capacity از مقادیر پیشفرض استفاده کردیم ولی در پیاده‌سازی واقعی میتونیم loadFactor و
         capacity رو داخل کانستراکتور مقداردهی کنیم.</p>
     </aside>
 
@@ -342,7 +342,7 @@ function contains(key: K): boolean{
     </div>
 
     <p>ممکنه تو HashMap کلید وجود داشته باشه ولی مقدار برابر null باشه، کد بالا با وجود سادگی و خلاصه بودنش این وضعیت رو
-      نمیتونه تشخیص بده بنابراین برای پیاده سازی کامل تر شبه کد زیر رو پیاده سازی می کنیم.</p>
+      نمیتونه تشخیص بده بنابراین برای پیاده‌سازی کامل تر شبه کد زیر رو پیاده‌سازی می کنیم.</p>
 
     <div class="sample">
       <div class="snippet-container">
@@ -476,35 +476,35 @@ function toArray(): Entry&lt;K, V&gt;[]{
   </section>
 
   <section id="p9">
-    <h2>پیاده سازی map در زبان های برنامه نویسی</h2>
+    <h2>پیاده‌سازی map در زبان های برنامه نویسی</h2>
 
     <p>در این قسمت میخوایم چیزایی که گفته شد رو به عنوان کلاس <strong>HashMap</strong> در زبان های برنامه نویسی جاوا،
       کاتلین، جاوااسکریپت و پایتون به طور عملی پیاده کنیم.
     </p>
 
-    <p>برای راحتی یک دسترسی سریع به پیاده سازی ها با زبان های مختلف رو در زیر قرار دادیم.</p>
+    <p>برای راحتی یک دسترسی سریع به پیاده‌سازی ها با زبان های مختلف رو در زیر قرار دادیم.</p>
 
 
     <nav class="toc">
-      <div>پیاده سازی map در زبان های مختلف</div>
+      <div>پیاده‌سازی map در زبان های مختلف</div>
       <ul>
         <li>
-          <a href="#map_implementation_java">پیاده سازی map با زبان جاوا</a>
+          <a href="#map_implementation_java">پیاده‌سازی map با زبان جاوا</a>
         </li>
         <li>
-          <a href="#map_implementation_kotlin">پیاده سازی map با کاتلین</a>
+          <a href="#map_implementation_kotlin">پیاده‌سازی map با کاتلین</a>
         </li>
         <li>
-          <a href="#map_implementation_javascript">پیاده سازی map با جاوااسکریپت</a>
+          <a href="#map_implementation_javascript">پیاده‌سازی map با جاوااسکریپت</a>
         </li>
         <li>
-          <a href="#map_implementation_python">پیاده سازی map با پایتون</a>
+          <a href="#map_implementation_python">پیاده‌سازی map با پایتون</a>
         </li>
       </ul>
     </nav>
 
     <section id="map_implementation_java">
-      <h3>پیاده سازی map با زبان جاوا</h3>
+      <h3>پیاده‌سازی map با زبان جاوا</h3>
       <p>در زیر یک map رو به صورت <a href="/post/java/generics.html">جنریک</a> با جاوا پیاده میکنیم.</p>
 
       <div class="sample">
@@ -729,8 +729,8 @@ public class MyHashMap&lt;K, V&gt; {
     </section>
 
     <section id="map_implementation_kotlin">
-      <h3>پیاده سازی map با کاتلین</h3>
-      <p>در زیر یک map رو به صورت جنریک با کاتلین پیاده سازی میکنیم.</p>
+      <h3>پیاده‌سازی map با کاتلین</h3>
+      <p>در زیر یک map رو به صورت جنریک با کاتلین پیاده‌سازی میکنیم.</p>
 
 
       <div class="sample">
@@ -892,7 +892,7 @@ class MyHashMap&lt;K, V&gt; (var capacity: Int = DEFAULT_CAPACITY,val loadFactor
     </section>
 
     <section id="map_implementation_javascript">
-      <h3>پیاده سازی map با جاوااسکریپت</h3>
+      <h3>پیاده‌سازی map با جاوااسکریپت</h3>
 
       <p>جاوااسکریپت یک زبان type-free است یعنی نوع متغیر هنگام مقداردهی متغیر مشخص میشه، در زیر یک map رو با
         جاوااسکریپت پیاده کرده ایم.</p>
@@ -1095,7 +1095,7 @@ class MyHashMap {
     </section>
 
     <section id="map_implementation_python">
-      <h3>پیاده سازی map با پایتون</h3>
+      <h3>پیاده‌سازی map با پایتون</h3>
       <p>پایتون یک زبان type-free است یعنی نوع متغیر هنگام مقداردهی متغیر مشخص میشه، در زیر یک map با پایتون پیاده کرده
         ایم.</p>
 

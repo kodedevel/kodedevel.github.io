@@ -22,7 +22,7 @@ layout: default
         <a href="#p3">صدا زدن یک عنصر از پشته (Stack)</a>
       </li>
       <li>
-        <a href="#p4">پیاده سازی پشته (Stack) در زبان های برنامه نویسی</a>
+        <a href="#p4">پیاده‌سازی پشته (Stack) در زبان های برنامه نویسی</a>
       </li>
       <li>
         <a href="#p5">استفاده از پشته (Stack) در زبان های برنامه نویسی</a>
@@ -42,7 +42,7 @@ layout: default
   </aside>
   <section id="p0">
     <h2>بررسی پشته (Stack)</h2>
-    <p>پشته (Stack) یکی از پیاده سازی ها در ساختار داده است، در پشته (Stack) دسترسی به عناصر یک طرفه است و بر خلاف لیست
+    <p>پشته (Stack) یکی از پیاده‌سازی ها در ساختار داده است، در پشته (Stack) دسترسی به عناصر یک طرفه است و بر خلاف لیست
       که میتونیم به عناصر با index دسترسی داشته باشیم در پشته فقط میتونیم آخرین عنصری که اضافه کردیم رو صدا بزنیم و برای
       دسترسی به عنصر بعدی باید آخرین عنصر از Stack خارج (حذف) بشه و پشته (Stack) معروفه به
       <strong>last-in-first-out</strong> به زبون خودمونی دیر اومدی میخوای زود بری :)
@@ -58,9 +58,9 @@ layout: default
     </figure>
 
     <p>پشته (Stack) رو میتونیم با استفاده از آرایه ها با سایز ثابت یا با <a href="linkedlist.html">لیست پیوندی
-        (LinkedList)</a> پیاده سازی کنیم؛ در این مطلب به پیاده سازی استک با لیست پیوندی می پردازیم.</p>
+        (LinkedList)</a> پیاده‌سازی کنیم؛ در این مطلب به پیاده‌سازی استک با لیست پیوندی می پردازیم.</p>
     <p>میتونیم یک پشته (Stack) رو با رابطه ی <strong>aggregation</strong> یا <strong>inheritance</strong> توسط لیست
-      پیوندی پیاده سازی کنیم؛ که در اینجا به پیاده سازی استک با لیست پیوندی با روش aggregation می پردازیم.</p>
+      پیوندی پیاده‌سازی کنیم؛ که در اینجا به پیاده‌سازی استک با لیست پیوندی با روش aggregation می پردازیم.</p>
 
   </section>
 
@@ -123,42 +123,42 @@ function peek(): E{
   </section>
 
   <section id="p4">
-    <h2>پیاده سازی استک در زبان های برنامه نویسی</h2>
+    <h2>پیاده‌سازی استک در زبان های برنامه نویسی</h2>
 
     <p>در اینجا میخوایم با استفاده از <a href="linkedlist.html">لیست پیوندی</a> که پیاده کردیم، استک رو در زبان های
-      برنامه نویسی جاوا، کاتلین، جاوااسکریپت و پایتون پیاده سازی کنیم.
+      برنامه نویسی جاوا، کاتلین، جاوااسکریپت و پایتون پیاده‌سازی کنیم.
     </p>
 
-    <p>در زیر پیاده سازی پشته (Stack) به صورت <strong>uml</strong> آورده شده است.</p>
+    <p>در زیر پیاده‌سازی پشته (Stack) به صورت <strong>uml</strong> آورده شده است.</p>
 
     <figure>
       <img src="/resources/image/data-structure/stack_with_linkedlist_uml_diagram.png"
-        alt="پیاده سازی استک با لیست پیوندی در uml">
-      <figcaption>پیاده سازی استک با لیست پیوندی در uml</figcaption>
+        alt="پیاده‌سازی استک با لیست پیوندی در uml">
+      <figcaption>پیاده‌سازی استک با لیست پیوندی در uml</figcaption>
     </figure>
 
-    <p>برای راحتی یک دسترسی سریع به پیاده سازی ها با زبان های مختلف رو در زیر قرار دادیم.</p>
+    <p>برای راحتی یک دسترسی سریع به پیاده‌سازی ها با زبان های مختلف رو در زیر قرار دادیم.</p>
 
     <nav class="toc">
-      <div>پیاده سازی پشته (Stack) در زبان های مختلف</div>
+      <div>پیاده‌سازی پشته (Stack) در زبان های مختلف</div>
       <ul>
         <li>
-          <a href="#stack_implementation_java">پیاده سازی پشته (Stack) با جاوا</a>
+          <a href="#stack_implementation_java">پیاده‌سازی پشته (Stack) با جاوا</a>
         </li>
         <li>
-          <a href="#stack_implementation_kotlin">پیاده سازی پشته (Stack) با کاتلین</a>
+          <a href="#stack_implementation_kotlin">پیاده‌سازی پشته (Stack) با کاتلین</a>
         </li>
         <li>
-          <a href="#stack_implementation_javascript">پیاده سازی پشته (Stack) با جاوااسکریپت</a>
+          <a href="#stack_implementation_javascript">پیاده‌سازی پشته (Stack) با جاوااسکریپت</a>
         </li>
         <li>
-          <a href="#stack_implementation_python">پیاده سازی پشته (Stack) با پایتون</a>
+          <a href="#stack_implementation_python">پیاده‌سازی پشته (Stack) با پایتون</a>
         </li>
       </ul>
     </nav>
 
     <section id="stack_implementation_java">
-      <h3>پیاده سازی پشته (Stack) با جاوا</h3>
+      <h3>پیاده‌سازی پشته (Stack) با جاوا</h3>
       <p>در زیر یک پشته (Stack) رو به صورت <a href="/post/java/generics.html">جنریک</a> با جاوا پیاده میکنیم.</p>
 
       <div class="sample">
@@ -206,8 +206,8 @@ public class MyStack&lt;E&gt; {
       </div>
 
       <section id="stack_implementation_kotlin">
-        <h3>پیاده سازی پشته (Stack) با کاتلین</h3>
-        <p>در زیر یک صف (Queue) رو با کاتلین به صورت جنریک پیاده سازی میکنیم.</p>
+        <h3>پیاده‌سازی پشته (Stack) با کاتلین</h3>
+        <p>در زیر یک صف (Queue) رو با کاتلین به صورت جنریک پیاده‌سازی میکنیم.</p>
 
         <div class="sample">
           <div class="snippet-container">
@@ -250,7 +250,7 @@ class MyStack&lt;E&gt;() {
       </section>
 
       <section id="stack_implementation_javascript">
-        <h3>پیاده سازی پشته (Stack) با جاوااسکریپت</h3>
+        <h3>پیاده‌سازی پشته (Stack) با جاوااسکریپت</h3>
 
         <p>جاوااسکریپت یک زبان type-free است یعنی نوع متغیر هنگام مقداردهی متغیر مشخص میشه، در زیر یک صف (Queue) رو با
           جاوااسکریپت پیاده میکنیم.</p>
@@ -300,7 +300,7 @@ class MyStack {
       </section>
 
       <section id="stack_implementation_python">
-        <h3>پیاده سازی پشته (Stack) با پایتون</h3>
+        <h3>پیاده‌سازی پشته (Stack) با پایتون</h3>
         <p>پایتون یک زبان type-free است یعنی نوع متغیر هنگام مقداردهی متغیر مشخص میشه، در زیر یک پشته (Stack) با پایتون
           پیاده میکنیم.</p>
 
@@ -348,7 +348,7 @@ class MyStack:
 
       <p>میخوایم با استفاده از پشته (Stack) یک پروژه ی ماشین حساب بنویسیم، در این پروژه یک عبارت مثل <strong
           dir="ltr">2*5+(4/2)-32</strong> حساب کنه.</p>
-      <p>این پروژه با استفاده از پیاده سازی های <a href="#p6">بالا</a> نوشته شده است.</p>
+      <p>این پروژه با استفاده از پیاده‌سازی های <a href="#p6">بالا</a> نوشته شده است.</p>
 
       <div class="sample">
         <div class="snippet-container">
@@ -700,7 +700,7 @@ class EvaluateExpression:
           نخواهیم داشت.</li>
         <li>با استفاده از آرایه ها میتونیم یک استک با اندازه ی ثابت و با استفاده از لیست پیوندی میتونیم یک استک با
           اندازه
-          ی متغیر پیاده سازی کنیم.</li>
+          ی متغیر پیاده‌سازی کنیم.</li>
         <li>پیچیدگی زمان برای اضافه و حذف کردن و صدا زدن عنصر در استک O(1) است.</li>
       </ul>
     </section>
