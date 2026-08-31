@@ -89,35 +89,36 @@
 }
 
 .badge{
-  display: flex;
-  flex-direction: row;
+  display: block;
+  content: 'timer';
   color: #212121;
   margin: 2px 4px;
 }
 
-.badge::after{
-  display: block;
-  content: attr(data-info);
-  background-color: #eeeeee;
+.badge-data{
+  display: flex;
+  flex-direction: row;
   width: 18px;
   height: 18px;
+  background-color: #eeeeee;
   text-align: center;
+  align-items: center;
   line-height: 18px;
   border-radius: 50%;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-family: Vazirmatn;
-  padding: 4px;
-  margin-right: 2px;
+  padding: 6px;
+  margin-left: 8px;
 }
 
 .md-bt-expandable.expanded .badge{
   color: #fafafa;
-}
-.md-bt-expandable.expanded .badge::after{
-  background-color: #fafafa;
-  color: #212121;
-}
+} 
 
+.md-bt-expandable.expanded .badge-data{
+  color: #212121;
+  background-color: #fafafa;
+}
 
 .md-bt.md-bt-navbar-toggle{
     width: 32px;

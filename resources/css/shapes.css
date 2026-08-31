@@ -1,0 +1,9 @@
+.dot{
+  display: flex;
+  background-color: #212121;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin: 2px;
+  scale: 1;
+}

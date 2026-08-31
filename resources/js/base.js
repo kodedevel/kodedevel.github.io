@@ -1,3 +1,5 @@
+import {animatePendingOperation} from "./animation.js"
+
 //loads Ui Components into documents
 const scrollButtonContainer = document.querySelector(".scroll-top-container");
 
@@ -8,25 +10,33 @@ function initUiComponents() {
   });
 
   initDialog();
-  initSidebar();
+  (() => initSidebar())();
 }
 
 const header = document.querySelector("header");
 const dialog = document.querySelector(".dialog");
 
-function initSidebar() {
+async function initSidebar() {
 
   toggleSidebar();
-
-  (() => estimateCoursesReadingTime())();
 
   const courseContainer = document.querySelector(".sidebar-list");
 
   if (courseContainer) {
+
     const listCourses = courseContainer.querySelectorAll('.sidebar-item');
 
+    let coursePaths = await getCoursePaths();
+
     for (var i = 0; i < listCourses.length; i++) {
-      const btExpand = listCourses[i].querySelector(".md-bt-expandable");
+
+      const courseItem = listCourses[i];
+      const subjectPaths = coursePaths[i];
+
+      const badgeData = courseItem.querySelector('.badge-data');
+      const intervalId = animatePendingOperation(badgeData);
+
+      const btExpand = courseItem.querySelector(".md-bt-expandable");
 
       const posts = document.getElementById(btExpand.dataset.target);
 
@@ -39,6 +49,9 @@ function initSidebar() {
           expand(btExpand, posts);
         }
       });
+
+      estimateCoursesReadingTime(courseItem, subjectPaths, intervalId);
+
     }
   }
 }
@@ -105,8 +118,8 @@ function toggleSidebar() {
 
 }
 
-async function estimateCoursesReadingTime() {
 
+async function getCoursePaths() {
   const response = await fetch("/resources/json/metadata.json", {
     method: 'GET',
     headers: {
@@ -116,54 +129,54 @@ async function estimateCoursesReadingTime() {
 
   const json = await response.json();
 
-  const coursesObject = json.courses;
+  const courses = json.courses;
 
-  let coursesPaths = [];
+  let coursePaths = [];
 
-  coursesObject.forEach(course => {
+  courses.forEach(course => {
     let paths = [];
     course.metadata_list.forEach(subject => {
       paths = paths.concat(subject.path);
     });
 
-    coursesPaths.push(paths);
+    coursePaths.push(paths);
   });
 
-  const courseContainerUI = document.querySelector(".sidebar-list");
-  const coursesUI = courseContainerUI.querySelectorAll(".sidebar-item");
+  return coursePaths;
+}
 
-  for (var i = 0; i < coursesPaths.length; i++) {
-    const courseUI = coursesUI[i];
-    const subjects = coursesPaths[i];
-    let courseETA = 0;
+async function estimateCoursesReadingTime(courseItem, subjectPaths, intervalId) {
 
-    for (var j = 0; j < subjects.length; j++) {
-      const path = subjects[j];
-      try {
-        const pageResponse = await fetch(path, {
-          headers: {
-            "Content-Type": "text/html"
-          }
-        });
+  let courseETA = 0;
 
-        const text = await pageResponse.text();
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(text, "text/html");
-        const article = doc.querySelector("article");
+  for (const path of subjectPaths) {
+    try {
+      const pageResponse = await fetch(path, {
+        headers: {
+          method: "GET",
+          "Content-Type": "text/html"
+        }
+      });
 
-        const textETA = estimateRegularTextReadingTime(article);
-        const snippetETA = estimateSnippetReadingTime(article);
+      const text = await pageResponse.text();
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(text, "text/html");
+      const article = doc.querySelector("article");
 
-        courseETA += (textETA + snippetETA);
+      const textETA = estimateRegularTextReadingTime(article);
+      const snippetETA = estimateSnippetReadingTime(article);
 
-      } catch (err) {
-        console.error(err);
-      }
+      courseETA += (textETA + snippetETA);
+
+    } catch (err) {
+      console.error(err);
     }
-
-    const etaBadge = courseUI.querySelector(".badge-container").lastElementChild;
-    etaBadge.dataset.info = courseETA;
   }
+
+  const etaBadge = courseItem.querySelector(".badge-data");
+  etaBadge.innerHTML = courseETA;
+
+  clearInterval(intervalId);
 
 }
 
