@@ -40,14 +40,14 @@ layout: default
   </aside>
   <section id="p0">
     <h2>معرفی Map</h2>
-    <p>هر Map یک مجموعه از <strong>کلید (Key)</strong> و <strong>مقدار (Value)</strong> است که با استفاده از کلید
-      میتونیم مقدار رو برگردونیم؛ کلید در Map
-      نمیتونه تکراری باشه اما مقدار میتونه تکراری باشه؛ به Map <strong>دیکشنری (Dictionary)</strong> هم گفته میشه.</p>
+    <p>هر Map یک مجموعه از جفت <strong>کلید (Key)</strong> و <strong>مقدار (Value)</strong> است که با استفاده از Key
+      میتونیم Value رو برگردونیم؛ Key در Map
+      نمیتونه تکراری باشه اما Value میتونه تکراری باشه؛ به Map <strong>دیکشنری (Dictionary)</strong> هم گفته میشه.</p>
 
 
     <section>
       <h3>بررسی کلاس Entry</h3>
-      <p>هر Key و Value در Map داخل کلاسی به نام <strong>Entry</strong> نگهداری میشه و هر Map مجموعه ای از Entry هاست؛
+      <p>جفت Key و Value در Map داخل کلاسی به نام <strong>Entry</strong> نگهداری میشه و هر Map مجموعه ای از Entry هاست؛
         در زیر متد های کلاس Entry به صورت UML شرح داده شده است.</p>
 
       <table class="tb">
@@ -74,18 +74,31 @@ layout: default
 
     </section>
 
-    <p>در تصویر زیر سلسله مراتب ارث‌بری کلاس های Map شرح داده شده است.</p>
+    <section>
 
-    <figure>
-      <img src="/resources/image/java/java_map_inheritance_hierarchy.png" alt="سلسله مراتب ارث‌بری کلاس های Map">
-      <figcaption>سلسله مراتب ارث‌بری کلاس های Map</figcaption>
-    </figure>
+      <h3>سلسله مراتب ارث بری کلاس های Map</h3>
+
+      <p>تمام کلاس های Map در جاوا بجای <a href="collection.html">Collection</a>، اینترفیس <strong>Map</strong> رو
+        پیاده‌سازی میکنن و متد های مشترک بینشون داخل اینترفیس Map تعریف شده است.</p>
+
+      <p>سه کلاس <strong>HashMap</strong>, <strong>LinkedHashMap</strong> و <strong>TreeMap</strong> از پیاده‌سازی های
+        Map
+        هستن؛ کلاس HashMap و LinkedHashMap در با جاوا با هش کد پیاده سازی شدن و کلاس TreeMap با <strong>red-black
+          tree</strong>.</p>
+      <p>در تصویر زیر سلسله مراتب ارث‌بری کلاس های Map شرح داده شده است.</p>
+
+      <figure>
+        <img src="/resources/image/java/java_map_inheritance_hierarchy.png" alt="سلسله مراتب ارث‌بری کلاس های Map">
+        <figcaption>سلسله مراتب ارث‌بری کلاس های Map</figcaption>
+      </figure>
+
+    </section>
 
     <section>
       <h3>بررسی اینترفیس Map</h3>
-      <p>کلاس های Map در جاوا اینترفیس Map رو پیاده‌سازی میکنن و متد های مشترک بین تمام پیاده‌سازی های Map در اینترفیس
-        Map
-        قرار داره؛ در نمودار UML زیر متد های تعریف شده در Map شرح داده شده است.</p>
+      <p>در جاوا متد های مشترک بین تمام کلاس های Map، در اینترفیس Map تعریف شده است؛ UML زیر متد های تعریف شده در
+        اینترفیس
+        Map شرح داده شده است.</p>
 
       <table class="tb">
         <thead>
@@ -93,7 +106,7 @@ layout: default
             <th colspan="2">Interface</th>
           </tr>
           <tr>
-            <th colspan="2">&lt;&lt;java.util.Map&lt;K, V&gt;&gt;&gt;</th>
+            <th colspan="2">java.util.Map&lt;K, V&gt;</th>
           </tr>
         </thead>
         <tbody>
@@ -154,15 +167,13 @@ layout: default
 
     </section>
 
-    <p>سه کلاس <strong>HashMap</strong>, <strong>LinkedHashMap</strong> و <strong>TreeMap</strong> از پیاده‌سازی های Map
-      هستن؛ کلاس HashMap و LinkedHashMap در با جاوا با هش کد پیاده سازی شدن و کلاس TreeMap با <strong>red-black
-        tree</strong>.</p>
 
     <section>
       <h3>بررسی هش کد (hash code)</h3>
-      <p>به طور کلی کلاس های *Hash* با هش کد (hash code) پیاده سازی شدن، هر کلاسی در جاوا یک کد اختصاصی داره که با
+      <p>به طور کلی کلاس های *Hash* در جاوا با هش کد (hash code) پیاده سازی شدن، هر کلاسی در جاوا یک کد اختصاصی داره که
+        با
         تابع <strong>hashCode</strong> ایجاد میشه؛ زمانی که دو عنصر با <strong>equals</strong> باهم برابر باشن و
-        هش کد های یکسانی داشته باشن میگیم دو عنصر باهم یکسان هستن.</p>
+        هش کد های یکسانی داشته باشن میگیم دو عنصر باهم یکی هستن.</p>
 
       <p>محل قرار گرفتن Key در HashMap ها با hashCode مشخص میشه و زمانی که جایگاه Key پیدا بشه باهاش میتونیم Value رو
         برگردونیم.</p>
@@ -173,16 +184,16 @@ layout: default
 
   <section id="p1">
     <h2>استفاده از HashMap</h2>
-    <p>عناصر در HashMap به ترتیب و بر اساس هش کد هاشون قرار میگیرن، زمانی که بخوایم جفت Key, Value رو به یک HashMap
-      اضافه کنیم، محل قرار گرفتن این جفت در HashMap بر اساس هش کد های Key مشخص میشه و به صورت Entry داخل Map قرار
-      میگیرن؛ سپس با همین هش کد میتونیم محل قرار گرفتن Entry رو پیدا کنیم و Value رو صدا بزنیم.</p>
+    <p>عناصر در HashMap به ترتیب و بر اساس هش کد هاشون قرار میگیرن، زمانی که بخوایم جفت Key و Value رو به یک HashMap
+      اضافه کنیم، محل قرار گرفتن این جفت در HashMap بر اساس هش کد های Key مشخص میشه و سپس به صورت Entry داخل Map قرار
+      میگیرن؛ با همین هش کد میتونیم محل قرار گرفتن Entry رو پیدا کنیم و Value رو صدا بزنیم.</p>
 
     <p>در نمودار UML زیر کانستراکتور (سازنده) های کلاس HashMap شرح داده شده است.</p>
 
     <table class="tb">
       <thead>
         <tr>
-          <th>java.util.HashMap</th>
+          <th colspan="2">java.util.HashMap</th>
         </tr>
       </thead>
       <tbody>
@@ -289,15 +300,27 @@ System.out.println(map.values() + "\n");
         </tr>
         <tr>
           <td class="tDataLTR">+pollFirstEntry(): Entry&lt;K, V&gt;</td>
-          <td class="tDataRTL">اولین Entry موجود در Map رو حذف میکنه و بر میگردونه، اگه Map خالی باشه مقدار null رو بر
+          <td class="tDataRTL">اولین Entry موجود در LinkedHashMap رو حذف میکنه و بر میگردونه، اگه LinkedHashMap خالی
+            باشه مقدار null رو بر
             میگردونه.</td>
         </tr>
         <tr>
           <td class="tDataLTR">+pollLastEntry(): Entry&lt;K, V&gt;</td>
-          <td class="tDataRTL">آخرین Entry موجود در Map رو حذف میکنه بر میگردونه و اگه Map خالی باشه مقدار null رو بر
+          <td class="tDataRTL">آخرین Entry موجود در LinkedHashMap رو حذف میکنه بر میگردونه و اگه LinkedHashMap خالی باشه
+            مقدار null رو بر
             میگردونه.</td>
         </tr>
       </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="2" dir="rtl">توجه: متد های firstEntry, lastEntry,
+            pollFirstEntry و pollLastEntry از JDK 21 به
+            بعد اضافه شدن و در
+            اینترفیس SequencedMap تعریف شدن، SequencedMap یک پیاده‌سازی مشترک بین TreeMap و
+            LinkedHashMap است که برای خلاصه تر شدن از بررسیش خودداری کردم.
+          </td>
+        </tr>
+      </tfoot>
     </table>
 
 
@@ -418,14 +441,6 @@ accessOrderMap.forEach((name, age) -&gt; System.out.println("name: " + name + " 
         </thead>
         <tbody>
           <tr>
-            <td class="tDataLTR">+firstEntry(): Entry&lt;K, V&gt;</td>
-            <td class="tDataRTL">اولین Entry در TreeMap رو بر میگردونه.</td>
-          </tr>
-          <tr>
-            <td class="tDataLTR">+lastEntry(): Entry&lt;K, V&gt;</td>
-            <td class="tDataRTL">آخرین Entry در TreeMap رو بر میگردونه.</td>
-          </tr>
-          <tr>
             <td class="tDataLTR">+firstKey(): K</td>
             <td class="tDataRTL">اولین Key موجود در TreeMap رو بر میگردونه.</td>
           </tr>
@@ -447,14 +462,36 @@ accessOrderMap.forEach((name, age) -&gt; System.out.println("name: " + name + " 
             <td class="tDataLTR">+tailMap(fromKey: K): SortedMap&lt;K, V&gt;</td>
             <td class="tDataRTL">یک SortedMap جدید از Key های fromKey به بعد بر میگردونه.</td>
           </tr>
+          <tr>
+            <td class="tDataLTR">+firstEntry(): Entry&lt;K, V&gt;</td>
+            <td class="tDataRTL">اولین Entry در TreeMap رو بر میگردونه.</td>
+          </tr>
+          <tr>
+            <td class="tDataLTR">+lastEntry(): Entry&lt;K, V&gt;</td>
+            <td class="tDataRTL">آخرین Entry در TreeMap رو بر میگردونه.</td>
+          </tr>
+          <tr>
+            <td class="tDataLTR">+pollFirstEntry(): Entry&lt;K, V&gt;</td>
+            <td class="tDataRTL">اولین Entry موجود در TreeMap رو حذف میکنه و بر میگردونه، اگه TreeMap خالی باشه مقدار
+              null رو بر
+              میگردونه.</td>
+          </tr>
+          <tr>
+            <td class="tDataLTR">+pollLastEntry(): Entry&lt;K, V&gt;</td>
+            <td class="tDataRTL">آخرین Entry موجود در TreeMap رو حذف میکنه بر میگردونه و اگه TreeMap خالی باشه مقدار
+              null رو بر
+              میگردونه.</td>
+          </tr>
         </tbody>
         <tfoot>
           <tr>
-            <td colspan="2" dir="rtl">توجه: متد های <strong>firstEntry</strong> و <strong>lastEntry</strong> از jdk21 به
+            <td colspan="2" dir="rtl">توجه: متد های firstEntry, lastEntry,
+              pollFirstEntry و pollLastEntry از JDK 21 به
               بعد اضافه شدن و در
               اینترفیس SequencedMap تعریف شدن که
               SortedMap یک ساب اینترفیس از SequencedMap است، SequencedMap یک پیاده‌سازی مشترک بین TreeMap و
-              LinkedHashMap است که برای خلاصه تر شدن از بررسیش خودداری کردم.</td>
+              LinkedHashMap است که برای خلاصه تر شدن از بررسیش خودداری کردم.
+            </td>
           </tr>
         </tfoot>
       </table>
