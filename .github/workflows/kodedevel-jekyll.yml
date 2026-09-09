@@ -32,6 +32,17 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Install TypeScript and tsx
+        uses: sudo npm install -g --allow-scripts=esbuild typescript tsx
+
+      - name: Compile TypeScript Files
+        uses: npx tsc -p resources/ts/
+
       - name: Build with Jekyll
         uses: actions/jekyll-build-pages@v1
         with:
@@ -42,11 +53,6 @@ jobs:
         run: |
           sudo chown -R $USER:$USER ./_site
           sudo chmod -R 755 ${{ github.workspace }}/_site
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '24'
 
       - name: Inject Comments
         env:

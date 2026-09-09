@@ -1,6 +1,6 @@
-import { createDot } from "./ui.js";
+import {createDot} from "./ui.js";
 
-const sliderWrapper = document.querySelector(".slider-wrapper");
+const sliderWrapper = document.querySelector(".slider-wrapper")! as HTMLElement;
 
 const slides = document.querySelectorAll(".slide");
 const totalNumberOfSlides = slides.length;
@@ -8,10 +8,10 @@ const totalNumberOfSlides = slides.length;
 let currentIndex = 0;
 
 function initSlider() {
-  const btNext = document.querySelector(".next");
+  const btNext = document.querySelector(".next")!;
   btNext.addEventListener("click", slideNext);
 
-  const btPrev = document.querySelector(".prev");
+  const btPrev = document.querySelector(".prev")!;
   btPrev.addEventListener("click", slidePrev);
 
   createDots();
@@ -40,14 +40,14 @@ function slidePrev() {
 }
 
 function createDots() {
-  const sliderDotsWrapper = document.querySelector(".slider-dots-wrapper");
+  const sliderDotsWrapper = document.querySelector(".slider-dots-wrapper")!;
 
   for (var i = 0; i < totalNumberOfSlides; i++) {
     const dot = createDot();
-    dot.dataset.index = i;
+    dot.dataset.index = '' + i;
 
     dot.addEventListener("click", () => {
-      currentIndex = dot.dataset.index;
+      currentIndex = parseInt(dot.dataset.index!)
       updateSlider();
     });
 
@@ -66,4 +66,4 @@ function updateDots() {
   });
 }
 
-export { initSlider };
+export {initSlider};

@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "target": "es2025",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "lib": [
+      "ES2025",
+      "DOM",
+      "DOM.Iterable",
+      "DOM.AsyncIterable",
+      "ES7"
+    ],
+    "types": [
+      "node"
+    ],
+    "strict": true,
+    "skipLibCheck": false,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "outDir": "build",
+    "rootDir": "src",
+    "sourceMap": true
+  },
+  
+  "include": [
+    "src/**/*"
+  ],
+  "exclude":[
+    "build/**/*"
+  ]
+}

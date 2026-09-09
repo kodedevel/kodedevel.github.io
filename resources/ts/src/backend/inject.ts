@@ -2,25 +2,27 @@ import fs from "node:fs";
 import path from "node:path"
 import {createComments, createHead} from "./create-elements.js";
 import {getAllDiscussions} from "./comments.js";
+import {GitHubSingleComment} from "./model/github-discussion.js";
+import {Meta, AllMeta, PageInfo} from "./model/pages-meta.js";
 
 const ROOT = "_site";
 
-function toRelativePath(briefPath) {
+function toRelativePath(briefPath: string) {
   return "\/" + briefPath.concat(".html");
 }
 
 async function getAllComments() {
 
-  const map = new Map();
+  const map: Map<string, (GitHubSingleComment[] | null)> = new Map();
 
   try {
 
-    const allPagesMetadata = await getAllPagesMetadata();
+    const allPagesMetadata = (await getAllPagesMetadata())!;
     const allDiscussions = await getAllDiscussions();
 
     allPagesMetadata.forEach(metadata => {
 
-      const postPath = metadata.path;
+      const postPath = metadata.path!;
       map.set(postPath, null);
 
       allDiscussions.forEach(discussion => {
@@ -28,7 +30,7 @@ async function getAllComments() {
         const discussionPath = toRelativePath(discussion.title);
 
         if (postPath === discussionPath) {
-          const comments = discussion?.comments.nodes;
+          const comments: GitHubSingleComment[] = discussion?.comments.nodes;
           map.set(postPath, comments);
         }
 
@@ -42,7 +44,7 @@ async function getAllComments() {
   return map;
 }
 
-async function injectComments(allComments) {
+async function injectComments(allComments: Map<string, GitHubSingleComment[] | null>) {
 
   allComments.forEach((comments, pagePath) => {
 
@@ -61,10 +63,9 @@ async function injectComments(allComments) {
 
 }
 
-async function getAllPagesMetadata() {
+async function getAllPagesMetadata(): Promise<Meta[]> {
 
-
-  let allPagesMetadata = [];
+  let allPagesMetadata: Meta[] = [];
 
   try {
     const response = await fetch(new URL("/resources/json/metadata.json", "https://kodedevel.ir"), {
@@ -76,7 +77,7 @@ async function getAllPagesMetadata() {
       throw new Error(`HTTP ERROR ${response.status}: ${error}`);
     }
 
-    const result = await response.json();
+    const result: AllMeta = await response.json();
 
     allPagesMetadata.push(result.home);
     allPagesMetadata.push(result.about);
@@ -86,52 +87,42 @@ async function getAllPagesMetadata() {
     courses.forEach(course => {
 
       if (course.path) {
-        allPagesMetadata.push({
-          title: course.title,
-          author: course.author,
-          description: course.description,
-          datePublished: course.datePublished,
-          lastModified: course.lastModified,
-          imgCover: course.imgCover,
-          path: course.path
-        });
+        allPagesMetadata.push(course);
       }
 
-      const posts = course.metadata_list;
+      const posts: Meta[] = course.metadata_list;
       allPagesMetadata = allPagesMetadata.concat(posts);
 
     });
-    return allPagesMetadata;
+
 
   } catch (error) {
     console.error("Error: ", error);
-    return null;
-  }
-
-}
-
-
-class PageInfo {
-  constructor(metadata, comments) {
-    this.metadata = metadata;
-    this.comments = comments;
+  } finally {
+    return allPagesMetadata;
   }
 }
 
-async function injectHead(allComments) {
+
+async function injectHead(allComments: Map<string, GitHubSingleComment[] | null>) {
 
   try {
 
-    const allPagesMetadata = await getAllPagesMetadata();
+    const allPagesMetadata: Meta[] = await getAllPagesMetadata();
+
 
     if (!allPagesMetadata) return;
 
-    allPagesMetadata.forEach(metadata => {
+    allPagesMetadata.forEach((metadata: Meta) => {
 
-      let pageFullPath = metadata.path === '/' ? path.join(ROOT, metadata.path, 'index.html') : path.join(ROOT, metadata.path);
+      if (!metadata.path)
+        return;
+
+      const pageFullPath = metadata.path === '/' ? path.join(ROOT, metadata.path, 'index.html') : path.join(ROOT, metadata.path);
+
 
       let html = fs.readFileSync(pageFullPath, "utf-8");
-      const comments = allComments.get(metadata.path);
+      const comments = allComments.get(metadata.path)!;
       const head = createHead(new PageInfo(metadata, comments));
 
       html = html.replace(/(<html.*>)/i, match => `${match}\n${head}`);
@@ -150,7 +141,7 @@ async function main() {
 
   const allComments = await getAllComments();
 
-  injectHead(allComments);
+  injectHead(allComments!);
   injectComments(allComments);
 
 }

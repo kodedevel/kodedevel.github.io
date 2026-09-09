@@ -3,7 +3,8 @@
  */
 
 //create list view for a course to show its content links inside sidebar
-function createCourseListView(courseData) {
+/*
+function createCourseListView(courseData: any) {
   var parent = document.createElement("div");
 
   var btExpand = createExpandableButton(courseData);
@@ -29,7 +30,7 @@ function createCourseListView(courseData) {
 }
 
 //create an expandable button for every courses which contain links
-function createExpandableButton(courseData) {
+function createExpandableButton(courseData: any) {
   var btExpand = document.createElement("button");
   btExpand.classList.add("md-bt-expandable");
   btExpand.dataset.target = courseData.id;
@@ -46,7 +47,7 @@ function createExpandableButton(courseData) {
   btExpand.appendChild(text);
 
   btExpand.addEventListener("click", function () {
-    const l = document.getElementById(btExpand.dataset.target);
+    const l = document.getElementById(btExpand.dataset.target!)!;
 
     if (!courseData.isExpanded) {
       icon.style.transform = "rotate(0deg)";
@@ -74,6 +75,8 @@ function createListItemView(link) {
   return item;
 }
 
+*/
+
 /*
   Views for code styling usable in article.js
 */
@@ -91,7 +94,7 @@ function createSampleHeader() {
   return codeHead;
 }
 
-function createDropMenu(create) {
+function createDropMenu(create: (dropMenuContainer: HTMLElement) => void) {
   var dropMenuContainer = document.createElement("div");
   dropMenuContainer.classList.add("drop-menu-container");
 
@@ -100,7 +103,7 @@ function createDropMenu(create) {
   return dropMenuContainer;
 }
 
-function createSnippetSelector(name, id, appendable) {
+function createSnippetSelector(name: string, id: string, appendable: (button: HTMLInputElement, label: HTMLLabelElement) => void) {
   let snippetToggleButton = document.createElement("input");
   snippetToggleButton.classList.add("snippet-toggle-button");
   snippetToggleButton.type = "radio";
@@ -119,7 +122,7 @@ function createCodeWrap() {
   return codeWrap;
 }
 
-function createCodeTableView(codeWrap, callback) {
+function createCodeTableView(codeWrap: HTMLElement, callback: (table: HTMLTableElement, tBody: HTMLTableSectionElement) => void) {
   var table = document.createElement("table");
   var tBody = table.createTBody();
   tBody.classList.add("code-body");
@@ -137,7 +140,7 @@ function createDot() {
 }
 
 export {
-  createCourseListView,
+  //createCourseListView,
   createSampleHeader,
   createDropMenu,
   createSnippetSelector,

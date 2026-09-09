@@ -1,3 +1,5 @@
+import {GitHubDiscussion, AllDiscussions, GitHubGraphQLResponse} from './model/github-discussion.js';
+
 const TOKEN = process.env.GITHUB_TOKEN;
 const OWNER = 'kodedevel';
 const REPO = 'kodedevel.github.io';
@@ -32,7 +34,7 @@ const query = `
   }`;
 
 
-async function graphql(query, variables) {
+async function graphql(query: string, variables: Record<string, unknown>): Promise<AllDiscussions> {
 
   const response = await fetch("https://api.github.com/graphql", {
     method: "POST",
@@ -44,16 +46,21 @@ async function graphql(query, variables) {
     body: JSON.stringify({query: query, variables: variables})
   });
 
+
   if (!response.ok) {
     const error = await response.text();
     throw new Error(`HTTP ERROR ${response.status}: ${error}`);
   }
 
-  const json = await response.json();
+  const json: GitHubGraphQLResponse<AllDiscussions> = await response.json();
 
   if (json.errors) {
     console.error("GraphQL query errors: ", json.errors);
     throw new Error("Failed to fetch data from github");
+  }
+
+  if (!json.data) {
+    throw new Error("No data returned from GitHub Discussions");
   }
 
   return json.data;
@@ -61,7 +68,7 @@ async function graphql(query, variables) {
 
 async function getAllDiscussions() {
 
-  let allDiscussions = [];
+  let allDiscussions: GitHubDiscussion[] = [];
   let hasNextPage = true;
   let cursor = null;
 
@@ -75,17 +82,21 @@ async function getAllDiscussions() {
     });
 
     const pageInfo = data?.repository?.discussions?.pageInfo;
+
     hasNextPage = pageInfo?.hasNextPage;
     cursor = pageInfo?.endCursor;
-    const discussions = data?.repository?.discussions.nodes;
+
+    const discussions: GitHubDiscussion[] = data?.repository?.discussions.nodes;
+
     allDiscussions = allDiscussions.concat(discussions);
 
+
   }
-  console.log("data successfully fetched!")
+
+  console.log("data successfully fetched!");
 
   return allDiscussions;
 }
-
 
 
 export {getAllDiscussions}

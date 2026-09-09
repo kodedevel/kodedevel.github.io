@@ -1,0 +1,7 @@
+{
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch"
+  },
+  "type": "module"
+}

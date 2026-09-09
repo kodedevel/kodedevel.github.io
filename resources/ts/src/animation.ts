@@ -1,4 +1,4 @@
-export function animatePendingOperation(parent) {
+export function animatePendingOperation(parent: Element) {
   const dots = parent.querySelectorAll('.dot');
 
   let currentIndex = 0;
@@ -20,10 +20,10 @@ export function animatePendingOperation(parent) {
   }, 300);
 }
 
-function scaleDotUp(dot) {
-  dot.style.scale = '2';
+function scaleDotUp(dot: Element) {
+  (dot as HTMLElement).style.scale = '2';
 }
 
-function scaleDotDown(dot) {
-  dot.style.scale = '1';
+function scaleDotDown(dot: Element) {
+  (dot as HTMLElement).style.scale = '1';
 }

@@ -16,13 +16,13 @@ function estimateTotalReadingTime() {
   const eta = document.querySelector(".eta");
 
   if (eta != null)
-    eta.lastElementChild.textContent = `زمان مطالعه ${totalETA} دقیقه`;
+    eta.lastElementChild!.textContent = `زمان مطالعه ${totalETA} دقیقه`;
 }
 
 
 
 function applyOnDisplayPersianDates() {
-  const datePublishedEl = document.getElementById("publish-date");
+  const datePublishedEl = document.getElementById("publish-date") as HTMLTimeElement;
 
   if (datePublishedEl && datePublishedEl.dateTime != null) {
 
@@ -34,7 +34,7 @@ function applyOnDisplayPersianDates() {
     }
   }
 
-  const dateModifiedEl = document.getElementById("lastmod-date");
+  const dateModifiedEl = document.getElementById("lastmod-date") as HTMLTimeElement;
 
   if (dateModifiedEl && dateModifiedEl.dateTime != null) {
 
@@ -47,13 +47,12 @@ function applyOnDisplayPersianDates() {
   }
 }
 
-function toPersianDate(gregorianDate) {
+function toPersianDate(gregorianDate: Date) {
   const calendarFormatter = new Intl.DateTimeFormat("fa-IR", {
-    calendar: "persian",
     year: "numeric",
     month: "long",
     day: "numeric",
-  });
+  } satisfies Intl.DateTimeFormatOptions);
 
   return calendarFormatter.format(gregorianDate);
 }

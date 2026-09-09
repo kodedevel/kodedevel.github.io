@@ -1,11 +1,11 @@
 import {animatePendingOperation} from "./animation.js"
 
 //loads Ui Components into documents
-const scrollButtonContainer = document.querySelector(".scroll-top-container");
+const scrollButtonContainer = document.querySelector(".scroll-top-container")! as HTMLElement;
 
 function initUiComponents() {
 
-  scrollButtonContainer.addEventListener("click", e => {
+  scrollButtonContainer.addEventListener("click", _ => {
     window.scrollTo({top: 0, behavior: "smooth"});
   });
 
@@ -13,8 +13,8 @@ function initUiComponents() {
   (() => initSidebar())();
 }
 
-const header = document.querySelector("header");
-const dialog = document.querySelector(".dialog");
+const header = document.querySelector("header")!;
+const dialog = document.querySelector(".dialog")! as HTMLElement;
 
 async function initSidebar() {
 
@@ -24,21 +24,20 @@ async function initSidebar() {
 
   if (courseContainer) {
 
-    const listCourses = courseContainer.querySelectorAll('.sidebar-item');
+    const listCourses: NodeList = courseContainer.querySelectorAll('.sidebar-item');
 
     let coursePaths = await getCoursePaths();
 
     for (var i = 0; i < listCourses.length; i++) {
 
-      const courseItem = listCourses[i];
+      const courseItem = listCourses[i] as HTMLElement;
       const subjectPaths = coursePaths[i];
 
-      const badgeData = courseItem.querySelector('.badge-data');
+      const badgeData = courseItem.querySelector('.badge-data')!;
       const intervalId = animatePendingOperation(badgeData);
 
-      const btExpand = courseItem.querySelector(".md-bt-expandable");
-
-      const posts = document.getElementById(btExpand.dataset.target);
+      const btExpand = courseItem.querySelector(".md-bt-expandable")! as HTMLElement;
+      const posts = document.getElementById(btExpand.dataset.target!)!;
 
       btExpand.addEventListener("click", function () {
 
@@ -57,43 +56,44 @@ async function initSidebar() {
 }
 
 
-function expand(btExpand, content) {
+function expand(btExpand: HTMLElement, content: HTMLElement) {
   btExpand.classList.add("expanded");
   btExpand.classList.add("expand");
   content.style.maxHeight = content.scrollHeight + "px";
 }
 
-function collapse(btExpand, content) {
+function collapse(btExpand: HTMLElement, content: HTMLElement) {
   btExpand.classList.remove("expanded");
   btExpand.classList.remove("expand");
-  content.style.maxHeight = 0;
+  content.style.maxHeight = '0';
 }
 
-function collapseAll(list) {
+function collapseAll(list: NodeList) {
 
   for (var i = 0; i < list.length; i++) {
 
-    const btExpand = list[i].querySelector(".md-bt-expandable");
+    const btExpand = (list[i] as HTMLElement).querySelector(".md-bt-expandable")! as HTMLElement;
     btExpand.classList.remove("expanded");
     btExpand.classList.remove("expand");
-    const content = document.getElementById(btExpand.dataset.target);
-    content.style.maxHeight = 0;
+    const content = document.getElementById(btExpand.dataset.target!)! as HTMLElement;
+    content.style.maxHeight = '0';
 
   }
 }
 
-function isExpanded(element) {
+function isExpanded(element: Element) {
   return element.classList.contains("expanded");
 }
 
 function showNavbarBrand() {
-  const sidebarNavBrand = document.querySelector(".navbar-brand");
-  sidebarNavBrand.style.opacity = 1;
+  const sidebarNavBrand = document.querySelector(".navbar-brand")! as HTMLElement;
+  sidebarNavBrand.style.opacity = '1';
 }
 
 function hideNavbarBrand() {
-  const sidebarNavBrand = document.querySelector(".navbar-brand");
-  sidebarNavBrand.style.opacity = 0;
+  const sidebarNavBrand = document.querySelector(".navbar-brand")! as HTMLElement;
+  sidebarNavBrand.style
+  sidebarNavBrand.style.opacity = '0';
 }
 
 function toggleSidebar() {
@@ -101,8 +101,8 @@ function toggleSidebar() {
 
   if (sidebar == null) return
 
-  const btShowSidebar = document.getElementById("bt_show_sidebar");
-  const btHideSidebar = document.getElementById("bt_hide_sidebar");
+  const btShowSidebar = document.getElementById("bt_show_sidebar")!;
+  const btHideSidebar = document.getElementById("bt_hide_sidebar")!;
 
   btShowSidebar.addEventListener("click", function () {
     sidebar.classList.remove("hide");
@@ -119,7 +119,7 @@ function toggleSidebar() {
 }
 
 
-async function getCoursePaths() {
+async function getCoursePaths(): Promise<string[][]> {
   const response = await fetch("/resources/json/metadata.json", {
     method: 'GET',
     headers: {
@@ -131,11 +131,11 @@ async function getCoursePaths() {
 
   const courses = json.courses;
 
-  let coursePaths = [];
+  let coursePaths: string[][] = [];
 
-  courses.forEach(course => {
-    let paths = [];
-    course.metadata_list.forEach(subject => {
+  courses.forEach((course: any) => {
+    let paths: string[] = [];
+    course.metadata_list.forEach((subject: any) => {
       paths = paths.concat(subject.path);
     });
 
@@ -145,7 +145,7 @@ async function getCoursePaths() {
   return coursePaths;
 }
 
-async function estimateCoursesReadingTime(courseItem, subjectPaths, intervalId) {
+async function estimateCoursesReadingTime(courseItem: HTMLElement, subjectPaths: string[], intervalId: number) {
 
   let courseETA = 0;
 
@@ -161,7 +161,7 @@ async function estimateCoursesReadingTime(courseItem, subjectPaths, intervalId) 
       const text = await pageResponse.text();
       const parser = new DOMParser();
       const doc = parser.parseFromString(text, "text/html");
-      const article = doc.querySelector("article");
+      const article = doc.querySelector("article") as Node;
 
       const textETA = estimateRegularTextReadingTime(article);
       const snippetETA = estimateSnippetReadingTime(article);
@@ -173,16 +173,16 @@ async function estimateCoursesReadingTime(courseItem, subjectPaths, intervalId) 
     }
   }
 
-  const etaBadge = courseItem.querySelector(".badge-data");
-  etaBadge.innerHTML = courseETA;
+  const etaBadge = courseItem.querySelector(".badge-data")! as HTMLElement;
+  etaBadge.innerHTML = '' + courseETA;
 
   clearInterval(intervalId);
 
 }
 
-function estimateRegularTextReadingTime(article) {
+function estimateRegularTextReadingTime(article: Node) {
   var numberOfWords = 0;
-  const texts = article.innerText.trim().split(/\n|\s/);
+  const texts = (article as HTMLElement).innerText.trim().split(/\n|\s/);
   texts.forEach((line) => {
     if (line.length > 0) numberOfWords++;
   });
@@ -190,14 +190,14 @@ function estimateRegularTextReadingTime(article) {
   return Math.max(1, Math.ceil(numberOfWords / 250));
 }
 
-function estimateSnippetReadingTime(article) {
+function estimateSnippetReadingTime(article: Node) {
 
   var numberOfWords = 0;
 
-  const containers = article.querySelectorAll(".snippet-container");
+  const containers = (article as HTMLElement).querySelectorAll(".snippet-container");
 
   containers.forEach(container => {
-    const snippet = container.firstElementChild;
+    const snippet = container.firstElementChild! as HTMLElement;
     const text = snippet.innerText.split(/[\s\n]/g);
     text.forEach(word => {
 
@@ -209,6 +209,8 @@ function estimateSnippetReadingTime(article) {
 
   return Math.ceil(numberOfWords / 100);
 }
+
+
 let currentScrollY = 0;
 
 var scrollTopVisibility = function () {
@@ -241,7 +243,7 @@ function showDialog() {
 
 function initDialog() {
   //localStorage.removeItem(KEY_VISIBILITY_STATUS);
-  var keepHidden = JSON.parse(localStorage.getItem(KEY_VISIBILITY_STATUS));
+  let keepHidden = JSON.parse(localStorage.getItem(KEY_VISIBILITY_STATUS)!);
 
   if (keepHidden != null) {
     if (keepHidden) {
@@ -251,15 +253,15 @@ function initDialog() {
 
   setTimeout(showDialog, 10000);
 
-  var btClose = document.getElementById("bt-close-dialog");
+  const btClose = document.getElementById("bt-close-dialog")!;
 
   btClose.onclick = function () {
     hideDialog();
   };
 
-  var checkboxStatus = document.getElementById("status");
+  var checkboxStatus = document.getElementById("status") as HTMLInputElement;
 
-  var btConfirm = document.getElementById("bt-confirm");
+  var btConfirm = document.getElementById("bt-confirm") as HTMLButtonElement;
   btConfirm.onclick = function () {
     keepHidden = checkboxStatus.checked;
 

@@ -29,16 +29,16 @@ function createCodeViews() {
     let codeContainer = codeContainerList[i];
 
     let header = createSampleHeader();
-    let copyButton = header.firstChild;
+    let copyButton = header.firstChild as HTMLButtonElement;
 
-    let snippetContainer = codeContainer.querySelector(".snippet-container");
+    let snippetContainer = codeContainer.querySelector(".snippet-container")!;
 
     //intented to wrap codes for every languages.
-    let codeSnippetList = snippetContainer.querySelectorAll(".snippet");
+    let codeSnippetList = snippetContainer.querySelectorAll(".snippet")!;
 
-    updateActiveSnippet(codeSnippetList);
+    updateActiveSnippet(codeSnippetList, codeSnippetList[0]);
 
-    let dropMenuContainer = createDropMenu(dropMenuContainer => {
+    let dropMenuContainer = createDropMenu((dropMenuContainer: HTMLElement) => {
 
       const btDropMenu = document.createElement("button");
       btDropMenu.classList.add("bt-drop-menu");
@@ -69,9 +69,9 @@ function createCodeViews() {
 
         //Parameters: name, id, lambda expression
         createSnippetSelector(
-          i,
+          i + '',
           snippetLang + i + "" + j,
-          (inputSnippetSelector, lblSnippetSelector) => {
+          (inputSnippetSelector: HTMLInputElement, lblSnippetSelector: HTMLLabelElement) => {
             //listen when programming language changed.
             inputSnippetSelector.addEventListener("change", function () {
 
@@ -81,7 +81,7 @@ function createCodeViews() {
                 updateActiveSnippet(codeSnippetList, snippet);
 
                 copyButton.onclick = function () {
-                  let text = collectTextCodes(snippet.firstChild);
+                  let text = collectTextCodes(snippet.firstChild as Element);
                   navigator.clipboard.writeText(text);
                   toggleCopyMessage();
                 };
@@ -111,7 +111,7 @@ function createCodeViews() {
               inputSnippetSelector.checked = true;
               btDropMenu.innerHTML = snippetLang;
               copyButton.onclick = function () {
-                const text = collectTextCodes(snippet.firstChild);
+                const text = collectTextCodes(snippet.firstChild as Element);
                 navigator.clipboard.writeText(text);
                 toggleCopyMessage();
               }
@@ -129,7 +129,7 @@ function createCodeViews() {
   }
 }
 
-function updateActiveSelector(dropMenu, current) {
+function updateActiveSelector(dropMenu: HTMLElement, current: HTMLElement) {
 
   const labels = dropMenu.querySelectorAll("label");
 
@@ -142,29 +142,29 @@ function updateActiveSelector(dropMenu, current) {
 
 function toggleCopyMessage() {
 
-  let copyMessage = document.querySelector(".copy-message");
+  let copyMessage = document.querySelector(".copy-message")!;
   copyMessage.classList.toggle("showMessage");
   setTimeout(() => {
     copyMessage.classList.toggle("showMessage");
   }, 3000);
 }
 
-function findSnippetLanguage(snippet) {
+function findSnippetLanguage(snippet: Element) {
   let snippetClassNames = snippet.className.split(" ");
-  let languageIndex = snippetClassNames.findIndex((el) => el.match(languages));
+  let languageIndex = snippetClassNames.findIndex((el: string) => el.match(languages));
 
   return snippetClassNames[languageIndex] ? snippetClassNames[languageIndex] : "Text";
 }
 
-function updateActiveSnippet(codeSnippetList, currentSnippet) {
+function updateActiveSnippet(codeSnippetList: NodeListOf<Element>, currentSnippet: Element) {
   for (var i = 0; i < codeSnippetList.length; i++) {
-    codeSnippetList[i].style.display = "none";
+    (codeSnippetList[i] as HTMLElement).style.display = "none";
   }
   if (currentSnippet)
-    currentSnippet.style.display = "block";
+    (currentSnippet as HTMLElement).style.display = "block";
 }
 
-function styleSnippet(snippet, isSimpleText, isPseudoCode) {
+function styleSnippet(snippet: Element, isSimpleText: boolean, isPseudoCode: boolean) {
 
   const codeLines = snippet.innerHTML.split("\n");
   const codeViewContents = createCodeViewContents(codeLines, isSimpleText, isPseudoCode);
@@ -174,10 +174,10 @@ function styleSnippet(snippet, isSimpleText, isPseudoCode) {
 
 }
 
-function createCodeViewContents(codeLines, isSimpleText, isPseudoCode) {
+function createCodeViewContents(codeLines: string[], isSimpleText: boolean, isPseudoCode: boolean) {
   var codeWrap = createCodeWrap();
 
-  createCodeTableView(codeWrap, (table, tBody) => {
+  createCodeTableView(codeWrap, (table: HTMLTableElement, tBody: HTMLTableSectionElement) => {
 
     for (var lineIndex = 0; lineIndex < codeLines.length; lineIndex++) {
 
@@ -194,24 +194,23 @@ function createCodeViewContents(codeLines, isSimpleText, isPseudoCode) {
       insertLine(tBody, line, lineIndex);
 
     }
-
     table.appendChild(tBody);
   });
 
   return codeWrap;
 }
 
-function styleAsText(textLine) {
-  textLine = styleSensitiveWords(textLine, "*", "text");
+function styleAsText(textLine: string) {
+  textLine = styleSensitiveWords(textLine, /.*/g, "text");
   return textLine;
 }
 
-function styleAsPseudo(textLine) {
+function styleAsPseudo(textLine: string) {
   textLine = styleSensitiveWords(textLine, pseudo, "pseudo");
   return textLine;
 }
 
-function styleAsCode(textLine) {
+function styleAsCode(textLine: string) {
   textLine = styleSensitiveWords(textLine, string, "string");
   textLine = styleSensitiveWords(textLine, keyword, "keyword");
   textLine = styleSensitiveWords(textLine, className, "class-name");
@@ -222,19 +221,19 @@ function styleAsCode(textLine) {
   return textLine;
 }
 
-function styleSensitiveWords(text, regex, styleClassName) {
-  return text.replaceAll(regex, function (word) {
+function styleSensitiveWords(text: string, regex: RegExp, styleClassName: string) {
+  return text.replace(regex, function (word) {
     return `<span class=\"${styleClassName}\">${word}</span>`;
   });
 }
 
 //create a row to insert code line
-function insertLine(tBody, line, lineIndex) {
+function insertLine(tBody: HTMLTableSectionElement, line: string, lineIndex: number) {
   var row = tBody.insertRow(0);
-
   var col0 = row.insertCell(0);
+
   col0.classList.add("code-line-number");
-  col0.innerHTML = lineIndex + 1;
+  col0.innerHTML = '' + lineIndex + 1;
 
   var col1 = row.insertCell(0);
   col1.classList.add("code");
@@ -246,8 +245,8 @@ function insertLine(tBody, line, lineIndex) {
   tBody.appendChild(row);
 }
 
-function collectTextCodes(codeViewContents) {
-  const tBody = codeViewContents.querySelector("tbody");
+function collectTextCodes(codeViewContents: Element) {
+  const tBody = codeViewContents.querySelector("tbody")!;
   const rows = tBody.rows;
   let text = "";
   for (var i = 0; i < rows.length; i++) {
@@ -255,11 +254,11 @@ function collectTextCodes(codeViewContents) {
     text += codeLine.innerHTML + "\n";
   }
 
-  text = text.replaceAll(/\&lt;/g, "<");
-  text = text.replaceAll(/\&gt;/g, ">");
-  text = text.replaceAll(/<\/span>/g, "");
-  text = text.replaceAll(/<span class="(keyword|string)">/g, "");
-  text = text.replaceAll(
+  text = text.replace(/\&lt;/g, "<");
+  text = text.replace(/\&gt;/g, ">");
+  text = text.replace(/<\/span>/g, "");
+  text = text.replace(/<span class="(keyword|string)">/g, "");
+  text = text.replace(
     /<span class="(class-name|digit|annotation|comment)">/g,
     "",
   );

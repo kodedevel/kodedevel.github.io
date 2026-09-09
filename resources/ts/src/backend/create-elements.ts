@@ -1,4 +1,7 @@
-function createEmptyComment() {
+import {GitHubSingleComment} from "./model/github-discussion.js";
+import {PageInfo} from "./model/pages-meta.js"
+
+function createEmptyComment(): string {
   return `
     <article class="empty-comment">
       <div class="empty-comment-body">
@@ -7,7 +10,7 @@ function createEmptyComment() {
     </article>`;
 }
 
-function createComments(comments) {
+function createComments(comments: GitHubSingleComment[] | null) {
 
   if (comments === null || comments.length === 0) return createEmptyComment();
 
@@ -51,7 +54,7 @@ function createComments(comments) {
   return createdComments;
 }
 
-function createHead(pageInfo) {
+function createHead(pageInfo: any): string {
 
   return `<head>
   ${createMetaElements(pageInfo)}\n
@@ -62,7 +65,7 @@ function createHead(pageInfo) {
 }
 
 
-function hasCoursePage(name) {
+function hasCoursePage(name: string) {
   const courseNames = ["java", "kotlin", "linux", "algorithm", "data-structure"];
   for (var i = 0; i < courseNames.length; i++) {
     if (name === courseNames[i])
@@ -74,16 +77,19 @@ function hasCoursePage(name) {
 
 class ListItem {
 
-  courses = new Map([["java", "جاوا"], ["kotlin", "کاتلین"], ["linux", "لینوکس"], ["algorithm", "الگوریتم"], ["data-structure", "ساختمان‌ داده"]]);
+  private courses = new Map([["java", "جاوا"], ["kotlin", "کاتلین"], ["linux", "لینوکس"], ["algorithm", "الگوریتم"], ["data-structure", "ساختمان‌ داده"]]);
 
-  constructor(name, path) {
+  public name?: string;
+  public path: string;
+
+  constructor(name: string, path: string) {
     this.name = this.courses.get(name);
     this.path = path;
   }
 
 }
 
-function createBreadcrumbListSchema(pageInfo) {
+function createBreadcrumbListSchema(pageInfo: any) {
 
   const path = pageInfo.metadata.path;
 
@@ -113,7 +119,7 @@ function createBreadcrumbListSchema(pageInfo) {
   </script>`
 }
 
-function createPageSchema(pageInfo) {
+function createPageSchema(pageInfo: any) {
   const datePublished = new Date(Date.parse(pageInfo.metadata.datePublished)).toISOString();
 
   let lastModified = "";
@@ -169,7 +175,7 @@ function createPageSchema(pageInfo) {
 </script>`
 }
 
-function createCommentsSchema(comments) {
+function createCommentsSchema(comments: GitHubSingleComment[]) {
 
   if (!comments) return '';
 
@@ -201,8 +207,7 @@ function createCommentsSchema(comments) {
   return schema;
 }
 
-function createLinksAndScripts(pageInfo) {
-
+function createLinksAndScripts(pageInfo: PageInfo) {
   return `
     <link rel="canonical" href="https://kodedevel.ir${pageInfo.metadata.path}">
     <link rel="icon" type="image/png" sizes="512x512" href="/resources/favicon.png">
@@ -222,11 +227,12 @@ function createLinksAndScripts(pageInfo) {
       gtag('config', 'G-S74CG697B9');
     </script>
 
-    <script type="module" src="/resources/js/main.js"></script>`
+    <script type="module" src="/resources/ts/build/main.js"></script>  
+    <script type="module" src="https://esm.sh/giscus"></script>`
 }
 
 
-function createMetaElements(pageInfo) {
+function createMetaElements(pageInfo: PageInfo) {
 
   return `
     <meta content="${pageInfo.metadata.description}" name="description">

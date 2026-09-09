@@ -2,10 +2,11 @@ import {initSlider} from "./index.js";
 import {createCodeViews} from "./article.js";
 import {initUiComponents, scrollTopVisibility} from "./base.js";
 import {applySEOConfigurations} from "./seo-config.js";
-import 'https://esm.sh/giscus';
+
+//import 'https://esm.sh/giscus';
 
 let isOnDocumentClicked = false;
-let hashStack = [];
+let hashStack: string[] = [];
 
 function clearHashStack() {
   while (hashStack.length > 0)
