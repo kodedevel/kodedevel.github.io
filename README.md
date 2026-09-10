@@ -9,13 +9,15 @@
 [![HTML](https://img.shields.io/badge/HTML-E34F26?style=for-the-badge&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
 [![CSS](https://img.shields.io/badge/CSS-1572B6?style=for-the-badge&logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
 [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+[![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=TypeScript&logoColor=FFF)](https://www.typescriptlang.org/)
 [![Jekyll](https://img.shields.io/badge/Jekyll-CC0000?style=for-the-badge&logo=jekyll&logoColor=white)](https://jekyllrb.com/)
 [![JSON](https://img.shields.io/badge/JSON-000000?style=for-the-badge&logo=json&logoColor=white)](https://www.json.org/json-en.html)
 [![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
 
-*صفحات وبسایت آموزش برنامه نویسی KodeDevel*
 
-**<a  href="https://github.com/kodedevel/kodedevel.github.io">سورس کد</a>**
+**صفحات وبسایت آموزش برنامه نویسی KodeDevel**
+
+**<a href="https://github.com/kodedevel/kodedevel.github.io">سورس کد</a>**
 
 **<a target="_blank" href="https://kodedevel.ir">ادرس سایت</a>**
 
@@ -26,18 +28,15 @@
 ## توضیحات
 این سایت در صفحات گیت با jekyll کامپایل شده و در دسترس قرار گرفته.
 
-### metadata صفحات
+### اطلاعات صفحات
 
-metadata صفحات داخل یک فایل به نام json قرار گرفته که به رندر شدن صفحات کمک میکنه.
-
-**[لینک metadata صفحات](https://kodedevel.ir/resources/json/metadata.json)**
+اطلاعات صفحات داخل **[metadata.json](https://kodedevel.ir/resources/json/metadata.json)** قرار گرفته که به رندر شدن صفحات کمک میکنه.
 
 ### نقشه ی سایت
 
-ابتدا سایت با *jekyll* کامپایل میشه و سپس صفحات کامپایل شده روی شبکه سرو میشن و در نهایت بعضی از عناصر (کامنت ها، عنصر head و ...) با Node.js در `resources/js/backend` به صفحات تزریق میشن.
+ابتدا سایت با **jekyll** کامپایل میشه و سپس صفحات کامپایل شده روی شبکه سرو میشن و در نهایت بعضی از عناصر (کامنت ها، عنصر head و ...) با Node.js در `resources/ts/src/backend` به صفحات تزریق میشن.
 
-
-`_data/json` داده های مورد نیاز برای ساخت صفحات در اینجا قرار دارن
+`_data/json` داده های مورد نیاز برای ساخت صفحات در اینجا قرار دارن.
 
 `_includes` اجزای صفحات (مثل هدر، فوتر، دیالوگ و...) داخل این بخش نوشته شدن و هنگام کامپایل توسط Jekyll به صفحات اضافه میشن.
 
@@ -45,7 +44,7 @@ metadata صفحات داخل یک فایل به نام json قرار گرفته 
 
 `post` محتوای صفحات سایت در اینجا نوشته میشن
 
-`resources` منابع مورد نیاز کلاینت از قبیل فایل های css, js, image و ... در اینجا قرار دارن
+`resources` منابع مورد نیاز از قبیل فایل های css, ts, image و ... در اینجا قرار دارن
 
 `index.html` صفحه ی اول سایت
 
@@ -54,7 +53,6 @@ metadata صفحات داخل یک فایل به نام json قرار گرفته 
 <pre dir="ltr">
 
 github.com/kodedevel/kodedevel.github.io/
-│
 │
 ├── _data/
 │   └── json/
@@ -75,13 +73,10 @@ github.com/kodedevel/kodedevel.github.io/
 │   ├── header.html  
 │   └── sidebar.html
 │
-│
 ├── _layouts/
 │   ├── course.html
 │   └── default.html
 │    
-│
-│
 ├── post/
 │   ├── (pages)*.html   
 │   │
@@ -99,21 +94,31 @@ github.com/kodedevel/kodedevel.github.io/
 │   ├── image/
 │   │   └── (images)* 
 │   │      
-│   ├── js/
-│   │   ├── article.js
-│   │   ├── base.js
-│   │   ├── index.js
-│   │   ├── main.js
-│   │   ├── seo-config.js
-│   │   │── ui.js
-│   │   └── backend/
-│   │      │── comments.js
-│   │      │── create-elements.js
-│   │      └── inject.js
+│   ├── ts/
+│   │   ├── build/
+│   │   │   └── (compiled)*.js
+│   │   │
+│   │   ├── src/
+│   │   │   ├── article.ts
+│   │   │   ├── base.ts
+│   │   │   ├── index.ts
+│   │   │   ├── main.ts
+│   │   │   ├── seo-config.ts
+│   │   │   ├── ui.ts
+│   │   │   └── backend/
+│   │   │        ├── model/
+│   │   │        │   ├── github-discussion.ts
+│   │   │        │   └── pages-meta.ts
+│   │   │        │
+│   │   │        ├── comments.ts
+│   │   │        ├── create-elements.ts
+│   │   │        └── inject.ts
+│   │   │
+│   │   ├── package.json 
+│   │   └── tsconfig.json
 │   │
 │   └──json/
 │      └── metadata.json
-│
 │
 └── index.html
 
