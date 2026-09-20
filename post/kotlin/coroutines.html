@@ -43,7 +43,7 @@ layout: default
   <section id="p0">
     <h2>تعریف کروتینز</h2>
 
-    <p>کروتینز (Coroutines) یک کتابخونه ی مدرن چندنخی در کاتلین است که با <a href="/post/java/multithreading.html">چندنخی در جاوا</a> طراحی شده،
+    <p>کروتینز (Coroutines) یک کتابخونه ی مدرن چندنخی در کاتلین است که روی <a href="/post/java/multithreading.html">Thread در جاوا</a> اجرا میشه،
        با کروتنیز در کاتلین کد ها میتونن به صورت زنجیره وار نوشته بشن و به صورت همزمان اجرا بشن.</p>
 
 
@@ -188,10 +188,10 @@ val job: Job = launch{
 
         <section>
           <h3>تابع async</h3>
-          <p>تابع async یک تابع اکستنشن برای CoroutineScope است؛‌ و باهاش میتونیم مقداری از نوع <strong>R</strong> رو برگردونیم؛ زمانی که این تابع رو صدا میزنیم،‌ کروتینز اجرا نمیشه و فقط یک نمونه از Deferred رو بر میگردونه.</p>
+          <p>تابع async یک تابع اکستنشن برای CoroutineScope است؛‌ و باهاش میتونیم مقداری از نوع <strong>R</strong> رو برگردونیم؛ زمانی که این تابع رو صدا میزنیم،‌ یک نمونه از Deferred رو بر میگردونه.</p>
 
           <p>اینترفیس Deferred از <a href="#job">Job</a> ارث‌بری میکنه و تمام ویژگی ها و کلاس های Job رو به همراه داره.</p>
-          <p>با صدا زدن تابع await در اینترفیس Deferred، تابعی که توش صدا زده میشه رو ساسپند‌(معلق) میکنه و کروتین async به اجرا در میاد و پس از اجرای تابع async و برگردوندن نتیجه از طریق await، تابعی که await داخلش صدا زده شده ادامه پیدا می کنه.</p>
+          <p>با صدا زدن تابع await در اینترفیس Deferred، تابعی که توش صدا زده میشه رو ساسپند‌(معلق) میکنه و نتیجه ی async از طریق await برگردونده میشه و پس از برگردوندن نتیجه، تابعی که await داخلش صدا زده شده از تعلیق در میاد و ادامه پیدا می کنه.</p>
 
           <p>فرم کلی:</p>
 
@@ -210,6 +210,39 @@ val result: R = deferred.await()
            </div>
           </div>
 
+          <p>اگه بخوایم تابع async با صدا زدن await شروع به کار کنه و قبلش اجرا نشه از <strong>CoroutineStart.lazy</strong> به عنوان یکی از پارامتر های تابع استفاده میکنیم.</p>
+
+          <div class="sample">
+            <div class="snippet-container">
+              <pre class="snippet Kotlin">
+val deferred: Deferred&lt;T&gt; = async(start = CoroutineStart.LAZY){  
+
+  val r: R = ...
+  
+  return@async r
+}
+
+//async start point
+val result: R = deferred.await()
+              </pre>
+            </div>
+          </div>
+
+        </section>
+
+        <section>
+          <h3>تابع runBlocking</h3>
+      <p>میتونیم با استفاده از تابع <strong>runBlocking</strong> در هرجا که خواستیم کروتین ایجاد کنیم، تابع runBlocking روی هر نخی که صدا زده بشه اون نخ رو تا پایان اجرا مسدود میکنه.</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Kotlin">
+runBlocking{
+  //Execute codes here
+}
+          </pre>
+        </div>
+      </div>
         </section>
 
         <section>
@@ -227,7 +260,7 @@ scope.launch{
   //Execute codes here
 }
 
-scope.async{
+val deferred = scope.async{
   //Execute codes here
 }          </pre>
         </div>
@@ -243,7 +276,7 @@ coroutineScope{
     //Execute codes here
   }
 
-  async{
+  val deferred = async{
     //Execute codes here
   }
 }
@@ -273,7 +306,9 @@ coroutineScope{
       <section>
         <h3>ایجاد کروتین با runBlocking</h3>
 
-      <p>میتونیم با استفاده از تابع <strong>runBlocking</strong> در هرجا که خواستیم کروتین ایجاد کنیم، تابع runBlocking روی هر نخی که صدا زده بشه اون نخ رو تا پایان اجرا مسدود میکنه.</p>
+
+
+      <p>میتونیم با صدا زدن مستقیم تابع runBlocking بدون نیاز به ایجاد محدوده (CoroutineScope) یک کروتین باهاش ایجاد کنیم..</p>
 
       <div class="note">
         <p class="note-head">توجه</p>
@@ -345,8 +380,8 @@ fun printNumbers(n: Int){
         <div class="snippet-container">
           <pre class="snippet Kotlin">
 fun main() {
-  printChars()
-  printNumbers()
+  printChars('A', 200)
+  printNumbers(100)
 }
           </pre>
         </div>
@@ -853,7 +888,7 @@ suspend fun main() {
             return@withContext content
         }
 
-        content
+        return@async content
     }
 
     val jsonContent = deferred.await()
