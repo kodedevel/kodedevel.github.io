@@ -1,0 +1,902 @@
+---
+layout: default
+---
+
+<article>
+  <nav class="toc">
+    <div>دسترسی سریع</div>
+    <ul>
+      <li>
+        <a href="#p0">تعریف کروتینز</a>
+      </li>
+      <li>
+        <a href="#p1">افزودن کروتینز به پروژه</a>
+      </li>
+      <li>
+        <a href="#p2">کلیدواژه suspend</a>
+      </li>
+      <li>
+        <a href="#p3">محدوده کروتین</a>
+      </li>
+      <li>
+        <a href="#p4">بیلدر (Builder) ها و ایجاد کروتین با بیلدر (Builder) ها</a>
+      </li>
+      <li>
+        <a href="#p5">کروتین های تودرتو</a>
+      </li>
+      <li>
+        <a href="#p6">بررسی کانتکست (Context)</a>
+      </li>
+      
+      <li>
+        <a href="#p7">تابع withContext</a>
+      </li>
+      <li>
+        <a href="#p8">مورد مطالعه (مثال) ها</a>
+      </li>
+      <li>
+        <a href="#p9">خلاصه</a>
+      </li>
+    </ul>
+  </nav>
+
+  <section id="p0">
+    <h2>تعریف کروتینز</h2>
+
+    <p>کروتینز (Coroutines) یک کتابخونه ی مدرن چندنخی در کاتلین است که با <a href="/post/java/multithreading.html">چندنخی در جاوا</a> طراحی شده،
+       با کروتنیز در کاتلین کد ها میتونن به صورت زنجیره وار نوشته بشن و به صورت همزمان اجرا بشن.</p>
+
+
+       <p>در <a href="/post/java/multithreading.html">Thread</a> برای ایجاد هر کاری باید یک Thread ایجاد کنیم اما در کروتینز، چند کروتین میتونن از یک Thread استفاده کنن و این ویژگی باعث میشه نخ های کمتری ایجاد بشه و باعث بهینه تر شدن برنامه میشه.</p>
+
+       <p>فرض کنید دو کروتین داریم و یک نخ؛ کروتین اول توسط نخ اجرا میشه، زمانی که کار کروتین اول تموم بشه یا به صورت موقت معلق بشه از نخ خارج شده و کروتین دوم توسط نخ اجرا میشه.</p>
+
+       <p>در زیر عملکرد کروتین با Thread مقایسه شده است.</p>
+
+       <figure>
+        <img src="/resources/image/kotlin/kotlin_coroutines_and_thread_comparison.png" alt="مقایسه کروتینز (Coroutines) با Thread">
+        <figcaption>مقایسه کروتینز (Coroutines) با Thread</figcaption>
+       </figure>
+
+    </section>
+    <section id="p1">
+      <h2>افزودن کروتینز به پروژه</h2>
+      <p>برای اضافه کردن کروتینز به پروژه کافیه در فایل build.gradle به صورت زیر اضافه و سپس پروژه رو سینک کنید.</p>
+
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Kotlin">
+dependencies {
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:version")    
+    //implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:version")
+    //Other dependencies
+}
+          </pre>
+        </div>
+      </div>
+
+      <p>اگه بخوایم از کروتینز در اندروید استفاده کنیم علاوه بر kotlinx-coroutines-core باید kotlinx-coroutines-android رو هم از کامنت در بیاریم.</p>
+      
+      <div class="note">
+        <p class="note-head">توجه</p>
+        <p>بجای <strong dir="ltr">version</strong> از آخرین نسخه ی <a href="https://mvnrepository.com/artifact/org.jetbrains.kotlinx/kotlinx-coroutines-core">coroutines-core</a> و <a href="https://mvnrepository.com/artifact/org.jetbrains.kotlinx/kotlinx-coroutines-android">coroutines-android</a> استفاده کنید.</p>
+      </div>
+
+    </section>
+
+    <section id="p2">
+      <h2>کلیدواژه suspend</h2>
+      <p>با استفاده از کلیدواژه <strong>suspend</strong> میتونیم یک تابع تعلیق پذیر (suspend function) تعریف کنیم، تابع ساسپند میتونه به صورت موقت متوقف بشه و سپس ادامه پیدا کنه؛ توابع ساسپند فقط داخل کروتین یا داخل تابع ساسپند دیگه قابل صدا زدن هستن.</p>
+
+      <p>فرم کلی</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Kotlin">
+suspend fun mySuspendFunction(){
+  //Execute codes here
+}
+          </pre>
+        </div>
+      </div>
+
+      <p>یکی از راه های صدا زدن توابع ساسپند داخل تابع main، تعریف تابع main به عنوان تابع ساسپند است.</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Kotlin">
+suspend fun main(){
+  //start point
+  mySuspendFunction()
+}
+
+suspend fun mySuspendFunction(){
+  println("Hello from suspend function!")
+}
+          </pre>
+        </div>
+      </div>
+
+    </section>
+    <section id="p3">
+      <h2>محدوده کروتین</h2>
+
+        <p>برای کروتین هایی که ایجاد میکنیم باید محدوده تعیین کنیم، برای ایجاد محدوده یکی از توابع <strong>coroutineScope</strong> یا <strong>CoroutineScope</strong> رو صدا میزنیم.</p>
+
+        <p>با محدوده ی کروتین چرخه ی حیاط (lifecycle) کروتین ها رو مدیریت میکنیم.</p>
+
+        <section>
+          <h3>تابع coroutineScope</h3>
+
+          <p>تابع coroutineScope یک <a href="#p2">تابع ساسپند (suspend)</a> است، این تابع کانتکست کروتین Parent رو به ارث می بره و مقداری از نوع <strong>R</strong> رو بر میگردونه.</p>
+
+        <div class="sample">
+          <div class="snippet-container">
+            <pre class="snippet Java">
+suspend fun mySuspendFunction(){
+  val scope = coroutineScope{
+    //scope.launch{}
+  }
+}
+            </pre>
+          </div>
+        </div>
+        </section>
+
+        <section>
+          <h3>تابع CoroutineScope</h3>
+
+          <p>زمانی که بخوایم یک محدوده با کانتکست (Context) اختصاصی ایجاد کنیم از تابع CoroutineScope استفاده می کنیم.</p>
+
+        <div class="sample">
+          <div class="snippet-container">
+            <pre class="snippet Kotlin">
+fun myFunction(){
+  val scope = CoroutineScope(context)
+  //scope.launch{}
+}
+            </pre>
+          </div>
+        </div>
+
+        </section>
+
+      </section>
+
+      <section id="p4">
+        <h2>بیلدر (Builder) ها و ایجاد کروتین با بیلدر (Builder) ها</h2>
+
+        <p>با استفاده از توابع <strong>launch</strong>, <strong>async</strong> و <strong>runBlocking</strong> میتونیم کروتین جدید ایجاد کنیم؛ این سه تابع به علاوه تابع withContext که در قسمت های بعدی این مطلب بهش می پردازیم به بیلدر (Builder) معروف هستن.</p>
+
+        <section>
+          <h3>تابع launch</h3>
+          <p>تابع launch یک <a href="extension-function.html">تابع اکستنشن</a> برای CoroutineScope است،‌ با تابع launch میتونیم یک کروتین ایجاد کنیم و سپس کروتین ایجاد شده به صورت خودکار اجرا میشه، این تابع یک نمونه از Job رو برمیگردونه؛ تابع launch معروفه به <strong>fire and forget</strong>، زمانی که کروتین با این تابع اجرا میشه کد های داخلش اجرا شده و مقداری رو بر نمی‌گردونه.</p>
+
+          <p>فرم کلی:</p>
+          <div class="sample">
+            <div class="snippet-container">
+              <pre class="snippet Kotlin">
+val job: Job = launch{
+  //Execute codes here
+}
+              </pre>
+            </div>
+          </div>
+
+        </section>
+
+        <section>
+          <h3>تابع async</h3>
+          <p>تابع async یک تابع اکستنشن برای CoroutineScope است؛‌ و باهاش میتونیم مقداری از نوع <strong>R</strong> رو برگردونیم؛ زمانی که این تابع رو صدا میزنیم،‌ کروتینز اجرا نمیشه و فقط یک نمونه از Deferred رو بر میگردونه.</p>
+
+          <p>اینترفیس Deferred از <a href="#job">Job</a> ارث‌بری میکنه و تمام ویژگی ها و کلاس های Job رو به همراه داره.</p>
+          <p>با صدا زدن تابع await در اینترفیس Deferred، تابعی که توش صدا زده میشه رو ساسپند‌(معلق) میکنه و کروتین async به اجرا در میاد و پس از اجرای تابع async و برگردوندن نتیجه از طریق await، تابعی که await داخلش صدا زده شده ادامه پیدا می کنه.</p>
+
+          <p>فرم کلی:</p>
+
+          <div class="sample">
+            <div class="snippet-container">
+              <pre class="snippet Kotlin">
+val deferred: Deferred&lt;T&gt; = async{  
+
+  val r: R = ...
+  
+  return@async r
+}
+
+val result: R = deferred.await()
+              </pre>
+           </div>
+          </div>
+
+        </section>
+
+        <section>
+          <h3>ایجاد کروتین با launch و async</h3>
+        <p>با استفاده از دو تابع launch و async میتونیم کروتین جدید ایجاد کنیم، به سه طریق میتونیم این دو تابع رو صدا بزنیم.</p>
+ 
+        <p>با استفاده از نمونه ی ایجاد شده از CoroutineScope میتونیم async و launch رو صدا بزنیم.</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Kotlin">
+val scope = CoroutineScope(context)
+
+scope.launch{
+  //Execute codes here
+}
+
+scope.async{
+  //Execute codes here
+}          </pre>
+        </div>
+      </div>
+
+          <p>میتونیم داخل بلوک مربوط به CoroutineScope تابع async و launch رو صدا بزنیم.</p>
+
+          <div class="sample">
+            <div class="snippet-container">
+              <pre class="snippet Kotlin">
+coroutineScope{
+  launch{
+    //Execute codes here
+  }
+
+  async{
+    //Execute codes here
+  }
+}
+              </pre>
+            </div>
+          </div>
+
+          <p>میتونیم داخل خودشون، خودشونو صدا بزنیم.</p>
+
+          <div class="sample">
+            <div class="snippet-container">
+              <pre class="snippet Kotlin">
+coroutineScope{
+  launch{
+    //Execute codes in outer coroutine
+    val deferred = async{
+      //Execute codes inside async
+    }
+  }
+}
+              </pre>
+            </div>
+          </div>
+
+      </section>
+
+      <section>
+        <h3>ایجاد کروتین با runBlocking</h3>
+
+      <p>میتونیم با استفاده از تابع <strong>runBlocking</strong> در هرجا که خواستیم کروتین ایجاد کنیم، تابع runBlocking روی هر نخی که صدا زده بشه اون نخ رو تا پایان اجرا مسدود میکنه.</p>
+
+      <div class="note">
+        <p class="note-head">توجه</p>
+        <p>استفاده از تابع runBlocking کمتر توصیه میشه و معمولا به عنوان تابع main برای تست و اجرای کروتین ازش استفاده میکنن.</p>
+      </div>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Kotlin">
+fun main() = runBlocking{
+  //Execute codes here
+}
+          </pre>
+        </div>
+      </div>
+
+      </section>
+
+      <p>در مثال زیر میخوایم برنامه n بار یک کاراکتر رو نمایش بده.</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Kotlin">
+fun printChars(char: Char, numberOfChars: Int){
+  
+  val scope = CoroutineScope(Dispatchers.Default)
+
+  scope.launch {
+
+    println("Printing $numberOfChars $char: ")
+
+    for (i in 0 until numberOfChars) {
+        if (i % 10 == 0) println()
+          print(char)
+        }
+        println()
+    }
+}            
+          </pre>
+        </div>
+      </div>
+
+      <p>در مثال زیر میخوایم برنامه اعداد یک تا n رو نمایش بده.</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Kotlin">
+fun printNumbers(n: Int){
+
+    val scope = CoroutineScope(Dispatchers.Default)
+
+    scope.launch {
+
+        for (i in 1..n){
+            if (i % 10 == 0) println()
+            print("$i ")
+        }
+
+    }
+}
+          </pre>
+        </div>
+      </div>
+
+
+      <p>صدا زدن دو تابع printNumbers و printChars</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Kotlin">
+fun main() {
+  printChars()
+  printNumbers()
+}
+          </pre>
+        </div>
+      </div>
+
+      <p>در مثال زیر برنامه یک متن چاپ می کنه و با تابع async حاصل جمع اعداد 1 تا 100 رو نمایش میده و در نهایت پیغام آخر رو چاپ می کنه.</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Kotlin">
+suspend fun main(){
+  helloAndSum()
+}
+
+suspend fun helloAndSum(){
+  println("Hello from suspend function!")
+
+  val result = coroutineScope{
+    val deferred = async{
+
+      var sum = 0
+
+      for(i in 1 .. 100){
+        sum += i
+      }
+
+      return@async sum
+    }
+
+    val asyncResult = deferred.await()
+
+    asyncResult
+  }
+
+  println("Sum of 1 to 100 is $result")
+
+  println("Goodbye!")
+}
+          </pre>
+        </div>
+
+      </div>
+
+          <p>در زیر میخوایم اعداد یک تا 100 رو نمایش بدیم و زمانی که عدد بر 10 بخش پذیر باشه جمع اعداد یک تا اون عدد رو با async محاسبه کنیم.</p>
+
+          <div class="sample">
+            <div class="snippet-container">
+              <pre class="snippet Kotlin">
+suspend fun printNumbersAndSumDivisibleOfTens(){
+
+    for (i in 1 .. 100){
+
+        print("$i ")
+
+        if (i % 10 == 0){
+
+            println()
+
+           val sum = coroutineScope {
+                val deferred: Deferred<Int> = async {
+                    var sum = 0
+
+                    for (k in 1..i) {
+                        sum += k
+                    }
+
+                    return@async sum
+                }
+
+                val sum = deferred.await()
+
+                sum
+            }
+            
+            println("1-$i sum:  $sum")
+        }
+    }
+}
+              </pre>
+            </div>
+          </div>
+      </section>
+
+      <section id="p5">
+        <h2>کروتین های تودرتو</h2>
+
+        <p>داخل هر Coroutine میتونیم یک کروتین جدید ایجاد کنیم؛ به کروتین هایی که داخل یک کروتین دیگه ایجاد میشن، کروتین فرزند (child) و به کروتینی که داخلش ایجاد شدن کروتین parent میگیم.</p>
+
+        <p>برای ایجاد کروتین جدید داخل یک کروتین دیگه نیازی به تعریف CoroutineScope نداریم.</p>
+
+        <div class="sample">
+          <div class="snippet-container">
+            <pre class="snippet Kotlin">
+val scope = CoroutineScope(context)
+
+scope.launch{
+
+  launch{
+    
+    //Execute codes here
+
+    launch{
+      //Execute codes here
+    }
+
+  }
+
+  launch{
+    //Execute codes here
+  }
+  
+}
+            </pre>
+          </div>
+        </div>
+      </section>
+
+    <section id="p6">
+        <h2>
+          بررسی کانتکست (Context)
+        </h2>
+
+      <p>برای هر CoroutineScope و بیلدر (Builder) یک Context وجود داره.</p>
+
+      <p>کانتکست (Context) در کروتین چهار ويژگی داره که عبارتند از <strong>Dispatcher</strong>, <strong>Job</strong>, <strong>CoroutineName</strong> و <strong>CoroutineExceptionHandler</strong>؛ برای ایجاد کانتکست در کروتین میتونیم یک دو یا هر چهار ويژگی رو با علامت اختصاصی <strong>+</strong> تعریف کنیم.</p>
+
+      <p>بجز <strong>Job</strong> تمام ویژگی های context به صورت پیشفرض از parent به child می رسه مگه اینکه بخوایم تغییرشون بدیم.</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Kotlin">
+val context = Dispatchers.Default + Job() + CoroutineName("my-coroutine") + CoroutineExceptionHandler {context, throwable -> }
+
+val scope = CoroutineScope(context)
+scope.launch{
+
+}
+          </pre>
+        </div>
+      </div>
+
+      <section>
+        <h3>اعزام کننده (Dispatcher)</h3>
+        <p>با Dispatcher نخ هایی که کروتین میخواد روشون اجرا بشه رو تعیین میکنیم؛ در کاتلین به صورت پیشفرض چهار دیسپچر, <strong>Main</strong>, <strong>Default</strong>, <strong>IO</strong> و <strong>Unconfined</strong> وجود داره که میتونیم یکیشونو با کلاس Dispatchers صدا بزنیم.</p>
+
+
+        <section>
+          <h4>Dispatchers.Main</h4>
+          <p>با Dispatchers.Main میتونیم مشخص کنیم کروتین مورد نظر روی نخ اصلی اجرا بشه.</p>
+          <p>این Dispatcher فقط با kotlinx-coroutines-core قابل استفاده نیست معمولا به همراه کتابخونه های جانبی مانند kotlinx-coroutines-android, kotlinx-coroutines-swing, kotlinx-coroutines-javafx و ... قابل استفاده است.</p>
+        </section>
+
+        <section>
+          <h4>Dispatchers.Default</h4>
+          <p>با Dispatchers.Default کروتین روی یک Thread Pool مشترک اجرا میشه، معمولا از این دیسپچر برای کارهایی که نیاز به پردازش سنگین دارن استفاده میکنیم.</p>
+          <p>میخوایم یک کروتین با Dispatchers.Default ایجاد کنیم.</p>
+
+          <div class="sample">
+            <div class="snippet-container">
+              <pre class="snippet Java">
+val context = Dispatchers.Default
+val scope = CoroutineScope(context)
+scope.launch{
+
+}
+              </pre>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h4>Dispatchers.IO</h4>
+          <p>زمانی که بخوایم عملیات خوندن و نوشتن فایل ها رو انجام بدیم از Dispatchers.IO استفاده می کنیم.</p>
+          <div class="sample">
+            <div class="snippet-container">
+              <pre class="snippet Kotlin">
+val context = Dispatchers.IO
+val scope = CoroutineScope(context)
+              </pre>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h4>Dispatchers.Unconfined</h4>
+          <p>روی نخی که کروتین صدا زده شده اجرا میشه، در صورت تعلیق، هنگام ادامه دادن روی نخی که ادامه پیدا میکنه اجرا میشه.</p>
+
+          <p>در مثال زیر ابتدا روی Main اجرا میشه و بعد از صدا زدن تابع delay روی <strong>DefaultExecutor</strong> که تابع delay روش اجرا شده ادامه پیدا میکنه.</p>
+
+          <div class="sample">
+            <div class="snippet-container">
+              <pre class="snippet Kotlin">
+fun main() = runBlocking{
+  coroutineScope{
+    launch(Disptachers.Unconfined){
+      println("Unconfined: Running on ${Thread.currentThread().name}")
+      delay(100L)
+      println("Unconfined: Running on ${Thread.currentThread().name}")
+    }
+  }
+}
+              </pre>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h4>ایجاد Dispatcher اختصاصی</h4>
+          <p>میتونیم با استفاده از دو تابع <strong>newSingleThreadContext</strong> و <strong>newFixedThreadPoolContext</strong> دیسپچر اختصاصی تعریف کنیم.</p>
+        </section>
+
+          <p>در زیر میخوایم یک Dispatcher اختصاصی تعریف کنیم و در کروتین ازش استفاده کنیم و سپس یک کروتین دیگه با Disptachers.Default داخلش تعریف کنیم.</p>
+          <div class="sample">
+            <div class="snippet-container">
+              <pre class="snippet Kotlin">
+@OptIn(DelicateCoroutinesApi::class, ExperimentalCoroutinesApi::class)
+val Dispatchers.myDispatcher: CoroutineDispatcher
+    get() = newSingleThreadContext("myThread")
+
+val context = Disptachers.myDisptacher
+
+val scope = CoroutineScope(context)
+
+scope.launch{
+  
+  //Execute codes here
+
+  launch(Disptachers.Default){
+
+  } 
+
+}
+              </pre>
+            </div>
+          </div>
+      </section>
+
+      <section id="job">
+        <h3>Job</h3>
+        <p>برای کانتکست (Context) هر کروتین یک <strong>Job</strong> تعریف میشه، با Job میتونیم کروتین رو کنترل کنیم.</p>
+
+
+        <p>در نمودار uml زیر توابع و متد های رایج Job شرح داده شده است.</p>
+
+        <table class="tb">
+          <thead>
+            <tr>
+              <th colspan="2">kotlinx.coroutines.Job</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td class="tDataLTR">+cancel()</td>              
+              <td class="tDataRTL">کروتین مربوط به Job رو کنسل می‌کنه؛ اگه کروتین parent کروتین های دیگه باشه کروتین های child نیز به صورت بازگشتی کنسل میشن.</td>
+            </tr>
+            <tr>
+              <td class="tDataLTR">+join()</td>
+              <td class="tDataRTL">هنگامی که در کروتین parent صدا زده بشه، parent تا پایان کار child متوقف میشه.</td>
+            </tr>
+            <tr>
+              <td class="tDataLTR">+isActive: Boolean</td>
+              <td class="tDataRTL">اگه کروتین فعال باشه true رو بر میگردونه و اگه کنسل شده باشه یا به پایان رسیده باشه false رو بر میگردونه.</td>
+            </tr>
+            <tr>
+              <td class="tDataLTR">+children: Sequence&lt;Job&gt;</td>
+              <td class="tDataRTL">یک زنجیره از کروتین های فرزند رو بر میگردونه.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p>ایجاد کروتین بدون تعریف آشکار Job</p>
+
+        <div class="sample">
+          <div class="snippet-container">
+            <pre class="snippet Kotlin">
+val scope = CoroutineScope(Disptachers.Default)
+scope.launch{
+  //Execute codes in parent
+  launch{
+    //Execute codes in child
+  }
+}
+            </pre>
+          </div>
+        </div>
+
+        <p>به صورت پیشفرض برای هر کروتین یک Job ایجاد میشه، اما میتونیم با استفاده از تابع Job برای هر کروتین یک Job به صورت آشکار تعریف کنیم.</p>
+
+        <p>در زیر به صورت آشکار مشخص کردیم که در مثال قبل Job چطور تعریف شده.</p>
+
+        <div class="sample">
+          <div class="snippet-container">
+            <pre class="snippet Kotlin">
+val scope = CoroutineScope(Dispatchers.Default)
+
+val parent: Job = Job()
+
+scope.launch(parent){
+  //Execute codes in parent
+  val child: Job = Job(parent)
+  launch(child){
+    //Execute codes in child
+  }
+}
+            </pre>
+          </div>
+        </div>
+
+
+        <p>به صورت پیشفرض Job هر کروتین وابسته به Job کروتین parent است (در صورت وجود parent)؛ زمانی که parent کنسل بشه children ها هم به صورت بازگشتی کنسل میشن و زمانی که یک اکسپشن برای یکی از children ها رخ بده parent نیز متوقف میشه.</p>‍
+        
+        <p>با ایجاد Job به صورت آشکار برای یک کروتین میتونیم بدون مشخص کردن parent یک کروتین مستقل ایجاد کنیم.</p>‍
+
+
+        <div class="sample">
+          <div class="snippet-container">
+            <pre class="snippet Kotlin">
+val scope = CoroutineScope(Dispatchers.Default)
+
+val parent: Job = Job()
+              
+scope.launch(parent){
+  //Execute codes in parent
+  val child: Job = Job()
+  launch(child){
+    //Execute codes in child
+  }
+}
+            </pre>
+          </div>
+        </div>
+
+      </section>
+
+      <section>
+        <h3>CoroutineName</h3>
+        <p>با استفاده از <strong>CoroutineName</strong> برای کروتین مورد نظر اسم تعریف می کنیم.</p>
+
+        <div class="sample">
+          <div class="snippet-container">
+            <pre class="snippet Kotlin">
+val context = Dispatchers.Default + CoroutineName("my-coroutine-with-Dispatchers.Default")
+val scope = CoroutineScope(context)
+            </pre>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h3>CoroutineExceptionHandler</h3>
+        <p>با <strong>CoroutineExceptionHandler</strong> می‌تونیم اکسپشن ایجاد شده در کروتین مورد نظر رو مدیریت کنیم.</p>
+
+        <div class="sample">
+          <div class="snippet-container">
+            <pre class="snippet Kotlin">
+val context = Dispatchers.Default + CoroutineName("my-coroutine") + CoroutineExceptionHandler{context, throwable -> /*Handle Exception here*/}
+
+val scope = CoroutineScope(context)
+
+//continue...
+            </pre>
+          </div>
+        </div>
+
+      </section>
+
+    </section>
+
+
+    <section id="p7">
+      <h2>تابع withContext</h2>
+      <p>با استفاده از تابع <strong>withContext</strong> می‌تونیم بدون ایجاد کروتین جدید کانتکست (Context) کروتین فعلی رو تغییر بدیم و پس از انجام کار به کروتین فعلی برگردیم.</p>
+
+      <p>تابع withContext یک تابع suspend است و باید داخل کروتین یا تابع suspend صدا زده بشه.</p>
+
+      <p>با تابع withContext میتونیم یک مقدار از نوع R رو برگردونیم.</p>
+
+      <p>در مثال زیر ابتدا اولین پیغام تابع چاپ میشه و سپس با withContext کانتکست عوض میشه و پیغام داخل withContext چاپ میشه و در نهایت به کانتکست کروتین اصلی بر میگردیم و پیام اخر چاپ میشه.</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Kotlin">
+suspend fun testWithContext(){
+
+    println("Before calling withContext...")
+
+    val result: String = withContext(Dispatchers.Default){
+
+        println("Executing codes in withContext...")
+
+        return@withContext "done"
+    }
+
+
+    println("withContext operation is $result")
+
+    println("After calling withContext...")
+}
+          </pre>
+        </div>
+      </div>
+      </section>
+
+      <section class="p8">
+
+        <h2>مورد مطالعه (مثال) ها</h2>
+
+      <p>در مثال زیر برنامه یک فایل متنی رو میخونه و تعداد دفعات تکرار کلمه ای که بهش دادیم رو میشماره، آرگومان اول کانستراکتور مسیر فایل متنیه و آرگومان دوم کلمه ایه که میخوایم برنامه بشماره</p>
+
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Kotlin">
+suspend fun main() {
+    val rto = ReadTextOccurrences("path_to_file", "word_name")
+
+    println("${rto.word}: ${rto.readAndCount()} times of occurrences")
+}
+
+class ReadTextOccurrences(path: String, var word: String) {
+
+    private val input: Scanner
+
+    init {
+        val file = File(path)
+        input = Scanner(file)
+
+        word = word.lowercase()
+    }
+
+    fun readAndCount(): Int {
+
+        var occurrences = 0
+
+        val scope = CoroutineScope(Dispatchers.Default)
+
+        val job = scope.launch {
+
+            val text = StringBuilder()
+
+            withContext(Dispatchers.IO) {
+                while (input.hasNextLine()) {
+                    val line = input.nextLine()
+                    text.append(line).append("\n")
+                }
+
+                input.close()
+            }
+
+            val words = text.split(Regex("\\s"))
+
+            for (w in words) {
+                if (w.isNotBlank()) {
+                    if (w.equals(word, true)) {
+                        println(occurrences)
+                        occurrences++
+                    }
+                }
+            }
+        }
+
+        while (job.isActive);
+
+
+        return occurrences
+    }
+}
+          </pre>
+        </div>
+      </div>
+
+      <p>در بالا از Job.isActive استفاده کردیم تا مطمئن بشیم قبل از پایان کار کروتین برنامه متوقف نمیشه، میتونیم بجای Job.isActive از Job.join استفاده کنیم؛ تابع join کروتین parent رو معلق میکنه تا job مورد نظر به پایان برسه.</p>
+
+
+      <p>در مثال زیر میخوایم فایل json سایت رو بگیریم و بخونیم.</p>
+
+      <div class="sample">
+        <div class="snippet-container">
+          <pre class="snippet Kotlin">
+suspend fun main() {
+
+    val scope = CoroutineScope(Dispatchers.Default)
+
+    val deferred = scope.async {
+
+        val uri = URI("https://kodedevel.ir/resources/json/metadata.json")
+        
+        val url = uri.toURL()
+
+        val content = withContext(Dispatchers.IO) {
+
+            val stream = url.openStream()
+
+            val input = Scanner(stream)
+
+            var content = ""
+
+            while (input.hasNext())
+                content = content.plus(input.nextLine())
+            
+            input.close()
+
+            return@withContext content
+        }
+
+        content
+    }
+
+    val jsonContent = deferred.await()
+    println(jsonContent)
+
+}
+          </pre>
+        </div>
+      </div>
+
+    </section>
+
+    <section id="p9">
+      <h2>خلاصه</h2>
+
+      <ul>
+        <li>کروتینز یک کتابخونه ی مدرن است که توسط کاتلین و با چندنخی در جاوا ایجاد شده</li>
+        <li>یک نخ میتونه چند کروتین رو اجرا کنه و به همین علت کروتین بهینه تر از چندنخی است.</li>
+        <li>برای ایجاد کروتین ابتدا باید محدوده کروتین رو تعریف کنیم و سپس کروتین ایجاد کنیم.</li>
+        <li>میتونیم با استفاده از سه تابع launch, async و runBlocking کروتین ایجاد کنیم.</li>
+        <li>میتونیم داخل یک کروتین، کروتین دیگه ای ایجاد کنیم و به هرکدوم به ترتیب Parent و Child میگیم.</li>
+        <li>هر کروتین یک کانتکست داره و هر کانتکست چهار ویژگی رایج داره که عبارتند از Disptachers, Job, CoroutineName و CoroutineExceptionHandler</li>
+        <li>با استفاده از کلیدواژه suspend میتونیم یک تابع ساسپند ایجاد کنیم.</li>
+        <li>تابع ساسپند میتونه به صورت موقت متوقف بشه و سپس ادامه پیدا کنه.</li>
+        <li>با استفاده از withContext میتونیم بدون نیاز به ایجاد کروتین جدید، کانتکست کروتین فعلی رو تغییر بدیم و بعد از اتمام کار تابع به کروتین فعلی برگردیم.</li>
+
+      </ul>
+    </section>
+</article>
+{% capture links %}
+<li>
+  <a href="/post/java/multithreading.html">چندنخی (Multithreading) در جاوا</a>
+</li>
+
+<li>
+  <a href="/post/blog/threads.html">چندنخی چیست؟</a>
+</li>
+
+<li>
+  <a href="/post/kotlin/extension-function.html">اکستنشن ها در کاتلین</a>
+</li>
+
+<li>
+  <a href="https://kotlinlang.org/docs/coroutines-guide.html">مطالعه در وبسایت رسمی کاتلین</a>
+</li>
+{% endcapture %} {% include article-foot.html relative_links = links %}
