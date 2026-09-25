@@ -790,6 +790,34 @@ suspend fun testWithContext(){
 
         <h2>مورد مطالعه (مثال) ها</h2>
 
+
+        <p>در مثال زیر میخوایم فاکتوریل رو با بیلدر launch محاسبه کنیم.</p>
+
+        <div class="sample">
+          <div class="snippet-container">
+            <pre class="snippet Kotlin">
+suspend fun main(){
+  displayFact(5)
+}
+
+suspend fun displayFact(n: Int){
+    coroutineScope {
+        launch {
+            val fact = fact(n, 1)
+            println("$n factorial is $fact")
+        }
+    }
+}
+
+tailrec fun fact(n: Int, result: Int): Int{
+    return if (n == 0) result else fact(n - 1 , n * result)
+}
+            </pre>
+          </div>
+
+        </div>
+
+
       <p>در مثال زیر برنامه یک فایل متنی رو میخونه و تعداد دفعات تکرار کلمه ای که بهش دادیم رو میشماره، آرگومان اول کانستراکتور مسیر فایل متنیه و آرگومان دوم کلمه ایه که میخوایم برنامه بشماره</p>
 
 
@@ -799,63 +827,58 @@ suspend fun testWithContext(){
 suspend fun main() {
     val rto = ReadTextOccurrences("path_to_file", "word_name")
 
-    println("${rto.word}: ${rto.readAndCount()} times of occurrences")
+    println("${rto.query}: ${rto.readAndCount()} times of occurrences")
 }
 
-class ReadTextOccurrences(path: String, var word: String) {
+class ReadTextOccurrences(path: String, var query: String) {
 
-    private val input: Scanner
+    private val file: File = File(path)
 
     init {
-        val file = File(path)
-        input = Scanner(file)
-
-        word = word.lowercase()
+        query = query.lowercase()
     }
 
-    fun readAndCount(): Int {
-
-        var occurrences = 0
+    suspend fun readAndCount(): Int {
 
         val scope = CoroutineScope(Dispatchers.Default)
 
-        val job = scope.launch {
+        return scope.async {
 
-            val text = StringBuilder()
+            val text = withContext(Dispatchers.IO) {
 
-            withContext(Dispatchers.IO) {
+                val input = Scanner(file)
+
+                val t = StringBuilder()
+
                 while (input.hasNextLine()) {
                     val line = input.nextLine()
-                    text.append(line).append("\n")
+                    t.append(line).append("\n")
                 }
 
                 input.close()
+
+                t
             }
 
             val words = text.split(Regex("\\s"))
+            var occurrences = 0
 
-            for (w in words) {
-                if (w.isNotBlank()) {
-                    if (w.equals(word, true)) {
+            for (word in words) {
+                if (word.isNotBlank()) {
+                    if (word.equals(query, true)) {
                         println(occurrences)
                         occurrences++
                     }
                 }
             }
-        }
 
-        while (job.isActive);
-
-
-        return occurrences
+            return@async occurrences
+        }.await()
     }
 }
           </pre>
         </div>
       </div>
-
-      <p>در بالا از Job.isActive استفاده کردیم تا مطمئن بشیم قبل از پایان کار کروتین برنامه متوقف نمیشه، میتونیم بجای Job.isActive از Job.join استفاده کنیم؛ تابع join کروتین parent رو معلق میکنه تا job مورد نظر به پایان برسه.</p>
-
 
       <p>در مثال زیر میخوایم فایل json سایت رو بگیریم و بخونیم.</p>
 

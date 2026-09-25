@@ -218,7 +218,7 @@
       "description": "آموزش جامع کروتینز (Coroutines) در کاتلین؛‌ معرفی کروتینز، افزودن کروتنیز به پروژه، کلیدواژه suspend، محدوده کروتین، بیلدرها و ایجاد کروتین با بلیدر ها، کروتین های تودرتو، بررسی کانتکست، تابع withContext به همراه مثال های مفهومی و کاربردی.",
       "author":"یونس‌ سلیمانی",
       "datePublished": "2026-09-20",
-      "lastModified": "",
+      "lastModified": "2026-09-25",
       "imgCover": "/resources/image/kotlin/cover_coroutines.png",
       "link": "/post/kotlin/coroutines.html"
     }
