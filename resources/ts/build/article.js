@@ -165,7 +165,7 @@ function insertLine(tBody, line, lineIndex) {
     var row = tBody.insertRow(0);
     var col0 = row.insertCell(0);
     col0.classList.add("code-line-number");
-    col0.innerHTML = '' + lineIndex + 1;
+    col0.innerHTML = (lineIndex + 1).toString();
     var col1 = row.insertCell(0);
     col1.classList.add("code");
     col1.innerHTML = line;

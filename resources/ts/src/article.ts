@@ -233,7 +233,7 @@ function insertLine(tBody: HTMLTableSectionElement, line: string, lineIndex: num
   var col0 = row.insertCell(0);
 
   col0.classList.add("code-line-number");
-  col0.innerHTML = '' + lineIndex + 1;
+  col0.innerHTML = (lineIndex + 1).toString();
 
   var col1 = row.insertCell(0);
   col1.classList.add("code");
