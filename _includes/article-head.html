@@ -8,8 +8,8 @@
 
     <address class="author">
       <span class="material-symbols-outlined" aria-hidden="true">person</span>
-      <a href="{{ metadata.author.link | default: '/about.html' }}" rel="author">
-        {{ metadata.author.name | default: site.author.name }}
+      <a href="{{ '/about.html' }}" rel="author">
+        {{ metadata.author }}
       </a>
     </address>
 
