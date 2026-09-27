@@ -1,81 +1,4 @@
 /*
-  Views which appear in sidebar.
- */
-//create list view for a course to show its content links inside sidebar
-/*
-function createCourseListView(courseData: any) {
-  var parent = document.createElement("div");
-
-  var btExpand = createExpandableButton(courseData);
-
-  var subjectListContainer = document.createElement("div");
-  subjectListContainer.classList.add("subject-list-container");
-  subjectListContainer.id = courseData.id;
-
-  var unorderedList = document.createElement("ul");
-
-  var urls = courseData.urls;
-  for (var i = 0; i < urls.length; i++) {
-    var item = createListItemView(urls[i]);
-    unorderedList.appendChild(item);
-  }
-
-  subjectListContainer.appendChild(unorderedList);
-
-  parent.appendChild(btExpand);
-  parent.appendChild(subjectListContainer);
-
-  return parent;
-}
-
-//create an expandable button for every courses which contain links
-function createExpandableButton(courseData: any) {
-  var btExpand = document.createElement("button");
-  btExpand.classList.add("md-bt-expandable");
-  btExpand.dataset.target = courseData.id;
-
-  const icon = document.createElement("span");
-  icon.classList.add("material-symbols-outlined");
-  icon.innerHTML = "arrow_drop_down";
-  icon.style.transform = "rotate(90deg)";
-  icon.style.transition = "transform 200ms ease-in-out";
-  const text = document.createElement("span");
-  text.innerText = courseData.title;
-
-  btExpand.appendChild(icon);
-  btExpand.appendChild(text);
-
-  btExpand.addEventListener("click", function () {
-    const l = document.getElementById(btExpand.dataset.target!)!;
-
-    if (!courseData.isExpanded) {
-      icon.style.transform = "rotate(0deg)";
-      l.style.maxHeight = l.scrollHeight + "px";
-    } else {
-      icon.style.transform = "rotate(90deg)";
-      l.style.maxHeight = "0";
-    }
-
-    courseData.reverseExpandStatus();
-  });
-
-  return btExpand;
-}
-
-//creates item for every url related to course for showing in sidebar
-function createListItemView(link) {
-  var item = document.createElement("li");
-
-  var anchor = document.createElement("a");
-  anchor.href = link.href;
-  anchor.innerHTML = link.subject;
-  item.appendChild(anchor);
-
-  return item;
-}
-
-*/
-/*
   Views for code styling usable in article.js
 */
 function createSampleHeader() {
@@ -121,7 +44,18 @@ function createDot() {
     dot.classList.add("dot");
     return dot;
 }
+function createSearchResultItem(title, url) {
+    const resultItem = document.createElement("div");
+    resultItem.classList.add('search-result-item');
+    const anchor = document.createElement("a");
+    anchor.href = url;
+    const text = document.createElement("span");
+    text.innerHTML = title;
+    anchor.appendChild(text);
+    resultItem.appendChild(anchor);
+    return resultItem;
+}
 export { 
 //createCourseListView,
-createSampleHeader, createDropMenu, createSnippetSelector, createCodeWrap, createCodeTableView, createDot, };
+createSampleHeader, createDropMenu, createSnippetSelector, createCodeWrap, createCodeTableView, createDot, createSearchResultItem };
 //# sourceMappingURL=ui.js.map

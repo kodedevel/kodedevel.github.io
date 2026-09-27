@@ -125,12 +125,16 @@
     height: 32px;
     background-color: transparent;
     color: #fafafa;
-    align-items: center;
-    justify-content: center;
 }
 
 .md-bt.md-bt-navbar-toggle:hover{
     background-color: #424242;
+}
+
+.md-bt.md-bt-clear{
+  background-color: transparent;
+  color: #fafafa;
+  margin-top: 2px;
 }
 
 .bt-back-home{

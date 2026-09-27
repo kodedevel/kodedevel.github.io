@@ -1,7 +1,21 @@
 import { animatePendingOperation } from "./animation.js";
+import { createSearchResultItem } from "./ui.js";
+import Fuse from "https://cdn.jsdelivr.net/npm/fuse.js@7.5.0/dist/fuse.mjs";
 //loads Ui Components into documents
 const scrollButtonContainer = document.querySelector(".scroll-top-container");
+const allCourses = await getAllCourses();
+async function getAllCourses() {
+    const response = await fetch("/resources/json/metadata.json", {
+        method: 'GET',
+        headers: {
+            "Content-Type": 'application/json'
+        }
+    });
+    const json = await response.json();
+    return json.courses;
+}
 function initUiComponents() {
+    initSearch();
     scrollButtonContainer.addEventListener("click", _ => {
         window.scrollTo({ top: 0, behavior: "smooth" });
     });
@@ -85,16 +99,8 @@ function toggleSidebar() {
     });
 }
 async function getCoursePaths() {
-    const response = await fetch("/resources/json/metadata.json", {
-        method: 'GET',
-        headers: {
-            "Content-Type": "application/json"
-        }
-    });
-    const json = await response.json();
-    const courses = json.courses;
     let coursePaths = [];
-    courses.forEach((course) => {
+    allCourses.forEach((course) => {
         let paths = [];
         course.metadata_list.forEach((subject) => {
             paths = paths.concat(subject.path);
@@ -197,6 +203,74 @@ function initDialog() {
         localStorage.setItem(KEY_VISIBILITY_STATUS, JSON.stringify(keepHidden));
         hideDialog();
     };
+}
+function getAllPagesMeta() {
+    const allSubjects = [];
+    allCourses.forEach((course) => {
+        course.metadata_list.forEach((subject) => {
+            allSubjects.push(subject);
+        });
+    });
+    return allSubjects;
+}
+const allPagesMetadata = getAllPagesMeta();
+function search(query) {
+    const fuse = new Fuse(allPagesMetadata, {
+        keys: [{
+                name: "title",
+                weight: 0.8
+            }, {
+                name: "description",
+                weight: 0.2
+            }],
+        includeScore: true,
+        threshold: 0.3
+    });
+    const result = fuse.search(query);
+    return result;
+}
+function initSearch() {
+    const searchContainer = document.querySelector('search');
+    if (!searchContainer)
+        return;
+    const searchField = searchContainer?.querySelector('.search-field');
+    const btClear = searchContainer?.querySelector('.md-bt-clear');
+    const searchResultContainer = document.querySelector(".search-result-container");
+    window.addEventListener("click", () => {
+        clearSearchResult(searchResultContainer);
+    });
+    btClear.onclick = () => {
+        searchField.value = "";
+        clearSearchResult(searchResultContainer);
+    };
+    let timeoutId;
+    searchField?.addEventListener("input", event => {
+        const userInput = event.target.value;
+        clearSearchResult(searchResultContainer);
+        clearTimeout(timeoutId);
+        if (userInput.length > 0) {
+            timeoutId = setTimeout(() => {
+                const result = search(userInput);
+                if (result.length == 0) {
+                    const emptySearchResultItem = createSearchResultItem("نتیجه ای یافت نشد", "#");
+                    searchResultContainer?.appendChild(emptySearchResultItem);
+                }
+                else {
+                    result.forEach((result) => {
+                        const meta = result.item;
+                        const resultItemUi = createSearchResultItem(meta.title, meta.path);
+                        searchResultContainer?.appendChild(resultItemUi);
+                    });
+                }
+            }, 400);
+        }
+    });
+}
+function clearSearchResult(searchResultContainer) {
+    while (searchResultContainer.firstChild) {
+        const element = searchResultContainer.lastChild;
+        searchResultContainer.removeChild(element);
+    }
 }
 export { initUiComponents, scrollTopVisibility, estimateRegularTextReadingTime, estimateSnippetReadingTime };
 //# sourceMappingURL=base.js.map

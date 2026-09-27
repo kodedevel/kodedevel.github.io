@@ -19,11 +19,17 @@
     "esModuleInterop": true,
     "outDir": "build",
     "rootDir": "src",
-    "sourceMap": true
+    "sourceMap": true,
+    "paths":{
+      "https://cdn.jsdelivr.net/npm/fuse.js@7.5.0/dist/fuse.mjs": [
+        "./node_modules/fuse.js"
+      ]
+    }
   },
   
   "include": [
-    "src/**/*"
+    "src/**/*",
+    "cdn-modules.d.ts"
   ],
   "exclude":[
     "build/**/*"

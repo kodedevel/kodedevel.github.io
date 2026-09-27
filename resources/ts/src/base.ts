@@ -1,12 +1,35 @@
-import {animatePendingOperation} from "./animation.js"
+import { FuseResult } from "fuse.js";
+import { CourseMeta, Meta } from "./backend/model/pages-meta.js"
+import { animatePendingOperation } from "./animation.js";
+import { createSearchResultItem } from "./ui.js";
+
+import Fuse from "https://cdn.jsdelivr.net/npm/fuse.js@7.5.0/dist/fuse.mjs";
 
 //loads Ui Components into documents
 const scrollButtonContainer = document.querySelector(".scroll-top-container")! as HTMLElement;
 
+const allCourses = await getAllCourses();
+
+async function getAllCourses() {
+  const response = await fetch("/resources/json/metadata.json", {
+    method: 'GET',
+    headers: {
+      "Content-Type": 'application/json'
+    }
+  });
+
+  const json = await response.json();
+
+  return json.courses;
+}
+
+
 function initUiComponents() {
 
+  initSearch();
+
   scrollButtonContainer.addEventListener("click", _ => {
-    window.scrollTo({top: 0, behavior: "smooth"});
+    window.scrollTo({ top: 0, behavior: "smooth" });
   });
 
   initDialog();
@@ -118,22 +141,11 @@ function toggleSidebar() {
 
 }
 
-
 async function getCoursePaths(): Promise<string[][]> {
-  const response = await fetch("/resources/json/metadata.json", {
-    method: 'GET',
-    headers: {
-      "Content-Type": "application/json"
-    }
-  });
-
-  const json = await response.json();
-
-  const courses = json.courses;
 
   let coursePaths: string[][] = [];
 
-  courses.forEach((course: any) => {
+  allCourses.forEach((course: any) => {
     let paths: string[] = [];
     course.metadata_list.forEach((subject: any) => {
       paths = paths.concat(subject.path);
@@ -144,6 +156,7 @@ async function getCoursePaths(): Promise<string[][]> {
 
   return coursePaths;
 }
+
 
 async function estimateCoursesReadingTime(courseItem: HTMLElement, subjectPaths: string[], intervalId: number) {
 
@@ -270,4 +283,106 @@ function initDialog() {
   };
 }
 
-export {initUiComponents, scrollTopVisibility, estimateRegularTextReadingTime, estimateSnippetReadingTime};
+function getAllPagesMeta(): Meta[] {
+
+  const allSubjects: Meta[] = []
+
+  allCourses.forEach((course: CourseMeta) => {
+    course.metadata_list.forEach((subject: any) => {
+      allSubjects.push(subject);
+    });
+  });
+
+  return allSubjects;
+}
+
+const allPagesMetadata = getAllPagesMeta();
+
+
+function search(query: string): FuseResult<Meta>[] {
+
+  const fuse = new Fuse(allPagesMetadata, {
+    keys: [{
+      name: "title",
+      weight: 0.8
+    }, {
+      name: "description",
+      weight: 0.2
+    }],
+    includeScore: true,
+    threshold: 0.3
+  });
+
+  const result: FuseResult<Meta>[] = fuse.search(query);
+
+  return result;
+}
+
+
+function initSearch() {
+
+  const searchContainer = document.querySelector('search') as HTMLElement | null;
+
+
+  if (!searchContainer) return;
+
+  const searchField = searchContainer?.querySelector('.search-field') as HTMLInputElement;
+  const btClear = searchContainer?.querySelector('.md-bt-clear') as HTMLButtonElement;
+
+  const searchResultContainer = document.querySelector(".search-result-container");
+
+  window.addEventListener("click", () => {
+    clearSearchResult(searchResultContainer!);
+  })
+
+  btClear.onclick = () => {
+    searchField.value = "";
+    clearSearchResult(searchResultContainer!);
+  }
+
+  let timeoutId: ReturnType<typeof setTimeout>;
+
+  searchField?.addEventListener("input", event => {
+
+    const userInput = (event.target as HTMLInputElement).value
+
+    clearSearchResult(searchResultContainer!);
+    clearTimeout(timeoutId);
+
+    if (userInput.length > 0) {
+
+      timeoutId = setTimeout(() => {
+
+        const result = search(userInput);
+
+        if (result.length == 0) {
+          const emptySearchResultItem = createSearchResultItem("نتیجه ای یافت نشد", "#");
+          searchResultContainer?.appendChild(emptySearchResultItem);
+        } else {
+
+          result.forEach((result: FuseResult<Meta>) => {
+            const meta = result.item;
+            const resultItemUi = createSearchResultItem(meta.title!, meta.path!);
+            searchResultContainer?.appendChild(resultItemUi);
+          })
+
+        }
+
+      }, 400);
+
+    }
+  });
+
+
+
+}
+
+
+function clearSearchResult(searchResultContainer: Element) {
+  while (searchResultContainer!.firstChild) {
+    const element = searchResultContainer!.lastChild!
+    searchResultContainer!.removeChild(element)
+  }
+}
+
+export { initUiComponents, scrollTopVisibility, estimateRegularTextReadingTime, estimateSnippetReadingTime };
