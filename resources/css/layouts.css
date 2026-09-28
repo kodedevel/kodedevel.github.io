@@ -12,9 +12,14 @@
 .navbar-brand{
   color: #fafafa;
   text-decoration: none;
-  opacity: 1;
+  visibility: collapse;
   margin-top: 8px;
   transition: all 500ms ease-in-out;
+  transform: translateX(-200px);
+}
+
+.navbar-brand.show{
+  visibility: visible;
   transform: translateX(0);
 }
 

@@ -16,21 +16,23 @@ li{
 }
 
 h1{
-    font-size: 1.8em;
+    white-space: break-spaces;
+    word-break: auto-phrase;
+    font-size: 1.74rem;
     font-weight: bold;
     margin: 0 8px;
 }
 
 h2{
-    font-size: 1.44em; 
+    font-size: 1.45rem; 
 }
 
 h3{
-   font-size: 1.152em;
+   font-size: 1.2rem;
 }
 
 h4{
-    font-size: 0.963em;
+    font-size: 1rem;
 }
 
 blockquote {

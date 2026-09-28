@@ -85,13 +85,12 @@ function isExpanded(element) {
     return element.classList.contains("expanded");
 }
 function showNavbarBrand() {
-    const sidebarNavBrand = document.querySelector(".navbar-brand");
-    sidebarNavBrand.style.opacity = '1';
+    const brand = document.querySelector(".navbar-brand");
+    brand.classList.add('show');
 }
 function hideNavbarBrand() {
     const sidebarNavBrand = document.querySelector(".navbar-brand");
-    sidebarNavBrand.style;
-    sidebarNavBrand.style.opacity = '0';
+    sidebarNavBrand.classList.remove('show');
 }
 function toggleSidebar() {
     const sidebar = document.getElementById("sidebar");

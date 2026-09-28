@@ -124,14 +124,13 @@ function isExpanded(element: Element) {
 }
 
 function showNavbarBrand() {
-  const sidebarNavBrand = document.querySelector(".navbar-brand")! as HTMLElement;
-  sidebarNavBrand.style.opacity = '1';
+  const brand = document.querySelector(".navbar-brand")! as HTMLElement;
+  brand.classList.add('show');
 }
 
 function hideNavbarBrand() {
   const sidebarNavBrand = document.querySelector(".navbar-brand")! as HTMLElement;
-  sidebarNavBrand.style
-  sidebarNavBrand.style.opacity = '0';
+  sidebarNavBrand.classList.remove('show');
 }
 
 function toggleSidebar() {
