@@ -33,7 +33,7 @@
     height: auto;
     max-height: 320px;
     font-size: 0.9rem;
-    top: 61px;
+    top: 80px;
     z-index: 10;
     box-shadow: -8px 0 8px 4px rgba(0, 0, 0, 0.2);
 }
@@ -46,11 +46,11 @@
     border-bottom: 1px solid #0D47A1;
 }
 
-
 @media (max-width: 768px) {
 
     .search-container{
         width: auto;
+        max-width: 240px;
     }
     
     .search-result-container{
