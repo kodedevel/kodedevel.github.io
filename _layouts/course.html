@@ -17,7 +17,20 @@
 
   <header>
     <div class="navbar">
-      <div class="navbar-content" style="justify-content: center;">
+      <div class="navbar-content">
+      <search class="search-container">
+
+        <input class="search-field" id="search-field" placeholder="جستجو" type="text" name="search">
+
+        <button type="button" class="md-bt md-bt-clear">
+          <span class="material-symbols-outlined">close_small</span>
+        </button>
+
+        <div class="search-result-container">
+          <!-- search results go here from typescript -->
+        </div>
+
+      </search>
         <a href="/" class="navbar-brand" id="brand">
           <span>KodeDevel</span>
         </a>
