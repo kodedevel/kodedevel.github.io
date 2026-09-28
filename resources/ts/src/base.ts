@@ -142,14 +142,12 @@ function toggleSidebar() {
   const btHideSidebar = document.getElementById("bt_hide_sidebar")!;
 
   btShowSidebar.addEventListener("click", function () {
-    sidebar.classList.remove("hide");
     sidebar.classList.add("show");
     hideNavbarBrand();
   });
 
   btHideSidebar.addEventListener("click", function () {
     sidebar.classList.remove("show");
-    sidebar.classList.add("hide");
     showNavbarBrand();
   });
 
