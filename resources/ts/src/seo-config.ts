@@ -1,27 +1,25 @@
-import {estimateRegularTextReadingTime, estimateSnippetReadingTime} from "./base.js"
+import { estimateSinglePageReadingTime } from "./eta.js"
 
-function estimateTotalReadingTime() {
+function estimateDocumentReadingTime() {
+
   const article = document.querySelector("article");
 
   if (!article) return;
 
-  const clone = article.cloneNode(true);
+  const path = window.location.href;
 
-  const etaForCodes = estimateSnippetReadingTime(clone);
+  estimateSinglePageReadingTime(path).then(result => {
 
-  const etaForTexts = estimateRegularTextReadingTime(clone);
+    const eta = document.querySelector(".eta");
 
-  const totalETA = etaForCodes + etaForTexts;
+    if (eta != null)
+      eta.lastElementChild!.textContent = `زمان مطالعه ${result} دقیقه`;
 
-  const eta = document.querySelector(".eta");
+  });
 
-  if (eta != null)
-    eta.lastElementChild!.textContent = `زمان مطالعه ${totalETA} دقیقه`;
 }
 
-
-
-function applyOnDisplayPersianDates() {
+function displayPersianDates() {
   const datePublishedEl = document.getElementById("publish-date") as HTMLTimeElement;
 
   if (datePublishedEl && datePublishedEl.dateTime != null) {
@@ -32,6 +30,7 @@ function applyOnDisplayPersianDates() {
     if (!isNaN(datePublished.getTime())) {
       datePublishedEl.textContent = " " + toPersianDate(datePublished);
     }
+
   }
 
   const dateModifiedEl = document.getElementById("lastmod-date") as HTMLTimeElement;
@@ -58,8 +57,8 @@ function toPersianDate(gregorianDate: Date) {
 }
 
 function applySEOConfigurations() {
-  estimateTotalReadingTime();
-  applyOnDisplayPersianDates();
+  (() => { estimateDocumentReadingTime(); return 1 })()
+  displayPersianDates();
 }
 
-export {applySEOConfigurations};
+export { applySEOConfigurations };

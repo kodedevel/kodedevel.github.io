@@ -1,17 +1,16 @@
-import { estimateRegularTextReadingTime, estimateSnippetReadingTime } from "./base.js";
-function estimateTotalReadingTime() {
+import { estimateSinglePageReadingTime } from "./eta.js";
+function estimateDocumentReadingTime() {
     const article = document.querySelector("article");
     if (!article)
         return;
-    const clone = article.cloneNode(true);
-    const etaForCodes = estimateSnippetReadingTime(clone);
-    const etaForTexts = estimateRegularTextReadingTime(clone);
-    const totalETA = etaForCodes + etaForTexts;
-    const eta = document.querySelector(".eta");
-    if (eta != null)
-        eta.lastElementChild.textContent = `زمان مطالعه ${totalETA} دقیقه`;
+    const path = window.location.href;
+    estimateSinglePageReadingTime(path).then(result => {
+        const eta = document.querySelector(".eta");
+        if (eta != null)
+            eta.lastElementChild.textContent = `زمان مطالعه ${result} دقیقه`;
+    });
 }
-function applyOnDisplayPersianDates() {
+function displayPersianDates() {
     const datePublishedEl = document.getElementById("publish-date");
     if (datePublishedEl && datePublishedEl.dateTime != null) {
         const datePublished = new Date(datePublishedEl.dateTime.trim());
@@ -37,8 +36,8 @@ function toPersianDate(gregorianDate) {
     return calendarFormatter.format(gregorianDate);
 }
 function applySEOConfigurations() {
-    estimateTotalReadingTime();
-    applyOnDisplayPersianDates();
+    (() => { estimateDocumentReadingTime(); return 1; })();
+    displayPersianDates();
 }
 export { applySEOConfigurations };
 //# sourceMappingURL=seo-config.js.map

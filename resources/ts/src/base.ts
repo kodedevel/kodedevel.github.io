@@ -1,9 +1,10 @@
+import Fuse from "https://cdn.jsdelivr.net/npm/fuse.js@7.5.0/dist/fuse.mjs";
 import { FuseResult } from "fuse.js";
 import { CourseMeta, Meta } from "./backend/model/pages-meta.js"
 import { animatePendingOperation } from "./animation.js";
 import { createSearchResultItem } from "./ui.js";
+import { estimateCourseReadingTime } from "./eta.js";
 
-import Fuse from "https://cdn.jsdelivr.net/npm/fuse.js@7.5.0/dist/fuse.mjs";
 
 //loads Ui Components into documents
 const scrollButtonContainer = document.querySelector(".scroll-top-container")! as HTMLElement;
@@ -23,6 +24,21 @@ async function getAllCourses() {
   return json.courses;
 }
 
+function getCoursePaths(): string[][] {
+
+  let coursePaths: string[][] = [];
+
+  allCourses.forEach((course: any) => {
+    let paths: string[] = [];
+    course.metadata_list.forEach((subject: any) => {
+      paths = paths.concat(subject.path);
+    });
+
+    coursePaths.push(paths);
+  });
+
+  return coursePaths;
+}
 
 function initUiComponents() {
 
@@ -33,13 +49,13 @@ function initUiComponents() {
   });
 
   initDialog();
-  (() => initSidebar())();
+  initSidebar();
 }
 
 const header = document.querySelector("header")!;
 const dialog = document.querySelector(".dialog")! as HTMLElement;
 
-async function initSidebar() {
+function initSidebar() {
 
   toggleSidebar();
 
@@ -49,7 +65,7 @@ async function initSidebar() {
 
     const listCourses: NodeList = courseContainer.querySelectorAll('.sidebar-item');
 
-    let coursePaths = await getCoursePaths();
+    let coursePaths = getCoursePaths();
 
     for (var i = 0; i < listCourses.length; i++) {
 
@@ -72,12 +88,11 @@ async function initSidebar() {
         }
       });
 
-      estimateCoursesReadingTime(courseItem, subjectPaths, intervalId);
+      estimateCourseReadingTime(courseItem, subjectPaths, intervalId);
 
     }
   }
 }
-
 
 function expand(btExpand: HTMLElement, content: HTMLElement) {
   btExpand.classList.add("expanded");
@@ -140,89 +155,6 @@ function toggleSidebar() {
   });
 
 }
-
-async function getCoursePaths(): Promise<string[][]> {
-
-  let coursePaths: string[][] = [];
-
-  allCourses.forEach((course: any) => {
-    let paths: string[] = [];
-    course.metadata_list.forEach((subject: any) => {
-      paths = paths.concat(subject.path);
-    });
-
-    coursePaths.push(paths);
-  });
-
-  return coursePaths;
-}
-
-
-async function estimateCoursesReadingTime(courseItem: HTMLElement, subjectPaths: string[], intervalId: number) {
-
-  let courseETA = 0;
-
-  for (const path of subjectPaths) {
-    try {
-      const pageResponse = await fetch(path, {
-        headers: {
-          method: "GET",
-          "Content-Type": "text/html"
-        }
-      });
-
-      const text = await pageResponse.text();
-      const parser = new DOMParser();
-      const doc = parser.parseFromString(text, "text/html");
-      const article = doc.querySelector("article") as Node;
-
-      const textETA = estimateRegularTextReadingTime(article);
-      const snippetETA = estimateSnippetReadingTime(article);
-
-      courseETA += (textETA + snippetETA);
-
-    } catch (err) {
-      console.error(err);
-    }
-  }
-
-  const etaBadge = courseItem.querySelector(".badge-data")! as HTMLElement;
-  etaBadge.innerHTML = '' + courseETA;
-
-  clearInterval(intervalId);
-
-}
-
-function estimateRegularTextReadingTime(article: Node) {
-  var numberOfWords = 0;
-  const texts = (article as HTMLElement).innerText.trim().split(/\n|\s/);
-  texts.forEach((line) => {
-    if (line.length > 0) numberOfWords++;
-  });
-
-  return Math.max(1, Math.ceil(numberOfWords / 250));
-}
-
-function estimateSnippetReadingTime(article: Node) {
-
-  var numberOfWords = 0;
-
-  const containers = (article as HTMLElement).querySelectorAll(".snippet-container");
-
-  containers.forEach(container => {
-    const snippet = container.firstElementChild! as HTMLElement;
-    const text = snippet.innerText.split(/[\s\n]/g);
-    text.forEach(word => {
-
-      if (word.length > 0)
-        numberOfWords++;
-    });
-  });
-
-
-  return Math.ceil(numberOfWords / 100);
-}
-
 
 let currentScrollY = 0;
 
@@ -385,4 +317,4 @@ function clearSearchResult(searchResultContainer: Element) {
   }
 }
 
-export { initUiComponents, scrollTopVisibility, estimateRegularTextReadingTime, estimateSnippetReadingTime };
+export { initUiComponents, scrollTopVisibility};
