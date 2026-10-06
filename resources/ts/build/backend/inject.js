@@ -45,16 +45,10 @@ async function getAllPagesMetadata() {
     let allPagesMetadata = [];
     try {
         const raw = fs.readFileSync("_site/resources/json/metadata.json", "utf-8");
-        //const response = await fetch(new URL("/resources/json/metadata.json", "https://kodedevel.ir"), {method: 'GET'});
-        //if (!response.ok) {
-        //  const error = response.text();
-        //  throw new Error(`HTTP ERROR ${response.status}: ${error}`);
-        //}
-        //const result: AllMeta = await response.json();
-        const result = JSON.parse(raw);
-        allPagesMetadata.push(result.home);
-        allPagesMetadata.push(result.about);
-        const courses = result.courses || [];
+        const metadata = JSON.parse(raw);
+        allPagesMetadata.push(metadata.home);
+        allPagesMetadata.push(metadata.about);
+        const courses = metadata.courses || [];
         courses.forEach(course => {
             if (course.path) {
                 allPagesMetadata.push(course);

@@ -70,23 +70,12 @@ async function getAllPagesMetadata(): Promise<Meta[]> {
   try {
     const raw = fs.readFileSync("_site/resources/json/metadata.json", "utf-8");
 
-    //const response = await fetch(new URL("/resources/json/metadata.json", "https://kodedevel.ir"), {method: 'GET'});
+    const metadata: AllMeta = JSON.parse(raw);
 
+    allPagesMetadata.push(metadata.home);
+    allPagesMetadata.push(metadata.about);
 
-    //if (!response.ok) {
-    //  const error = response.text();
-    //  throw new Error(`HTTP ERROR ${response.status}: ${error}`);
-    //}
-
-    //const result: AllMeta = await response.json();
-
-    const result: AllMeta = JSON.parse(raw);
-
-    allPagesMetadata.push(result.home);
-    allPagesMetadata.push(result.about);
-
-    const courses = result.courses || [];
-
+    const courses = metadata.courses || [];
     
     courses.forEach(course => {
 
