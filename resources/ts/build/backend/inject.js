@@ -44,17 +44,17 @@ async function injectComments(allComments) {
 async function getAllPagesMetadata() {
     let allPagesMetadata = [];
     try {
-        const response = await fetch(new URL("/resources/json/metadata.json", "https://kodedevel.ir"), {
-            method: 'GET'
-        });
-        if (!response.ok) {
-            const error = response.text();
-            throw new Error(`HTTP ERROR ${response.status}: ${error}`);
-        }
-        const result = await response.json();
+        const raw = fs.readFileSync("_site/resources/json/metadata.json", "utf-8");
+        //const response = await fetch(new URL("/resources/json/metadata.json", "https://kodedevel.ir"), {method: 'GET'});
+        //if (!response.ok) {
+        //  const error = response.text();
+        //  throw new Error(`HTTP ERROR ${response.status}: ${error}`);
+        //}
+        //const result: AllMeta = await response.json();
+        const result = JSON.parse(raw);
         allPagesMetadata.push(result.home);
         allPagesMetadata.push(result.about);
-        const courses = result.courses;
+        const courses = result.courses || [];
         courses.forEach(course => {
             if (course.path) {
                 allPagesMetadata.push(course);

@@ -68,22 +68,26 @@ async function getAllPagesMetadata(): Promise<Meta[]> {
   let allPagesMetadata: Meta[] = [];
 
   try {
-    const response = await fetch(new URL("/resources/json/metadata.json", "https://kodedevel.ir"), {
-      method: 'GET'
-    });
+    const raw = fs.readFileSync("_site/resources/json/metadata.json", "utf-8");
 
-    if (!response.ok) {
-      const error = response.text();
-      throw new Error(`HTTP ERROR ${response.status}: ${error}`);
-    }
+    //const response = await fetch(new URL("/resources/json/metadata.json", "https://kodedevel.ir"), {method: 'GET'});
 
-    const result: AllMeta = await response.json();
+
+    //if (!response.ok) {
+    //  const error = response.text();
+    //  throw new Error(`HTTP ERROR ${response.status}: ${error}`);
+    //}
+
+    //const result: AllMeta = await response.json();
+
+    const result: AllMeta = JSON.parse(raw);
 
     allPagesMetadata.push(result.home);
     allPagesMetadata.push(result.about);
 
-    const courses = result.courses;
+    const courses = result.courses || [];
 
+    
     courses.forEach(course => {
 
       if (course.path) {
