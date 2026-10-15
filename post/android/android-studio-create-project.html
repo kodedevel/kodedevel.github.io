@@ -1,0 +1,231 @@
+---
+layout: default
+---
+
+<article>
+
+    <nav class="toc">
+        <div>دسترسی سریع</div>
+        <ul>
+            <li>
+                <a href="#p0">چرا باید از اندروید استایو استفاده کنیم؟</a>
+            </li>
+            <li>
+                <a href="#p1">ایجاد پروژه در اندروید استادیو</a>
+            </li>
+            <li>
+              <a href="#p2">استفاده از مخازن داخلی در پروژه اندرویدی</a> 
+            </li>
+            <li>
+                <a href="#p3">بخش های مختلف پروژه اندرویدی</a>
+            </li>
+            <li>
+                <a href="#p4">خلاصه</a>
+            </li>
+        </ul>
+    </nav>
+
+    <section id="p0">
+        <h2>چرا باید از اندروید استادیو استفاده کنیم؟</h2>
+        <p>اندورید استادیو در واقع یک محیط کد نویسی برای نوشتن برنامه های اندرویدیه، میتونیم یک پروژه ی اندرویدی رو بدون
+            استفاده از اندروید استادیو و حتی با استفاده از تکست ادیتور های معمولی و ترمینال ایجاد و اجرا کنیم اما
+            استفاده از اندروید استادیو خیلی از کار ها رو برامون راحت تر میکنه، مثلا باگ های برنامه رو راحت تر پیدا
+            میکنیم و فایل های پروژه رو راحت تر مدیریت میکنیم و در اندروید استادیو علاوه بر کد نویسی میتونیم از ابزار های
+            ویژوالی محیط اندروید استادیو برای توسعه ی پروژه استفاده کنیم.</p>
+        <p>پس اندروید استادیو برای توسعه ی یک پروژه اندرویدی لازم نیست اما وجودش به کار هامون سرعت میده.</p>
+    </section>
+
+    <section id="p1">
+        <h2>ایجاد پروژه در اندروید استادیو</h2>
+        <p>برای ایجاد پروژه در اندروید استادیو ابتدا اندروید استادیو رو باز میکنیم و سپس روی New Project کادر قرمز در
+            تصویر زیر کلیک میکنیم.</p>
+
+        <figure>
+            <img src="/resources/image/android/android_studio_new_project.png"
+                alt="ایجاد پروژه جدید در اندروید استادیو">
+            <figcaption>ایجاد پروژه جدید در اندروید استادیو</figcaption>
+        </figure>
+
+        <p>در این مرحله نوع قالبی که میخوایم برای پروژه ایجاد بشه رو انتخاب میکنیم و سپس next رو میزنیم؛ برای شروع Empty
+            Activity رو انتخاب کنید.</p>
+
+        <figure>
+            <img src="/resources/image/android/android_studio_new_project_template_select.png"
+                alt="انتخاب نوع قالب هنگام ایجاد پروژه در اندروید استادیو">
+            <figcaption>انتخاب نوع قالب هنگام ایجاد پروژه در اندروید استادیو</figcaption>
+        </figure>
+
+
+        <p>در این مرحله در قسمت Name نام پروژه (برنامه) رو می نویسیم.</p>
+
+        <p>در قسمت Package name نام پکیج رو مینویسم؛ نام پکیج باید برعکس ادرس دامنه و زیر دامنه یک سایت باشه، به عنوان
+            مثال اگه آدرس سایت <strong>appname.company.com</strong> باشه در پروژه اندرویدی نام پکیج به صورت <strong
+                dir="ltr">com.company.appname</strong> در نظر گرفته میشه که com نام دامنه، company نام کمپانی یا شرکت و
+            appname نام برنامه است.</p>
+
+        <p>در قسمت Save location مسیر ذخیره ی پروژه رو انتخاب میکنیم و در قسمت Minimum SDK حداقل نسخه ی اندروید رو برای
+            اجرای پروژه انتخاب میکنیم.</p>
+
+        <p>در قسمت Build configuration language هم زبان ساخت پروژه توسط گریدل رو میتونیم kotlin یا groovy انتخاب کنیم که
+            به صورت پیشفرض کاتلینه و کاری بهش نداریم.</p>
+
+        <p>و در نهایت finish رو میزنیم و پروژه شروع به سینک شدن می‌کنه.</p>
+
+        <figure>
+            <img src="/resources/image/android/android_studio_choose_project_and_package_name.png"
+                alt="نحوه انتخاب نام پروژه و پکیج در اندروید استادیو">
+            <figcaption>نحوه انتخاب نام پروژه و پکیج در اندروید استادیو</figcaption>
+        </figure>
+
+
+    </section>
+
+
+    <section id="p2">
+        <h2>استفاده از مخازن داخلی در پروژه اندرویدی</h2>
+        <p>با توجه به تحریم های گوگل بر روی ایران، برای سینک پروژه و دانلود راحت تر وابستگی (Dependency) های پروژه ی
+            اندرویدی راحت ترین راه استفاده از مخازن داخلی در پروژه برای سینک و دانلود وابستگی (Dependency) های پروژه
+            است؛ بنابراین دو مخزن (Repository) <br> <strong dir="ltr">maven { url = uri("https://maven.myket.ir")
+                }</strong> <br>
+            <strong dir="ltr">maven { url = uri("https://maven.devneeds.ir") }</strong> <br> رو به صورت زیر داخل فایل
+            <strong>settings.gradle.kts</strong> قرار بدید.
+        </p>
+
+
+        <div class="sample">
+            <div class="snippet-container">
+                <pre class="snippet Kotlin">
+pluginManagement {
+    repositories {
+        maven { url = uri("https://maven.myket.ir") }
+        maven { url = uri("https://maven.devneeds.ir") }
+        google {
+
+            content {
+                includeGroupByRegex("com\\.android.*")
+                includeGroupByRegex("com\\.google.*")
+                includeGroupByRegex("androidx.*")
+            }
+        }
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+plugins {
+    id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        maven { url = uri("https://maven.myket.ir") }
+        maven { url = uri("https://maven.devneeds.ir") }
+        google()
+        mavenCentral()
+    }
+}
+
+rootProject.name = "Hello World"
+include(":app")
+
+                </pre>
+            </div>
+        </div>
+
+    </section>
+
+    <section id="p3">
+        <h2>بخش های مختلف پروژه اندرویدی</h2>
+
+        
+        <p>با استفاده از اکسپلور اندروید استادیو میتونیم به گشت و گذار در پروژه اندرویدی بپردازیم؛ مانند تصویر زیر در بخش اکسپلور اندروید استادیو روی Project (کادر قرمز رنگ) کلیک کنید؛ با کلیک بر روی این قسمت فایل ها در اکسپلور اندروید
+            استادیو به صورت پروژه ای نمایش داده میشه.</p>
+
+        <figure>
+            <img src="/resources/image/android/android_studio_explorer_show.png"
+                alt="نحوه نمایش فایل های پروژه در اکسپلور اندروید استادیو">
+            <figcaption>نحوه نمایش فایل های پروژه در اکسپلور اندروید استادیو</figcaption>
+        </figure>
+
+
+        <p>بعد از انتخاب نحوه نمایش به صورت Project میتونیم قسمت های مختلف پروژه اندرویدی رو ببینیم.</p>
+
+        <figure>
+            <img src="/resources/image/android/android_project_parts.png" alt="بخش های مختلف پروژه اندرویدی">
+            <figcaption>بخش های مختلف پروژه اندرویدی</figcaption>
+        </figure>
+
+        <p>فایل های اصلی پروژه (کد ها و منابع مورد نیاز) داخل <strong dir="ltr">app/src</strong> قرار دارن.</p>
+        <p>داخل پوشه src سه پوشه <strong>androidTest</strong>, <strong>main</strong> و <strong>test</strong> وجود داره.
+        </p>
+
+        <section>
+            <h3>androidTest</h3>
+            <p>زمانی که نیاز به محیط اندرویدی برای تست کد ها داشته باشیم کد های تست junit رو داخل این پوشه می نویسیم.</p>
+        </section>
+
+
+        <section>
+            <h3>test</h3>
+            <p>زمانی که بخوایم کد ها رو با JVM تست کنیم، کد های تست junit رو داخل این پوشه می نویسیم.</p>
+        </section>
+
+
+        <section>
+            <h3>main</h3>
+            <p>داخل پوشه main دو پوشه <strong>res</strong> و <strong>java</strong> به همراه یک فایل به نام
+                <strong>AndroidManifest.xml</strong> وجود داره.</p>
+
+            <section>
+                <h4>پوشه java</h4>
+                <p>پکیجی که هنگام ایجاد پروژه تعریف کردیم، داخل پوشه java قرار میگیره و به طور عمومی کد های جاوا و
+                    کاتلین داخل پکیج تعریف شده قرار میگیرن.</p>
+            </section>
+
+            <section>
+                <h4>پوشه res</h4>
+                <p>منابع مورد نیاز برنامه از جمله گرافیک ها، عکس ها، استرینگ های لوکالیز و... داخل پوشه
+                    <strong>res</strong> قرار میگیرن.</p>
+            </section>
+
+            <section>
+                <h4>فایل AndroidManifest.xml</h4>
+                <p>میتونیم مجوز ها و کانفیگ های برنامه اندرویدی رو داخل فایل <strong>AndroidManifest.xml</strong>
+                    تعریف کنیم.</p>
+            </section>
+
+        </section>
+
+    </section>
+
+    <section>
+        <h2>خلاصه</h2>
+        <ul>
+            <li>استفاده از اندروید استادیو کار رو برای توسعه پروژه های اندرویدی راحت تر می کنه.</li>
+            <li>با استفاده از اکسپور اندروید استادیو به گشت و گذار در قسمت های مختلف پروژه می پردازیم.</li>
+            <li>فایل های اصلی پروژه در پوشه src قرار دارن.</li>
+            <li>کد های جاوا یا کاتلین پروژه در پوشه java قرار دارن</li>
+            <li>منابع پروژه داخل پوشه res قرار دارن</li>
+            <li>در فایل AndroidManifest.xml میتونیم برای برنامه اندرویدی بعضی از مجوز ها و کانفیگ ها رو تعریف کنیم.</li>
+        </ul>
+    </section>
+
+</article>
+
+{% capture links %}
+<li>
+    <a href="/post/kotlin/introduction.html">شروع کاتلین</a>
+</li>
+<li>
+    <a href="/post/android/jetpack-compose-introduction.html">معرفی جت‌پک کامپوز و تعریف تابع کامپوز در اندروید</a>
+</li>
+<li>
+    <a href="/post/android/introduction.html">معرفی اندروید</a>
+</li>
+<li>
+    <a href="/post/android/navigation.html">استفاده از نویگیشن در اندروید</a>
+</li>
+
+{% endcapture %}
+
+
+{% include article-foot.html relative_links = links %}
