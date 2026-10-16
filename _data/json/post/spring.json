@@ -1,0 +1,19 @@
+{
+    "id": "spring_chapters",
+    "name": "اسپرینگ",
+    "path": "/post/spring.html",
+    "description": "آموزش رایگان فریم ورک اسپرینگ، از مفاهیم پایه تا مباحث کاربردی، همراه با مثال‌های عملی و قدم‌به‌قدم برای یادگیری بهتر و درک عمیق‌تر این فریم‌ورک.",
+    "datePublished": "2026-10-16",
+    "lastModified": "",
+    "metadata_list": [
+        {
+            "title": "تاریخچه‌ ی فریم ورک اسپرینگ (spring)",
+            "description": "آشنایی با تاریخچه اسپرینگ ؛ از مشکلات J2EE تا دلیل نام گذاری آن",
+            "author": "مهدیه منتظری",
+            "datePublished": "2026-10-16",
+            "lastModified": "",
+            "imgCover": "/resources/image/spring/cover_introduction.png",
+            "link": "/post/spring/history.html"
+        }
+    ]
+}
