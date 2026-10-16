@@ -37,8 +37,7 @@ layout: default
 
     <section id="p1">
         <h2>ایجاد پروژه در اندروید استادیو</h2>
-        <p>برای ایجاد پروژه در اندروید استادیو ابتدا اندروید استادیو رو باز میکنیم و سپس روی New Project کادر قرمز در
-            تصویر زیر کلیک میکنیم.</p>
+        <p>برای ایجاد پروژه در اندروید استادیو ابتدا اندروید استادیو رو باز میکنیم و سپس روی New Project در تصویر زیر کلیک میکنیم.</p>
 
         <figure>
             <img src="/resources/image/android/android_studio_new_project.png"
@@ -83,12 +82,7 @@ layout: default
 
     <section id="p2">
         <h2>استفاده از مخازن داخلی در پروژه اندرویدی</h2>
-        <p>با توجه به تحریم های گوگل بر روی ایران، برای سینک پروژه و دانلود راحت تر وابستگی (Dependency) های پروژه ی
-            اندرویدی راحت ترین راه استفاده از مخازن داخلی در پروژه برای سینک و دانلود وابستگی (Dependency) های پروژه
-            است؛ بنابراین دو مخزن (Repository) <br> <strong dir="ltr">maven { url = uri("https://maven.myket.ir")
-                }</strong> <br>
-            <strong dir="ltr">maven { url = uri("https://maven.devneeds.ir") }</strong> <br> رو به صورت زیر داخل فایل
-            <strong>settings.gradle.kts</strong> قرار بدید.
+        <p>با توجه به تحریم های گوگل بر روی ایران، راحت ترین راه برای سینک پروژه و دانلود وابستگی (Dependency) ها، استفاده از مخازن داخلی در پروژه است؛ بنابراین مخازن (Repository) داخلی رو به صورت زیر داخل فایل <strong>settings.gradle.kts</strong> قرار میدیم.
         </p>
 
 
@@ -97,8 +91,10 @@ layout: default
                 <pre class="snippet Kotlin">
 pluginManagement {
     repositories {
-        maven { url = uri("https://maven.myket.ir") }
-        maven { url = uri("https://maven.devneeds.ir") }
+        //مخزن داخلی
+        maven { url = uri("https://maven.myket.ir") } 
+        //مخزن داخلی
+        maven { url = uri("https://maven.devneeds.ir") } 
         google {
 
             content {
@@ -117,8 +113,10 @@ plugins {
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
-        maven { url = uri("https://maven.myket.ir") }
-        maven { url = uri("https://maven.devneeds.ir") }
+        //مخزن داخلی
+        maven { url = uri("https://maven.myket.ir") } 
+        //مخزن داخلی
+        maven { url = uri("https://maven.devneeds.ir") } 
         google()
         mavenCentral()
     }
