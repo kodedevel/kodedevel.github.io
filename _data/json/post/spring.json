@@ -7,12 +7,12 @@
     "lastModified": "",
     "metadata_list": [
         {
-            "title": "تاریخچه‌ ی فریم ورک اسپرینگ (spring)",
-            "description": "آشنایی با تاریخچه اسپرینگ ؛ از مشکلات J2EE تا دلیل نام گذاری آن",
+            "title": "تاریخچه‌ فریم‌ورک اسپرینگ (spring)",
+            "description": "قبل از اسپرینگ دنیای جاوا در چه شرایطی بود؟ داستان اسپرینگ از کجا شروع شد؟ چرا اسم آن اسپرینگ شد؟ نگاهی به تاریخچه اسپرینگ.",
             "author": "مهدیه منتظری",
-            "datePublished": "2026-10-16",
+            "datePublished": "2026-10-17",
             "lastModified": "",
-            "imgCover": "/resources/image/spring/cover_introduction.png",
+            "imgCover": "/resources/image/spring/cover_history.png",
             "link": "/post/spring/history.html"
         }
     ]
