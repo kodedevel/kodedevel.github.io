@@ -1,0 +1,228 @@
+---
+layout: default
+---
+
+<article>
+
+    <nav class="toc">
+        <div>دسترسی سریع</div>
+        <ul>
+            <li>
+                <a href="#p0">معرفی کامپوز (Compose)</a>
+            </li>
+            <li>
+                <a href="#p1">تابع کامپوز (Composable Function)</a>
+            </li>
+            <li>
+                <a href="#p2">تابع setContent</a>
+            </li>
+            <li>
+                <a href="#p3">قوانین کامپوز</a>
+            </li>
+            <li>
+                <a href="#p4">خلاصه</a>
+            </li>
+        </ul>
+    </nav>
+
+    <section id="p0">
+        <h2>معرفی کامپوز (Compose)</h2>
+        <p>کامپوز (Compose) یک بخشی از کتابخونه ی <strong>جت پک (Jetpack)</strong> در <a
+                href="/post/blog/frameworks.html">فریم‌ورک</a> اندروید است که با زبان <a
+                href="/post/kotlin/introduction.html">کاتلین</a>
+            نوشته شده، کامپوز ابتدا در می 2019 توسط گوگل معرفی شد و در اکتبر 2019 نسخه پیش نمایش آن تولید شد، نسخه آلفا
+            آن در آگوست 2020 منتشر و در فوریه 2021 وارد فاز بتا شد؛ در نهایت در جولای 2021 نسخه 1.0 پایدار آن منتشر
+            شد.</p>
+
+        <p>با استفاده از کامپوز میتونیم رابط کاربری (UI) مدرن به صورت نیتیو برای اندروید طراحی کنیم؛ استفاده از کامپوز
+            طراحی UI رو برای توسعه دهندگان اندروید ساده تر کرده و کامپوز از اندروید 5 به بالا پشتیبانی می‌کنه.</p>
+
+        <p>کد های نوشته شده در کامپوز، با کامپایلر کامپوز (Compose Compiler) کامپایل میشن.</p>
+
+    </section>
+
+    <section id="p1">
+        <h2>تابع کامپوز (Composable Function)</h2>
+        <p>میتونیم یک تابع، پراپرتی یا کلاس رو با <strong>Annotation</strong> علامتگذاری کنیم، Annotation ها حاوی
+            اطلاعات اضافی برای تابع، پراپرتی و کلاس هستن و میتونن از کد های تکراری (boilerplate) جلوگیری کنن.</p>
+        <p>با علامت گذاری یک تابع با <strong dir="ltr">@Composable</strong> یک تابع کامپوز ایجاد می‌کنیم؛ علامت
+            Composable به کامپایلر میگه، تابع علامت گذاری شده یک تابع کامپوز است.</p>
+
+        <div class="sample">
+            <div class="snippet-container">
+                <pre class="snippet Kotlin">
+@Composable
+fun MyComposeFunction(){
+    //do something here
+}
+                </pre>
+            </div>
+        </div>
+        <p>توابع کامپوز <strong>تغییر ناپذیر (Immutable)</strong>هستن، یعنی زمانی که <strong>وضعیت (State)</strong>
+            کامپوز تغییر کنه (مقدار متغیر های یک تابع کامپوز تغییر کنه)، ویو پاک میشه و تابع کامپوز با
+            وضعیت (State) جدید دوباره صدا زده میشه و ویو دوباره ترسیم میشه که اصطلاحا بهش
+            <strong>ریکامپوزیشن (recomposition)</strong> میگیم؛ هنگام ریکامپوزیشن، فقط توابعی که وضعیتشون تغییر کرده
+            دوباره ترسیم میشن و این ويژگی ترسیم ویو ها رو در کامپوز بهینه کرده.
+        </p>
+
+        <p>توابع کامپوز قابل استفاده ی مجدد هستن یعنی یک تابع کامپوز رو میتونیم در دو یا چند جا صدا بزنیم.</p>
+
+        <section>
+            <h3>پیش نمایش توابع کامپوز قبل از اجرا</h3>
+            <p>با تعریف یک تابع کامپوز و علامتگذاری تابع با <strong dir="ltr">@Preview</strong> میتونیم بدون ران کردن
+                برنامه ویو رو ببینیم؛ همچنین میتونیم یک یا چند تابع Preview تعریف کنیم.</p>
+
+            <div class="sample">
+                <div class="snippet-container">
+                    <pre class="snippet Kotlin">
+@Composable
+fun Greeting(name: String, modifier: Modifier = Modifier){
+    Text(
+        text="Hello $name",
+        modifier = modifier
+    )
+}
+                    
+@Preview
+@Composable
+fun GreetingPreview(){
+    Greeting("Android!")
+}
+                </pre>
+                </div>
+            </div>
+
+            <p>برای پیش نمایش ویو، فایلی که تابع Preview رو داخلش تعریف کردیم باز می کنیم و بر روی دکمه ی وسط یا سمت
+                راست که
+                در زیر با مستطیل مشخص کردیم کلیک می‌کنیم.</p>
+
+            <figure>
+                <img src="/resources/image/android/jetpack_compose_preview_tab.png" alt="پیش نمایش ویو در جت پک کامپوز">
+                <figcaption>پیش نمایش ویو در جت پک کامپوز</figcaption>
+            </figure>
+        </section>
+
+    </section>
+
+    <section id="p2">
+        <h2>تابع setContent</h2>
+
+        <p>برای اجرای توابع کامپوز باید تابع <strong dir="ltr">setContent(@Composable () -> Unit)</strong> رو داخل
+            onCreate صدا بزنیم و سپس میتونیم یک یا چند تابع کامپوز رو داخلش صدا کنیم؛ در زیر دو تابع
+            <strong>Scaffold</strong> و <strong>Greeting</strong> داخل <strong>setContent</strong> صدا زده شدن.
+        </p>
+
+        <div class="note">
+            <p class="note-head">توجه</p>
+            <p>در اندروید به صورت پیش‌فرض تابع Scaffold و سایر توابع کامپوز داخل تابع MyAppNameTheme صدا زده میشه که اسم
+                MyAppName همون نام برنامه است، و داخل فایل Theme در پکیج <strong dir="ltr">ui.theme</strong> قرار داره،
+                اما در زیر چون برنامه سادس و نیاز به تم
+                نداره تابع MyAppNameTheme رو حذف کردیم.</p>
+        </div>
+
+        <div class="sample">
+            <div class="snippet-container">
+                <pre class="snippet Kotlin">
+class MainActivity : ComponentActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContent {
+            Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                Greeting(
+                    name = "Android",
+                    modifier = Modifier.padding(innerPadding)
+                )
+            }
+        }
+    }
+}
+
+@Composable
+fun Greeting(name: String, modifier: Modifier = Modifier) {
+    Text(
+        text = "Hello $name!",
+        modifier = modifier
+    )
+}
+
+@Preview(showBackground = true)
+@Composable
+fun GreetingPreview() {
+    Greeting("Android")
+}
+                </pre>
+            </div>
+        </div>
+
+
+    </section>
+
+    <section id="p3">
+        <h2>قوانین کامپوز</h2>
+        <p>توابع معمولی رو میتونیم داخل تابع کامپوز صدا بزنیم ولی تابع کامپوز رو نمیتونیم داخل تابع معمولی صدا کنیم.</p>
+        <p> اسم تابع به صورت قرارداد باید به صورت <strong>Pascal Case</strong> نوشته بشه؛ یعنی اول هر کلمه با
+            حروف بزرگ باشه.</p>
+        <p>هنگام تعریف تابع کامپوز برای نام تابع نباید از فعل استفاده کنیم و باید از اسم استفاده کنیم به عنوان مثال
+            یک تابع کامپوز میخوایم تعریف کنیم که اسم رو نمایش بده.</p>
+
+        <div class="sample">
+            <div class="snippet-container">
+                <pre class="snippet Kotlin">
+//صحیح
+@Composable
+fun Name(name: String){
+    Text(
+        text = name
+    )
+}
+
+//غلط
+@Composable
+fun ShowName(name: String){
+    Text(
+        text = name
+    )
+}
+                        </pre>
+            </div>
+        </div>
+
+    </section>
+
+    <section id="p4">
+        <h2>خلاصه</h2>
+        <ul>
+            <li>کامپوز یک بخش از کتابخونه جت پک برای طراحی ui در اندروید است.</li>
+            <li>Annotation ها دربردارنده ی اطلاعات اضافی برای تابع، پراپرتی یا کلاس هستند.</li>
+            <li>تابع کامپوز رو با @Composable علامتگذاری می کنیم.</li>
+            <li>با تعریف تابع Preview میتونیم ویو ها رو قبل از اجرای برنامه مشاهده کنیم.</li>
+            <li>کامپوز در اندروید تغییر ناپذیر است و با تغییر وضعیت، ویو دوباره ترسیم میشه.</li>
+        </ul>
+    </section>
+
+</article>
+
+{% capture links %}
+<li>
+    <a href="/post/kotlin/functions.html">توابع در کاتلین</a>
+</li>
+<li>
+    <a href="/post/kotlin/anonymous-function-and-lambda.html">توابع لفظی در کاتلین</a>
+</li>
+<li>
+    <a href="/post/kotlin/introduction.html">معرفی زبان کاتلین</a>
+</li>
+
+<li>
+    <a href="/post/blog/frameworks.html">فریم‌ورک چیست؟</a>
+</li>
+
+<li>
+    <a target="_blank" href="https://en.wikipedia.org/wiki/Jetpack_Compose">مطالعه در ویکی‌پدیا انگلیسی</a>
+</li>
+{% endcapture %}
+
+
+{% include article-foot.html relative_links = links %}
