@@ -21,7 +21,7 @@ layout: default
 
     <section id="p0">
         <h2>معرفی تابع Text</h2>
-        <p>با استفاده از تابع Text در کامپوز میتونیم متن ها رو در اندروید نمایش بدیم؛ برای نمایش متن، باید متن رو به صورت String به پارامتر <strong>text</strong> تابع پاس بدیم.</p>   
+        <p>تابع Text یک تابع از کامپوز (Compose) است که باهاش میتونیم متن ها رو در اندروید نمایش بدیم؛ برای نمایش متن، باید متن رو به صورت String به پارامتر <strong>text</strong> تابع پاس بدیم.</p>   
         <div class="sample">
             <div class="snippet-container">
                 <pre class="snippet Kotlin">
@@ -37,7 +37,7 @@ Text(
     <section id="p1">
         <h2>تزئین متن در تابع Text</h2>
 
-        <p>میتونیم با استفاده از پارامتر های موجود در تابع Text متن رو تزیین کنیم.</p>
+        <p>با استفاده از پارامتر های تابع Text میتونیم متن رو تزئین کنیم.</p>
 
         <table class="tb">
             <thead>
@@ -78,7 +78,7 @@ Text(
                 </tr>
                 <tr>
                     <td class="tDataLTR">lineHeight: TextUnit</td>
-                    <td class="tDataRTL">ارتفاع هر خط در متن رو تغییر میده./td>
+                    <td class="tDataRTL">ارتفاع هر خط در متن رو تغییر میده.</td>
                 </tr>
                 <tr>
                     <td class="tDataLTR">textDecoration: TextDecoration</td>
@@ -199,7 +199,7 @@ fun MyText(text: String, modifier: Modifier){
         <ul>
             <li>تابع Text یک تابع از کامپوز است که ازش برای نمایش متن استفاده می‌کنیم.</li>
             <li>پراپرتی sp یک پراپرتی اکستنشن است که یک نمونه از TextUnit رو برمیگردونه.</li>
-            <li>برای تزیین متن در تابع تکست پارمتر های مختلفی وجود داره که میتونیم ویژگی های ظاهری متن رو باهاشون تغییر بدیم.</li>
+            <li>برای تزیین متن در تابع Text پارمتر های مختلفی وجود داره که میتونیم ویژگی های ظاهری متن رو باهاشون تغییر بدیم.</li>
             <li>میتونیم ویژگی های ظاهری متن رو با کلاس TextStyle تعریف کنیم.</li>
         </ul>
     </section>
