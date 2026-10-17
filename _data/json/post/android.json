@@ -30,6 +30,15 @@
       "link": "/post/android/compose-introduction.html"
     },
     {
+      "title": "جت‌پک کامپوز در اندروید: نمایش و تزئین متن با تابع Text",
+      "description": "معرفی تابع Text در کامپوز و تزیین متن با استفاده از پارامتر های Text به همراه مثال.",
+      "author":"یونس سلیمانی",
+      "datePublished": "2026-10-17",
+      "lastModified": "",
+      "imgCover": "/resources/image/android/cover_compose_text.png",
+      "link": "/post/android/compose-text.html"
+    },
+    {
       "title": "دیتا بایندینگ در اندروید",
       "description": "با استفاده از کتابخونه ی دیتابایندینگ (Data Binding) در اندروید میتونیم UI رو به داده ها وصل کنید و به سادگی و با حداقل کد، ویو رو آپدیت کنیم در این مطلب به فعال سازی و پیاده سازی دیتابایندینگ در اندروید می پردازیم.",
       "author": "یونس سلیمانی",

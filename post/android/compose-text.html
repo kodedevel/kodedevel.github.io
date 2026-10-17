@@ -1,0 +1,230 @@
+---
+layout: default
+---
+
+<article>
+
+    <nav class="toc">
+        <div>دسترسی سریع</div>
+        <ul>
+            <li>
+                <a href="#p0">معرفی تابع Text</a>
+            </li>
+            <li>
+                <a href="#p1">تزئین متن در تابع Text</a>
+            </li>
+            <li>
+                <a href="#p2">خلاصه</a>
+            </li>
+        </ul>
+    </nav>
+
+    <section id="p0">
+        <h2>معرفی تابع Text</h2>
+        <p>با استفاده از تابع Text در کامپوز میتونیم متن ها رو در اندروید نمایش بدیم؛ برای نمایش متن، باید متن رو به صورت String به پارامتر <strong>text</strong> تابع پاس بدیم.</p>   
+        <div class="sample">
+            <div class="snippet-container">
+                <pre class="snippet Kotlin">
+Text(
+    text: String
+)
+                </pre>
+            </div>
+        </div>
+
+    </section>
+
+    <section id="p1">
+        <h2>تزئین متن در تابع Text</h2>
+
+        <p>میتونیم با استفاده از پارامتر های موجود در تابع Text متن رو تزیین کنیم.</p>
+
+        <table class="tb">
+            <thead>
+                <tr>
+                <th colspan="2">&lt;&lt;Function&gt;&gt;</th>
+                </tr>
+                <tr>
+                <th colspan="2">androidx.compose.material3.Text</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="2">Paramters</td>
+                </tr>
+                <tr>
+                    <td class="tDataLTR">modifier: Modifier</td>
+                    <td class="tDataRTL">با استفاده از Modifier میتونیم برای تابع یک سری ویژگی های عمومی تعریف کنیم.</td>
+                </tr>
+                <tr>
+                    <td class="tDataLTR">color: Color</td>
+                    <td class="tDataRTL">رنگ متن رو تغییر میده.</td>
+                </tr>
+                <tr>
+                    <td class="tDataLTR">fontSize: TextUnit</td>
+                    <td class="tDataRTL">اندازه ی متن رو تغییر میده.</td>
+                </tr>
+                <tr>
+                    <td class="tDataLTR">fontWeight: FontWeight</td>
+                    <td class="tDataRTL">وزن متن رو تغییر میده (Bold, Medium, Normal و ...)</td>
+                </tr>
+                <tr>
+                    <td class="tDataLTR">fontFamily: FontFamily</td>
+                    <td class="tDataRTL">فونت مورد استفاده در متن رو تغییر میده.</td>
+                </tr>
+                <tr>
+                    <td class="tDataLTR">letterSpacing: TextUnit</td>
+                    <td class="tDataRTL">فاصله بین حروف متن رو تغییر میده.</td>
+                </tr>
+                <tr>
+                    <td class="tDataLTR">lineHeight: TextUnit</td>
+                    <td class="tDataRTL">ارتفاع هر خط در متن رو تغییر میده./td>
+                </tr>
+                <tr>
+                    <td class="tDataLTR">textDecoration: TextDecoration</td>
+                    <td class="tDataRTL">دکوراسیون متن رو تغییر میده (Underline, Linethrough, None)</td>
+                </tr>
+                <tr>
+                    <td class="tDataLTL">textAlign: TextAlign</td>
+                    <td class="tDataRTL">محل قرار گیری متن رو داخل کادر مشخص میکنه (Center, End, Start, ...)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p>در مثال زیر میخوایم یک متن رو با اندازه 100 sp با وزن Bold و فونت Monospace تعریف کنیم و رنگ متن رو آبی کنیم.</p>
+
+        <div class="sample">
+            <div class="snippet-container">
+                <pre class="snippet Kotlin">
+@Composable
+fun MyHead(title: String){
+    Text(
+        text = title,
+        color = Color(0xFF0D47A1)
+        fontSize = 100.sp,
+        fontWeight = FontWeight.Bold,
+        fontFamily = FontFamily.Monospace
+    )
+}
+                </pre>
+            </div>
+        </div>
+
+    <p>در بالا sp یک <a href="/post/kotlin/extension-function.html">اکستنشن پراپرتی</a> است که یک نمونه از <strong>TextUnit</strong> رو بر میگردونه.</a></p>
+
+
+    <p>در مثال زیر میخوایم یک متن نمایش بدیم که زیرش خط کشیده شده باشه و اندازه متن 24 sp باشه.</p>
+
+    <div class="sample">
+        <div class="snippet-container">
+            <pre class="snippet Kotlin">
+@Composable
+fun MyDescription(description: String){
+    Text(
+        text = description,
+        textDecoration = TextDecoration.Underline
+    )
+}
+            </pre>
+        </div>
+    </div>
+
+    <p>میتونیم یک نمونه از TextStyle ایجاد کنیم و پارامتر های گفته شده رو بهش پاس بدیم و در نهایت خودشو به پارامتر style در تابع Text پاس بدیم.</p>
+
+    <div class="sample">
+        <div class="snippet-container">
+            <pre class="snippet Kotlin">
+@Composable
+fun MyText(text: String, modifier: Modifier){
+    Text(
+        text = text,
+        modifier = modifier.background(Color(0xFFF5F5F5)).padding(16.dp),
+        style = TextStyle(
+            color = Color(0xFF0D47A1),
+            letterSpacing = 0.5.sp,
+            lineHeight = 80.sp, 
+            fontSize = 70.sp, 
+            textAlign = TextAlign.Center
+        )
+    )
+}
+            </pre>
+        </div>
+    </div>
+
+    <p>میتونیم هر کدوم از مثال های گفته شده رو داخل تابع setContent که در <a href="compose-introduction.html">قسمت قبل</a> گفته شد صدا بزنیم.</p>
+
+    <div class="sample">
+        <div class="snippet-container">
+            <pre class="snippet Kotlin">
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContent {
+            HelloWorldTheme {
+                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                    MyText(
+                        "Hello World",
+                        Modifier.padding(innerPadding)
+                    )
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun MyText(text: String, modifier: Modifier){
+    Text(
+        text = text,
+        modifier = modifier.background(Color(0xFFF5F5F5)).padding(16.dp),
+        style = TextStyle(
+            color = Color(0xFF0D47A1),
+            letterSpacing = 0.5.sp,
+            lineHeight = 80.sp,
+            fontSize = 70.sp,
+            textAlign = TextAlign.Center
+        )
+    )
+}
+            </pre>
+        </div>
+    </div>
+
+    </section>
+
+    <section id="p2">
+        <h2>خلاصه</h2>
+        <ul>
+            <li>تابع Text یک تابع از کامپوز است که ازش برای نمایش متن استفاده می‌کنیم.</li>
+            <li>پراپرتی sp یک پراپرتی اکستنشن است که یک نمونه از TextUnit رو برمیگردونه.</li>
+            <li>برای تزیین متن در تابع تکست پارمتر های مختلفی وجود داره که میتونیم ویژگی های ظاهری متن رو باهاشون تغییر بدیم.</li>
+            <li>میتونیم ویژگی های ظاهری متن رو با کلاس TextStyle تعریف کنیم.</li>
+        </ul>
+    </section>
+
+</article>
+
+{% capture links %}
+<li>
+    <a href="/post/kotlin/functions.html">توابع در کاتلین</a>
+</li>
+<li>
+    <a href="/post/kotlin/anonymous-function-and-lambda.html">توابع لفظی در کاتلین</a>
+</li>
+<li>
+    <a href="/post/kotlin/introduction.html">معرفی زبان کاتلین</a>
+</li>
+
+<li>
+    <a href="/post/blog/frameworks.html">فریم‌ورک چیست؟</a>
+</li>
+
+<li>
+    <a target="_blank" href="https://developer.android.com/develop/ui/compose/text">مطالعه در وبسایت رسمی اندروید</a>
+</li>
+{% endcapture %}
+
+
+{% include article-foot.html relative_links = links %}
