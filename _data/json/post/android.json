@@ -15,19 +15,19 @@
       "title": "آموزش ایجاد پروژه در اندروید استادیو به صورت تصویری",
       "description": "آموزش ایجاد پروژه ی اندرویدی در اندروید استادیو به صورت تصویری و استفاده از مخازن داخلی برای حل مشکل تحریم ها به همراه بررسی قسمت های مختلف یک پروژه اندرویدی",
       "author": "یونس سلیمانی",
-      "datePublished": "2026-10-16",
+      "datePublished": "2026-10-17",
       "lastModified": "",
       "imgCover": "/resources/image/android/cover_android_studio.png",
-      "link": "/post/android/android-studio-create-project.html"
+      "link": "/post/android/android-studio.html"
     },
     {
       "title": "جت پک کامپوز در اندروید: معرفی کامپوز و نحوه ایجاد تابع کامپوز",
       "description": "معرفی کامپوز (Compose)، تابع کامپوز (Composable Function)، اجرای توابع کامپوز در setContent و قوانین کامپوز.",
       "author":"یونس سلیمانی",
-      "datePublished": "2026-10-15",
+      "datePublished": "2026-10-17",
       "lastModified": "",
       "imgCover": "/resources/image/android/cover_compose_introduction.png",
-      "link": "/post/android/jetpack-compose-introduction.html"
+      "link": "/post/android/compose-introduction.html"
     },
     {
       "title": "دیتا بایندینگ در اندروید",
