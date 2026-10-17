@@ -11,7 +11,7 @@ layout: default
                 <a href="#p0">معرفی تابع Text</a>
             </li>
             <li>
-                <a href="#p1">تزئین متن در تابع Text</a>
+                <a href="#p1">استایل دهی متن در تابع Text</a>
             </li>
             <li>
                 <a href="#p2">خلاصه</a>
@@ -35,9 +35,9 @@ Text(
     </section>
 
     <section id="p1">
-        <h2>تزئین متن در تابع Text</h2>
+        <h2>استایل دهی متن در تابع Text</h2>
 
-        <p>با استفاده از پارامتر های تابع Text میتونیم متن رو تزئین کنیم.</p>
+        <p>با استفاده از پارامتر های تابع Text میتونیم متن رو استایل دهی کنیم.</p>
 
         <table class="tb">
             <thead>
@@ -66,11 +66,15 @@ Text(
                 </tr>
                 <tr>
                     <td class="tDataLTR">fontWeight: FontWeight</td>
-                    <td class="tDataRTL">وزن متن رو تغییر میده (Bold, Medium, Normal و ...)</td>
+                    <td class="tDataRTL">وزن متن رو تغییر میده (Bold, Medium, Normal و ...).</td>
                 </tr>
                 <tr>
                     <td class="tDataLTR">fontFamily: FontFamily</td>
                     <td class="tDataRTL">فونت مورد استفاده در متن رو تغییر میده.</td>
+                </tr>
+                <tr>
+                    <td class="tDataLTR">fontStyle: FontStyle</td>
+                    <td class="tDataRTL">استایل فونت رو تغییر میده (Italic, Normal).</td>
                 </tr>
                 <tr>
                     <td class="tDataLTR">letterSpacing: TextUnit</td>
@@ -82,11 +86,11 @@ Text(
                 </tr>
                 <tr>
                     <td class="tDataLTR">textDecoration: TextDecoration</td>
-                    <td class="tDataRTL">دکوراسیون متن رو تغییر میده (Underline, Linethrough, None)</td>
+                    <td class="tDataRTL">دکوراسیون متن رو تغییر میده (Underline, Linethrough, None).</td>
                 </tr>
                 <tr>
                     <td class="tDataLTR">textAlign: TextAlign</td>
-                    <td class="tDataRTL">محل قرار گیری متن رو داخل کادر رو مشخص میکنه (Center, End, Start, ...)</td>
+                    <td class="tDataRTL">محل قرار گیری متن در داخل کادر رو مشخص میکنه (Center, End, Start, ...).</td>
                 </tr>
                 <tr>
                     <td class="tDataLTR">maxLines: Int</td>
@@ -94,7 +98,7 @@ Text(
                 </tr>
                 <tr>
                     <td class="tDataLTR">overflow: TextOverflow</td>
-                    <td class="tDataRTL">زمانی که طول متن از maxLines بیشتر شد باهاش چکار کنه TextOverflow.Clip, TextOverflow.Ellipsis, TextOverflow.Visible</td>
+                    <td class="tDataRTL">نحوه نمایش متن، زمانی که طول متن از maxLines بیشتر شد (Clip, Ellipsis, Visible).</td>
                 </tr>
             </tbody>
         </table>
@@ -131,7 +135,7 @@ fun MyDescription(description: String){
     Text(
         text = description,
         textDecoration = TextDecoration.Underline,
-        fontSize = 24.sp
+        fontSize = 18.sp
     )
 }
             </pre>
