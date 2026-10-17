@@ -50,7 +50,7 @@ Text(
             </thead>
             <tbody>
                 <tr>
-                    <td colspan="2">Paramters</td>
+                    <td colspan="2">Parameters</td>
                 </tr>
                 <tr>
                     <td class="tDataLTR">modifier: Modifier</td>
@@ -88,6 +88,14 @@ Text(
                     <td class="tDataLTR">textAlign: TextAlign</td>
                     <td class="tDataRTL">محل قرار گیری متن رو داخل کادر رو مشخص میکنه (Center, End, Start, ...)</td>
                 </tr>
+                <tr>
+                    <td class="tDataLTR">maxLines: Int</td>
+                    <td class="tDataRTL">مشخص میکنه متن حداکثر در چند خط نمایش داده بشه، مقدار پیشفرضش Int.MAX_VALUE است.</td>
+                </tr>
+                <tr>
+                    <td class="tDataLTR">overflow: TextOverflow</td>
+                    <td class="tDataRTL">زمانی که طول متن از maxLines بیشتر شد باهاش چکار کنه TextOverflow.Clip, TextOverflow.Ellipsis, TextOverflow.Visible</td>
+                </tr>
             </tbody>
         </table>
 
@@ -100,7 +108,7 @@ Text(
 fun MyHead(title: String){
     Text(
         text = title,
-        color = Color(0xFF0D47A1)
+        color = Color(0xFF0D47A1),
         fontSize = 100.sp,
         fontWeight = FontWeight.Bold,
         fontFamily = FontFamily.Monospace
@@ -113,7 +121,7 @@ fun MyHead(title: String){
     <p>در بالا sp یک <a href="/post/kotlin/extension-function.html">اکستنشن پراپرتی</a> است که یک نمونه از <strong>TextUnit</strong> رو بر میگردونه.</a></p>
 
 
-    <p>در مثال زیر میخوایم یک متن نمایش بدیم که زیرش خط کشیده شده باشه و اندازه متن 24 sp باشه.</p>
+    <p>در مثال زیر میخوایم یک متن نمایش بدیم که زیرش خط کشیده شده باشه و اندازه متن 18 sp باشه.</p>
 
     <div class="sample">
         <div class="snippet-container">
@@ -122,12 +130,33 @@ fun MyHead(title: String){
 fun MyDescription(description: String){
     Text(
         text = description,
-        textDecoration = TextDecoration.Underline
+        textDecoration = TextDecoration.Underline,
+        fontSize = 24.sp
     )
 }
             </pre>
         </div>
     </div>
+
+    <p>در زیر میخوایم متن های طولانی رو فقط در یک خط نمایش بدیم.</p>
+
+    <div class="sample">
+        <div class="snippet-container">
+            <pre class="snippet Kotlin">
+@Composable
+fun MyOneLineText(text: String, modifier: Modifier = Modifier){
+    Text(
+        text = text,
+        overflow = TextOverflow.Ellipsis,
+        maxLines =  1,
+        modifier = modifier,
+        fontSize = 24.sp
+    )
+}
+             </pre>
+        </div>
+    </div>
+
 
     <p>میتونیم یک نمونه از TextStyle ایجاد کنیم و پارامتر های گفته شده رو بهش پاس بدیم و در نهایت خودشو به پارامتر style در تابع Text پاس بدیم.</p>
 
@@ -135,9 +164,9 @@ fun MyDescription(description: String){
         <div class="snippet-container">
             <pre class="snippet Kotlin">
 @Composable
-fun MyText(text: String, modifier: Modifier){
+fun MyTitle(title: String, modifier: Modifier){
     Text(
-        text = text,
+        text = title,
         modifier = modifier.background(Color(0xFFF5F5F5)).padding(16.dp),
         style = TextStyle(
             color = Color(0xFF0D47A1),
@@ -175,9 +204,9 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun MyText(text: String, modifier: Modifier){
+fun MyTitle(title: String, modifier: Modifier){
     Text(
-        text = text,
+        text = title,
         modifier = modifier.background(Color(0xFFF5F5F5)).padding(16.dp),
         style = TextStyle(
             color = Color(0xFF0D47A1),
