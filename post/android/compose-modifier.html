@@ -31,10 +31,10 @@ layout: default
                     href="compose-text.html">تابع Text</a> استفاده می‌کنیم.</p>
         </aside>
 
-        <p>کلاس Modifier یک کلاس Builder است و ترتیب صدا زدن توابع Modifier مهم است؛ توابع کلاس Modifier تغییر‌ناپذیرن یعنی یک بار که مقداردهی بشن دیگه نمیتونیم مقدار جدیدی بهشون بدیم.</p>
+        <p>کلاس Modifier یک کلاس Builder است و ترتیب صدا زدن توابع Modifier مهم است؛ توابع کلاس Modifier تغییر‌ناپذیر (immutable) هستن، یعنی یک بار که مقداردهی بشن دیگه نمیتونیم مقدار جدیدی بهشون بدیم.</p>
 
 
-        <p>به طور قراردادی بهتره هر تابع کامپوزی که تعریف میکنیم یک پارامتر از نوع Modifier براش تعریف کنیم.</p>
+        <p>به طور قراردادی بهتره هر Composable که تعریف میکنیم یک پارامتر از نوع Modifier براش تعریف کنیم.</p>
 
         <div class="sample">
             <div class="snippet-container">
@@ -51,7 +51,7 @@ fun MyComposableFunction(modifier: Modifier = Modifier){
 
     <section id="p1">
         <h2>توابع پرکاربرد</h2>
-        <p>در این بخش به توابع پرکاربرد کلاس Modifier رو بررسی میکنیم؛ در UML زیر هر تابع رو با ویژگی ها و عملکردش مشخص
+        <p>در این بخش توابع پرکاربرد کلاس Modifier رو بررسی میکنیم؛ در UML زیر هر تابع با ویژگی ها و عملکردش مشخص
             شده.</p>
 
         <table class="tb">
@@ -109,7 +109,7 @@ fun MyComposableFunction(modifier: Modifier = Modifier){
                 </tr>
                 <tr>
                     <td class="tDataLTR">clickable(clickable: Boolean, onClickLabel: String?, onClick: () -> Unit): Modifier</td>
-                    <td>میتونیم روی Composable کلیک کنیم؛ برای این تابع پارامتر های دیگه ام وجود داره ولی برای خلاصه کردن همین سه تا پارامتر کافیه.</td>
+                    <td>میتونیم روی Composable کلیک کنیم؛ برای این تابع پارامتر های دیگه ای وجود داره ولی برای خلاصه کردن همین سه تا پارامتر کافیه.</td>
                 </tr>
                 <tr>
                     <td class="tDataLTR">then(modifier: Modifier): Modifier</td>
@@ -335,8 +335,7 @@ fun MyText(content: String, modifier: Modifier = Modifier){
 
         <p>کلاس Log یک کلاس استاتیک اندروید است که باهاش میتونیم لاگ های برنامه رو از طریق LogCat ببینیم داخل اندروید
             استادیو لاگ‌کت رو باز کنید و با هربار کلیک روی متن نتیجه پیغامی که داخل Log.d نوشتیم رو نمایش میده؛ برای
-            مشاهده پیغام کافیه در اندروید استادیو مانند تصویر زیر روی علامتی که دورش خط قرمز کشیده شده کلیک کنید و سپس
-            با هربار کلیک روی متن پیغام رو مشاهده میکنید.</p>
+            باز کردن تب لاگ‌کت در پایین سمت چپ اندروید استادیو مطابق تصویر روی علامتی که دورش خط قرمز کشیده شده کلیک کنید.</p>
 
         <figure>
             <img src="/resources/image/android/android_studio_logcat_tab.png" alt="تب لاگ‌کت در اندروید استادیو">
@@ -349,8 +348,8 @@ fun MyText(content: String, modifier: Modifier = Modifier){
 
         <ul>
             <li>کلاس Modifier یک کلاس عمومی بین تمام Composable هاست.</li>
-            <li>به طور کلی و قراردادی هر تابع کامپوزی که تعریف میکنیم باید یک کلاس Modifier به عنوان پارامتر براش تعریف
-                کنیم و بهتره یک مقدار پیشفرض به پارامتر اختصاص بدیم.</li>
+            <li>به طور کلی بهتره هر Composable که تعریف میکنیم یک کلاس Modifier به عنوان پارامتر براش تعریف
+                کنیم.</li>
             <li>کلاس Modifier نوعی builder است و ترتیب صدا زدن توابع داخل کلاس مهم است.</li>
             <li>توابع Modifier تغییر‌ناپذیر هستن</li>
             <li>اگه بعد از تعریف یک ویژگی برای Composable (مثلا بکگراند) تابع padding رو صدا بزنیم بین محتوای Composable و ویژگی تعریف
