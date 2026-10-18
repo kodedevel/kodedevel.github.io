@@ -27,14 +27,14 @@ layout: default
 
         <aside class="note">
             <p class="note-head">توجه</p>
-            <p>کلاس Modifier بین تمام توابع کامپوز مشترکه، برای راحتی در مثال های این مطلب از Modifier برای <a
-                    href="compose-text.html">تابع Text</a> استفاده می‌کنیم.</p>
+            <p>کلاس Modifier بین تمام Composable ها مشترکه، برای راحتی در مثال های این مطلب از Modifier برای <a
+                    href="compose-text.html">Text</a> استفاده می‌کنیم.</p>
         </aside>
 
         <p>کلاس Modifier یک کلاس Builder است و ترتیب صدا زدن توابع Modifier مهم است؛ توابع کلاس Modifier تغییر‌ناپذیر (immutable) هستن، یعنی یک بار که مقداردهی بشن دیگه نمیتونیم مقدار جدیدی بهشون بدیم.</p>
 
 
-        <p>به طور قراردادی بهتره هر Composable که تعریف میکنیم یک پارامتر از نوع Modifier براش تعریف کنیم.</p>
+        <p>به طور قراردادی بهتره هر Composable که تعریف میکنیم یک پارامتر از نوع Modifier داشته باشه.</p>
 
         <div class="sample">
             <div class="snippet-container">
@@ -109,11 +109,11 @@ fun MyComposableFunction(modifier: Modifier = Modifier){
                 </tr>
                 <tr>
                     <td class="tDataLTR">clickable(clickable: Boolean, onClickLabel: String?, onClick: () -> Unit): Modifier</td>
-                    <td>میتونیم روی Composable کلیک کنیم؛ برای این تابع پارامتر های دیگه ای وجود داره ولی برای خلاصه کردن همین سه تا پارامتر کافیه.</td>
+                    <td class="tDataRTL">میتونیم روی Composable کلیک کنیم؛ برای این تابع پارامتر های دیگه ای وجود داره ولی برای خلاصه کردن همین سه تا پارامتر کافیه.</td>
                 </tr>
                 <tr>
                     <td class="tDataLTR">then(modifier: Modifier): Modifier</td>
-                    <td>Modifier فعلی رو با یک Modifier دیگه ترکیب میکنه.</td>
+                    <td class="tDataRTL">Modifier فعلی رو با یک Modifier دیگه ترکیب میکنه.</td>
                 </tr>
             </tbody>
         </table>
@@ -349,7 +349,7 @@ fun MyTextPreview(){
         </figure>
     </section>
 
-    <section>
+    <section id="p2">
         <h2>خلاصه</h2>
 
         <ul>
