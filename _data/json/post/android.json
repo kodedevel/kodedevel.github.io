@@ -28,6 +28,14 @@
       "lastModified": "",
       "imgCover": "/resources/image/android/cover_compose_introduction.png",
       "link": "/post/android/compose-introduction.html"
+    },{
+      "title": "جت‌پک کامپوز در اندروید: سفارشی‌سازی Composable ها با Modifier",
+      "description": "سفارشی سازی Composable ها با Modifier؛ بررسی Modifer و توابع پرکابرد آن به همراه مثال های عملی.",
+      "author":"یونس سلیمانی",
+      "datePublished": "2026-10-19",
+      "lastModifier": "",
+      "imgCover": "/resources/image/android/cover_compose_modifier.png",
+      "link": "/post/android/compose-modifier.html"
     },
     {
       "title": "جت‌پک کامپوز در اندروید: نمایش و استایل‌ دهی متن با تابع Text",

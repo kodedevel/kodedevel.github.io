@@ -1,0 +1,383 @@
+---
+layout: default
+---
+
+<article>
+
+    <nav class="toc">
+        <div>دسترسی سریع</div>
+        <ul>
+            <li>
+                <a href="#p0">بررسی کلاس Modifier</a>
+            </li>
+            <li>
+                <a href="#p1">توابع پرکاربرد</a>
+            </li>
+            <li>
+                <a href="#p2">خلاصه</a>
+            </li>
+        </ul>
+    </nav>
+
+    <section id="p0">
+        <h2>بررسی کلاس Modifier</h2>
+
+
+        <p>کلاس Modifier بین تمام Composable ها مشترک است، با استفاده از Modifier میتونیم یک Composable رو سفارشی‌سازی کنیم.</p>
+
+        <aside class="note">
+            <p class="note-head">توجه</p>
+            <p>کلاس Modifier بین تمام توابع کامپوز مشترکه، برای راحتی در مثال های این مطلب از Modifier برای <a
+                    href="compose-text.html">تابع Text</a> استفاده می‌کنیم.</p>
+        </aside>
+
+        <p>کلاس Modifier یک کلاس Builder است و ترتیب صدا زدن توابع Modifier مهم است؛ توابع کلاس Modifier تغییر‌ناپذیرن یعنی یک بار که مقداردهی بشن دیگه نمیتونیم مقدار جدیدی بهشون بدیم.</p>
+
+
+        <p>به طور قراردادی بهتره هر تابع کامپوزی که تعریف میکنیم یک پارامتر از نوع Modifier براش تعریف کنیم.</p>
+
+        <div class="sample">
+            <div class="snippet-container">
+                <pre class="snippet Kotlin">
+@Composable
+fun MyComposableFunction(modifier: Modifier = Modifier){
+    //do something here
+}
+                </pre>
+            </div>
+        </div>
+
+    </section>
+
+    <section id="p1">
+        <h2>توابع پرکاربرد</h2>
+        <p>در این بخش به توابع پرکاربرد کلاس Modifier رو بررسی میکنیم؛ در UML زیر هر تابع رو با ویژگی ها و عملکردش مشخص
+            شده.</p>
+
+        <table class="tb">
+            <thead>
+                <tr>
+                    <th colspan="2">Modifier</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="tDataLTR">fillMaxSize(): Modifier</td>
+                    <td class="tDataRTL">عرض و ارتفاع Composable اندازه Parent میشه.</td>
+                </tr>
+                <tr>
+                    <td class="tDataLTR">fillMaxWidth(): Modifier</td>
+                    <td class="tDataRTL">عرض Composable اندازه Parent میشه.</td>
+                </tr>
+                <tr>
+                    <td class="tDataLTR">fillMaxHeight(): Modifier</td>
+                    <td class="tDataRTL">ارتفاع Composable اندازه Parent میشه.</td>
+                </tr>
+                <tr>
+                    <td class="tDataLTR">wrapContentSize(): Modifier</td>
+                    <td class="tDataRTL">عرض و ارتفاع Composable اندازه محتوای Composable میشه</td>
+                </tr>
+                <tr>
+                    <td class="tDataLTR">wrapContentWidth(): Modifier</td>
+                    <td class="tDataRTL">عرض Composable اندازه ارتفاع محتوای Composable میشه.</td>
+                </tr>
+                <tr>
+                    <td class="tDataLTR">wrapContentHeight(): Modifier</td>
+                    <td class="tDataRTL">ارتفاع Composable اندازه ارتفاع محتوای Composable میشه.</td>
+                </tr>
+                <tr>
+                    <td class="tDataLTR">size(dp: Dp): Modifier</td>
+                    <td class="tDataRTL">طول و عرض Composable رو به صورت dp تعریف میکنیم.</td>
+                </tr>
+                <tr>
+                    <td class="tDataLTR">background(color: Color): Modifier</td>
+                    <td class="tDataRTL">پس زمینه Composable رو تغییر میده.</td>
+                </tr>
+                <tr>
+                    <td class="tDataLTR">padding(all: Dp): Modifier</td>
+                    <td class="tDataRTL">فاصله ی داخلی یا خارجی Composable رو تغییر میده.</td>
+                </tr>
+                <tr>
+                    <td class="tDataLTR">border(width: Dp, color: Color, shape: Shape): Modifier</td>
+                    <td class="tDataRTL">دور تا دور Composable رو ترسیم میکنه؛ width: قطر خط، color: رنگ خط و shape: شکل چهار
+                        گوشه خط.</td>
+                </tr>
+                <tr>
+                    <td class="tDataLTR">shadow(elevation: Dp, shape: Shape, clip: Boolean, ambientColor: Color,
+                        spotColor: Color): Modifier</td>
+                    <td class="tDataRTL">یک سایه برای Composable ایجاد میکنه.</td>
+                </tr>
+                <tr>
+                    <td class="tDataLTR">clickable(clickable: Boolean, onClickLabel: String?, onClick: () -> Unit): Modifier</td>
+                    <td>میتونیم روی Composable کلیک کنیم؛ برای این تابع پارامتر های دیگه ام وجود داره ولی برای خلاصه کردن همین سه تا پارامتر کافیه.</td>
+                </tr>
+                <tr>
+                    <td class="tDataLTR">then(modifier: Modifier): Modifier</td>
+                    <td>Modifier فعلی رو با یک Modifier دیگه ترکیب میکنه.</td>
+                </tr>
+            </tbody>
+        </table>
+
+
+        <p>میخوایم یک متن رو نمایش بدیم و از چهار طرف به اندازه 16 dp فاصله ایجاد کنیم.</p>
+
+
+        <div class="sample">
+            <div class="snippet-container">
+                <pre class="snippet Kotlin">
+@Composable
+fun MyText(content: String, modifier: Modifier = Modifier){
+    Text(
+        text = content,
+        modifier = modifier.padding(16.dp)
+    )
+}
+                </pre>
+            </div>
+        </div>
+
+        <p>در زیر میخوایم یک متن رو نمایش بدیم، بکگراند متن رو عوض کنیم و بین لایه متن و چهار طرف به اندازه 8 dp فاصله
+            ایجاد کنیم.</p>
+
+        <div class="sample">
+            <div class="snippet-container">
+                <pre class="snippet Kotlin">
+@Composable
+fun MyText(content: String, modifier: Modifier = Modifier){
+    Text(
+        text = content,
+        fontSize = 50.sp,
+        modifier = modifier.padding(8.dp).background(Color(0xFFF5F5F5))
+    )
+}
+                </pre>
+            </div>
+        </div>
+
+        <p>اگه بعد از تعریف یک ویژگی با Modifier (مثلا بک گراند یا border رو تعریف کنیم) تابع padding رو صدا بزنیم بین محتوای Composable و ویژگی تعریف شده
+            فاصله ایجاد میشه.</p>
+
+        <p>در زیر میخوایم علاوه بر ویژگی های قبلی میخوایم یک فاصله ی داخلی به اندازه 16 dp نسبت به محتوای متن هم ایجاد
+            کنیم.</p>
+
+        <div class="sample">
+            <div class="snippet-container">
+                <pre class="snippet Kotlin">
+@Composable
+fun MyText(content: String, modifier: Modifier = Modifier){
+    Text(
+        text = content,
+        fontSize = 50.sp,
+        modifier = modifier.padding(8.dp).background(Color(0xFFF5F5F5)).padding(16.dp)
+    )
+}
+                </pre>
+            </div>
+        </div>
+
+        <p>در زیر میخوایم یک سایه آبی هم به لایه متن اضافه کنیم.</p>
+
+        <div class="sample">
+            <div class="snippet-container">
+                <pre class="snippet Kotlin">
+@Composable
+fun MyText(content: String, modifier: Modifier = Modifier){
+    Text(
+        text = content,
+        fontSize = 50.sp,
+        modifier = modifier.padding(8.dp).background(Color(0xFFF5F5F5))
+            .shadow(elevation = 2.dp, shape = ShapeDefaults.Small, spotColor = Color.Blue)
+            .padding(16.dp)
+    )
+}
+                </pre>
+            </div>
+        </div>
+
+        <p>حالا میخوایم دور تا دور محتوای متن یک border هم ترسیم کنیم.</p>
+
+
+        <div class="sample">
+            <div class="snippet-container">
+                <pre class="snippet Kotlin">
+@Composable
+fun MyText(content: String, modifier: Modifier = Modifier){
+    Text(
+        text = content,
+        fontSize = 50.sp,
+        modifier = modifier.padding(8.dp).background(Color(0xFFF5F5F5))
+            .shadow(elevation = 2.dp, shape = ShapeDefaults.Small, spotColor = Color.Blue)
+            .padding(16.dp).border(width = 2.dp, shape = ShapeDefaults.Small, color = Color.Yellow)
+    )
+}
+                </pre>
+            </div>
+        </div>
+
+
+
+        <p>حالا چی میشه اگه بتونیم رو متن کلیک هم کنیم؟</p>
+
+        <div class="sample">
+            <div class="snippet-container">
+                <pre class="snippet Kotlin">
+@Composable
+fun MyText(content: String, modifier: Modifier = Modifier){
+    Text(
+        text = content,
+        fontSize = 50.sp
+        modifier = modifier.padding(8.dp).background(Color(0xFFF5F5F5))
+            .shadow(elevation = 2.dp, shape = ShapeDefaults.Small, spotColor = Color.Blue)
+            .padding(16.dp).border(width = 2.dp, shape = ShapeDefaults.Small, color = Color.Yellow).padding(12.dp)
+            .clickable{
+                Log.d("CLICKED", "clicked on $content")
+            }
+        )
+}
+                </pre>
+            </div>
+        </div>
+
+        <p>حالا یکم فاصله ام بین border و محتوای متن بندازیم.</p>
+
+        <div class="sample">
+            <div class="snippet-container">
+                <pre class="snippet Kotlin">
+@Composable
+fun MyText(content: String, modifier: Modifier = Modifier){
+    Text(
+        text = content,
+        fontSize = 50.sp
+        modifier = modifier.padding(8.dp).background(Color(0xFFF5F5F5))
+            .shadow(elevation = 2.dp, shape = ShapeDefaults.Small, spotColor = Color.Blue)
+            .padding(16.dp).border(width = 2.dp, shape = ShapeDefaults.Small, color = Color.Yellow)
+            .padding(12.dp)
+            .clickable{
+                Log.d("CLICKED", "clicked on $content")
+            }
+    )
+}
+                </pre>
+            </div>
+        </div>
+
+        <p>حالا هرچی نوشتیمو بریم اجرا کنیم.</p>
+
+
+        <div class="sample">
+            <div class="snippet-container">
+                <pre class="snippet Kotlin">
+import android.os.Bundle
+import android.util.Log
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.ShapeDefaults
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.text.withStyle
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import ir.kodedevel.helloworld.ui.theme.HelloWorldTheme
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContent {
+            HelloWorldTheme {
+                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                    MyText("Hello World", modifier = Modifier.padding(innerPadding))
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun MyText(content: String, modifier: Modifier = Modifier){
+    Text(
+        text = content,
+        fontSize = 45.sp,
+        modifier = modifier.padding(8.dp).background(Color(0xFFF5F5F5))
+            .shadow(elevation = 2.dp, shape = ShapeDefaults.Small, spotColor = Color.Blue)
+            .padding(16.dp).border(width = 2.dp, shape = ShapeDefaults.Small, color = Color.Yellow)
+            .clickable{
+                Log.d("CLICKED", "clicked on $content")
+            }
+            .padding(12.dp)
+    )
+}
+                </pre>
+            </div>
+        </div>
+
+
+        <p>در کد بالا از innerPadding مربوط به تابع Scoffold استفاده کردیم، اگه از innerPadding استفاده نکنیم، Composable میوفته روی استاتوس بار در بالای وسیله اندرویدی؛ در واقع innerPadding یک فاصله بین لایه کامپوز اصلی و حاشیه های وسیله ی
+            اندرویدی ایجاد میکنه.</p>
+
+        <p>کلاس Log یک کلاس استاتیک اندروید است که باهاش میتونیم لاگ های برنامه رو از طریق LogCat ببینیم داخل اندروید
+            استادیو لاگ‌کت رو باز کنید و با هربار کلیک روی متن نتیجه پیغامی که داخل Log.d نوشتیم رو نمایش میده؛ برای
+            مشاهده پیغام کافیه در اندروید استادیو مانند تصویر زیر روی علامتی که دورش خط قرمز کشیده شده کلیک کنید و سپس
+            با هربار کلیک روی متن پیغام رو مشاهده میکنید.</p>
+
+        <figure>
+            <img src="/resources/image/android/android_studio_logcat_tab.png" alt="تب لاگ‌کت در اندروید استادیو">
+            <figcaption>تب لاگ‌کت در اندروید استادیو</figcaption>
+        </figure>
+    </section>
+
+    <section>
+        <h2>خلاصه</h2>
+
+        <ul>
+            <li>کلاس Modifier یک کلاس عمومی بین تمام Composable هاست.</li>
+            <li>به طور کلی و قراردادی هر تابع کامپوزی که تعریف میکنیم باید یک کلاس Modifier به عنوان پارامتر براش تعریف
+                کنیم و بهتره یک مقدار پیشفرض به پارامتر اختصاص بدیم.</li>
+            <li>کلاس Modifier نوعی builder است و ترتیب صدا زدن توابع داخل کلاس مهم است.</li>
+            <li>توابع Modifier تغییر‌ناپذیر هستن</li>
+            <li>اگه بعد از تعریف یک ویژگی برای Composable (مثلا بکگراند) تابع padding رو صدا بزنیم بین محتوای Composable و ویژگی تعریف
+                شده فاصله ایجاد میشه.</li>
+        </ul>
+    </section>
+
+</article>
+
+{% capture links %}
+<li>
+    <a href="/post/kotlin/objects-and-classes.html">معرفی زبان کاتلین</a>
+</li>
+<li>
+    <a href="/post/kotlin/functions.html">توابع در کاتلین</a>
+</li>
+<li>
+    <a href="/post/kotlin/anonymous-function-and-lambda.html">توابع لفظی در کاتلین</a>
+</li>
+
+<li>
+    <a href="/post/blog/frameworks.html">فریم‌ورک چیست؟</a>
+</li>
+<li>
+    <a target="_blank" href="https://developer.android.com/develop/ui/compose/modifiers">مطالعه در وبسایت رسمی اندروید</a>
+</li>
+{% endcapture %}
+
+
+{% include article-foot.html relative_links = links %}
