@@ -38,11 +38,11 @@
       "link": "/post/android/compose-modifier.html"
     },
     {
-      "title": "جت‌پک کامپوز در اندروید: نمایش و استایل‌ دهی متن با تابع Text",
-      "description": "معرفی تابع Text در کامپوز و استایل دهی متن با استفاده از پارامتر های Text به همراه مثال.",
+      "title": "جت‌پک کامپوز در اندروید: نمایش و استایل‌دهی متن با تابع Text",
+      "description": "معرفی تابع Text در کامپوز و استایل دهی متن با پارامتر های تابع Text به همراه مثال.",
       "author":"یونس سلیمانی",
       "datePublished": "2026-10-17",
-      "lastModified": "2026-10-18",
+      "lastModified": "2026-10-21",
       "imgCover": "/resources/image/android/cover_compose_text.png",
       "link": "/post/android/compose-text.html"
     },
