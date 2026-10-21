@@ -115,12 +115,11 @@ val annotatedString: AnnotatedString = buildAnnotatedString{
 
         <section>
             <h3>تابع withStyle</h3>
-            <p>از این تابع برای استایل‌دهی متن استفاده می‌کنیم؛ تابع withStyle ورژن از withStyle وجود داره، یک ورژن با
-                پارامتر <strong>SpanStyle</strong> و یک ورژن دیگه با پارامتر <strong>ParagraphStyle</strong> و در هردو
-                ورژن یک پارامتر از نوع تابع لفظی به صورت اکستنشن کلاس AnnotationString.Builder تعریف شده است و این تابع
-                مقداری از نوع R رو بر میگردونه.</p>
+            <p>از این تابع برای استایل‌دهی متن استفاده می‌کنیم؛ تابع withStyle یک تابع Overload شدس و دو نسخه ازش وجود داره، یک نسخه با
+                پارامتر <strong>SpanStyle</strong> و یک نسخه دیگه با پارامتر <strong>ParagraphStyle</strong> و در هردو
+                نسخه یک پارامتر از نوع تابع لفظی وجود داره.</p>
 
-            <p>در زیر هردو ورژن از این تابع اورده شده است.</p>
+            <p>در زیر هردو نسخه از این تابع اورده شده است.</p>
 
             <div class="sample">
                 <div class="snippet-container">
@@ -134,12 +133,12 @@ withStyle(style: ParagraphStyle, block: AnnotatedString.Builder.() -> R)
             <section>
                 <h4>کلاس SpanSyle</h4>
                 <p>با استفاده از کلاس SpanStyle میتونیم ویژگی های ظاهری متن مثل رنگ، فونت و... رو مقدار دهی کنیم؛
-                    پارامتر های کلاس SpanStyle با پارامتر های تابع <a href="">تابع Text</a> مشترکه میتونید این پارامتر
+                    پارامتر های کلاس SpanStyle با پارامتر های <a href="">تابع Text</a> مشترکه میتونید این پارامتر
                     ها رو در اونجا مطالعه کنید.
                 </p>
             </section>
 
-            <p>در مثال زیر میخوایم کلمه Hello Android رو به رنگ فیروزه ای و کلمه Android رو به رنگ مشکی در بیاریم.</p>
+            <p>در مثال زیر میخوایم کلمه Hello Android رو به رنگ فیروزه ای و کلمه Android رو به رنگ پیشفرض (مشکی) در بیاریم.</p>
 
             <div class="sample">
                 <div class="snippet-container">
@@ -330,8 +329,8 @@ val annotatedString: AnnotatedString = buildAnnotatedString{
             url = "https://kodedevel.ir",
             styles = TextLinkStyles(
                 style = SpanStyle(Color(0xFF0D47A1), fontWeight = FontWeight.Bold, textDecoration = TextDecoration.Underline),
-                focusedStyle = SpanStyle(color = Color(0xFFC62828)),
-                pressedStyle = SpanStyle(color = Color(0xFFC62828))
+                pressedStyle = SpanStyle(color = Color(0xFFC62828)),
+                hoveredStyle = SpanStyle(color = Color(0xFFC62828))
             )
         )
     ){
@@ -389,24 +388,11 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            HelloWorldTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    MyText(annotatedString, modifier = Modifier.padding(innerPadding))
-                }
+            Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                MyText(annotatedString, modifier = Modifier.padding(innerPadding))
             }
         }
     }
-}
-
-
-@Composable
-fun MyText(content: AnnotatedString, modifier: Modifier = Modifier){
-    Text(
-        text = content,
-        fontSize = 50.sp,
-        lineHeight = 60.sp,
-        modifier = modifier.padding(16.dp)
-    )
 }
 
 val annotatedString = buildAnnotatedString {
@@ -440,14 +426,24 @@ val annotatedString = buildAnnotatedString {
             url = "https://kodedevel.ir",
             styles = TextLinkStyles(
                 style = SpanStyle(Color(0xFF0D47A1), fontWeight = FontWeight.Bold, textDecoration = TextDecoration.Underline),
-                focusedStyle = SpanStyle(color = Color(0xFFC62828)),
+                pressedStyle = SpanStyle(color = Color(0xFFC62828)),
                 hoveredStyle = SpanStyle(color = Color(0xFFC62828))
             )
-        ),
+        )
     ){
         pushStyle(ParagraphStyle(textAlign = TextAlign.Center))
         append("Visit the Site")
     }
+}
+
+@Composable
+fun MyText(content: AnnotatedString, modifier: Modifier = Modifier){
+    Text(
+        text = content,
+        fontSize = 50.sp,
+        lineHeight = 60.sp,
+        modifier = modifier.padding(16.dp)
+    )
 }
 
 @Preview
