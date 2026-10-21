@@ -47,6 +47,15 @@
       "link": "/post/android/compose-text.html"
     },
     {
+      "title": "جت‌پک کامپوز در اندروید: استایل‌دهی پیشرفته متن با AnnotatedString",
+      "description": "جت‌پک کامپوز در اندروید: بررسی AnnotatedString، افزودن و استایل‌دهی متن در AnnotatedString به همراه مثال های عملی.",
+      "author":"یونس سلیمانی",
+      "datePublished": "2026-10-21",
+      "lastModified": "",
+      "imgCover": "/resources/image/android/cover_compose_annotated_string.png",
+      "link" : "/post/android/compose-annotated-string.html"
+    },
+    {
       "title": "دیتا بایندینگ در اندروید",
       "description": "با استفاده از کتابخونه ی دیتابایندینگ (Data Binding) در اندروید میتونیم UI رو به داده ها وصل کنید و به سادگی و با حداقل کد، ویو رو آپدیت کنیم در این مطلب به فعال سازی و پیاده سازی دیتابایندینگ در اندروید می پردازیم.",
       "author": "یونس سلیمانی",

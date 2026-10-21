@@ -1,0 +1,516 @@
+---
+layout: default
+---
+
+<article>
+
+    <nav class="toc">
+        <div>دسترسی سریع</div>
+        <ul>
+            <li>
+                <a href="#p0">بررسی AnnotatedString</a>
+            </li>
+            <li>
+                <a href="#p1">افزودن و استایل‌دهی متن در AnnotatedString</a>
+            </li>
+            <li>
+                <a href="#p2">مورد مطالعه (مثال) ها</a>
+            </li>
+            <li>
+                <a href="#p3">خلاصه</a>
+            </li>
+        </ul>
+    </nav>
+
+    <section id="p0">
+        <h2>بررسی AnnotatedString</h2>
+        <p>گاهی برای نمایش یک متن داخل <a href="compose-text.html">Text</a> در کامپوز نیاز داریم قسمت های مختلف متن رو
+            به صورت جداگونه
+            استایل‌دهی کنیم، میتونیم برای هر قسمت یک Text تعریف کنیم اما این کار به صرفه نیست؛ برای این
+            کار از تابع <strong>buildAnnotatedString</strong> استفاده میکنیم که یک نمونه از AnnotatedString رو بر
+            میگردونه و میتونیم به عنوان پارامتر به تابع Text پاس بدیم.</p>
+
+        <p>فرم کلی</p>
+
+        <div class="sample">
+            <div class="snippet-container">
+                <pre class="snippet Kotlin">
+buildAnnotatedString(builder: AnnotatedString.Builder.() -> Unit): AnnotatedString
+                </pre>
+            </div>
+        </div>
+
+        <p>تابع buildAnnotatedString یک نمونه از AnnotatedString رو بر می‌گردونه.</p>
+        <p>پارامتر builder یک <a href="/post/kotlin/anonymous-function-and-lambda.html">تابع لفظی</a> است که به صورت
+            اکستنشن <strong dir="ltr">AnnotatedString.Builder</strong> تعریف شده و داخلش میتونیم توابع کلاس AnnotatedString.Builder رو
+            صدا بزنیم
+            و متن رو استایل‌دهی کنیم؛ </p>
+
+        <section>
+            <h3>استفاده از AnnotatedString در تابع Text</h3>
+            <p>تابع Text در کامپوز یک تابع Overload شدس یک بار تابع با پارامتر String تعریف شده و یک بار تابع با پارامتر
+                AnnotatedString؛ ابتدا یک نمونه از AnnotatedString باید ایجاد کنیم و سپس نمونه ی ایجاد شده رو به
+                عنوان
+                پارامتر تابع Text پاس بدیم.</p>
+
+            <div class="sample">
+                <div class="snippet-container">
+                    <pre class="snippet Kotlin">
+val annotatedString: AnnotatedString = buildAnnotatedString{
+    //Append and style text here
+}
+
+@Composable
+fun MyText(annotatedString: AnnotatedString, modifier: Modifier = Modifier){
+    Text(
+        annotatedString = annotatedString
+        modifier = Modifier.padding(16.dp),
+    )
+}
+
+@Composable
+@Preview
+fun MyTextPreview(){
+    MyText(annotatedString)
+}
+
+            </pre>
+                </div>
+            </div>
+        </section>
+
+    </section>
+    <section id="p1">
+        <h2>افزودن و استایل‌دهی متن در AnnotatedString</h2>
+        <p>ابتدا باید یک نمونه از <strong>AnnotatedString</strong> ایجاد
+            کنیم.</p>
+        <div class="sample">
+            <div class="snippet-container">
+                <pre class="snippet Kotlin">
+val annotatedString: AnnotatedString = buildAnnotatedString{
+    //Append and style text here
+}
+               </pre>
+            </div>
+        </div>
+
+        <p>سپس داخل تابع لفظی ایجاد شده میتونیم متن رو اضافه و قسمت های مختلف متن رو استایل‌‌دهی کنیم؛ همانطور که گفتیم این تابع یک تابع اکستنشن کلاس AnnotatedString.Builder است.</p>
+
+        <section>
+            <h3>تابع append</h3>
+            <p>هربار که بخوایم
+                به AnnotatedString، یک String اضافه کنیم تابع <strong>append</strong> رو صدا میزنیم.</p>
+
+            <div class="sample">
+                <div class="snippet-container">
+                    <pre class="snippet Kotlin">
+val annotatedString: AnnotatedString = buildAnnotatedString{
+    append("Hello")
+    append("Android")
+}
+                    </pre>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h3>تابع withStyle</h3>
+            <p>از این تابع برای استایل‌دهی متن استفاده می‌کنیم؛ تابع withStyle ورژن از withStyle وجود داره، یک ورژن با
+                پارامتر <strong>SpanStyle</strong> و یک ورژن دیگه با پارامتر <strong>ParagraphStyle</strong> و در هردو
+                ورژن یک پارامتر از نوع تابع لفظی به صورت اکستنشن کلاس AnnotationString.Builder تعریف شده است و این تابع
+                مقداری از نوع R رو بر میگردونه.</p>
+
+            <p>در زیر هردو ورژن از این تابع اورده شده است.</p>
+
+            <div class="sample">
+                <div class="snippet-container">
+                    <pre class="snippet Kotlin">
+withStyle(style: SpanStyle, block: AnnotatedString.Builder.() -> R)
+withStyle(style: ParagraphStyle, block: AnnotatedString.Builder.() -> R)
+                    </pre>
+                </div>
+            </div>
+
+            <section>
+                <h4>کلاس SpanSyle</h4>
+                <p>با استفاده از کلاس SpanStyle میتونیم ویژگی های ظاهری متن مثل رنگ، فونت و... رو مقدار دهی کنیم؛
+                    پارامتر های کلاس SpanStyle با پارامتر های تابع <a href="">تابع Text</a> مشترکه میتونید این پارامتر
+                    ها رو در اونجا مطالعه کنید.
+                </p>
+            </section>
+
+            <p>در مثال زیر میخوایم کلمه Hello Android رو به رنگ فیروزه ای و کلمه Android رو به رنگ مشکی در بیاریم.</p>
+
+            <div class="sample">
+                <div class="snippet-container">
+                    <pre class="snippet Kotlin">
+val annotatedString: AnnotatedString = buildAnnotatedString{
+    withStyle(SpanStyle(Color(0xFF00695C))){
+        append("Hello")
+    }
+    append("Android")
+}
+                        </pre>
+                </div>
+            </div>
+
+
+            <section>
+                <h4>کلاس ParagraphStyle</h4>
+                <p>با استفاده از کلاس ParagraphStyle میتونیم ویژگی های مکانی و نحوه نمایش متن در صفحه رو استایل‌دهی
+                    کنیم، پارامتر های این کلاس نیز با پارامتر های تابع Text مشترک است.</p>
+            </section>
+
+
+            <p>در مثال زیر میخوایم متن From KodeDevel رو در وسط صفحه نمایش بدیم.</p>
+
+            <div class="sample">
+                <div class="snippet-container">
+                    <pre class="snippet Kotlin">
+val annotatedString: AnnotatedString = buildAnnotatedString{
+    withStyle(ParagraphStyle(textAlign = TextAlign.Center)){
+        append("From")
+        append("Kode")
+        append("Devel")
+    }
+}
+                    </pre>
+                </div>
+            </div>
+
+        </section>
+
+
+        <section>
+            <h3>تابع pushStyle و pop</h3>
+            <p>با صدا زدن تابع <strong>pushStyle</strong> میتونیم متن هایی که با append اضافه می‌کنیم رو استایل‌دهی
+                کنیم.</p>
+            <p>دو نسخه از pushStyle وجود داره یکی با پارمتر SpanStyle و یکی با پارامتر ParagraphStyle.</p>
+
+            <div class="sample">
+                <div class="snippet-container">
+                    <pre class="snippet Kotlin">
+pushStyle(style: SpanStyle): Int
+pushStyle(style: ParagraphStyle): Int
+                    </pre>
+                </div>
+            </div>
+
+            <p>با هربار صدا زدن pushStyle یک استایل به <a href="/post/java/stack.html">استک</a> اضافه میشه و تا زمانی که
+                با تابع <strong>pop</strong> استایل رو حذف نکرده باشیم متن های بعدش تحت تاثیر قرار می‌گیرن.</p>
+
+            <p>در مثال زیر میخوایم From رو قرمز کنیم Kode مشکی بمونه و Devel رو آبی کنیم و هردو کلمه Kode Devel بولد
+                باشه.</p>
+
+            <div class="sample">
+                <div class="snippet-container">
+                    <pre class="snippet Kotlin">
+val annotatedString: AnnotatedString = buildAnnotatedString{
+    withStyle(ParagraphStyle(textAlign = TextAlign.Center)){
+        pushStyle(SpanStyle(Color(0xFFC62828)))
+        append("From ")
+        pop()
+        pushStyle(SpanStyle(fontWeight = FontWeight.Bold))
+        append("Kode")
+        pushStyle(SpanStyle(Color(0xFF0D47A1)))
+        append("Devel")
+    }
+}
+                    </pre>
+                </div>
+            </div>
+
+            <p>فرض کنید میخوایم یک بخش دیگه به متن اضافه کنیم به نام Website، در مثال قبل دو استایل به متن اضافه کردیم
+                اگه بخوایم هردو استایل روی Website تاثیر نداشته باشن، باید هردو استایل رو حذف کنیم.</p>
+            <div class="sample">
+                <div class="snippet-container">
+                    <pre class="snippet Kotlin">
+val annotatedString: AnnotatedString = buildAnnotatedString{
+    withStyle(ParagraphStyle(textAlign = TextAlign.Center)){
+        pushStyle(SpanStyle(Color(0xFFC62828)))
+        append("From ")
+        pop()
+        pushStyle(SpanStyle(fontWeight = FontWeight.Bold))
+        append("Kode")
+        pushStyle(SpanStyle(Color(0xFF0D47A1)))
+        append("Devel")
+        pop()  //Remove pushStyle(SpanStyle(Color(0xFF0D47A1)))
+        pop() //Remove pushStyle(SpanStyle(fontWeight = FontWeight.Bold))
+        append("Website") //Append Website without any Style
+
+    }
+}
+                    </pre>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h3>تابع withLink</h3>
+            <p>با استفاده از تابع <strong>withLink</strong> میتونیم یک بخشی از متن رو تبدیل به لینک یا قابل کلیک کنیم؛ فرم کلی تابع
+                withLink به صورت زیر است:</p>
+
+            <div class="sample">
+                <div class="snippet-container">
+                    <pre class="snippet Kotlin">
+withLink(link: LinkAnnotation,block: AnnotatedString.Builder.() -> R): R
+                    </pre>
+                </div>
+            </div>
+
+            <p>LinkAnnotation یک کلاس <a href="/post/kotlin/abstract-classes.html">ابستراکت</a> است و باید یکی از کلاس
+                های داخلی Clickable یا Url رو به صورت <strong>LinkAnnotation.Url</strong> و
+                <strong>LinkAnnotation.Clickable</strong> صدا بزنیم.
+            </p>
+
+            <section>
+                <h4>کلاس LinkAnnotation.Url</h4>
+                <p>این کلاس سه پارامتر داره</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <pre class="snippet Kotlin">
+val url = LinkAnnotation.Url(url: String, styles: TextLinkStyles, linkInteractionListener: LinkInteractionListener)
+                        </pre>
+                    </div>
+                </div>
+
+                <p>با پارامتر url میتونیم url مورد نظر رو به صورت String مقداردهی کنیم، به styles میتونیم یک نمونه از
+                    TextLinkStyles پاس بدیم؛ و در پارامتر LinkInteractionListener با کلیک های کاربر روی قسمت مشخص شده
+                    تعامل ایجاد میکنیم.</p>
+
+
+            </section>
+
+            <section>
+                <h4>کلاس LinkAnnotation.Clickable</h4>
+                <p>این کلاس بجای اینکه یک url رو باز کنه با کلیک روی متن تعامل ایجاد میکنه.</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <pre class="snippet">
+val clickable = LinkAnnotation.Clickable(tag: String, styles: TextLinkStyles, linkInteractionListener: LinkInteractionListener)
+                        </pre>
+                    </div>
+                </div>
+
+                <p>در این کلاس پارامتر url وجود نداره و تنها کار کلاس تعامل با کلیک کاربر روی قسمت مشخص شده از متن است و
+                    با استفاده از tag میتونیم متن مورد نظر رو در برنامه برچسب گذاری کنیم تا در صورت لزوم صداش کنیم.</p>
+            </section>
+
+            <section>
+                <h4>کلاس TextLinkStyles</h4>
+                <p>از کلاس TextLinkStyles برای استایل‌‌دهی LinkAnnotation استفاده میکنیم و به صورت مقدار پارامتر styles
+                    به کلاس های LinkAnnotation.Url یا LinkAnnotation.Clickable پاس میدیم.</p>
+                <div class="sample">
+                    <div class="snippet-container">
+                        <pre class="snippet Kotlin">
+val textLinkStyles: TextLinkStyles = TextLinkStyles(style: SpanStyle, pressedStyle: SpanStyle, focusedStyle: SpanStyle, hoveredStyle: SpanStyle)                                
+                            </pre>
+                    </div>
+                </div>
+
+                <p>تمام پارامتر های این کلاس از نوع SpanStyle است و پارامتر style برای استایل‌دهی زمانیه که هیچ تعاملی
+                    با متن توسط کاربر برقرار نشده، پارامتر pressedStyle برای استایل‌دهی زمان کلیک کاربر رو متن است،
+                    پارامتر focusedStyle برای استایل‌دهی متن در زمانیه که روی متن focus وجود داره و پارامتر hoveredStyle
+                    برای استایل‌‌دهی در زمانیه که با موس میریم روی قسمت مشخص شده.</p>
+            </section>
+
+            <p>با <strong>LinkAnnotation</strong> لینک تعریف می‌کنیم و داخل تابع لفظی block، متن مربوط به لینک رو با
+                append اضافه میکنیم.</p>
+
+            <p>در مثال زیر میخوایم یک لینک به متن قبلی اضافه کنیم.</p>
+            <div class="sample">
+                <div class="snippet-container">
+                    <pre class="snippet Kotlin">
+val annotatedString: AnnotatedString = buildAnnotatedString{
+
+    withLink(
+        link = LinkAnnotation.Url(
+            url = "https://kodedevel.ir",
+            styles = TextLinkStyles(
+                style = SpanStyle(Color(0xFF0D47A1), fontWeight = FontWeight.Bold, textDecoration = TextDecoration.Underline),
+                focusedStyle = SpanStyle(color = Color(0xFFC62828)),
+                pressedStyle = SpanStyle(color = Color(0xFFC62828))
+            )
+        )
+    ){
+        pushStyle(ParagraphStyle(textAlign = TextAlign.Center))
+        append("Visit the Site")
+    }
+}
+
+                    </pre>
+                </div>
+            </div>
+
+        </section>
+
+    </section>
+
+    <section id="p2">
+        <h2>مورد مطالعه (مثال) ها</h2>
+
+        <p>در این قسمت میخوایم تمام چیزایی که گفته شد رو با یک AnnotatedString تعریف کنیم و در Text نمایش بدیم.</p>
+
+
+        <div class="sample">
+            <div class="snippet-container">
+                <pre class="snippet Kotlin">
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.LinkAnnotation
+import androidx.compose.ui.text.ParagraphStyle
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.TextLinkStyles
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.text.withLink
+import androidx.compose.ui.text.withStyle
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import ir.kodedevel.helloworld.ui.theme.HelloWorldTheme
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContent {
+            HelloWorldTheme {
+                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                    MyText(annotatedString, modifier = Modifier.padding(innerPadding))
+                }
+            }
+        }
+    }
+}
+
+
+@Composable
+fun MyText(content: AnnotatedString, modifier: Modifier = Modifier){
+    Text(
+        text = content,
+        fontSize = 50.sp,
+        lineHeight = 60.sp,
+        modifier = modifier.padding(16.dp)
+    )
+}
+
+val annotatedString = buildAnnotatedString {
+
+    withStyle(ParagraphStyle(TextAlign.Center)) {
+        withStyle(
+            SpanStyle(Color(0xFF00695C))
+        ) {
+            append("Hello")
+        }
+
+        append("Android!")
+    }
+
+    withStyle(ParagraphStyle(textAlign = TextAlign.Center)){
+        pushStyle(SpanStyle(Color(0xFFC62828)))
+        append("From")
+        append(" ")
+        pop()
+        pushStyle(SpanStyle(fontWeight = FontWeight.Bold))
+        append("Kode")
+        pushStyle(SpanStyle(Color(0xFF0D47A1)))
+        append("Devel\n")
+        pop()
+        pop()
+        append("Website")
+    }
+
+    withLink(
+        link = LinkAnnotation.Url(
+            url = "https://kodedevel.ir",
+            styles = TextLinkStyles(
+                style = SpanStyle(Color(0xFF0D47A1), fontWeight = FontWeight.Bold, textDecoration = TextDecoration.Underline),
+                focusedStyle = SpanStyle(color = Color(0xFFC62828)),
+                hoveredStyle = SpanStyle(color = Color(0xFFC62828))
+            )
+        ),
+    ){
+        pushStyle(ParagraphStyle(textAlign = TextAlign.Center))
+        append("Visit the Site")
+    }
+}
+
+@Preview
+@Composable
+fun MyTextPreview(){
+    MyText(annotatedString)
+}
+                </pre>
+            </div>
+        </div>
+
+
+        <p>شکل نهایی باید مشابه زیر باشه.</p>
+
+        <figure>
+            <img src="/resources/image/android/compose_annotated_string_final_composable.png" alt="تصویر نهایی استایل‌دهی متن با AnnotatedString">
+            <figcaption>تصویر نهایی استایل‌دهی متن با AnnotatedString</figcaption>
+        </figure>
+
+    </section>
+
+    <section id="p3">
+        <h2>خلاصه</h2>
+        <ul>
+            <li>با AnnotatedString میتونیم بخش های مختلف یک متن رو به صورت جدا جدا استایل‌دهی کنیم.</li>
+            <li>با تابع append میتونیم به AnnotatedString به صورت String متن اضافه کنیم.</li>
+            <li>با تابع withStyle میتونیم بخشی از متن رو استایل‌دهی کنیم.</li>
+            <li>با withLink میتونیم یک بخشی از متن رو قابل کلیک یا تبدیل به لینک کنیم.</li>
+            <li>در حین اضافه کردن متن به AnnotatedString میتونیم بخش هایی رو با تابع pushStyle، استایل‌دهی کنیم.</li>
+            <li>برای رفع اثر استایل های اضافه شده با pushStyle، باید با تابع pop استایل رو از استک حذف کنیم.</li>
+        </ul>
+    </section>
+
+</article>
+
+{% capture links %}
+
+<li>
+    <a href="/post/kotlin/functions.html">توابع در کاتلین</a>
+</li>
+<li>
+    <a href="/post/kotlin/anonymous-function-and-lambda.html">توابع لفظی در کاتلین</a>
+</li>
+<li>
+    <a href="/post/kotlin/extension-function.html">اکستنشن ها در کاتلین</a>
+</li>
+<li>
+    <a href="/post/kotlin/higher-order-functions.html">توابع مرتبه بالا در کاتلین</a>
+</li>
+<li>
+    <a href="/post/android/introduction.html">معرفی اندروید</a>
+</li>
+<li>
+    <a href="/post/android/compose-introduction.html">معرفی جت‌پک کامپوز</a>
+</li>
+<li>
+    <a href="/post/kotlin/introduction.html">معرفی زبان کاتلین</a>
+</li>
+<li>
+    <a target="_blank" href="https://developer.android.com/develop/ui/compose/text/style-text">مطالعه در وبسایت رسمی
+        اندروید</a>
+</li>
+{% endcapture %}
+
+
+{% include article-foot.html relative_links = links %}
