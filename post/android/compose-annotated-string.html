@@ -44,7 +44,7 @@ buildAnnotatedString(builder: AnnotatedString.Builder.() -> Unit): AnnotatedStri
         <p>پارامتر builder یک <a href="/post/kotlin/anonymous-function-and-lambda.html">تابع لفظی</a> است که به صورت
             اکستنشن <strong dir="ltr">AnnotatedString.Builder</strong> تعریف شده و داخلش میتونیم توابع کلاس AnnotatedString.Builder رو
             صدا بزنیم
-            و متن رو استایل‌دهی کنیم؛ </p>
+            و متن رو استایل‌دهی کنیم.</p>
 
         <section>
             <h3>استفاده از AnnotatedString در تابع Text</h3>
@@ -264,12 +264,12 @@ withLink(link: LinkAnnotation,block: AnnotatedString.Builder.() -> R): R
 
             <section>
                 <h4>کلاس LinkAnnotation.Url</h4>
-                <p>این کلاس سه پارامتر داره</p>
+                <p>با استفاده از کلاس LinkAnnotation.Url میتونیم برای بخش مورد نظر یک url تعریف کنیم تا کاربر با کلیک روی بخش موردنظر از متن url تعریف شده رو باز کنه.</p>
 
                 <div class="sample">
                     <div class="snippet-container">
                         <pre class="snippet Kotlin">
-val url = LinkAnnotation.Url(url: String, styles: TextLinkStyles, linkInteractionListener: LinkInteractionListener)
+LinkAnnotation.Url(url: String, styles: TextLinkStyles, linkInteractionListener: LinkInteractionListener)
                         </pre>
                     </div>
                 </div>
@@ -288,13 +288,14 @@ val url = LinkAnnotation.Url(url: String, styles: TextLinkStyles, linkInteractio
                 <div class="sample">
                     <div class="snippet-container">
                         <pre class="snippet">
-val clickable = LinkAnnotation.Clickable(tag: String, styles: TextLinkStyles, linkInteractionListener: LinkInteractionListener)
+LinkAnnotation.Clickable(tag: String, styles: TextLinkStyles, linkInteractionListener: LinkInteractionListener)
                         </pre>
                     </div>
                 </div>
 
                 <p>در این کلاس پارامتر url وجود نداره و تنها کار کلاس تعامل با کلیک کاربر روی قسمت مشخص شده از متن است و
                     با استفاده از tag میتونیم متن مورد نظر رو در برنامه برچسب گذاری کنیم تا در صورت لزوم صداش کنیم.</p>
+
             </section>
 
             <section>
