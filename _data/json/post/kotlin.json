@@ -44,10 +44,10 @@
     },
     {
       "title": "آموزش توابع در کاتلین: عبارت لامبدا و تابع بی نام",
-      "description": "آموزش توابع در کاتلین؛ بررسی عبارت لامبدا (Lambda expression) و تابع بی نام (anonymous functions) و تعریف توابع لفظی با عبارات لامبدا به همراه بررسی موارد استفاده در برنامه نویسی تابعی و اندروید.",
+      "description": "آموزش توابع در کاتلین؛ بررسی عبارت لامبدا (Lambda expression) و تابع بی نام (anonymous functions) و تعریف توابع لیترال با رسیور + مثال.",
       "author": "یونس‌ سلیمانی",
       "datePublished": "2025-09-12",
-      "lastModified": "2026-07-30",
+      "lastModified": "2026-10-24",
       "imgCover": "/resources/image/kotlin/cover_lambda.png",
       "link": "/post/kotlin/anonymous-function-and-lambda.html"
     },

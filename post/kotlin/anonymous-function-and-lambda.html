@@ -14,13 +14,13 @@ layout: default
         <a href="#p1">بررسی یه ویژگی از کاتلین</a>
       </li>
       <li>
-        <a href="#p2">عبارت لامبدا در کاتلین</a>
+        <a href="#p2">عبارت لامبدا (Lambda Expression)</a>
       </li>
       <li>
-        <a href="#p3">تابع بی نام در کاتلین</a>
+        <a href="#p3">تابع بی نام (Anonymous Function)</a>
       </li>
       <li>
-        <a href="#p4">توابع تحت لفظی با receiver</a>
+        <a href="#p4">توابع لیترال با receiver</a>
       </li>
       <li>
         <a href="#p5">خلاصه</a>
@@ -31,18 +31,18 @@ layout: default
   <section id="p0">
     <h2>توضیحات</h2>
     <p>
-      عبارات لامبدا و توابع بی نام در کاتلین دو موضوع از برنامه نویسی تابعی
-      هستند. این دو کاربرد های متعددی دارن و در فریمورک های مختلف از جمله
-      اندروید استفاده های زیادی دارن.
+      <strong>عبارت لامبدا (Lambada Expression)</strong> و <strong>تابع بی نام (Anonymous Functions)</strong> در کاتلین دو موضوع از برنامه نویسی تابعی
+      هستند و ازشون در فریمورک های مختلف از جمله
+      <a href="/post/android/introduction.html">اندروید</a> زیاد استفاده میشه.
     </p>
 
     <p>
-      به عبارت لامبدا و تابع بی نام، توابع تحت لفظی (Function Literals) گفته
+      به عبارت لامبدا و تابع بی نام، <strong>توابع لیترال (Function Literals)</strong> گفته
       میشه.
     </p>
 
     <p>
-      توابع تحت لفظی رو مثل توابع معمولی تعریف نمیکنیم بلکه مانند یک متغیر
+      توابع لیترال رو مثل توابع معمولی تعریف نمیکنیم بلکه مانند یک متغیر
       تعریفشون میکنیم و هنگام صدا زدن مانند تابع معمولی صداشون میزنیم.
     </p>
 
@@ -67,7 +67,7 @@ layout: default
 
     <blockquote>
       در کاتلین همه چیز دارای مقدار است؛ تقریبا هر متغیر و تابعی که وجود داره،
-      حتی void که مفدارش Unit است.
+      حتی void که مقدارش Unit است.
     </blockquote>
     <p>
       فرض کنید تو جاوا تابعی رو صدا میزنیم اگه مقداریو برگردونه میتونیم به متغیر
@@ -82,8 +82,7 @@ private String myMethod(){
 
 //correct
 String result = myMethod();
-                        </pre
-        >
+          </pre>
       </div>
     </div>
 
@@ -101,8 +100,7 @@ private void myMethod(){
 
 //compile error
 String result = myMethod()
-                        </pre
-        >
+          </pre>
       </div>
     </div>
 
@@ -117,8 +115,7 @@ private fun myMethod(){
 
 //correct
 val result = myMethod()
-                        </pre
-        >
+                        </pre>
       </div>
     </div>
     <p>
@@ -128,32 +125,26 @@ val result = myMethod()
   </section>
 
   <section id="p2">
-    <h2>عبارت لامبدا در کاتلین</h2>
-
+    <h2>عبارت لامبدا (Lambda Expression)</h2>
     <p>
       برای تعریف متغیر هایی از جنس لامبدا مانند متغیر های معمولی عمل میکنیم:
     </p>
 
-    <figure class="figure figure-wrapper">
-      <img
-        alt="حالت کلی عبارت لاندا"
-        class="figure figure-img"
-        src="/resources/image/kotlin/lambda_expression.png"
-      />
+    <figure>
+      <img alt="فرم کلی عبارت لامبدا در کاتلین" class="figure figure-img"
+        src="/resources/image/kotlin/lambda_expression.png" />
+      <figcaption>فرم کلی عبارت لامبدا در کاتلین.</figcaption>
     </figure>
 
-    <p>اسم متغیر: اسم دلخواهیه که برای متغیر در نظر میگیریم.</p>
+    <ol>
+      <li>اسم دلخواهیه که برای متغیر در نظر میگیریم.</li>
+      <li>نوع لامداییه که میخوایم تعریف کنیم در داخل () پارامتر ها
+        که میخوایم رو تعریف میکنیم و Type همان نوعیست که عبارت بر
+        می‌گردونه.</li>
+      <li>همان مقدار متغیر است و با { } متغیرو مقداردهی میکنیم.</li>
+    </ol>
 
-    <p>
-      نوع متغیر: همان نوع لانداییه که میخوایم تعریف کنیم در داخل () پارامتر هایی
-      که میخوایم عبارت داشته باشه رو تعریف میکنیم و Type همان نوعیست که عبارت بر
-      میگردونه.
-    </p>
-
-    <p>مقدار لامبدا: همان مقدار متغیر است و با {...} متغیرو مقداردهی میکنیم.</p>
-
-    <p>
-      اگه بخوایم عبارت پارامتر داشته باشه به صورت زیر براش پارامتر تعریف میکنیم:
+    اگه بخوایم عبارت پارامتر داشته باشه به صورت زیر براش پارامتر تعریف میکنیم:
     </p>
 
     <div class="sample">
@@ -164,8 +155,7 @@ val myLambda: (T0, T1 , ... , Tn) -&gt; Type = {
     ...
     type
 }
-                        </pre
-        >
+          </pre>
       </div>
     </div>
 
@@ -188,8 +178,7 @@ val t1 = T1()
 ...
 val tn = Tn()
 val type = myLambda(t0, t1, ..., tn)
-                        </pre
-        >
+          </pre>
       </div>
     </div>
 
@@ -201,13 +190,12 @@ val type = myLambda(t0, t1, ..., tn)
 val myLambda: () -&gt; String = {
     "Hello From Lambda"
 }
-                        </pre
-        >
+          </pre>
       </div>
     </div>
 
     <p>
-      در مثال بالا عبارت لاندا بدون پارامتر است و مقدار "Hello From Lambda" رو
+      در مثال بالا عبارت لامبدا بدون پارامتر است و مقدار "Hello From Lambda" رو
       پس از اجرا برمیگردونه.
     </p>
 
@@ -217,8 +205,7 @@ val myLambda: () -&gt; String = {
       <div class="snippet-container">
         <pre class="snippet Kotlin">
 val result: String = myLambda()
-                        </pre
-        >
+          </pre>
       </div>
     </div>
 
@@ -230,8 +217,7 @@ val result: String = myLambda()
 val myLambda: (String) -&gt; String = {
     it -&gt; "Hello $it, From Lambda!"
 }
-                        </pre
-        >
+          </pre>
       </div>
     </div>
 
@@ -245,8 +231,7 @@ val myLambda: (String) -&gt; String = {
 val name = "Joe"
 val result: String = myLambda(name)
 println(result)
-                        </pre
-        >
+          </pre>
       </div>
     </div>
 
@@ -259,13 +244,12 @@ val myLambda: (String , Int) -&gt; String = {
     name , age -&gt;
     "My name is $name, I'm $age years old, this is a message from lambda expmression"
 }
-                        </pre
-        >
+          </pre>
       </div>
     </div>
 
     <p>
-      در مثال بالا عبارت لاندا دارای دو پارامتر است یکی برای اسم و دیگری برای
+      در مثال بالا عبارت لامبدا دارای دو پارامتر است یکی برای اسم و دیگری برای
       سن.
     </p>
 
@@ -283,8 +267,7 @@ val name = "Joe"
 val age = 24
 val result: String = myLambda(name, age)
 println(result)
-                        </pre
-        >
+          </pre>
       </div>
     </div>
 
@@ -308,14 +291,13 @@ println(result)
 val myLambda: () -&gt; String = mylambda@{
     return@mylambda "Hello From Lambda"
 }
-                        </pre
-          >
+            </pre>
         </div>
       </div>
 
       <p>
         در بالا برچسب
-        <strong>&#x200E;myLambda@{...}</strong>
+        <strong dir="ltr">myLambda@{...}</strong>
         رو برای عبارت تعریف کردیم. و از return با برچسبی که تعریف کردیم میتونیم
         استفاده کنیم.
       </p>
@@ -323,7 +305,7 @@ val myLambda: () -&gt; String = mylambda@{
   </section>
 
   <section id="p3">
-    <h2>تابع بی نام در کاتلین</h2>
+    <h2>تابع بی نام (Anonymous Function)</h2>
 
     <p>
       همینطور که از اسمش مشخصه این توابع اسم ندارن. نحوه ی بیان کردنشون مانند
@@ -343,8 +325,7 @@ val myLambda: () -&gt; String = mylambda@{
 val myAnonymous: () -&gt; Unit = fun(){
   println("Hello From Anonymous")
 }
-                        </pre
-        >
+          </pre>
       </div>
     </div>
 
@@ -354,8 +335,7 @@ val myAnonymous: () -&gt; Unit = fun(){
       <div class="snippet-container">
         <pre class="snippet Kotlin">
 myAnonymous()
-                        </pre
-        >
+          </pre>
       </div>
     </div>
 
@@ -369,8 +349,7 @@ val myAnonymous: (String) -&gt; String = fun(name: String): String{
 
     return "Hello $name from Anonymous"
 }
-                        </pre
-        >
+          </pre>
       </div>
     </div>
 
@@ -382,8 +361,7 @@ val myAnonymous: (String) -&gt; String = fun(name: String): String{
 val name = "Joe"
 val message = myAnonymous(name)
 println(message)
-                        </pre
-        >
+          </pre>
       </div>
     </div>
 
@@ -398,8 +376,7 @@ val myAnonymous: (String, Int) -&gt; String = fun(name: String, age: Int): Strin
    return "Hello my name is $name, I'm $age years old this is a message from anonymous"
 
 }
-                        </pre
-        >
+          </pre>
       </div>
     </div>
 
@@ -412,22 +389,17 @@ val name = "Joe"
 val age = 24
 val message = myAnonymous(name , age)
 println(message)
-                        </pre
-        >
+          </pre>
       </div>
     </div>
   </section>
 
   <section id="p4">
-    <h2>توابع تحت لفظی با receiver</h2>
+    <h2>توابع لیترال با رسیور</h2>
     <p>
-      میتونیم عبارت لامبدا رو با یک کلاس receiver بنویسیم. سپس به اعضای کلاس در
+      میتونیم عبارت لامبدا رو با یک کلاس رسیور (receiver) بنویسیم. سپس به اعضای کلاس در
       داخل تابع دسترسی داریم. این کار شبیه تعریف
-      <a
-        href="/post/kotlin/extension-function.html"
-        class="text-decoration-none"
-        >اکستنشن ها</a
-      >
+      <a href="/post/kotlin/extension-function.html">اکستنشن ها</a>
       در کاتلین است.
     </p>
 
@@ -476,8 +448,7 @@ fun main(){
 
   println("s contains 1? ${s.containsDigit(1)}")
 }
-                      </pre
-        >
+                      </pre>
       </div>
     </div>
 
@@ -499,8 +470,7 @@ fun main(){
   val even = s.isLengthEven()
   println("Is $s length even? $even")
 }
-                      </pre
-        >
+        </pre>
       </div>
     </div>
 
@@ -522,8 +492,7 @@ fun main(){
   val result = a.divide(b)
 
   println("$a divided by $b equals $result")
-              </pre
-        >
+        </pre>
       </div>
     </div>
   </section>
@@ -532,14 +501,14 @@ fun main(){
     <h2>خلاصه</h2>
 
     <ul>
-      <li>دو عبارت بی نام و تابع لامبدا جزو توابع تحت لفظی هستند</li>
+      <li>عبارت لامبدا و تابع بی نام توابع لیترال هستند.</li>
 
       <li>
-        توابع تحت لفظی رو مانند یک متغیر تعریف میکنیم و مثل تابع معمولی صدا
-        میزنیم
+        توابع لیترال رو مانند یک متغیر تعریف میکنیم و مثل تابع معمولی صدا
+        میزنیم.
       </li>
 
-      <li>میتونیم مثل اکستنشن ها توابع تحت لفظی رو با رسیور تعریف کنیم</li>
+      <li>میتونیم مثل اکستنشن ها توابع لیترال رو با رسیور تعریف کنیم</li>
     </ul>
   </section>
 
@@ -559,13 +528,9 @@ fun main(){
   <a href="/post/kotlin/extension-function.html">توابع اکستنشن در کاتلین</a>
 </li>
 <li>
-  <a href="/post/kotlin/higher-order-functions.html"
-    >توابع مرتبه ی بالا در کاتلین</a
-  >
+  <a href="/post/kotlin/higher-order-functions.html">توابع مرتبه ی بالا در کاتلین</a>
 </li>
 <li>
-  <a href="https://kotlinlang.org/docs/lambdas.html"
-    >سایت رسمی کاتلین برای مطالعه موضوع</a
-  >
+  <a href="https://kotlinlang.org/docs/lambdas.html">سایت رسمی کاتلین برای مطالعه موضوع</a>
 </li>
 {% endcapture %} {% include article-foot.html relative_links = links %}
