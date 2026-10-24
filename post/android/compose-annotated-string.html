@@ -40,44 +40,7 @@ buildAnnotatedString(builder: AnnotatedString.Builder.() -> Unit): AnnotatedStri
             </div>
         </div>
 
-        <p>تابع buildAnnotatedString یک نمونه از AnnotatedString رو بر می‌گردونه.</p>
-        <p>پارامتر builder یک <a href="/post/kotlin/anonymous-function-and-lambda.html">تابع لفظی</a> است که به صورت
-            اکستنشن <strong dir="ltr">AnnotatedString.Builder</strong> تعریف شده و داخلش میتونیم توابع کلاس AnnotatedString.Builder رو
-            صدا بزنیم
-            و متن رو استایل‌دهی کنیم.</p>
-
-        <section>
-            <h3>استفاده از AnnotatedString در تابع Text</h3>
-            <p>تابع Text در کامپوز یک تابع Overload شدس یک بار تابع با پارامتر String تعریف شده و یک بار تابع با پارامتر
-                AnnotatedString؛ ابتدا یک نمونه از AnnotatedString باید ایجاد کنیم و سپس نمونه ی ایجاد شده رو به
-                عنوان
-                پارامتر تابع Text پاس بدیم.</p>
-
-            <div class="sample">
-                <div class="snippet-container">
-                    <pre class="snippet Kotlin">
-val annotatedString: AnnotatedString = buildAnnotatedString{
-    //Append and style text here
-}
-
-@Composable
-fun MyText(annotatedString: AnnotatedString, modifier: Modifier = Modifier){
-    Text(
-        annotatedString = annotatedString
-        modifier = Modifier.padding(16.dp),
-    )
-}
-
-@Composable
-@Preview
-fun MyTextPreview(){
-    MyText(annotatedString)
-}
-
-            </pre>
-                </div>
-            </div>
-        </section>
+        <p>پارامتر builder یک <a href="/post/kotlin/anonymous-function-and-lambda.html">تابع لیترال</a> است و کلاس <strong>AnnotatedString.Builder</strong> رسیور تابع است و داخل تابع به اعضای کلاس AnnotatedString.Builder دسترسی داریم.</p>
 
     </section>
     <section id="p1">
@@ -94,7 +57,7 @@ val annotatedString: AnnotatedString = buildAnnotatedString{
             </div>
         </div>
 
-        <p>سپس داخل تابع لفظی ایجاد شده میتونیم متن رو اضافه و قسمت های مختلف متن رو استایل‌‌دهی کنیم؛ همانطور که گفتیم این تابع یک تابع اکستنشن کلاس AnnotatedString.Builder است.</p>
+        <p>سپس داخل <a href="/post/kotlin/anonymous-function-and-lambda.html">لیترال</a> میتونیم متن رو اضافه و قسمت های مختلف متن رو استایل‌‌دهی کنیم.</p>
 
         <section>
             <h3>تابع append</h3>
@@ -115,17 +78,17 @@ val annotatedString: AnnotatedString = buildAnnotatedString{
 
         <section>
             <h3>تابع withStyle</h3>
-            <p>از این تابع برای استایل‌دهی متن استفاده می‌کنیم؛ تابع withStyle یک تابع Overload شدس و دو نسخه ازش وجود داره، یک نسخه با
+            <p>از تابع <strong>withStyle</strong> برای استایل‌دهی متن استفاده می‌کنیم؛ دو نسخه از withStyle وجود داره، یک نسخه با
                 پارامتر <strong>SpanStyle</strong> و یک نسخه دیگه با پارامتر <strong>ParagraphStyle</strong> و در هردو
-                نسخه یک پارامتر از نوع تابع لفظی وجود داره.</p>
+                نسخه یک پارامتر دیگه از نوع تابع لیترال تعریف شده.</p>
 
             <p>در زیر هردو نسخه از این تابع اورده شده است.</p>
 
             <div class="sample">
                 <div class="snippet-container">
                     <pre class="snippet Kotlin">
-withStyle(style: SpanStyle, block: AnnotatedString.Builder.() -> R)
-withStyle(style: ParagraphStyle, block: AnnotatedString.Builder.() -> R)
+withStyle(style: SpanStyle, block: AnnotatedString.Builder.() -> R): R
+withStyle(style: ParagraphStyle, block: AnnotatedString.Builder.() -> R): R
                     </pre>
                 </div>
             </div>
@@ -178,7 +141,6 @@ val annotatedString: AnnotatedString = buildAnnotatedString{
             </div>
 
         </section>
-
 
         <section>
             <h3>تابع pushStyle و pop</h3>
@@ -264,7 +226,7 @@ withLink(link: LinkAnnotation,block: AnnotatedString.Builder.() -> R): R
 
             <section>
                 <h4>کلاس LinkAnnotation.Url</h4>
-                <p>با استفاده از کلاس LinkAnnotation.Url میتونیم برای بخش مورد نظر یک url تعریف کنیم تا کاربر با کلیک روی بخش موردنظر از متن url تعریف شده رو باز کنه.</p>
+                <p>با استفاده از کلاس <strong>LinkAnnotation.Url</strong> میتونیم برای بخش مورد نظر یک url تعریف کنیم تا کاربر با کلیک روی بخش موردنظر از متن url تعریف شده رو باز کنه.</p>
 
                 <div class="sample">
                     <div class="snippet-container">
@@ -283,7 +245,7 @@ LinkAnnotation.Url(url: String, styles: TextLinkStyles, linkInteractionListener:
 
             <section>
                 <h4>کلاس LinkAnnotation.Clickable</h4>
-                <p>این کلاس بجای اینکه یک url رو باز کنه با کلیک روی متن تعامل ایجاد میکنه.</p>
+                <p>کلاس <strong>LinkAnnotation.Clickable</strong> بجای اینکه یک url رو باز کنه هنگام کلیک کاربر روی بخش مشخص شده ی متن با کاربر تعامل ایجاد میکنه.</p>
 
                 <div class="sample">
                     <div class="snippet-container">
@@ -300,7 +262,7 @@ LinkAnnotation.Clickable(tag: String, styles: TextLinkStyles, linkInteractionLis
 
             <section>
                 <h4>کلاس TextLinkStyles</h4>
-                <p>از کلاس TextLinkStyles برای استایل‌‌دهی LinkAnnotation استفاده میکنیم و به صورت مقدار پارامتر styles
+                <p>از کلاس <strong>TextLinkStyles</strong> برای استایل‌‌دهی LinkAnnotation استفاده میکنیم و به صورت مقدار پارامتر styles
                     به کلاس های LinkAnnotation.Url یا LinkAnnotation.Clickable پاس میدیم.</p>
                 <div class="sample">
                     <div class="snippet-container">
@@ -310,10 +272,7 @@ val textLinkStyles: TextLinkStyles = TextLinkStyles(style: SpanStyle, pressedSty
                     </div>
                 </div>
 
-                <p>تمام پارامتر های این کلاس از نوع SpanStyle است و پارامتر style برای استایل‌دهی زمانیه که هیچ تعاملی
-                    با متن توسط کاربر برقرار نشده، پارامتر pressedStyle برای استایل‌دهی زمان کلیک کاربر رو متن است،
-                    پارامتر focusedStyle برای استایل‌دهی متن در زمانیه که روی متن focus وجود داره و پارامتر hoveredStyle
-                    برای استایل‌‌دهی در زمانیه که با موس میریم روی قسمت مشخص شده.</p>
+                <p>تمام پارامتر های این کلاس از نوع SpanStyle است؛ از <strong>style</strong> برای استایل پیشفرض متن، از <strong>hoveredStyle</strong> برای استایل متن هنگام رفتن موس روی متن، از <strong>pressedStyle</strong> برای استایل متن در زمانی که روش کلیک بشه و از <strong>focusedStyle</strong> برای استایل متن در زمانی که روی متن فوکوس وجود داره استفاده می‌کنیم.</p>
             </section>
 
             <p>با <strong>LinkAnnotation</strong> لینک تعریف می‌کنیم و داخل تابع لفظی block، متن مربوط به لینک رو با
@@ -382,7 +341,6 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import ir.kodedevel.helloworld.ui.theme.HelloWorldTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
