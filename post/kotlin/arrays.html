@@ -517,19 +517,19 @@ for(row in twoD.indices){
       <div class="snippet-container">
         <pre class="snippet Kotlin">
 //Qom, Hamedan, Tehran, Shiraz
-val arak = arrayOf&lt;Int&gt;(132, 191, 282, 681)
+val arak = arrayOf&lt;Int&gt;(0, 132, 191, 282, 681)
 
 //Arak, Hamedan, Tehran, Shiraz
-val qom = arrayOf&lt;Int&gt;(132, 298, 149, 705)
+val qom = arrayOf&lt;Int&gt;(132, 0, 298, 149, 705)
 
 //Arak, Qom, Tehran, Shiraz
-val hamedan = arrayOf&lt;Int&gt;(191, 298, 318, 881)
+val hamedan = arrayOf&lt;Int&gt;(191, 298, 0, 318, 881)
 
 //Arak, Qom, Hamedan, Shiraz
-val tehran = arrayOf&lt;Int&gt;(282, 149, 318, 844)
+val tehran = arrayOf&lt;Int&gt;(282, 149, 318, 0, 844)
 
 //Arak, Qom, Hamedan, Tehran
-val shiraz = arrayOf&lt;Int&gt;(681, 705, 881, 844)
+val shiraz = arrayOf&lt;Int&gt;(681, 705, 881, 844, 0)
 
 val distances = arrayOf&lt;Array&lt;Int&gt;&gt;(arak, qom, hamedan, tehran, shiraz)
 
