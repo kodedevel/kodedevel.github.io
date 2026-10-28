@@ -27,29 +27,20 @@ layout: default
 
     <section id="p0">
         <h2>لایه های کامپوزی (Composable Layouts)</h2>
-        <p>در جت‌پک کامپوز میتونیم نحوه چیدمان Composable ها رو مشخص کنیم؛ برای این کار باید از <strong>لایه های کامپوزی
-                (Composable Layouts)</strong> استفاده کنیم.</p>
-
-        <p>سه تا از Composable Layout ها عبارتند از <strong>Box, Row و Column</strong> و بسیاری از Composable Layout ها
-            از روی این سه
-            لایه ساخته شدن.</p>
-
-        <p>برای Box, Row و Column یک تابع اکستنشن به نام <strong>align</strong> در Modifier تعریف شده که باهاش میتونیم
-            محل قرارگیری چیدمان ها رو به صورت اختصاصی تعیین کنیم، تابع align یک تابع اکستنشن از BoxScope, RowScope و
-            ColumnScope است و مقدار پارامتر تابع بنا بر نوع لایه (Box, Row, Column) یکی از مقادیر ثابت کلاس
-            <strong>Alignment</strong> است.
-        </p>
+        <p>در جت‌پک کامپوز میتونیم نحوه چیدمان Composable ها و محل قرارگیری چیدمان ها رو مشخص کنیم؛ برای این کار باید از <strong>لایه های کامپوزی
+                (Composable Layouts)</strong> استفاده کنیم؛ لایه های کامپوزی میتونن یک یا چند Composable رو نگهدارن، هر لایه چیدمان خاص خودشو داره و میتونیم محل قرار گیری چیدمان Composable ها رو در لایه مشخص کنیم.</p>
+        <p>سه تا از لایه های کامپوزی عبارتند از <strong>Box, Row و Column</strong> و این سه مبنا و اساس بسیاری از لایه های کامپوزی هستند.</p>
 
     </section>
 
     <section id="p1">
         <h2>استفاده از Box</h2>
-        <p>در لایه Box به صورت استک روی هم میوفتن، علاوه بر این عناصر میتونن در
-            9 ناحیه مختلف قرار بگیرن؛ در تصویر زیر محل های قرارگرفتن عناصر در Box با رنگ قرمز مشخص شده است.</p>
+        <p>Composable ها در لایه Box به صورت استک روی هم میوفتن، میتونیم Composable ها رو در
+            9 ناحیه مختلف در Box قرار بدیم؛ در تصویر زیر محل قرارگرفتن Composable ها در Box با رنگ قرمز مشخص شده است.</p>
 
         <figure>
-            <img src="/resources/image/android/compose_box_layout_alignment.png" alt="محل های قرارگیری عناصر در Box">
-            <figcaption>محل های قرارگیری عناصر در Box</figcaption>
+            <img src="/resources/image/android/compose_box_layout_alignment.png" alt="محل قرارگیری Composable ها در Box">
+            <figcaption>محل قرارگیری Composable ها در Box</figcaption>
         </figure>
 
         <p>فرم کلی:</p>
@@ -59,15 +50,15 @@ layout: default
             <div class="snippet-container">
                 <pre class="snippet Kotlin">
 @Composable
-fun Box(modifier: Modifier = Modifier, contentAlignment = Alignment.Top, content: @Composable BoxScope.() -&gt; Unit)
+fun Box(modifier: Modifier = Modifier, contentAlignment = Alignment.TopStart, content: @Composable BoxScope.() -&gt; Unit)
                 </pre>
             </div>
         </div>
 
 
         <p>با استفاده از Modifier میتونیم لایه رو سفارشی‌سازی کنیم، با مقداردهی <strong>contentAlignment</strong>
-            میتونیم محل قرار‌گیری Composable های داخل Box رو مشخص کنیم که مقدار پیشفرضش Alignment.Top است و با ایجاد یک
-            تابع لیترال برای content میتونیم Composable های مورد نظر رو داخل تابع صدا بزنیم.</p>
+            میتونیم ناحیه قرار‌گیر گرفتن Composable های داخل Box رو مشخص کنیم، مقدار پیشفرض Alignment برابر با Alignment.TopStart است و با ایجاد یک
+            تابع لیترال برای content میتونیم Composable ها رو به Box اضافه کنیم.</p>
 
 
         <p>در مثال زیر میخوایم متن Hello Android رو در Box نمایش بدیم.</p>
@@ -87,7 +78,7 @@ fun HelloAndroidCenter(modifier: Modifier = Modifier){
         </div>
 
         <p>متغیر contentAlignment در Box دارای 9 مقدار مختلف است که با این 9 مقدار مطابق عکس بالا میتونیم Composable ها
-            رو در 9 محل مختلف داخل Box قرار بدیم؛ در جدول زیر این 9 مقدار شرح داده شده است.</p>
+            رو در 9 ناحیه مختلف داخل Box قرار بدیم؛ در جدول زیر این 9 مقدار شرح داده شده است.</p>
 
         <table class="tb">
             <thead>
@@ -114,7 +105,7 @@ fun HelloAndroidCenter(modifier: Modifier = Modifier){
                 </tr>
                 <tr>
                     <td class="tDataLTR">Center</td>
-                    <td class="tDataRTL">Compsable ها رو در وسط لایه قرار‌ می‌ده.</td>
+                    <td class="tDataRTL">Composable ها رو در وسط لایه قرار‌ می‌ده.</td>
                 </tr>
                 <tr>
                     <td class="tDataLTR">CenterEnd</td>
@@ -134,6 +125,24 @@ fun HelloAndroidCenter(modifier: Modifier = Modifier){
                 </tr>
             </tbody>
         </table>
+
+
+        <p>یک تابع اکستنشن به نام <strong>align</strong> در Modifier برای <strong>BoxScope</strong> تعریف شده که با استفاده از تابع میتونیم محل قرارگیری هر Composable در Box رو به صورت جدا مشخص کنیم.</p>
+
+        <div class="sample">
+            <div class="snippet-container">
+                <pre class="snippet Kotlin">
+@Composable
+fun MyComposableBox(){
+    Box{
+        Text(text = "First Text In Column", modifier = Modifier.align(Alignment.TopStart))
+        Text(text = "Second Text In Column", modifier = Modifier.align(Alignment.TopEnd))
+        Text(text = "Third Text In Column", modifier = Modifier.align(Alignment.Center))
+    }
+}
+                </pre>
+            </div>
+        </div>
 
         <p>در مثال زیر میخوایم یک متن رو در بالا وسط، یک متن رو در وسط و یک متن رو در پایین انتهای Box نمایش بدیم.</p>
 
@@ -157,7 +166,7 @@ fun MyText(modifier: Modifier = Modifier){
 
     <section id="p2">
         <h2>استفاده از Row و Column</h2>
-        <p>Composable ها در Row به صورت افقی چیده میشن و در Column به صورت عمودی؛ در تصویر زیر نحوه چیدمان Composable ها
+        <p>Composable ها در Row به صورت افقی پشت سر هم قرار میگیرن و در Column به صورت عمودی؛ در تصویر زیر نحوه چیدمان Composable ها
             در Row و Column به صورت مستطیل های قرمز نمایش داده شده است.</p>
 
         <figure>
@@ -166,9 +175,14 @@ fun MyText(modifier: Modifier = Modifier){
             <figcaption>نحوه چیدمان Composable ها در Row و Column</figcaption>
         </figure>
 
-        <p>در تصویر بالا چیدمان Composable ها رو بر مبنای محور مختصات فرض کردیم، Compsable ها در Row در راستای
+        <p>چیدمان Composable ها در Row و Column بر مبنای محور مختصات است، Composable ها در Row در راستای
             <strong>محور X</strong> رسم میشن و در Column در راستای <strong>محور Y</strong>؛ به محور مختصاتی که همراستا
             با چیدمان ها باشه، محور مختصات اصلی میگیم.</p>
+
+            <div class="note">
+                <p class="note-head">توجه</p>
+                <p>در اندروید برخلاف محور مختصات در ریاضی جهت محور Y به سمت پایین است.</p>
+            </div>
 
         <p>فرم کلی:</p>
 
@@ -209,7 +223,7 @@ fun MyTextsVertical(modifier: Modifier = Modifier){
     Column(modifier){
         Text(text = "First Text In Column")
         Text(text = "Second Text In Column")
-        Text(text = Third Text In Column)
+        Text(text = "Third Text In Column")
     }
 }
                 </pre>
@@ -219,12 +233,12 @@ fun MyTextsVertical(modifier: Modifier = Modifier){
         <section>
             <h3>تعیین محل قرار گیری Composable ها</h3>
 
-            <p>میتونیم محل قرار گرفتن چیدمان ها رو در محور X و Y تعیین کنیم.</p>
+            <p>با استفاده از <strong>Arrangement</strong> و <strong>Alignment</strong> میتونیم محل قرارگیری چیدمان ها رو در Row و Column تعیین کنیم.</p>
 
             <section>
                 <h4>Arrangement</h4>
                 <p>
-                    با استفاده از پارامتر <strong>arrangement</strong> میتونیم محل قرارگیری Composable ها رو در راستای
+                    با استفاده از پارامتر Arrangement میتونیم محل قرارگیری Composable ها رو در راستای
                     محوری که چیده میشن مشخص کنیم، در Row اسم این پارامتر <strong>horizontalArrangement</strong> است و در
                     Column اسمش <strong>verticalArrangement</strong>.
                 </p>
@@ -234,10 +248,27 @@ fun MyTextsVertical(modifier: Modifier = Modifier){
                 <table class="tb">
                     <thead>
                         <tr>
-                            <th colspan="2">androidx.compose.foundation.layout.Arrangement</th>
+                            <th colspan="2">Arrangement</th>
                         </tr>
                     </thead>
                     <tbody>
+                        <tr>
+                            <td class="tDataLTR">Start</td>
+                            <td class="tDataRTL">مختص horizontalArrangement است و چیدمان رو در ابتدای محور اصلی X قرار میده.</td>
+                        </tr>
+
+                        <tr>
+                            <td class="tDataLTR">End</td>
+                            <td class="tDataRTL">مختص horizontalArrangement است و چیدمان رو در انتهای محور اصلی X قرار میده.</td>
+                        </tr>
+                        <tr>
+                            <td class="tDataLTR">Top</td>
+                            <td class="tDataRTL">مختص verticalArrangement است و چیدمان رو در ابتدای محور اصلی Y قرار میده.</td>
+                        </tr>
+                        <tr>
+                            <td class="tDataLTR">Bottom</td>
+                            <td class="tDataRTL">مختص verticalArrangement است و چیدمان رو در انتهای محور اصلی Y قرار میده.</td>
+                        </tr>
                         <tr>
                             <td class="tDataLTR">
                                 Center
@@ -251,18 +282,20 @@ fun MyTextsVertical(modifier: Modifier = Modifier){
                                 SpaceBetween
                             </td>
                             <td class="tDataRTL">
-                                نسبت به محور اصلی مختصات، یک فضای خالی برابر بین Composable ها ایجاد می‌کنه.
+                                فاصله روی محور اصلی فقط بین Composable ها تقسیم میشه.
                             </td>
                         </tr>
                         <tr>
                             <td class="tDataLTR">SpaceEvenly</td>
-                            <td class="tDataRTL">نسبت به محور اصلی مختصات، یک فضای خالی برابر بین Composable ها ایجاد
-                                می‌کنه و شامل فضای خالی قبل از اولین و آخرین Composable هم میشه.</td>
+                            <td class="tDataRTL">فاصله ها (شامل قبل و بعد) کاملا یکسان است.</td>
+                        </tr>
+                        <tr>
+                            <td class="tDataLTR">SpaceAround</td>
+                            <td class="tDataRTL">فاصله قبل از اولین Composable و بعد از آخرین Composable نصف فاصله بین Composable هاست.</td>
                         </tr>
                         <tr>
                             <td class="tDataLTR">spacedBy(space: Dp)</td>
-                            <td class="tDataRTL">نسبت به محور اصلی مختصات، یک فضای خالی با مقدار مشخص از نوع Dp بین Composable ها ایجاد
-                                می‌کنه.</td>
+                            <td class="tDataRTL">یک فاصله ی دلخواه ایجاد میکنیم.</td>
                         </tr>
                     </tbody>
                 </table>
@@ -270,7 +303,7 @@ fun MyTextsVertical(modifier: Modifier = Modifier){
             <section>
                 <h4>Alignment</h4>
                 <p>
-                    با استفاده از پارامتر alignment میتونیم محل قرارگیری Composable ها رو در راستای محور فرعی مختصات
+                    با استفاده از پارامتر Alignment میتونیم محل قرارگیری Composable ها رو در راستای محور فرعی مختصات
                     تعیین کنیم؛ در Row اسم این پارامتر <strong>verticalAlignment</strong> است و در Column اسم این پارامتر
                     <strong>horizontalAlignment</strong> است.
                 </p>
@@ -315,6 +348,29 @@ fun MyTextsVertical(modifier: Modifier = Modifier){
                     </tbody>
                 </table>
 
+                <p>یک تابع اکستنشن به نام align در Modifier برای ColumnScope و RowScope تعریف شده که با استفاده از تابع میتونیم محل قرار گیری هر Composable در محور فرعی رو به صورت جداگونه و اختصاصی تعریف کنیم.</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <pre class="snippet Kotlin">
+@Composable
+fun MyComposable(){
+    Row{
+        Text(text = "First Text In Row", modifier = Modifier.align(Alignment.Top))
+        Text(text = "Second Text In Row", modifier = Modifier.align(Alignment.CenterVertically))
+        Text(text = "Third Text In Row", modifier = Modifier.align(Alignment.Bottom))
+    }
+
+    Column{
+        Text(text = "First Text In Column", modifier = Modifier.align(Alignment.Start))
+        Text(text = "Second Text In Column", modifier = Modifier.align(Alignment.CenterHorizontally))
+        Text(text = "Third Text In Column", modifier = Modifier.align(Alignment.End))
+    }
+}
+                        </pre>
+                    </div>
+                </div>
+
             </section>
 
             <p>
@@ -342,7 +398,7 @@ fun MyTexts(){
 
 @Preview
 @Composable
-fun MyTextsRowPreview(){
+fun MyTextsPreview(){
     MyTexts()
 }
                     </pre>
@@ -578,6 +634,14 @@ fun Distances(modifier: Modifier = Modifier) {
             </div>
         </div>
 
+
+        <p>تصویر نهایی باید مشابه زیر باشه.</p>
+
+        <figure>
+            <img src="/resources/image/android/compose_city_distance_final_result.png" alt="برنامه فاصله شهر ها در اندروید کامپوز">
+            <figcaption>برنامه فاصله شهر ها در اندروید کامپوز</figcaption>
+        </figure>
+
     </section>
 
     <section id="p4">
@@ -629,7 +693,7 @@ fun Distances(modifier: Modifier = Modifier) {
     <a href="/post/kotlin/introduction.html">معرفی زبان کاتلین</a>
 </li>
 <li>
-    <a target="_blank" href="https://developer.android.com/develop/ui/compose/text/style-text">مطالعه در وبسایت رسمی
+    <a target="_blank" href="https://developer.android.com/develop/ui/compose/layouts/basics">مطالعه در وبسایت رسمی
         اندروید</a>
 </li>
 {% endcapture %}
