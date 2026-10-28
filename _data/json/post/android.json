@@ -54,6 +54,14 @@
       "lastModified": "2026-10-24",
       "imgCover": "/resources/image/android/cover_compose_annotated_string.png",
       "link" : "/post/android/compose-annotated-string.html"
+    },{
+      "title": "جت‌پک کامپوز در اندروید: استفاده از Box، Row و Column",
+      "description": "آموزش جت‌پک کامپوز در اندروید؛ چیدمان Composable ها با استفاده از Box, Row و Column به همراه مثال های عملی.",
+      "author":"یونس سلیمانی",
+      "datePublished": "2026-10-29",
+      "lastModified": "",
+      "imgCover": "/resources/image/android/cover_compose_layouts_basic.png",
+      "link": "/post/android/compose-layouts-basic.html"
     },
     {
       "title": "دیتا بایندینگ در اندروید",
