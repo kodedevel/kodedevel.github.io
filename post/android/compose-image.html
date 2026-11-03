@@ -140,7 +140,7 @@ Image(
 
             <p>دستگاه های اندرویدی در ابعاد و صفحات مختلف تولید شدن و در اندروید استادیو به چند دسته تقسیم میشن:
                 <strong>mdpi</strong>, <strong>hdpi</strong>, <strong>xhdpi</strong>, <strong>xxhdpi</strong>, ... برای
-                راحتی میتونیم از nodpi استفاده کنیم؛ بنابراین مانند تصویر desity و سپس nodensity رو انتخاب میکنیم.
+                راحتی میتونیم از nodpi استفاده کنیم؛ بنابراین مانند تصویر density و سپس nodensity رو انتخاب میکنیم.
             </p>
             <figure>
                 <img src="/resources/image/android/android_studio_drawable_density_selection.png"
@@ -172,7 +172,7 @@ Image(
                 کنیم؛ برای اینکار ابتدا باید عکس رو در قسمت drawable در منابع برنامه اضافه کنیم، یک آی‌دی از نوع Integer
                 به
                 صورت خودکار برای عکس ایجاد میشه، میتونیم با استفاده از کلاس <strong>R</strong> آی‌دی عکس مورد نظر رو صدا
-                بزنیم و به عنوان پارامتر به تابع painterResource پاس بدیم.</p>
+                بزنیم و به عنوان پارامتر به تابع painterResource پاس بدیم. تابع painterResource یک نمونه از Painter رو برمیگردونه.</p>
 
             <p>در مثال زیر میخوایم یک عکس رو در برنامه نمایش بدیم.</p>
             <div class="sample">
@@ -271,7 +271,7 @@ fun myImage(resourceId: Int, modifier: Modifier = Modifier){
 
     <section id="p2">
         <h2>خوندن عکس ها با ImageVector و ImageBitmap</h2>
-        <p>میتونیم بجای Painter با ImageVector یا ImageBitmap عکس ها رو بخونیم؛ Painter به صورت خودکار نوع عکس رو تشخیص میده و عکس در تابع Image ترسیم میشه، استفاده از ImageVector یا ImageBitmap به‌جای Painter کنترل و انعطاف‌پذیری بیشتری به برنامه نویس میده.</p>
+        <p>کلاس Painter به صورت خودکار نوع عکس رو تشخیص میده و عکس در تابع Image ترسیم میشه، میتونیم بجای Painter با ImageVector یا ImageBitmap عکس ها رو بخونیم؛ استفاده از ImageVector یا ImageBitmap به‌جای Painter کنترل و انعطاف‌پذیری بیشتری به برنامه نویس میده.</p>
 
         <section>
             <h3>ImageVector</h3>
