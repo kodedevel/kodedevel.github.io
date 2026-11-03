@@ -192,7 +192,7 @@ fun MyText(modifier: Modifier = Modifier){
 
         <div class="note">
             <p class="note-head">توجه</p>
-            <p>در اندروید برخلاف محور مختصات در ریاضی جهت محور Y به سمت پایین است.</p>
+            <p>جهت محور Y در اندروید مخالف محور مختصات ریاضی و به سمت پایین است.</p>
         </div>
 
         <p>فرم کلی:</p>
@@ -583,7 +583,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun CityDistances(modifier: Modifier) {
+fun CityDistances(modifier: Modifier = Modifier) {
     Column(modifier) {
         CitiesRow()
         Distances()
@@ -609,7 +609,7 @@ fun CitiesRow(modifier: Modifier = Modifier) {
                 text = city,
                 textAlign = TextAlign.Center,
                 fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(8.dp)
+                modifier = Modifier.padding(10.dp)
             )
         }
     }
@@ -647,7 +647,7 @@ fun Distances(modifier: Modifier = Modifier) {
                         text = distance.toString(),
                         color = Color(0xFFFAFAFA),
                         textAlign = TextAlign.Center,
-                        modifier = Modifier.padding(16.dp)
+                        modifier = Modifier.padding(horizontal = 20.dp, vertical = 16.dp)
                     )
                 }
             }
@@ -678,6 +678,9 @@ fun Distances(modifier: Modifier = Modifier) {
             <li>
                 Composable ها در Row به صورت افقی و در مسیر محور x پشت سر هم قرار میگیرن و در Column به صورت عمودی پشت
                 سر هم و در مسیر محور Y.
+            </li>
+            <li>
+                جهت محور Y در اندروید مخالف محور مختصات ریاضی و به سمت پایین است.
             </li>
             <li>
                 به محور هم راستا در جهت قرار گرفتن Composable ها در Row و Column محور اصلی میگیم.

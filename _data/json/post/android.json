@@ -55,11 +55,11 @@
       "imgCover": "/resources/image/android/cover_compose_annotated_string.png",
       "link" : "/post/android/compose-annotated-string.html"
     },{
-      "title": "جت‌پک کامپوز در اندروید: استفاده از لایه های Box، Row و Column",
-      "description": "آموزش مبانی لایه (layout) ها در جت‌پک کامپوز اندروید؛ چیدمان Composable ها با استفاده از Box, Row و Column به همراه مثال های عملی.",
+      "title": "جت‌پک کامپوز در اندروید: استفاده از Box، Row و Column",
+      "description": "آموزش مبانی لایه های کامپوزی (Composable Layouts) در اندروید؛ چیدمان Composable ها در Box, Row و Column به همراه مثال های عملی.",
       "author":"یونس سلیمانی",
       "datePublished": "2026-10-29",
-      "lastModified": "",
+      "lastModified": "2026-11-03",
       "imgCover": "/resources/image/android/cover_compose_layouts_basic.png",
       "link": "/post/android/compose-layouts-basic.html"
     },
