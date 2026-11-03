@@ -64,6 +64,15 @@
       "link": "/post/android/compose-layouts-basic.html"
     },
     {
+      "title": "جت‌پک کامپوز در اندروید: نمایش عکس با تابع Image",
+      "description": "نمایش عکس در کامپوز؛ انواع عکس ها، تابع Image, خوندن عکس ها با ImageVector و BitmapVector و نمایش در Image به همراه مثال عملی.",
+      "author":"یونس سلیمانی",
+      "datePublished": "2026-11-03",
+      "lastModified": "",
+      "imgCover": "/resources/image/android/cover_compose_image.png",
+      "link": "/post/android/compose-image.html"
+    },
+    {
       "title": "دیتا بایندینگ در اندروید",
       "description": "با استفاده از کتابخونه ی دیتابایندینگ (Data Binding) در اندروید میتونیم UI رو به داده ها وصل کنید و به سادگی و با حداقل کد، ویو رو آپدیت کنیم در این مطلب به فعال سازی و پیاده سازی دیتابایندینگ در اندروید می پردازیم.",
       "author": "یونس سلیمانی",

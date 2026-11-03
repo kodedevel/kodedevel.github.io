@@ -1,0 +1,521 @@
+---
+layout: default
+---
+
+<article>
+
+    <nav class="toc">
+        <div>دسترسی سریع</div>
+        <ul>
+            <li>
+                <a href="#p0">انواع عکس ها</a>
+            </li>
+            <li>
+                <a href="#p1">تابع Image</a>
+            </li>
+            <li>
+                <a href="#p2">خوندن عکس ها باImageVector و ImageBitmap</a>
+            </li>
+            <li>
+                <a href="#p3">مورد مطالعه (مثال) ها</a>
+            </li>
+            <li>
+                <a href="#p4">خلاصه</a>
+            </li>
+        </ul>
+    </nav>
+
+    <section id="p0">
+        <h2>انواع عکس ها</h2>
+        <p>به طور کلی دو نوع عکس داریم عکس هایی که بردار محور هستند و اصطلاحا بهشون Vector میگیم و عکس های Bitmap که به طور
+            معمول در فضای مجازی می‌بینیم و دانلود می‌کنیم.</p>
+
+        <section>
+            <h3>عکس های برداری (Vector Image)</h3>
+            <p>این عکس ها به صورت برداری ترسیم میشن و با بزرگنمایی کیفیت خودشونو از دست نمیدن و ازشون به عنوان آیکون
+                و... میتونیم استفاده کنیم، از جمله این عکس ها میتونیم به عکس های <strong>svg</strong> یا فایل هایی که به
+                صورت <strong>xml</strong> با اندروید استادیو ساخته میشن اشاره کنیم.</p>
+        </section>
+
+        <section>
+            <h3>عکس های Bitmap</h3>
+            <p>با این عکس ها زیاد در فضای مجازی مواجه شدیم به این عکس ها در برنامه نویسی Bitmap گفته میشه. از جمله این
+                عکس ها میتونیم به عکس هایی با فرمت <strong>png</strong>, <strong>jpeg</strong> و ... اشاره کنیم؛ کیفیت
+                این عکس ها با بزرگنمایی و تغییر مقیاس تغییر می‌کنه.</p>
+        </section>
+    </section>
+
+    <section id="p1">
+        <h2>تابع Image</h2>
+        <p>در کامپوز یک تابع داریم به نام <strong>Image</strong> که وظیفش نمایش تصاویر در برنامه اندرویدیه.</p>
+
+        <p>فرم کلی</p>
+
+        <div class="sample">
+            <div class="snippet-container">
+                <pre class="snippet Kotlin">
+Image(
+    painter: Painter|bitmap: ImageBitmap|vector: ImageVector,
+    contentDescription: String,
+    alpha: Float,
+    alignment: Alignment,
+    contentScale: ContentScale
+    )
+                </pre>
+            </div>
+        </div>
+
+        <p>در نمودار زیر پارامتر های رایج تابع Image شرح داده شده است.</p>
+
+        <table class="tb">
+            <thead>
+                <tr>
+                    <th colspan="2">&lt;&lt;Fuction&gt;&gt;</th>
+                </tr>
+                <tr>
+                    <th colspan="2">androidx.compose.foundation.Image</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Parameters</td>
+                </tr>
+                <tr>
+                    <td class="tDataLTR">modifier: Modifier</td>
+                    <td class="tDataRTL">با استفاده از Modifier میتونیم Image رو سفارشی سازی کنیم.</td>
+                </tr>
+                <tr>
+                    <td class="tDataLTR">painter: Painter</td>
+                    <td class="tDataRTL">با استفاده از Painter میتونیم عکس رو برای نمایش به Image پاس بدیم.</td>
+                </tr>
+                <tr>
+                    <td class="tDataLTR">contentDescription: String</td>
+                    <td class="tDataRTL">برای عکس توضیحاتی در نظر میگیریم که قابل استفاده برای ابزار های accessibility
+                        باشه.
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tDataLTR">alpha: Float</td>
+                    <td class="tDataRTL">میزان شفافیت عکس رو به مشخص میکنه و مقدارش بین 0 تا 1 است.</td>
+                </tr>
+                <tr>
+                    <td class="tDataLTR">alignment: Alignment</td>
+                    <td class="tDataRTL">محل قرار گیری عکس رو در چهارچوب Image مشخص میکنه.</td>
+                </tr>
+                <tr>
+                    <td class="tDataLTR">contentScale: ContentScale</td>
+                    <td class="tDataRTL">مقیاس عکس رو تعیین میکنه (Crop, Fit, FillBounds, FillWidth, FillHeight, None,
+                        Inside).</td>
+                </tr>
+            </tbody>
+        </table>
+
+
+        <section>
+            <h3>افزودن عکس به منابع برنامه</h3>
+            <p>به طور کلی دو نوع عکس داریم، عکس هایی که از نوع <strong>Vector</strong> هستن مثل svg ها و vector آیکون
+                هایی
+                که با اندروید استادیو میتونیم به صورت Vector ایجاد کنیم و عکس های Bitmap با فرمت <strong>png</strong>،
+                <strong>jpeg</strong> و ... .
+            </p>
+
+            <p>برای افزودن عکس به عنوان منابع مانند تصویر زیر ابتدا روی <strong>Resource Manager</strong> گوشه بالا سمت
+                چپ
+                (شماره ۱) کلیک کنید و سپس روی علامت به علاوه (شماره ۲) کلیک کنید و سپس گزینه <strong>Import
+                    Drawables</strong> رو بزنید (شماره ۳).</p>
+
+            <figure>
+                <img src="/resources/image/android/android_studio_resource_manager.png"
+                    alt="افزودن عکس به منابع برنامه در اندروید استادیو">
+                <figcaption>افزودن عکس به منابع برنامه در اندروید استادیو</figcaption>
+            </figure>
+
+            <p>در پنجره جدید عکسی که میخوایم به برنامه اضافه کنیم رو در فایل های کامپیوتر پیدا و انتخاب میکنیم.</p>
+
+            <figure>
+                <img src="/resources/image/android/android_studio_drawable_select_image.png"
+                    alt="انتخاب عکس برای افزودن به منابع برنامه در اندروید استادیو">
+                <figcaption>انتخاب عکس برای افزودن به منابع برنامه در اندروید استادیو</figcaption>
+            </figure>
+
+            <p>دستگاه های اندرویدی در ابعاد و صفحات مختلف تولید شدن و در اندروید استادیو به چند دسته تقسیم میشن:
+                <strong>mdpi</strong>, <strong>hdpi</strong>, <strong>xhdpi</strong>, <strong>xxhdpi</strong>, ... برای
+                راحتی میتونیم از nodpi استفاده کنیم؛ بنابراین مانند تصویر desity و سپس nodensity رو انتخاب میکنیم.
+            </p>
+            <figure>
+                <img src="/resources/image/android/android_studio_drawable_density_selection.png"
+                    alt="انتخاب density برای عکس جهت افزودن به drawable">
+                <figcaption>انتخاب density برای عکس جهت افزودن به drawable</figcaption>
+            </figure>
+
+            <p>نکست رو میزنیم و در قسمت بعد گزینه <strong>import رو انتخاب میکنیم و سپس عکس به پوشه drowable-nodpi اضافه
+                    میشه.</strong></p>
+
+            <figure>
+                <img src="/resources/image/android/android_studio_darawable_import_finish.png"
+                    alt="پایان کار افزودن تصویر به drawable در اندروید استادیو.">
+                <figcaption>پایان کار افزودن تصویر به drawable در اندروید استادیو.</figcaption>
+            </figure>
+
+            <div class="note">
+                <p class="note-head">راهنمایی</p>
+                <p>رایج ترین سایز برای افزودن عکس به drawable-nodpi سایز <strong dir="ltr">1024 * 2400</strong> پیکسل
+                    است.
+                </p>
+            </div>
+
+        </section>
+
+        <section>
+            <h3>painterResource</h3>
+            <p>برای ایجاد یک نمونه از <strong>Painter</strong> میتونیم از تابع <strong>painterResource</strong> استفاده
+                کنیم؛ برای اینکار ابتدا باید عکس رو در قسمت drawable در منابع برنامه اضافه کنیم، یک آی‌دی از نوع Integer
+                به
+                صورت خودکار برای عکس ایجاد میشه، میتونیم با استفاده از کلاس <strong>R</strong> آی‌دی عکس مورد نظر رو صدا
+                بزنیم و به عنوان پارامتر به تابع painterResource پاس بدیم.</p>
+
+            <p>در مثال زیر میخوایم یک عکس رو در برنامه نمایش بدیم.</p>
+            <div class="sample">
+                <div class="snippet-container">
+                    <pre class="snippet Kotlin">
+@Composable
+fun myImage(resourceId: Int, modifier: Modifier = Modifier){
+    Image(
+        painter = painterResource(resourceId),
+        contentDescription = null
+        modifier = modifier.padding(16.dp).fillMaxWidth().height(400.dp)
+    )
+}
+                    </pre>
+                </div>
+            </div>
+
+            <p>برای کنترل بیشتر میتونیم به‌جای Painter از <strong>bitmap: ImageBitmap</strong> برای عکس های رایج و
+                <strong>vector: ImageVector</strong> برای Vector استفاده کنیم.
+            </p>
+
+        </section>
+
+
+        <section>
+            <h3>contentDescription</h3>
+            <p>پارامتر <strong>contentDescription</strong> توضیحاتی رو در مورد عکس میده و زمانی که برنامه نیاز به
+                accessibility داره برنامه هایی مثل talkback میتونن عکس رو توضیح بدن.</p>
+
+            <p>مقداردهی این پارامتر اجباریه، زمانی که عکس به عنوان آیکون یا لوگو استفاده میشه نیازی میتونیم مقدار
+                پارامتر رو <strong>null</strong> قرار بدیم و در غیر اینصورت باید توضیحاتی در مورد عکس به عنوان String
+                قرار بدیم.</p>
+
+        </section>
+
+
+        <section>
+            <h3>contentScale</h3>
+            <p>از پارامتر <strong>contentScale</strong> برای تغییر مقیاس عکس در صفحه استفاده می‌کنیم، برای مقداردهی این
+                پارامتر ContentScale رو صدا می‌زنیم و یکی از مقادیر ثابت <strong>Crop</strong>, <strong>Fit</strong>,
+                <strong>None</strong>, <strong>FillWidth</strong>, <strong>FillHeight</strong> یا
+                <strong>FillBounds</strong> رو صدا می‌زنیم.</p>
+
+            <section>
+                <h4>Crop</h4>
+                <p>مقیاس عکس رو به اندازه ای که تمام صفحه بشه افزایش میده و قسمت های اضافی عکس رو برش میده.</p>
+            </section>
+
+            <section>
+                <h4>Fit</h4>
+                <p>مقیاس عکس رو به اندازه ای که در صفحه جا بشه تنظیم میکنه، در این حالت ممکنه فضای خالی ایجاد بشه.</p>
+            </section>
+
+            <section>
+                <h4>None</h4>
+                <p>عکس رو به اندازه ابعاد واقعی خودش نمایش میده.</p>
+            </section>
+
+            <section>
+                <h4>FillWidth</h4>
+                <p>عکس رو به اندازه عرض صفحه (Image) کشیده می‌کنه.</p>
+            </section>
+
+            <section>
+                <h4>FillHeight</h4>
+                <p>عکس رو به اندازه ارتفاع صفحه (Image) کشیده می‌کنه.</p>
+            </section>
+
+            <section>
+                <h4>FillBounds</h4>
+                <p>عرض و ارتفاع عکس رو به اندازه صفحه کشیده میکنه.</p>
+            </section>
+
+            <p>در مثال زیر میخوایم یک عکس رو با مقیاس Crop نمایش بدیم.</p>
+
+            <div class="sample">
+                <div class="snippet-container">
+                    <pre class="snippet Kotlin">
+@Composable
+fun myImage(resourceId: Int, modifier: Modifier = Modifier){
+    Image(
+        painter = painterResource(resourceId),
+        contentDescription = null,
+        contentScale = ContentScale.Crop,
+        modifier = modifier.padding(16.dp).fillMaxWidth().height(400.dp)
+    )
+}                   
+                </pre>
+                </div>
+            </div>
+
+        </section>
+
+    </section>
+
+
+    <section id="p2">
+        <h2>خوندن عکس ها با ImageVector و ImageBitmap</h2>
+        <p>میتونیم بجای Painter با ImageVector یا ImageBitmap عکس ها رو بخونیم؛ Painter به صورت خودکار نوع عکس رو تشخیص میده و عکس در تابع Image ترسیم میشه، استفاده از ImageVector یا ImageBitmap به‌جای Painter کنترل و انعطاف‌پذیری بیشتری به برنامه نویس میده.</p>
+
+        <section>
+            <h3>ImageVector</h3>
+            <p>زمانی که نوع عکس برداری باشه از ImageVector استفاده می‌کنیم.</p>
+            <p>فرم کلی:</p>
+
+            <div class="sample">
+                <div class="snippet-container">
+                    <pre class="snippet Kotlin">
+@Composable
+fun MyImage(id: Int, modifier: Modifier = Modifier){
+    val vector = ImageVector.vectorResource(id)
+    Image(
+        vector = vector,
+        contentDescription = null
+    )
+}
+                    </pre>
+                </div>
+            </div>
+
+        </section>
+
+        <section>
+            <h3>ImageBitmap</h3>
+            <p>زمانی که بخوایم عکس های Bitmap رو در Image نمایش بدیم از ImageBitmap استفاده میکنیم.</p>
+            <p>فرم کلی:</p>
+            <div class="sample">
+                <div class="snippet-container">
+                    <pre class="snippet Kotlin">
+@Composable
+fun MyImage(id: Int, modifier: Modifier = Modifier){
+    val bitmap = ImageBitmap.imageResource(id)
+    Image(
+        bitmap = bitmap,
+        contentDescription = null
+    )
+}
+                    </pre>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <section id="p3">
+        <h2>مورد مطالعه (مثال) ها</h2>
+        <p>میخوایم نقشه ایران رو به عنوان پس زمینه برنامه مسافت شهر ها در <a href="/post/android/compose-layouts-basic.html">قسمت قبل</a> اضافه کنیم.</p>
+
+        <p>میتونید عکس رو از <a href="/resources/image/generic/blank_map_iran.png">اینجا</a> دانلود و به منابع برنامه همونطور که در بالا گفته شد اضافه کنید.</p>
+
+        <div class="sample">
+            <div class="snippet-container">
+                <pre class="snippet Kotlin">
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContent {
+            Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                IranCityDistances(modifier = Modifier
+                    .padding(innerPadding)
+                )
+            }
+        }
+    }
+}
+
+@Composable
+fun IranCityDistances(modifier: Modifier = Modifier){
+    Box(modifier = modifier
+        .padding()
+        .fillMaxSize()
+        .background(Color.White),
+        contentAlignment = Alignment.Center
+    ) {
+        CityDistances(Modifier)
+        IranMap()
+    }
+}
+
+@Preview
+@Composable
+fun IranCityDistancesPreview(){
+    IranCityDistances()
+}
+
+@Composable
+fun IranMap(modifier: Modifier = Modifier){
+    Image(
+        painter = painterResource(R.drawable.blank_map_iran),
+        contentDescription = null,
+        contentScale = ContentScale.Crop,
+        modifier = modifier.fillMaxWidth(),
+        alpha = 0.45f,
+        alignment = Alignment.Center
+    )
+}
+
+@Composable
+fun CityDistances(modifier: Modifier = Modifier) {
+    Column(modifier) {
+        CitiesRow()
+        Distances()
+    }
+}
+
+@Preview
+@Composable
+fun CityDistancesPreview() {
+    CityDistances(Modifier)
+}
+
+@Composable
+fun CitiesRow(modifier: Modifier = Modifier) {
+    Row(
+        modifier
+            .fillMaxWidth()
+            .background(Color(0xFFF5F5F5)),
+        horizontalArrangement = Arrangement.End
+    ) {
+        for (city in cities) {
+            Text(
+                text = city,
+                textAlign = TextAlign.Center,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(10.dp)
+            )
+        }
+    }
+}
+
+@Composable
+fun CitiesColumn(modifier: Modifier = Modifier) {
+    Column(modifier) {
+        for (city in cities)
+            Text(
+                text = city,
+                color = Color(0xFFFAFAFA),
+                modifier = Modifier.padding(bottom = 16.dp, top = 16.dp),
+                fontWeight = FontWeight.Bold
+            )
+    }
+}
+
+@Composable
+fun Distances(modifier: Modifier = Modifier) {
+
+    Row(
+        modifier
+            .fillMaxWidth()
+            .background(Color(0xFF212121)),
+        horizontalArrangement = Arrangement.End
+    ) {
+        CitiesColumn()
+        for (row in distances.indices) {
+
+            Column {
+                for (col in distances[row].indices) {
+                    val distance = distances[row][col]
+                    Text(
+                        text = distance.toString(),
+                        color = Color(0xFFFAFAFA),
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier.padding(horizontal = 20.dp, vertical = 16.dp)
+                    )
+                }
+            }
+        }
+    }
+}
+                </pre>
+            </div>
+        </div>
+
+        <p>برنامه نهایی باید مشابه تصویر زیر باشه.</p>
+        <figure>
+            <img src="/resources/image/android/iran_city_distances_final.png" alt="برنامه نمایش مسافت شهر ها با پس زمینه نقشه ایران.">
+            <figcaption>برنامه نمایش مسافت شهر ها با پس زمینه نقشه ایران.</figcaption>
+        </figure>
+    </section>
+
+    <section id="p4">
+        <h2>خلاصه</h2>
+        <ul>
+            <li>دو نوع عکس برداری و Bitmap داریم.</li>
+            <li>با استفاده از تابع Image میتونیم عکس ها رو در برنامه نمایش بدیم.</li>
+            <li>در تابع Image باید پارامتر contentDescription رو مقداردهی کنیم.</li>
+            <li>میتونیم بجای Painter از ImageVector و ImageBitmap به عنوان پارامتر Image استفاده کنیم.</li>
+            <li>از ImageVector برای نمایش عکس های برداری و از ImageBitmap برای نمایش عکس های معمولی استفاده میکنیم.</li>
+        </ul>
+    </section>
+
+</article>
+
+{% capture links %}
+<li>
+    <a href="/post/kotlin/functions.html">توابع در کاتلین</a>
+</li>
+<li>
+    <a href="/post/kotlin/anonymous-function-and-lambda.html">توابع لفظی در کاتلین</a>
+</li>
+<li>
+    <a href="/post/kotlin/higher-order-functions.html">توابع مرتبه بالا در کاتلین</a>
+</li>
+<li>
+    <a href="/post/android/compose-introduction.html">معرفی جت‌پک کامپوز</a>
+</li>
+<li>
+    <a href="/post/android/introduction.html">معرفی اندروید</a>
+</li>
+<li>
+    <a href="/post/kotlin/introduction.html">معرفی زبان کاتلین</a>
+</li>
+<li>
+    <a target="_blank" href="https://developer.android.com/develop/ui/compose/graphics/images">مطالعه در وبسایت رسمی
+        اندروید</a>
+</li>
+{% endcapture %}
+
+
+{% include article-foot.html relative_links = links %}
