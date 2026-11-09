@@ -1,0 +1,360 @@
+---
+layout: default
+---
+
+<article>
+
+    <nav class="toc">
+        <div>دسترسی سریع</div>
+        <ul>
+            <li>
+                <a href="#p0">کامپوننت های تعاملی</a>
+            </li>
+            <li>
+                <a href="#p1">استفاده از Button</a>
+            </li>
+            <li>
+                <a href="#p2">استفاده از OutlinedButton</a>
+            </li>
+            <li>
+                <a href="#p3">استفاده از IconButton</a>
+            </li>
+            <li>
+                <a href="#p4">قابل کلیک کردن Composable ها با استفاده از Modifier</a>
+            </li>
+            <li>
+                <a href="#p5">مورد مطالعه (مثال) ها</a>
+            </li>
+            <li>
+                <a href="#p6">خلاصه</a>
+            </li>
+        </ul>
+    </nav>
+
+    <section id="p0">
+        <h2>کامپوننت های تعاملی</h2>
+        <p>کاربر با تله‌پاتی نمیتونه با برنامه کامپیوتری تعامل برقرار کنه! در برنامه های کامپیوتری برای تعامل کاربر
+            با برنامه، بسته به فریم‌ورک مورد استفاده در برنامه کامپوننت هایی وجود دارن که یک برنامه نویس میتونه ازشون
+            برای تعامل کاربر با برنامه استفاده کنه، از جمله این کامپوننت ها میشه به Input ها (میکروفون، تکست فیلد، حسگر
+            اثر انگشت و ...)، Touch (لمس) و Button (دکمه) ها اشاره کرد.</p>
+
+        <p>سخت افزار ها معمولا واسطه بین کاربر و کامپوننت های تعاملی میشن، مثلا برای کلیک کاربر روی دکمه، سخت افزار تاچ
+            میتونه واسطه کلیک کاربر باشه.</p>
+
+        <p>معمولا در برنامه نویسی تمام این کامپوننت ها از طریق لیستنینگ (Listening) یعنی گوش دادن منتظر کاربر میمونن تا
+            کاربر با برنامه تعامل ایجاد کنه.</p>
+        <p>یکی از پرکاربردترین و مهم ترین کامپوننت های تعاملی Button است، که وظیفه تعامل کلیکی رو بر عهده داره.</p>
+    </section>
+    <section id="p1">
+        <h2>استفاده از Button</h2>
+
+        <p>تابع <strong>Button</strong> یکی از کامپوننت های تعاملی در جت‌پک کامپوز است که در جت‌پک کامپوز بهش Composable
+            تعاملی میگیم.</p>
+
+        <p>فرم کلی</p>
+        <div class="sample">
+            <div class="snippet-container">
+                <pre class="snippet Kotlin">
+@Composable
+fun Button(onClick: () -&gt; Unit, modifier: Modifier, enabled: Boolean, shape: Shape, colors: ButtonColors, elevation: ButtonElevation, border: BorderStroke, contentPadding: PaddingValues, content: @Composable (RowScope) -&gt; Unit)
+                </pre>
+            </div>
+        </div>
+
+        <p>در UML زیر به بررسی هر کدوم از پارامتر های تابع Button می‌پردازیم.</p>
+
+        <table class="tb">
+            <thead>
+                <tr>
+                    <th colspan="2">&lt;&lt;Function&gt;&gt;</th>
+                </tr>
+                <tr>
+                    <th colspan="2">
+                        Button
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="tDataLTR">onClick: () -&gt; Unit</td>
+                    <td class="tDataRTL">از کلیک کاربر روی دکمه باخیر میشه (میشنوه).</td>
+                </tr>
+                <tr>
+                    <td class="tDataLTR">modifier: Modifier</td>
+                    <td class="tDataRTL">باهاش میتونیم Button رو سفارشی کنیم.</td>
+                </tr>
+                <tr>
+                    <td class="tDataLTR">enabled: Boolean</td>
+                    <td class="tDataRTL">با مقدار Ture دکمه قابل کلیک میشه و با مقدار False غیر قابل کلیک (مقدار پیشفرض
+                        True است).</td>
+                </tr>
+                <tr>
+                    <td class="tDataLTR">shape: Shape</td>
+                    <td class="tDataRTL">شکل دکمه رو تعیین میکنه.</td>
+                </tr>
+                <tr>
+                    <td class="tDataLTR">colors: ButtonColors</td>
+                    <td class="tDataRTL">رنگ های دکمه رو تعیین میکنه.</td>
+                </tr>
+                <tr>
+                    <td class="tDataLTR">elevation: ButtonElevation</td>
+                    <td class="tDataRTL">ارتفاع دکمه رو تعیین می‌کنه.</td>
+                </tr>
+                <tr>
+                    <td class="tDataLTR">border: BorderStroke</td>
+                    <td class="tDataRTL">دور تا دور دکمه رو با یک خط تزئین می‌کنه.</td>
+                </tr>
+                <tr>
+                    <td class="tDataLTR">contentPadding: PaddingValues</td>
+                    <td class="tDataRTL">بین محتوای داخل دکمه (به عنوان مثال متن دکمه) و کناره های دکمه فاصله ایجاد
+                        می‌کنه.</td>
+                </tr>
+                <tr>
+                    <td class="tDataLTR">content: () -&gt; Unit</td>
+                    <td class="tDataRTL">محتوای داخل دکمه رو مشخص میکنیم (مثلا متن دکمه) داخل این تابع میتونیم
+                        Composable های دیگه از جمله Text رو صدا بزنیم.</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>در مثال زیر میخوایم با کلیک روی دکمه یک پیغام در کنسول نمایش داده بشه.</p>
+
+        <div class="sample">
+            <div class="snippet-container">
+                <pre class="snippet Kotlin">
+@Composable
+fun ConsoleMessage(modifier: Modifier = Modifier){
+    Button(
+        onClick = {
+            Log.d("CONSOLE MESSAGE","Clicked!")
+        }
+    ){
+        Text("Click me!")
+    }
+}
+                </pre>
+            </div>
+        </div>
+
+
+        <p>در مثال زیر میخوایم هنگام کلیک روی دکمه پیغام متن عوض بشه.</p>
+        <div class="sample">
+            <div class="snippet-container">
+                <pre class="snippet Kotlin">
+@Composable
+private fun ScreenMessage(modifier: Modifier = Modifier){
+
+    val context = LocalContext.current
+
+    Column(
+        modifier = modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
+
+        Button(onClick = {
+            Toast.makeText(context, "Current message comes from your click on Button" , Toast.LENGTH_SHORT).show()
+        }) {
+            Text("Show message")
+        }
+
+    }
+}
+                </pre>
+            </div>
+        </div>
+
+    </section>
+
+    <section id="p2">
+        <h2>استفاده از OutlinedButton</h2>
+        <p>OutlinedButton از نظر عملکرد شبیه Button است اما در ظاهر تفاوت هایی با Button داره،‌ داخل این دکمه خالیه و
+            دارای کادر است.</p>
+
+        <p>در مثال قسمت قبل کافیه بجای Button بنویسیم OutlinedButton</p>
+
+
+        <div class="sample">
+            <div class="snippet-container">
+                <pre class="snippet Kotlin">
+OutlinedButton(
+    onClick = {
+        Toast.makeText(context, "Current message comes from your click on Button" , Toast.LENGTH_SHORT).show()
+    }) {
+        Text("Show message")
+    }
+                </pre>
+            </div>
+        </div>
+
+    </section>
+
+
+    <section id="p3">
+        <h2>استفاده از IconButton</h2>
+        <p>داخل IconButton بجای متن یک آیکون رو نمایش میده و برای افزودن آیکون از تابع Icon استفاده می‌کنیم.</p>
+
+
+        <section>
+            <h3>تابع Icon</h3>
+            <p>استفاده از تابع Icon مشابه استفاده از تابع <a href="compose-image.html">Image</a> است و میتونیم مقادیری
+                از نوع ImageVector, ImageBitmap یا Painter رو به عنوان عکس به تابع پاس بدیم، علاوه بر این میتونیم از
+                کلاس استاتیک Icons در پکیج <strong>androidx-compose-material:material-icons-core:$version</strong> برای
+                افزودن وابستگی کافیه مانند سایر وابستگی های پروژه اضافش کنیم.</p>
+
+                <p>فرم کلی:</p>
+                <div class="sample">
+                    <div class="snippet-container">
+                        <pre class="snippet Kotlin">
+@Composable
+fun Icon(painterResource: Painter, contentDescription: String, modifier: Modifier)
+                        </pre>
+                    </div>
+                </div>
+
+                <p>کافیه در مثال قبل بجای Button از IconButton استفاده کنیم و در content تابع Icon رو صدا بزنیم.</p>
+
+                <div class="sample">
+                    <div class="snippet-container">
+                        <pre class="snippet Kotlin">
+ IconButton(
+    onClick = {
+        Toast.makeText(context, "Current message comes from your click on OutlinedButton" , Toast.LENGTH_SHORT).show()
+    }) {
+        Icon(Icons.Default.Info, contentDescription = null)
+    }
+                        </pre>
+                    </div>
+                </div>
+        </section>
+
+    </section>
+
+    <section id="p4">
+        <h2>قابل کلیک کردن Composable ها با Modifier</h2>
+        <p>با صدا زدن تابع clickable در <a href="compose-modifier.html">Modifier</a> میتونیم یک Composable رو قابل کلیک کنیم.</p>
+
+        <p>فرم کلی:</p>
+
+        <div class="sample">
+            <div class="snippet-container">
+                <pre class="snippet Kotlin">
+Modifier.clickable(enabled: Boolean onClick: () -&gt; Unit)
+                </pre>
+            </div>
+        </div>
+
+        <p>در بالا enabled فعال یا غیر فعال بودن کلیک روی Composable رو تعیین میکنه و با onClick رفتار Compolsable هنگام کلیک رو تعیین می‌کنیم.</p>
+
+        <p>در مثال قبل میخوایم به‌جای Button یک Text رو قابل کلیک کنیم.</p>
+
+        <div class="snippet">
+            <div class="snippet-container">
+                <pre class="snippet Kotlin">
+ Text("Show Message", modifier = Modifier.clickable(enabled = true, onClickLabel = "Click"){
+            Toast.makeText(context, "Current message comes from your click on Text" , Toast.LENGTH_SHORT).show()
+        }.padding(16.dp))
+                </pre>
+            </div>
+        </div>
+
+    </section>
+
+
+    <section id="p5">
+        <h2>مورد مطالعه (مثال) ها</h2>
+        <p>در برنامه زیر تمام موارد گفته شده رو اجرا می‌کنیم.</p>
+
+        <div class="sample">
+            <div class="snippet-container">
+                <pre class="snippet Kotlin">
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContent {
+            DiceRollerTheme {
+                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                  //DiceRollerApp(modifier = Modifier.padding(innerPadding))
+                    ScreenMessage(modifier = Modifier.padding(innerPadding))
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun ScreenMessage(modifier: Modifier = Modifier){
+
+    val context = LocalContext.current
+
+    Column(
+        modifier = modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
+
+        Button(onClick = {
+            Toast.makeText(context, "Current message comes from your click on Button" , Toast.LENGTH_SHORT).show()
+        }) {
+            Text("ShowMessage")
+        }
+
+        OutlinedButton (onClick = {
+            Toast.makeText(context, "Current message comes from your click on OutlinedButton" , Toast.LENGTH_SHORT).show()
+        }) {
+            Text("Show message")
+        }
+
+        IconButton(onClick = {
+            Toast.makeText(context, "Current message comes from your click on IconButton" , Toast.LENGTH_SHORT).show()
+        }) {
+            Icon(Icons.Default.Info, contentDescription = null)
+        }
+
+        Text("Show Message", modifier = Modifier.clickable(enabled = true, onClickLabel = "Click"){
+            Toast.makeText(context, "Current message comes from your click on Text" , Toast.LENGTH_SHORT).show()
+        }.padding(16.dp))
+    }
+}
+                </pre>
+            </div>
+        </div>
+    </section>
+
+    <section id="p6">
+        <h2>خلاصه</h2>
+        <ul>
+            <li>با استفاده از کامپوننت های تعاملی یک فریم‌ورک کاربر میتونه با برنامه تعامل ایجاد کنه.</li>
+            <li>یکی از کامپوننت های پرکاربرد Button است.</li>
+            <li>در جت‌پک کامپوز برای تعریف دکمه سه تابع Button, OutlinedButton و IconButton رو داریم.</li>
+            <li>با استفاده از تابع clickable در Modifier میتونیم Composable ها رو قابل کلیک کنیم.</li>
+        </ul>
+    </section>
+
+</article>
+
+
+{% capture links %}
+<li>
+    <a href="/post/kotlin/anonymous-function-and-lambda.html">توابع لیترال در کاتلین</a>
+</li>
+<li>
+    <a href="/post/kotlin/higher-order-functions.html">توابع مرتبه بالا در کاتلین</a>
+</li>
+<li>
+    <a href="/post/android/compose-introduction.html">معرفی جت‌پک کامپوز</a>
+</li>
+<li>
+    <a href="/post/android/introduction.html">معرفی اندروید</a>
+</li>
+<li>
+    <a href="/post/kotlin/introduction.html">معرفی زبان کاتلین</a>
+</li>
+<li>
+    <a target="_blank" href="https://developer.android.com/develop/ui/compose/layouts/basics">مطالعه در وبسایت رسمی
+        اندروید</a>
+</li>
+{% endcapture %}
+
+
+{% include article-foot.html relative_links = links %}
