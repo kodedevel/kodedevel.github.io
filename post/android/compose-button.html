@@ -48,8 +48,7 @@ layout: default
     <section id="p1">
         <h2>استفاده از Button</h2>
 
-        <p>تابع <strong>Button</strong> یکی از کامپوننت های تعاملی در جت‌پک کامپوز است که در جت‌پک کامپوز بهش Composable
-            تعاملی میگیم.</p>
+        <p>تابع <strong>Button</strong> یکی از کامپوننت های تعاملی در جت‌پک کامپوز است.</p>
 
         <p>فرم کلی</p>
         <div class="sample">
@@ -85,7 +84,7 @@ fun Button(onClick: () -&gt; Unit, modifier: Modifier, enabled: Boolean, shape: 
                 </tr>
                 <tr>
                     <td class="tDataLTR">enabled: Boolean</td>
-                    <td class="tDataRTL">با مقدار Ture دکمه قابل کلیک میشه و با مقدار False غیر قابل کلیک (مقدار پیشفرض
+                    <td class="tDataRTL">با مقدار True دکمه قابل کلیک میشه و با مقدار False غیر قابل کلیک (مقدار پیشفرض
                         True است).</td>
                 </tr>
                 <tr>
@@ -116,6 +115,15 @@ fun Button(onClick: () -&gt; Unit, modifier: Modifier, enabled: Boolean, shape: 
                 </tr>
             </tbody>
         </table>
+
+        <div class="note">
+            <p class="note-head">
+                توجه
+            </p>
+            <p>
+                تابع Button یک تابع پیشفرض برای ایجاد Button است، علاوه بر این تابع توابع دیگه ای هستن که اکثر پارامتر های Button باهاشون مشترکه.
+            </p>
+        </div>
         <p>در مثال زیر میخوایم با کلیک روی دکمه یک پیغام در کنسول نمایش داده بشه.</p>
 
         <div class="sample">
@@ -136,7 +144,7 @@ fun ConsoleMessage(modifier: Modifier = Modifier){
         </div>
 
 
-        <p>در مثال زیر میخوایم هنگام کلیک روی دکمه پیغام متن عوض بشه.</p>
+        <p>در مثال زیر میخوایم هنگام کلیک روی دکمه یک پیام موقت در صفحه ظاهر بشه.</p>
         <div class="sample">
             <div class="snippet-container">
                 <pre class="snippet Kotlin">
@@ -163,14 +171,114 @@ private fun ScreenMessage(modifier: Modifier = Modifier){
             </div>
         </div>
 
+        <p>برای نمایش پیغام موقت از کلاس <strong>Toast</strong> استفاده کردیم، این کلاس چیز خاصی نداره و کل کلاس و موارد
+            استفاده از کلاس همون چیزیه که تو مثال اورده شده است، و <strong dir="ltr">LocalContext.current</strong>
+            کانتکست Composable مورد نظر رو صدا میزنه و همیشه باید داخل یک Comosable صداش کنیم.</p>
+
+        <p>در مثال زیر میخوایم رنگ های Button رو تغییر بدیم.</p>
+
+        <div class="sample">
+            <div class="snippet-container">
+                <pre class="snippet Kotlin">
+Button(
+    colors = ButtonColors(
+                containerColor = Color(0xFF212121),
+                contentColor = Color(0xFFFAFAFA),
+                disabledContainerColor = Color(0xFFEEEEEE)
+                disabledContentColor = Color(0xFF212121),
+                ),
+     onClick = {
+        Toast.makeText(
+            context,
+            "Current message comes from your click on Button",
+            Toast.LENGTH_SHORT
+        ).show()
+    }) {
+    Text("ShowMessage")
+}
+                </pre>
+            </div>
+        </div>
+
+        <p>در بالا <strong>containerColor</strong> رنگ پس زمینه Button است، <strong>contentColor</strong> رنگ متن Button
+            و <strong>disabledContainerColor</strong> و <strong>disabledContentColor</strong> پس زمینه Button و رنگ متن
+            داخل Button
+            در زمان غیر فعال بودنشه.</p>
+
+
+        <p>
+            در مثال زیر میخوایم ارتفاع رو برای Button برای حالت های پیشفرض، فشار دادن توسط کاربر و غیر فعال بودن تعیین
+            کنیم.
+        </p>
+
+        <div class="sample">
+            <div class="snippet-container">
+                <pre class="snippet Kotlin">
+Button(
+    colors = ButtonColors(
+        containerColor = Color(0xFF212121),
+        contentColor = Color(0xFFFAFAFA),
+        disabledContentColor = Color(0xFF212121),
+        disabledContainerColor = Color(0xFFEEEEEE)
+    ),
+    elevation = ButtonDefaults.buttonElevation(
+        defaultElevation = 10.dp,
+        pressedElevation = 2.dp,
+        disabledElevation = 0.dp
+    ),
+    onClick = {
+        Toast.makeText(
+            context,
+            "Current message comes from your click on Button",
+            Toast.LENGTH_SHORT
+        ).show()
+    }) {
+    Text("ShowMessage")
+}
+                    </pre>
+            </div>
+        </div>
+
+        <p>در مثال زیر میخوایم Button غیر فعال باشه.</p>
+
+        <div class="sample">
+            <div class="snippet-container">
+                <pre class="snippet Kotlin">
+Button(
+    enabled = false,
+    colors = ButtonColors(
+        containerColor = Color(0xFF212121),
+        contentColor = Color(0xFFFAFAFA),
+        disabledContentColor = Color(0xFF212121),
+        disabledContainerColor = Color(0xFFEEEEEE)
+    ),
+    elevation = ButtonDefaults.buttonElevation(
+        defaultElevation = 10.dp,
+        pressedElevation = 2.dp,
+        disabledElevation = 0.dp
+    ),
+    onClick = {
+        Toast.makeText(
+            context,
+            "Current message comes from your click on Button",
+            Toast.LENGTH_SHORT
+        ).show()
+    }) {
+    Text("ShowMessage")
+}
+                </pre>
+            </div>
+        </div>
+
+
     </section>
 
     <section id="p2">
         <h2>استفاده از OutlinedButton</h2>
-        <p>OutlinedButton از نظر عملکرد شبیه Button است اما در ظاهر تفاوت هایی با Button داره،‌ داخل این دکمه خالیه و
-            دارای کادر است.</p>
+        <p>تابع <strong>OutlinedButton</strong> از نظر عملکرد شبیه Button است اما در ظاهر تفاوت هایی با Button داره،‌
+            داخل این دکمه خالی یا شیشه ایه و دور تا دور دکمه با Border یک خط ترسیم شده است.</p>
 
-        <p>در مثال قسمت قبل کافیه بجای Button بنویسیم OutlinedButton</p>
+        <p>در مثال قسمت قبل کافیه بجای Button بنویسیم OutlinedButton.</p>
 
 
         <div class="sample">
@@ -178,7 +286,7 @@ private fun ScreenMessage(modifier: Modifier = Modifier){
                 <pre class="snippet Kotlin">
 OutlinedButton(
     onClick = {
-        Toast.makeText(context, "Current message comes from your click on Button" , Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, "Current message comes from your click on OutlinedButton" , Toast.LENGTH_SHORT).show()
     }) {
         Text("Show message")
     }
@@ -191,47 +299,53 @@ OutlinedButton(
 
     <section id="p3">
         <h2>استفاده از IconButton</h2>
-        <p>داخل IconButton بجای متن یک آیکون رو نمایش میده و برای افزودن آیکون از تابع Icon استفاده می‌کنیم.</p>
+        <p>داخل <strong>IconButton</strong> بجای متن یک آیکون رو نمایش میده و برای افزودن آیکون از تابع Icon استفاده
+            می‌کنیم.</p>
 
 
         <section>
             <h3>تابع Icon</h3>
-            <p>استفاده از تابع Icon مشابه استفاده از تابع <a href="compose-image.html">Image</a> است و میتونیم مقادیری
+            <p>استفاده از تابع <strong>Icon</strong> مشابه استفاده از تابع <a href="compose-image.html">Image</a> است و
+                میتونیم مقادیری
                 از نوع ImageVector, ImageBitmap یا Painter رو به عنوان عکس به تابع پاس بدیم، علاوه بر این میتونیم از
-                کلاس استاتیک Icons در پکیج <strong>androidx-compose-material:material-icons-core:$version</strong> برای
-                افزودن وابستگی کافیه مانند سایر وابستگی های پروژه اضافش کنیم.</p>
+                کلاس Icons استفاده کنیم، کلاس Icons دارای مقادیر ثابت استاتیک از نوع VectorImage است که هر کدوم یک آیکون
+                خاصی رو نمایش میده، برای استفاده از Icons باید وابستگی
+                <strong>androidx-compose-material:material-icons-core:$version</strong> رو به پروژه اضافه کنیم و بجای
+                <strong>$version</strong> شماره نسخه مورد نظر رو بنویسیم.</p>
 
-                <p>فرم کلی:</p>
-                <div class="sample">
-                    <div class="snippet-container">
-                        <pre class="snippet Kotlin">
+            <p>فرم کلی:</p>
+            <div class="sample">
+                <div class="snippet-container">
+                    <pre class="snippet Kotlin">
 @Composable
-fun Icon(painterResource: Painter, contentDescription: String, modifier: Modifier)
+fun Icon(painter: Painter|imageVector: ImageVector|bitmap: ImageBitmap, contentDescription: String, modifier: Modifier)
                         </pre>
-                    </div>
                 </div>
+            </div>
 
-                <p>کافیه در مثال قبل بجای Button از IconButton استفاده کنیم و در content تابع Icon رو صدا بزنیم.</p>
+            <p>کافیه در مثال قبل بجای Button از IconButton استفاده کنیم و در content تابع Icon رو صدا بزنیم.</p>
 
-                <div class="sample">
-                    <div class="snippet-container">
-                        <pre class="snippet Kotlin">
+            <div class="sample">
+                <div class="snippet-container">
+                    <pre class="snippet Kotlin">
  IconButton(
     onClick = {
-        Toast.makeText(context, "Current message comes from your click on OutlinedButton" , Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, "Current message comes from your click on IconButton" , Toast.LENGTH_SHORT).show()
     }) {
         Icon(Icons.Default.Info, contentDescription = null)
     }
                         </pre>
-                    </div>
                 </div>
+            </div>
         </section>
 
     </section>
 
     <section id="p4">
         <h2>قابل کلیک کردن Composable ها با Modifier</h2>
-        <p>با صدا زدن تابع clickable در <a href="compose-modifier.html">Modifier</a> میتونیم یک Composable رو قابل کلیک کنیم.</p>
+        <p>با صدا زدن تابع <strong>clickable</strong> در <a href="compose-modifier.html">Modifier</a> میتونیم یک
+            Composable رو قابل کلیک
+            کنیم.</p>
 
         <p>فرم کلی:</p>
 
@@ -243,25 +357,28 @@ Modifier.clickable(enabled: Boolean onClick: () -&gt; Unit)
             </div>
         </div>
 
-        <p>در بالا enabled فعال یا غیر فعال بودن کلیک روی Composable رو تعیین میکنه و با onClick رفتار Compolsable هنگام کلیک رو تعیین می‌کنیم.</p>
+        <p>در بالا enabled فعال یا غیر فعال بودن قابلیت کلیک روی Composable رو تعیین میکنه و داخل onClick کد های لازم
+            برای اجرا هنگام کلیک کاربر روی دکمه رو می‌نویسیم.</p>
 
         <p>در مثال قبل میخوایم به‌جای Button یک Text رو قابل کلیک کنیم.</p>
 
-        <div class="snippet">
+        <div class="sample">
             <div class="snippet-container">
                 <pre class="snippet Kotlin">
- Text("Show Message", modifier = Modifier.clickable(enabled = true, onClickLabel = "Click"){
+ Text("Show Message", modifier = Modifier.clickable(enabled = true){
             Toast.makeText(context, "Current message comes from your click on Text" , Toast.LENGTH_SHORT).show()
-        }.padding(16.dp))
+        }
                 </pre>
             </div>
         </div>
-
+        <p>در موارد گفته شده ElevatedButton و TextButton هم وجود داره اما به طور دستی با پارامتر elevation و Modifier
+            این دوتا رو تو مثال ها به صورت دستی پیاده کردیم.</p>
     </section>
 
 
     <section id="p5">
         <h2>مورد مطالعه (مثال) ها</h2>
+
         <p>در برنامه زیر تمام موارد گفته شده رو اجرا می‌کنیم.</p>
 
         <div class="sample">
@@ -272,18 +389,15 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            DiceRollerTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                  //DiceRollerApp(modifier = Modifier.padding(innerPadding))
-                    ScreenMessage(modifier = Modifier.padding(innerPadding))
-                }
+            Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                ScreenMessage(modifier = Modifier.padding(innerPadding))
             }
         }
     }
 }
 
 @Composable
-private fun ScreenMessage(modifier: Modifier = Modifier){
+private fun ScreenMessage(modifier: Modifier = Modifier) {
 
     val context = LocalContext.current
 
@@ -293,27 +407,62 @@ private fun ScreenMessage(modifier: Modifier = Modifier){
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
 
-        Button(onClick = {
-            Toast.makeText(context, "Current message comes from your click on Button" , Toast.LENGTH_SHORT).show()
-        }) {
+        Button(
+            enabled = true,
+            colors = ButtonColors(
+                containerColor = Color(0xFF212121),
+                contentColor = Color(0xFFFAFAFA),
+                disabledContentColor = Color(0xFF212121),
+                disabledContainerColor = Color(0xFFEEEEEE)
+            ),
+            elevation = ButtonDefaults.buttonElevation(
+                defaultElevation = 10.dp,
+                pressedElevation = 2.dp,
+                disabledElevation = 0.dp
+            ),
+            onClick = {
+                Toast.makeText(
+                    context,
+                    "Current message comes from your click on Button",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }) {
             Text("ShowMessage")
         }
 
-        OutlinedButton (onClick = {
-            Toast.makeText(context, "Current message comes from your click on OutlinedButton" , Toast.LENGTH_SHORT).show()
-        }) {
+        OutlinedButton(
+            border = ButtonDefaults.outlinedButtonBorder(
+                enabled = true
+            ),
+            onClick = {
+                Toast.makeText(
+                    context,
+                    "Current message comes from your click on OutlinedButton",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }) {
             Text("Show message")
         }
 
         IconButton(onClick = {
-            Toast.makeText(context, "Current message comes from your click on IconButton" , Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                context,
+                "Current message comes from your click on IconButton",
+                Toast.LENGTH_SHORT
+            ).show()
         }) {
             Icon(Icons.Default.Info, contentDescription = null)
         }
 
-        Text("Show Message", modifier = Modifier.clickable(enabled = true, onClickLabel = "Click"){
-            Toast.makeText(context, "Current message comes from your click on Text" , Toast.LENGTH_SHORT).show()
-        }.padding(16.dp))
+        Text(
+            "Show Message", modifier = Modifier
+                .clickable(enabled = true, onClickLabel = "Click") {
+                    Toast.makeText(
+                        context,
+                        "Current message comes from your click on Text",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                })
     }
 }
                 </pre>
@@ -327,6 +476,9 @@ private fun ScreenMessage(modifier: Modifier = Modifier){
             <li>با استفاده از کامپوننت های تعاملی یک فریم‌ورک کاربر میتونه با برنامه تعامل ایجاد کنه.</li>
             <li>یکی از کامپوننت های پرکاربرد Button است.</li>
             <li>در جت‌پک کامپوز برای تعریف دکمه سه تابع Button, OutlinedButton و IconButton رو داریم.</li>
+            <li>برای ایجاد دکمه ی معمولی از Button استفاده می‌کنیم.</li>
+            <li>برای نمایش دکمه Outlined از OutlinedButton استفاده می‌کنیم.</li>
+            <li>برای نمایش دکمه آیکون دار از IconButton استفاده می‌کنیم.</li>
             <li>با استفاده از تابع clickable در Modifier میتونیم Composable ها رو قابل کلیک کنیم.</li>
         </ul>
     </section>
