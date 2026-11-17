@@ -134,7 +134,7 @@ fun Counter(modifier: Modifier = Modifier){
 
         <section>
             <h3>تابع rememberSaveable</h3>
-            <p>زمانی که از برنامه بیاییم بیرون یا صفحه نمایش بچرخونیم مقادیر State در تابع remember ریست میشه برای جلوگیری از ریست شدن مقادیر هنگام چرخش صفحه نمایش بجای remember از rememberSaveable استفاده می‌کنیم.</p>
+            <p>تابع remember فقط مقادیر رو در طول Recomposition حفظ میکنه و با از بین رفتن Composition یا بازسازی Activity (مثل چرخش صفحه) ممکنه State از بین بره بنابراین برای حفظ State در این شرایط بهتره از rememberSaveable استفاده کنیم.</p>
 
             <div class="sample">
                 <div class="snippet-container">
@@ -204,7 +204,7 @@ fun CounterScreen(){
         mutableIntStateOf(0)
     }
 
-    Counter(count){
+    Counter(count = count){
         count++
     }
 }
