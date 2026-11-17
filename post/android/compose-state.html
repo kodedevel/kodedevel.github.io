@@ -1,0 +1,370 @@
+---
+layout: default
+---
+
+<article>
+
+    <nav class="toc">
+        <div>دسترسی سریع</div>
+        <ul>
+            <li>
+                <a href="#p0">بررسی State</a>
+            </li>
+            <li>
+                <a href="#p1">حفظ State هنگام Recomposition</a>
+            </li>
+            <li>
+                <a href="#p2">الگوی State Hoisting</a>
+            </li>
+            <li>
+                <a href="#p3">مورد مطالعه (مثال) ها</a>
+            </li>
+            <li>
+                <a href="#p4">خلاصه</a>
+            </li>
+        </ul>
+    </nav>
+
+    <section id="p0">
+        <h2>بررسی state</h2>
+        
+        <p><strong>State</strong> یعنی وضعیت؛ در جت‌پک کامپوز زمانی که مقدار یک متغیر یا داده تغییر کنه، کلاس MutableState به Composable مورد نظر اطلاع میده که مقدار داده تغییر کرده و با داده ی جدید دوباره ترسیم شو! که به ترسیم دوباره ی Composable ها Recomposition گفته میشه.</p>
+
+        <p>برای ایجاد <strong>State</strong> توابع مختلفی در جت‌پک کامپوز تعریف شدن که در جدول زیر به بعضی از این توابع می‌پردازیم.</p>
+        <table class="table-regular">
+            <thead>
+                <tr>
+                    <th colspan="2">State</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        mutableStateOf(): MutableState&lt;T&gt;
+                    </td>
+                    <td>
+                        یک نمونه از MutableState رو بر میگردونه که داده ای از نوع T رو نگهداری می‌کنه.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        mutableIntStateOf(): MutableIntState
+                    </td>
+                    <td>
+                        یک نمونه از MutableIntState رو برای نگهداری <strong>Int</strong> بر میگردونه.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        mutableDoubleStateOf(): MutableDoubleStateOf
+                    </td>
+                    <td>
+                        یک نمونه از MutableDoubleState رو برای نگهداری <strong>Double</strong> بر می‌گردونه.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        mutableLongStateOf(): MutableLongStateOf
+                    </td>
+                    <td>
+                        یک نمونه از MutableLongState رو برای نگهداری <strong>Long</strong> بر میگردونه.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        mutableFloatStateOf(): MutableFloatStateOf
+                    </td>
+                    <td>
+                        یک نمونه از MutableFloatState رو برای نگهداری <strong>Float</strong> بر میگردونه.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        mutableStateListOf(): SnapshotStateList&lt;T&gt;
+                    </td>
+                    <td class="tDataRTL">
+                        یک نمونه از SnapshotStateList رو برای نگهداری <strong dir="ltr">MutableList&lt;T&gt;</strong> بر میگردونه.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        mutableStateListOf(): SnapshotStateSet&lt;T&gt;
+                    </td>
+                    <td class="tDataRTL">
+                        یک نمونه از SnapshotStateSet رو برای نگهداری <strong>MutableSet&lt;T&gt;</strong> بر میگردونه.
+                    </td>
+                </tr>
+               <tr>
+                    <td>
+                        mutableStateListOf(): SnapshotStateMap&lt;K, V&gt;
+                    </td>
+                    <td>
+                        یک نمونه از SnapshotStateMap رو برای نگهداری <strong dir="ltr">MutableMap&lt;K, V&gt;</strong> بر میگردونه.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section id="p1">
+        <h2>حفظ State هنگام Recomposition</h2>
+
+        <p>هنگامی که مقدار متغیر در State تغییر میکنه، Recomposition اتفاق می‌افته؛ هنگام Recomposition یک State جدید با مقدار پیشفرض جایگزین State قبلی میشه، بنابراین مقدار State ریست شده و تغییرات در UI نمایش داده نمیشه؛ برای حفظ State از تابع <strong>remember</strong> یا <strong>rememberSaveable</strong> استفاده میکنیم.</p>
+
+        <section>
+            <h3>تابع remember</h3>
+            <p>همانطور که گفتیم وظیفه این تابع حفظ State فعلی و جلوگیری از جایگزینی آن با State جدید هنگام Recomposition است.</p>
+
+            <p>برای استفاده از remember کافیه یکی از توابع State رو داخل تابع remember صدا بزنیم.</p>
+            <div class="sample">
+                <div class="snippet-container">
+                    <pre class="snippet Kotlin">
+@Composable
+fun Counter(modifier: Modifier = Modifier){
+    var count by remember {
+        mutableIntStateOf(0)
+    }
+
+    //Other parts of code
+}
+                    </pre>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h3>تابع rememberSaveable</h3>
+            <p>زمانی که از برنامه بیاییم بیرون یا صفحه نمایش بچرخونیم مقادیر State در تابع remember ریست میشه برای جلوگیری از ریست شدن مقادیر هنگام چرخش صفحه نمایش بجای remember از rememberSaveable استفاده می‌کنیم.</p>
+
+            <div class="sample">
+                <div class="snippet-container">
+                    <pre class="snippet Kotlin">
+@Composable
+fun Counter(modifier: Modifier = Modifier){
+    var count by rememberSaveable{
+        mutableIntStateOf(0)
+    }
+
+    //Other parts of code
+}
+                    </pre>
+                </div>
+            </div>
+        </section>
+
+
+        <p>در مثال زیر میخوایم برنامه با هربار کلیک کاربر یک واحد به مقدار <strong>count</strong> اضافه کنه و نمایش بده.</p>
+        
+        <div class="sample">
+            <div class="snippet-container">
+                <pre class="snippet Kotlin">
+@Composable
+fun Counter(modifier: Modifier = Modifier){
+    var count by rememberSaveable{
+        mutableIntStateOf(0)
+    }
+
+    Column(modifier = modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center){
+        Button(onClick = {
+            count++
+        }){
+            Increment
+        }
+
+        Text(text = count.toString())
+    }
+}
+                </pre>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="p2">
+        <h2>الگوی State Hoisting</h2>
+        <p>گاهی در برنامه لازمه State بجای فرزند (Child) در Composable پدر (Parent) تعریف بشه، با انجام این کار به Composable فرزند Stateless میگیم؛ و به تعریف State در تابع Parent بجای Child بالا بردن State (State Hoisting) میگیم.</p>
+
+        <p>در State Hoisting مقادیر داخل Parent تعریف میشن و توسط Child تغییر میکنن و توسط Parent تغییرات برای نمایش به Child ارسال میشن و یک رابطه ی یک سویی (Unidirectional) بین Parent و Child ایجاد میشه.</p>
+
+        <p>در زیر رابطه بین Parent و Child هنگام پیاده‌سازی State Hoisting آورده شده است.</p>
+
+        <figure>
+            <img src="/resources/image/android/compose_state_hoisting_parent_child_relationship.png" alt="رابطه بین Parent و Child هنگام پیاده‌سازی State Hoisting">
+            <figcaption>رابطه بین Parent و Child هنگام پیاده‌سازی State Hoisting</figcaption>
+        </figure>
+
+        <p>فرض کنید میخوایم مثال Counter رو به صورت State Hoisting تعریف کنیم.</p>
+
+        <div class="sample">
+            <div class="snippet-container">
+                <pre class="snippet Kotlin">
+@Composable
+fun CounterScreen(){
+    var count by rememberSaveable{
+        mutableIntStateOf(0)
+    }
+
+    Counter(count){
+        count++
+    }
+}
+
+@Composable
+fun Counter(modifier: Modifier = Modifier, count: Int, onIncrement: () -&gt; Unit){
+
+
+    Column(modifier = modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center){
+        Button(onClick = onIncrement){
+            Increment
+        }
+
+        Text(text = count.toString())
+    }
+}
+                </pre>
+            </div>
+        </div>
+
+        <section>
+            <h3>قوانین استفاده از State Hoisting</h3>
+            <ol>
+                <li>باید State در پایین ترین Composable تعریف بشه و بیهوده بالا برده نشه.</li>
+                <li>اگه فقط Child به State نیاز داشته باشه بهتره از State Hoisting استفاده نکنیم.</li>
+                <li>اگه هردو Child و Parent به State نیاز داشته باشن State رو به سمت Parent بالا می بریم (در Parent تعریف می‌کنیم).</li>
+                <li>اگه چند Composable به State نیاز داشته باشن بهتره در ViewModel تعریفش کنیم.</li>
+            </ol>
+        </section>
+
+    </section>
+
+    <section id="p3">
+        <h2>مورد مطالعه (مثال) ها</h2>
+
+        <p>میخوایم یک برنامه بنویسیم که کاربر با هربار تاس انداختن یک عدد روی تاس نمایش داده بشه؛ این برنامه در واقع یکی از مثال های <a href="https://developer.android.com">وبسایت رسمی اندروید</a> است که در اینجا به عنوان مثال پیادش میکنیم.</p>
+
+        <p>عکس تاس ها رو میتونید از <a href="https://github.com/google-developer-training/android-basics-kotlin-dice-roller-with-images-app-solution/raw/refs/heads/master/dice_images.zip">اینجا</a> دانلود کنید و همینطور برای یادگیری نحوه اضافه کردن عکس به منابع پروژه و استفاده از تابع Image به مطلب <a href="compose-image.html">تابع Imaage در کامپوز</a> مراجعه کنید.</p>
+
+        <div class="sample">
+            <div class="snippet-container">
+                <pre class="snippet Kotlin">
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContent {
+            DiceRollerTheme {
+                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                    DiceRollerApp(modifier = Modifier.padding(innerPadding))
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun DiceRollerApp(modifier: Modifier = Modifier) {
+    DiceButtonWithImage(modifier)
+}
+
+@SuppressLint("RememberInComposition")
+@Composable
+fun DiceButtonWithImage(modifier: Modifier) {
+    var result by remember {
+        mutableIntStateOf(roll())
+    }
+    val imageResource = when (result) {
+        1 -> R.drawable.dice_1
+        2 -> R.drawable.dice_2
+        3 -> R.drawable.dice_3
+        4 -> R.drawable.dice_4
+        5 -> R.drawable.dice_5
+        else -> R.drawable.dice_6
+    }
+
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = modifier
+            .fillMaxSize()
+            .wrapContentSize(Alignment.Center)
+    ) {
+        Image(
+            painterResource(imageResource),
+            contentDescription = result.toString()
+        )
+        Spacer(Modifier.height(16.dp))
+        Button(
+            onClick = {
+                result = roll()
+            },
+            border = BorderStroke(1.dp, Color.Red),
+            contentPadding = PaddingValues(32.dp),
+        ) {
+            Text(stringResource(R.string.roll), fontSize = 24.sp)
+        }
+
+    }
+}
+
+private fun roll(): Int {
+    return (1..6).random()
+}
+
+
+@Preview
+@Composable
+fun DiceRollerAppPreview() {
+    DiceRollerTheme {
+        DiceRollerApp()
+    }
+}
+                </pre>
+            </div>
+        </div>
+
+
+        <p>سورس کد های برنامه رو میتونید در گیت‌هاب رسمی  <a href="https://github.com/google-developer-training/android-basics-kotlin-dice-roller-with-images-app-solution">google-developer-training</a> دانلود کنید.</p>
+
+    </section>
+
+    <section id="p4">
+        <h2>خلاصه</h2>
+        <ul>
+            <li>با استفاده از State میتونیم Composable ها رو از تغییر مقدار داده باخبر کنیم.</li>
+            <li>برای حفظ تغییرات در State هنگام Recomposition از تابع remember یا rememberSaveable استفاده می کنیم.</li>
+            <li>زمانی که اکتیویتی به صورت موقت متوقف میشه (مثلا صفحه نمایش بچرخه) اگه بخوایم State رو حفظ کنیم بجای remember از rememberSaveable استفاده میکنیم.</li>
+            <li>به تعریف State در Parent و استفاده ازش در Child میگیم State Hoisting و به Child مورد نظر Stateless میگیم.</li>
+            <li>بهتره که State در پایین ترین Composable تعریف بشه و تا جای ممکن از State Hoisting استفاده نکنیم.</li>
+        </ul>
+    </section>
+</article>
+
+{% capture links %}
+<li>
+    <a href="/post/android/compose-image.html">استفاده از تابع Image در Compose</a>
+</li>
+<li>
+    <a href="/post/android/compose-button.html">تعریف Button در Compose</a>
+</li>
+<li>
+    <a href="/post/kotlin/anonymous-function-and-lambda.html">توابع لفظی در کاتلین</a>
+</li>
+<li>
+    <a href="/post/kotlin/higher-order-functions.html">توابع مرتبه بالا در کاتلین</a>
+</li>
+<li>
+    <a href="/post/android/compose-introduction.html">معرفی جت‌پک کامپوز</a>
+</li>
+<li>
+    <a href="/post/android/introduction.html">معرفی اندروید</a>
+</li>
+<li>
+    <a href="/post/kotlin/introduction.html">معرفی زبان کاتلین</a>
+</li>
+<li>
+    <a target="_blank" href="https://developer.android.com/develop/ui/compose/graphics/images">مطالعه در وبسایت رسمی
+        اندروید</a>
+</li>
+{% endcapture %}
+
+
+{% include article-foot.html relative_links = links %}
