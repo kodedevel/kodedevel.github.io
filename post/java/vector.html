@@ -44,7 +44,7 @@ layout: default
 
     <p>در زیر نمودار UML متد های Vector با توضیحاتشون آورده شده است.</p>
 
-    <table class="tb">
+    <table class="table-uml">
       <thead>
         <tr>
           <th colspan="2">
@@ -55,147 +55,147 @@ layout: default
 
       <tbody>
         <tr>
-          <td class="tDataLTR">
+          <td >
             +Vector()
           </td>
-          <td class="tDataRTL">
+          <td >
             یک نمونه از Vector ایجاد می کنه.
           </td>
         </tr>
         <tr>
-          <td class="tDataLTR">
+          <td >
             +Vector(c: Collection&lt;? extends E&gt;)
           </td>
-          <td class="tDataRTL">
+          <td >
             یک نمونه از Vector ایجاد می کنه و اعضای کالکشن c رو بهش اضافه می کنه.
           </td>
         </tr>
         <tr>
-          <td class="tDataLTR">
+          <td >
             +Vector(initialCapacity: int)
           </td>
-          <td class="tDataRTL">
+          <td >
             یک نمونه از Vector با ظرفیت اولیه ایجاد می کنه.
           </td>
         </tr>
         <tr>
-          <td class="tDataLTR">
+          <td >
             +addElement(e: Element): void
           </td>
-          <td class="tDataRTL">
+          <td >
             عنصر e رو به آخر Vector اضافه می کنه.
           </td>
         </tr>
         <tr>
-          <td class="tDataLTR">
+          <td >
             +capacity(): int
           </td>
-          <td class="tDataRTL">
+          <td >
             ظرفیت فعلی Vector رو بر میگردونه.
           </td>
         </tr>
         <tr>
-          <td class="tDataLTR">
+          <td >
             +copyInto(array: Object[]): void
           </td>
-          <td class="tDataRTL">
+          <td >
             اعضای Vector رو داخل array کپی می کنه.
           </td>
         </tr>
         <tr>
-          <td class="tDataLTR">
+          <td >
             +elementAt(index: int): E
           </td>
-          <td class="tDataRTL">
+          <td >
             عنصر موجود در index مورد نظر رو بر میگردونه.
           </td>
         </tr>
         <tr>
-          <td class="tDataLTR">
+          <td >
             +elements(): Enumeration&lt;E&gt;
           </td>
-          <td class="tDataRTL">
+          <td >
             یک Enumeration از عناصر Vector بر میگردونه.
           </td>
         </tr>
         <tr>
-          <td class="tDataLTR">
+          <td >
             +ensureCapacity(minCapacity: int): void
           </td>
-          <td class="tDataRTL">
+          <td >
             مطمئن میشیم که ظرفیت Vector از مقداری که تعیین میکنیم کمتر نباشه.
           </td>
         </tr>
         <tr>
-          <td class="tDataLTR">
+          <td >
             +firstElement(): E
           </td>
-          <td class="tDataRTL">
+          <td >
             اولین عنصر در Vector رو بر میگردونه.
           </td>
         </tr>
         <tr>
-          <td class="tDataLTR">
+          <td >
             +lastElement(): E
           </td>
-          <td class="tDataRTL">
+          <td >
             آخرین عنصر در Vector رو بر میگردونه.
           </td>
         </tr>
         <tr>
-          <td class="tDataLTR">
+          <td >
             +insertElementAt(e: E, index: int): void
           </td>
-          <td class="tDataRTL">
+          <td >
             عنصر e رو در index مورد نظر اضافه میکنه.
           </td>
         </tr>
         <tr>
-          <td class="tDataLTR">
+          <td >
             +removeAllElements(): void
           </td>
-          <td class="tDataRTL">
+          <td >
             تمام عناصر موجود در Vector رو حذف می کنه.
           </td>
         </tr>
         <tr>
-          <td class="tDataLTR">
+          <td >
             +removeElement(o: Object): boolean
           </td>
-          <td class="tDataRTL">
+          <td >
             عنصر مطابق با o رو در Vector حذف می کنه.
           </td>
         </tr>
         <tr>
-          <td class="tDataLTR">
+          <td >
             +removeElementAt(index: int): E
           </td>
-          <td class="tDataRTL">
+          <td >
             عنصر موجود در index مورد نظر رو حذف کرده و بر میگردونه.
           </td>
         </tr>
         <tr>
-          <td class="tDataLTR">
+          <td >
             +setElementAt(e: E, index: int): void
           </td>
-          <td class="tDataRTL">
+          <td >
             عنصر جدید رو با عنصر قدیمی موجود در index مورد نظر جایگزین میکنه.
           </td>
         </tr>
         <tr>
-          <td class="tDataLTR">
+          <td >
             +setSize(newSize: int): void
           </td>
-          <td class="tDataRTL">
+          <td >
             سایز جدید برای vector تعریف می کنه و عناصر اضافی رو حذف میکنه؛ اگه سایز جدید بیشتر از تعداد عناصر باشه
             مقادیر null رو به بقیه عناصر اضافه می کنه.
           </td>
         </tr>
         <tr>
-          <td class="tDataLTR">
+          <td >
             +trimToSize(): void
           </td>
-          <td class="tDataRTL">
+          <td >
             ظرفیت Vector رو برابر با size Vector می کنه.
           </td>
         </tr>

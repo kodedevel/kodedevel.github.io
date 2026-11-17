@@ -43,7 +43,7 @@ layout: default
 
     <p>اینترفیس List علاوه بر متد های Collection که به ارث میبره، متد های اختصاصی خودش هم داره؛ در نمودار UML زیر متد
       های تعریف شده در کلاس List به همراه توضیحاتشون اورده شده است.</p>
-    <table class="tb">
+    <table class="table-uml">
       <thead>
         <tr>
           <th colspan="2">
@@ -58,83 +58,83 @@ layout: default
       </thead>
       <tbody>
         <tr>
-          <td class="tDataLTR">
+          <td >
             +add(index: int, element: E): void
           </td>
-          <td class="tDataRTL">
+          <td >
             یک عنصر در index مورد نظر اضافه میکنه.
           </td>
         </tr>
         <tr>
-          <td class="tDataLTR">
+          <td >
             +addAll(index: int, c: Collection&lt;? extends E&gt;
           </td>
-          <td class="tDataRTL">
+          <td >
             تمام عناصر Collection رو از شماره index به بعد وارد List میکنه.
           </td>
         </tr>
         <tr>
-          <td class="tDataLTR">
+          <td >
             +get(index: int): E
           </td>
-          <td class="tDataRTL">
+          <td >
             عنصر موجود در index مورد نظر رو بر میگردونه.
           </td>
         </tr>
         <tr>
-          <td class="tDataLTR">
+          <td >
             +indexOf(o: Object): int
           </td>
-          <td class="tDataRTL">
+          <td >
             index اولین عنصر مطابق با آبجکت o رو بر میگردونه.
           </td>
         </tr>
         <tr>
-          <td class="tDataLTR">
+          <td >
             +lastIndexOf(o: Object): int
           </td>
-          <td class="tDataRTL">
+          <td >
             index آخرین عنصر مطابق با آبجکت o رو بر میگردونه.
           </td>
         </tr>
         <tr>
-          <td class="tDataLTR">
+          <td >
             +listIterator(): ListIterator
           </td>
-          <td class="tDataRTL">
+          <td >
             یک نمونه از ListIterator رو بر میگردونه؛ اینترفیس ListIterator از Iterator ارث‌بری می کنه.
           </td>
         </tr>
         <tr>
-          <td class="tDataLTR">
+          <td >
             +listIterator(index: int): ListIterator
           </td>
-          <td class="tDataRTL">
+          <td >
             یک نمونه از ListIterator رو بر میگردونه و شروع پیمایش توسط ListIterator از شماره index خواهد بود.
           </td>
         </tr>
         <tr>
-          <td class="tDataLTR">
+          <td >
             +remove(index: int): E
           </td>
-          <td class="tDataRTL">
+          <td >
             عنصر موجود در شماره index مورد نظر رو حذف کرده و بر میگردونه.
           </td>
         </tr>
         <tr>
-          <td class="tDataLTR">
+          <td >
             +subList(fromIndex: int, toIndex: int): List&lt;E&gt;
           </td>
-          <td class="tDataRTL">
+          <td >
             یک List جدید از fromIndex تا toIndex - 1 از عناصر List فعلی رو بر میگردونه؛
             index آخرین عنصر (size - 1) است.
           </td>
         </tr>
         <tr>
-          <td class="tDataLTR">
+          <td >
             +set(index: int, e: E): E
           </td>
-          <td class="tDataRTL">
+          <td >
             عنصر e رو جایگزین عنصر موجود در index مورد نظر میکنه و عنصر قدیمی رو بر میگردونه.
           </td>
         </tr>
@@ -162,7 +162,7 @@ layout: default
 
     <p>در نمودار UML زیر متد های تعریف شده در ListIterator شرح داده شده است.</p>
 
-    <table class="tb">
+    <table class="table-uml">
       <thead>
         <tr>
           <th colspan="2">&lt;&lt;interface&gt;&gt;</th>
@@ -175,42 +175,42 @@ layout: default
       </thead>
       <tbody>
         <tr>
-          <td class="tDataLTR">
+          <td >
             +add(e: E): void
           </td>
-          <td class="tDataRTL">
+          <td >
             یک عنصر رو به List اضافه میکنه؛ عنصر جدید به قبل از عنصر بعدی که با next صدا زده میشه اضافه میشه.
           </td>
         </tr>
         <tr>
-          <td class="tDataLTR">
+          <td >
             +hasPrevious(): boolean
           </td>
-          <td class="tDataRTL">
+          <td >
             اگه به اولین عنصر در لیست رسیده باشیم مقدار false رو بر میگردونه.
           </td>
         </tr>
         <tr>
-          <td class="tDataLTR">
+          <td >
             +nextIndex(): int
           </td>
-          <td class="tDataRTL">
+          <td >
             شماره index عنصر بعدی رو بر میگردونه.
           </td>
         </tr>
         <tr>
-          <td class="tDataLTR">
+          <td >
             +previous(): E
           </td>
-          <td class="tDataRTL">
+          <td >
             عنصر قبلی رو بر می گردونه.
           </td>
         </tr>
         <tr>
-          <td class="tDataLTR">
+          <td >
             +previousIndex(): int
           </td>
-          <td class="tDataRTL">
+          <td >
             index عنصر قبلی رو بر میگردونه.
           </td>
         </tr>

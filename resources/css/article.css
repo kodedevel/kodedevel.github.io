@@ -174,7 +174,7 @@ article{
   width: 100%;
 }
 
-.tb{
+.table-uml{
     max-width: 100%;
     table-layout: fixed;
     height: auto;
@@ -182,11 +182,11 @@ article{
     direction: ltr;
 }
 
-.tb tbody tr, .tb thead, .tb tfoot{
+.table-uml tbody tr, .table-uml thead, .table-uml tfoot{
   border: 1px solid #212121;
 }
 
-.tb tr th{
+.table-uml thead tr th{
     font-weight: bold;
     font-size: 1.1rem;
     text-align: center;
@@ -196,7 +196,7 @@ article{
     padding: 8px 0;
 }
 
-.tb tr .tDataLTR{
+.table-uml tbody tr td:first-child{
     width: 40%;
     background-color: #bbdefb;
     word-break: break-word;
@@ -206,7 +206,7 @@ article{
     padding: 16px 8px;
 }
 
-.tb tr .tDataRTL{
+.table-uml tr td:last-child{
     width: 60%;
     background-color: #e3f2fd;
     word-break: break-word;
@@ -215,7 +215,7 @@ article{
     padding: 16px 8px;
 }
 
-.tb tfoot tr td{
+.table-uml tfoot tr td{
   background-color: white;
   line-height: 32px;
   line-break: normal;

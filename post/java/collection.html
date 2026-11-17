@@ -57,7 +57,7 @@ layout: default
       توابع تعریف شده در Collection توضیح داده شده است.</p>
 
 
-    <table class="tb">
+    <table class="table-uml">
       <thead>
         <tr>
           <th colspan="2">
@@ -70,100 +70,100 @@ layout: default
       </thead>
       <tbody>
         <tr>
-          <td class="tDataLTR">
+          <td >
             +add(e: E): boolean
           </td>
-          <td class="tDataRTL">
+          <td >
             یک عنصر به کالکشن اضافه میکنه.
           </td>
         </tr>
         <tr>
-          <td class="tDataLTR">
+          <td >
             +addAll(collection: Collection&lt;e extends E&gt;)
           </td>
-          <td class="tDataRTL">
+          <td >
             تمام عناصر یک کالکشن رو به کالکشن فعلی اضافه می کنه.
           </td>
         </tr>
         <tr>
-          <td class="tDataLTR">
+          <td >
             +clear(): void
           </td>
-          <td class="tDataRTL">
+          <td >
             تمام عناصر موجود در کالکشن رو حذف میکنه.
           </td>
         </tr>
         <tr>
-          <td class="tDataLTR">
+          <td >
             +contains(o: Object): boolean
           </td>
-          <td class="tDataRTL">
+          <td >
             اگه عنصر o داخل کالکشن وجود داشته باشه true رو بر میگردونه.
           </td>
         </tr>
         <tr>
         </tr>
         <tr>
-          <td class="tDataLTR">
+          <td >
             +containsAll(c: Collection&lt;?&gt;): boolean
           </td>
-          <td class="tDataRTL">
+          <td >
             اگه تمام عناصر کالکشن c داخل کالکشن وجود داشته باشه مقدار true رو بر میگردونه.
           </td>
         </tr>
         <tr>
-          <td class="tDataLTR">
+          <td >
             +isEmpty(): boolean
           </td>
-          <td class="tDataRTL">
+          <td >
             اگه عنصری داخل کالکشن وجود نداشته باشه مقدار true رو برمیگردونه.
           </td>
         </tr>
         <tr>
-          <td class="tDataLTR">
+          <td >
             +remove(o: Object)
           </td>
-          <td class="tDataRTL">
+          <td >
             عنصر o رو از کالکشن حذف میکنه.
           </td>
         </tr>
         <tr>
-          <td class="tDataLTR">
+          <td >
             +removeAll(c: Collection&lt;?&gt;): boolean
           </td>
-          <td class="tDataRTL">
+          <td >
             تمام عناصر مشترک با کالکشن c رو از کالکشن حذف میکنه.
           </td>
         </tr>
         <tr>
-          <td class="tDataLTR">
+          <td >
             +retainAll(c: Collection&lt;?&gt;): boolean
           </td>
-          <td class="tDataRTL">
+          <td >
             تمام عناصر داخل کالکشن رو حذف می کنه و تنها عناصر مشترک با کالکشن c رو نگه میداره.
           </td>
         </tr>
         <tr>
-          <td class="tDataLTR">
+          <td >
             +size(): int
           </td>
-          <td class="tDataRTL">
+          <td >
             تعداد عناصر داخل کالکشن رو بر میگردونه.
           </td>
         </tr>
         <tr>
-          <td class="tDataLTR">
+          <td >
             +toArray(): Object[]
           </td>
-          <td class="tDataRTL">
+          <td >
             یک آرایه از نوع آبجکت از عناصر داخل کالکشن بر میگردونه.
           </td>
         </tr>
         <tr>
-          <td class="tDataLTR">
+          <td >
             +toArray(t: T[]): T[]
           </td>
-          <td class="tDataRTL">
+          <td >
             یک آرایه از عناصر داخل کالکشن بر میگردونه.
           </td>
         </tr>
@@ -249,7 +249,7 @@ public class TestCollection {
 
     <p>در زیر نمودار UML اینترفیس Iterable به همراه متد و توضیحاتشون اورده شده.</p>
 
-    <table class="tb">
+    <table class="table-uml">
       <thead>
         <tr>
           <th colspan="2">&lt;&lt;interface&gt;&gt;</th>
@@ -260,16 +260,16 @@ public class TestCollection {
       </thead>
       <tbody>
         <tr>
-          <td class="tDataLTR">
+          <td >
             +iterator(): Iterator&lt;E&gt;
           </td>
-          <td class="tDataRTL">
+          <td >
             یک نمونه از Iterator رو برای اعضای کالکشن بر میگردونه.
           </td>
         </tr>
         <tr>
-          <td class="tDataLTR">+forEach(action: Consumer&lt;? super E&gt;)</td>
-          <td class="tDataRTL">به جستجو بین اعضای کالکشن می پردازه.</td>
+          <td >+forEach(action: Consumer&lt;? super E&gt;)</td>
+          <td >به جستجو بین اعضای کالکشن می پردازه.</td>
         </tr>
       </tbody>
     </table>
@@ -277,7 +277,7 @@ public class TestCollection {
 
     <p>در زیر نمودار UML اینترفیس Iterator در جاوا به همراه متدها و توضیحاتشون اورده شده است.</p>
 
-    <table class="tb">
+    <table class="table-uml">
       <thead>
         <tr>
           <th colspan="2">
@@ -293,26 +293,26 @@ public class TestCollection {
 
       <tbody>
         <tr>
-          <td class="tDataLTR">
+          <td >
             +hasNext(): boolean
           </td>
-          <td class="tDataRTL">
+          <td >
             اگه عنصر بعدی برای پیمایش وجود داشته باشه true رو بر میگردونه.
           </td>
         </tr>
         <tr>
-          <td class="tDataLTR">
+          <td >
             +next(): E
           </td>
-          <td class="tDataRTL">
+          <td >
             عنصر بعدی رو از Iterator فعلی بر میگردونه.
           </td>
         </tr>
         <tr>
-          <td class="tDataLTR">
+          <td >
             +remove(): void
           </td>
-          <td class="tDataRTL">
+          <td >
             اخرین عنصری که در Iterator با next بهش رسیدیم رو حذف میکنه.
           </td>
         </tr>

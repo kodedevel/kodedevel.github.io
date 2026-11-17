@@ -69,7 +69,7 @@ layout: default
       بر نمیگردونه و تنها
       متد (تابع) اینترفیس Runnable است.</p>
 
-    <table class="tb">
+    <table class="table-uml">
       <thead>
         <tr>
           <th colspan="2">&lt;&lt;java.lang.Runnable&gt;&gt;</th>
@@ -77,8 +77,8 @@ layout: default
       </thead>
       <tbody>
         <tr>
-          <td class="tDataLTR">+run(): void</td>
-          <td class="tDataRTL">کد ها داخل این متد اجرا میشن.</td>
+          <td >+run(): void</td>
+          <td >کد ها داخل این متد اجرا میشن.</td>
         </tr>
       </tbody>
     </table>
@@ -185,7 +185,7 @@ class PrintCharTask(private val ch: Char, private val n: Int): Runnable {
 
     <p>در زیر کلاس Thread با متد (تابع) های پرکاربرد و کانستراکتور هاش شرح داده شده است.</p>
 
-    <table class="tb">
+    <table class="table-uml">
       <thead>
         <tr>
           <th colspan="2">java.lang.Thread</th>
@@ -194,46 +194,46 @@ class PrintCharTask(private val ch: Char, private val n: Int): Runnable {
 
       <tbody>
         <tr>
-          <td class="tDataLTR">Thread(runnable: Runnable)</td>
-          <td class="tDataRTL">یک نمونه از thread ایجاد می کنه و پیاده سازی Runnable رو به عنوان پارامتر بهش پاس میدیم.
+          <td >Thread(runnable: Runnable)</td>
+          <td >یک نمونه از thread ایجاد می کنه و پیاده سازی Runnable رو به عنوان پارامتر بهش پاس میدیم.
           </td>
         </tr>
         <tr>
-          <td class="tDataLTR">Thread()</td>
-          <td class="tDataRTL">یک نمونه از Thread ایجاد می کنه.</td>
+          <td >Thread()</td>
+          <td >یک نمونه از Thread ایجاد می کنه.</td>
         </tr>
         <tr>
-          <td class="tDataLTR">+start():void</td>
-          <td class="tDataRTL">Thread رو شروع می کنه.</td>
-        </tr>
-
-        <tr>
-          <td class="tDataLTR">+isAlive():boolean</td>
-          <td class="tDataRTL">بررسی میکنه ببینه آیا Thread در حال اجراست یا کارش تموم شده.</td>
+          <td >+start():void</td>
+          <td >Thread رو شروع می کنه.</td>
         </tr>
 
         <tr>
-          <td class="tDataLTR">+setPeriority(periority: int): void</td>
-          <td class="tDataRTL">برای شروع Thread نسبت به بقیه thread ها اولویت قرار میده، یک عدد بین 1 تا 10 رو به عنوان
+          <td >+isAlive():boolean</td>
+          <td >بررسی میکنه ببینه آیا Thread در حال اجراست یا کارش تموم شده.</td>
+        </tr>
+
+        <tr>
+          <td >+setPeriority(periority: int): void</td>
+          <td >برای شروع Thread نسبت به بقیه thread ها اولویت قرار میده، یک عدد بین 1 تا 10 رو به عنوان
             پارامتر میتونیم بهش پاس بدیم و هرچی این عدد کمتر باشه Thread زودتر از بقیه ی Thread ها اجرا
             میشه.</td>
         </tr>
 
         <tr>
-          <td class="tDataLTR">+join(): void</td>
-          <td class="tDataRTL">نخ های دیگه رو متوقف میکنه تا کار نخی که باهاش صداش زدیم تموم بشه؛ این متد رو باید داخل
+          <td >+join(): void</td>
+          <td >نخ های دیگه رو متوقف میکنه تا کار نخی که باهاش صداش زدیم تموم بشه؛ این متد رو باید داخل
             نخی که میخوایم به طور موقت
             متوقف بشه صدا بزنیم.</td>
         </tr>
 
         <tr>
-          <td class="tDataLTR">+interrupt(): void</td>
-          <td class="tDataRTL">اجرای نخ رو قطع می کنه.</td>
+          <td >+interrupt(): void</td>
+          <td >اجرای نخ رو قطع می کنه.</td>
         </tr>
 
         <tr>
-          <td class="tDataLTR" style="text-decoration: underline;">+sleep(millis: long): void</td>
-          <td class="tDataRTL">کلاس Thread رو برای مدت زمان مشخص متوقف میکنه. (این متد استاتیک است)</td>
+          <td  style="text-decoration: underline;">+sleep(millis: long): void</td>
+          <td >کلاس Thread رو برای مدت زمان مشخص متوقف میکنه. (این متد استاتیک است)</td>
         </tr>
       </tbody>
     </table>
@@ -600,7 +600,7 @@ private class PrintNumbersTask : Runnable {
       اینترفیس رو با کلاس <strong>Executors</strong> به صورت استاتیک صدا بزنیم.</p>
 
 
-    <table class="tb">
+    <table class="table-uml">
 
       <thead>
         <tr>
@@ -610,36 +610,36 @@ private class PrintNumbersTask : Runnable {
 
       <tbody>
         <tr>
-          <td class="tDataLTR">+shutdown(): void</td>
-          <td class="tDataRTL">اجرای کار ها توسط ExecutorService رو متوقف میکنه ولی به کار هایی که هم اکنون در حال اجرا
+          <td >+shutdown(): void</td>
+          <td >اجرای کار ها توسط ExecutorService رو متوقف میکنه ولی به کار هایی که هم اکنون در حال اجرا
             شدن هستن اجازه میده تا فعالیتشون تموم بشه.</td>
         </tr>
         <tr>
-          <td class="tDataLTR">+shutdownNow(): List&lt;Runnable&gt;</td>
-          <td class="tDataRTL">اجرای تمام کار ها توسط ExecutorService رو فورا متوقف میکنه و در آخر یک لیست از کار های
+          <td >+shutdownNow(): List&lt;Runnable&gt;</td>
+          <td >اجرای تمام کار ها توسط ExecutorService رو فورا متوقف میکنه و در آخر یک لیست از کار های
             اجرا نشده بر میگردونه.</td>
         </tr>
         <tr>
-          <td class="tDataLTR">
+          <td >
             +isShutdown(): boolean
           </td>
-          <td class="tDataRTL">
+          <td >
             اگه ExecutorService متوقف شده باشه مقدار true رو بر میگردونه.
           </td>
         </tr>
         <tr>
-          <td class="tDataLTR">
+          <td >
             +isTerminated(): boolean
           </td>
-          <td class="tDataRTL">
+          <td >
             اگه همه ی کارها متوقف شده باشن یا به اتمام رسیده باشن مقدار true رو بر میگردونه.
           </td>
         </tr>
         <tr>
-          <td class="tDataLTR">
+          <td >
             +close(): void
           </td>
-          <td class="tDataRTL">
+          <td >
             بعد از اجرای کار های اضافه شده با صدا زدن close،‌ کلاس ExecutorService بسته میشه و اگه بعد از close کاری رو
             بهش اضافه کنیم دچار RejectedExecutionException میشیم. (متد close از jdk 19 به بعد در دسترس است)
           </td>
@@ -651,7 +651,7 @@ private class PrintNumbersTask : Runnable {
     <p>پیاده سازی های مختلفی از ExecutorService در کلاس Executors وجود داره که بر اساس نیاز میتونیم از هرکدوم که خواستیم
       استفاده کنیم.</p>
 
-    <table class="tb">
+    <table class="table-uml">
       <thead>
         <tr>
           <th colspan="2">
@@ -661,28 +661,28 @@ private class PrintNumbersTask : Runnable {
       </thead>
       <tbody>
         <tr>
-          <td class="tDataLTR">
+          <td >
             +newFixedThreadPool(numberOfThreads: int): ExecutorService
           </td>
-          <td class="tDataRTL">
+          <td >
             یک ExecutorService ایجاد میکنه با تعداد مشخصی نخ (Thread) زمانی که یک نخ (Thread) کارش تموم میشه، میتونه کار
             جدید رو شروع کنه.
           </td>
         </tr>
         <tr>
-          <td class="tDataLTR">
+          <td >
             +newCachedThreadPool(): ExecutorService
           </td>
-          <td class="tDataRTL">
+          <td >
             یک ExecutorService ایجاد میکنه و به اندازه ی نیاز برنامه نخ (Thread) ایجاد میکنه، زمانی که یک نخ (Thread)
             کارش تموم بشه کار جدید رو میتونه با نخی که خالی شده شروع کنه.
           </td>
         </tr>
         <tr>
-          <td class="tDataLTR">
+          <td >
             +newSingleThreadPool(): ExecutorService
           </td>
-          <td class="tDataRTL">
+          <td >
             یک نمونه از ExecutorService ایجاد میکنه با فقط یک نخ، زمانی که کار نخ تموم بشه، کار جدید رو همون نخ شروع
             میکنه.
           </td>

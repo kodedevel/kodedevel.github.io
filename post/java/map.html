@@ -50,7 +50,7 @@ layout: default
       <p>جفت Key و Value در Map داخل کلاسی به نام <strong>Entry</strong> نگهداری میشه و هر Map مجموعه ای از Entry هاست؛
         در زیر متد های کلاس Entry به صورت UML شرح داده شده است.</p>
 
-      <table class="tb">
+      <table class="table-uml">
         <thead>
           <tr>
             <th colspan="2">java.util.Map.Entry&lt;K, V&gt;</th>
@@ -58,16 +58,16 @@ layout: default
         </thead>
         <tbody>
           <tr>
-            <td class="tDataLTR">getKey(): K</td>
-            <td class="tDataRTL">key رو بر میگردونه.</td>
+            <td >getKey(): K</td>
+            <td >key رو بر میگردونه.</td>
           </tr>
           <tr>
-            <td class="tDataLTR">getValue(): V</td>
-            <td class="tDataRTL">value رو بر میگردونه.</td>
+            <td >getValue(): V</td>
+            <td >value رو بر میگردونه.</td>
           </tr>
           <tr>
-            <td class="tDataLTR">setValue(v: V): void</td>
-            <td class="tDataRTL">value رو مقداردهی میکنه.</td>
+            <td >setValue(v: V): void</td>
+            <td >value رو مقداردهی میکنه.</td>
           </tr>
         </tbody>
       </table>
@@ -100,7 +100,7 @@ layout: default
         اینترفیس
         Map شرح داده شده است.</p>
 
-      <table class="tb">
+      <table class="table-uml">
         <thead>
           <tr>
             <th colspan="2">Interface</th>
@@ -111,56 +111,56 @@ layout: default
         </thead>
         <tbody>
           <tr>
-            <td class="tDataLTR">+put(key: K, value: V)</td>
-            <td class="tDataRTL">جفت Key و Value رو به صورت Entry به Map اضافه میکنه.</td>
+            <td >+put(key: K, value: V)</td>
+            <td >جفت Key و Value رو به صورت Entry به Map اضافه میکنه.</td>
           </tr>
           <tr>
-            <td class="tDataLTR">+putAll(map: Map&lt;? extends K, ? extends V&gt;</td>
-            <td class="tDataRTL">تمام Entry های map رو به Map فعلی اضافه می کنه.</td>
+            <td >+putAll(map: Map&lt;? extends K, ? extends V&gt;</td>
+            <td >تمام Entry های map رو به Map فعلی اضافه می کنه.</td>
           </tr>
           <tr>
-            <td class="tDataLTR">+containsKey(key: Object): boolean</td>
-            <td class="tDataRTL">اگه Key در Map وجود داشته باشه مقدار true رو بر میگردونه.</td>
+            <td >+containsKey(key: Object): boolean</td>
+            <td >اگه Key در Map وجود داشته باشه مقدار true رو بر میگردونه.</td>
           </tr>
           <tr>
-            <td class="tDataLTR">+containsValue(value: Object): boolean</td>
-            <td class="tDataRTL">اگه یک یا چند کلید به مقدار value نگاشت شده باشه مقدار true رو بر میگردونه.</td>
+            <td >+containsValue(value: Object): boolean</td>
+            <td >اگه یک یا چند کلید به مقدار value نگاشت شده باشه مقدار true رو بر میگردونه.</td>
           </tr>
           <tr>
-            <td class="tDataLTR">+entrySet(): Set&lt;Entry&lt;K, V&gt;&gt;</td>
-            <td class="tDataRTL">یک Set از Entry های موجود در Map رو بر میگردونه.</td>
+            <td >+entrySet(): Set&lt;Entry&lt;K, V&gt;&gt;</td>
+            <td >یک Set از Entry های موجود در Map رو بر میگردونه.</td>
           </tr>
           <tr>
-            <td class="tDataLTR">+get(key: Object): V</td>
-            <td class="tDataRTL">value مرتبط با Key رو بر میگردونه.</td>
+            <td >+get(key: Object): V</td>
+            <td >value مرتبط با Key رو بر میگردونه.</td>
           </tr>
           <tr>
-            <td class="tDataLTR">+isEmpty(): boolean</td>
-            <td class="tDataRTL">اگه Map خالی باشه مقدار true رو بر میگردونه.</td>
+            <td >+isEmpty(): boolean</td>
+            <td >اگه Map خالی باشه مقدار true رو بر میگردونه.</td>
           </tr>
           <tr>
-            <td class="tDataLTR">+keySet(): Set&lt;K&gt;</td>
-            <td class="tDataRTL">یک Set از کلید های موجود در Map رو بر میگردونه.</td>
+            <td >+keySet(): Set&lt;K&gt;</td>
+            <td >یک Set از کلید های موجود در Map رو بر میگردونه.</td>
           </tr>
           <tr>
-            <td class="tDataLTR">+remove(key: Object): V</td>
-            <td class="tDataRTL">entry مربوط به Key مورد نظر رو حذف می کنه و value رو بر میگردونه.</td>
+            <td >+remove(key: Object): V</td>
+            <td >entry مربوط به Key مورد نظر رو حذف می کنه و value رو بر میگردونه.</td>
           </tr>
           <tr>
-            <td class="tDataLTR">+size()</td>
-            <td class="tDataRTL">تعداد entry های داخل Map رو بر میگردونه.</td>
+            <td >+size()</td>
+            <td >تعداد entry های داخل Map رو بر میگردونه.</td>
           </tr>
           <tr>
-            <td class="tDataLTR">+values(): Collection&lt;V&gt;</td>
-            <td class="tDataRTL">تمام value های موجود در Map رو به صورت Collection بر میگردونه.</td>
+            <td >+values(): Collection&lt;V&gt;</td>
+            <td >تمام value های موجود در Map رو به صورت Collection بر میگردونه.</td>
           </tr>
           <tr>
-            <td class="tDataLTR">+forEach(action: Consumer&lt;? super K, ? super V&gt;</td>
-            <td class="tDataRTL">به پیمایش در entry های Map می پردازه.</td>
+            <td >+forEach(action: Consumer&lt;? super K, ? super V&gt;</td>
+            <td >به پیمایش در entry های Map می پردازه.</td>
           </tr>
           <tr>
-            <td class="tDataLTR">+clear(): void</td>
-            <td class="tDataRTL">تمام Entry ها رو از Map حذف میکنه.</td>
+            <td >+clear(): void</td>
+            <td >تمام Entry ها رو از Map حذف میکنه.</td>
           </tr>
         </tbody>
       </table>
@@ -190,7 +190,7 @@ layout: default
 
     <p>در نمودار UML زیر کانستراکتور (سازنده) های کلاس HashMap شرح داده شده است.</p>
 
-    <table class="tb">
+    <table class="table-uml">
       <thead>
         <tr>
           <th colspan="2">java.util.HashMap</th>
@@ -198,16 +198,16 @@ layout: default
       </thead>
       <tbody>
         <tr>
-          <td class="tDataLTR">+HashMap()</td>
-          <td class="tDataRTL">یک نمونه از HashMap با loadFactor پیشفرض 0.75 ایجاد میکنه.</td>
+          <td >+HashMap()</td>
+          <td >یک نمونه از HashMap با loadFactor پیشفرض 0.75 ایجاد میکنه.</td>
         </tr>
         <tr>
-          <td class="tDataLTR">+HashMap(capacity: int, loadFactor: float)</td>
-          <td class="tDataRTL">یک نمونه از HashMap با ظرفیت (capacity) و loadFactor از پیش تعیین شده ایجاد میکنه.</td>
+          <td >+HashMap(capacity: int, loadFactor: float)</td>
+          <td >یک نمونه از HashMap با ظرفیت (capacity) و loadFactor از پیش تعیین شده ایجاد میکنه.</td>
         </tr>
         <tr>
-          <td class="tDataLTR">+HashMap(map: Map&lt;? extends K, ? extends V&gt;)</td>
-          <td class="tDataRTL">یک نمونه از HashMap ایجاد میکنه و عناصر موجود در map رو بهش اضافه می کنه.</td>
+          <td >+HashMap(map: Map&lt;? extends K, ? extends V&gt;)</td>
+          <td >یک نمونه از HashMap ایجاد میکنه و عناصر موجود در map رو بهش اضافه می کنه.</td>
         </tr>
       </tbody>
     </table>
@@ -259,7 +259,7 @@ System.out.println(map.values() + "\n");
 
     <p>در نمودار UML زیر کانستراکتور (سازنده) های کلاس LinkedHashMap شرح داده شده است.</p>
 
-    <table class="tb">
+    <table class="table-uml">
       <thead>
         <tr>
           <th colspan="2">java.util.LinkedHashMap</th>
@@ -267,46 +267,46 @@ System.out.println(map.values() + "\n");
       </thead>
       <tbody>
         <tr>
-          <td class="tDataLTR">+LinkedHashMap()</td>
-          <td class="tDataRTL">یک نمونه از LinkedHashMap با loadFactor پیشفرض 0.75 ایجاد میکنه.</td>
+          <td >+LinkedHashMap()</td>
+          <td >یک نمونه از LinkedHashMap با loadFactor پیشفرض 0.75 ایجاد میکنه.</td>
         </tr>
         <tr>
-          <td class="tDataLTR">+LinkedHashMap(capacity: int, loadFactor: float, accessOrder: boolean)</td>
-          <td class="tDataRTL">یک نمونه از LinkedHashMap با ظرفیت (capacity) و loadFactor از پیش تعیین شده ایجاد میکنه و
+          <td >+LinkedHashMap(capacity: int, loadFactor: float, accessOrder: boolean)</td>
+          <td >یک نمونه از LinkedHashMap با ظرفیت (capacity) و loadFactor از پیش تعیین شده ایجاد میکنه و
             زمانی که accessOrder برابر با true باشه، هر Entry که با get صدا میزنیم میره انتهای Map.</td>
         </tr>
         <tr>
-          <td class="tDataLTR">+LinkedHashMap(map: Map&lt;? extends K, ? extends V&gt;)</td>
-          <td class="tDataRTL">یک نمونه از LinkedHashMap ایجاد میکنه و عناصر موجود در map رو بهش اضافه می کنه.</td>
+          <td >+LinkedHashMap(map: Map&lt;? extends K, ? extends V&gt;)</td>
+          <td >یک نمونه از LinkedHashMap ایجاد میکنه و عناصر موجود در map رو بهش اضافه می کنه.</td>
         </tr>
 
         <tr>
-          <td class="tDataLTR">+putFirst(key: K, value: V): V</td>
-          <td class="tDataRTL">یک Entry از Key و Value به ابتدای Map اضافه می کنه؛ اگه Entry از پیش وجود داشته باشه
+          <td >+putFirst(key: K, value: V): V</td>
+          <td >یک Entry از Key و Value به ابتدای Map اضافه می کنه؛ اگه Entry از پیش وجود داشته باشه
             میارش ابتدای صف و مقدار Value قبلی رو با Value جدید جایگزین میکنه و Value قبلی رو بر میگردونه.</td>
         </tr>
         <tr>
-          <td class="tDataLTR">+putLast(key: K, value: V): V</td>
-          <td class="tDataRTL">یک Entry از Key و Value به انتهای Map اضافه می کنه؛ اگه Entry از پیش وجود داشته باشه
+          <td >+putLast(key: K, value: V): V</td>
+          <td >یک Entry از Key و Value به انتهای Map اضافه می کنه؛ اگه Entry از پیش وجود داشته باشه
             میارش انتهای Map و مقدار Value قبلی رو با Value جدید جایگزین میکنه و Value قبلی رو بر میگردونه.</td>
         </tr>
         <tr>
-          <td class="tDataLTR">+firstEntry(): Entry&lt;K, V&gt;</td>
-          <td class="tDataRTL">اولین Entry موجود در Map رو بر میگردونه.</td>
+          <td >+firstEntry(): Entry&lt;K, V&gt;</td>
+          <td >اولین Entry موجود در Map رو بر میگردونه.</td>
         </tr>
         <tr>
-          <td class="tDataLTR">+lastEntry(): Entry&lt;K, V&gt;</td>
-          <td class="tDataRTL">آخرین Entry موجود در Map رو بر میگردونه.</td>
+          <td >+lastEntry(): Entry&lt;K, V&gt;</td>
+          <td >آخرین Entry موجود در Map رو بر میگردونه.</td>
         </tr>
         <tr>
-          <td class="tDataLTR">+pollFirstEntry(): Entry&lt;K, V&gt;</td>
-          <td class="tDataRTL">اولین Entry موجود در LinkedHashMap رو حذف میکنه و بر میگردونه، اگه LinkedHashMap خالی
+          <td >+pollFirstEntry(): Entry&lt;K, V&gt;</td>
+          <td >اولین Entry موجود در LinkedHashMap رو حذف میکنه و بر میگردونه، اگه LinkedHashMap خالی
             باشه مقدار null رو بر
             میگردونه.</td>
         </tr>
         <tr>
-          <td class="tDataLTR">+pollLastEntry(): Entry&lt;K, V&gt;</td>
-          <td class="tDataRTL">آخرین Entry موجود در LinkedHashMap رو حذف میکنه بر میگردونه و اگه LinkedHashMap خالی باشه
+          <td >+pollLastEntry(): Entry&lt;K, V&gt;</td>
+          <td >آخرین Entry موجود در LinkedHashMap رو حذف میکنه بر میگردونه و اگه LinkedHashMap خالی باشه
             مقدار null رو بر
             میگردونه.</td>
         </tr>
@@ -400,7 +400,7 @@ accessOrderMap.forEach((name, age) -&gt; System.out.println("name: " + name + " 
 
     <p>در نمودار UML زیر کانستراکتور (سازنده) های TreeMap با ویژگی هاشون شرح داده شده است.</p>
 
-    <table class="tb">
+    <table class="table-uml">
       <thead>
         <tr>
           <th colspan="2">java.util.TreeMap</th>
@@ -409,17 +409,17 @@ accessOrderMap.forEach((name, age) -&gt; System.out.println("name: " + name + " 
 
       <tbody>
         <tr>
-          <td class="tDataLTR">+TreeMap()</td>
-          <td class="tDataRTL">یک نمونه از TreeMap ایجاد میکنه.</td>
+          <td >+TreeMap()</td>
+          <td >یک نمونه از TreeMap ایجاد میکنه.</td>
         </tr>
         <tr>
-          <td class="tDataLTR">+TreeMap(comparator: Comparator&lt;? super K&gt;</td>
-          <td class="tDataRTL">یک نمونه از TreeMap ایجاد می کنه و Entry ها رو به ترتیب مقایسه Key هاشون که با Comparator
+          <td >+TreeMap(comparator: Comparator&lt;? super K&gt;</td>
+          <td >یک نمونه از TreeMap ایجاد می کنه و Entry ها رو به ترتیب مقایسه Key هاشون که با Comparator
             میشن در TreeMap قرار میده.</td>
         </tr>
         <tr>
-          <td class="tDataLTR">+TreeMap(map: Map&lt;? extends K, ? extends V&gt;)</td>
-          <td class="tDataRTL">یک نمونه از TreeMap ایجاد می کنه و Entry های موجود در map رو بهش اضافه می کنه.</td>
+          <td >+TreeMap(map: Map&lt;? extends K, ? extends V&gt;)</td>
+          <td >یک نمونه از TreeMap ایجاد می کنه و Entry های موجود در map رو بهش اضافه می کنه.</td>
         </tr>
       </tbody>
     </table>
@@ -430,7 +430,7 @@ accessOrderMap.forEach((name, age) -&gt; System.out.println("name: " + name + " 
       <p>یکی از پیاده‌سازی های TreeMap اینترفیس SortedMap است؛ در نمودار UML زیر متد های SortedMap با توضیحاتشون آورده
         شده است.</p>
 
-      <table class="tb">
+      <table class="table-uml">
         <thead>
           <tr>
             <th colspan="2">Interface</th>
@@ -441,44 +441,44 @@ accessOrderMap.forEach((name, age) -&gt; System.out.println("name: " + name + " 
         </thead>
         <tbody>
           <tr>
-            <td class="tDataLTR">+firstKey(): K</td>
-            <td class="tDataRTL">اولین Key موجود در TreeMap رو بر میگردونه.</td>
+            <td >+firstKey(): K</td>
+            <td >اولین Key موجود در TreeMap رو بر میگردونه.</td>
           </tr>
           <tr>
-            <td class="tDataLTR">+lastKey(): K</td>
-            <td class="tDataRTL">آخرین Key موجود در TreeMap رو بر میگردونه.</td>
+            <td >+lastKey(): K</td>
+            <td >آخرین Key موجود در TreeMap رو بر میگردونه.</td>
           </tr>
           <tr>
-            <td class="tDataLTR">+comparator&lt;? extends K&gt;</td>
-            <td class="tDataRTL">comparator استفاده شده در مرتب کردن key ها رو بر میگردونه و اگه از Comparator استفاده
+            <td >+comparator&lt;? extends K&gt;</td>
+            <td >comparator استفاده شده در مرتب کردن key ها رو بر میگردونه و اگه از Comparator استفاده
               نشده باشه مقدار
               null رو بر میگردونه.</td>
           </tr>
           <tr>
-            <td class="tDataLTR">+headMap(untilKey: K): SortedMap&lt;K, V&gt;</td>
-            <td class="tDataRTL">یک SortedMap جدید از Key های قبل از untilKey بر میگردونه.</td>
+            <td >+headMap(untilKey: K): SortedMap&lt;K, V&gt;</td>
+            <td >یک SortedMap جدید از Key های قبل از untilKey بر میگردونه.</td>
           </tr>
           <tr>
-            <td class="tDataLTR">+tailMap(fromKey: K): SortedMap&lt;K, V&gt;</td>
-            <td class="tDataRTL">یک SortedMap جدید از Key های fromKey به بعد بر میگردونه.</td>
+            <td >+tailMap(fromKey: K): SortedMap&lt;K, V&gt;</td>
+            <td >یک SortedMap جدید از Key های fromKey به بعد بر میگردونه.</td>
           </tr>
           <tr>
-            <td class="tDataLTR">+firstEntry(): Entry&lt;K, V&gt;</td>
-            <td class="tDataRTL">اولین Entry در TreeMap رو بر میگردونه.</td>
+            <td >+firstEntry(): Entry&lt;K, V&gt;</td>
+            <td >اولین Entry در TreeMap رو بر میگردونه.</td>
           </tr>
           <tr>
-            <td class="tDataLTR">+lastEntry(): Entry&lt;K, V&gt;</td>
-            <td class="tDataRTL">آخرین Entry در TreeMap رو بر میگردونه.</td>
+            <td >+lastEntry(): Entry&lt;K, V&gt;</td>
+            <td >آخرین Entry در TreeMap رو بر میگردونه.</td>
           </tr>
           <tr>
-            <td class="tDataLTR">+pollFirstEntry(): Entry&lt;K, V&gt;</td>
-            <td class="tDataRTL">اولین Entry موجود در TreeMap رو حذف میکنه و بر میگردونه، اگه TreeMap خالی باشه مقدار
+            <td >+pollFirstEntry(): Entry&lt;K, V&gt;</td>
+            <td >اولین Entry موجود در TreeMap رو حذف میکنه و بر میگردونه، اگه TreeMap خالی باشه مقدار
               null رو بر
               میگردونه.</td>
           </tr>
           <tr>
-            <td class="tDataLTR">+pollLastEntry(): Entry&lt;K, V&gt;</td>
-            <td class="tDataRTL">آخرین Entry موجود در TreeMap رو حذف میکنه بر میگردونه و اگه TreeMap خالی باشه مقدار
+            <td >+pollLastEntry(): Entry&lt;K, V&gt;</td>
+            <td >آخرین Entry موجود در TreeMap رو حذف میکنه بر میگردونه و اگه TreeMap خالی باشه مقدار
               null رو بر
               میگردونه.</td>
           </tr>
@@ -533,7 +533,7 @@ System.out.println("Names after Henry: " + sortedMap.tailMap("Henry"));
 
       <p>در نمودار UML زیر متد های تعریف شده در اینترفیس NavigableMap به همراه توضیحاتشون شرح داده شده است.</p>
 
-      <table class="tb">
+      <table class="table-uml">
         <thead>
           <tr>
             <th colspan="2">Interface</th>
@@ -544,45 +544,45 @@ System.out.println("Names after Henry: " + sortedMap.tailMap("Henry"));
         </thead>
         <tbody>
           <tr>
-            <td class="tDataLTR">+lowerKey(k: K): K</td>
-            <td class="tDataRTL">بزرگترین کلید در TreeMap که کوچکتر از k باشه رو بر میگردونه.</td>
+            <td >+lowerKey(k: K): K</td>
+            <td >بزرگترین کلید در TreeMap که کوچکتر از k باشه رو بر میگردونه.</td>
           </tr>
           <tr>
-            <td class="tDataLTR">+lowerEntry(k: K): Map.Entry&lt;K, V&gt;</td>
-            <td class="tDataRTL">Entry بزرگترین کلید در TreeMap که کوچکتر از K باشه رو بر میگردونه.</td>
+            <td >+lowerEntry(k: K): Map.Entry&lt;K, V&gt;</td>
+            <td >Entry بزرگترین کلید در TreeMap که کوچکتر از K باشه رو بر میگردونه.</td>
           </tr>
           <tr>
-            <td class="tDataLTR">+higherKey(k: K): K</td>
-            <td class="tDataRTL">کوچکترین کلید در TreeMap که بزرگتر از k باشه رو بر میگردونه.</td>
+            <td >+higherKey(k: K): K</td>
+            <td >کوچکترین کلید در TreeMap که بزرگتر از k باشه رو بر میگردونه.</td>
           </tr>
           <tr>
-            <td class="tDataLTR">+higherEntry(k: K): Map.Entry&lt;K, V&gt;</td>
-            <td class="tDataRTL">Entry کوچکترین کلید در TreeMap که بزرگتر از k باشه رو بر میگردونه.</td>
+            <td >+higherEntry(k: K): Map.Entry&lt;K, V&gt;</td>
+            <td >Entry کوچکترین کلید در TreeMap که بزرگتر از k باشه رو بر میگردونه.</td>
           </tr>
           <tr>
-            <td class="tDataLTR">+floorKey(k: K): K</td>
-            <td class="tDataRTL">بزرگترین کلید در TreeMap که کوچکتر یا مساوی k باشه رو بر میگردونه.</td>
+            <td >+floorKey(k: K): K</td>
+            <td >بزرگترین کلید در TreeMap که کوچکتر یا مساوی k باشه رو بر میگردونه.</td>
           </tr>
           <tr>
-            <td class="tDataLTR">+floorEntry(k: K): Map.Entry&lt;K, V&gt;</td>
-            <td class="tDataRTL">Entry مربوط به بزرگترین کلید در TreeMap که کوچکتر یا مساوی k باشه رو بر میگردونه.</td>
+            <td >+floorEntry(k: K): Map.Entry&lt;K, V&gt;</td>
+            <td >Entry مربوط به بزرگترین کلید در TreeMap که کوچکتر یا مساوی k باشه رو بر میگردونه.</td>
           </tr>
           <tr>
-            <td class="tDataLTR">+ceilingKey(k: K): K</td>
-            <td class="tDataRTL">کوچکترین کلید در TreeMap که بزرگتر یا مساوی k باشه رو بر میگردونه.</td>
+            <td >+ceilingKey(k: K): K</td>
+            <td >کوچکترین کلید در TreeMap که بزرگتر یا مساوی k باشه رو بر میگردونه.</td>
           </tr>
           <tr>
-            <td class="tDataLTR">+ceilingEntry(k: K): Map.Entry&lt;K, V&gt;</td>
-            <td class="tDataRTL">Entry مربوط به کوچکترین کلید در TreeMap که بزرگتر یا مساوی k باشه رو بر میگردونه.</td>
+            <td >+ceilingEntry(k: K): Map.Entry&lt;K, V&gt;</td>
+            <td >Entry مربوط به کوچکترین کلید در TreeMap که بزرگتر یا مساوی k باشه رو بر میگردونه.</td>
           </tr>
           <tr>
-            <td class="tDataLTR">+descendingMap(): NavigableMap&lt;K, V&gt;</td>
-            <td class="tDataRTL">ترتیب قرار گرفتن Entry ها رو معکوس میکنه و یک نمونه از NavigableMap با ترتیب جدید بر
+            <td >+descendingMap(): NavigableMap&lt;K, V&gt;</td>
+            <td >ترتیب قرار گرفتن Entry ها رو معکوس میکنه و یک نمونه از NavigableMap با ترتیب جدید بر
               میگردونه.</td>
           </tr>
           <tr>
-            <td class="tDataLTR">+descendingSet(): NavigableSet&lt;K&gt;</td>
-            <td class="tDataRTL">ترتیب قرار گرفتن کلید ها در NavigableMap رو معکوس میکنه و یک نمونه از <a
+            <td >+descendingSet(): NavigableSet&lt;K&gt;</td>
+            <td >ترتیب قرار گرفتن کلید ها در NavigableMap رو معکوس میکنه و یک نمونه از <a
                 href="set.html">NavigableSet</a> از کلید ها رو با ترتیب جدید بر میگردونه.</td>
           </tr>
         </tbody>

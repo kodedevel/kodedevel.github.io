@@ -61,7 +61,7 @@ layout: default
 
     <p>در زیر کانستراکتور (سازنده) و متد های پرکاربرد کلاس PrintWriter بیان شده.</p>
 
-    <table class="tb">
+    <table class="table-uml">
       <thead>
         <tr>
           <th>java.io.PrintWriter</th>
@@ -69,80 +69,80 @@ layout: default
       </thead>
       <tbody>
         <tr>
-          <td class="tDataLTR">+PrintWriter(File)</td>
-          <td class="tDataRTL">
+          <td >+PrintWriter(File)</td>
+          <td >
             با پاس دادن آبجکت File به عنوان پارامتر کانستراکتور (سازنده) یک نمونه از
             PrintWriter ایجاد میکنه.
           </td>
         </tr>
         <tr>
-          <td class="tDataLTR">+PrintWriter(String)</td>
-          <td class="tDataRTL">
+          <td >+PrintWriter(String)</td>
+          <td >
             با پاس دادن مسیر فایل به صورت String به عنوان پارامتر کانستراکتور (سازنده) یک
             نمونه از PrintWriter ایجاد میکنه.
           </td>
         </tr>
         <tr>
-          <td class="tDataLTR">+PrintWriter(OutputStream)</td>
-          <td class="tDataRTL">
+          <td >+PrintWriter(OutputStream)</td>
+          <td >
             یک نمونه ی جدید از PrintWriter با کمک OutputStream دیگه ای درست میکنه.
           </td>
         </tr>
 
         <tr>
-          <td class="tDataLTR">+print(String): void</td>
-          <td class="tDataRTL">مقدار String رو در فایل می نویسه.</td>
+          <td >+print(String): void</td>
+          <td >مقدار String رو در فایل می نویسه.</td>
         </tr>
         <tr>
-          <td class="tDataLTR">+print(char): void</td>
-          <td class="tDataRTL">مقدار کاراکتر رو در فایل می نویسه.</td>
+          <td >+print(char): void</td>
+          <td >مقدار کاراکتر رو در فایل می نویسه.</td>
         </tr>
         <tr>
-          <td class="tDataLTR">+print(char[]): void</td>
-          <td class="tDataRTL">یک آرایه از کاراکتر رو در فایل مینویسه.</td>
-        </tr>
-
-        <tr>
-          <td class="tDataLTR">+print(Object): void</td>
-          <td class="tDataRTL">مقدار یک آبجکت رو در فایل مینویسه.</td>
+          <td >+print(char[]): void</td>
+          <td >یک آرایه از کاراکتر رو در فایل مینویسه.</td>
         </tr>
 
         <tr>
-          <td class="tDataLTR">+print(int): void</td>
-          <td class="tDataRTL">مقدار int رو داخل فایل مینویسه.</td>
+          <td >+print(Object): void</td>
+          <td >مقدار یک آبجکت رو در فایل مینویسه.</td>
         </tr>
 
         <tr>
-          <td class="tDataLTR">+print(long): void</td>
-          <td class="tDataRTL">مقدار long رو در فایل مینویسه.</td>
+          <td >+print(int): void</td>
+          <td >مقدار int رو داخل فایل مینویسه.</td>
         </tr>
 
         <tr>
-          <td class="tDataLTR">+print(float): void</td>
-          <td class="tDataRTL">مقدار float رو در فایل مینویسه.</td>
+          <td >+print(long): void</td>
+          <td >مقدار long رو در فایل مینویسه.</td>
         </tr>
 
         <tr>
-          <td class="tDataLTR">+print(double): void</td>
-          <td class="tDataRTL">مقدار double رو در فایل مینویسه.</td>
+          <td >+print(float): void</td>
+          <td >مقدار float رو در فایل مینویسه.</td>
         </tr>
 
         <tr>
-          <td class="tDataLTR">+print(boolean): void</td>
-          <td class="tDataRTL">مقدار boolean رو در فایل مینویسه.</td>
+          <td >+print(double): void</td>
+          <td >مقدار double رو در فایل مینویسه.</td>
         </tr>
 
         <tr>
-          <td class="tDataLTR">+flush(): void</td>
-          <td class="tDataRTL">
+          <td >+print(boolean): void</td>
+          <td >مقدار boolean رو در فایل مینویسه.</td>
+        </tr>
+
+        <tr>
+          <td >+flush(): void</td>
+          <td >
             بعد از نوشتن تمام داده ها با متد flush اطمینان حاصل میکنیم داده ای در
             حافظه ی buffer برای نوشتن در فایل باقی نمیمونه.
           </td>
         </tr>
 
         <tr>
-          <td class="tDataLTR">+close(): void</td>
-          <td class="tDataRTL">
+          <td >+close(): void</td>
+          <td >
             عملیات flush رو انجام میده و سپس فایل رو میبنده اگه بعد از پایان کار
             این متد صدا زده نشه احتمال داره داده ها به درستی ذخیره نشن.
           </td>
@@ -150,11 +150,11 @@ layout: default
 
         <tr>
 
-          <td class="tDataRTL">
+          <td >
             کلاس PrintWriter از متد های println و printf نیز پشتیبانی میکنه و
             کاربردی مشابه print دارن؛ برای خلاصه شدن از نوشتنشون خودداری کردیم.
           </td>
-          <td class="tDataRTL">
+          <td >
             <strong>توجه</strong>
           </td>
         </tr>

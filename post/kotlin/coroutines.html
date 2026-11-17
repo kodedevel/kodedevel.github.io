@@ -626,7 +626,7 @@ scope.launch{
 
         <p>در نمودار uml زیر توابع و متد های رایج Job شرح داده شده است.</p>
 
-        <table class="tb">
+        <table class="table-uml">
           <thead>
             <tr>
               <th colspan="2">kotlinx.coroutines.Job</th>
@@ -635,20 +635,20 @@ scope.launch{
 
           <tbody>
             <tr>
-              <td class="tDataLTR">+cancel()</td>              
-              <td class="tDataRTL">کروتین مربوط به Job رو کنسل می‌کنه؛ اگه کروتین parent کروتین های دیگه باشه کروتین های child نیز به صورت بازگشتی کنسل میشن.</td>
+              <td >+cancel()</td>              
+              <td >کروتین مربوط به Job رو کنسل می‌کنه؛ اگه کروتین parent کروتین های دیگه باشه کروتین های child نیز به صورت بازگشتی کنسل میشن.</td>
             </tr>
             <tr>
-              <td class="tDataLTR">+join()</td>
-              <td class="tDataRTL">هنگامی که در کروتین parent صدا زده بشه، parent تا پایان کار child متوقف میشه.</td>
+              <td >+join()</td>
+              <td >هنگامی که در کروتین parent صدا زده بشه، parent تا پایان کار child متوقف میشه.</td>
             </tr>
             <tr>
-              <td class="tDataLTR">+isActive: Boolean</td>
-              <td class="tDataRTL">اگه کروتین فعال باشه true رو بر میگردونه و اگه کنسل شده باشه یا به پایان رسیده باشه false رو بر میگردونه.</td>
+              <td >+isActive: Boolean</td>
+              <td >اگه کروتین فعال باشه true رو بر میگردونه و اگه کنسل شده باشه یا به پایان رسیده باشه false رو بر میگردونه.</td>
             </tr>
             <tr>
-              <td class="tDataLTR">+children: Sequence&lt;Job&gt;</td>
-              <td class="tDataRTL">یک زنجیره از کروتین های فرزند رو بر میگردونه.</td>
+              <td >+children: Sequence&lt;Job&gt;</td>
+              <td >یک زنجیره از کروتین های فرزند رو بر میگردونه.</td>
             </tr>
           </tbody>
         </table>

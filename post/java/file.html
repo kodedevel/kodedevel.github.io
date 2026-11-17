@@ -70,7 +70,7 @@ layout: default
       کاربرد این کلاس پرداختیم:
     </p>
 
-    <table class="tb" id="file_uml_cheat_sheet">
+    <table class="table-uml" id="file_uml_cheat_sheet">
       <thead>
         <tr>
           <th colspan="2">java.io.File</th>
@@ -78,111 +78,111 @@ layout: default
       </thead>
       <tbody>
         <tr>
-          <td class="tDataLTR">+File(String)</td>
-          <td class="tDataRTL">
+          <td >+File(String)</td>
+          <td >
             یک نمونه از کلاس File ایجاد می کنه و مقدار String مسیر فایل یا پوشه ی
             مد نظر است.
           </td>
         </tr>
         <tr>
-          <td class="tDataLTR">+File(String,String)</td>
-          <td class="tDataRTL">
+          <td >+File(String,String)</td>
+          <td >
             یک نمونه از کلاس File ایجاد می کنه پارامتر ها از چپ parent مسیر پوشه
             ها و child مسیر پوشه یا فایل داخل parent است.
           </td>
         </tr>
 
         <tr>
-          <td class="tDataLTR">+File(URI)</td>
-          <td class="tDataRTL">
+          <td >+File(URI)</td>
+          <td >
             یک نمونه از File بر اساس uri توسط کلاس URI در جاوا و کاتلین ایجاد میکنه.
           </td>
         </tr>
 
         <tr>
-          <td class="tDataLTR">+exists(): boolean</td>
-          <td class="tDataRTL">
+          <td >+exists(): boolean</td>
+          <td >
             بررسی میکنه آیا فایل در مسیر تعریف شده وجود داره یا خیر
           </td>
         </tr>
 
         <tr>
-          <td class="tDataLTR">+canRead(): boolean</td>
-          <td class="tDataRTL">بررسی میکنه آیا فایل قابل خوندن هست یا خیر.</td>
+          <td >+canRead(): boolean</td>
+          <td >بررسی میکنه آیا فایل قابل خوندن هست یا خیر.</td>
         </tr>
 
         <tr>
-          <td class="tDataLTR">+canWrite(): boolean</td>
-          <td class="tDataRTL">بررسی میکنه آیا فایل قابل نوشتن هست یا خیر.</td>
+          <td >+canWrite(): boolean</td>
+          <td >بررسی میکنه آیا فایل قابل نوشتن هست یا خیر.</td>
         </tr>
 
         <tr>
-          <td class="tDataLTR">+isDirectory(): boolean</td>
-          <td class="tDataRTL">بررسی می کنه فایل پوشه هست یا خیر.</td>
+          <td >+isDirectory(): boolean</td>
+          <td >بررسی می کنه فایل پوشه هست یا خیر.</td>
         </tr>
 
         <tr>
-          <td class="tDataLTR">+isFile(): boolean</td>
-          <td class="tDataRTL">
+          <td >+isFile(): boolean</td>
+          <td >
             بررسی میکنه نوع فایل در مسیر تعریف شده فایل هست یا خیر.
           </td>
         </tr>
 
         <tr>
-          <td class="tDataLTR">+isHidden(): boolean</td>
-          <td class="tDataRTL">بررسی میکنه فایل مخفیه یا نه.</td>
+          <td >+isHidden(): boolean</td>
+          <td >بررسی میکنه فایل مخفیه یا نه.</td>
         </tr>
 
         <tr>
-          <td class="tDataLTR">+isAbsolute(): boolean</td>
-          <td class="tDataRTL">
+          <td >+isAbsolute(): boolean</td>
+          <td >
             بررسی میکنه مسیر تعریف شده برای فایل یک مسیر کامل هست یا خیر.
           </td>
         </tr>
 
         <tr>
-          <td class="tDataLTR">+getAbsolutePath(): String</td>
-          <td class="tDataRTL">
+          <td >+getAbsolutePath(): String</td>
+          <td >
             مقدار مسیر کامل رو به صورت String بر میگردونه.
           </td>
         </tr>
 
         <tr>
-          <td class="tDataLTR">+getPath(): String</td>
-          <td class="tDataRTL">مقدار مسیر رو به صورت String بر می گردونه.</td>
+          <td >+getPath(): String</td>
+          <td >مقدار مسیر رو به صورت String بر می گردونه.</td>
         </tr>
 
         <tr>
-          <td class="tDataLTR">+getName(): String</td>
-          <td class="tDataRTL">اسم فایل رو به صورت String بر میگردونه.</td>
+          <td >+getName(): String</td>
+          <td >اسم فایل رو به صورت String بر میگردونه.</td>
         </tr>
 
         <tr>
-          <td class="tDataLTR">+getParent(): String</td>
-          <td class="tDataRTL">
+          <td >+getParent(): String</td>
+          <td >
             مسیر پوشه ای که فایل داخلش قرار داره رو به صورت String بر میگردونه.
           </td>
         </tr>
 
         <tr>
-          <td class="tDataLTR">+listFiles(): File[]</td>
-          <td class="tDataRTL">
+          <td >+listFiles(): File[]</td>
+          <td >
             اگه مسیر تعریف شده برای کلاس File پوشه باشه یک لیست از محتوای داخل
             پوشه به صورت آرایه ای از نوع File بر میگردونه.
           </td>
         </tr>
 
         <tr>
-          <td class="tDataLTR">+list(): String[]</td>
-          <td class="tDataRTL">
+          <td >+list(): String[]</td>
+          <td >
             اگه مسیر تعریف شده یک پوشه باشه آرایه ای از اسم فایل ها و پوشه های
             داخلشو به صورت String بر میگردونه.
           </td>
         </tr>
 
         <tr>
-          <td class="tDataLTR">+delete(): boolean</td>
-          <td class="tDataRTL">
+          <td >+delete(): boolean</td>
+          <td >
             فایل در مسیر تعریف شده رو حذف میکنه و اگه انجام بشه مقدار true بر
             میگردونه. (اگه پوشه باشه باید محتوای داخل پوشه قبل از حذف پوشه حذف
             بشن).
@@ -190,31 +190,31 @@ layout: default
         </tr>
 
         <tr>
-          <td class="tDataLTR">+mkdir(): boolean</td>
-          <td class="tDataRTL">
+          <td >+mkdir(): boolean</td>
+          <td >
             یک پوشه در مسیر تعریف شده ایجاد میکنه و اگه انجام بشه true بر
             میگردونه.
           </td>
         </tr>
 
         <tr>
-          <td class="tDataLTR">+mkdirs(): boolean</td>
-          <td class="tDataRTL">
+          <td >+mkdirs(): boolean</td>
+          <td >
             یک یا چند پوشه در صورت عدم وجود در مسیر تعریف شده ایجاد میکنه و اگه
             انجام بشه true بر میگردونه.
           </td>
         </tr>
 
         <tr>
-          <td class="tDataLTR">+lastModified(): long</td>
-          <td class="tDataRTL">
+          <td >+lastModified(): long</td>
+          <td >
             تاریخ اخرین تغییرات در فایل رو به صورت long بر میگردونه.
           </td>
         </tr>
 
         <tr>
-          <td class="tDataLTR">+renameTo(File): boolean</td>
-          <td class="tDataRTL">
+          <td >+renameTo(File): boolean</td>
+          <td >
             فایل موجود رو تغییر نام میده و اگه انجام بشه true بر میگردونه.
           </td>
         </tr>

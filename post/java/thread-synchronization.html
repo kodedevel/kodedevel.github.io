@@ -787,7 +787,7 @@ private class ConsumerProducer{
 
     <p>در زیر متد های تعریف شده در اینترفیس Lock اورده شده است.</p>
 
-    <table class="tb">
+    <table class="table-uml">
       <thead>
         <tr>
           <th colspan="2">
@@ -797,23 +797,23 @@ private class ConsumerProducer{
       </thead>
       <tbody>
         <tr>
-          <td class="tDataLTR">+lock(): void</td>
-          <td class="tDataRTL">یک قفل ایجاد میکنه.</td>
+          <td >+lock(): void</td>
+          <td >یک قفل ایجاد میکنه.</td>
         </tr>
         <tr>
-          <td class="tDataLTR">+unlock(): void</td>
-          <td class="tDataRTL">قفل رو آزاد میکنه.</td>
+          <td >+unlock(): void</td>
+          <td >قفل رو آزاد میکنه.</td>
         </tr>
         <tr>
-          <td class="tDataLTR">+newCondition(): Condition</td>
-          <td class="tDataRTL">یک نمونه از Condition رو بر میگردونه.</td>
+          <td >+newCondition(): Condition</td>
+          <td >یک نمونه از Condition رو بر میگردونه.</td>
         </tr>
       </tbody>
     </table>
 
     <p>اینترفیس Lock در کلاس ReentrantLock پیاده شده است.</p>
 
-    <table class="tb">
+    <table class="table-uml">
       <thead>
         <tr>
           <th colspan="2">
@@ -824,19 +824,19 @@ private class ConsumerProducer{
 
       <tbody>
         <tr>
-          <td class="tDataLTR">
+          <td >
             +ReentrantLock()
           </td>
-          <td class="tDataRTL">
+          <td >
             یک نمونه از کلاس ReentrantLock ایجاد میکنه.
           </td>
         </tr>
 
         <tr>
-          <td class="tDataLTR">
+          <td >
             +ReentrantLock(fair: boolean)
           </td>
-          <td class="tDataRTL">
+          <td >
             یک نمونه از کلاس ReentrantLock ایجاد میکنه و زمانی که مقدار پارامتر true باشه و نخی که بیشتر از بقیه ی نخ ها
             تو صف استفاده از داده قرار گرفته، اولین اولویت استفاده از داده بعد از آزاد شدن داده رو داره.
           </td>
@@ -914,7 +914,7 @@ private class Account {
       </p>
 
 
-      <table class="tb">
+      <table class="table-uml">
         <thead>
           <tr>
             <th colspan="2">&lt;&lt;java.util.concurrent.Condition&gt;&gt;</th>
@@ -923,27 +923,27 @@ private class Account {
 
         <tbody>
           <tr>
-            <td class="tDataLTR">
+            <td >
               +await(): void
             </td>
-            <td class="tDataRTL">
+            <td >
               باعث میشه نخ (thread) فعلی به طور موقت متوقف بشه تا وقتی که سیگنال ادامه بهش داده بشه.
             </td>
           </tr>
 
           <tr>
-            <td class="tDataLTR">
+            <td >
               +signal(): void
             </td>
-            <td class="tDataRTL">
+            <td >
               به یکی از نخ (thread) های متوقف شده با await سیگنال اجرا میده.
             </td>
           </tr>
           <tr>
-            <td class="tDataLTR">
+            <td >
               +signalAll(): void
             </td>
-            <td class="tDataRTL">
+            <td >
               به تمام نخ (thread) های متوقف شده با await سیگنال اجرا میده.
             </td>
           </tr>
@@ -1191,7 +1191,7 @@ private class Buffer {
       داده دسترسی داشته باشه.</p>
 
 
-    <table class="tb">
+    <table class="table-uml">
       <thead>
         <tr>
           <th colspan="2">
@@ -1201,37 +1201,37 @@ private class Buffer {
       </thead>
       <tbody>
         <tr>
-          <td class="tDataLTR">
+          <td >
             +Semaphore(numberOfPermits)
           </td>
-          <td class="tDataRTL">
+          <td >
             یک نمونه از Semaphore ایجاد می کنه و داخل پارامتر کانستراکتور تعداد نخ هایی که میتونن از داده ها (منابع)
             استفاده کنن رو تعیین میکنیم.
           </td>
         </tr>
         <tr>
-          <td class="tDataLTR">
+          <td >
             +Semaphore(numberOfPermits: int, fair: boolean)
           </td>
-          <td class="tDataRTL">
+          <td >
             یک نمونه از Semaphore ایجاد میکنه و تعداد نخ هایی که میتونن از داده (منابع) استفاده کنن رو تعیین میکنیم و
             همینطور با boolean مشخص میکنیم نوبت دهی منصفانه باشه یعنی نخی که بیشتر از همه منتظر مونده اولویت بالاتری
             نسبت به بقیه داره برای شروع داره.
           </td>
         </tr>
         <tr>
-          <td class="tDataLTR">
+          <td >
             +acquire(): void
           </td>
-          <td class="tDataRTL">
+          <td >
             محدودیت استفاده از داده (منابع) رو ایجاد میکنه.
           </td>
         </tr>
         <tr>
-          <td class="tDataLTR">
+          <td >
             +release(): void
           </td>
-          <td class="tDataRTL">
+          <td >
             محدودیت ایجاد شده رو بر میداره.
           </td>
         </tr>

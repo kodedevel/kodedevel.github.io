@@ -57,7 +57,7 @@ fun MyComposableFunction(modifier: Modifier = Modifier){
             شده.</p>
 
 
-        <table class="tb">
+        <table class="table-uml">
             <thead>
                 <tr>
                     <th colspan="2">Modifier</th>
@@ -65,81 +65,81 @@ fun MyComposableFunction(modifier: Modifier = Modifier){
             </thead>
             <tbody>
                 <tr>
-                    <td class="tDataLTR">fillMaxSize(): Modifier</td>
-                    <td class="tDataRTL">عرض و ارتفاع Composable اندازه Parent میشه.</td>
+                    <td >fillMaxSize(): Modifier</td>
+                    <td >عرض و ارتفاع Composable اندازه Parent میشه.</td>
                 </tr>
                 <tr>
-                    <td class="tDataLTR">fillMaxWidth(): Modifier</td>
-                    <td class="tDataRTL">عرض Composable اندازه Parent میشه.</td>
+                    <td >fillMaxWidth(): Modifier</td>
+                    <td >عرض Composable اندازه Parent میشه.</td>
                 </tr>
                 <tr>
-                    <td class="tDataLTR">fillMaxHeight(): Modifier</td>
-                    <td class="tDataRTL">ارتفاع Composable اندازه Parent میشه.</td>
+                    <td >fillMaxHeight(): Modifier</td>
+                    <td >ارتفاع Composable اندازه Parent میشه.</td>
                 </tr>
                 <tr>
-                    <td class="tDataLTR">wrapContentSize(): Modifier</td>
-                    <td class="tDataRTL">عرض و ارتفاع Composable اندازه محتوای Composable میشه</td>
+                    <td >wrapContentSize(): Modifier</td>
+                    <td >عرض و ارتفاع Composable اندازه محتوای Composable میشه</td>
                 </tr>
                 <tr>
-                    <td class="tDataLTR">wrapContentWidth(): Modifier</td>
-                    <td class="tDataRTL">عرض Composable اندازه ارتفاع محتوای Composable میشه.</td>
+                    <td >wrapContentWidth(): Modifier</td>
+                    <td >عرض Composable اندازه ارتفاع محتوای Composable میشه.</td>
                 </tr>
                 <tr>
-                    <td class="tDataLTR">wrapContentHeight(): Modifier</td>
-                    <td class="tDataRTL">ارتفاع Composable اندازه ارتفاع محتوای Composable میشه.</td>
+                    <td >wrapContentHeight(): Modifier</td>
+                    <td >ارتفاع Composable اندازه ارتفاع محتوای Composable میشه.</td>
                 </tr>
                 <tr>
-                    <td class="tDataLTR">size(dp: Dp): Modifier</td>
-                    <td class="tDataRTL">طول و عرض Composable رو به صورت dp تعریف میکنیم.</td>
+                    <td >size(dp: Dp): Modifier</td>
+                    <td >طول و عرض Composable رو به صورت dp تعریف میکنیم.</td>
                 </tr>
                 <tr>
-                    <td class="tDataLTR">padding(all: Dp): Modifier</td>
-                    <td class="tDataRTL">یک فاصله ایجاد میکنه.</td>
+                    <td >padding(all: Dp): Modifier</td>
+                    <td >یک فاصله ایجاد میکنه.</td>
                 </tr>
                 <tr>
-                    <td class="tDataLTR">background(color: Color): Modifier</td>
-                    <td class="tDataRTL">پس زمینه Composable رو تغییر میده.</td>
+                    <td >background(color: Color): Modifier</td>
+                    <td >پس زمینه Composable رو تغییر میده.</td>
                 </tr>
                 <tr>
-                    <td class="tDataLTR">clip(shape: Shape): Modifier</td>
-                    <td class="tDataRTL">میتونیم گوشه های Composable رو با صدا زدن, ShapeDefaults, CutCornerShape,
+                    <td >clip(shape: Shape): Modifier</td>
+                    <td >میتونیم گوشه های Composable رو با صدا زدن, ShapeDefaults, CutCornerShape,
                         RoundedCornerShape, CircleShape برش بدیم.</td>
                 </tr>
                 <tr>
-                    <td class="tDataLTR">alpha(alpha: Float): Modifier</td>
-                    <td class="tDataRTL">میزان شفافیت Composable رو تعیین میکنه.</td>
+                    <td >alpha(alpha: Float): Modifier</td>
+                    <td >میزان شفافیت Composable رو تعیین میکنه.</td>
                 </tr>
                 <tr>
-                    <td class="tDataLTR">border(width: Dp, color: Color, shape: Shape): Modifier</td>
-                    <td class="tDataRTL">دور تا دور Composable رو ترسیم میکنه؛ width: قطر خط، color: رنگ خط و shape: شکل
+                    <td >border(width: Dp, color: Color, shape: Shape): Modifier</td>
+                    <td >دور تا دور Composable رو ترسیم میکنه؛ width: قطر خط، color: رنگ خط و shape: شکل
                         چهار
                         گوشه خط.</td>
                 </tr>
                 <tr>
-                    <td class="tDataLTR">shadow(elevation: Dp, shape: Shape, clip: Boolean, ambientColor: Color,
+                    <td >shadow(elevation: Dp, shape: Shape, clip: Boolean, ambientColor: Color,
                         spotColor: Color): Modifier</td>
-                    <td class="tDataRTL">یک سایه برای Composable ایجاد میکنه. elevation: ارتفاع لایه, shape: نوع شکلی که
+                    <td >یک سایه برای Composable ایجاد میکنه. elevation: ارتفاع لایه, shape: نوع شکلی که
                         با سایه میخوایم ایجاد بشه، clip: سایه قابل برش باشه یا خیر، و دو پارامتر باقی‌مونده رنگ های سایه
                         است.</td>
                 </tr>
                 <tr>
-                    <td class="tDataLTR">offset(x: Dp, y: Dp)): Modifier</td>
-                    <td class="tDataRTL">میتونیم برای Composable یک offset تعریف کنیم.</td>
+                    <td >offset(x: Dp, y: Dp)): Modifier</td>
+                    <td >میتونیم برای Composable یک offset تعریف کنیم.</td>
                 </tr>
                 <tr>
-                    <td class="tDataLTR">graphicsLayer(block: () -> Unit): Modifier</td>
-                    <td class="tDataRTL">میتونیم بعضی از ویژگی های گرافیکی از جمله (scaleX, scaleY, rotateX, rotateY,
+                    <td >graphicsLayer(block: () -> Unit): Modifier</td>
+                    <td >میتونیم بعضی از ویژگی های گرافیکی از جمله (scaleX, scaleY, rotateX, rotateY,
                         rotateZ, alpha, ... ) رو داخل تابع block تعریف کنیم.</td>
                 </tr>
                 <tr>
-                    <td class="tDataLTR">clickable(clickable: Boolean, onClickLabel: String?, onClick: () -> Unit):
+                    <td >clickable(clickable: Boolean, onClickLabel: String?, onClick: () -> Unit):
                         Modifier</td>
-                    <td class="tDataRTL">میتونیم روی Composable کلیک کنیم؛ برای این تابع پارامتر های دیگه ای وجود داره
+                    <td >میتونیم روی Composable کلیک کنیم؛ برای این تابع پارامتر های دیگه ای وجود داره
                         ولی برای خلاصه کردن همین سه تا پارامتر کافیه.</td>
                 </tr>
                 <tr>
-                    <td class="tDataLTR">then(modifier: Modifier): Modifier</td>
-                    <td class="tDataRTL">Modifier فعلی رو با یک Modifier دیگه ترکیب میکنه.</td>
+                    <td >then(modifier: Modifier): Modifier</td>
+                    <td >Modifier فعلی رو با یک Modifier دیگه ترکیب میکنه.</td>
                 </tr>
             </tbody>
         </table>

@@ -78,7 +78,7 @@ layout: default
 
     <p>در نمودار uml زیر کانستراکتور (سازنده) های کلاس HashSet با پارامتر هاشون توضیح داده شده است.</p>
 
-    <table class="tb">
+    <table class="table-uml">
       <thead>
         <tr>
           <th colspan="2">java.util.HashSet</th>
@@ -86,34 +86,34 @@ layout: default
       </thead>
       <tbody>
         <tr>
-          <td class="tDataLTR">
+          <td >
             +HashSet()
           </td>
-          <td class="tDataRTL">
+          <td >
             یک نمونه از HashSet ایجاد میکنه با loadFactor پیشفرض 0.75.
           </td>
         </tr>
         <tr>
-          <td class="tDataLTR">
+          <td >
             +HashSet(c: Collection&lt;? extends&gt;)
           </td>
-          <td class="tDataRTL">
+          <td >
             یک نمونه از HashSet ایجاد می کنه و عناصر موجود در کالکشن c رو بهش اضافه می‌کنه.
           </td>
         </tr>
         <tr>
-          <td class="tDataLTR">
+          <td >
             +HashSet(capacity: int)
           </td>
-          <td class="tDataRTL">
+          <td >
             یک نمونه از HashSet با ظرفیت اولیه مشخص ایجاد می کنه.
           </td>
         </tr>
         <tr>
-          <td class="tDataLTR">
+          <td >
             +HashSet(capacity: int, loadFactor: float)
           </td>
-          <td class="tDataRTL">
+          <td >
             یک نمونه از HashSet با ظرفیت اولیه و loadFactor مشخص ایجاد میکنه.
           </td>
         </tr>
@@ -169,7 +169,7 @@ set.forEach(System.out::println);
     <p>کانستراکتور (سازنده) های LinkedHashSet مانند HashSet هستن، در زیر uml کانستراکتور (سازنده) های کلاس LinkedHashSet
       با توضیحاتشون اورده شده است.</p>
 
-    <table class="tb">
+    <table class="table-uml">
       <thead>
         <tr>
           <th colspan="2">java.util.LinkedHashSet</th>
@@ -177,34 +177,34 @@ set.forEach(System.out::println);
       </thead>
       <tbody>
         <tr>
-          <td class="tDataLTR">
+          <td >
             +LinkedHashSet()
           </td>
-          <td class="tDataRTL">
+          <td >
             یک نمونه از LinkedHashSet ایجاد میکنه با loadFactor پیشفرض 0.75.
           </td>
         </tr>
         <tr>
-          <td class="tDataLTR">
+          <td >
             +LinkedHashSet(c: Collection&lt;? extends&gt;)
           </td>
-          <td class="tDataRTL">
+          <td >
             یک نمونه از HashSet ایجاد می کنه و عناصر موجود در کالکشن c رو بهش اضافه می‌کنه.
           </td>
         </tr>
         <tr>
-          <td class="tDataLTR">
+          <td >
             +LinkedHashSet(capacity: int)
           </td>
-          <td class="tDataRTL">
+          <td >
             یک نمونه از LinkedHashSet با ظرفیت اولیه مشخص ایجاد می کنه.
           </td>
         </tr>
         <tr>
-          <td class="tDataLTR">
+          <td >
             +LinkedHashSet(capacity: int, loadFactor: float)
           </td>
-          <td class="tDataRTL">
+          <td >
             یک نمونه از LinkedHashSet با ظرفیت اولیه و loadFactor مشخص ایجاد میکنه.
           </td>
         </tr>
@@ -282,7 +282,7 @@ public class QueueSet&lt;E&gt; {
 
     <p>در نمودار UML زیر کانستراکتور (سازنده) های TreeSet شرح داده شده است.</p>
 
-    <table class="tb">
+    <table class="table-uml">
       <thead>
         <th colspan="2">
           java.util.TreeSet
@@ -291,35 +291,35 @@ public class QueueSet&lt;E&gt; {
 
       <tbody>
         <tr>
-          <td class="tDataLTR">
+          <td >
             +TreeSet()
           </td>
-          <td class="tDataRTL">
+          <td >
             یک نمونه از TreeSet ایجاد می‌کنه.
           </td>
         </tr>
         <tr>
-          <td class="tDataLTR">
+          <td >
             +TreeSet(compartor: Comparator&lt;? super E&gt;)
           </td>
-          <td class="tDataRTL">
+          <td >
             یک نمونه از TreeSet میکنه و عناصر بر اساس Comparator پاس داده شده بهش باهم مقایسه میشن.
           </td>
         </tr>
         <tr>
-          <td class="tDataLTR">
+          <td >
             +TreeSet(c: Collection&lt;? extends E&gt;)
           </td>
-          <td class="tDataRTL">
+          <td >
             یک نمونه از TreeSet ایجاد میکنه و اعضای کالکشن c رو بهش اضافه می کنه.
           </td>
         </tr>
 
         <tr>
-          <td class="tDataLTR">
+          <td >
             +TreeSet(sortedSet: SortedSet&lt;E&gt;)
           </td>
-          <td class="tDataRTL">
+          <td >
             یک نمونه از TreeSet ایجاد میکنه و اعضا رو بر اساس ترتیبی که در TreeSet دیگه قرار گرفتن بهش اضافه
             می کنه.
           </td>
@@ -335,56 +335,56 @@ public class QueueSet&lt;E&gt; {
         شده
         است.</p>
 
-      <table class="tb">
+      <table class="table-uml">
         <thead>
           <th colspan="2">java.util.SortedSet&lt;E&gt</th>
         </thead>
         <tbody>
           <tr>
-            <td class="tDataLTR">
+            <td >
               +getFirst(): E
             </td>
-            <td class="tDataRTL">
+            <td >
               اولین عنصر در TreeSet رو بر میگردونه و اگه خالی بود یک اکسپشن ایجاد میکنه.
             </td>
           </tr>
           <tr>
-            <td class="tDataLTR">
+            <td >
               +getLast(): E
             </td>
-            <td class="tDataRTL">
+            <td >
               آخرین عنصر در TreeSet رو بر میگردونه و اگه TreeSet خالی بود یک اکسپشن ایجاد میکنه.
             </td>
           </tr>
           <tr>
-            <td class="tDataLTR">
+            <td >
               +removeFirst(): E
             </td>
-            <td class="tDataRTL">
+            <td >
               اولین عنصر در TreeSet رو حذف می کنه و اگه TreeSet خالی بود یک اکسپشن ایجاد میکنه.
             </td>
           </tr>
           <tr>
-            <td class="tDataLTR">
+            <td >
               +removeLast(): E
             </td>
-            <td class="tDataRTL">
+            <td >
               آخرین عنصر در TreeSet رو حذف می کنه و اگه TreeSet خالی بود یک اکسپشن ایجاد می کنه.
             </td>
           </tr>
           <tr>
-            <td class="tDataLTR">
+            <td >
               +headSet(e: E): SortedSet&lt;E&gt;
             </td>
-            <td class="tDataRTL">
+            <td >
               تمام عناصر قبل از عنصر مورد نظر رو به صورت یک نمونه ی جدید از SortedSet بر میگردونه.
             </td>
           </tr>
           <tr>
-            <td class="tDataLTR">
+            <td >
               +tailSet(e: E): SortedSet&lt;E&gt;
             </td>
-            <td class="tDataRTL">
+            <td >
               عنصر مورد نظر و تمام عناصر بعدشو به عنوان یک نمونه ی جدید از SortedSet بر میگردونه.
             </td>
           </tr>
@@ -437,7 +437,7 @@ System.out.println("tailSet(\"Qazvin\"): " + sortedSet.tailSet("Qazvin"));
 
       <p>در نمودار UML زیر متد های NavigableSet با توضیحاتشون اورده شده است.</p>
 
-      <table class="tb">
+      <table class="table-uml">
         <thead>
           <th colspan="2">
             java.util.NavigableSet
@@ -446,43 +446,43 @@ System.out.println("tailSet(\"Qazvin\"): " + sortedSet.tailSet("Qazvin"));
 
         <tbody>
           <tr>
-            <td class="tDataLTR">
+            <td >
               +lower(e: E): E
             </td>
-            <td class="tDataRTL">
+            <td >
               بزرگترین عنصر، کوچکتر از e رو بر میگردونه.
             </td>
           </tr>
           <tr>
-            <td class="tDataLTR">
+            <td >
               +higher(e: E): E
             </td>
-            <td class="tDataRTL">
+            <td >
               کوچکترین عنصر بزرگ تر از e رو بر میگردونه.
             </td>
           </tr>
           <tr>
-            <td class="tDataLTR">
+            <td >
               +floor(e: E): E
             </td>
-            <td class="tDataRTL">
+            <td >
               بزرگترین عنصر کوچکتر یا مساوی با e رو بر میگردونه.
             </td>
           </tr>
           <tr>
-            <td class="tDataLTR">
+            <td >
               +ceiling(e: E): E
             </td>
-            <td class="tDataRTL">
+            <td >
               کوچکترین عنصری که بزرگتر یا مساوی با عنصر e باشه رو بر میگردونه.
             </td>
           </tr>
 
           <tr>
-            <td class="tDataLTR">
+            <td >
               +descendingSet(): NavigableSet&lt;E&gt;
             </td>
-            <td class="tDataRTL">
+            <td >
               یک نمونه از NavigableSet با ترتیب معکوس از عناصر فعلی رو بر میگردونه.
             </td>
           </tr>
