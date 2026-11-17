@@ -46,7 +46,7 @@ layout: default
                         mutableStateOf(): MutableState&lt;T&gt;
                     </td>
                     <td>
-                        یک نمونه از MutableState رو بر میگردونه که داده ای از نوع T رو نگهداری می‌کنه.
+                        یک نمونه از MutableState رو بر میگردونه که داده ای از نوع <strong>T</strong> رو نگهداری می‌کنه.
                     </td>
                 </tr>
                 <tr>
@@ -110,13 +110,13 @@ layout: default
     </section>
 
     <section id="p1">
-        <h2>حفظ State هنگام Recomposition</h2>
+        <h2>ذخیره State هنگام Recomposition</h2>
 
-        <p>هنگامی که مقدار متغیر در State تغییر میکنه، Recomposition اتفاق می‌افته به عبارتی تابع Composable دوباره صدا زده میشه، در این حالت Recomposition یک State جدید جایگزین میشه و مقادیر State ریست میشه، برای ذخیره State از تابع <strong>remember</strong> یا <strong>rememberSaveable</strong> استفاده میکنیم.</p>
+        <p>هنگامی که مقدار متغیر در State تغییر کنه، Recomposition اتفاق می‌افته به عبارتی تابع Composable دوباره صدا زده میشه، در این حالت یک State جدید   ایجاد و جایگزین State قبلی میشه و مقدار State ریست میشه، بنابراین برای ذخیره State باید از تابع <strong>remember</strong> یا <strong>rememberSaveable</strong> استفاده کنیم.</p>
 
         <section>
             <h3>تابع remember</h3>
-            <p>همانطور که گفتیم وظیفه این تابع ذخیره State فعلی و جلوگیری از جایگزینی آن با State جدید هنگام Recomposition رو داره.</p>
+            <p>همانطور که گفتیم وظیفه این تابع ذخیره State و جلوگیری از جایگزینی آن با State جدید هنگام Recomposition است.</p>
 
             <p>برای استفاده از remember کافیه یکی از توابع State رو داخل تابع remember صدا بزنیم.</p>
             <div class="sample">
@@ -185,9 +185,27 @@ fun Counter(modifier: Modifier = Modifier){
 
     <section id="p2">
         <h2>الگوی State Hoisting</h2>
-        <p>گاهی در برنامه لازمه State رو بجای Composable فرزند (Child) در Composable پدر (Parent) تعریف کنیم، با انجام این کار به Composable فرزند <strong>Stateless</strong> میگیم؛ و به این کار <strong>State Hoisting</strong> میگیم یعنی بالا بردن State.</p>
+        <p>زمانی که یک تابع Composable رو داخل تابع Composable دیگه ای صدا میزنیم به تابعی که صدا زدیم <strong>فرزند (Child)</strong> و به اون یکی <strong>پدر (Parent)</strong> میگیم.</p>
 
-        <p>در State Hoisting مقادیر داخل Parent تعریف میشن و توسط Child تغییر میکنن و توسط Parent تغییرات برای نمایش به Child ارسال میشن و یک رابطه ی <strong>یک سویی (Unidirectional)</strong> بین Parent و Child ایجاد میشه.</p>
+        <div class="sample">
+            <div class="snippet-container">
+                <pre class="snippet Kotlin">
+@Composable
+fun Parent(){
+    //ToDo something
+    Child()
+}
+
+@Composable
+fun Child(){
+    //ToDo something
+}
+                </pre>
+            </div>
+        </div>
+        <p>گاهی در برنامه لازمه State رو بجای Child در Parent تعریف کنیم، به این کار <strong>State Hoisting</strong> میگیم یعنی بالا بردن State و به Child اصطلاحا <strong>Stateless Composable</strong> میگیم.</p>
+
+        <p>در الگوی State Hoisting، وضعیت (State) داخل Parent ایجاد میشه، سپس توسط Child تغییر میکنه و در نهایت از Parent به Child برای نمایش ارسال میشه؛ در الگوی State Hoisting یک رابطه <strong>یک سویی (Unidirectional)</strong> بین Parent و Child وجود داره.</p>
 
         <p>در زیر رابطه بین Parent و Child هنگام پیاده‌سازی State Hoisting آورده شده است.</p>
 
