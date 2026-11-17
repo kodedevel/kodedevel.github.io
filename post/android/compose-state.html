@@ -56,7 +56,7 @@ layout: default
                 </tr>
                 <tr>
                     <td>
-                        mutableDoubleStateOf(): MutableDoubleStateOf
+                        mutableDoubleStateOf(): MutableDoubleState
                     </td>
                     <td>
                         یک نمونه از MutableDoubleState رو برای نگهداری <strong>Double</strong> بر می‌گردونه.
@@ -64,7 +64,7 @@ layout: default
                 </tr>
                 <tr>
                     <td>
-                        mutableLongStateOf(): MutableLongStateOf
+                        mutableLongStateOf(): MutableLongState
                     </td>
                     <td>
                         یک نمونه از MutableLongState رو برای نگهداری <strong>Long</strong> بر میگردونه.
@@ -72,7 +72,7 @@ layout: default
                 </tr>
                 <tr>
                     <td>
-                        mutableFloatStateOf(): MutableFloatStateOf
+                        mutableFloatStateOf(): MutableFloatState
                     </td>
                     <td>
                         یک نمونه از MutableFloatState رو برای نگهداری <strong>Float</strong> بر میگردونه.
@@ -88,7 +88,7 @@ layout: default
                 </tr>
                 <tr>
                     <td>
-                        mutableStateListOf(): SnapshotStateSet&lt;T&gt;
+                        mutableStateSetOf(): SnapshotStateSet&lt;T&gt;
                     </td>
                     <td class="tDataRTL">
                         یک نمونه از SnapshotStateSet رو برای نگهداری <strong>MutableSet&lt;T&gt;</strong> بر میگردونه.
@@ -96,7 +96,7 @@ layout: default
                 </tr>
                <tr>
                     <td>
-                        mutableStateListOf(): SnapshotStateMap&lt;K, V&gt;
+                        mutableStateMapOf(): SnapshotStateMap&lt;K, V&gt;
                     </td>
                     <td>
                         یک نمونه از SnapshotStateMap رو برای نگهداری <strong dir="ltr">MutableMap&lt;K, V&gt;</strong> بر میگردونه.
@@ -168,7 +168,7 @@ fun Counter(modifier: Modifier = Modifier){
         Button(onClick = {
             count++
         }){
-            Increment
+            Text("Increment")
         }
 
         Text(text = count.toString())
@@ -215,7 +215,7 @@ fun Counter(modifier: Modifier = Modifier, count: Int, onIncrement: () -&gt; Uni
 
     Column(modifier = modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center){
         Button(onClick = onIncrement){
-            Increment
+            Text("Increment")
         }
 
         Text(text = count.toString())
